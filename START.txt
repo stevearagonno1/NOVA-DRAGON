@@ -1,0 +1,16 @@
+=== NOVA_V8 — خطوات ما بعد فك الضغط (Termux) ===
+pkg install -y unzip termux-api
+termux-setup-storage                       # اقبل إذن التخزين
+mkdir -p ~/nova
+cd /storage/emulated/0/Download            # أو مكان حفظ الحزمة
+unzip NOVA_v8_bundle.zip -d ~/nova/
+cd ~/nova
+# 1) اختبار صغير أولاً:
+python fetch_archive.py --symbols BTCUSDT --start 2026-06 --end 2026-08
+# 2) التنزيل الكامل (5 سنوات × 12 عملة):
+python fetch_archive.py
+# 3) الربط والتشغيل:
+echo 'export NOVA_ARCHIVE=~/crypto_archive' >> ~/.bashrc && source ~/.bashrc
+python -m nova_v8 doctor
+python -m nova_v8 research --symbols BTCUSDT,BNBUSDT,SOLUSDT,LINKUSDT --strategies all
+python -m nova_v8 evaluate

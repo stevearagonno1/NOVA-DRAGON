@@ -1,0 +1,5 @@
+NOVA_DON_ENTRY1 NOVA_DON_EXIT1 NOVA_DON_MACRO NOVA_DON_CHOP   train_net    plateau         net  trades   win_pct
+            576            192              0             0 1018.457003 841.430502 -323.676634      68 30.882353
+
+نافذة التدريب: 2023-09→2024-12 | الاختبار: 2025-01→2026-08
+إجمالي التركيبات: 80 | صفقات دنيا: 15
