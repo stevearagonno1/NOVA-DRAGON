@@ -1,5 +1,0 @@
-NOVA_AT_TRAIL NOVA_AT_STOP NOVA_AT_PB NOVA_AT_TRIG NOVA_AT_V3A NOVA_AT_V3B NOVA_AT_V3C  train_net    plateau         net  trades  win_pct
-          8.0          1.2       1440            6           0           1           0 932.931319 753.100472 -161.468315      22 9.090909
-
-نافذة التدريب: 2023-09→2024-12 | الاختبار: 2025-01→2026-08
-إجمالي التركيبات: 1920 | صفقات دنيا: 15

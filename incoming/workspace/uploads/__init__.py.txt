@@ -1,2 +1,0 @@
-"""NOVA_V8_QUANT_LAB — institutional async quant engine for Termux edge."""
-__version__ = "8.0.0"
