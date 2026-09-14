@@ -24,13 +24,15 @@
 | `data` | باركيه صغير أعيد منه حساب النتائج |
 | `research` | نتائج التشغيل الحقيقية (الأرشيف) |
 | `tools` | أدواتنا: الفحص، البروبي، جدول الأرشيف، المنظّم |
-| `crypto_archive` | البيانات الضخمة (BTC 1m لخمس سنوات) |
+| `hyp_lab` | آلة اختبار الفرضيات الجديدة (من جلسة موازية، PR #3) — بلا مساس بـ`nova_v8/**` |
+| `crypto_archive` | البيانات الضخمة (14 عملة 1m — أغلبيتها 5 سنوات) |
 | `code_drafts` | مسودات كود مستقلة ليست من المحرك |
 | `archive` | القديم وغير المطابق — محفوظ لا مربوط |
 
 ## كل ملف بمكانه
 
-### `(أرشيف النتائج — على مستوى المجلد)` (27)
+### `(أرشيف النتائج — على مستوى المجلد)` (28)
+- `research/hyp_lab_out/L0004/` — جولة مختبر الفرضيات الأولى: 9 فرضيات × 4 رموز (114 تركيبة) على نافذة 2026 (مسار L‑0006)
 
 - `research/nova_v8_out/ATOMUSDT/` — 13 ملف (370K)
 - `research/nova_v8_out/BNBUSDT/` — 13 ملف (377K)
@@ -249,7 +251,11 @@
 - `code_drafts/telegram_bot.py.txt` (6K) — """Modules 11 & 12 — non-blocking Telegram interface.
 - `code_drafts/telemetry.py.txt` (7K) — """Module 10 — Master Telemetry Database (the Quant Matrix).
 
-### `crypto_archive` (1 محلياً · 14 على main البعيد: الثمانية المعتمدة كاملة + 6 بحثية — انظر `docs/DATA-INVENTORY-2026-09-14.md`)
+### `hyp_lab` (11 — من جلسة موازية، PR #3)
+
+- `hyp_lab/` — آلة اختبار الفرضيات: ملفات فرضيات (F_*) + مشغّل مشترك + اختبارات ذاتية (9/9) وحتمية بايت‑ببايت؛ بُنيت خارج `nova_v8/**` المجمد. التشغيل: `.venv/bin/python hyp_lab/run_lab.py --out research/hyp_lab_out/L0004`
+
+### `crypto_archive` (14 عملة محلياً وبعيداً بعد التوحيد: الثمانية المعتمدة + 6 بحثية — انظر `docs/DATA-INVENTORY-2026-09-14.md`)
 
 - `crypto_archive/BTCUSDT_1m.parquet` (85M) — بيتكوين 1m لخمس سنوات 2021‑09→2026‑08 (open_time بالمللي ثانية int64؛ 2,629,240 شمعة)؛ فجوتان ~200 دقيقة — الجرد الكامل: `docs/DATA-INVENTORY-2026-09-14.md`
 
@@ -324,13 +330,14 @@
 - `docs/designs/المخطط_الشامل_للبوت/09_ورقة_الثوابت_وجميع_الأرقام.md` (12K) — 📋 ورقة الثوابت — كل رقم ومعامل ورد في الملفات الأربعة
 - `docs/designs/المخطط_الشامل_للبوت/المخطط_الشامل_ملف_واحد.txt` (367K) — المخطط الشامل للبوت  —  NOVA_V8_QUANT_LAB
 
-### `docs/lanes` (6)
+### `docs/lanes` (7)
 
 - `docs/lanes/INDEX.md` (2K) — LANES — لوحة المسارات (كل تجربة = ملف هنا)
 - `docs/lanes/L0000-adaptive-trend-1920.md` (3K) — L0000 — adaptive_trend: جولة السويپ 477 → 1920 (مغلقة)
 - `docs/lanes/L0001-donchian-current-engine-grid.md` (3K) — L0001 — donchian: إعادة التشغيل بمحاور المحرك الفعلية (DON_FILTER)
 - `docs/lanes/L0002-grid-collapse-dead-axes.md` (3K) — L0002 — تخفيض الشبكة: إزالة الأعمدة الخاملة (grid_collapse)
 - `docs/lanes/L0003-adoption-gate-holdout.md` (3K) — L0003 — بوابة القبول على holdout 2021-09:2023-08 (موجود في المستودع)
+- `docs/lanes/L0006-hyp-lab-first-sweep.md` (11K) — L0006 — hyp_lab: الجولة الأولى (9 فرضيات × 4 رموز، نافذة 2026) — جلسة موازية، أُعيد ترقيمها من L0004 (D‑0020)
 - `docs/lanes/_TEMPLATE.md` (3K) — L{{ID}} — {{TITLE}}
 
 ### `docs/misc` (17)
