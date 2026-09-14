@@ -1,0 +1,276 @@
+// This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// Join our channel for more free tools: https://t.me/mrexpert_ai
+
+//@version=6
+indicator("Lion Trend S",overlay = true)
+
+//Heikin Ashi indicator
+
+// إعدادات المستخدم
+showHA      = input.bool(true, "Enable Heikin Ashi")
+// حساب haClose مباشرة
+haClose = (open + high + low + close) / 4
+
+// haOpen باستخدام var وتحديث دقيق
+var float haOpen = na
+haOpen := na(haOpen) ? (open + close) / 2 : (haOpen + haClose[1]) / 2
+
+// باقي قيم Heikin Ashi
+haHigh = math.max(high, math.max(haOpen, haClose))
+haLow  = math.min(low, math.min(haOpen, haClose))
+
+// حساب EMA للتلوين
+//ema200 = ta.ema(close, 200)
+//barColor = not useEMAColor ? na : haClose > ema200 ? upColor : downColor
+
+
+//5 EMAs////////////////////////////////////////////////////////////////////////
+
+
+// EMA SRC
+
+emaSrc= haClose
+
+// EMA THEME COLOR 
+
+up_trend_color= input.color(#00bcd4,"BULL TREND THEME")
+dn_trend_color=input.color(#e91e63,"BEAR TREND THEME")
+
+//Plotting Close Price
+
+price=plot(haClose,display = display.none)
+
+// Calculate The EMA TREND CLOUD 
+
+// Trend Detection
+
+emma300=ta.ema(emaSrc, 300)
+emma200=ta.ema(haClose,200)
+
+lowest_h=math.min(emma200,emma300)
+highest_h=math.max(emma200,emma300)
+
+emma100=ta.ema(haClose,100)
+emma55=ta.ema(haClose,55)
+
+lowest_l=math.min(emma100,emma55)
+highest_l=math.max(emma100,emma55)
+
+final_lowest=math.min(lowest_h,lowest_l)
+final_highest=math.max(highest_h,highest_l)
+
+var bool isUpTrend=false
+var bool isDnTrend=false
+var color emaColor=na
+
+upTrend=haClose>final_lowest
+dnTrend=haClose<final_highest
+
+
+if(upTrend)
+    isUpTrend:=true
+    emaColor:=up_trend_color
+
+if (dnTrend)
+    isDnTrend:=true
+    emaColor:=dn_trend_color
+
+if upTrend and dnTrend
+    emaColor:=emaColor[1]
+    
+
+//EMA 200
+
+ema200 = plot(ta.ema(emaSrc,200), title='EMA 200', linewidth=3, color=color.new(emaColor, 50), offset=0, display=display.none)
+fill(price, ema200, title='EMA 200 Fill', color=color.new(emaColor, 90), editable=true)
+
+//EMA 9
+
+ema9 = plot(ta.ema(emaSrc,9), title='EMA 9', linewidth=3, color=color.new(emaColor,90), offset=0, display=display.none)
+fill(price, ema9, title='EMA 9 Fill', color=color.new(emaColor, 90), editable=true)
+
+
+// EMA 21 
+
+ema21 = plot(ta.ema(emaSrc,21), title='EMA 21', linewidth=3, color=color.new(emaColor, 50), offset=0, display=display.none)
+fill(price, ema21, title='EMA 21 Fill', color=color.new(emaColor, 90), editable=true)
+
+// EMA 55
+
+ema55 = plot(ta.ema(emaSrc,55), title='EMA 55', linewidth=3, color=color.new(emaColor, 50), offset=0, display=display.none)
+fill(price, ema55, title='EMA 55 Fill', color=color.new(emaColor, 90), editable=true)
+
+// EMA 100
+
+ema100 = plot(ta.ema(emaSrc,100), title='EMA 100', linewidth=3, color=color.new(emaColor, 50), offset=0, display=display.none)
+fill(price, ema100, title='EMA 100 Fill', color=color.new(emaColor, 90), editable=true)
+
+
+// Plot Candle
+plotcandle(showHA ? haOpen : na,showHA ? haHigh : na,showHA ? haLow  : na,showHA ? haClose : na,title="Heikin Ashi Candles",color=emaColor,wickcolor=emaColor,bordercolor=emaColor)
+
+
+// ＩＮＰＵＴＳ ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――{
+
+bool ht_enable=input.bool(true,"Enable Half Trend Indicator",group = "Half Trend Indicator")
+int amp = input.int(5, 'Amplitude', minval = 1,group = "Half Trend Indicator") // Length for indicator calculations
+
+// ＣＡＬＣＵＬＡＴＩＯＮＳ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――{
+series float closeMA = ta.sma(close, amp) // Moving average of close prices
+series float highestHigh = ta.highest(amp) // Highest high over the period
+series float lowestLow = ta.lowest(amp) // Lowest low over the period
+var float hl_t=0.0
+// Initialize half trend on the first bar
+if barstate.isfirst
+    hl_t := close
+    hl_t
+
+// Update half trend value based on conditions
+switch 
+    closeMA < hl_t and highestHigh < hl_t => 
+	    hl_t := highestHigh
+	    hl_t
+    closeMA > hl_t and lowestLow > hl_t => 
+	    hl_t := lowestLow
+	    hl_t
+    => 
+	    hl_t := hl_t
+	    hl_t
+
+
+// ＰＬＯＴ ――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――{
+
+// Plot half trend line
+plot( ht_enable ? hl_t:na,title = "Half Trend", color = emaColor, linewidth = 2, editable = true)
+
+/// SUPER TREND INDICATOR 
+
+Periods = input(title = 'SuperTrend ATR Period', defval = 10,group="SuperTrend")
+src = input(hl2, title = 'SuperTrend Source')
+Multiplier = input.float(title = 'SuperTrend ATR Multiplier', step = 1, defval = 3,group="SuperTrend")
+changeATR = input(title = 'SuperTrend Change ATR Calculation Method ?', defval = true,group="SuperTrend")
+showsignals = input(title = 'Show Buy/Sell Signals ?', defval = true,group="SuperTrend")
+atr2 = ta.sma(ta.tr, Periods)
+atr = changeATR ? ta.atr(Periods) : atr2
+up = src - Multiplier * atr
+up1 = nz(up[1], up)
+up := close[1] > up1 ? math.max(up, up1) : up
+dn = src + Multiplier * atr
+dn1 = nz(dn[1], dn)
+dn := close[1] < dn1 ? math.min(dn, dn1) : dn
+trend = 1
+trend := nz(trend[1], trend)
+trend := trend == -1 and close > dn1 ? 1 : trend == 1 and close < up1 ? -1 : trend
+buySignal = trend == 1 and trend[1] == -1 and emaColor==up_trend_color
+sellSignal = trend == -1 and trend[1] == 1 and emaColor==dn_trend_color
+///...... TP & SL TOOLS ........
+useFractal = true//input.bool(true, title = 'Use Fractal for Stop Loss', group = 'Trade Levels')
+tradeSide = emaColor==up_trend_color?"Buy":"Sell"
+
+showLabels = true// input.bool(true, title = 'Show TP&SL Labels?', group = 'TP&SL STYLE')
+offset = input.int(10, title = 'Offset from Last Bar', minval = 1, maxval = 100, group = 'TP&SL STYLE')
+len = input.int(5, title = 'Line Length', minval = 1, maxval = 100, group = 'TP&SL STYLE')
+labelSizeOption = input.string('Normal', title = 'Label Size', options = ['Tiny', 'Small', 'Normal', 'Large'], group = 'TP&SL STYLE')
+lineWidth = input.int(1, title = 'Line Width', minval = 1, maxval = 5, group = 'TP&SL STYLE')
+lineStyleOption = input.string('Solid', title = 'Line Style', options = ['Solid', 'Dotted', 'Dashed'], group = 'TP&SL STYLE')
+
+labelSize = switch labelSizeOption
+    'Tiny' => size.tiny
+    'Small' => size.small
+    'Normal' => size.normal
+    'Large' => size.large
+
+                
+lineStyle = switch lineStyleOption
+    'Solid' => line.style_solid
+    'Dotted' => line.style_dotted
+    'Dashed' => line.style_dashed
+
+fractalLow = low[2] < low[1] and low[2] < low[3] and low[2] < low[0] ? low[2] : na
+fractalHigh = high[2] > high[1] and high[2] > high[3] and high[2] > high[0] ? high[2] : na
+
+var float lastFractalLow = na
+var float lastFractalHigh = na
+if not na(fractalLow)
+    lastFractalLow := fractalLow
+if not na(fractalHigh)
+    lastFractalHigh := fractalHigh
+
+stopLoss = useFractal ? tradeSide == 'Buy' ? lastFractalLow : lastFractalHigh : na
+stopLoss := stopLoss + ((0.04/100) * stopLoss)
+
+slDistance = math.abs(close - stopLoss)
+tp1 = tradeSide == 'Buy' ? close + slDistance * 1 : close - slDistance * 1
+tp2 = tradeSide == 'Buy' ? close + (tp1 - close) * 2 : close - (close - tp1) * 2
+tp3 = tradeSide == 'Buy' ? close + (tp2 - close) * 1.5 : close - (close - tp2) * 1.5
+
+int lastBar = bar_index + offset
+
+var line entryLine = na
+var line slLine = na
+var line tp1Line = na
+var line tp2Line = na
+var line tp3Line = na
+
+var label entryLabel = na
+var label slLabel = na
+var label tp1Label = na
+var label tp2Label = na
+var label tp3Label = na
+
+var float newtp1 = na
+var float newtp2 = na
+var float newtp3 = na
+var float newSl = na
+var float avv = 0.0
+var int index = na
+
+// === إشارات الدخول (استبدلها بإشاراتك)
+// === متغير حالة الصفقة
+var bool inTrade = false
+
+// === تحقق من الخروج من الصفقة
+exitTP3 = inTrade and ((tradeSide == "Buy" and high >= newtp3) or (tradeSide == "Sell" and low <= newtp3))
+exitSL  = inTrade and ((tradeSide == "Buy" and low <= newSl) or (tradeSide == "Sell" and high >= newSl))
+
+if exitTP3 or exitSL
+    inTrade := false
+
+// === تحقق من إشارة دخول جديدة صالحة فقط عند عدم وجود صفقة
+validSignal = (buySignal or sellSignal) and not inTrade
+
+if validSignal
+    inTrade := true
+    newtp1 := tp1
+    newtp2 := tp2
+    newtp3 := tp3
+    newSl := stopLoss
+    index := bar_index
+    avv := close
+
+plotshape(buySignal and showsignals ? up : na, title = 'Buy', text = 'Buy', location = location.absolute, style = shape.labelup, size = size.tiny, color = color.new(color.green, 0), textcolor = color.new(color.white, 0))
+plotshape(sellSignal and showsignals ? dn : na, title = 'Sell', text = 'Sell', location = location.absolute, style = shape.labeldown, size = size.tiny, color = color.new(color.red, 0), textcolor = color.new(color.white, 0))
+
+
+if showLabels
+    label.delete(entryLabel), label.delete(slLabel), label.delete(tp1Label), label.delete(tp2Label), label.delete(tp3Label)
+    entryLabel := label.new(bar_index + offset, avv, "Entry : " + str.tostring(avv), style=label.style_label_left, color=color.orange, textcolor=color.white, size=labelSize)
+    slLabel := label.new(bar_index + offset, newSl, "SL : " + str.tostring(newSl), style=label.style_label_left, color=color.red, textcolor=color.white, size=labelSize)
+    tp1Label := label.new(bar_index + offset, newtp1, "TP1 : " + str.tostring(newtp1), style=label.style_label_left, color=color.green, textcolor=color.white, size=labelSize)
+    tp2Label := label.new(bar_index + offset, newtp2, "TP2 : " + str.tostring(newtp2), style=label.style_label_left, color=color.green, textcolor=color.white, size=labelSize)
+    tp3Label := label.new(bar_index + offset, newtp3, "TP3 : " + str.tostring(newtp3), style=label.style_label_left, color=color.green, textcolor=color.white, size=labelSize)
+    line.delete(entryLine), line.delete(slLine), line.delete(tp1Line), line.delete(tp2Line), line.delete(tp3Line)
+    entryLine := line.new(index, avv, bar_index + offset, avv, color=color.orange, width=lineWidth, style=lineStyle)
+    slLine := line.new(index, newSl, bar_index + offset, newSl, color=color.red, width=lineWidth, style=lineStyle)
+    tp1Line := line.new(index, newtp1, bar_index + offset, newtp1, color=color.green, width=lineWidth, style=lineStyle)
+    tp2Line := line.new(index, newtp2, bar_index + offset, newtp2, color=color.green, width=lineWidth, style=lineStyle)
+    tp3Line := line.new(index, newtp3, bar_index + offset, newtp3, color=color.green, width=lineWidth, style=lineStyle)
+
+
+// ==========================================================================================
+
+// === Dashboard with Telegram Link ===
+var table myTable = table.new(position.top_center, 1, 1, border_width=1, frame_color=color.black, bgcolor=color.white)
+
+// Add Telegram Message to Dashboard
+table.cell(myTable, 0, 0, "Join Telegram @mrexpert_ai", bgcolor=color.blue, text_color=color.white, text_size=size.normal)

@@ -1,0 +1,88 @@
+//@version=6
+indicator('Double SuperTrend', overlay = true)
+
+// Minor Trend Settings
+PeriodsMinor = input(title = 'ATR Period Minor Trend', defval = 10)
+MultiplierMinor = input.float(title = 'ATR Multiplier Minor Trend', step = 0.1, defval = 3.0)
+changeATRMinor = input(title = 'Change ATR Calculation Method Minor Trend?', defval = true)
+
+// Major Trend Settings
+PeriodsMajor = input(title = 'ATR Period Major Trend', defval = 14)
+MultiplierMajor = input.float(title = 'ATR Multiplier Major Trend', step = 0.1, defval = 6.0)
+changeATRMajor = input(title = 'Change ATR Calculation Method Major Trend?', defval = true)
+
+src = input(hl2, title = 'Source')
+showsignals = input(title = 'Show Buy/Sell Signals ?', defval = true)
+
+// Minor Trend Calculation
+atrMinor2 = ta.sma(ta.tr, PeriodsMinor)
+atrMinor = changeATRMinor ? ta.atr(PeriodsMinor) : atrMinor2
+upMinor = src - MultiplierMinor * atrMinor
+upMinor1 = nz(upMinor[1], upMinor)
+upMinor := close[1] > upMinor1 ? math.max(upMinor, upMinor1) : upMinor
+dnMinor = src + MultiplierMinor * atrMinor
+dnMinor1 = nz(dnMinor[1], dnMinor)
+dnMinor := close[1] < dnMinor1 ? math.min(dnMinor, dnMinor1) : dnMinor
+trendMinor = 1
+trendMinor := nz(trendMinor[1], trendMinor)
+trendMinor := trendMinor == -1 and close > dnMinor1 ? 1 : trendMinor == 1 and close < upMinor1 ? -1 : trendMinor
+
+// Major Trend Calculation
+atrMajor2 = ta.sma(ta.tr, PeriodsMajor)
+atrMajor = changeATRMajor ? ta.atr(PeriodsMajor) : atrMajor2
+upMajor = src - MultiplierMajor * atrMajor
+upMajor1 = nz(upMajor[1], upMajor)
+upMajor := close[1] > upMajor1 ? math.max(upMajor, upMajor1) : upMajor
+dnMajor = src + MultiplierMajor * atrMajor
+dnMajor1 = nz(dnMajor[1], dnMajor)
+dnMajor := close[1] < dnMajor1 ? math.min(dnMajor, dnMajor1) : dnMajor
+trendMajor = 1
+trendMajor := nz(trendMajor[1], trendMajor)
+trendMajor := trendMajor == -1 and close > dnMajor1 ? 1 : trendMajor == 1 and close < upMajor1 ? -1 : trendMajor
+
+// Plot Major Trend
+plot(trendMajor == 1 ? upMajor : na, title = 'Major Up Trend', color = color.blue, style = plot.style_linebr, linewidth = 2)
+plot(trendMajor == -1 ? dnMajor : na, title = 'Major Down Trend', color = color.purple, style = plot.style_linebr, linewidth = 2)
+
+// Filtered Signals based on Major Trend
+buySignal = trendMinor == 1 and trendMinor[1] == -1 and trendMajor == 1
+sellSignal = trendMinor == -1 and trendMinor[1] == 1 and trendMajor == -1
+
+// Plotting Minor Trend and Signals
+plot(trendMinor == 1 ? upMinor : na, title = 'Minor Up Trend', color = color.green, style = plot.style_linebr)
+plot(trendMinor == -1 ? dnMinor : na, title = 'Minor Down Trend', color = color.red, style = plot.style_linebr)
+plotshape(showsignals and buySignal and barstate.isconfirmed ? upMinor : na, title = 'Buy Signal', location = location.absolute, style = shape.labelup, color = color.lime, text = 'BUY')
+plotshape(showsignals and sellSignal and barstate.isconfirmed ? dnMinor : na, title = 'Sell Signal', location = location.absolute, style = shape.labeldown, color = color.red, text = 'SELL')
+
+// Alerts for Double SuperTrend
+alertcondition(buySignal and barstate.isconfirmed, title = 'Buy Signal (Double ST)', message = 'Buy Signal with Major Trend Confirmation')
+alertcondition(sellSignal and barstate.isconfirmed, title = 'Sell Signal (Double ST)', message = 'Sell Signal with Major Trend Confirmation')
+
+// Alerts for Smaller Inside SuperTrend
+buySignalInside = trendMinor == 1 and trendMinor[1] == -1
+sellSignalInside = trendMinor == -1 and trendMinor[1] == 1
+alertcondition(buySignalInside and barstate.isconfirmed, title = 'Buy Signal (Inside ST)', message = 'Buy Signal for Inside SuperTrend')
+alertcondition(sellSignalInside and barstate.isconfirmed, title = 'Sell Signal (Inside ST)', message = 'Sell Signal for Inside SuperTrend')
+
+//-------------------------------
+// New: Buy Dip and Sell Dip Signals
+//-------------------------------
+// Buy Dip Signal: When overall trend is up (price above major supertrend)
+// and the minor uptrend breaks (minor trend goes from up to down).
+buyDipSignal = trendMajor == 1 and (trendMinor[1] == 1 and trendMinor == -1)
+// Sell Dip Signal: When overall trend is down (price below major supertrend)
+// and the minor downtrend breaks (minor trend goes from down to up).
+sellDipSignal = trendMajor == -1 and (trendMinor[1] == -1 and trendMinor == 1)
+
+plotshape(showsignals and buyDipSignal and barstate.isconfirmed ? low : na, title = 'Buy Dip Signal', location = location.belowbar, style = shape.labelup, color = color.aqua, text = 'BUY DIP')
+plotshape(showsignals and sellDipSignal and barstate.isconfirmed ? high : na, title = 'Sell Bounce Signal', location = location.abovebar, style = shape.labeldown, color = color.orange, text = 'SELL BOUNCE')
+
+alertcondition(buyDipSignal and barstate.isconfirmed, title = 'Buy Dip Signal', message = 'Buy Dip Signal: Price above major trend and minor uptrend break.')
+alertcondition(sellDipSignal and barstate.isconfirmed, title = 'Sell Bounce Signal', message = 'Sell Bounce Signal: Price below major trend and minor downtrend break.')
+// ==========================================================================================
+
+// === Dashboard with Telegram Link ===
+var table myTable = table.new(position.top_center, 1, 1, border_width=1, frame_color=color.black, bgcolor=color.white)
+
+// Add Telegram Message to Dashboard
+table.cell(myTable, 0, 0, "Join Telegram @mrexpert_ai", bgcolor=color.blue, text_color=color.white, text_size=size.normal)

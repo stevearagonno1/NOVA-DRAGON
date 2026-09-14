@@ -1,0 +1,187 @@
+#!/usr/bin/env python3
+"""NOVA_V8 — standalone Binance historical 1m kline fetcher.
+
+Downloads ~5 years of 1m OHLCV for the 12-symbol universe and writes
+compressed Parquet archives to ~/crypto_archive/{SYMBOL}_1m.parquet, in the
+exact layout the backtester ingests (open_time, open, high, low, close, volume).
+
+Runs INDEPENDENTLY of the bot (aiohttp only — no bot imports):
+
+    python data_fetcher.py                    # full universe, 5 years
+    python data_fetcher.py --years 2 --symbols BTCUSDT SOLUSDT
+    python data_fetcher.py --dir ~/crypto_archive --force
+
+Rate-limit strategy: Binance klines cost weight 10/call at limit=1000 and the
+IP budget is 6000 weight/min. We pace at ~0.35 s/call (~1700 weight/min
+worst case), dynamically back off via the X-MBX-USED-WEIGHT-1M response
+header, and hard-sleep on 429 / 418 / -1003. Resume-friendly: existing
+archives are skipped unless --force is given.
+"""
+from __future__ import annotations
+
+import argparse
+import asyncio
+import sys
+import time
+from pathlib import Path
+
+import aiohttp
+import pandas as pd
+
+BASE_URL = "https://api.binance.com"
+SYMBOLS = [
+    "BTCUSDT", "BNBUSDT", "SOLUSDT", "LINKUSDT", "XLMUSDT", "TONUSDT",
+    "ATOMUSDT", "RENDERUSDT", "VETUSDT", "FILUSDT", "IMXUSDT", "HNTUSDT",
+]
+ALIASES = {"TONUSDT": ["GRAMUSDT"], "RENDERUSDT": ["RNDRUSDT"]}
+
+KLINES_LIMIT = 1000            # bars per call (max)
+CALL_SLEEP = 0.35              # baseline pacing between calls
+WEIGHT_SOFT_LIMIT = 4200       # back off when X-MBX-USED-WEIGHT-1M passes this
+MAX_RETRIES = 6
+
+COLS = ["open_time", "open", "high", "low", "close", "volume"]
+
+
+async def _klines(session: aiohttp.ClientSession, symbol: str,
+                  start_ms: int) -> list:
+    """One paginated klines call with rate-limit/fragility retries."""
+    params = {"symbol": symbol, "interval": "1m",
+              "limit": KLINES_LIMIT, "startTime": start_ms}
+    for attempt in range(1, MAX_RETRIES + 1):
+        try:
+            async with session.get(f"{BASE_URL}/api/v3/klines",
+                                   params=params) as r:
+                used = int(r.headers.get("X-MBX-USED-WEIGHT-1M", 0))
+                if used > WEIGHT_SOFT_LIMIT:                # dynamic cool-down
+                    await asyncio.sleep(5.0)
+                if r.status in (418, 429):                  # ban / rate limit
+                    wait = int(r.headers.get("Retry-After", 60))
+                    print(f"  ⚠ {symbol}: HTTP {r.status} → sleeping {wait}s")
+                    await asyncio.sleep(wait)
+                    continue
+                data = await r.json(content_type=None)
+            if isinstance(data, dict):                      # API error payload
+                code = data.get("code")
+                if code in (-1003, -1004, -1015):
+                    print(f"  ⚠ {symbol}: {data.get('msg')} → sleeping 45s")
+                    await asyncio.sleep(45)
+                    continue
+                raise RuntimeError(f"Binance error: {data}")
+            return data
+        except (aiohttp.ClientError, asyncio.TimeoutError) as exc:
+            wait = 2 ** attempt
+            print(f"  ⚠ {symbol}: network error ({exc}) → retry in {wait}s")
+            await asyncio.sleep(wait)
+    raise RuntimeError(f"{symbol}: klines call failed {MAX_RETRIES}×")
+
+
+async def fetch_symbol(session: aiohttp.ClientSession, symbol: str,
+                       years: float, out_dir: Path, force: bool) -> dict:
+    out = out_dir / f"{symbol}_1m.parquet"
+    if out.exists() and not force:
+        print(f"⏭  {symbol}: archive exists — skipped (use --force to re-fetch)")
+        return {"symbol": symbol, "status": "skipped", "bars": -1}
+
+    now_ms = int(time.time() * 1000)
+    start_ms = now_ms - int(years * 365.25 * 24 * 3600 * 1000)
+    buf: list[list] = []
+    cursor = start_ms
+    t0 = time.time()
+    calls = 0
+
+    while cursor < now_ms - 60_000:
+        data = await _klines(session, symbol, cursor)
+        calls += 1
+        if not data:                                        # pair offline/no data
+            break
+        buf.extend(data)
+        cursor = int(data[-1][0]) + 60_000
+        if calls % 250 == 0:
+            done = min((cursor - start_ms) / (now_ms - start_ms) * 100, 100)
+            print(f"  … {symbol}: {len(buf):,} bars ({done:.0f}% of span)")
+        if len(data) < KLINES_LIMIT:                        # reached present
+            break
+        await asyncio.sleep(CALL_SLEEP)
+
+    if not buf:
+        print(f"❌ {symbol}: no data returned (pair may be delisted)")
+        return {"symbol": symbol, "status": "no-data", "bars": 0}
+
+    df = pd.DataFrame(buf, columns=[
+        "open_time", "open", "high", "low", "close", "volume", "close_time",
+        "quote_volume", "trades", "taker_base", "taker_quote", "ignore"])
+    df = df[COLS].copy()
+    df["open_time"] = df["open_time"].astype("int64")
+    df[["open", "high", "low", "close", "volume"]] = \
+        df[["open", "high", "low", "close", "volume"]].astype(float)
+    df = (df.drop_duplicates("open_time").sort_values("open_time")
+            .reset_index(drop=True))
+    df.to_parquet(out, index=False, compression="snappy")
+
+    span_days = (df.open_time.iloc[-1] - df.open_time.iloc[0]) / 86_400_000
+    dt = time.time() - t0
+    mb = out.stat().st_size / 1e6
+    print(f"✅ {symbol}: {len(df):,} bars | {span_days:.0f} days | "
+          f"{mb:.1f} MB | {dt/60:.1f} min ({calls} calls)")
+    return {"symbol": symbol, "status": "ok", "bars": len(df)}
+
+
+async def try_aliases(session, symbol, years, out_dir, force) -> dict:
+    candidates = [symbol, *ALIASES.get(symbol, [])]
+    for cand in candidates:
+        res = await fetch_symbol(session, cand, years, out_dir, force)
+        if res["status"] != "no-data":
+            if cand != symbol:                              # normalize archive name
+                src = out_dir / f"{cand}_1m.parquet"
+                dst = out_dir / f"{symbol}_1m.parquet"
+                if src.exists():
+                    src.rename(dst)
+                    res["symbol"] = symbol
+                    print(f"ℹ  mapped {cand} → {symbol} archive")
+            return res
+    return {"symbol": symbol, "status": "no-data", "bars": 0}
+
+
+async def main_async(args) -> list[dict]:
+    out_dir = Path(args.dir).expanduser()
+    out_dir.mkdir(parents=True, exist_ok=True)
+    symbols = args.symbols or SYMBOLS
+    timeout = aiohttp.ClientTimeout(total=30, connect=10)
+    sem = asyncio.Semaphore(2)                              # gentle concurrency
+
+    async with aiohttp.ClientSession(timeout=timeout,
+                                     headers={"User-Agent": "nova-v8-fetcher"}) as s:
+        async def worker(sym):
+            async with sem:
+                print(f"⬇  {sym}: fetching {args.years:g}y of 1m klines…")
+                return await try_aliases(s, sym, args.years, out_dir, args.force)
+        return await asyncio.gather(*(worker(sym) for sym in symbols))
+
+
+def main() -> None:
+    ap = argparse.ArgumentParser(description="NOVA_V8 standalone data fetcher")
+    ap.add_argument("--years", type=float, default=5.0, help="lookback span")
+    ap.add_argument("--dir", default="~/crypto_archive", help="output directory")
+    ap.add_argument("--symbols", nargs="*", default=None,
+                    help="subset of symbols, e.g. --symbols BTCUSDT SOLUSDT")
+    ap.add_argument("--force", action="store_true", help="re-fetch existing archives")
+    args = ap.parse_args()
+
+    t0 = time.time()
+    results = asyncio.run(main_async(args))
+    ok = [r for r in results if r["status"] == "ok"]
+    skipped = [r for r in results if r["status"] == "skipped"]
+    failed = [r for r in results if r["status"] not in ("ok", "skipped")]
+    print("\n════ SUMMARY ════")
+    print(f"downloaded: {len(ok)} | skipped: {len(skipped)} | failed: {len(failed)}")
+    for r in failed:
+        print(f"  ✗ {r['symbol']} ({r['status']})")
+    print(f"total bars: {sum(r['bars'] for r in ok if r['bars'] > 0):,} "
+          f"in {(time.time()-t0)/60:.1f} min")
+    if failed:
+        sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()

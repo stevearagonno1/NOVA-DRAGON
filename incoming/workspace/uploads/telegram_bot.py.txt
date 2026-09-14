@@ -1,0 +1,158 @@
+"""Modules 11 & 12 — non-blocking Telegram interface.
+
+Stealth mode: NO per-trade messages. Only boot/start/progress-milestone/
+completion events. All I/O via aiohttp; long-poll loop is a background task;
+every callback is instantly acknowledged with answerCallbackQuery.
+"""
+from __future__ import annotations
+
+import asyncio
+import logging
+from typing import TYPE_CHECKING
+
+import aiohttp
+
+from . import config as C
+
+if TYPE_CHECKING:                                            # avoid cycles
+    from .engine import NovaEngine
+
+log = logging.getLogger("nova.telegram")
+
+BOOT_MSG = "⚡ تم تشغيل وربط المحرك بنجاح (النظام في وضع الاستعداد - لم يبدأ تنفيذ الصفقات)"
+START_MSG = "🚀 تم تأكيد الأمر: بدأت عملية تنفيذ الصفقات في الخلفية"
+COMPLETE_MSG = "🏁 اكتمل تنفيذ الصفقات بنسبة 100% بنجاح"
+
+STATUS_TMPL = (
+    "🟢الناجحة : {win_pct}%\n"
+    "🔴الخاسرة : {loss_pct}%\n"
+    "اجمالي المكاسب : {net_pnl} $\n"
+    "نسبة النجاح : {win_rate}%\n"
+    "إجمالي الصفقات التقريبية لكل اسبوع : {weekly_avg}"
+)
+
+KEYBOARD = {"inline_keyboard": [
+    [{"text": "📊 تقرير الحالة", "callback_data": "btn_status"}],
+    [{"text": "🚀 بدء التنفيذ", "callback_data": "btn_start_trade"},
+     {"text": "⏸️ توقف مؤقت", "callback_data": "btn_pause"}],
+    [{"text": "🛑 توقف تام وتصفير", "callback_data": "btn_stop_reset"},
+     {"text": "📥 تصدير السجل الشامل", "callback_data": "btn_export_log"}],
+]}
+
+
+class TelegramBot:
+    def __init__(self, engine: "NovaEngine"):
+        self.engine = engine
+        self.enabled = bool(C.TELEGRAM_TOKEN and C.TELEGRAM_CHAT_ID)
+        self.base = f"https://api.telegram.org/bot{C.TELEGRAM_TOKEN}"
+        self.session: aiohttp.ClientSession | None = None
+        self._task: asyncio.Task | None = None
+        self._offset = 0
+        self._run = False
+
+    # ------------------------------------------------------------- lifecycle
+    def start(self) -> None:
+        if not self.enabled:
+            log.info("Telegram disabled (no TELEGRAM_TOKEN / TELEGRAM_CHAT_ID)")
+            return
+        self.session = aiohttp.ClientSession()
+        self._run = True
+        self._task = asyncio.create_task(self._poll_loop())   # background task
+
+    async def stop(self) -> None:
+        self._run = False
+        if self._task:
+            self._task.cancel()
+        if self.session:
+            await self.session.close()
+
+    # ------------------------------------------------------------ transport
+    async def _api(self, method: str, **payload) -> dict:
+        try:
+            async with self.session.post(f"{self.base}/{method}", json=payload) as r:
+                return await r.json(content_type=None)
+        except Exception as exc:
+            log.warning("telegram %s failed: %s", method, exc)
+            return {}
+
+    async def send(self, text: str) -> None:
+        """All milestone messages and manual replies carry the dashboard."""
+        if not self.enabled:
+            log.info("[TG] %s", text.replace("\n", " | "))
+            return
+        await self._api("sendMessage", chat_id=C.TELEGRAM_CHAT_ID,
+                        text=text, reply_markup=KEYBOARD)
+
+    # --------------------------------------------------------- long polling
+    async def _poll_loop(self) -> None:
+        while self._run:
+            try:
+                async with self.session.get(
+                        f"{self.base}/getUpdates",
+                        params={"offset": self._offset, "timeout": C.TG_POLL_TIMEOUT},
+                        timeout=aiohttp.ClientTimeout(total=C.TG_POLL_TIMEOUT + 10)
+                ) as r:
+                    data = await r.json(content_type=None)
+                for upd in data.get("result", []):
+                    self._offset = max(self._offset, upd["update_id"] + 1)
+                    await self._handle(upd)
+            except asyncio.CancelledError:
+                raise
+            except Exception as exc:
+                log.warning("poll error: %s", exc)
+                await asyncio.sleep(3)
+
+    # -------------------------------------------------------------- handlers
+    async def _handle(self, upd: dict) -> None:
+        if "callback_query" in upd:
+            cq = upd["callback_query"]
+            await self._api("answerCallbackQuery",            # stop the spinner
+                            callback_query_id=cq["id"])
+            await self._callback(cq.get("data", ""))
+        elif "message" in upd:
+            await self._reply_status()                        # keyboard on replies
+
+    async def _callback(self, data: str) -> None:
+        if data == "btn_status":
+            await self._reply_status()
+        elif data == "btn_start_trade":
+            self.engine.set_executing(True)
+            await self.send(START_MSG)
+        elif data == "btn_pause":
+            self.engine.set_executing(False)
+            await self.send("⏸️ توقف مؤقت: لا صفقات جديدة — الصفقات المفتوحة تُدار فقط")
+        elif data == "btn_stop_reset":
+            await self.engine.reset_all()
+            await self.send("🛑 تم التوقف التام وتصفير جميع الجلسات والمقاييس")
+        elif data == "btn_export_log":
+            await self._send_export()
+
+    async def _reply_status(self) -> None:
+        stats = await self.engine.db.session_stats()
+        await self.send(STATUS_TMPL.format(**stats))
+
+    async def _send_export(self) -> None:
+        path = await self.engine.db.export_csv()              # I/O in thread
+        if not self.enabled:
+            log.info("export written to %s", path)
+            return
+        from pathlib import Path as _P
+        blob = await asyncio.to_thread(_P(path).read_bytes)   # no leaked handle
+        form = aiohttp.FormData()
+        form.add_field("chat_id", C.TELEGRAM_CHAT_ID)
+        form.add_field("caption", "📥 السجل الشامل (مرتب: النظام ↑، النتيجة ↓)")
+        form.add_field("document", blob, filename="nova_v8_master_log.csv",
+                       content_type="text/csv")
+        try:
+            async with self.session.post(f"{self.base}/sendDocument",
+                                         data=form) as r:
+                await r.json(content_type=None)
+        except Exception as exc:
+            log.warning("sendDocument failed: %s", exc)
+
+    # ------------------------------------------------------------ milestones
+    async def milestone_pct(self, pct: float, done: int, target: int) -> None:
+        if pct >= 100.0:
+            await self.send(COMPLETE_MSG)
+        else:
+            await self.send(f"⏳ تقدم التنفيذ: {pct:.0f}% ({done}/{target} صفقة مكتملة)")

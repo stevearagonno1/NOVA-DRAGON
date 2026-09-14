@@ -1,0 +1,443 @@
+"""Modules 8 & 9 — micro-execution mechanics + hybrid in-memory exit engine.
+
+Live path : LIMIT_MAKER (post-only) pegged to @bookTicker best bid/ask,
+            12 s hanging-bullet cancel, on-exchange catastrophic hard stop,
+            synthetic local break-even / ATR trailing / micro time-stop.
+Backtest  : identical state machine, simulated fills with strict
+            0.1 % maker entry + 0.1 % taker exit friction.
+"""
+from __future__ import annotations
+
+import asyncio
+import hashlib
+import hmac
+import logging
+import math
+import time
+import urllib.parse
+from dataclasses import dataclass, field
+from typing import Any, Awaitable, Callable, Optional
+
+import aiohttp
+
+from . import config as C
+
+log = logging.getLogger("nova.execution")
+
+OnClosed = Callable[[str, float, float], Awaitable[None]]   # (symbol, net_pct, pnl_usd)
+
+
+# ---------------------------------------------------------------- position
+@dataclass
+class Position:
+    symbol: str
+    side: int                      # +1 long / −1 short
+    qty: float
+    notional: float
+    entry: float
+    entry_ts: float                # epoch seconds
+    atr_pct: float                 # ATR14 / entry at fill (frozen trail yardstick)
+    strategy: str
+    regime: str
+    telemetry: dict
+    hard_stop: float = 0.0
+    be_stop: float | None = None
+    be_locked: bool = False
+    trail_active: bool = False
+    trail_phase2: bool = False     # ratchet: once peak > 1 %, stay choked
+    trail_stop: float = 0.0
+    watermark: float = 0.0
+    # live-only exchange handles
+    hard_stop_order_id: int | None = None
+    entry_order_id: int | None = None
+
+    def gain(self, px: float) -> float:
+        return (px - self.entry) / self.entry * self.side
+
+
+class ExitLogic:
+    """Hybrid in-memory exit engine — deterministic, shared by both modes.
+
+    Conservative evaluation order (no lookahead): stop lines from the
+    PREVIOUS update are tested against the current high/low first; only
+    afterwards are break-even / trailing lines advanced with this tick/bar.
+    """
+
+    HARD = "Hard Stop (1.15×ATR clamped)"
+    BE = "Break-Even Auto-Lock +0.45%"
+    TRAIL = "Dynamic ATR Trailing"
+    TIME = "Micro Time-Stop"
+
+    @staticmethod
+    def hard_stop_pct(atr_pct: float) -> float:
+        return min(max(C.HARD_STOP_ATR_MULT * atr_pct,
+                       C.HARD_STOP_MIN_PCT), C.HARD_STOP_MAX_PCT)
+
+    def arm(self, pos: Position) -> None:
+        pct = self.hard_stop_pct(pos.atr_pct)
+        pos.hard_stop = pos.entry * (1.0 - pct * pos.side)
+        pos.watermark = pos.entry
+
+    def update(self, pos: Position, hi: float, lo: float, now: float,
+               gap_px: float | None = None
+               ) -> Optional[tuple[str, float]]:
+        """Returns (exit_trigger, exit_price) or None. hi/lo: for live ticks
+        pass the exit-side quote for both; for bars pass the bar extremes.
+        gap_px (bars only): the bar OPEN — if the market gapped through a
+        stop line, the fill is the open, not the (unreachable) line price."""
+        # ---- 1) test already-armed lines (no lookahead) -------------------
+        if pos.side == 1:
+            lines = [(pos.hard_stop, self.HARD)]
+            if pos.be_locked and pos.be_stop:
+                lines.append((pos.be_stop, self.BE))
+            if pos.trail_active:
+                lines.append((pos.trail_stop, self.TRAIL))
+            hit = [x for x in lines if lo <= x[0]]
+            if hit:
+                px = max(x[0] for x in hit)                 # best crossed line fills
+                reason = next(r for p, r in hit if p == px)
+                if gap_px is not None and gap_px < px:      # gapped through → fill at open
+                    px = gap_px
+                return reason, min(px, hi)
+        else:
+            lines = [(pos.hard_stop, self.HARD)]
+            if pos.be_locked and pos.be_stop:
+                lines.append((pos.be_stop, self.BE))
+            if pos.trail_active:
+                lines.append((pos.trail_stop, self.TRAIL))
+            hit = [x for x in lines if hi >= x[0]]
+            if hit:
+                px = min(x[0] for x in hit)
+                reason = next(r for p, r in hit if p == px)
+                if gap_px is not None and gap_px > px:      # gapped through → fill at open
+                    px = gap_px
+                return reason, max(px, lo)
+
+        # ---- 2) micro time-stop (conservative: adverse-side bar proxy) ----
+        if now - pos.entry_ts > C.TIME_STOP_SEC:
+            px = lo if pos.side == 1 else hi
+            if pos.gain(px) < C.TIME_STOP_MIN_PNL:
+                return self.TIME, px
+
+        # ---- 3) advance local memory lines (non-linear ping-pong) ---------
+        fav = hi if pos.side == 1 else lo
+        gain = pos.gain(fav)
+        if not pos.be_locked and gain >= C.BE_TRIGGER_PCT:
+            pos.be_locked = True
+            pos.be_stop = pos.entry * (1.0 + C.BE_LOCK_PCT * pos.side)
+        if not pos.trail_active and gain >= C.TRAIL_ACT_PCT:
+            pos.trail_active = True            # Patch 3: trailing wakes at +0.50 %
+
+        def _trail_delta() -> float:
+            """Phase 1 (0.5–1 %): breathe at 1.2×ATR.
+            Phase 2 (peak > 1 %): choke to max(0.5×ATR, 0.08 %) — once the
+            peak is tagged, the ratchet keeps it choked permanently."""
+            if pos.trail_phase2:
+                return max(C.TRAIL_PHASE2_ATR * pos.atr_pct, C.TRAIL_PHASE2_FLOOR)
+            return C.TRAIL_DELTA_ATR * pos.atr_pct
+
+        if pos.side == 1:
+            pos.watermark = max(pos.watermark, hi)
+            if pos.gain(pos.watermark) >= C.TRAIL_PHASE2_PROFIT:
+                pos.trail_phase2 = True                # ratchet — never back off
+            if pos.trail_active:
+                pos.trail_stop = max(
+                    pos.trail_stop,
+                    pos.watermark * (1.0 - _trail_delta()))
+        else:
+            pos.watermark = min(pos.watermark, lo)
+            if pos.gain(pos.watermark) >= C.TRAIL_PHASE2_PROFIT:
+                pos.trail_phase2 = True
+            if pos.trail_active:
+                pos.trail_stop = min(
+                    pos.trail_stop if pos.trail_stop else math.inf,
+                    pos.watermark * (1.0 + _trail_delta()))
+        return None
+
+
+def settle_pnl(pos: Position, exit_px: float) -> tuple[float, float]:
+    """Exact round-trip friction: 0.1 % maker in / 0.1 % taker out.
+    Returns (net_pct, pnl_usd)."""
+    cost = pos.notional * (1.0 + C.MAKER_FEE)
+    gross = pos.notional * (exit_px / pos.entry) if pos.side == 1 \
+        else pos.notional * (2.0 - exit_px / pos.entry)
+    proceeds = gross * (1.0 - C.TAKER_FEE)
+    pnl = proceeds - cost
+    return pnl / cost * 100.0, pnl
+
+
+# ==================================================== backtest (simulator)
+class SimExecutor:
+    def __init__(self) -> None:
+        self.exits = ExitLogic()
+        self.pending: dict[str, dict[str, Any]] = {}
+        self.positions: dict[str, Position] = {}
+        self.on_closed: OnClosed | None = None
+
+    async def request_entry(self, *, symbol: str, side: int, limit: float,
+                            strategy: str, regime: str, telemetry: dict,
+                            atr_pct: float, notional: float, ts_ms: int,
+                            bar_idx: int) -> None:
+        """LIMIT_MAKER pegged at `limit`; hanging bullet ≈ 1 bar (12 s)."""
+        if symbol in self.pending or symbol in self.positions:
+            return
+        self.pending[symbol] = dict(
+            side=side, limit=limit, strategy=strategy, regime=regime,
+            telemetry=telemetry, atr_pct=atr_pct, notional=notional,
+            ts_ms=ts_ms, bar_idx=bar_idx)
+
+    async def on_bar(self, symbol: str, o: float, h: float, l: float,
+                     ts_ms: int, bar_idx: int) -> None:
+        # -------- pending LIMIT_MAKER fills / hanging-bullet expiry --------
+        p = self.pending.get(symbol)
+        if p is not None and bar_idx > p["bar_idx"]:
+            if bar_idx > p["bar_idx"] + C.BACKTEST_FILL_BARS:
+                del self.pending[symbol]                       # do not chase
+            else:
+                side, lim = p["side"], p["limit"]
+                filled = (l <= lim) if side == 1 else (h >= lim)
+                if filled:
+                    fill = min(o, lim) if side == 1 else max(o, lim)
+                    pos = Position(symbol, side, p["notional"] / fill, p["notional"],
+                                   fill, ts_ms / 1000.0, p["atr_pct"],
+                                   p["strategy"], p["regime"], p["telemetry"])
+                    self.exits.arm(pos)
+                    self.positions[symbol] = pos
+                del self.pending[symbol]
+
+        # -------- manage open position against this bar --------------------
+        pos = self.positions.get(symbol)
+        if pos is None:
+            return
+        hit = self.exits.update(pos, h, l, ts_ms / 1000.0, gap_px=o)
+        if hit:
+            reason, px = hit
+            net_pct, pnl = settle_pnl(pos, px)
+            del self.positions[symbol]
+            if self.on_closed:
+                await self.on_closed(symbol, net_pct, pnl, pos, reason, px)
+
+
+# ======================================================== live (exchange)
+class LiveExecutor:
+    """aiohttp REST signer + post-only entries + synthetic exit watcher."""
+
+    def __init__(self) -> None:
+        self.exits = ExitLogic()
+        self.session: aiohttp.ClientSession | None = None
+        self.positions: dict[str, Position] = {}
+        self.tasks: dict[str, asyncio.Task] = {}
+        self.books: dict[str, tuple[float, float]] = {}      # sym → (bid, ask)
+        self.filters: dict[str, dict[str, float]] = {}
+        self.micro_watch: dict[str, dict[str, Any]] = {}     # pending LIMIT_MAKER guard
+        self.on_closed: OnClosed | None = None
+
+    # ------------------------------------------------------------- plumbing
+    async def init(self) -> None:
+        self.session = aiohttp.ClientSession(
+            headers={"X-MBX-APIKEY": C.API_KEY},
+            timeout=aiohttp.ClientTimeout(total=10))
+        await self._load_filters()
+
+    async def _load_filters(self) -> None:
+        try:
+            async with self.session.get(C.REST_BASE + "/api/v3/exchangeInfo") as r:
+                data = await r.json()
+            for s in data.get("symbols", []):
+                sym = s["symbol"]
+                fs = {f["filterType"]: f for f in s["filters"]}
+                self.filters[sym] = dict(
+                    tick=float(fs.get("PRICE_FILTER", {}).get("tickSize", 0.000001)),
+                    step=float(fs.get("LOT_SIZE", {}).get("stepSize", 0.000001)),
+                    min_notional=float(fs.get("NOTIONAL", fs.get("MIN_NOTIONAL", {}))
+                                       .get("minNotional", 5.0)))
+        except Exception as exc:                                # degrade safely
+            log.warning("exchangeInfo unavailable (%s); using 6-dp fallback", exc)
+
+    def _round(self, sym: str, price: float, qty: float) -> tuple[float, float]:
+        f = self.filters.get(sym)
+        if not f:
+            return round(price, 6), round(qty, 6)
+        price = math.floor(price / f["tick"]) * f["tick"]
+        qty = math.floor(qty / f["step"]) * f["step"]
+        return price, qty
+
+    async def _signed(self, method: str, path: str, **params) -> Any:
+        params.update(timestamp=int(time.time() * 1000), recvWindow=5000)
+        q = urllib.parse.urlencode(params)
+        sig = hmac.new(C.API_SECRET.encode(), q.encode(), hashlib.sha256).hexdigest()
+        url = f"{C.REST_BASE}{path}?{q}&signature={sig}"
+        async with self.session.request(method, url) as r:
+            return await r.json(content_type=None)
+
+    # ------------------------------------------------------------ entry flow
+    def fire(self, *, symbol: str, side: int, strategy: str, regime: str,
+             telemetry: dict, atr_pct: float, notional: float,
+             limit_hint: float | None = None) -> None:
+        """Non-blocking: spawns the entry coroutine so the queue worker never stalls."""
+        if symbol in self.tasks and not self.tasks[symbol].done():
+            return                                              # already working
+        self.tasks[symbol] = asyncio.create_task(
+            self._entry_lifecycle(symbol, side, strategy, regime,
+                                  telemetry, atr_pct, notional, limit_hint))
+
+    async def _entry_lifecycle(self, symbol, side, strategy, regime,
+                               telemetry, atr_pct, notional, limit_hint) -> None:
+        book = self.books.get(symbol)
+        if book is None:
+            return
+        bid, ask = book
+        if side == 1:                            # buy: best bid, never above CE intent
+            peg = min(bid, limit_hint) if limit_hint else bid
+        else:                                    # sell: best ask, never below intent
+            peg = max(ask, limit_hint) if limit_hint else ask
+        qty = notional / peg
+        price, qty = self._round(symbol, peg, qty)
+        mn = self.filters.get(symbol, {}).get("min_notional", 5.0)
+        if price * qty < mn:
+            log.info("%s rejected: below MIN_NOTIONAL", symbol)
+            return
+        side_s = "BUY" if side == 1 else "SELL"
+        order = await self._signed(
+            "POST", "/api/v3/order", symbol=symbol, side=side_s,
+            type="LIMIT_MAKER", timeInForce="GTX",
+            quantity=f"{qty:f}", price=f"{price:f}")
+        oid = order.get("orderId")
+        if not oid:
+            log.warning("%s LIMIT_MAKER rejected: %s", symbol, order)
+            return
+
+        # ---- arm the Micro-Tick Cancel watch (anti-slippage, first 2.5 s) --
+        tick = self.filters.get(symbol, {}).get("tick", 1e-6)
+        watch = {"price": price, "t0": time.monotonic(), "oid": oid, "side": side,
+                 "drop": max(C.MICRO_TICK_DROP_TICKS * tick,
+                             C.MICRO_TICK_DROP_PCT * price),
+                 "fired": False}
+        self.micro_watch[symbol] = watch
+
+        # ---- hanging bullet: 12 s to fill, then cancel — never chase ------
+        deadline = time.monotonic() + C.HANGING_BULLET_SEC
+        filled = False
+        while time.monotonic() < deadline:
+            if watch["fired"]:                            # micro-tick guard hit
+                self.micro_watch.pop(symbol, None)
+                return                                    # cancel already issued
+            st = await self._signed("GET", "/api/v3/order", symbol=symbol, orderId=oid)
+            if st.get("status") == "FILLED":
+                filled = True
+                break
+            if st.get("status") in ("CANCELED", "REJECTED", "EXPIRED"):
+                break
+            await asyncio.sleep(0.5)
+        self.micro_watch.pop(symbol, None)
+        if not filled:
+            if st.get("status") not in ("CANCELED", "EXPIRED"):  # idempotent cancel
+                await self._signed("DELETE", "/api/v3/order", symbol=symbol, orderId=oid)
+                log.info("%s hanging bullet timeout — order cancelled", symbol)
+            return
+
+        fill_px = float(order.get("price", price))
+        pos = Position(symbol, side, qty, notional, fill_px, time.time(),
+                       atr_pct, strategy, regime, telemetry,
+                       entry_order_id=oid)
+        self.exits.arm(pos)
+        self.positions[symbol] = pos
+        await self._place_hard_stop(pos)
+
+    async def _place_hard_stop(self, pos: Position) -> None:
+        """Catastrophic on-exchange stop (once — updates live in local memory)."""
+        sp, _ = self._round(pos.symbol, pos.hard_stop, pos.qty)
+        lp, qty = self._round(pos.symbol,
+                              sp * (1.0 - 0.001 * pos.side), pos.qty)
+        side_s = "SELL" if pos.side == 1 else "BUY"
+        res = await self._signed(
+            "POST", "/api/v3/order", symbol=pos.symbol, side=side_s,
+            type="STOP_LOSS_LIMIT", timeInForce="GTC",
+            stopPrice=f"{sp:f}", price=f"{lp:f}", quantity=f"{qty:f}")
+        pos.hard_stop_order_id = res.get("orderId")
+        if not pos.hard_stop_order_id:
+            log.warning("%s hard stop placement failed: %s", pos.symbol, res)
+
+    # ------------------------------------------------ synthetic exit watcher
+    def on_book(self, symbol: str, bid: float, ask: float,
+                bid_q: float = 0.0, ask_q: float = 0.0) -> None:
+        """Called from the queue worker on every @bookTicker tick.
+
+        Pure in-memory evaluation — never blocks the worker on network I/O;
+        network actions (micro-cancel, flatten) run as fire-and-forget tasks."""
+        self.books[symbol] = (bid, ask)
+
+        # ---- Micro-Tick Cancel: anti-slippage guard on pending LIMIT_MAKER --
+        w = self.micro_watch.get(symbol)
+        if w is not None and not w["fired"]:
+            aged = time.monotonic() - w["t0"] > C.MICRO_TICK_WATCH_SEC
+            slipped = ((bid < w["price"] - w["drop"]) if w["side"] == 1
+                       else (ask > w["price"] + w["drop"]))
+            if not aged and slipped:
+                w["fired"] = True
+                self.micro_watch.pop(symbol, None)
+                asyncio.create_task(self._micro_cancel(symbol, w["oid"]))
+        # (watch expires silently after 2.5 s; lifecycle loop reaps it)
+
+        pos = self.positions.get(symbol)
+        if pos is None:
+            return
+        px = bid if pos.side == 1 else ask                     # exit-side quote
+        hit = self.exits.update(pos, px, px, time.time())
+        if hit:
+            reason, _ = hit
+            self.positions.pop(symbol, None)                   # single-fire
+            asyncio.create_task(self._flatten(pos, reason, px))
+
+    async def _micro_cancel(self, symbol: str, oid: int) -> None:
+        """Instant cancel: book dumped >2 ticks / >0.05 % away in <2.5 s."""
+        res = await self._signed("DELETE", "/api/v3/order",
+                                 symbol=symbol, orderId=oid)
+        log.info("%s MICRO-TICK CANCEL (anti-slippage) oid=%s → %s",
+                 symbol, oid, res.get("status", res))
+
+    async def _flatten(self, pos: Position, reason: str, px: float) -> None:
+        self.positions.pop(pos.symbol, None)                   # idempotent
+        if pos.hard_stop_order_id:
+            await self._signed("DELETE", "/api/v3/order",
+                               symbol=pos.symbol, orderId=pos.hard_stop_order_id)
+        side_s = "SELL" if pos.side == 1 else "BUY"
+        _, qty = self._round(pos.symbol, px, pos.qty)
+        res = await self._signed("POST", "/api/v3/order", symbol=pos.symbol,
+                                 side=side_s, type="MARKET", quantity=f"{qty:f}",
+                                 newOrderRespType="FULL")   # real VWAP fill price
+        fills = res.get("fills") or []
+        real_px = (sum(float(f["price"]) * float(f["qty"]) for f in fills)
+                   / sum(float(f["qty"]) for f in fills)) if fills else px
+        net_pct, pnl = settle_pnl(pos, real_px)
+        if self.on_closed:
+            await self.on_closed(pos.symbol, net_pct, pnl, pos, reason, real_px)
+
+    async def close(self) -> None:
+        """Graceful shutdown (Patch 4): cancel every pending LIMIT_MAKER and
+        hard STOP_LOSS_LIMIT on the exchange BEFORE tearing down the session,
+        so no order survives an abrupt Termux closure. Best-effort: network
+        failures are logged, never raised, so teardown always completes."""
+        cancels = []
+        for sym, w in list(self.micro_watch.items()):
+            log.info("shutdown: cancelling pending LIMIT_MAKER %s/%s", sym, w["oid"])
+            cancels.append(self._signed("DELETE", "/api/v3/order",
+                                        symbol=sym, orderId=w["oid"]))
+        for sym, pos in list(self.positions.items()):
+            if pos.hard_stop_order_id:
+                log.info("shutdown: cancelling hard stop %s/%s",
+                         sym, pos.hard_stop_order_id)
+                cancels.append(self._signed("DELETE", "/api/v3/order",
+                                            symbol=sym,
+                                            orderId=pos.hard_stop_order_id))
+        for t in self.tasks.values():
+            t.cancel()
+        if cancels:
+            try:
+                await asyncio.wait_for(
+                    asyncio.gather(*cancels, return_exceptions=True),
+                    timeout=8.0)
+            except (asyncio.TimeoutError, Exception) as exc:  # noqa: BLE001
+                log.warning("shutdown cancels incomplete: %s", exc)
+        if self.session:
+            await self.session.close()

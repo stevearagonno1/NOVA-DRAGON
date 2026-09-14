@@ -1,0 +1,1168 @@
+//@version=6
+indicator("🏦 Rachid Berkane Fibonacci", overlay=true, max_boxes_count=500, max_lines_count=500, max_labels_count=500)
+
+// ============================================================================
+// 📋 INPUTS & SETTINGS
+// ============================================================================
+
+// === Module Activation ===
+grp_modules = "🔧 Module Activation"
+enable_regime = input.bool(true, "Market Regime Detector", group=grp_modules)
+enable_ai_score = input.bool(true, "AI Score System", group=grp_modules)
+enable_orderflow = input.bool(true, "Synthetic Order Flow", group=grp_modules)
+enable_liquidity = input.bool(true, "Liquidity Maps", group=grp_modules)
+enable_ob = input.bool(true, "Advanced Order Blocks", group=grp_modules)
+enable_squeeze = input.bool(true, "Squeeze Detection", group=grp_modules)
+enable_div = input.bool(true, "Divergence Detector (Retournement)", group=grp_modules)
+enable_mtf = input.bool(true, "Multi-Timeframe", group=grp_modules)
+enable_ote = input.bool(true, "OTE Zone (Fibonacci)", group=grp_modules)
+enable_snake = input.bool(true, "Pump/Dump Snake", group=grp_modules)
+enable_aladdin = input.bool(true, "Aladdin Risk Engine", group=grp_modules)
+enable_pressure = input.bool(true, "Market Pressure", group=grp_modules)
+
+// === Market Regime Settings ===
+grp_regime = "📊 Market Regime"
+regime_ema_fast = input.int(21, "EMA Fast", group=grp_regime)
+regime_ema_slow = input.int(50, "EMA Slow", group=grp_regime)
+regime_ema_trend = input.int(200, "EMA Trend", group=grp_regime)
+regime_adx_len = input.int(14, "ADX Length", group=grp_regime)
+regime_adx_thresh = input.int(20, "ADX Threshold", group=grp_regime)
+
+// === Squeeze Settings ===
+grp_squeeze = "💥 Squeeze Detection"
+squeeze_bb_len = input.int(20, "Bollinger Length", group=grp_squeeze)
+squeeze_bb_mult = input.float(2.0, "Bollinger Mult", group=grp_squeeze)
+squeeze_kc_len = input.int(20, "Keltner Length", group=grp_squeeze)
+squeeze_kc_mult = input.float(1.5, "Keltner Mult", group=grp_squeeze)
+squeeze_min_bars = input.int(5, "Min Compression Bars", group=grp_squeeze)
+squeeze_atr_thresh = input.float(0.7, "ATR Compression %", group=grp_squeeze)
+
+// === AI Score Settings ===
+grp_ai = "🤖 AI Score System"
+ai_threshold = input.int(75, "Signal Threshold (0-100)", minval=0, maxval=100, group=grp_ai)
+ai_macd_weight = input.float(15.0, "MACD Weight %", group=grp_ai)
+ai_rsi_weight = input.float(10.0, "RSI Weight %", group=grp_ai)
+ai_delta_weight = input.float(20.0, "Delta Volume Weight %", group=grp_ai)
+ai_obv_weight = input.float(10.0, "OBV Weight %", group=grp_ai)
+ai_adx_weight = input.float(10.0, "ADX Weight %", group=grp_ai)
+ai_struct_weight = input.float(15.0, "Structure Weight %", group=grp_ai)
+ai_pressure_weight = input.float(10.0, "Pressure Weight %", group=grp_ai)
+ai_mtf_weight = input.float(10.0, "MTF Weight %", group=grp_ai)
+
+// === Order Flow Settings ===
+grp_flow = "💧 Order Flow"
+flow_vol_len = input.int(20, "Volume MA Length", group=grp_flow)
+flow_climax_mult = input.float(3.0, "Climax Multiplier", group=grp_flow)
+show_fvg = input.bool(true, "Show Fair Value Gaps", group=grp_flow)
+
+// === Liquidity Settings ===
+grp_liq = "🎯 Liquidity Maps"
+liq_swing_len = input.int(10, "Swing Detection", group=grp_liq)
+liq_equal_tolerance = input.float(0.2, "Equal High/Low %", group=grp_liq)
+liq_sfp_wick = input.float(0.4, "SFP Wick %", group=grp_liq)
+show_eq_highs = input.bool(true, "Show Equal Highs", group=grp_liq)
+show_eq_lows = input.bool(true, "Show Equal Lows", group=grp_liq)
+
+// === Order Block Settings ===
+grp_ob = "📦 Order Blocks"
+ob_swing_len = input.int(5, "Swing Length", group=grp_ob)
+ob_min_atr_mult = input.float(0.5, "Min Size (ATR)", group=grp_ob)
+ob_max_atr_mult = input.float(3.0, "Max Size (ATR)", group=grp_ob)
+show_ob_invalidated = input.bool(false, "Show Invalidated", group=grp_ob)
+
+// === OTE Zone Settings ===
+grp_ote = "✨ OTE Zone (Fibonacci)"
+ote_swing_len = input.int(20, "Swing Length", group=grp_ote)
+show_ote_labels = input.bool(true, "Show Labels", group=grp_ote)
+
+// === Pump/Dump Snake Settings ===
+grp_snake = "🐍 Pump/Dump Snake"
+snake_len = input.int(50, "Snake Length (HMA)", group=grp_snake)
+snake_smooth = input.int(3, "Smoothing", group=grp_snake)
+
+// === Aladdin Risk Settings ===
+grp_aladdin = "🧞 Aladdin Risk Engine"
+risk_lookback = input.int(20, "Risk Lookback", group=grp_aladdin)
+risk_vol_weight = input.float(0.5, "Volatility Weight", group=grp_aladdin)
+risk_trend_weight = input.float(0.5, "Trend Instability Weight", group=grp_aladdin)
+
+// === Multi-Timeframe Settings ===
+grp_mtf = "⏰ Multi-Timeframe"
+mtf_d1 = input.timeframe("D", "Daily TF", group=grp_mtf)
+mtf_h4 = input.timeframe("240", "H4 TF", group=grp_mtf)
+mtf_h1 = input.timeframe("60", "H1 TF", group=grp_mtf)
+
+// === Kill-Switch Settings ===
+grp_kill = "🛡️ Kill-Switch"
+kill_adx_min = input.int(18, "Min ADX", group=grp_kill)
+kill_vol_min = input.float(50.0, "Min Volume %", group=grp_kill)
+kill_enabled = input.bool(true, "Enable Kill-Switch", group=grp_kill)
+
+// === Risk Management ===
+grp_risk = "🎯 Risk Management"
+sl_atr_mult = input.float(1.6, "SL ATR Multiplier", group=grp_risk)
+tp1_atr_mult = input.float(0.5, "TP1 ATR Mult (H4)", group=grp_risk)
+tp2_atr_mult = input.float(1.0, "TP2 ATR Mult (H4)", group=grp_risk)
+trail_atr_mult = input.float(3.0, "Trailing ATR Mult", group=grp_risk)
+show_risk_levels = input.bool(true, "Show SL/TP", group=grp_risk)
+
+// === Visual Settings ===
+grp_vis = "🎨 Visuals"
+show_dashboard = input.bool(true, "Show Dashboard", group=grp_vis)
+simple_mode = input.bool(true, "Vue Simplifiée (Clean)", group=grp_vis)
+show_regime_bg = input.bool(true, "Regime Background", group=grp_vis)
+col_bull = input.color(color.new(#00ff88, 0), "Bullish", group=grp_vis)
+col_bear = input.color(color.new(#ff4444, 0), "Bearish", group=grp_vis)
+col_neutral = input.color(color.new(#ffaa00, 0), "Neutral", group=grp_vis)
+
+// ============================================================================
+// 🔧 MODULE 1: MARKET REGIME DETECTOR
+// ============================================================================
+
+// Trend EMAs
+ema_fast = ta.ema(close, regime_ema_fast)
+ema_slow = ta.ema(close, regime_ema_slow)
+ema_trend = ta.ema(close, regime_ema_trend)
+
+// ADX Calculation
+[diPlus, diMinus, adx] = ta.dmi(regime_adx_len, regime_adx_len)
+
+// Structure Detection (HH/HL/LH/LL)
+var float last_hh = na
+var float last_ll = na
+var int hh_count = 0
+var int ll_count = 0
+
+pivot_high = ta.pivothigh(high, 3, 3)
+pivot_low = ta.pivotlow(low, 3, 3)
+
+if not na(pivot_high)
+    if na(last_hh) or pivot_high > last_hh
+        hh_count += 1
+        last_hh := pivot_high
+    else
+        hh_count := 0
+
+if not na(pivot_low)
+    if na(last_ll) or pivot_low < last_ll
+        ll_count += 1
+        last_ll := pivot_low
+    else
+        ll_count := 0
+
+// Market Structure Classification
+is_uptrend_structure = hh_count >= 2
+is_downtrend_structure = ll_count >= 2
+
+// Regime Classification
+regime_trend_up = close > ema_trend and ema_fast > ema_slow and adx > regime_adx_thresh
+regime_trend_down = close < ema_trend and ema_fast < ema_slow and adx > regime_adx_thresh
+regime_range = math.abs(ema_fast - ema_slow) / close < 0.005 and adx < regime_adx_thresh
+
+// Squeeze Detection (Bollinger inside Keltner)
+bb_basis = ta.sma(close, squeeze_bb_len)
+bb_dev = ta.stdev(close, squeeze_bb_len)
+bb_upper = bb_basis + (squeeze_bb_mult * bb_dev)
+bb_lower = bb_basis - (squeeze_bb_mult * bb_dev)
+
+kc_basis = ta.sma(close, squeeze_kc_len)
+kc_range = ta.atr(squeeze_kc_len) * squeeze_kc_mult
+kc_upper = kc_basis + kc_range
+kc_lower = kc_basis - kc_range
+
+atr_current = ta.atr(14)
+atr_sma = ta.sma(atr_current, 20)
+vol_sma = ta.sma(volume, 20)
+
+squeeze_on = bb_upper < kc_upper and bb_lower > kc_lower and atr_current < (atr_sma * squeeze_atr_thresh) and volume < vol_sma
+
+// Squeeze Counter
+var int squeeze_bars = 0
+squeeze_bars := squeeze_on ? squeeze_bars + 1 : 0
+
+regime_squeeze = squeeze_bars >= squeeze_min_bars
+
+// Squeeze Explosion Detection
+var bool squeeze_released = false
+squeeze_release_bull = squeeze_bars[1] >= squeeze_min_bars and not squeeze_on and close > kc_upper
+squeeze_release_bear = squeeze_bars[1] >= squeeze_min_bars and not squeeze_on and close < kc_lower
+
+if squeeze_release_bull or squeeze_release_bear
+    squeeze_released := true
+else if squeeze_on
+    squeeze_released := false
+
+// Final Regime
+string regime = regime_squeeze ? "SQUEEZE" : regime_trend_up ? "TREND UP" : regime_trend_down ? "TREND DOWN" : regime_range ? "RANGE" : "NEUTRAL"
+
+// Backgrounds et shapes désactivés (calculs conservés pour dashboard)
+
+// ============================================================================
+// 🔧 MODULE 2: SYNTHETIC ORDER FLOW
+// ============================================================================
+
+// Delta Volume Calculation
+var float delta_volume = 0.0
+uptick = close > close[1]
+downtick = close < close[1]
+
+if uptick
+    delta_volume += volume
+else if downtick
+    delta_volume -= volume
+
+delta_normalized = ta.sma(delta_volume, flow_vol_len) / ta.sma(volume, flow_vol_len)
+
+// Fair Value Gaps
+type FVG
+    box id
+    float top
+    float bottom
+    bool is_bullish
+    bool mitigated
+    int bar_idx
+
+var FVG[] fvgs = array.new<FVG>()
+
+if enable_orderflow and show_fvg
+    // Bullish FVG: low > high[2]
+    if low > high[2]
+        gap_top = low
+        gap_bottom = high[2]
+        gap_box = box.new(bar_index[2], gap_bottom, bar_index, gap_top, 
+             border_color=color.new(col_bull, 60), bgcolor=color.new(col_bull, 90))
+        array.push(fvgs, FVG.new(gap_box, gap_top, gap_bottom, true, false, bar_index))
+    
+    // Bearish FVG: high < low[2]
+    if high < low[2]
+        gap_top = low[2]
+        gap_bottom = high
+        gap_box = box.new(bar_index[2], gap_bottom, bar_index, gap_top,
+             border_color=color.new(col_bear, 60), bgcolor=color.new(col_bear, 90))
+        array.push(fvgs, FVG.new(gap_box, gap_top, gap_bottom, false, false, bar_index))
+
+// FVG Management & Mitigation
+if array.size(fvgs) > 0
+    for i = array.size(fvgs) - 1 to 0
+        fvg = array.get(fvgs, i)
+        if not fvg.mitigated
+            box.set_right(fvg.id, bar_index + 5)
+            
+            // Check mitigation
+            if (fvg.is_bullish and low <= fvg.bottom) or (not fvg.is_bullish and high >= fvg.top)
+                fvg.mitigated := true
+                box.set_bgcolor(fvg.id, color.new(color.gray, 95))
+                box.set_border_color(fvg.id, color.new(color.gray, 85))
+
+// Volume Climax Detection
+vol_ma = ta.sma(volume, flow_vol_len)
+is_volume_climax = volume > vol_ma * flow_climax_mult and (high - low) > atr_current * 1.5
+
+// Absorption Zone Detection (high volume + low movement)
+price_movement = math.abs(close - open) / atr_current
+is_absorption = volume > vol_ma * 1.5 and price_movement < 0.3
+
+// ============================================================================
+// 🔧 MODULE 3: LIQUIDITY MAPS
+// ============================================================================
+
+type LiquidityLevel
+    line id
+    float price
+    string type_
+    bool swept
+
+var LiquidityLevel[] liquidity_levels = array.new<LiquidityLevel>()
+
+// Detect Equal Highs/Lows
+var float[] swing_highs = array.new<float>()
+var float[] swing_lows = array.new<float>()
+var int[] swing_high_bars = array.new<int>()
+var int[] swing_low_bars = array.new<int>()
+
+liq_ph = ta.pivothigh(high, liq_swing_len, liq_swing_len)
+liq_pl = ta.pivotlow(low, liq_swing_len, liq_swing_len)
+
+if not na(liq_ph) and enable_liquidity
+    array.push(swing_highs, liq_ph)
+    array.push(swing_high_bars, bar_index[liq_swing_len])
+    
+    // Keep only recent swings
+    if array.size(swing_highs) > 10
+        array.shift(swing_highs)
+        array.shift(swing_high_bars)
+
+if not na(liq_pl) and enable_liquidity
+    array.push(swing_lows, liq_pl)
+    array.push(swing_low_bars, bar_index[liq_swing_len])
+    
+    if array.size(swing_lows) > 10
+        array.shift(swing_lows)
+        array.shift(swing_low_bars)
+
+// Equal Highs Detection
+if array.size(swing_highs) >= 3 and enable_liquidity and show_eq_highs
+    for i = 0 to array.size(swing_highs) - 3
+        price1 = array.get(swing_highs, i)
+        price2 = array.get(swing_highs, i + 1)
+        price3 = array.get(swing_highs, i + 2)
+        
+        tolerance = price1 * (liq_equal_tolerance / 100)
+        
+        if math.abs(price1 - price2) < tolerance and math.abs(price2 - price3) < tolerance
+            avg_price = (price1 + price2 + price3) / 3
+            bar1 = array.get(swing_high_bars, i)
+            bar3 = array.get(swing_high_bars, i + 2)
+            
+            liq_line = line.new(bar1, avg_price, bar_index + 20, avg_price,
+                 color=color.new(color.red, 40), style=line.style_dashed, width=2)
+            array.push(liquidity_levels, LiquidityLevel.new(liq_line, avg_price, "EQ_HIGH", false))
+
+// Equal Lows Detection
+if array.size(swing_lows) >= 3 and enable_liquidity and show_eq_lows
+    for i = 0 to array.size(swing_lows) - 3
+        price1 = array.get(swing_lows, i)
+        price2 = array.get(swing_lows, i + 1)
+        price3 = array.get(swing_lows, i + 2)
+        
+        tolerance = price1 * (liq_equal_tolerance / 100)
+        
+        if math.abs(price1 - price2) < tolerance and math.abs(price2 - price3) < tolerance
+            avg_price = (price1 + price2 + price3) / 3
+            bar1 = array.get(swing_low_bars, i)
+            bar3 = array.get(swing_low_bars, i + 2)
+            
+            liq_line = line.new(bar1, avg_price, bar_index + 20, avg_price,
+                 color=color.new(color.green, 40), style=line.style_dashed, width=2)
+            array.push(liquidity_levels, LiquidityLevel.new(liq_line, avg_price, "EQ_LOW", false))
+
+// Swing Failure Pattern Detection
+var bool sfp_bull = false
+var bool sfp_bear = false
+
+if array.size(swing_lows) >= 2
+    recent_low = array.get(swing_lows, array.size(swing_lows) - 1)
+    prev_low = array.get(swing_lows, array.size(swing_lows) - 2)
+    wick_size = low < prev_low ? math.abs(low - prev_low) / atr_current : 0
+    
+    sfp_bull := low < prev_low and close > prev_low and wick_size > liq_sfp_wick
+
+if array.size(swing_highs) >= 2
+    recent_high = array.get(swing_highs, array.size(swing_highs) - 1)
+    prev_high = array.get(swing_highs, array.size(swing_highs) - 2)
+    wick_size = high > prev_high ? math.abs(high - prev_high) / atr_current : 0
+    
+    sfp_bear := high > prev_high and close < prev_high and wick_size > liq_sfp_wick
+
+// SFP désactivé visuellement
+
+// ============================================================================
+// 🔧 MODULE 4: ADVANCED ORDER BLOCKS
+// ============================================================================
+
+type OrderBlock
+    box id
+    line eq_line
+    float top
+    float bottom
+    float equilibrium
+    bool is_bullish
+    bool mitigated
+    bool invalidated
+    int bar_idx
+    string state
+
+var OrderBlock[] order_blocks = array.new<OrderBlock>()
+
+// BOS Detection
+ob_ph = ta.pivothigh(high, ob_swing_len, ob_swing_len)
+ob_pl = ta.pivotlow(low, ob_swing_len, ob_swing_len)
+
+var float last_ob_sh = na
+var int last_ob_sh_bar = na
+var float last_ob_sl = na
+var int last_ob_sl_bar = na
+
+if not na(ob_ph)
+    last_ob_sh := ob_ph
+    last_ob_sh_bar := bar_index[ob_swing_len]
+
+if not na(ob_pl)
+    last_ob_sl := ob_pl
+    last_ob_sl_bar := bar_index[ob_swing_len]
+
+// Bullish BOS: Close above recent swing high (assign to global variables)
+bool bull_cross = ta.crossover(close, last_ob_sh)
+bool bear_cross = ta.crossunder(close, last_ob_sl)
+
+var bool bull_bos = false
+var bool bear_bos = false
+
+bull_bos := not na(last_ob_sh) and bull_cross
+// Bearish BOS: Close below recent swing low
+bear_bos := not na(last_ob_sl) and bear_cross
+
+// Create Order Block on BOS
+if enable_ob and bull_bos
+    // Find last bearish candle before BOS
+    lookback = bar_index - last_ob_sl_bar
+    if lookback > 0 and lookback < 50
+        ob_top = high[lookback]
+        ob_bottom = low[lookback]
+        ob_size = ob_top - ob_bottom
+        
+        // Size validation
+        min_size = atr_current * ob_min_atr_mult
+        max_size = atr_current * ob_max_atr_mult
+        
+        if ob_size >= min_size and ob_size <= max_size
+            ob_eq = (ob_top + ob_bottom) / 2
+            
+            ob_box = box.new(last_ob_sl_bar, ob_bottom, bar_index + 10, ob_top,
+                 border_color=col_bull, border_width=2, bgcolor=color.new(col_bull, 85))
+            ob_eq_line = line.new(last_ob_sl_bar, ob_eq, bar_index + 10, ob_eq,
+                 color=color.new(col_bull, 50), style=line.style_dotted, width=1)
+            
+            array.push(order_blocks, OrderBlock.new(ob_box, ob_eq_line, ob_top, ob_bottom, ob_eq, true, false, false, last_ob_sl_bar, "VALID"))
+
+if enable_ob and bear_bos
+    lookback = bar_index - last_ob_sh_bar
+    if lookback > 0 and lookback < 50
+        ob_top = high[lookback]
+        ob_bottom = low[lookback]
+        ob_size = ob_top - ob_bottom
+        
+        min_size = atr_current * ob_min_atr_mult
+        max_size = atr_current * ob_max_atr_mult
+        
+        if ob_size >= min_size and ob_size <= max_size
+            ob_eq = (ob_top + ob_bottom) / 2
+            
+            ob_box = box.new(last_ob_sh_bar, ob_bottom, bar_index + 10, ob_top,
+                 border_color=col_bear, border_width=2, bgcolor=color.new(col_bear, 85))
+            ob_eq_line = line.new(last_ob_sh_bar, ob_eq, bar_index + 10, ob_eq,
+                 color=color.new(col_bear, 50), style=line.style_dotted, width=1)
+            
+            array.push(order_blocks, OrderBlock.new(ob_box, ob_eq_line, ob_top, ob_bottom, ob_eq, false, false, false, last_ob_sh_bar, "VALID"))
+
+// OB Management
+if array.size(order_blocks) > 0
+    for i = array.size(order_blocks) - 1 to 0
+        ob = array.get(order_blocks, i)
+        
+        if not ob.mitigated and not ob.invalidated
+            box.set_right(ob.id, bar_index + 10)
+            line.set_x2(ob.eq_line, bar_index + 10)
+            
+            // Check mitigation (retest)
+            if ob.is_bullish and low <= ob.top and low >= ob.bottom
+                ob.mitigated := true
+                ob.state := "MITIGATED"
+                box.set_bgcolor(ob.id, color.new(col_bull, 70))
+            else if not ob.is_bullish and high >= ob.bottom and high <= ob.top
+                ob.mitigated := true
+                ob.state := "MITIGATED"
+                box.set_bgcolor(ob.id, color.new(col_bear, 70))
+            
+            // Check invalidation (price passed through)
+            if ob.is_bullish and close < ob.bottom
+                ob.invalidated := true
+                ob.state := "INVALIDATED"
+                if not show_ob_invalidated
+                    box.delete(ob.id)
+                    line.delete(ob.eq_line)
+                    array.remove(order_blocks, i)
+                else
+                    box.set_bgcolor(ob.id, color.new(color.gray, 90))
+                    box.set_border_color(ob.id, color.new(color.gray, 70))
+            else if not ob.is_bullish and close > ob.top
+                ob.invalidated := true
+                ob.state := "INVALIDATED"
+                if not show_ob_invalidated
+                    box.delete(ob.id)
+                    line.delete(ob.eq_line)
+                    array.remove(order_blocks, i)
+                else
+                    box.set_bgcolor(ob.id, color.new(color.gray, 90))
+                    box.set_border_color(ob.id, color.new(color.gray, 70))
+
+// ============================================================================
+// 🔧 MODULE 5: MULTI-TIMEFRAME ANALYSIS
+// ============================================================================
+
+// D1 Analysis
+d1_close = request.security(syminfo.tickerid, mtf_d1, close, lookahead=barmerge.lookahead_off)
+d1_ema200 = request.security(syminfo.tickerid, mtf_d1, ta.ema(close, 200), lookahead=barmerge.lookahead_off)
+d1_bullish = d1_close > d1_ema200
+
+// H4 Analysis
+h4_ema50 = request.security(syminfo.tickerid, mtf_h4, ta.ema(close, 50), lookahead=barmerge.lookahead_off)
+h4_close = request.security(syminfo.tickerid, mtf_h4, close, lookahead=barmerge.lookahead_off)
+h4_bullish = h4_close > h4_ema50
+
+// H1 Analysis
+[h1_macd_line, h1_signal, h1_hist] = request.security(syminfo.tickerid, mtf_h1, ta.macd(close, 12, 26, 9), lookahead=barmerge.lookahead_off)
+h1_rsi = request.security(syminfo.tickerid, mtf_h1, ta.rsi(close, 14), lookahead=barmerge.lookahead_off)
+h1_bullish = h1_macd_line > 0 and h1_rsi > 45
+h1_bearish = h1_macd_line < 0 and h1_rsi < 55
+
+// MTF Alignment
+mtf_aligned_bull = enable_mtf ? (d1_bullish and h4_bullish and h1_bullish) : true
+mtf_aligned_bear = enable_mtf ? (not d1_bullish and not h4_bullish and h1_bearish) : true
+
+// ============================================================================
+// 🔧 MODULE 6: AI SCORE SYSTEM (0-100)
+// ============================================================================
+
+// Component 1: MACD Histogram
+[macd_line, signal_line, macd_hist] = ta.macd(close, 12, 26, 9)
+var float macd_score = 0.0
+macd_score := math.abs(macd_hist) > math.abs(macd_hist[1]) ? 10.0 : 5.0
+macd_score := macd_hist > 0 ? macd_score : macd_score * 0.5
+
+// Component 2: RSI
+rsi = ta.rsi(close, 14)
+rsi_score = rsi > 50 and rsi < 70 ? 10 : rsi < 50 and rsi > 30 ? 10 : rsi > 70 or rsi < 30 ? 8 : 5
+
+// Component 3: Delta Volume
+delta_score = delta_normalized > 0.3 ? 10 : delta_normalized > 0.1 ? 7 : delta_normalized < -0.3 ? 10 : delta_normalized < -0.1 ? 7 : 3
+
+// Component 4: OBV Derivative
+obv = ta.obv
+obv_change = ta.change(obv, 5)
+obv_score = math.abs(obv_change) > math.abs(obv_change[5]) ? 10 : 5
+
+// Component 5: ADX Derivative
+adx_change = ta.change(adx, 3)
+adx_score = adx > 25 and adx_change > 0 ? 10 : adx > 20 ? 7 : 4
+
+// Component 6: Market Structure
+struct_score = is_uptrend_structure ? 10 : is_downtrend_structure ? 10 : 3
+
+// Component 7: Buyer/Seller Pressure
+var int bullish_candles = 0
+bullish_candles := 0
+for i = 0 to 9
+    if close[i] > open[i]
+        bullish_candles += 1
+
+pressure_score = bullish_candles > 6 ? 10 : bullish_candles < 4 ? 10 : 5
+
+// Component 8: MTF Alignment
+mtf_score = mtf_aligned_bull or mtf_aligned_bear ? 10 : 3
+
+// Weighted AI Score
+ai_score = (macd_score * ai_macd_weight + rsi_score * ai_rsi_weight + delta_score * ai_delta_weight + obv_score * ai_obv_weight + adx_score * ai_adx_weight + struct_score * ai_struct_weight + pressure_score * ai_pressure_weight + mtf_score * ai_mtf_weight) / (ai_macd_weight + ai_rsi_weight + ai_delta_weight + ai_obv_weight + ai_adx_weight + ai_struct_weight + ai_pressure_weight + ai_mtf_weight)
+
+
+// Normalize to 0-100
+ai_score_final = math.round(ai_score * 10)
+
+// ============================================================================
+// 🔧 MODULE 7: MARKET PRESSURE INDICATOR
+// ============================================================================
+
+// Imbalance Ratio
+total_vol = ta.cum(volume)
+buy_vol = ta.cum(uptick ? volume : 0)
+sell_vol = ta.cum(downtick ? volume : 0)
+imbalance_ratio = total_vol > 0 ? (buy_vol - sell_vol) / total_vol * 100 : 0
+
+// EMA Angle (normalized)
+ema_angle = (ema_fast - ema_fast[5]) / close * 100
+
+// Composite Pressure (0-100)
+pressure_raw = (imbalance_ratio * 0.4) + (ema_angle * 0.3) + ((adx - 20) * 1.5)
+market_pressure = math.min(100, math.max(0, pressure_raw + 50))
+
+pressure_buy = market_pressure > 60
+pressure_sell = market_pressure < 40
+
+// ============================================================================
+// 🔧 MODULE 8: KILL-SWITCH SYSTEM
+// ============================================================================
+
+kill_low_adx = adx < kill_adx_min
+kill_low_vol = volume < (vol_ma * kill_vol_min / 100)
+kill_squeeze_active = regime_squeeze and not squeeze_released
+kill_delta_conflict_bull = delta_normalized < -0.2
+kill_delta_conflict_bear = delta_normalized > 0.2
+kill_struct_fractured = not is_uptrend_structure and not is_downtrend_structure
+
+kill_switch_active = kill_enabled and (kill_low_adx or kill_low_vol or kill_squeeze_active)
+
+// ============================================================================
+// 🔮 MODULE 9: DIVERGENCE DETECTOR (RETOURNEMENT)
+// ============================================================================
+
+// RSI Divergence
+div_len = 5
+rsi_div = ta.rsi(close, 14)
+
+// Bullish Divergence
+src_bull = low
+piv_bull = ta.pivotlow(src_bull, div_len, div_len)
+var float last_piv_bull_price = na
+var float last_piv_bull_rsi = na
+bool div_bull = false
+
+if not na(piv_bull)
+    if not na(last_piv_bull_price)
+        // Price Lower Low AND RSI Higher Low
+        if src_bull[div_len] < last_piv_bull_price and rsi_div[div_len] > last_piv_bull_rsi
+            div_bull := true
+    last_piv_bull_price := src_bull[div_len]
+    last_piv_bull_rsi := rsi_div[div_len]
+
+// Bearish Divergence
+src_bear = high
+piv_bear = ta.pivothigh(src_bear, div_len, div_len)
+var float last_piv_bear_price = na
+var float last_piv_bear_rsi = na
+bool div_bear = false
+
+if not na(piv_bear)
+    if not na(last_piv_bear_price)
+        // Price Higher High AND RSI Lower High
+        if src_bear[div_len] > last_piv_bear_price and rsi_div[div_len] < last_piv_bear_rsi
+            div_bear := true
+    last_piv_bear_price := src_bear[div_len]
+    last_piv_bear_rsi := rsi_div[div_len]
+
+// Divergence désactivée visuellement
+
+// Alerts
+if enable_div and div_bull
+    alert("⚠️ RETOURNEMENT HAUSSIER : Divergence Détectée !", alert.freq_once_per_bar)
+if enable_div and div_bear
+    alert("⚠️ RETOURNEMENT BAISSIER : Divergence Détectée !", alert.freq_once_per_bar)
+
+// ============================================================================
+// ✨ MODULE 10: OTE ZONE (OPTIMAL TRADE ENTRY)
+// ============================================================================
+
+// Detect Swings for Fib
+ote_ph = ta.pivothigh(high, ote_swing_len, ote_swing_len)
+ote_pl = ta.pivotlow(low, ote_swing_len, ote_swing_len)
+
+var float last_ote_high = na
+var float last_ote_low = na
+var bool last_swing_was_high = false
+
+if not na(ote_ph)
+    last_ote_high := ote_ph
+    last_swing_was_high := true
+
+if not na(ote_pl)
+    last_ote_low := ote_pl
+    last_swing_was_high := false
+
+// Calculate OTE Levels (0.618 - 0.79)
+var box ote_box = na
+
+if enable_ote and not na(last_ote_high) and not na(last_ote_low)
+    float fib_0 = na
+    float fib_1 = na
+    bool is_buy_setup = false
+    
+    if last_swing_was_high 
+        fib_0 := last_ote_low
+        fib_1 := last_ote_high
+        is_buy_setup := true
+    else 
+        fib_0 := last_ote_high
+        fib_1 := last_ote_low
+        is_buy_setup := false
+        
+    range_fib = math.abs(fib_1 - fib_0)
+    
+    if range_fib > 0
+        ote_618 = is_buy_setup ? fib_1 - (range_fib * 0.618) : fib_1 + (range_fib * 0.618)
+        ote_790 = is_buy_setup ? fib_1 - (range_fib * 0.790) : fib_1 + (range_fib * 0.790)
+        
+        // Draw Zone
+        box.delete(ote_box)
+        ote_box := box.new(bar_index - ote_swing_len * 2, ote_618, bar_index + 50, ote_790, 
+             border_color=color.new(color.yellow, 50), 
+             bgcolor=color.new(color.yellow, 85),
+             text = show_ote_labels ? (is_buy_setup ? "✨ OTE BUY ZONE" : "✨ OTE SELL ZONE") : "",
+             text_color=color.yellow,
+             text_size=size.small)
+
+// ============================================================================
+// 🐍 MODULE 11: PUMP/DUMP TREND SNAKE
+// ============================================================================
+
+// Calculate Hull Moving Average (HMA) for smoothness
+snake_hma = ta.hma(close, snake_len)
+snake_smooth_line = ta.ema(snake_hma, snake_smooth)
+
+// Determine Trend
+bool snake_up = snake_smooth_line > snake_smooth_line[1]
+bool snake_down = snake_smooth_line < snake_smooth_line[1]
+
+color snake_col = snake_up ? color.new(#00ff88, 0) : snake_down ? color.new(#ff4444, 0) : color.gray
+
+// Snake désactivé visuellement (calculs conservés pour dashboard)
+
+// Définitions pour alertes
+bool pump_signal = enable_snake and snake_up and not snake_up[1]
+bool dump_signal = enable_snake and snake_down and not snake_down[1]
+
+// Alerts
+if pump_signal
+    alert("🚀 PUMP DETECTED : Trend Snake turned GREEN", alert.freq_once_per_bar)
+if dump_signal
+    alert("🔻 DUMP DETECTED : Trend Snake turned RED", alert.freq_once_per_bar)
+
+// ============================================================================
+// 🧞 MODULE 12: ALADDIN RISK ENGINE
+// ============================================================================
+
+// 1. Volatility Risk (ATR based)
+// High ATR relative to average = High Risk
+atr_avg = ta.sma(atr_current, risk_lookback * 5)
+vol_risk = math.min(100, (atr_current / atr_avg) * 50)
+
+// 2. Trend Instability Risk (Choppiness)
+// High Choppiness = High Risk
+log10(x) => math.log(x) / math.log(10)
+atr_sum_risk = math.sum(ta.atr(1), risk_lookback)
+hl_range_risk = ta.highest(high, risk_lookback) - ta.lowest(low, risk_lookback)
+chop_risk = 100 * log10(atr_sum_risk / hl_range_risk) / log10(risk_lookback)
+
+// 3. Systemic Risk Score (0-100)
+// 0 = Safe, 100 = Extreme Danger
+systemic_risk = (vol_risk * risk_vol_weight) + (chop_risk * risk_trend_weight)
+
+// 4. Position Sizing Recommendation
+string risk_regime = "LOW"
+string position_size = "FULL SIZE 💰"
+color risk_col = color.green
+
+if systemic_risk > 75
+    risk_regime := "EXTREME"
+    position_size := "CASH 🛑"
+    risk_col := color.red
+else if systemic_risk > 50
+    risk_regime := "HIGH"
+    position_size := "HALF SIZE ⚠️"
+    risk_col := color.orange
+else if systemic_risk > 25
+    risk_regime := "MEDIUM"
+    position_size := "NORMAL ✅"
+    risk_col := color.yellow
+else
+    risk_regime := "LOW"
+    position_size := "FULL SIZE 🚀"
+    risk_col := color.green
+
+// ============================================================================
+// 🔧 MODULE 13: SIGNAL GENERATION
+// ============================================================================
+
+// Signal Conditions
+signal_buy_base = regime_trend_up or squeeze_release_bull
+signal_sell_base = regime_trend_down or squeeze_release_bear
+
+signal_buy_confirmed = signal_buy_base and mtf_aligned_bull and pressure_buy and not kill_delta_conflict_bull
+signal_sell_confirmed = signal_sell_base and mtf_aligned_bear and pressure_sell and not kill_delta_conflict_bear
+
+// Final Signal with AI Filter
+signal_buy = enable_ai_score ? (signal_buy_confirmed and ai_score_final >= ai_threshold and not kill_switch_active) : signal_buy_confirmed
+signal_sell = enable_ai_score ? (signal_sell_confirmed and ai_score_final >= ai_threshold and not kill_switch_active) : signal_sell_confirmed
+
+// Fake Breakout Filter
+signal_buy := signal_buy and volume > vol_ma * 1.2 and close > open
+signal_sell := signal_sell and volume > vol_ma * 1.2 and close < open
+
+// Stop Loss & Take Profit Calculation
+atr_h4 = request.security(syminfo.tickerid, mtf_h4, ta.atr(14), lookahead=barmerge.lookahead_off)
+
+var float entry_price = na
+var float stop_loss = na
+var float take_profit1 = na
+var float take_profit2 = na
+var bool in_position = false
+
+if signal_buy and not in_position
+    entry_price := close
+    stop_loss := close - (atr_current * sl_atr_mult)
+    take_profit1 := close + (atr_h4 * tp1_atr_mult)
+    take_profit2 := close + (atr_h4 * tp2_atr_mult)
+    in_position := true
+    alert("🎯 BUY SIGNAL\nPrice: " + str.tostring(close) + "\nAI Score: " + str.tostring(ai_score_final) + "/100\nSqueeze: " + (squeeze_released ? "Released ✅" : "Active") + "\nMTF: Aligned ✅\nSL: " + str.tostring(stop_loss) + "\nTP1: " + str.tostring(take_profit1) + "\nTP2: " + str.tostring(take_profit2), alert.freq_once_per_bar)
+
+if signal_sell and not in_position
+    entry_price := close
+    stop_loss := close + (atr_current * sl_atr_mult)
+    take_profit1 := close - (atr_h4 * tp1_atr_mult)
+    take_profit2 := close - (atr_h4 * tp2_atr_mult)
+    in_position := true
+    alert("🎯 SELL SIGNAL\nPrice: " + str.tostring(close) + "\nAI Score: " + str.tostring(ai_score_final) + "/100\nSqueeze: " + (squeeze_released ? "Released ✅" : "Active") + "\nMTF: Aligned ✅\nSL: " + str.tostring(stop_loss) + "\nTP1: " + str.tostring(take_profit1) + "\nTP2: " + str.tostring(take_profit2), alert.freq_once_per_bar)
+
+// Exit conditions
+if in_position and ((signal_buy[1] and close <= stop_loss) or (signal_sell[1] and close >= stop_loss))
+    in_position := false
+    alert("🛡️ Stop Loss Hit", alert.freq_once_per_bar)
+
+// ============================================================================
+// ============================================================================
+// 📐 MODULE 14: FIBONACCI RETRACEMENTS (ZONES FIXES)
+// ============================================================================
+
+// Fibonacci Settings
+fibPeriod = input.int(50, "Fibonacci Lookback", minval=20, maxval=200, group="📐 Fibonacci")
+showFibZones = input.bool(true, "Afficher Zones", group="📐 Fibonacci")
+showFibLabels = input.bool(true, "Afficher Labels", group="📐 Fibonacci")
+fibTransparency = input.int(85, "Transparence Zones", minval=70, maxval=95, group="📐 Fibonacci")
+
+// Données 4H pour Fibonacci
+c4h_fib = request.security(syminfo.tickerid, "240", close)
+h4h_fib = request.security(syminfo.tickerid, "240", high)
+l4h_fib = request.security(syminfo.tickerid, "240", low)
+
+// PIVOTS FIXES au lieu de highest/lowest continu
+var float pivotHigh = na
+var float pivotLow = na
+var int pivotBarHigh = 0
+var int pivotBarLow = 0
+
+// Détection de nouveaux pivots
+ph = ta.pivothigh(h4h_fib, fibPeriod, fibPeriod)
+pl = ta.pivotlow(l4h_fib, fibPeriod, fibPeriod)
+
+if not na(ph)
+    pivotHigh := ph
+    pivotBarHigh := bar_index[fibPeriod]
+
+if not na(pl)
+    pivotLow := pl
+    pivotBarLow := bar_index[fibPeriod]
+
+// Utiliser les pivots fixes pour Fibonacci
+swingHighFib = na(pivotHigh) ? h4h_fib : pivotHigh
+swingLowFib = na(pivotLow) ? l4h_fib : pivotLow
+fibRangeCalc = swingHighFib - swingLowFib
+
+// Calcul niveaux Fibonacci
+fib0 = swingLowFib
+fib236 = swingLowFib + fibRangeCalc * 0.236
+fib382 = swingLowFib + fibRangeCalc * 0.382
+fib50 = swingLowFib + fibRangeCalc * 0.5
+fib618 = swingLowFib + fibRangeCalc * 0.618
+fib786 = swingLowFib + fibRangeCalc * 0.786
+fib100 = swingHighFib
+
+// LIGNES FIBONACCI SUR LE GRAPHIQUE
+plot(fib0, "0%", color.new(color.gray, 30), 1)
+plot(fib382, "38.2%", color.new(color.green, 20), 2)
+plot(fib50, "50%", color.new(color.orange, 0), 3)
+plot(fib618, "61.8%", color.new(color.red, 20), 2)
+plot(fib100, "100%", color.new(color.gray, 30), 1)
+
+// ZONES COLORÉES SUR LE GRAPHIQUE
+p1_fib = plot(fib0, display=display.none)
+p2_fib = plot(fib382, display=display.none)
+p3_fib = plot(fib618, display=display.none)
+p4_fib = plot(fib100, display=display.none)
+
+// Fill au niveau global (obligatoire en Pine Script)
+fill(p1_fib, p2_fib, showFibZones ? color.new(color.green, fibTransparency) : na, title="🟢 DISCOUNT")
+fill(p2_fib, p3_fib, showFibZones ? color.new(color.yellow, fibTransparency) : na, title="🟡 EQUILIBRE")
+fill(p3_fib, p4_fib, showFibZones ? color.new(color.red, fibTransparency) : na, title="🔴 PREMIUM")
+
+// LABELS SUR LES LIGNES
+if showFibLabels and barstate.islast
+    label.new(bar_index + 3, fib0, "0% - Bas", color=color.new(color.gray, 20), textcolor=color.white, style=label.style_label_left, size=size.small)
+    label.new(bar_index + 3, fib382, "38.2% 🟢 DISCOUNT", color=color.new(color.green, 20), textcolor=color.white, style=label.style_label_left, size=size.normal)
+    label.new(bar_index + 3, fib50, "50% - EQUILIBRE", color=color.new(color.orange, 10), textcolor=color.white, style=label.style_label_left, size=size.normal)
+    label.new(bar_index + 3, fib618, "61.8% 🔴 PREMIUM", color=color.new(color.red, 20), textcolor=color.white, style=label.style_label_left, size=size.normal)
+    label.new(bar_index + 3, fib100, "100% - Haut", color=color.new(color.gray, 20), textcolor=color.white, style=label.style_label_left, size=size.small)
+
+// ============================================================================
+// 🎯 CONFIRMATIONS VISUELLES SUR LE GRAPHIQUE
+// ============================================================================
+
+// Variables pour détection de rebond PRÉCIS
+tolerance = atr_current * 0.3  // Tolérance pour "toucher" le niveau
+
+// 1. REBOND HAUSSIER depuis DISCOUNT (38.2%)
+// Conditions :
+// - Mèche basse touche 38.2% (± tolérance)
+// - Clôture AU-DESSUS de 38.2%
+// - Bougie haussière (close > open)
+// - Volume supérieur à la moyenne
+touchedDiscount = low <= (fib382 + tolerance) and low >= (fib382 - tolerance)
+closedAboveDiscount = close > fib382
+bullishCandle = close > open
+strongVolume = volume > vol_ma * 1.2
+
+rebondDiscountConfirmed = touchedDiscount and closedAboveDiscount and bullishCandle and strongVolume and mtf_aligned_bull
+
+// 2. REBOND BAISSIER depuis PREMIUM (61.8%)
+touchedPremium = high >= (fib618 - tolerance) and high <= (fib618 + tolerance)
+closedBelowPremium = close < fib618
+bearishCandle = close < open
+
+rebondPremiumConfirmed = touchedPremium and closedBelowPremium and bearishCandle and strongVolume and mtf_aligned_bear
+
+// 3. SIGNAUX VISUELS - REBONDS CONFIRMÉS
+plotshape(rebondDiscountConfirmed, "⚡ REBOND 38.2%", shape.triangleup, location.belowbar, color.new(color.lime, 0), text="⚡ REBOND\n38.2%", textcolor=color.black, size=size.normal)
+plotshape(rebondPremiumConfirmed, "⚡ REBOND 61.8%", shape.triangledown, location.abovebar, color.new(color.fuchsia, 0), text="⚡ REBOND\n61.8%", textcolor=color.white, size=size.normal)
+
+// 4. Marqueurs d'ENTRÉE dans les zones (information simple)
+enteredDiscount = close < fib382 and close[1] >= fib382
+enteredPremium = close > fib618 and close[1] <= fib618
+
+plotshape(enteredDiscount, "Entre DISCOUNT", shape.circle, location.belowbar, color.new(color.green, 60), size=size.tiny)
+plotshape(enteredPremium, "Entre PREMIUM", shape.circle, location.abovebar, color.new(color.red, 60), size=size.tiny)
+
+// 5. ALERTES pour rebonds confirmés (sans les signaux validLongSetup/validShortSetup)
+alertcondition(rebondDiscountConfirmed, "🚀 REBOND DISCOUNT 38.2%", "REBOND HAUSSIER confirmé à 38.2% - Volume fort + Bougie haussière")
+alertcondition(rebondPremiumConfirmed, "💥 REBOND PREMIUM 61.8%", "REBOND BAISSIER confirmé à 61.8% - Volume fort + Bougie baissière")
+
+// ============================================================================
+// 📊 CONFIRMATION RETRACEMENT - AFFICHAGE % ACTUEL
+// ============================================================================
+
+// Calcul du retracement actuel en %
+retracementPct = fibRangeCalc > 0 ? ((c4h_fib - swingLowFib) / fibRangeCalc) * 100 : 0
+
+// Détection du niveau Fibonacci actuel
+currentLevel = ""
+if retracementPct < 23.6
+    currentLevel := "0-23.6%"
+else if retracementPct < 38.2
+    currentLevel := "23.6-38.2%"
+else if retracementPct < 50
+    currentLevel := "38.2-50%"
+else if retracementPct < 61.8
+    currentLevel := "50-61.8%"
+else if retracementPct < 78.6
+    currentLevel := "61.8-78.6%"
+else
+    currentLevel := "78.6-100%"
+
+// Zone de retracement IDÉALE pour trader
+idealLongZone = retracementPct >= 38.2 and retracementPct <= 50  // Zone d'or pour LONG
+idealShortZone = retracementPct >= 61.8 and retracementPct <= 78.6  // Zone d'or pour SHORT
+
+// ============================================================================
+// 🎯 CALCUL DE LA PROBABILITÉ DE RÉUSSITE DU RETRACEMENT
+// ============================================================================
+
+// Facteurs de probabilité (0-100)
+
+// 1. AI Score (le plus important) - 40% du poids
+aiProbability = ai_score_final
+
+// 2. Position Fibonacci optimale - 25% du poids
+fibPositionScore = 0.0
+if idealLongZone or idealShortZone
+    fibPositionScore := 100.0  // Zone idéale
+else if retracementPct < 38.2 or retracementPct > 78.6
+    fibPositionScore := 60.0   // Zones acceptables
+else
+    fibPositionScore := 80.0   // Zones moyennes (equilibre)
+
+// 3. Alignement MTF - 20% du poids
+mtfScore = (mtf_aligned_bull or mtf_aligned_bear) ? 100.0 : 30.0
+
+// 4. Volume - 10% du poids
+volumeScore = volume > vol_ma * 1.5 ? 100.0 : volume > vol_ma ? 70.0 : 40.0
+
+// 5. Rebond confirmé - 5% du poids (bonus)
+rebondBonus = (rebondDiscountConfirmed or rebondPremiumConfirmed) ? 20.0 : 0.0
+
+// PROBABILITÉ FINALE (pondérée)
+retracementProbability = (aiProbability * 0.4) + (fibPositionScore * 0.25) + (mtfScore * 0.2) + (volumeScore * 0.1) + rebondBonus * 0.05
+
+// Limiter entre 0 et 100
+retracementProbability := math.min(100, math.max(0, retracementProbability))
+
+// Niveau de confiance
+confidenceLevel = ""
+confidenceColor = color.gray
+if retracementProbability >= 80
+    confidenceLevel := "TRÈS ÉLEVÉE ⭐⭐⭐"
+    confidenceColor := color.new(color.lime, 0)
+else if retracementProbability >= 65
+    confidenceLevel := "ÉLEVÉE ⭐⭐"
+    confidenceColor := color.new(color.green, 20)
+else if retracementProbability >= 50
+    confidenceLevel := "MOYENNE ⭐"
+    confidenceColor := color.new(color.yellow, 20)
+else
+    confidenceLevel := "FAIBLE ⚠️"
+    confidenceColor := color.new(color.red, 20)
+
+// LABEL - Affichage du retracement actuel + PROBABILITÉ
+var label retracementLabel = na
+if barstate.islast
+    label.delete(retracementLabel)
+    
+    labelText = "📊 RETRACEMENT " + str.tostring(math.round(retracementPct, 1)) + "% (" + currentLevel + ")\n" + 
+         "🎯 Probabilité " + str.tostring(math.round(retracementProbability, 0)) + "% " + confidenceLevel
+    
+    retracementLabel := label.new(bar_index, high + atr_current * 1.5, labelText, 
+         color=confidenceColor, textcolor=color.white, 
+         style=label.style_label_down, size=size.small)
+
+// MARQUEURS - Franchissement des niveaux clés
+crossed236 = ta.cross(c4h_fib, fib236)
+crossed382 = ta.cross(c4h_fib, fib382)
+crossed50 = ta.cross(c4h_fib, fib50)
+crossed618 = ta.cross(c4h_fib, fib618)
+crossed786 = ta.cross(c4h_fib, fib786)
+
+plotshape(crossed236, "Cross 23.6%", shape.diamond, location.absolute, color.new(color.blue, 30), size=size.tiny, offset=0)
+plotshape(crossed382, "Cross 38.2%", shape.diamond, location.absolute, color.new(color.green, 30), size=size.small, offset=0)
+plotshape(crossed50, "Cross 50%", shape.diamond, location.absolute, color.new(color.orange, 0), size=size.normal, offset=0)
+plotshape(crossed618, "Cross 61.8%", shape.diamond, location.absolute, color.new(color.red, 30), size=size.small, offset=0)
+plotshape(crossed786, "Cross 78.6%", shape.diamond, location.absolute, color.new(color.purple, 30), size=size.tiny, offset=0)
+
+// Zone actuelle (pour dashboard)
+getFibZone() =>
+    c4h_fib >= fib618 ? "🔴 PREMIUM" : c4h_fib >= fib382 ? "🟡 EQUILIBRE" : "🟢 DISCOUNT"
+
+getFibZoneColor() =>
+    c4h_fib >= fib618 ? color.new(color.red, 90) : c4h_fib >= fib382 ? color.new(color.yellow, 90) : color.new(color.green, 90)
+
+// ============================================================================
+// 📊 DASHBOARD
+// ============================================================================
+
+var table dashboard = table.new(position.top_right, 2, 10, border_width=2, border_color=color.gray, bgcolor=color.new(color.black, 10))
+
+if show_dashboard and barstate.islast
+    if simple_mode
+        // --- COMPACT DASHBOARD (SIMPLE MODE) ---
+        table.clear(dashboard, 0, 0, 1, 9) // Clear any previous cells
+        
+        // Header
+        table.cell(dashboard, 0, 0, "🏦 RACHID ULTIME", text_color=color.white, bgcolor=color.new(color.blue, 70), text_size=size.normal)
+        table.merge_cells(dashboard, 0, 0, 1, 0)
+        
+        // 1. AI Score
+        ai_color = ai_score_final >= 75 ? color.green : ai_score_final >= 50 ? color.orange : color.red
+        table.cell(dashboard, 0, 1, "AI Score", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 1, str.tostring(ai_score_final), text_color=ai_color, text_size=size.normal)
+        
+        // 2. Tendance (Global)
+        trend_txt = mtf_aligned_bull ? "HAUSSIER 🚀" : mtf_aligned_bear ? "BAISSIER 📉" : "NEUTRE ⚖️"
+        trend_col = mtf_aligned_bull ? color.green : mtf_aligned_bear ? color.red : color.gray
+        table.cell(dashboard, 0, 2, "Tendance", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 2, trend_txt, text_color=trend_col, text_size=size.small)
+
+        // 3. Zone Fibonacci (NOUVEAU)
+        fib_zone_txt = getFibZone()
+        fib_zone_col = fib_zone_txt == "🔴 PREMIUM" ? color.red : fib_zone_txt == "🟢 DISCOUNT" ? color.green : color.yellow
+        table.cell(dashboard, 0, 3, "Zone Fib", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 3, fib_zone_txt, text_color=fib_zone_col, text_size=size.small)
+
+        // 4. Retrace Fibonacci % (NOUVEAU)
+        fib_retrace_pct = ((c4h_fib - swingLowFib) / fibRangeCalc) * 100
+        fib_retrace_txt = str.tostring(math.round(fib_retrace_pct, 1)) + "%"
+        fib_retrace_col = fib_retrace_pct > 61.8 ? color.red : fib_retrace_pct < 38.2 ? color.green : color.yellow
+        table.cell(dashboard, 0, 4, "Retrace", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 4, fib_retrace_txt, text_color=fib_retrace_col, text_size=size.small)
+
+        // 5. Pression (Anticipation)
+        pressure_txt = str.tostring(math.round(market_pressure)) + "%"
+        pressure_col = pressure_buy ? color.green : pressure_sell ? color.red : color.gray
+        table.cell(dashboard, 0, 5, "Pression", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 5, pressure_txt, text_color=pressure_col, text_size=size.small)
+        
+        // 6. Sécurité (Kill-Switch)
+        safe_txt = kill_switch_active ? "STOP 🛡️" : "GO ✅"
+        safe_col = kill_switch_active ? color.red : color.green
+        table.cell(dashboard, 0, 6, "Sécurité", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 6, safe_txt, text_color=safe_col, text_size=size.small)
+
+        // 7. Aladdin Risk
+        table.cell(dashboard, 0, 7, "Aladdin Risk", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 7, position_size, text_color=risk_col, text_size=size.small)
+        
+    else
+        // --- FULL DASHBOARD (DETAILED MODE) ---
+        // Header
+        table.cell(dashboard, 0, 0, "🏦 RACHID BERKANE ULTIME", text_color=color.white, bgcolor=color.new(color.blue, 70), text_size=size.normal)
+        table.merge_cells(dashboard, 0, 0, 1, 0)
+        
+        // AI Score
+        ai_color = ai_score_final >= 75 ? color.green : ai_score_final >= 50 ? color.orange : color.red
+        table.cell(dashboard, 0, 1, "AI Score", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 1, str.tostring(ai_score_final) + "/100", text_color=ai_color, text_size=size.normal)
+        
+        // Regime
+        regime_color = regime == "TREND UP" ? col_bull : regime == "TREND DOWN" ? col_bear : regime == "SQUEEZE" ? color.orange : col_neutral
+        table.cell(dashboard, 0, 2, "Regime", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 2, regime, text_color=regime_color, text_size=size.small)
+        
+        // MTF Alignment
+        mtf_status = mtf_aligned_bull ? "BULL ✅" : mtf_aligned_bear ? "BEAR ✅" : "MIXED ⚠️"
+        mtf_color = mtf_aligned_bull or mtf_aligned_bear ? color.green : color.yellow
+        table.cell(dashboard, 0, 3, "MTF Align", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 3, mtf_status, text_color=mtf_color, text_size=size.small)
+        
+        // Market Pressure
+        pressure_txt = str.tostring(math.round(market_pressure)) + "%"
+        pressure_col = pressure_buy ? color.green : pressure_sell ? color.red : color.gray
+        table.cell(dashboard, 0, 4, "Pressure", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 4, pressure_txt, text_color=pressure_col, text_size=size.small)
+        
+        // ADX
+        adx_txt = str.tostring(math.round(adx))
+        adx_col = adx > 25 ? color.green : adx > 20 ? color.yellow : color.red
+        table.cell(dashboard, 0, 5, "ADX", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 5, adx_txt, text_color=adx_col, text_size=size.small)
+        
+        // Volume
+        vol_status = volume > vol_ma * 1.5 ? "HIGH 🔥" : volume > vol_ma ? "NORMAL" : "LOW ⚠️"
+        vol_col = volume > vol_ma * 1.5 ? color.yellow : volume > vol_ma ? color.gray : color.red
+        table.cell(dashboard, 0, 6, "Volume", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 6, vol_status, text_color=vol_col, text_size=size.small)
+        
+        // Kill-Switch
+        kill_status = kill_switch_active ? "ACTIVE 🛡️" : "OFF"
+        kill_col = kill_switch_active ? color.red : color.green
+        table.cell(dashboard, 0, 7, "Kill-Switch", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 7, kill_status, text_color=kill_col, text_size=size.small)
+        
+        // Active OBs
+        active_obs = 0
+        if array.size(order_blocks) > 0
+            for i = 0 to array.size(order_blocks) - 1
+                ob = array.get(order_blocks, i)
+                if not ob.invalidated
+                    active_obs += 1
+        
+        table.cell(dashboard, 0, 8, "Active OBs", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 8, str.tostring(active_obs), text_color=color.white, text_size=size.small)
+        
+        // FVGs
+        active_fvgs = 0
+        if array.size(fvgs) > 0
+            for i = 0 to array.size(fvgs) - 1
+                fvg = array.get(fvgs, i)
+                if not fvg.mitigated
+                    active_fvgs += 1
+        
+        table.cell(dashboard, 0, 9, "Active FVGs", text_color=color.gray, text_size=size.small)
+        table.cell(dashboard, 1, 9, str.tostring(active_fvgs), text_color=color.white, text_size=size.small)
+
+// ============================================================================
+// 📈 MARKET PRESSURE PANEL (Separate Indicator Panel)
+// ============================================================================
+
+// Plot pressure as histogram in separate panel
+// Note: This would ideally be in a separate indicator window
+// For overlay indicator, we show in dashboard instead
+// ==========================================================================================
+
+// === Dashboard with Telegram Link ===
+var table myTable = table.new(position.top_center, 1, 1, border_width=1, frame_color=color.black, bgcolor=color.white)
+
+// Add Telegram Message to Dashboard
+table.cell(myTable, 0, 0, "Join Telegram @mrexpert_ai", bgcolor=color.blue, text_color=color.white, text_size=size.normal)

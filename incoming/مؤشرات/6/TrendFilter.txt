@@ -1,0 +1,1777 @@
+// This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// Join our channel for more free tools: https://t.me/mrexpert_ai
+
+//@version=5
+indicator(title='Combo + TrendFilter', shorttitle='Combo + TrendFilter', max_boxes_count  = 500, max_lines_count  = 500, max_labels_count = 500, overlay = true, max_bars_back=5000)
+len1 = input.int(21, minval=1, title='EMA 1')
+len2 = input.int(55, minval=1, title='EMA 2')
+
+src1 = input(close, title='EMA 1 Source')
+src2 = input(close, title='EMA 2 Source')
+
+ema11 = ta.ema(src1, len1)
+ema12 = ta.ema(src2, len2)
+
+plot(ema11, color=color.new(color.yellow, 0), linewidth=2, title='EMA 1')
+plot(ema12, color=color.new(color.lime, 0), linewidth=2, title='EMA 2')
+
+
+//---------------------------------------------------------------------------------------------------------------------}
+//Challenge Functions
+//---------------------------------------------------------------------------------------------------------------------{
+// getSlopes()
+//
+//@function Get the slope of the lines connecting source1/source2 to source1[1]/source2[1]
+//@param    source1 (float) source value 1
+//@param    source2 (float) source value 2 
+//@returns  Slopes of the lines
+getSlopes(float source1, float source2) =>
+
+    //Get slopes
+    m1  =  ta.change(source1) 
+    m2  =  ta.change(source2)
+
+    //Output
+    [m1 , m2]
+
+// commonScalingFactor()
+//
+//@function Common scaling factor of the lines connecting source1/source2 to source1[1]/source2[1]
+//@param    source1 (float) source value 1 
+//@param    source2 (float) source value 2
+//@param    m1      (float) slope of the line originating from source1 
+//@param    m2      (float) slope of the line originating from source2 
+//@returns  Common scaling factor
+commonScalingFactor(float source1, float source2, float m1, float m2) => 
+    
+    //Output
+    (source1 - source2) / (m1 - m2) 
+
+// crossValue()
+//
+//@function Finds intersection value of 2 lines/values if any cross occurs - First function of challenge -> crossValue(source1, source2)
+//@param    source1 (float) source value 1 
+//@param    source2 (float) source value 2
+//@returns  Intersection value
+method crossValue(float source1, float source2)=>
+    float insct = na
+
+    //Slope calculations, called on each bar
+    [m1, m2] = getSlopes(source1, source2)
+
+    //Test for cross
+    if ta.cross(source1, source2)
+
+        //Find common scaling factor
+        sf = commonScalingFactor(source1, source2, m1, m2)
+    
+        //Find intersection value
+        insct := source1 - sf * m1
+
+// crossoverValue()
+//
+//@function Finds intersection value of 2 lines/values if crossover occurs - Second function of challenge -> crossoverValue(source1, source2) 
+//@param    source1 (float) source value 1 
+//@param    source2 (float) source value 2
+//@returns  Intersection value
+method crossoverValue(float source1, float source2)=>
+    float insct = na
+
+    //Slope calculations, called on each bar
+    [m1, m2] = getSlopes(source1, source2)
+
+    //Test for cross
+    if ta.crossover(source1, source2)
+
+        //Find common scaling factor
+        sf = commonScalingFactor(source1, source2, m1, m2)
+    
+        //Find intersection value
+        insct := source1 - sf * m1
+
+// crossunderValue()
+//
+//@function Finds intersect of 2 lines/values if crossunder occurs - Third function of challenge -> crossunderValue(source1, source2) 
+//@param    source1 (float) source value 1 
+//@param    source2 (float) source value 2
+//@returns  Intersection value
+method crossunderValue(float source1, float source2) =>
+    float insct = na
+
+    //Slope calculations, called on each bar
+    [m1, m2] = getSlopes(source1, source2)
+
+    //Test for cross
+    if ta.crossunder(source1, source2)
+
+        //Find common scaling factor
+        sf = commonScalingFactor(source1, source2, m1, m2)
+    
+        //Find intersection value
+        insct := source1 - sf * m1
+
+//---------------------------------------------------------------------------------------------------------------------}
+//Usage - Code used to highlight the proposed functions usage.
+//---------------------------------------------------------------------------------------------------------------------{
+//Settings
+//-----------------------------------------------------------------------------{
+//Sources selection
+sourceA = input.string('SMA', 'Source A'
+  , options = ['SMA', 'EMA', 'WMA', 'Hull', 'External A']
+  , inline  = 'sourceA')
+
+lenA    = input.int(9, '', minval = 1
+  , inline = 'sourceA')
+
+externalA = input.source(close, 'External A')
+
+sourceB = input.string('SMA', 'Source B'
+  , options = ['SMA', 'EMA', 'WMA', 'Hull', 'External B']
+  , inline  = 'sourceB')
+
+lenB    = input.int(20, '', minval = 1
+  , inline = 'sourceB')
+
+externalB = input.source(open, 'External B')
+
+//Style
+coCss = input.color(#2962ff, 'Crossover'
+  , inline = 'crossover')
+
+coAreaCss = input.color(color.new(#2962ff, 90), ''
+  , inline = 'crossover')
+
+cuCss = input.color(#ff5d00, 'Crossover'
+  , inline = 'crossunder')
+
+cuAreaCss = input.color(color.new(#ff5d00, 90), ''
+  , inline = 'crossunder')
+
+extend = input(true, 'Extend Intersections')
+
+//SMA Intersection Matrix
+showDash  = input(true, 'Show Matrix'
+  , group = 'SMA Intersection Matrix')
+
+minLen = input.int(10, 'SMA Length Range'
+  , minval = 1
+  , inline = 'lenrange'
+  , group = 'SMA Intersection Matrix')
+
+maxLen = input.int(20, ''
+  , minval = 1
+  , inline = 'lenrange'
+  , group = 'SMA Intersection Matrix')
+
+dashLoc  = input.string('Top Right', 'Location'
+  , options = ['Top Right', 'Bottom Right', 'Bottom Left']
+  , group = 'SMA Intersection Matrix')
+
+textSize = input.string('Small', 'Size'
+  , options = ['Tiny', 'Small', 'Normal']
+  , group = 'SMA Intersection Matrix')
+
+//Magnifying Glass
+magnify = input(true, 'Magnify'
+  , group = 'Magnifying Glass')
+
+resolution = input.int(20, 'Resolution'
+  , minval = 2
+  , group = 'Magnifying Glass')
+
+offset = input.int(10, 'Offset'
+  , minval = 2
+  , group = 'Magnifying Glass')
+
+//----------------------------------------------------------------------------}
+//Methods/Functions
+//----------------------------------------------------------------------------{
+//@function Return various supported moving averages outputs based on an input string
+//@param    id       (string) determine the function output, supported strings include ['SMA', 'EMA', 'WMA', 'Hull'], else an external value is returned
+//@param    len      (simple int) moving average length if applicable
+//@param    external (float) external source
+//@returns  Chosen moving average output or "external" if "id" is not part of supported options 
+method source(string id, simple int len, float external) =>
+    sma = ta.sma(close, len)
+    ema = ta.ema(close, len)
+    wma = ta.wma(close, len)
+    hma = ta.hma(close, len)
+
+    output = switch id
+        'SMA'  => sma
+        'EMA'  => ema
+        'WMA'  => wma
+        'Hull' => hma
+        => external
+
+//@function Return the N * N intersection matrix from an array of values with size N and the values in its previous instance
+//@param    array_series (array<float>) array of values, requires an array supporting historical referencing
+//@returns  (matrix<float>) Intersection matrix showing intersection value between all array entries
+intersectionMatrix(array_series)=>
+    N = array_series.size()-1
+    ismt = matrix.new<float>(N+1, N+1)
+    sfmt = matrix.new<float>(N+1, N+1)
+    
+    prev_array = array_series[1]
+
+    if not na(prev_array)
+        //Columns
+        for i = 0 to N
+            //Get source1 and previous source1 value
+            source1 = array_series.get(i)
+            prev1 = prev_array.get(i)
+
+            //source1 slope
+            m1 = source1 - prev1
+
+            //Rows
+            for j = i to N
+                //Na is column index = row index
+                if i == j
+                    ismt.set(j, i, float(na))
+                else
+                    //Get source2 and previous source2 value
+                    source2 = array_series.get(j)
+                    prev2 = prev_array.get(j)
+
+                    //source2 slope
+                    m2 = source2 - prev2
+                    
+                    //Test for cross
+                    if (source1 - source2) * (prev1 - prev2) < 0
+                        //Find common scaling factor
+                        sf = commonScalingFactor(source1, source2, m1, m2)
+
+                        //Find intersection value
+                        insct = source1 - sf * m1
+                        
+                        //Set matrix intersection and scaling factor values
+                        ismt.set(i, j, insct)
+                        sfmt.set(i, j, 1 - sf)
+
+    //Output
+    [ismt, sfmt]
+
+//@function Draw graphical elements on the chart highlighting crossing events and intersection value/area
+//@param    intersection_val (float) Intersection value between source1 and source2
+//@param    scaling_factor   (float) Common scaling factor between two crossing lines
+//@param    max              (float) area top
+//@param    min              (float) area bottom
+//@param    crossover        (bool)  true if the lines are crossing over each other
+//@param    css              (color) color of the line/label text
+//@param    css_area         (color) color of the box area
+//@returns  [line, label, box] drawing elements 
+draw(intersection_val, scaling_factor, max, min, crossover, css, css_area)=>
+    n = bar_index
+
+    //Intersection level
+    lvl = line.new(
+      chart.point.from_index(n-1, intersection_val)
+      , chart.point.from_index(n, intersection_val)
+      , color = css)
+
+    //Intersection value label and display 1 - scaling factor when hovering over label
+    lbl = label.new(
+      chart.point.from_index(n, crossover ? min : max)
+      , color = color(na)
+      , textcolor = css
+      , text = str.tostring(math.round_to_mintick(intersection_val))
+      , style = crossover ? label.style_label_up : label.style_label_down
+      , size = size.small
+      , tooltip = str.tostring(1 - scaling_factor, '#.##'))
+    
+    //Highlight intersection area
+    bx = box.new(
+      chart.point.from_index(n-1, max)
+      , chart.point.from_index(n, min)
+      , na
+      , bgcolor = css_area)
+
+    [lvl, lbl, bx]
+
+//@function Display an higher resolution representation of intersecting lines
+//@param    source1      (float) source value 1
+//@param    source2      (float) source value 2
+//@param    css1         (color) color of source 1 line
+//@param    css2         (color) color of source 2 line
+//@param    intersec_css (color) color of intersection line
+//@param    area_css     (color) color of box area
+zoomIn(source1, source2, css1, css2, intersec_css, area_css)=>
+    var source1_l  = line.new(na, na, na, na, color = css1) 
+    var source2_l  = line.new(na, na, na, na, color = css2)
+    var intersec_l = line.new(na, na, na, na)
+    var cross_area = box.new(na, na, na, na, chart.fg_color) 
+    
+    n = bar_index
+
+    //Find intersection value on crosses
+    intersection_val = source1.crossValue(source2)
+
+    //Draw new elements on crossing event
+    if not na(intersection_val)
+        //Get common scaling factor
+        sf = commonScalingFactor(source1, source2, source1 - source1[1], source2 - source2[1])
+        
+        //Slopes run
+        dx1 = int(resolution * (1 - sf))
+        dx2 = int(resolution * sf)
+
+        //Offset
+        start = int(resolution * (1 - sf)) + offset
+
+        //Coordinates
+        l1y1 = source1 - (source1 - source1[1]) * dx1
+        l1y2 = source1 + (source1 - source1[1]) * dx2
+
+        l2y1 = source2 - (source2 - source2[1]) * dx1
+        l2y2 = source2 + (source2 - source2[1]) * dx2
+
+        //Set new lines coordinates
+        source1_l.set_xy1(n - dx1 + start, l1y1) 
+        source1_l.set_xy2(n + dx2 + start, l1y2)
+
+        source2_l.set_xy1(n - dx1 + start, l2y1)
+        source2_l.set_xy2(n + dx2 + start, l2y2)
+
+        intersec_l.set_xy1(n - dx1 + start, intersection_val)
+        intersec_l.set_xy2(n + dx2 + start, intersection_val)
+        intersec_l.set_color(intersec_css)
+
+        //Area
+        cross_area.set_lefttop(n - dx1 + start, math.max(l1y1, l1y2, l2y1, l2y2))
+        cross_area.set_rightbottom(n + dx2 + start, math.min(l1y1, l1y2, l2y1, l2y2))
+        cross_area.set_bgcolor(area_css)
+    else
+        //Update coordinates
+        x1 = source1_l.get_x1()
+        x2 = source1_l.get_x2()
+
+        source1_l.set_x1(x1 + 1)   , source1_l.set_x2(x2 + 1)
+        source2_l.set_x1(x1 + 1)   , source2_l.set_x2(x2 + 1)
+        intersec_l.set_x1(x1 + 1)  , intersec_l.set_x2(x2 + 1)
+        cross_area.set_left(x1 + 1), cross_area.set_right(x2 + 1)
+
+//----------------------------------------------------------------------------}
+//Highlight crosses and intersection value
+//----------------------------------------------------------------------------{
+//Intersections drawing elements
+var line  intersection_lvl = na 
+var label intersection_lbl = na 
+var box   intersection_box  = na
+
+n = bar_index
+source1 = sourceA.source(lenA, externalA)
+source2 = sourceB.source(lenB, externalB)
+
+//Find intersection value on crosses
+intersection_val = source1.crossValue(source2)
+
+var l1 = line.new(na,na,na,na)
+var l2 = line.new(na,na,na,na)
+var l3 = line.new(na,na,na,na)
+
+//Highlight intersection information
+if not na(intersection_val)
+
+    //Get common scaling factor
+    sf = commonScalingFactor(source1, source2, source1 - source1[1], source2 - source2[1])
+    
+    //Draw elements
+    crossover = source1 > source2
+    max = math.max(source1, source2, source1[1], source2[1])
+    min = math.min(source1, source2, source1[1], source2[1])
+
+    [lvl_, lbl_, bx_] = draw(intersection_val, sf, max, min
+      , crossover
+      , crossover ? coCss : cuCss
+      , crossover ? coAreaCss : cuAreaCss)
+    
+    intersection_lvl := lvl_
+    intersection_lbl := lbl_
+    intersection_box := bx_
+
+else
+    //Extend
+    if extend
+        intersection_lvl.set_x2(n)
+        intersection_lbl.set_x(int(math.avg(n, intersection_lvl.get_x1())))
+        intersection_box.set_right(n)
+
+//Zoom
+if magnify
+    zoomIn(source1, source2, #089981, #f23645
+      , source1 > source2 ? coCss : cuCss
+      , source1 > source2 ? coAreaCss : cuAreaCss)
+
+//-----------------------------------------------------------------------------}
+//Highlight SMA intersection matrix
+//-----------------------------------------------------------------------------{
+//Declare array of sma values
+sma_array = array.new<float>(0)
+
+csum = ta.cum(close)
+
+//Calculate SMA for periods from min_per to max_per
+for i = minLen to maxLen
+    ma = (csum - csum[i]) / i
+    sma_array.push(ma)
+
+//Get matrices
+[ismt, sfmt] = intersectionMatrix(sma_array)
+
+//Set SMA intersection matrix
+if barstate.islast and showDash
+    cols = ismt.columns()
+    rows = ismt.rows()
+    
+//----------------------------------------------------------------------------}
+//Plots
+//----------------------------------------------------------------------------{
+plot(source1, 'Source A', #089981, display = display.none)
+plot(source2, 'Source B', #f23645, display = display.none)
+
+
+
+// ################ Target Trend +  [RS2021] ################
+
+// INPUTS ????????????????????????????????????????????????????????????????????????????????????????????????????????{
+length = input.int(10, "Trend Length")
+target = input.int(0, "Set Targets")
+// }
+
+
+// VARIABLES ????????????????????????????????????????????????????????????????????????????????????????????????????{
+var bool trend    = na
+float trend_value = na
+
+// Colors
+color up_color = #06b690
+color dn_color = color.rgb(182, 112, 6)
+
+// ATR for calculating stop loss and target levels
+series float atr_value = ta.sma(ta.atr(200), 200) * 0.8
+
+// Moving averages for trend detection
+series float sma_high  = ta.sma(high, length) + atr_value
+series float sma_low   = ta.sma(low, length) - atr_value
+color       plot_color = color.new(chart.fg_color, 80)
+
+// UDT for managing lines and labels
+type TrendTargets
+    line[] lines
+    label[] labels
+
+// Initialize UDT
+var TrendTargets targets_up   = TrendTargets.new(array.new_line(), array.new_label())
+var TrendTargets targets_down = TrendTargets.new(array.new_line(), array.new_label())
+// }
+
+
+// CALCULATIONS??????????????????????????????????????????????????????????????????????????????????????????????{
+  
+// Determine trend based on crossovers
+if ta.crossover(close, sma_high) and barstate.isconfirmed
+    trend := true
+if ta.crossunder(close, sma_low) and barstate.isconfirmed
+    trend := false
+
+trend_value := switch
+    trend     => sma_low
+    not trend => sma_high
+
+trend_color = trend ? up_color : not trend ? dn_color : na
+
+
+// Signal detection for trend changes
+bool signal_up   = ta.change(trend) and not trend[1]
+bool signal_down = ta.change(trend) and trend[1]
+
+
+// Method to draw trend targets and manage lines/labels
+method draw_targets(TrendTargets targets, bool signal1, bool signal2, bool direction)=>
+    float base           = direction ? sma_low : sma_high
+    float atr_multiplier = atr_value * (direction ? 1 : -1)
+
+    // Reset counters for up and down targets
+    var int count_up   = 0
+    var int count_down = 0
+
+    if trend 
+        count_down := 0
+        count_up += 1
+    if not trend 
+        count_down += 1
+        count_up := 0
+
+    int count = direction ? count_up : count_down
+
+    if signal1
+        float target_len1 = atr_multiplier * (5+target)
+        float target_len2 = atr_multiplier * (10+target*2)
+        float target_len3 = atr_multiplier * (15+target*3)
+                
+        // Clear existing lines and labels
+        for line_i in targets.lines
+            int i = targets.lines.indexof(line_i)
+            label.delete(targets.labels.get(i))
+            line.delete(line_i)
+
+        array.clear(targets.lines)
+        array.clear(targets.labels)
+
+        // Draw new lines for trend targets
+        line stop_loss_line = line.new(bar_index, base, bar_index + 20, base)
+        line entry_line     = line.new(bar_index, close, bar_index + 20, close)
+        line target1_line   = line.new(bar_index, close + target_len1, bar_index + 20, close + target_len1)
+        line target2_line   = line.new(bar_index, close + target_len2, bar_index + 20, close + target_len2)
+        line target3_line   = line.new(bar_index, close + target_len3, bar_index + 20, close + target_len3)
+
+        // Fill between stop loss and entry line
+        linefill.new(stop_loss_line, entry_line, color.new(dn_color, 95))
+        linefill.new(entry_line, target3_line, color.new(up_color, 95))
+
+        // Draw new labels for trend targets
+        label stop_loss_label = label.new(bar_index + 20, base, str.tostring(math.round(base, 2)))
+        label entry_label     = label.new(bar_index + 20, close, str.tostring(math.round(close, 2)))
+        label target1_label   = label.new(bar_index + 20, close + target_len1, "1 - " + str.tostring(math.round(close + target_len1, 2)))
+        label target2_label   = label.new(bar_index + 20, close + target_len2, "2 - " + str.tostring(math.round(close + target_len2, 2)))
+        label target3_label   = label.new(bar_index + 20, close + target_len3, "3 - " + str.tostring(math.round(close + target_len3, 2)))
+
+        // Push lines and labels to the UDT
+        targets.lines.push(stop_loss_line)
+        targets.lines.push(entry_line)
+        targets.lines.push(target1_line)
+        targets.lines.push(target2_line)
+        targets.lines.push(target3_line)
+
+        targets.labels.push(stop_loss_label)
+        targets.labels.push(entry_label)
+        targets.labels.push(target1_label)
+        targets.labels.push(target2_label)
+        targets.labels.push(target3_label)
+
+        // Update styles for labels and lines
+        for lbl in targets.labels
+            int  idx      = targets.labels.indexof(lbl)
+            line line_ref = targets.lines.get(idx)
+            lbl.set_style(label.style_label_left)
+            lbl.set_color(chart.fg_color)
+            lbl.set_textcolor(chart.bg_color)
+            line_ref.set_color(chart.fg_color)
+
+    if signal2
+        // Clear existing lines and labels
+        for line_i in targets.lines
+            int i = targets.lines.indexof(line_i)
+            label.delete(targets.labels.get(i))
+            line.delete(line_i)
+
+        array.clear(targets.lines)
+        array.clear(targets.labels)
+
+    for line_i in targets.lines
+        int   idx           = targets.lines.indexof(line_i)
+        label lbl_ref       = targets.labels.get(idx)
+        label first_label   = targets.labels.first()
+        line  entry_line    = targets.lines.get(1)
+        label entry_label   = targets.labels.get(1)
+
+        // Targets
+        if high >= line.get_y2(line_i) and low <= line.get_y2(line_i) and count > 1
+            lbl_ref.set_style(label.style_label_left)
+            lbl_ref.set_color(chart.fg_color)
+            lbl_ref.set_text("   ?   ")
+            lbl_ref.set_textcolor(#16ac09)
+            line_i.set_style(line.style_dashed)
+            line_i.set_color(plot_color)
+
+        // Stop Loss
+        if high >= line.get_y2(targets.lines.first()) and low <= line.get_y2(targets.lines.first()) and count > 1
+            first_label.set_text("  ?  ")
+
+        if direction ? trend : not trend
+            first_label.set_textcolor(#db1e1e)
+            line_i.set_x2(bar_index + 20)
+            targets.lines.first().set_color(#db1e1e)
+            
+            label.set_x(targets.labels.get(idx), bar_index + 20)
+
+            entry_line.set_style(line.style_solid)
+            entry_line.set_color(up_color)
+            entry_label.set_text("? " + str.tostring(math.round(line.get_y2(entry_line), 2)))
+            entry_label.set_textcolor(#1d80dd)
+// }
+
+// PLOT?????????????????????????????????????????????????????????????????????????????????????????????????????????????{
+// Call the draw_targets method for both upward and downward trends
+targets_down.draw_targets(signal_down, signal_up, false)
+targets_up.draw_targets(signal_up, signal_down, true)
+
+// Plot candlesticks with trend color
+// plotcandle(open, high, low, close,
+//            title = 'Title', 
+//            color = trend_color,
+//            wickcolor = trend_color, 
+//            bordercolor = trend_color)
+
+// Plot trailing stops
+p11 = plot(trend ? trend_value : na, style = plot.style_linebr, color = plot_color)
+p21 = plot(not trend ? trend_value : na, style = plot.style_linebr, color = plot_color)
+p01 = plot(hl2, display = display.none, editable = false)
+fill(p11, p01, trend_value, hl2, color.new(chart.fg_color, 90), na)
+fill(p21, p01, trend_value, hl2, color.new(chart.fg_color, 90), na)
+
+FiltrTrend = input.int(100, title="Период фильтра для тренда", minval=1)
+TrendWMA = ta.ema (close, FiltrTrend)
+// Plot signals on the chart
+float sigUp = signal_up and close < TrendWMA ? low - atr_value*2 : na
+float sigDn = signal_down and close > TrendWMA ? high + atr_value*2 : na
+
+plotshape(sigUp,   "", shape.triangleup, location.absolute, up_color, size = size.tiny)
+plotshape(sigUp,   "", shape.triangleup, location.absolute, color.new(up_color, 80), size = size.small)
+
+plotshape(sigDn, "", shape.triangledown, location.absolute, dn_color, size = size.tiny)
+plotshape(sigDn, "", shape.triangledown, location.absolute, color.new(dn_color, 80), size = size.small)
+
+
+// ################ overlayssd ################
+
+// ------------- signal indicator ----------------
+
+Tv = input.int(200, minval=1)
+ 
+float currentMidOrHlc3 = na
+float ma = na
+float tc = na
+float trueRange = na
+float PI = math.pi
+float XC = 2.415,
+float nc = 0.5
+float PICoeff2415 = PI * XC
+float Sv = math.exp(-math.sqrt(2) * PI / Tv)
+float _f = -math.pow(Sv, 2)
+float vf = 2 * Sv * math.cos(math.sqrt(2) * PI / Tv),
+float fg = 1 - vf - _f
+float mid = na
+float dollarS = na
+int JC = 12
+int ZC = 4
+int previousTimestamp = na
+float upperHigh = na
+float upperMid = na
+float upperLow = na
+float lowerHigh = na
+float lowerMid = na
+float lowerLow = na
+ 
+currentTimestamp = time
+trueRange := ta.tr(true)
+ 
+if na(mid[1])
+    currentMidOrHlc3 := hlc3
+else
+    currentMidOrHlc3 := nz(mid[1])
+ 
+mid := fg * hlc3 + vf * currentMidOrHlc3 + _f * currentMidOrHlc3[1]
+ 
+if na(dollarS[1])
+    ma := trueRange
+else
+    ma := dollarS[1]
+ 
+if na(tc[1])
+    tc := ma
+else
+    tc := tc[1]
+ma := nz(dollarS[1])
+tc := tc[1]
+dollarS := fg * trueRange + vf * ma + _f * tc
+tc := ma
+ma := dollarS
+upperMid := mid + dollarS * PICoeff2415,
+lowerMid := mid - dollarS * PICoeff2415
+upperHigh := upperMid + dollarS * nc * 4
+upperLow := upperMid - dollarS * nc * 4
+lowerLow := lowerMid + dollarS * nc * -4
+lowerHigh := lowerMid - dollarS * nc * -4
+p1 = plot(upperHigh, "Upper high", color=color.new(color.rgb(250,0,0), 69), linewidth=12, display = display.none)
+p2 = plot(upperMid, "Upper mid", color=color.new(color.rgb(243,77,95), 47),linewidth=4, display = display.none)
+p3 = plot(upperLow, "Upper low", color=color.new(color.rgb(248, 193, 59), 73),  linewidth=12, display = display.none)
+p7 = plot(mid, color=color.rgb(82,37,165), title="Basis", linewidth=3, display = display.none)
+p4 = plot(lowerHigh, "Lower high", color=color.new(color.rgb(132, 201, 135), 73),  linewidth=12, display = display.none)
+p5 = plot(lowerMid, "Lower mid", color=color.new(color.rgb(61,144,65), 47),linewidth=4, display = display.none)
+p6 = plot(lowerLow, "Lower low", color=color.new(color.rgb(20, 103, 87), 69),  linewidth=12, display = display.none)
+
+
+// User Input
+showReversal      = input(true, "Buy/Sell", group="REVERSAL INDICATORS", inline = 'rev1', tooltip = "use ONLY in confluence with any of the price action tools listed below")
+colorBuy          = input.color(#00ff5199, '', group="REVERSAL INDICATORS", inline= 'rev1')
+colorSell         = input.color(#e91e2f99, '', group="REVERSAL INDICATORS", inline= 'rev1')
+obos              = input(true, "O.S/O.B", group="REVERSAL INDICATORS", inline = 'rev2', tooltip = "Oversold/Overbought Conditions. Bigger Reversals usually happen after these conditions, however a market can stay in these conditions for a long time. Oversold & Overbought is not a reversal signal in itself however when used in confluence with S/R and other momentum signals can be powerful")
+colorOs           = input.color(#00dbff48, '', group="REVERSAL INDICATORS", inline= 'rev2')
+colorOb           = input.color(#e91e6348, '', group="REVERSAL INDICATORS", inline= 'rev2')
+showRibbon        = input(true, "Trend Ribbon", group="REVERSAL INDICATORS", tooltip = "Change in Ribbon Color signals a shift in trend. Best used in trending markets to spot early signs of reversals")
+uptrend           = input(#00dbff66, "Uptrend", group="REVERSAL INDICATORS")
+downtrend         = input(#e91e6366, "Downtrend", group="REVERSAL INDICATORS")
+showRevBands      = input(false, "Reversal Bands", group="REVERSAL INDICATORS", tooltip = "Plots the average upper and lower bounds of price movement. Price could see a reversal when it approaches these boundaries. Use in confluence with other Support & Resistance")
+colorupperband    = input(#e91e6333, "Upper Bands", group="REVERSAL INDICATORS")
+colorlowerband    = input(#00dbff33, "Lower Bands", group="REVERSAL INDICATORS")
+showEmas          = input(false, "Moving Average S/R", group="SUPPORT & RESISTANCE", tooltip = "Three powerful Moving Averages. Price tends to respect these MAs making them invaluable as they act as S/R & help in identifying trend shifts")
+colorEma1         = input(#eaeaea40, "Moving Average 1", group="SUPPORT & RESISTANCE")
+colorEma2         = input(#00dbff40, "Moving Average 2", group="SUPPORT & RESISTANCE")
+colorEma3         = input(#e91e6340, "Moving Average 3", group="SUPPORT & RESISTANCE")
+currentTF         = input.bool(false, title = "Liquidity Levels", group="SUPPORT & RESISTANCE", tooltip = "Zones of high volume activity before price moves in one direction. Price usually comes back to these levels to 'sweep' the liquidity by triggering stop losses to gather the fuel to propel itself back into the opposite direction. If price is approaching down to a liquidity zone, it tends to go slightly below the zone before quickly reversing back to the upside and vice versa for a bearish move. A common zone where swing failure pattern occurs. However it is highly risky to place limit orders at these zones as the price may not respect it at all and pass through with no resistance. Use ONLY in confluence with other S/R tools")
+lowLineColorHTF   = input.color(#efd09e50, "Bullish", group="SUPPORT & RESISTANCE")
+highLineColorHTF  = input.color(#ff7f5050, "Bearish", group="SUPPORT & RESISTANCE")
+htfTF             = input.timeframe("240", title = "Timeframe", group="SUPPORT & RESISTANCE")
+show_fvg          = input(false, 'Fair Value Gaps', group="SUPPORT & RESISTANCE", tooltip = "Fair Value Gaps occur when a Price leaves a specific level where there's less trading activity seen and only has a one-directional price movement. Typically these occur during aggressive trends where the the orders of the market makers do not get filled. Similar to order blocks price tends to re visit these zones at a later time")
+i_mtfbearishfvgcolor = input.color(#226f54, "Bullish", group="SUPPORT & RESISTANCE")
+i_mtfbullishfvgcolor = input.color(#f1abb9, "Bearish", group="SUPPORT & RESISTANCE")
+i_tf              = input.timeframe("240", "Timeframe", group="SUPPORT & RESISTANCE")
+autofib           = input(true, "Auto Golden Pocket", group="SUPPORT & RESISTANCE", tooltip = "The 0.5 and 0.618-65 Fibonacci Ratio often acts as a balancing point in the market. Finding consecutive candle closes above the 0.5-0.65 is a sign of strength, and finding consecutive candle closes under the 0.5-0.65 is a sign of weakness")
+colorAll          = input.color(#D1B000, "Color", group="SUPPORT & RESISTANCE")
+timeframe         = input.timeframe(defval = '240', group="SUPPORT & RESISTANCE")
+showVP            = input(true, "Volume Profile", group="SUPPORT & RESISTANCE", tooltip = "Volume profile scans a range of price action by looking back at previous price action to determine the level at which the highest Volume has been traded. This level is called the Point of Control which acts as a magnet attracting the price. When tested from the underside it can be a strong resistance and when tested from above it can be a strong support")
+vp_bar_color      = input(defval=color.new(color.gray, 60), title='Volume Bars')
+vp_poc_color      = input(defval=#eaeaea, title='Point of Control')
+showms            = input(false,title="ChoCH & BoS", group = "MARKET STRUCTURE", tooltip = "Change of character means, the market has changed its trend or order flow over a period of time. “Break of Structure” is used to describe a significant price movement that surpasses a crucial level of support or resistance on a chart.")
+bosColor1         = input.color(#0097a7 , 'Bullish', group = "MARKET STRUCTURE")
+bosColor2         = input.color(#c2185b , 'Bearish', group = "MARKET STRUCTURE")
+showGann          = input(false, 'Gann Swing (One Bar Key Pivot Points)', group = "MARKET STRUCTURE", tooltip = "The core technique used by the legendary trader W.D Gann. A simple yet powerful tool that tracks the 'swing' of the price, clearly showing the key pivot points. An excellent tool to track market structure, breakouts, swing failure patterns & setting stop losses. A close above a key swing high is considered bullish and close below a key swing low is bearish")
+colorGann         = input(#ff7f50, 'Swing Line', group = "MARKET STRUCTURE")
+
+ 
+// Functions
+smoothrng(x, t, m) =>
+    wper = t * 2 - 1
+    avrng = ta.ema(math.abs(x - x[1]), t)
+    smoothrng = ta.ema(avrng, wper) * m
+rngfilt(x, r) =>
+    rngfilt = x
+    rngfilt := x > nz(rngfilt[1]) ? x - r < nz(rngfilt[1]) ? nz(rngfilt[1]) : x - r : x + r > nz(rngfilt[1]) ? nz(rngfilt[1]) : x + r
+percWidth(len, perc) => (ta.highest(len) - ta.lowest(len)) * perc / 100
+securityNoRep(sym, res, src) => request.security(sym, res, src, barmerge.gaps_off, barmerge.lookahead_on)
+ 
+f_chartTfInMinutes() =>
+    float _resInMinutes = timeframe.multiplier * (
+      timeframe.isseconds ? 1                   :
+      timeframe.isminutes ? 1.                  :
+      timeframe.isdaily   ? 60. * 24            :
+      timeframe.isweekly  ? 60. * 24 * 7        :
+      timeframe.ismonthly ? 60. * 24 * 30.4375  : na)
+f_kc(src, len, sensitivity) =>
+    basis = ta.sma(src, len)
+    span  = ta.atr(len)
+    [basis + span * sensitivity, basis - span * sensitivity]
+ 
+wavetrend(src, chlLen, avgLen) =>
+    esa = ta.ema(src, chlLen)
+    d = ta.ema(math.abs(src - esa), chlLen)
+    ci = (src - esa) / (0.015 * d)
+    wt1 = ta.ema(ci, avgLen)
+    wt2 = ta.sma(wt1, 3)
+    [wt1, wt2]
+ 
+// Get components
+source    = close
+smrng1    = smoothrng(source, 27, 1.5)
+smrng     = (smrng1)
+filt      = rngfilt(source, smrng)
+up        = 0.0, up := filt > filt[1] ? nz(up[1]) + 1 : filt < filt[1] ? 0 : nz(up[1])
+dn        = 0.0, dn := filt < filt[1] ? nz(dn[1]) + 1 : filt > filt[1] ? 0 : nz(dn[1])
+bullCond  = bool(na), bullCond := source > filt and source > source[1] and up > 0 or source > filt and source < source[1] and up > 0
+bearCond  = bool(na), bearCond := source < filt and source < source[1] and dn > 0 or source < filt and source > source[1] and dn > 0
+lastCond  = 0, lastCond := bullCond ? 1 : bearCond ? -1 : lastCond[1]
+bull      = bullCond and lastCond[1] == -1
+bear      = bearCond and lastCond[1] == 1
+countBull = ta.barssince(bull)
+countBear = ta.barssince(bear)
+trigger   = nz(countBull, bar_index) < nz(countBear, bar_index) ? 1 : 0
+ribbon1   = ta.ema(hlc3, 8)
+ribbon2   = ta.ema(hlc3, 13)
+rsi       = ta.rsi(hlc3, 21)
+rsiOb     = rsi > 70 and rsi > ta.ema(rsi, 13)
+rsiOs     = rsi < 30 and rsi < ta.ema(rsi, 13)
+ema1      = ta.ema(hlc3, 21)
+ema2      = ta.ema(hlc3, 34)
+ema3      = ta.ema(hlc3, 55)
+ema = ta.ema(hlc3, 21)
+emaBull = close > ema
+ 
+[diplus, diminus, adx] = ta.dmi(21, 13)
+adxstrong= adx > 21
+ 
+equal_tf(res) => str.tonumber(res) == f_chartTfInMinutes() and not timeframe.isseconds
+higher_tf(res) => str.tonumber(res) > f_chartTfInMinutes() or timeframe.isseconds
+too_small_tf(res) => (timeframe.isweekly and res=="1") or (timeframe.ismonthly and str.tonumber(res) < 10)
+securityNoRep1(sym, res, src) =>
+    bool bull_ = na
+    bull_ := equal_tf(res) ? src : bull_
+    bull_ := higher_tf(res) ? request.security(sym, res, src, barmerge.gaps_off, barmerge.lookahead_on) : bull_
+    bull_array = request.security_lower_tf(syminfo.tickerid, higher_tf(res) ? str.tostring(f_chartTfInMinutes()) + (timeframe.isseconds ? "S" : "") : too_small_tf(res) ? (timeframe.isweekly ? "3" : "10") : res, src)
+    if array.size(bull_array) > 1 and not equal_tf(res) and not higher_tf(res)
+        bull_ := array.pop(bull_array)
+    array.clear(bull_array)
+    bull_
+TF5Bull   = securityNoRep1(syminfo.tickerid, "5"  , emaBull)
+TF15Bull  = securityNoRep1(syminfo.tickerid, "15"  , emaBull)
+TF30Bull  = securityNoRep1(syminfo.tickerid, "30"  , emaBull)
+TF60Bull  = securityNoRep1(syminfo.tickerid, "60"  , emaBull)
+TF240Bull = securityNoRep1(syminfo.tickerid, "240" , emaBull)
+TFDBull   = securityNoRep1(syminfo.tickerid, "1440", emaBull)
+ 
+TF5Strong   = securityNoRep1(syminfo.tickerid, "5"  , adxstrong)
+TF15Strong  = securityNoRep1(syminfo.tickerid, "15"  , adxstrong)
+TF30Strong  = securityNoRep1(syminfo.tickerid, "30"  , adxstrong)
+TF60Strong  = securityNoRep1(syminfo.tickerid, "60"  , adxstrong)
+TF240Strong = securityNoRep1(syminfo.tickerid, "240" , adxstrong)
+TFDStrong   = securityNoRep1(syminfo.tickerid, "1440", adxstrong)
+ 
+[upperKC1, lowerKC1] = f_kc(close, 55, 3)
+[upperKC2, lowerKC2] = f_kc(close, 55, 4)
+[upperKC3, lowerKC3] = f_kc(close, 55, 5)
+[upperKC4, lowerKC4] = f_kc(close, 55, 6)
+ 
+[wt1, wt2] = wavetrend(hlc3, 13, 21)
+ 
+// Colors
+cyan = #00dbff, cyan30 = color.new(cyan, 70)
+pink = #e91e63, pink30 = color.new(pink, 70)
+ 
+// Plot
+plotshape(showReversal and ta.crossover(wt1, wt2) and wt2 <= -55, "Reversal Buy" , shape.labelup, location.belowbar, color = colorBuy, size=size.small)
+plotshape(showReversal and ta.crossunder(wt1, wt2) and wt2 >= 55, "Reversal Sell", shape.labeldown, location.abovebar, color = colorSell, size=size.small)
+plotshape(showReversal and rsiOs, "Oversold" , shape.diamond, location.belowbar, color = colorOs, size=size.tiny, display = display.none)
+plotshape(showReversal and rsiOb, "Overbought", shape.diamond, location.abovebar, color = colorOb, size=size.tiny, display = display.none)
+plot(showEmas ? ema1 : na, "Moving Average 1", colorEma1, 2, display = display.none)
+plot(showEmas ? ema2 : na, "Moving Average 2", colorEma2, 2, display = display.none)
+plot(showEmas ? ema3 : na, "Moving Average 3", colorEma3, 2, display = display.none)
+
+fill(plot(showRibbon ? ribbon1 : na, "", na, editable=false), plot(showRibbon ? ribbon2 : na, "", na, editable=false), ribbon1 > ribbon2 ? uptrend : downtrend)
+ 
+// Alerts
+alert01 = ta.crossover(wt1, wt2) and wt2 <= -55
+alert02 = ta.crossunder(wt1, wt2) and wt2 >= 55
+alerts(sym) =>
+    if alert01 or alert02
+        alert_text = alert01 ? "Buy Signal" : alert02 ? "Sell Signal" : "Buy Signal , Sell Signal"
+        alert(alert_text,  alert.freq_once_per_bar_close)
+alerts(syminfo.tickerid)
+alertcondition(alert01, "Buy Alert", "Buy Signal, TimeFrame={{interval}}")
+alertcondition(alert02, "Sell Alert", "Sell Signal, TimeFrame={{interval}}")
+ 
+
+// Настройки
+volumeMultiplier = input.float(1.5, title="Множитель объема", minval=1.0)
+lengthV = input.int(20, title="Период для среднего объема")
+useFuturesVolume = input.bool(true, title="Использовать объем фьючерсов")
+
+// Рассчитываем средний объем
+avgSpotVolume = ta.sma(volume, lengthV)
+
+// Добавляем данные фьючерсов (если включено)
+futuresVolume = request.security("BINANCE:BTCUSDTPERP", timeframe.period, volume)  // Пример тикера для фьючерсов
+combinedVolume = useFuturesVolume ? volume + futuresVolume : volume
+
+// Средний объем для комбинированных данных
+avgCombinedVolume = ta.sma(combinedVolume, lengthV)
+
+// Условия для покупок и продаж
+buySignal = combinedVolume > avgCombinedVolume * volumeMultiplier and close > open
+sellSignal = combinedVolume > avgCombinedVolume * volumeMultiplier and close < open
+
+// Отображение сигналов
+plotshape(series=buySignal, title="Большие покупки", location=location.belowbar, color=color.rgb(76, 175, 79, 75), textcolor = color.white, style=shape.labelup, text="buy", force_overlay = true)
+plotshape(series=sellSignal, title="Большие продажи", location=location.abovebar, color=color.rgb(255, 82, 82, 75), textcolor = color.white, style=shape.labeldown, text="sell", force_overlay = true)
+
+// Дополнительная информация
+plot(avgCombinedVolume, color=color.blue, title="Средний общий объем", display = display.none)
+plot(combinedVolume, color=color.orange, title="Общий объем", display = display.none)
+
+//////////////////
+// Liquidations //
+//////////////////
+
+bool after_time     = input.time(timestamp("2023-01-01")) < time
+
+int timePeriodMean  = input.int(40, "Lookback Period")
+
+bool _5          = input.bool(true, 'Show 5x Leverage', group='Show Leverage')
+bool _10         = input.bool(true, 'Show 10x Leverage', group='Show Leverage')
+bool _25         = input.bool(true, 'Show 25x Leverage', group='Show Leverage')
+bool _50         = input.bool(true, 'Show 50x Leverage', group='Show Leverage')
+bool _100        = input.bool(true, 'Show 100x Leverage', group='Show Leverage')
+
+
+int lines_width   = input.int(3, 'Liquidation Levels width', group = "Visual")
+color col_up      = input.color(#22ab94, "Short Liquidations Color", group = "Visual")
+color col_dn      = input.color(#f7525f, "Long Liquidations Color",  group = "Visual")
+color barcolor    = input.color(color.lime, "Bar Color", group = "Visual")
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// 𝙄𝙉𝘿𝙄𝘾𝘼𝙏𝙊𝙍 𝘾𝘼𝙇𝘾𝙐𝙇𝘼𝙏𝙄𝙊𝙉𝙎
+// ---------------------------------------------------------------------------------------------------------------------
+// Pivot Points 
+// @Used to spot price reversal, potential places for stop losses
+pivotLeft  = timeframe.isdwm ? 2 : 3
+pivotRight = timeframe.isdwm ? 2 : 3
+
+// pivot high/low
+pivotHigh = ta.pivothigh(high, pivotLeft, pivotRight)
+pivotLow  = ta.pivotlow(low, pivotLeft, pivotRight)
+
+// Volume Calculations Function
+// @Returns bool values for certain leverages when volume above certain means
+liqudation(volume_, timePeriodMean)=>
+
+    avg      = math.avg(ta.highest(volume_, timePeriodMean), ta.lowest(volume_, timePeriodMean))
+    avgMean  = ta.sma(avg, timePeriodMean+10)
+
+    _100x = avg >= 1.2   * avgMean
+    _50x  = avg >= 1.1   * avgMean
+    _25x  = avg >= 1.05  * avgMean
+    _10x  = avg >= 1.025 * avgMean
+    _5_x  = avg > avgMean
+
+    [_100x, _50x, _25x, _10x, _5_x]
+
+[_100x, _50x, _25x, _10x, _5_x] = liqudation(volume, timePeriodMean)
+
+
+// Plot Line
+line(_x1, _x2, _y, _lineColor, _style, _width) =>
+    line.new(x1=_x1, y1=_y, x2=_x2, y2=_y, color=_lineColor, style=_style, width=_width)
+
+// Extend Lines Function
+extendLine(_lineArray) =>
+    if array.size(_lineArray) > 0
+        for _i = array.size(_lineArray) - 1 to 0 by 1
+
+            x2 = line.get_x2(array.get(_lineArray, _i))
+            yValue = line.get_y1(array.get(_lineArray, _i))
+
+            if bar_index - 1 == x2 and not(high > yValue and low < yValue)
+                line.set_x2(array.get(_lineArray, _i), bar_index)
+
+// Liquidation Lines 
+// @Function to plot Liquidation Lines with limited amount to 500
+level(_1, y, x_, array_lines, colorUp, colorDn, lines_width)=>
+
+    line l = na
+
+    // Percent at which position is liquidated
+    percentRisk =   y == 5  ? 0.20 // 20%
+                  : y == 10 ? 0.10 // 10%
+                  : y == 25 ? 0.04 //  4%
+                  : y == 50 ? 0.02 //  2%
+                  : y == 100? 0.01 //  1%
+                  : 0
+
+    if _1 and after_time
+
+        if not na(pivotLow) and x_
+            l := line( bar_index[pivotRight], 
+                       bar_index, 
+                       low[pivotRight] / (1 + percentRisk),
+                       colorDn, 
+                       line.style_solid, 
+                       lines_width
+                         )
+
+            if array.size(array_lines) == 500
+                line.delete(array.shift(array_lines))
+
+            array.push(array_lines, l)
+
+        if not na(pivotHigh) and x_
+            l := line( bar_index[pivotRight], 
+                       bar_index, 
+                       high[pivotRight] * (1 + percentRisk), 
+                       colorUp, 
+                       line.style_solid, 
+                       lines_width
+                         )
+
+            if array.size(array_lines) == 500
+                line.delete(array.shift(array_lines))
+
+            array.push(array_lines, l)
+
+        extendLine(array_lines)
+
+
+// ---------------------------------------------------------------------------------------------------------------------
+// 𝙑𝙄𝙎𝙐𝘼𝙇𝙄𝙕𝘼𝙏𝙄𝙊𝙉
+// ---------------------------------------------------------------------------------------------------------------------
+// Arrays of Liquidation Levels lines
+var Array_5   = array.new_line()
+var Array_10  = array.new_line()
+var Array_25  = array.new_line()
+var Array_50  = array.new_line()
+var Array_100 = array.new_line()
+
+// Show 5x, 10x, 25x, 50x, 100x Liquidation Leverages
+level(_5, 5, _5_x, Array_5, color.new(col_up,90), color.new(col_dn,90), lines_width)
+level(_10, 10, _10x, Array_10, color.new(col_up,80), color.new(col_dn,80), lines_width)
+level(_25, 25, _25x, Array_25, color.new(col_up,70), color.new(col_dn,70), lines_width)
+level(_50, 50, _50x, Array_50, color.new(col_up,60), color.new(col_dn,60), lines_width)
+level(_100, 100, _100x, Array_100, color.new(col_up,50), color.new(col_dn,50), lines_width)
+
+// BackGround Color and BarColor
+bgcolor(after_time  == false ? color.new(chart.fg_color, 95) : na)
+barcolor(after_time == false ? na : barcolor)
+
+// DashBoard of Active Liquidation Levels
+var tbl = table.new(position.middle_right, 10, 10)
+table.cell(tbl, 0, 0, "Active\nLiquidation Levels", text_color = color.new(chart.fg_color, 50))
+table.cell(tbl, 0, 1, "5X", text_color = chart.fg_color),
+ table.cell(tbl, 1, 1, "⬤", text_color = _5 ? color.lime : #4caf4f33, text_size = size.large)
+table.cell(tbl, 0, 2, "10X", text_color = chart.fg_color),
+ table.cell(tbl, 1, 2, "⬤", text_color = _10 ? color.lime : #4caf4f33, text_size = size.large)
+table.cell(tbl, 0, 3, "25X", text_color = chart.fg_color),
+ table.cell(tbl, 1, 3, "⬤", text_color = _25 ? color.lime : #4caf4f33, text_size = size.large)
+table.cell(tbl, 0, 4, "50X", text_color = chart.fg_color),
+ table.cell(tbl, 1, 4, "⬤", text_color = _50 ? color.lime : #4caf4f33, text_size = size.large)
+table.cell(tbl, 0, 5, "100X", text_color = chart.fg_color),
+ table.cell(tbl, 1, 5, "⬤", text_color = _100 ? color.lime : #4caf4f33, text_size = size.large)
+
+
+//////////////
+// TProtein+//
+//////////////
+show_current_sr = input.bool(true, title = "Show Current TF S/R", group = "Setting")
+swing_length = input.int(10, title = 'Swing Length', group = 'Setting', minval = 1, maxval = 50)
+history_of_demand_to_keep = input.int(20, title = 'Lookback', minval = 5, maxval = 50, group = "Setting")
+box_width = input.float(5, title = 'S/R Range', group = 'Setting', minval = 1, maxval = 10, step = 0.5)
+
+string group3 = "TF Setting"
+enableHtf1 = input.bool(false, group = group3, inline = "htf1", title = "")
+htf1 = input.timeframe("W", "TF1", group = group3, inline = "htf1")
+enableHtf2 = input.bool(false, group = group3, inline = "htf2", title = "")
+htf2 = input.timeframe("D", "TF2", group = group3, inline = "htf2")
+enableHtf3 = input.bool(false, group = group3, inline = "htf3", title = "")
+htf3 = input.timeframe("240", "TF3", group = group3, inline = "htf3")
+enableHtf4 = input.bool(false, group = group3, inline = "htf4", title = "")
+htf4 = input.timeframe("180", "TF4", group = group3, inline = "htf4")
+enableHtf5 = input.bool(false, group = group3, inline = "htf5", title = "")
+htf5 = input.timeframe("120", "TF5", group = group3, inline = "htf5")
+enableHtf6 = input.bool(false, group = group3, inline = "htf6", title = "")
+htf6 = input.timeframe("60", "TF6", group = group3, inline = "htf6")
+enableHtf7 = input.bool(false, group = group3, inline = "htf7", title = "")
+htf7 = input.timeframe("45", "TF7", group = group3, inline = "htf7")
+enableHtf8 = input.bool(false, group = group3, inline = "htf8", title = "")
+htf8 = input.timeframe("30", "TF8", group = group3, inline = "htf8")
+enableHtf9 = input.bool(false, group = group3, inline = "htf9", title = "")
+htf9 = input.timeframe("15", "TF9", group = group3, inline = "htf9")
+
+supply_color = input.color(color.rgb(242, 54, 69, 0.9), title = 'Support Zone', group = 'Color Settings', inline = '3')
+supply_outline_color = input.color(color.rgb(242, 54, 69, 0.9), title = 'BoS', group = 'Color Settings', inline = '3')
+
+demand_color = input.color(color.rgb(41, 98, 255, 0.9), title = 'Resistance Zone', group = 'Color Settings', inline = '4')
+demand_outline_color = input.color(color.rgb(41, 98, 255, 0.9), title = 'BoR', group = 'Color Settings', inline = '4')
+
+// bos_label_color = input.color(color.white, title = 'Fracture Zone', group = 'Color Settings', inline = '5')
+poi_label_color = input.color(color.white, title = 'S/R Zone Label', group = 'Color Settings', inline = '7')
+
+type zone_with_strength
+    box zone
+    int count = 0
+    string tf
+
+//      FUNCTION TO ADD NEW AND REMOVE LAST IN ARRAY
+array_add_pop(array, new_value_to_add) =>
+    array.unshift(array, new_value_to_add)
+    array.pop(array)
+
+// FUNCTION MAKE SURE SUPPLY ISNT OVERLAPPING
+check_overlapping(new_poi, box_array, atr) =>
+    atr_threshold = atr * 2
+    okay_to_draw = true
+    
+    for i = 0 to array.size(box_array) - 1
+        zone_with_strength zws = array.get(box_array, i)
+        if not na(zws)
+            box b = zws.zone
+            top = box.get_top(b)
+            bottom = box.get_bottom(b)
+            poi = (top + bottom) / 2
+
+            upper_boundary = poi + atr_threshold
+            lower_boundary = poi - atr_threshold
+
+            if new_poi >= lower_boundary and new_poi <= upper_boundary
+                okay_to_draw := false
+                break
+            else 
+                okay_to_draw := true
+
+    okay_to_draw
+
+// FUNCTION TO DRAW SUPPLY OR DEMAND ZONE
+support_resistance(value_array, bn_array, box_array, label_array, count_array, box_type, atr, tf_label, tfbarindex, is_htf) =>
+    
+    atr_buffer = atr * (box_width / 10)
+    
+    box_left = is_htf ? bar_index : array.get(bn_array, 0)
+    box_right = bar_index
+
+    var float box_top = 0.00
+    var float box_bottom = 0.00
+    var float poi = 0.00
+
+    if box_type == 1
+        box_top := array.get(value_array, 0)
+        box_bottom := box_top - atr_buffer
+        poi := (box_top + box_bottom) / 2
+    else if box_type == -1
+        box_bottom := array.get(value_array, 0)
+        box_top := box_bottom + atr_buffer
+        poi := (box_top + box_bottom) / 2
+
+    okay_to_draw = check_overlapping(poi, box_array, atr)
+    // okay_to_draw = true
+    //delete oldest box, and then create a new box and add it to the array
+    if box_type == 1 and okay_to_draw
+        zone_with_strength last = array.get(box_array, array.size(box_array) - 1)
+        if not na(last)
+            box.delete(last.zone)
+        box b = box.new(left = box_left, top = box_top, right = bar_index, bottom = box_bottom, border_color = supply_outline_color,
+                     bgcolor = color.new(supply_color, 80), extend = extend.none, text = tf_label, text_halign = text.align_right, text_valign = text.align_center, text_color = poi_label_color, text_size = size.small, xloc = xloc.bar_index)
+        zone_with_strength zws = zone_with_strength.new(b, 0, tf_label)
+        array_add_pop(box_array, zws)
+
+    else if box_type == -1 and okay_to_draw
+        zone_with_strength last = array.get(box_array, array.size(box_array) - 1)
+        if not na(last)
+            box.delete(last.zone)
+        box b = box.new(left = box_left, top = box_top, right = bar_index, bottom = box_bottom, border_color = demand_outline_color,
+                     bgcolor = color.new(demand_color, 80), extend = extend.none,  text = tf_label, text_halign = text.align_right, text_valign = text.align_center, text_color = poi_label_color, text_size = size.small, xloc = xloc.bar_index)
+        zone_with_strength zws = zone_with_strength.new(b, 0, tf_label)
+        array_add_pop(box_array, zws)
+
+//      FUNCTION TO CHANGE SUPPLY/DEMAND TO A BOS IF BROKEN
+sd_to_bos(box_array, bos_array, count_array, label_array, zone_type, tfclose, tfbarindex) =>
+    for i = 0 to array.size(box_array) - 1
+        zone_with_strength zws = array.get(box_array, i)
+        if not na(zws)
+            box b = zws.zone
+            level_to_break_top = box.get_top(b)
+            level_to_break_bottom = box.get_bottom(b)
+            // if ta.crossover(close, level_to_break)
+            if (zone_type == 1 and close >= level_to_break_top) or (zone_type == -1 and close <= level_to_break_bottom)
+                copied_zone = zone_with_strength.copy(zws)
+                box cz = copied_zone.zone
+                mid = (box.get_top(b) + box.get_bottom(b)) / 2
+                line bosline = line.new(box.get_left(cz), mid, bar_index, mid, xloc.bar_index, extend.none, zone_type == 1 ? supply_outline_color : demand_outline_color, line.style_dotted)
+                array_add_pop(bos_array, bosline)
+                // box bos = array.get(bos_array, 0)
+                // box.set_top(bos, mid)
+                // box.set_bottom(bos, mid)
+                // box.set_right(bos, bar_index)
+                // box.set_extend(bos, extend.none)
+                // box.set_text(bos, '')
+                // box.set_text_color( bos, bos_label_color)
+                // box.set_text_size(bos, size.small)
+                // box.set_text_halign(bos, text.align_center)
+                // box.set_text_valign(bos, text.align_center)
+                box.delete(b)
+                array.set(box_array, i, na)
+                // array.remove(box_array, i)
+                // box.delete(array.get(label_array, i))
+
+//      FUNCTION MANAGE CURRENT BOXES BY CHANGING ENDPOINT
+extend_box_endpoint(box_array, count_array, tfbarindex, tfhigh, tflow) =>
+    for i = 0 to array.size(box_array) - 1
+        zone_with_strength zws = array.get(box_array, i)
+        if not na(zws)
+            box b = zws.zone
+            top = box.get_top(b)
+            bottom = box.get_bottom(b)
+            count = zws.count
+            if (high[swing_length - 1] >= bottom and high[swing_length - 1] <= top) or (low[swing_length - 1] >= bottom and low[swing_length - 1] <= top)
+                count := count + 1
+                zws.count := count
+            // count := count + 1
+            // zws.count := count
+            box.set_right(b, bar_index + 40)
+            box.set_text(b, str.format("{0} / {1}", count, zws.tf))
+            zws.zone := b
+            array.set(box_array, i, zws)
+
+//
+//END FUNCTIONS
+//  
+
+//
+// CALCULATIONS FOR SUPPORT AND RESISTANCE
+//
+calculateSR(swing_high_values, swing_low_values, swing_high_bns, swing_low_bns, supply_zone, demand_zone, current_supply_touch_count, current_demand_touch_count, current_supply_poi, current_demand_poi, supply_bos, demand_bos, series1, series2, tf_label, tfbarindex, tfclose, atr, is_htf, swing_high, swing_low, swing_index) =>
+    //      NEW SWING HIGH
+    if not na(swing_high)
+
+        //MANAGE SWING HIGH VALUES
+        array_add_pop(swing_high_values, swing_high)
+        array_add_pop(swing_high_bns, swing_index)
+
+        support_resistance(swing_high_values, swing_high_bns, supply_zone, current_supply_poi, current_supply_touch_count, 1, atr, tf_label, tfbarindex, is_htf)
+
+    //      NEW SWING LOW
+    else if not na(swing_low)
+
+        //MANAGE SWING LOW VALUES
+        array_add_pop(swing_low_values, swing_low)
+        array_add_pop(swing_low_bns, swing_index)
+        
+        support_resistance(swing_low_values, swing_low_bns, demand_zone, current_demand_poi, current_demand_touch_count, -1, atr, tf_label, tfbarindex, is_htf)
+
+
+    sd_to_bos(supply_zone, supply_bos, current_supply_touch_count, current_supply_poi, 1, tfclose, tfbarindex)
+    sd_to_bos(demand_zone, demand_bos, current_demand_touch_count, current_demand_poi, -1, tfclose, tfbarindex)
+
+    extend_box_endpoint(supply_zone, current_supply_touch_count, tfbarindex, series1, series2)
+    extend_box_endpoint(demand_zone, current_demand_touch_count, tfbarindex, series1, series2)
+
+var swing_high_values = array.new_float(5,0.00)
+var swing_low_values = array.new_float(5,0.00)
+
+var swing_high_bns = array.new_int(5,0)
+var swing_low_bns = array.new_int(5,0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE POI LABELS
+var current_supply_poi = array.new_box(history_of_demand_to_keep, na)
+var current_demand_poi = array.new_box(history_of_demand_to_keep, na)
+
+var supply_zones = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+var demand_zones = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+
+var touches_for_supply = array.new_int(history_of_demand_to_keep, 0)
+var touches_for_demand = array.new_int(history_of_demand_to_keep, 0)
+
+//      ARRAYS FOR BOS
+var supply_bos = array.new_line(5, na)
+var demand_bos = array.new_line(5, na)
+
+var swing_high_values1 = array.new_float(5,0.00)
+var swing_low_values1 = array.new_float(5,0.00)
+
+var swing_high_bns1 = array.new_int(5,0)
+var swing_low_bns1 = array.new_int(5,0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE
+var supply_zones1 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+var demand_zones1 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+
+var touches_for_supply1 = array.new_int(history_of_demand_to_keep, 0)
+var touches_for_demand1 = array.new_int(history_of_demand_to_keep, 0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE POI LABELS
+var current_supply_poi1 = array.new_box(history_of_demand_to_keep, na)
+var current_demand_poi1 = array.new_box(history_of_demand_to_keep, na)
+
+//      ARRAYS FOR BOS
+var supply_bos1 = array.new_line(5, na)
+var demand_bos1 = array.new_line(5, na)
+
+var swing_high_values2 = array.new_float(5,0.00)
+var swing_low_values2 = array.new_float(5,0.00)
+
+var swing_high_bns2 = array.new_int(5,0)
+var swing_low_bns2 = array.new_int(5,0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE
+var supply_zones2 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+var demand_zones2 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+
+var touches_for_supply2 = array.new_int(history_of_demand_to_keep, 0)
+var touches_for_demand2 = array.new_int(history_of_demand_to_keep, 0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE POI LABELS
+var current_supply_poi2 = array.new_box(history_of_demand_to_keep, na)
+var current_demand_poi2 = array.new_box(history_of_demand_to_keep, na)
+
+//      ARRAYS FOR BOS
+var supply_bos2 = array.new_line(5, na)
+var demand_bos2 = array.new_line(5, na)
+
+var swing_high_values3 = array.new_float(5,0.00)
+var swing_low_values3 = array.new_float(5,0.00)
+
+var swing_high_bns3 = array.new_int(5,0)
+var swing_low_bns3 = array.new_int(5,0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE
+var supply_zones3 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+var demand_zones3 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+
+var touches_for_supply3 = array.new_int(history_of_demand_to_keep, 0)
+var touches_for_demand3 = array.new_int(history_of_demand_to_keep, 0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE POI LABELS
+var current_supply_poi3 = array.new_box(history_of_demand_to_keep, na)
+var current_demand_poi3 = array.new_box(history_of_demand_to_keep, na)
+
+//      ARRAYS FOR BOS
+var supply_bos3 = array.new_line(5, na)
+var demand_bos3 = array.new_line(5, na)
+
+var swing_high_values4 = array.new_float(5,0.00)
+var swing_low_values4 = array.new_float(5,0.00)
+
+var swing_high_bns4 = array.new_int(5,0)
+var swing_low_bns4 = array.new_int(5,0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE
+var supply_zones4 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+var demand_zones4 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+
+var touches_for_supply4 = array.new_int(history_of_demand_to_keep, 0)
+var touches_for_demand4 = array.new_int(history_of_demand_to_keep, 0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE POI LABELS
+var current_supply_poi4 = array.new_box(history_of_demand_to_keep, na)
+var current_demand_poi4 = array.new_box(history_of_demand_to_keep, na)
+
+//      ARRAYS FOR BOS
+var supply_bos4 = array.new_line(5, na)
+var demand_bos4 = array.new_line(5, na)
+
+var swing_high_values5 = array.new_float(5,0.00)
+var swing_low_values5 = array.new_float(5,0.00)
+
+var swing_high_bns5 = array.new_int(5,0)
+var swing_low_bns5 = array.new_int(5,0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE
+var supply_zones5 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+var demand_zones5 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+
+var touches_for_supply5 = array.new_int(history_of_demand_to_keep, 0)
+var touches_for_demand5 = array.new_int(history_of_demand_to_keep, 0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE POI LABELS
+var current_supply_poi5 = array.new_box(history_of_demand_to_keep, na)
+var current_demand_poi5 = array.new_box(history_of_demand_to_keep, na)
+
+//      ARRAYS FOR BOS
+var supply_bos5 = array.new_line(5, na)
+var demand_bos5 = array.new_line(5, na)
+
+var swing_high_values6 = array.new_float(5,0.00)
+var swing_low_values6 = array.new_float(5,0.00)
+
+var swing_high_bns6 = array.new_int(5,0)
+var swing_low_bns6 = array.new_int(5,0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE
+var supply_zones6 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+var demand_zones6 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+
+var touches_for_supply6 = array.new_int(history_of_demand_to_keep, 0)
+var touches_for_demand6 = array.new_int(history_of_demand_to_keep, 0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE POI LABELS
+var current_supply_poi6 = array.new_box(history_of_demand_to_keep, na)
+var current_demand_poi6 = array.new_box(history_of_demand_to_keep, na)
+
+//      ARRAYS FOR BOS
+var supply_bos6 = array.new_line(5, na)
+var demand_bos6 = array.new_line(5, na)
+
+var swing_high_values7 = array.new_float(5,0.00)
+var swing_low_values7 = array.new_float(5,0.00)
+
+var swing_high_bns7 = array.new_int(5,0)
+var swing_low_bns7 = array.new_int(5,0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE
+var supply_zones7 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+var demand_zones7 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+
+var touches_for_supply7 = array.new_int(history_of_demand_to_keep, 0)
+var touches_for_demand7 = array.new_int(history_of_demand_to_keep, 0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE POI LABELS
+var current_supply_poi7 = array.new_box(history_of_demand_to_keep, na)
+var current_demand_poi7 = array.new_box(history_of_demand_to_keep, na)
+
+//      ARRAYS FOR BOS
+var supply_bos7 = array.new_line(5, na)
+var demand_bos7 = array.new_line(5, na)
+
+var swing_high_values8 = array.new_float(5,0.00)
+var swing_low_values8 = array.new_float(5,0.00)
+
+var swing_high_bns8 = array.new_int(5,0)
+var swing_low_bns8 = array.new_int(5,0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE
+var supply_zones8 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+var demand_zones8 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+
+var touches_for_supply8 = array.new_int(history_of_demand_to_keep, 0)
+var touches_for_demand8 = array.new_int(history_of_demand_to_keep, 0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE POI LABELS
+var current_supply_poi8 = array.new_box(history_of_demand_to_keep, na)
+var current_demand_poi8 = array.new_box(history_of_demand_to_keep, na)
+
+//      ARRAYS FOR BOS
+var supply_bos8 = array.new_line(5, na)
+var demand_bos8 = array.new_line(5, na)
+
+var swing_high_values9 = array.new_float(5,0.00)
+var swing_low_values9 = array.new_float(5,0.00)
+
+var swing_high_bns9 = array.new_int(5,0)
+var swing_low_bns9 = array.new_int(5,0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE
+var supply_zones9 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+var demand_zones9 = array.new<zone_with_strength>(history_of_demand_to_keep, na)
+
+var touches_for_supply9 = array.new_int(history_of_demand_to_keep, 0)
+var touches_for_demand9 = array.new_int(history_of_demand_to_keep, 0)
+
+//      ARRAYS FOR SUPPORT / RESISTANCE POI LABELS
+var current_supply_poi9 = array.new_box(history_of_demand_to_keep, na)
+var current_demand_poi9 = array.new_box(history_of_demand_to_keep, na)
+
+//      ARRAYS FOR BOS
+var supply_bos9 = array.new_line(5, na)
+var demand_bos9 = array.new_line(5, na)
+
+atr = ta.atr(50)
+if show_current_sr
+    cur_tf_label = timeframe.isintraday ? str.tostring(timeframe.in_seconds() / 60, "#.## MIN") : timeframe.period
+    swing_high = ta.pivothigh(swing_length, swing_length)
+    swing_low = ta.pivotlow(swing_length, swing_length)
+    swing_index = bar_index[swing_length]
+    calculateSR(swing_high_values, swing_low_values, swing_high_bns, swing_low_bns, supply_zones, demand_zones, touches_for_supply, touches_for_demand, current_supply_poi, current_demand_poi, supply_bos, demand_bos, high, low, cur_tf_label, bar_index, close, atr, false, swing_high, swing_low, swing_index)
+
+
+// SUPPORT / RESISTANCE FOR HTF1
+[high1, low1, close1, barindex1, atr1, timeframe1, swing_high1, swing_low1, swing_index1] = request.security(syminfo.tickerid, htf1, [high, low, close, bar_index, ta.atr(50), timeframe.isintraday ? str.tostring(timeframe.in_seconds() / 60, "#.## MIN") : timeframe.period, ta.pivothigh(swing_length, swing_length), ta.pivotlow(swing_length, swing_length), bar_index[swing_length]])
+
+// SUPPORT / RESISTANCE FOR HTF2
+[high2, low2, close2, barindex2, atr2, timeframe2, swing_high2, swing_low2, swing_index2] = request.security(syminfo.tickerid, htf2, [high, low, close, bar_index, ta.atr(50), timeframe.isintraday ? str.tostring(timeframe.in_seconds() / 60, "#.## MIN") : timeframe.period, ta.pivothigh(swing_length, swing_length), ta.pivotlow(swing_length, swing_length), bar_index[swing_length]])
+
+// SUPPORT / RESISTANCE FOR HTF3
+[high3, low3, close3, barindex3, atr3, timeframe3, swing_high3, swing_low3, swing_index3] = request.security(syminfo.tickerid, htf3, [high, low, close, bar_index, ta.atr(50), timeframe.isintraday ? str.tostring(timeframe.in_seconds() / 60, "#.## MIN") : timeframe.period, ta.pivothigh(swing_length, swing_length), ta.pivotlow(swing_length, swing_length), bar_index[swing_length]])
+
+// SUPPORT / RESISTANCE FOR HTF4
+[high4, low4, close4, barindex4, atr4, timeframe4, swing_high4, swing_low4, swing_index4] = request.security(syminfo.tickerid, htf4, [high, low, close, bar_index, ta.atr(50), timeframe.isintraday ? str.tostring(timeframe.in_seconds() / 60, "#.## MIN") : timeframe.period, ta.pivothigh(swing_length, swing_length), ta.pivotlow(swing_length, swing_length), bar_index[swing_length]])
+
+// SUPPORT / RESISTANCE FOR HTF5
+[high5, low5, close5, barindex5, atr5, timeframe5, swing_high5, swing_low5, swing_index5] = request.security(syminfo.tickerid, htf5, [high, low, close, bar_index, ta.atr(50), timeframe.isintraday ? str.tostring(timeframe.in_seconds() / 60, "#.## MIN") : timeframe.period, ta.pivothigh(swing_length, swing_length), ta.pivotlow(swing_length, swing_length), bar_index[swing_length]])
+
+// SUPPORT / RESISTANCE FOR HTF6
+[high6, low6, close6, barindex6, atr6, timeframe6, swing_high6, swing_low6, swing_index6] = request.security(syminfo.tickerid, htf6, [high, low, close, bar_index, ta.atr(50), timeframe.isintraday ? str.tostring(timeframe.in_seconds() / 60, "#.## MIN") : timeframe.period, ta.pivothigh(swing_length, swing_length), ta.pivotlow(swing_length, swing_length), bar_index[swing_length]])
+
+// SUPPORT / RESISTANCE FOR HTF7
+[high7, low7, close7, barindex7, atr7, timeframe7, swing_high7, swing_low7, swing_index7] = request.security(syminfo.tickerid, htf7, [high, low, close, bar_index, ta.atr(50), timeframe.isintraday ? str.tostring(timeframe.in_seconds() / 60, "#.## MIN") : timeframe.period, ta.pivothigh(swing_length, swing_length), ta.pivotlow(swing_length, swing_length), bar_index[swing_length]])
+
+// SUPPORT / RESISTANCE FOR HTF8
+[high8, low8, close8, barindex8, atr8, timeframe8, swing_high8, swing_low8, swing_index8] = request.security(syminfo.tickerid, htf8, [high, low, close, bar_index, ta.atr(50), timeframe.isintraday ? str.tostring(timeframe.in_seconds() / 60, "#.## MIN") : timeframe.period, ta.pivothigh(swing_length, swing_length), ta.pivotlow(swing_length, swing_length), bar_index[swing_length]])
+
+// SUPPORT / RESISTANCE FOR HTF9
+[high9, low9, close9, barindex9, atr9, timeframe9, swing_high9, swing_low9, swing_index9] = request.security(syminfo.tickerid, htf9, [high, low, close, bar_index, ta.atr(50), timeframe.isintraday ? str.tostring(timeframe.in_seconds() / 60, "#.## MIN") : timeframe.period, ta.pivothigh(swing_length, swing_length), ta.pivotlow(swing_length, swing_length), bar_index[swing_length]])
+
+if enableHtf1 and htf1 != ""
+    calculateSR(swing_high_values1, swing_low_values1, swing_high_bns1, swing_low_bns1, supply_zones1, demand_zones1, touches_for_supply1, touches_for_demand1, current_supply_poi1, current_demand_poi1, supply_bos1, demand_bos1, high1, low1, timeframe1, barindex1, close1, atr1, true, swing_high1, swing_low1, swing_index1)
+
+if enableHtf2 and htf2 != ""
+    calculateSR(swing_high_values2, swing_low_values2, swing_high_bns2, swing_low_bns2, supply_zones2, demand_zones2, touches_for_supply2, touches_for_demand2, current_supply_poi2, current_demand_poi2, supply_bos2, demand_bos2, high2, low2, timeframe2, barindex2, close2, atr2, true, swing_high2, swing_low2, swing_index2)
+
+if enableHtf3 and htf3 != ""
+    calculateSR(swing_high_values3, swing_low_values3, swing_high_bns3, swing_low_bns3, supply_zones3, demand_zones3, touches_for_supply3, touches_for_demand3, current_supply_poi3, current_demand_poi3, supply_bos3, demand_bos3, high3, low3, timeframe3, barindex3, close3, atr3, true, swing_high3, swing_low3, swing_index3)
+
+if enableHtf4 and htf4 != ""
+    calculateSR(swing_high_values4, swing_low_values4, swing_high_bns4, swing_low_bns4, supply_zones4, demand_zones4, touches_for_supply4, touches_for_demand4, current_supply_poi4, current_demand_poi4, supply_bos4, demand_bos4, high4, low4, timeframe4, barindex4, close4, atr4, true, swing_high4, swing_low4, swing_index4)
+
+if enableHtf5 and htf5 != ""
+    calculateSR(swing_high_values5, swing_low_values5, swing_high_bns5, swing_low_bns5, supply_zones5, demand_zones5, touches_for_supply5, touches_for_demand5, current_supply_poi5, current_demand_poi5, supply_bos5, demand_bos5, high5, low5, timeframe5, barindex5, close5, atr5, true, swing_high5, swing_low5, swing_index5)
+
+if enableHtf6 and htf6 != ""
+    calculateSR(swing_high_values6, swing_low_values6, swing_high_bns6, swing_low_bns6, supply_zones6, demand_zones6, touches_for_supply6, touches_for_demand6, current_supply_poi6, current_demand_poi6, supply_bos6, demand_bos6, high6, low6, timeframe6, barindex6, close6, atr6, true, swing_high6, swing_low6, swing_index6)
+
+if enableHtf7 and htf7 != ""
+    calculateSR(swing_high_values7, swing_low_values7, swing_high_bns7, swing_low_bns7, supply_zones7, demand_zones7, touches_for_supply7, touches_for_demand7, current_supply_poi7, current_demand_poi7, supply_bos7, demand_bos7, high7, low7, timeframe7, barindex7, close7, atr7, true, swing_high7, swing_low7, swing_index7)
+
+if enableHtf8 and htf8 != ""
+    calculateSR(swing_high_values8, swing_low_values8, swing_high_bns8, swing_low_bns8, supply_zones8, demand_zones8, touches_for_supply8, touches_for_demand8, current_supply_poi8, current_demand_poi8, supply_bos8, demand_bos8, high8, low8, timeframe8, barindex8, close8, atr8, true, swing_high8, swing_low8, swing_index8)
+
+if enableHtf9 and htf9 != ""
+    calculateSR(swing_high_values9, swing_low_values9, swing_high_bns9, swing_low_bns9, supply_zones9, demand_zones9, touches_for_supply9, touches_for_demand9, current_supply_poi9, current_demand_poi9, supply_bos9, demand_bos9, high9, low9, timeframe9, barindex9, close9, atr9, true, swing_high9, swing_low9, swing_index9)
+
+//////////////////// 
+//Market Structure// 
+////////////////////
+
+//Logical Inputs
+LongP         = input.int(30, 'ChoCh Detector Period', minval = 1, group = 'Logical Setting')
+ShortP        = input.int(1, 'BoS & Liquidity Detector Period', minval = 1, group = 'Logical Setting')
+InducementP   = input.int(3, 'Inducement Detector Period', minval = 1, group = 'Logical Setting')
+FTD           = input.bool(true, 'Fast Trend Detector', group = 'Logical Setting')
+IDMT_Type     = input.string('Sweeps', 'Inducement Type Detector', ['Total', 'Sweeps'], group = 'Logical Setting')
+//ChoCh Display Inputs
+Show_ChoCh    = input.bool(true, 'Show ChoCh Level', group = 'ChoCh Display')
+Color_BuChoCh = input.color(#005503, 'Bull', group = 'ChoCh Display', inline = 'ChoCh')
+Color_BeChoCh = input.color(#630000  , 'Bear', group = 'ChoCh Display', inline = 'ChoCh')
+Size_ChoCh    = input.string(size.small, 'ChoCh Label Size', [size.tiny, size.small, size.normal, size.large, size.auto], group = 'ChoCh Display')
+//BoS & LQDY Inputs
+Show_BoS      = input.bool(true, 'Show BoS & Liquidity Level', group = 'BoS & LQDY Display')
+Color_BuBoS   = input.color(#006bc2, 'Bull', group = 'BoS & LQDY Display', inline = 'BoS')
+Color_BeBoS   = input.color(#e79e01  , 'Bear', group = 'BoS & LQDY Display', inline = 'BoS')
+Color_LQDY    = input.color(#7905af  , 'LQDY', group = 'BoS & LQDY Display', inline = 'BoS')
+Size_BoS      = input.string(size.small, 'BoS & LQDY Label Size', [size.tiny, size.small, size.normal, size.large, size.auto], group = 'BoS & LQDY Display')
+//Inducement Display Inputs
+Show_IDMT     = input.bool(true, 'Show Inducement Level', group = 'Inducement Display', inline = 'IDMT')
+Color_IDMT    = input.color(#666566  , '', group = 'Inducement Display', inline = 'IDMT')
+Size_IDMT     = input.string(size.small, 'Inducement Label Size', [size.tiny, size.small, size.normal, size.large, size.auto], group = 'Inducement Display')
+
+//Market Structure Detector Function
+Structure(LongP, ShortP, InducementP, FTD, LQDY_Type, Show_ChoCh, Color_BuChoCh, Color_BeChoCh, Size_ChoCh, Show_BoS, Color_BuBoS, Color_BeBoS, Color_LQDY, Size_BoS, Show_IDMT, Color_IDMT, Size_IDMT) => 
+    ATR = ta.atr(50)
+    // ChoCh Period 
+    LHP = ta.pivothigh(FTD ? int(LongP/2) : LongP, LongP)
+    LLP = ta.pivotlow(FTD  ? int(LongP/2) : LongP, LongP)
+    // BoS Period
+    SHP = ta.pivothigh(ShortP, ShortP)
+    SLP = ta.pivotlow(ShortP , ShortP)
+    // Inducement Period
+    IHP = ta.pivothigh(InducementP, InducementP)
+    ILP = ta.pivotlow(InducementP , InducementP)
+    // ChoCh Variable
+    var string Trend           = ''
+        //Bullish ChoCh
+    var float  BuChoCh_P       = 0.0
+    var int    BuChoCh_I       = 0
+    var int    BuChoCh_IB      = 0
+    var int    BuCount         = 0
+    var string BuChoCh_B       = ''
+    var string BuChoCh_BB      = ''
+    var line BuChoCh_Line      = na
+    var label BuChoCh_Label    = na
+        //Bearish ChoCh
+    var float  BeChoCh_P       = 0.0
+    var int    BeChoCh_I       = 0
+    var int    BeChoCh_IB      = 0
+    var int    BeCount         = 0   
+    var string BeChoCh_B       = ''
+    var string BeChoCh_BB      = ''
+    var line BeChoCh_Line      = na   
+    var label BeChoCh_Label    = na 
+    //Inducement Variable
+    var line Inducement_Line   = na 
+    var label Inducement_Label = na
+    var bool IDM_Permit        = true
+    //BoS & Liquidity Variable
+    var float High             = 0.0
+    var float Low              = 0.0
+    var int Index              = 0
+    var line BoS_Line          = na 
+    var label BoS_Label        = na
+    var bool BoS_Permit        = true
+    //   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////////////////////////////////////////
+    //    ||||||||||||||||||||||||||||||||||||||||ChoCh Block||||||||||||||||||||||||||||||||||||||||||
+    //   //////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    //Set Point Bullish ChoCh
+    if nz(LHP) != 0 
+        if Trend == '' or Trend == 'Down Trend'
+            BuChoCh_P := LHP
+            BuChoCh_I := bar_index[LongP]
+        else if Trend == 'Up Trend'
+            if LHP > BuChoCh_P
+                BuChoCh_P := LHP
+                BuChoCh_I := bar_index[LongP]
+
+    //Set Point Bearish ChoCh
+    if nz(LLP) != 0
+        if Trend == '' or Trend == 'Up Trend'
+            BeChoCh_P := LLP
+            BeChoCh_I := bar_index[LongP]
+        else if Trend == 'Down Trend'
+            if LLP < BeChoCh_P
+                BeChoCh_P := LLP
+                BeChoCh_I := bar_index[LongP]
+    //Break
+    if BuChoCh_P > 0 and BeChoCh_P > 0
+        //Bullish ChoCh
+        if ta.crossover(close , BuChoCh_P) and (Trend == 'Down Trend' or Trend == '')
+            Trend     := 'Up Trend'
+            BuChoCh_B := 'Break'
+            BuChoCh_BB := 'Break'
+            BuChoCh_IB := line.get_x1(BuChoCh_Line)
+            BuCount := 0
+        else
+            BuChoCh_B := ''
+        //Bearish ChoCh
+        if ta.crossunder(close , BeChoCh_P) and (Trend == 'Up Trend' or Trend == '')
+            Trend     := 'Down Trend'
+            BeChoCh_B := 'Break' 
+            BeChoCh_BB := 'Break'
+            BeChoCh_IB := line.get_x1(BeChoCh_Line)
+            BeCount := 0
+        else 
+            BeChoCh_B := ''   
+    //Clear BoS When ChoCh Formation
+    if (BeChoCh_B == 'Break' or BuChoCh_B == 'Break')
+        if BoS_Permit == true
+            line.delete(BoS_Line), label.delete(BoS_Label)
+    //Next ChoCh Line
+        // Bullish ChoCh Line
+    if BuChoCh_I != BuChoCh_I[1] and Trend == 'Down Trend'
+        BuChoCh_BB := ''
+        BuCount := BuCount + 1 
+        if Trend[1] == 'Down Trend' and BuCount > 1
+            line.delete(BuChoCh_Line[1]), label.delete(BuChoCh_Label[1])
+        if Show_ChoCh
+            BuChoCh_Line  := line.new(BuChoCh_I , BuChoCh_P, bar_index, BuChoCh_P, color = color.new(Color_BuChoCh, 30) , style = line.style_solid)
+            BuChoCh_Label := label.new(int(math.avg(BuChoCh_I,bar_index)),BuChoCh_P + (ATR * 0.1) , 'Bullish ChoCh' , color = na, 
+             textcolor = Color_BuChoCh , style = label.style_label_down , size = Size_ChoCh)
+        // Bearish ChoCh Line
+    if BeChoCh_I != BeChoCh_I[1] and Trend == 'Up Trend'
+        BeChoCh_BB := ''
+        BeCount := BeCount + 1 
+        if Trend[1] == 'Up Trend' and BeCount > 1
+            line.delete(BeChoCh_Line[1]), label.delete(BeChoCh_Label[1]) 
+        if Show_ChoCh       
+            BeChoCh_Line  := line.new(BeChoCh_I , BeChoCh_P, bar_index, BeChoCh_P, color = color.new(Color_BeChoCh, 30)   , style = line.style_solid)
+            BeChoCh_Label := label.new(int(math.avg(BeChoCh_I,bar_index)),BeChoCh_P - (ATR * 0.5) , 'Bearish ChoCh' , color = na,  
+             textcolor = Color_BeChoCh , style = label.style_label_up , size = Size_ChoCh)  
+    // First ChoCh Line
+        // Bullish ChoCh Line
+    if BuCount == 0 and BeChoCh_B ==  'Break' and BuChoCh_IB !=  BuChoCh_I 
+        BuCount := BuCount + 1 
+        if Show_ChoCh
+            BuChoCh_Line  := line.new((bar_index-Index) > LongP ? BuChoCh_I : Index, (bar_index-Index) > LongP ? BuChoCh_P : high[bar_index-Index],
+             bar_index, (bar_index-Index) > LongP ? BuChoCh_P : high[bar_index-Index], color = color.new(Color_BuChoCh, 30) , style = line.style_solid)
+            BuChoCh_Label := label.new(int(math.avg((bar_index-Index) > LongP ? BuChoCh_I : Index,bar_index)),(bar_index-Index) > LongP ? BuChoCh_P + (ATR * 0.1) : high[bar_index-Index] + (ATR * 0.1) , 'Bullish ChoCh' , color = na,  
+             textcolor = Color_BuChoCh , style = label.style_label_down , size = Size_ChoCh)
+        // Bearish ChoCh Line
+    if BeCount == 0 and BuChoCh_B ==  'Break' and BeChoCh_IB !=  BeChoCh_I 
+        BeCount := BeCount + 1 
+        if Show_ChoCh
+            BeChoCh_Line  := line.new((bar_index-Index) > LongP ? BeChoCh_I : Index, (bar_index-Index) > LongP ? BeChoCh_P : low[bar_index-Index],
+             bar_index, (bar_index-Index) > LongP ? BeChoCh_P : low[bar_index-Index], color = color.new(Color_BeChoCh, 30)   , style = line.style_solid)
+            BeChoCh_Label := label.new(int(math.avg((bar_index-Index) > LongP ? BeChoCh_I : Index,bar_index)),(bar_index-Index) > LongP ? BeChoCh_P- (ATR * 0.5) : low[bar_index-Index] - (ATR * 0.5) , 'Bearish ChoCh' , color = na,  
+             textcolor = Color_BeChoCh , style = label.style_label_up , size = Size_ChoCh)                                    
+    // Reset ChoCh Line
+        // Bullish ChoCh Line    
+    if (BuChoCh_I == BuChoCh_I[1] and Trend == 'Down Trend' and BuCount > 0) 
+        line.set_x2(BuChoCh_Line , bar_index + 1), label.set_x(BuChoCh_Label, int(math.avg(line.get_x1(BuChoCh_Line),bar_index)))
+        // Bearish ChoCh Line
+    if (BeChoCh_I == BeChoCh_I[1] and Trend == 'Up Trend' and BeCount > 0)  
+        line.set_x2(BeChoCh_Line , bar_index + 1), label.set_x(BeChoCh_Label, int(math.avg(line.get_x1(BeChoCh_Line),bar_index)))
+    //   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////////////////////////////////////////
+    //    |||||||||||||||||||||||||||||||||||BoS & Liquidity Block|||||||||||||||||||||||||||||||||||||
+    //   //////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    //BoS & Liquidity in Up Trend
+    if Trend == 'Up Trend'
+        Low := 0.0
+        if nz(SHP) != 0 
+            if  High ==  0.0 ? High ==  0.0 : High <= high[ShortP]
+                High := high[ShortP]
+                Index :=bar_index[ShortP]
+                BoS_Permit := true
+                if Show_BoS
+                    BoS_Line := line.new(bar_index[ShortP], high[ShortP], bar_index, high[ShortP] , color = color.new(Color_BuBoS, 30) , style = line.style_dashed)
+                    BoS_Label:= label.new(int((bar_index[ShortP] + bar_index) / 2), high[ShortP]  + (ATR * 0.1), 'BoS', color = na, textcolor = Color_BuBoS , 
+                     size = Size_BoS , style = label.style_label_center)
+                if BoS_Permit[1] == true
+                    line.delete(BoS_Line[1]), label.delete(BoS_Label[1])
+        // Reset BoS & Liquidity Line
+        if nz(SHP) == 0 and (BoS_Permit )
+            line.set_x2(BoS_Line, bar_index), label.set_x(BoS_Label, int((line.get_x1(BoS_Line) + bar_index) / 2))
+        // Mitigated BoS Line
+        if close > line.get_y1(BoS_Line) and (BoS_Permit )
+            BoS_Permit := false
+        // Mitigated and Set Liquidity Line
+        if close < line.get_y1(BoS_Line) and high > line.get_y1(BoS_Line) and (BoS_Permit )
+            BoS_Permit := false
+            line.set_color(BoS_Line, color.new(Color_LQDY, 30)), line.set_style(BoS_Line, line.style_dotted), label.set_text(BoS_Label, 'LQDT'), label.set_textcolor(BoS_Label, Color_LQDY)
+    // BoS & Liquidity in Down Trend
+    if Trend == 'Down Trend'
+        High := 0.0
+        if nz(SLP) != 0 
+            if  Low == 0.0 ? Low == 0.0 : Low >= low[ShortP]
+                Low := low[ShortP]
+                Index :=bar_index[ShortP]
+                BoS_Permit := true
+                if Show_BoS
+                    BoS_Line := line.new(bar_index[ShortP], low[ShortP], bar_index, low[ShortP] , color = color.new(Color_BeBoS, 30) , style = line.style_dashed)
+                    BoS_Label:= label.new(int((bar_index[ShortP] + bar_index) / 2), low[ShortP]  - (ATR * 0.4), 'BoS', color = na, textcolor = Color_BeBoS , 
+                     size = Size_BoS , style = label.style_label_center)
+                if BoS_Permit[1] == true
+                    line.delete(BoS_Line[1]), label.delete(BoS_Label[1])
+        // Reset BoS & Liquidity Line
+        if nz(SLP) == 0 and (BoS_Permit )
+            line.set_x2(BoS_Line, bar_index), label.set_x(BoS_Label, int((line.get_x1(BoS_Line) + bar_index) / 2))
+        // Mitigated BoS Line
+        if close < line.get_y1(BoS_Line) and (BoS_Permit )
+            BoS_Permit := false
+        // Mitigated and Set Liquidity Line
+        if close > line.get_y1(BoS_Line) and low < line.get_y1(BoS_Line) and (BoS_Permit )
+            BoS_Permit := false
+            line.set_color(BoS_Line, color.new(Color_LQDY, 30)), line.set_style(BoS_Line, line.style_dotted), label.set_text(BoS_Label, 'LQDT'), label.set_textcolor(BoS_Label, Color_LQDY)        
+    //   \\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\/////////////////////////////////////////////////
+    //    |||||||||||||||||||||||||||||||||||||||Inducement Block||||||||||||||||||||||||||||||||||||||
+    //   //////////////////////////////////////////////\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\
+    // Inducement in Up Trend
+    if Trend == 'Up Trend'
+        if nz(ILP) != 0 
+            IDM_Permit := true
+            if Show_IDMT
+                Inducement_Line := line.new(bar_index[InducementP], low[InducementP], bar_index, low[InducementP] , color = color.new(Color_IDMT, 30) , style = line.style_dotted)
+                Inducement_Label := label.new(int((bar_index[InducementP] + bar_index) / 2), low[InducementP]  - (ATR * 0.4), 'IDMT', color = na, textcolor = Color_IDMT , 
+                 size = Size_IDMT , style = label.style_label_center)
+            if IDM_Permit[1] == true
+                line.delete(Inducement_Line[1]), label.delete(Inducement_Label[1])
+        // Reset Inducement Line
+        if nz(ILP) == 0 and IDM_Permit == true
+            line.set_x2(Inducement_Line, bar_index ), label.set_x(Inducement_Label, int((line.get_x1(Inducement_Line) + bar_index) / 2))
+        // Mitigated Inducement Line
+        if IDMT_Type == 'Total' 
+            if low < line.get_y1(Inducement_Line)  
+                IDM_Permit := false
+        if IDMT_Type == 'Sweeps'
+            if low < line.get_y1(Inducement_Line) and close > line.get_y1(Inducement_Line)
+                IDM_Permit := false
+            if close < line.get_y1(Inducement_Line)
+                line.delete(Inducement_Line)
+                label.delete(Inducement_Label)
+
+    // Inducement in Down Trend
+    if Trend == 'Down Trend'
+        if nz(IHP) != 0 
+            IDM_Permit := true
+            if Show_IDMT
+                Inducement_Line := line.new(bar_index[InducementP], high[InducementP], bar_index, high[InducementP] , color = color.new(Color_IDMT, 30) , style = line.style_dotted)
+                Inducement_Label := label.new(int((bar_index[InducementP] + bar_index) / 2), high[InducementP]  + (ATR * 0.1), 'IDMT', color = na, textcolor = Color_IDMT , 
+                 size = Size_IDMT , style = label.style_label_center)
+            if IDM_Permit[1] == true
+                line.delete(Inducement_Line[1]), label.delete(Inducement_Label[1])
+        // Reset Inducement Line
+        if nz(IHP) == 0 and IDM_Permit 
+            line.set_x2(Inducement_Line, bar_index ), label.set_x(Inducement_Label, int((line.get_x1(Inducement_Line) + bar_index) / 2))
+        // Mitigated Inducement Line
+        if IDMT_Type == 'Total' 
+            if high > line.get_y1(Inducement_Line)  
+                IDM_Permit := false
+        if IDMT_Type == 'Sweeps'
+            if high > line.get_y1(Inducement_Line) and close < line.get_y1(Inducement_Line)
+                IDM_Permit := false
+            if close > line.get_y1(Inducement_Line)
+                line.delete(Inducement_Line)
+                label.delete(Inducement_Label)
+//Call Function
+Structure(LongP, ShortP, InducementP, FTD, IDMT_Type, Show_ChoCh, Color_BuChoCh, Color_BeChoCh, Size_ChoCh, Show_BoS, Color_BuBoS, Color_BeBoS, Color_LQDY, Size_BoS, Show_IDMT, Color_IDMT, Size_IDMT)
+
+// ==========================================================================================
+
+// === Dashboard with Telegram Link ===
+var table myTable = table.new(position.top_center, 1, 1, border_width=1, frame_color=color.black, bgcolor=color.white)
+
+// Add Telegram Message to Dashboard
+table.cell(myTable, 0, 0, "Join Telegram @mrexpert_ai", bgcolor=color.blue, text_color=color.white, text_size=size.normal)

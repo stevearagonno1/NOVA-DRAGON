@@ -1,0 +1,165 @@
+// This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// © Uncle_the_shooter
+
+//@version=6
+indicator('Low Volatility Breakout + TP/SL Levels', overlay=true, max_lines_count=500, max_boxes_count=500, max_labels_count=500)
+
+// Inputs
+int length = input.int(20, title='Volatility Window', group='Consolidation Settings')
+float consolidationMultiplier = input.float(2, title='Consolidation Multiplier (for small candles)', minval=0.1, step=0.1, group='Consolidation Settings')
+float threshold = input.float(1.5, title='Breakout Multiplier (for large candle)', minval=0.1, step=0.1, group='Consolidation Settings')
+float boxHeightMultiplier = input.float(6.0, title='Box Height Multiplier', minval=0.1, step=0.1, group='Consolidation Settings')
+int confirmBars = input.int(5, title='Min Consolidation Bars', minval=1, group='Consolidation Settings')
+bool showConsolidation = input.bool(true, title='Show Consolidation Boxes', group='Consolidation Settings')
+bool showBreakoutSignals = input.bool(true, title='Show Breakout Signals', group='Consolidation Settings')
+int border_width = input.int(1, title='Box Border Width', minval=1, maxval=5, group='Consolidation Settings')
+
+// Risk Management Inputs
+bool showTPSL = input.bool(true, title='Show TP/SL Levels', group='Risk Management Settings')
+string tpSlMode = input.string('Candle Multiplier', title='TP/SL Calculation Mode', options=['Candle Multiplier', 'Percentage'], group='Risk Management Settings')
+
+int tp_sl_length = input.int(50, title='Average Candle Length Period', group='Risk Management Settings')
+float tp1Multiplier = input.float(2.0, title='TP1×', minval=0.1, step=0.1, group='Risk Management Settings')
+float tp2Multiplier = input.float(3.0, title='TP2×', minval=0.1, step=0.1, group='Risk Management Settings')
+float tp3Multiplier = input.float(4.0, title='TP3×', minval=0.1, step=0.1, group='Risk Management Settings')
+float slMultiplier = input.float(2.0, title='SL×', minval=0.1, step=0.1, group='Risk Management Settings')
+
+float tp1Percent = input.float(2.0, title='TP1 %', minval=0.01, step=0.01, group='Risk Management Settings')
+float tp2Percent = input.float(3.0, title='TP2 %', minval=0.01, step=0.01, group='Risk Management Settings')
+float tp3Percent = input.float(4.0, title='TP3 %', minval=0.01, step=0.01, group='Risk Management Settings')
+float slPercent = input.float(1.5, title='SL %', minval=0.01, step=0.01, group='Risk Management Settings')
+
+// Colors – only 2 inputs
+color colorBull = input.color(color.green, 'Bullish Color (box + lines + arrows)', group='Colors')
+color colorBear = input.color(color.red,   'Bearish Color (box + lines + arrows)', group='Colors')
+
+// TP/SL TABLE 
+var table tpSlTable = table.new(position.top_right, 2, 5, bgcolor=color.new(color.black, 80), border_width=1, frame_color=color.gray)
+
+// Logic
+float avgBody = ta.sma(math.abs(close[1] - open[1]), length)
+float currBody = math.abs(close - open)
+bool isConsolidating = currBody < avgBody * consolidationMultiplier
+
+// Consolidation variables
+var int consCount = 0
+var float highestInRange = na
+var float lowestInRange = na
+var float maxBodyInConsolidation = 0.0
+var float initialAvgBody = na
+var int beginIndex = na
+var bool setupActive = false
+
+bool bullishBreakout = false
+bool bearishBreakout = false
+
+if isConsolidating
+    consCount += 1
+    if not setupActive
+        setupActive := true
+        beginIndex := bar_index
+        highestInRange := high
+        lowestInRange := low
+        maxBodyInConsolidation := currBody
+        initialAvgBody := avgBody
+    else
+        highestInRange := math.max(highestInRange, high)
+        lowestInRange := math.min(lowestInRange, low)
+        maxBodyInConsolidation := math.max(maxBodyInConsolidation, currBody)
+else if consCount >= confirmBars and setupActive
+    float boxHeight = highestInRange - lowestInRange
+    bool validBox = boxHeight <= initialAvgBody * boxHeightMultiplier
+
+    bullishBreakout := currBody >= initialAvgBody * threshold and currBody > maxBodyInConsolidation and close > open and close > highestInRange and validBox
+    bearishBreakout := currBody >= initialAvgBody * threshold and currBody > maxBodyInConsolidation and close < open and close < lowestInRange and validBox
+
+    if (bullishBreakout or bearishBreakout) and showConsolidation
+        color boxClr = bullishBreakout ? colorBull : colorBear
+        box.new(left=beginIndex, top=highestInRange, right=bar_index, bottom=lowestInRange, bgcolor=color.new(boxClr, 85), border_color=boxClr, border_width=border_width)
+
+    consCount := 0
+    setupActive := false
+    highestInRange := na
+    lowestInRange := na
+    maxBodyInConsolidation := 0.0
+    initialAvgBody := na
+    beginIndex := na
+
+// TP/SL variables
+var float sl = na
+var float tp1 = na
+var float tp2 = na
+var float tp3 = na
+
+// TP/SL Calculation & Drawing
+if showTPSL
+    float avgRange = ta.sma(high - low, tp_sl_length)
+
+    if bullishBreakout
+        if tpSlMode == 'Candle Multiplier'
+            sl := close - avgRange * slMultiplier
+            tp1 := close + avgRange * tp1Multiplier
+            tp2 := close + avgRange * tp2Multiplier
+            tp3 := close + avgRange * tp3Multiplier
+        else
+            sl := close - (close * slPercent / 100)
+            tp1 := close + (close * tp1Percent / 100)
+            tp2 := close + (close * tp2Percent / 100)
+            tp3 := close + (close * tp3Percent / 100)
+
+        // Drawing lines
+        line.new(bar_index, sl,  bar_index + 5, sl,  color=colorBear, width=2)
+        line.new(bar_index, tp1, bar_index + 5, tp1, color=colorBull, width=2)
+        line.new(bar_index, tp2, bar_index + 5, tp2, color=colorBull, width=2)
+        line.new(bar_index, tp3, bar_index + 5, tp3, color=colorBull, width=2)
+
+        // Update table (LONG)
+        table.cell(tpSlTable, 0, 0, "SL",    bgcolor=color.new(colorBear, 80), text_color=color.white)
+        table.cell(tpSlTable, 1, 0, str.tostring(sl,    format.mintick), bgcolor=color.new(colorBear, 80), text_color=color.white)
+        table.cell(tpSlTable, 0, 1, "TP1",   bgcolor=color.new(colorBull, 80), text_color=color.white)
+        table.cell(tpSlTable, 1, 1, str.tostring(tp1,   format.mintick), bgcolor=color.new(colorBull, 80), text_color=color.white)
+        table.cell(tpSlTable, 0, 2, "TP2",   bgcolor=color.new(colorBull, 80), text_color=color.white)
+        table.cell(tpSlTable, 1, 2, str.tostring(tp2,   format.mintick), bgcolor=color.new(colorBull, 80), text_color=color.white)
+        table.cell(tpSlTable, 0, 3, "TP3",   bgcolor=color.new(colorBull, 80), text_color=color.white)
+        table.cell(tpSlTable, 1, 3, str.tostring(tp3,   format.mintick), bgcolor=color.new(colorBull, 80), text_color=color.white)
+
+    if bearishBreakout
+        if tpSlMode == 'Candle Multiplier'
+            sl := close + avgRange * slMultiplier
+            tp1 := close - avgRange * tp1Multiplier
+            tp2 := close - avgRange * tp2Multiplier
+            tp3 := close - avgRange * tp3Multiplier
+        else
+            sl := close + (close * slPercent / 100)
+            tp1 := close - (close * tp1Percent / 100)
+            tp2 := close - (close * tp2Percent / 100)
+            tp3 := close - (close * tp3Percent / 100)
+
+        // Drawing lines
+        line.new(bar_index, sl,  bar_index + 5, sl,  color=colorBear, width=2)
+        line.new(bar_index, tp1, bar_index + 5, tp1, color=colorBull, width=2)
+        line.new(bar_index, tp2, bar_index + 5, tp2, color=colorBull, width=2)
+        line.new(bar_index, tp3, bar_index + 5, tp3, color=colorBull, width=2)
+
+        // Update table (SHORT)
+        table.cell(tpSlTable, 0, 0, "SL",    bgcolor=color.new(colorBear, 80), text_color=color.white)
+        table.cell(tpSlTable, 1, 0, str.tostring(sl,    format.mintick), bgcolor=color.new(colorBear, 80), text_color=color.white)
+        table.cell(tpSlTable, 0, 1, "TP1",   bgcolor=color.new(colorBull, 80), text_color=color.white)
+        table.cell(tpSlTable, 1, 1, str.tostring(tp1,   format.mintick), bgcolor=color.new(colorBull, 80), text_color=color.white)
+        table.cell(tpSlTable, 0, 2, "TP2",   bgcolor=color.new(colorBull, 80), text_color=color.white)
+        table.cell(tpSlTable, 1, 2, str.tostring(tp2,   format.mintick), bgcolor=color.new(colorBull, 80), text_color=color.white)
+        table.cell(tpSlTable, 0, 3, "TP3",   bgcolor=color.new(colorBull, 80), text_color=color.white)
+        table.cell(tpSlTable, 1, 3, str.tostring(tp3,   format.mintick), bgcolor=color.new(colorBull, 80), text_color=color.white)
+
+// Plots
+plotshape(showBreakoutSignals and bullishBreakout, style=shape.triangleup, location=location.belowbar, color=colorBull, size=size.tiny)
+plotshape(showBreakoutSignals and bearishBreakout, style=shape.triangledown, location=location.abovebar, color=colorBear, size=size.tiny)
+
+// Alerts
+alertcondition(bullishBreakout, title='Bullish Breakout Alert', message='Bullish breakout detected')
+alertcondition(bearishBreakout, title='Bearish Breakout Alert', message='Bearish breakout detected')
+// === Dashboard with Telegram Link ===
+var table myTable = table.new(position.top_center, 1, 1, border_width=1, frame_color=color.black, bgcolor=color.white)
+
+// Add Telegram Message to Dashboard
+table.cell(myTable, 0, 0, "Join Telegram @mrexpert_ai", bgcolor=color.blue, text_color=color.white, text_size=size.normal)

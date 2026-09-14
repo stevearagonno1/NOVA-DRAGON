@@ -1,0 +1,140 @@
+﻿//@version=6
+indicator("Edge Algo Pro Clean + SR Optimized Labels", overlay=true, max_lines_count=500, max_labels_count=500)
+
+
+//======================
+// إعدادات المستخدم
+//======================
+entryBuffer = input.float(0.0, "Entry Price (Buffer)")
+stopLossBuffer = input.float(0.0, "Stop Loss Price (Buffer)")
+takeProfit1Buffer = input.float(0.0, "Take Profit 1")
+takeProfit2Buffer = input.float(0.0, "Take Profit 2")
+takeProfit3Buffer = input.float(0.0, "Take Profit 3")
+
+
+rsiPeriod = input.int(14, "RSI Period")
+macdFast = input.int(12, "MACD Fast")
+macdSlow = input.int(26, "MACD Slow")
+macdSignal = input.int(9, "MACD Signal")
+candleStrength = input.float(0.5, "Candle Strength Filter")
+
+
+// ألوان خطوط TP/SL
+entryColor = color.new(color.yellow,0)
+slColor = color.new(color.red,0)
+tpColor1 = color.new(color.green,0)
+tpColor2 = color.new(color.blue,0)
+tpColor3 = color.new(color.purple,0)
+
+
+// ألوان الدعم والمقاومة
+srColor = color.new(color.orange,80)
+
+
+//======================
+// المؤشرات
+//======================
+rsiValue = ta.rsi(close, rsiPeriod)
+[macdLine, signalLine, _] = ta.macd(close, macdFast, macdSlow, macdSignal)
+bullishCandle = close > open and (close-open) > candleStrength*(high-low)
+bearishCandle = open > close and (open-close) > candleStrength*(high-low)
+
+
+//======================
+// إشارات الدخول والخروج
+//======================
+longSignal = (rsiValue < 35 and macdLine > signalLine and bullishCandle)
+shortSignal = (rsiValue > 65 and macdLine < signalLine and bearishCandle)
+
+
+//======================
+// أسعار ديناميكية
+//======================
+entryPrice = entryBuffer != 0.0 ? entryBuffer : close
+stopLoss = stopLossBuffer != 0.0 ? stopLossBuffer : (longSignal ? entryPrice*0.985 : entryPrice*1.015)
+takeProfit1 = takeProfit1Buffer != 0.0 ? takeProfit1Buffer : (longSignal ? entryPrice*1.02 : entryPrice*0.98)
+takeProfit2 = takeProfit2Buffer != 0.0 ? takeProfit2Buffer : (longSignal ? entryPrice*1.04 : entryPrice*0.96)
+takeProfit3 = takeProfit3Buffer != 0.0 ? takeProfit3Buffer : (longSignal ? entryPrice*1.06 : entryPrice*0.94)
+
+
+//======================
+// رسم إشارات BUY/SELL فقط عند تحقق الشروط
+//======================
+plotshape(longSignal, title="Buy Signal", location=location.belowbar, color=color.new(color.green,0), style=shape.triangleup, size=size.large, text="BUY")
+plotshape(shortSignal, title="Sell Signal", location=location.abovebar, color=color.new(color.red,0), style=shape.triangledown, size=size.large, text="SELL")
+
+
+//======================
+// رسم خطوط TP/SL ممتدة من اليسار إلى اليمين بدون تكرار
+//======================
+var line entryLine = na
+var line slLine = na
+var line tp1Line = na
+var line tp2Line = na
+var line tp3Line = na
+
+
+if barstate.islast
+    line.delete(entryLine)
+    line.delete(slLine)
+    line.delete(tp1Line)
+    line.delete(tp2Line)
+    line.delete(tp3Line)
+
+
+    entryLine := line.new(bar_index-100, entryPrice, bar_index+100, entryPrice, color=entryColor, width=2)
+    slLine := line.new(bar_index-100, stopLoss, bar_index+100, stopLoss, color=slColor, width=2)
+    tp1Line := line.new(bar_index-100, takeProfit1, bar_index+100, takeProfit1, color=tpColor1, width=2)
+    tp2Line := line.new(bar_index-100, takeProfit2, bar_index+100, takeProfit2, color=tpColor2, width=2)
+    tp3Line := line.new(bar_index-100, takeProfit3, bar_index+100, takeProfit3, color=tpColor3, width=2)
+
+
+//======================
+// رسم مستطيلات الدعم والمقاومة
+//======================
+var box srBox = na
+if barstate.islast
+    box.delete(srBox)
+    srTop = ta.highest(high, 20)
+    srBottom = ta.lowest(low, 20)
+    srBox := box.new(left=bar_index-20, top=srTop, right=bar_index, bottom=srBottom, bgcolor=srColor)
+
+
+//======================
+// عرض الأسعار مرة واحدة فقط لكل خط
+//======================
+var label entryLbl = na
+var label slLbl = na
+var label tp1Lbl = na
+var label tp2Lbl = na
+var label tp3Lbl = na
+
+
+if barstate.islast
+    if na(entryLbl)
+        entryLbl := label.new(bar_index, entryPrice, "Entry: "+str.tostring(entryPrice), color=entryColor, textcolor=color.black, style=label.style_label_left)
+    if na(slLbl)
+        slLbl := label.new(bar_index, stopLoss, "SL: "+str.tostring(stopLoss), color=slColor, textcolor=color.white, style=label.style_label_left)
+    if na(tp1Lbl)
+        tp1Lbl := label.new(bar_index, takeProfit1, "TP1: "+str.tostring(takeProfit1), color=tpColor1, textcolor=color.white, style=label.style_label_left)
+    if na(tp2Lbl)
+        tp2Lbl := label.new(bar_index, takeProfit2, "TP2: "+str.tostring(takeProfit2), color=tpColor2, textcolor=color.white, style=label.style_label_left)
+    if na(tp3Lbl)
+        tp3Lbl := label.new(bar_index, takeProfit3, "TP3: "+str.tostring(takeProfit3), color=tpColor3, textcolor=color.white, style=label.style_label_left)
+
+
+//======================
+// تنبيهات
+//======================
+alertcondition(longSignal, title="Buy Alert", message="Edge Algo Pro Clean Optimized: فرصة شراء!")
+alertcondition(shortSignal, title="Sell Alert", message="Edge Algo Pro Clean Optimized: فرصة بيع!")
+
+
+// ==========================================================================================
+
+// === Dashboard with Telegram Link ===
+var table myTable = table.new(position.top_center, 1, 1, border_width=1, frame_color=color.black, bgcolor=color.white)
+
+// Add Telegram Message to Dashboard
+table.cell(myTable, 0, 0, "Join Telegram @mrexpert_ai", bgcolor=color.blue, text_color=color.white, text_size=size.normal)
+

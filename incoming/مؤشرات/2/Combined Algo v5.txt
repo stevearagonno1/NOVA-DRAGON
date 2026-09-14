@@ -1,0 +1,315 @@
+//@version=5
+indicator("Combined Algo Signals v5", shorttitle="Combined Algo v5", overlay=true, max_labels_count=500, max_lines_count=500, max_boxes_count=500, max_bars_back=500)
+
+//=======================================================================================
+// Section 1: AlgoAlpha Logic (Zero Lag Trend Signals MTF)
+//=======================================================================================
+
+// Main Inputs
+length = input.int(70, "Length", tooltip="Look-Back window for Zero-Lag EMA", group="Main Calculations")
+mult = input.float(1.2, "Band Multiplier", tooltip="Controls thickness of bands", group="Main Calculations")
+t1 = input.timeframe("5", "Time frame 1", group="Extra Timeframes")
+t2 = input.timeframe("15", "Time frame 2", group="Extra Timeframes")
+t3 = input.timeframe("60", "Time frame 3", group="Extra Timeframes")
+t4 = input.timeframe("240", "Time frame 4", group="Extra Timeframes")
+t5 = input.timeframe("1D", "Time frame 5", group="Extra Timeframes")
+bullishClr = input.color(#00ffbb, "Bullish Color", group="Appearance")
+bearishClr = input.color(#ff1100, "Bearish Color", group="Appearance")
+
+// Confirmation Inputs
+rsiPeriod = input.int(14, "RSI Period", group="Confirmation")
+rsiThresholdBullish = input.float(50, "RSI Bullish Threshold", group="Confirmation")
+rsiThresholdBearish = input.float(50, "RSI Bearish Threshold", group="Confirmation")
+
+src = close
+lag = math.floor((length - 1) / 2)
+zlema = ta.ema(src + (src - src[lag]), length)
+volatility = ta.highest(ta.atr(length), length * 3) * mult
+
+var int trend = 0
+if ta.crossover(close, zlema + volatility) and close > zlema
+    trend := 1
+if ta.crossunder(close, zlema - volatility) and close < zlema
+    trend := -1
+
+rsiVal = ta.rsi(close, rsiPeriod)
+
+zlemaColor = trend == 1 ? color.new(bullishClr, 70) : color.new(bearishClr, 70)
+plotZlema = plot(zlema, title="Zero Lag Basis", linewidth=2, color=zlemaColor)
+upperBand = plot(trend == -1 ? zlema + volatility : na, style=plot.style_linebr, color=color.new(bearishClr, 90), title="Upper Deviation Band")
+lowerBand = plot(trend == 1 ? zlema - volatility : na, style=plot.style_linebr, color=color.new(bullishClr, 90), title="Lower Deviation Band")
+
+
+
+plotshape(ta.crossunder(trend, 0) ? zlema + volatility : na, 
+   title="Bearish Trend", style=shape.labeldown, location=location.absolute, 
+   color=bearishClr, text="🐻 SELL", textcolor=chart.fg_color, size=size.small)
+plotshape(ta.crossover(trend, 0) ? zlema - volatility : na, 
+   title="Bullish Trend", style=shape.labelup, location=location.absolute, 
+   color=bullishClr, text="🚀 BUY", textcolor=chart.fg_color, size=size.small)
+
+bodySize = math.abs(close - open)
+avgBodySize = ta.sma(math.abs(close - open), length)
+
+s1 = request.security(syminfo.tickerid, t1, trend)
+s2 = request.security(syminfo.tickerid, t2, trend)
+s3 = request.security(syminfo.tickerid, t3, trend)
+s4 = request.security(syminfo.tickerid, t4, trend)
+s5 = request.security(syminfo.tickerid, t5, trend)
+
+s1a = s1 == 1 ? "Bullish" : "Bearish"
+s2a = s2 == 1 ? "Bullish" : "Bearish"
+s3a = s3 == 1 ? "Bullish" : "Bearish"
+s4a = s4 == 1 ? "Bullish" : "Bearish"
+s5a = s5 == 1 ? "Bullish" : "Bearish"
+
+bullishCount = (s1 == 1 ? 1 : 0) + (s2 == 1 ? 1 : 0) + (s3 == 1 ? 1 : 0) +
+               (s4 == 1 ? 1 : 0) + (s5 == 1 ? 1 : 0)
+
+advancedBullishEntry = ta.crossover(close, zlema) and trend == 1 and trend[1] == 1 and
+   bullishCount >= 3 and (close > open) and (zlema > zlema[1]) and
+   (bodySize > avgBodySize * 1.1) and (rsiVal > rsiThresholdBullish)
+advancedBearishEntry = ta.crossunder(close, zlema) and trend == -1 and trend[1] == -1 and
+   ((5 - bullishCount) >= 3) and (close < open) and (zlema < zlema[1]) and
+   (bodySize > avgBodySize * 1.1) and (rsiVal < rsiThresholdBearish)
+
+plotchar(advancedBullishEntry ? zlema - volatility * 1.5 : na, 
+   title="Bullish Entry", char="▲", location=location.absolute, color=bullishClr, size=size.tiny)
+plotchar(advancedBearishEntry ? zlema + volatility * 1.5 : na, 
+   title="Bearish Entry", char="▼", location=location.absolute, color=bearishClr, size=size.tiny)
+
+if barstate.islast
+    var table data_table = table.new(position=position.top_right, columns=2, rows=6, 
+       bgcolor=chart.bg_color, border_width=1, border_color=chart.fg_color, 
+       frame_color=chart.fg_color, frame_width=1)
+    table.cell(data_table, 0, 0, "Time Frame", text_color=chart.fg_color, text_halign=text.align_center)
+    table.cell(data_table, 1, 0, "Signal", text_color=chart.fg_color, text_halign=text.align_center)
+    table.cell(data_table, 0, 1, t1, text_color=chart.fg_color, text_halign=text.align_center)
+    table.cell(data_table, 1, 1, s1a, text_color=chart.fg_color, 
+       bgcolor=s1a=="Bullish" ? color.new(bullishClr,70) : color.new(bearishClr,70), text_halign=text.align_center)
+    table.cell(data_table, 0, 2, t2, text_color=chart.fg_color, text_halign=text.align_center)
+    table.cell(data_table, 1, 2, s2a, text_color=chart.fg_color, 
+       bgcolor=s2a=="Bullish" ? color.new(bullishClr,70) : color.new(bearishClr,70), text_halign=text.align_center)
+    table.cell(data_table, 0, 3, t3, text_color=chart.fg_color, text_halign=text.align_center)
+    table.cell(data_table, 1, 3, s3a, text_color=chart.fg_color, 
+       bgcolor=s3a=="Bullish" ? color.new(bullishClr,70) : color.new(bearishClr,70), text_halign=text.align_center)
+    table.cell(data_table, 0, 4, t4, text_color=chart.fg_color, text_halign=text.align_center)
+    table.cell(data_table, 1, 4, s4a, text_color=chart.fg_color, 
+       bgcolor=s4a=="Bullish" ? color.new(bullishClr,70) : color.new(bearishClr,70), text_halign=text.align_center)
+    table.cell(data_table, 0, 5, t5, text_color=chart.fg_color, text_halign=text.align_center)
+    table.cell(data_table, 1, 5, s5a, text_color=chart.fg_color, 
+       bgcolor=s5a=="Bullish" ? color.new(bullishClr,70) : color.new(bearishClr,70), text_halign=text.align_center)
+
+alertcondition(advancedBullishEntry, "Advanced Bullish Entry Signal", 
+   "Advanced Bullish Entry Signal detected. Consider entering a long position.")
+alertcondition(advancedBearishEntry, "Advanced Bearish Entry Signal", 
+   "Advanced Bearish Entry Signal detected. Consider entering a short position.")
+alertcondition(ta.crossover(trend, 0), "Bullish Trend", "Bullish Trend detected.")
+alertcondition(ta.crossunder(trend, 0), "Bearish Trend", "Bearish Trend detected.")
+alertcondition(ta.crossover(s1, 0), "Bullish Trend TF1", "Bullish Trend detected on Time Frame 1.")
+alertcondition(ta.crossunder(s1, 0), "Bearish Trend TF1", "Bearish Trend detected on Time Frame 1.")
+alertcondition(ta.crossover(s2, 0), "Bullish Trend TF2", "Bullish Trend detected on Time Frame 2.")
+alertcondition(ta.crossunder(s2, 0), "Bearish Trend TF2", "Bearish Trend detected on Time Frame 2.")
+alertcondition(ta.crossover(s3, 0), "Bullish Trend TF3", "Bullish Trend detected on Time Frame 3.")
+alertcondition(ta.crossunder(s3, 0), "Bearish Trend TF3", "Bearish Trend detected on Time Frame 3.")
+alertcondition(ta.crossover(s4, 0), "Bullish Trend TF4", "Bullish Trend detected on Time Frame 4.")
+alertcondition(ta.crossunder(s4, 0), "Bearish Trend TF4", "Bearish Trend detected on Time Frame 4.")
+alertcondition(ta.crossover(s5, 0), "Bullish Trend TF5", "Bullish Trend detected on Time Frame 5.")
+alertcondition(ta.crossunder(s5, 0), "Bearish Trend TF5", "Bearish Trend detected on Time Frame 5.")
+
+//=======================================================================================
+// Section 2: Swing Detection & Sweep Lines
+//=======================================================================================
+cooldownPeriodSwing = input.int(10, title="Swing Cooldown Period", minval=0, group="Swing Detection")
+lbLeftSwing = 20
+lbRightSwing = 20
+showSwing = input.bool(true, title="Show Swings?", inline="swing", group="Swing Detection")
+swingClr = input.color(color.rgb(3,205,251), title="", inline="swing", group="Swing Detection")
+
+bullWidthSwing = input.int(1, title="Bullish Line Width:", group="Bullish Sweep")
+bullStyleSwing = input.string("Dashed", title="Bullish Line Style:", options=["Solid", "Dotted", "Dashed"], group="Bullish Sweep")
+bullColorSwing = input.color(color.rgb(255,255,255), title="Bullish Sweep Color:", group="Bullish Sweep")
+
+bearWidthSwing = input.int(1, title="Bearish Line Width:", group="Bearish Sweep")
+bearStyleSwing = input.string("Dashed", title="Bearish Line Style:", options=["Solid", "Dotted", "Dashed"], group="Bearish Sweep")
+bearColorSwing = input.color(color.rgb(255,255,255), title="Bearish Sweep Color:", group="Bearish Sweep")
+
+lineStyle2(s) =>
+    if s == "Solid"
+        line.style_solid
+    else if s == "Dotted"
+        line.style_dotted
+    else
+        line.style_dashed
+    s == "Dotted" ? line.style_dotted : line.style_dashed
+
+var int bullSignalIndexSwing = 0
+var int bearSignalIndexSwing = 0
+var line bullLineSwing = na
+var line bearLineSwing = na
+var line highLineSwing = na
+var line lowLineSwing = na
+var label swingHighLbl = na
+var label swingLowLbl = na
+var label swingHighLblTxt = na
+var label swingLowLblTxt = na
+var float swingLowVal = na
+var float swingHighVal = na
+
+pLowSwing = ta.pivotlow(low, lbLeftSwing, lbRightSwing)
+pHighSwing = ta.pivothigh(high, lbLeftSwing, lbRightSwing)
+pLowValSwing = ta.valuewhen(not na(pLowSwing), low[lbRightSwing], 0)
+pHighValSwing = ta.valuewhen(not na(pHighSwing), high[lbRightSwing], 0)
+prevLowIndexSwing = ta.valuewhen(not na(pLowSwing), bar_index[lbRightSwing], 0)
+prevHighIndexSwing = ta.valuewhen(not na(pHighSwing), bar_index[lbRightSwing], 0)
+lpSwing = ta.lowest(low, lbLeftSwing)
+hpSwing = ta.highest(high, lbLeftSwing)
+highestCloseSwing = ta.highest(close, lbLeftSwing)
+lowestCloseSwing = ta.lowest(close, lbLeftSwing)
+
+bullishSFPSwing = low < pLowValSwing and close > pLowValSwing and open > pLowValSwing and low == lpSwing and lowestCloseSwing >= pLowValSwing
+bearishSFPSwing = high > pHighValSwing and close < pHighValSwing and open < pHighValSwing and high == hpSwing and highestCloseSwing <= pHighValSwing
+
+bullCondSwing = bullishSFPSwing[3] and  (close > pLowValSwing) and  (close[1] > pLowValSwing[1]) and  (close[2] > pLowValSwing[2]) and    (bar_index >= bullSignalIndexSwing + cooldownPeriodSwing) 
+               
+               
+               
+             
+                
+bearCondSwing = bearishSFPSwing[3] and (close < pHighValSwing) and (close[1] < pHighValSwing[1]) and  (close[2] < pHighValSwing[2]) and bar_index >= bearSignalIndexSwing + cooldownPeriodSwing
+               
+
+var int swingLowCounter = 0
+var int swingHighCounter = 0
+var bool isSwingLowCheck = false
+var bool isSwingHighCheck = false
+var bool stopPrintingLow = false
+var bool stopPrintingHigh = false
+
+if not na(swingLowVal) and high < swingLowVal and isSwingLowCheck
+    swingLowCounter += 1
+if not na(swingHighVal) and low > swingHighVal and isSwingHighCheck
+    swingHighCounter += 1
+if not na(swingLowVal) and ta.crossunder(close, swingLowVal) and not isSwingLowCheck
+    isSwingLowCheck := true
+    swingLowCounter := 1
+if not na(swingHighVal) and ta.crossover(close, swingHighVal) and not isSwingHighCheck
+    isSwingHighCheck := true
+    swingHighCounter := 1
+if swingLowCounter == 5 and isSwingLowCheck
+    stopPrintingLow := true
+    isSwingLowCheck := false
+    if not na(lowLineSwing)
+        line.set_x2(lowLineSwing, bar_index[4])
+if swingHighCounter == 5 and isSwingHighCheck
+    stopPrintingHigh := true
+    isSwingHighCheck := false
+    if not na(highLineSwing)
+        line.set_x2(highLineSwing, bar_index[4])
+
+if bullCondSwing
+    bullSignalIndexSwing := bar_index
+    bullLineSwing := line.new(prevLowIndexSwing, pLowValSwing, bar_index - 3, pLowValSwing, 
+       color=bullColorSwing, width=bullWidthSwing, style=lineStyle2(bullStyleSwing))
+if bearCondSwing
+    bearSignalIndexSwing := bar_index
+    bearLineSwing := line.new(prevHighIndexSwing, pHighValSwing, bar_index - 3, pHighValSwing, 
+       color=bearColorSwing, width=bearWidthSwing, style=lineStyle2(bearStyleSwing))
+
+var swingHighArr = array.new_label(0)
+var swingHighTextArr = array.new_label(0)
+var swingLowArr = array.new_label(0)
+var swingLowTextArr = array.new_label(0)
+if array.size(swingHighArr) >= 3
+    label.delete(array.shift(swingHighArr))
+    label.delete(array.shift(swingHighTextArr))
+if array.size(swingLowArr) >= 3
+    label.delete(array.shift(swingLowArr))
+    label.delete(array.shift(swingLowTextArr))
+
+if showSwing
+    if not stopPrintingHigh and not na(highLineSwing)
+        line.set_x2(highLineSwing, bar_index + 5)
+    if not stopPrintingLow and not na(lowLineSwing)
+        line.set_x2(lowLineSwing, bar_index + 5)
+if showSwing and not na(pHighSwing) and not bearishSFPSwing[lbRightSwing]
+    stopPrintingHigh := false
+    swingHighVal := high[lbRightSwing]
+    line.delete(highLineSwing)
+    highLineSwing := line.new(bar_index[lbRightSwing], high[lbRightSwing], bar_index + 10, high[lbRightSwing], 
+       color=swingClr, width=2)
+    swingHighLbl := label.new(bar_index[lbRightSwing], high[lbRightSwing], "", yloc=yloc.abovebar, 
+       color=swingClr, textcolor=swingClr, style=label.style_triangledown, size=size.auto)
+    swingHighLblTxt := label.new(bar_index[lbRightSwing], high[lbRightSwing], "Swing\nH", yloc=yloc.abovebar, 
+       color=swingClr, textcolor=swingClr, style=label.style_none, size=size.small)
+    array.push(swingHighArr, swingHighLbl)
+    array.push(swingHighTextArr, swingHighLblTxt)
+if showSwing and not na(pLowSwing) and not bullishSFPSwing[lbRightSwing]
+    stopPrintingLow := false
+    swingLowVal := low[lbRightSwing]
+    line.delete(lowLineSwing)
+    lowLineSwing := line.new(bar_index[lbRightSwing], low[lbRightSwing], bar_index + 10, low[lbRightSwing], 
+       color=swingClr, width=2)
+    swingLowLbl := label.new(bar_index[lbRightSwing], low[lbRightSwing], "", yloc=yloc.belowbar, 
+       color=swingClr, textcolor=swingClr, style=label.style_triangleup, size=size.auto)
+    swingLowLblTxt := label.new(bar_index[lbRightSwing], low[lbRightSwing], "Swing\nL", yloc=yloc.belowbar, 
+       color=swingClr, textcolor=swingClr, style=label.style_none, size=size.small)
+    array.push(swingLowArr, swingLowLbl)
+    array.push(swingLowTextArr, swingLowLblTxt)
+
+plotshape(bullCondSwing, title="Bullish Sweep Swing", text="LIQUZ", 
+   color=bullColorSwing, textcolor=bullColorSwing, location=location.belowbar, offset=-3)
+plotshape(bearCondSwing, title="Bearish Sweep Swing", text="LIQUZ", 
+   color=bearColorSwing, textcolor=bearColorSwing, location=location.abovebar, offset=-3)
+
+//=======================================================================================
+// Section 3: AI Signals Module (Entry / SL / TP)
+//=======================================================================================
+groupEnTpSl = "Módulo - Signals"
+levels = input.bool(true, title="Mostrar Etiquetas de Entrada/SL/TP", group=groupEnTpSl, tooltip="Enable entry/SL/TP labels")
+atrLen = input.int(10, "ATR Length SL", group=groupEnTpSl, tooltip="ATR Length for SL/TP calculation")
+atrRisk = input.float(1, "ATR Risk SL", group=groupEnTpSl, tooltip="ATR Risk multiplier (e.g. 1.5 or 1.9)")
+
+atrBand = ta.atr(atrLen) * atrRisk
+trigger = advancedBullishEntry ? 1 : 0
+atrStop = trigger == 1 ? low - atrBand : high + atrBand
+
+lastTrade(src) => ta.valuewhen(advancedBullishEntry or advancedBearishEntry, src, 0)
+
+entryLabel = levels ? label.new(time, close, "ENTRY " + str.tostring(lastTrade(close), "#.######"), 
+   xloc=xloc.bar_time, yloc=yloc.price, color=#501da800, style=label.style_label_left, 
+   textcolor=color.rgb(4,158,214), size=size.normal) : na
+if not na(entryLabel)
+    label.set_y(entryLabel, lastTrade(close))
+    label.delete(entryLabel[1])
+
+tp1_y = (lastTrade(close) - lastTrade(atrStop)) * 1 + lastTrade(close)
+tp1 = levels ? label.new(time, close, "TP1: " + str.tostring(tp1_y, "#.#####"), 
+   xloc=xloc.bar_time, yloc=yloc.price, color=#51ff0000, style=label.style_label_left, 
+   textcolor=#01ff16, size=size.normal) : na
+if not na(tp1)
+    label.set_y(tp1, tp1_y)
+    label.delete(tp1[1])
+
+tp2_y = (lastTrade(close) - lastTrade(atrStop)) * 2 + lastTrade(close)
+tp2 = levels ? label.new(time, close, "TP2: " + str.tostring(tp2_y, "#.#####"), 
+   xloc=xloc.bar_time, yloc=yloc.price, color=#51ff0000, style=label.style_label_left, 
+   textcolor=#01ff16, size=size.normal) : na
+if not na(tp2)
+    label.set_y(tp2, tp2_y)
+    label.delete(tp2[1])
+
+tp3_y = (lastTrade(close) - lastTrade(atrStop)) * 3 + lastTrade(close)
+tp3 = levels ? label.new(time, close, "TP3: " + str.tostring(tp3_y, "#.#####"), 
+   xloc=xloc.bar_time, yloc=yloc.price, color=#51ff0000, style=label.style_label_left, 
+   textcolor=#01ff16, size=size.normal) : na
+if not na(tp3)
+    label.set_y(tp3, tp3_y)
+    label.delete(tp3[1])
+// ==========================================================================================
+
+// === Dashboard with Telegram Link ===
+var table myTable = table.new(position.top_center, 1, 1, border_width=1, frame_color=color.black, bgcolor=color.white)
+
+// Add Telegram Message to Dashboard
+table.cell(myTable, 0, 0, "Join Telegram @mrexpert_ai", bgcolor=color.blue, text_color=color.white, text_size=size.normal)

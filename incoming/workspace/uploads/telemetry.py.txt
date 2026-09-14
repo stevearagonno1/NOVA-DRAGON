@@ -1,0 +1,183 @@
+"""Module 10 — Master Telemetry Database (the Quant Matrix).
+
+Patch 5: lock-free, burst-proof persistence. Callers never touch SQLite:
+log_trade() only enqueues into an asyncio.Queue; a single background writer
+task drains the queue into BATCHED executemany transactions (≤200 rows or on
+demand flush), so HFT bursts collapse into one commit and the DB never locks
+the event loop. WAL mode + aiosqlite keep reads (status/export) concurrent.
+"""
+from __future__ import annotations
+
+import asyncio
+import csv
+import json
+import time
+
+import aiosqlite
+
+from . import config as C
+
+_SCHEMA = """
+CREATE TABLE IF NOT EXISTS trades(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    ts INTEGER NOT NULL,
+    mode TEXT NOT NULL,
+    Market_Regime TEXT NOT NULL,
+    Symbol_and_Setup TEXT NOT NULL,
+    Telemetry_JSON TEXT NOT NULL,
+    Exit_Trigger TEXT NOT NULL,
+    Net_Outcome REAL NOT NULL,
+    pnl_usd REAL NOT NULL
+);
+CREATE INDEX IF NOT EXISTS ix_trades_regime ON trades(Market_Regime);
+CREATE TABLE IF NOT EXISTS session(
+    id INTEGER PRIMARY KEY CHECK(id = 1),
+    wins INTEGER NOT NULL DEFAULT 0,
+    losses INTEGER NOT NULL DEFAULT 0,
+    trades INTEGER NOT NULL DEFAULT 0,
+    net_pnl REAL NOT NULL DEFAULT 0.0,
+    start_ts REAL NOT NULL
+);
+"""
+
+_INSERT = ("INSERT INTO trades(ts,mode,Market_Regime,Symbol_and_Setup,"
+           "Telemetry_JSON,Exit_Trigger,Net_Outcome,pnl_usd) "
+           "VALUES(?,?,?,?,?,?,?,?)")
+_STOP = object()
+_BATCH_MAX = 200
+
+
+class TelemetryDB:
+    def __init__(self, path=C.DB_PATH):
+        self.path = str(path)
+        self.db: aiosqlite.Connection | None = None
+        self.lock = asyncio.Lock()                       # guards read ops
+        self._q: asyncio.Queue = asyncio.Queue(maxsize=10_000)
+        self._writer: asyncio.Task | None = None
+
+    # ------------------------------------------------------------ lifecycle
+    async def init(self) -> None:
+        self.db = await aiosqlite.connect(self.path)
+        await self.db.execute("PRAGMA journal_mode=WAL;")
+        await self.db.execute("PRAGMA synchronous=NORMAL;")
+        await self.db.executescript(_SCHEMA)
+        await self.db.execute(
+            "INSERT OR IGNORE INTO session(id, start_ts) VALUES(1, ?)", (time.time(),))
+        await self.db.commit()
+        self._writer = asyncio.create_task(self._write_loop(), name="telemetry-writer")
+
+    # ------------------------------------------------------- producer side
+    async def log_trade(self, *, ts: int, mode: str, regime: str,
+                        symbol_setup: str, telemetry: dict,
+                        exit_trigger: str, net_outcome: float, pnl_usd: float) -> None:
+        """Fire-and-forget: pure enqueue — never touches the DB handle."""
+        payload = (ts, mode, regime, symbol_setup,
+                   json.dumps(telemetry, default=str), exit_trigger,
+                   net_outcome, pnl_usd)
+        if self._q.full():                                # extreme burst: shed
+            self._q.get_nowait()
+            self._q.task_done()
+        self._q.put_nowait(payload)
+
+    # ------------------------------------------------------- consumer side
+    async def _write_loop(self) -> None:
+        buf: list[tuple] = []
+        try:
+            while True:
+                item = await self._q.get()
+                if item is _STOP:
+                    self._q.task_done()
+                    break
+                buf.append(item)
+                while len(buf) < _BATCH_MAX and not self._q.empty():   # drain burst
+                    buf.append(self._q.get_nowait())
+                await self._commit(buf)
+                for _ in buf:
+                    self._q.task_done()
+                buf.clear()
+        except asyncio.CancelledError:
+            raise
+        except Exception as exc:                          # keep the loop alive
+            import logging
+            logging.getLogger("nova.telemetry").error("writer crashed: %s", exc)
+
+    async def _commit(self, rows: list[tuple]) -> None:
+        """ONE transaction per burst — no lock contention under HFT load."""
+        try:
+            # payload layout: (ts, mode, regime, setup, json, exit, net, pnl)
+            wins = sum(1 for r in rows if r[6] > 0)
+            pnl = sum(r[7] for r in rows)
+            await self.db.executemany(_INSERT, rows)
+            await self.db.execute(
+                "UPDATE session SET wins=wins+?, losses=losses+?,"
+                " trades=trades+?, net_pnl=net_pnl+? WHERE id=1",
+                (wins, len(rows) - wins, len(rows), pnl))
+            await self.db.commit()
+        except Exception as exc:
+            import logging
+            logging.getLogger("nova.telemetry").warning("batch commit failed: %s", exc)
+
+    async def flush(self) -> None:
+        """Wait until the queue is fully persisted (read-after-write safety)."""
+        await self._q.join()
+
+    # ------------------------------------------------------------ read side
+    async def session_stats(self) -> dict:
+        await self.flush()
+        async with self.lock:
+            cur = await self.db.execute(
+                "SELECT wins,losses,trades,net_pnl,start_ts FROM session WHERE id=1")
+            row = await cur.fetchone()
+            await cur.close()
+        wins, losses, trades, pnl, start = row if row else (0, 0, 0, 0.0, time.time())
+        total = wins + losses
+        win = (wins / total * 100.0) if total else 0.0
+        weeks = max((time.time() - start) / (7 * 86400), 1e-9)
+        return {
+            "win_pct": round(win, 2), "loss_pct": round(100.0 - win, 2) if total else 0.0,
+            "net_pnl": round(pnl, 4), "win_rate": round(win, 2),
+            "weekly_avg": round(trades / max(weeks, 1 / 7), 1), "trades": trades,
+        }
+
+    async def reset_session(self) -> None:
+        await self.flush()
+        async with self.lock:
+            await self.db.execute(
+                "UPDATE session SET wins=0, losses=0, trades=0, net_pnl=0.0,"
+                " start_ts=? WHERE id=1", (time.time(),))
+            await self.db.commit()
+
+    async def export_csv(self, path=C.EXPORT_PATH) -> str:
+        """Regime-grouped, performance-ranked export.
+        ORDER BY Market_Regime ASC, Net_Outcome DESC"""
+        await self.flush()
+        async with self.lock:
+            cur = await self.db.execute(
+                "SELECT id, ts, mode, Market_Regime, Symbol_and_Setup, Telemetry_JSON,"
+                " Exit_Trigger, Net_Outcome, pnl_usd FROM trades"
+                " ORDER BY Market_Regime ASC, Net_Outcome DESC")
+            rows = await cur.fetchall()
+            await cur.close()
+
+        def _write() -> str:                       # blocking I/O off the loop
+            with open(path, "w", newline="", encoding="utf-8") as fh:
+                w = csv.writer(fh)
+                w.writerow(["id", "ts", "mode", "Market_Regime", "Symbol_and_Setup",
+                            "Telemetry_JSON", "Exit_Trigger", "Net_Outcome", "pnl_usd"])
+                w.writerows(rows)
+            return str(path)
+
+        return await asyncio.to_thread(_write)
+
+    async def close(self) -> None:
+        if self._writer is not None:
+            try:
+                await self.flush()
+                self._q.put_nowait(_STOP)
+                await asyncio.wait_for(self._writer, timeout=5.0)
+            except Exception:
+                self._writer.cancel()
+            self._writer = None
+        if self.db is not None:
+            await self.db.close()
+            self.db = None

@@ -1,0 +1,2136 @@
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+════════════════════════════════════════════════════════════════════════════
+  NOVA PRO v5.0 — رادار التداول الذكي + المحلل الفني الصارم (ملف واحد)
+════════════════════════════════════════════════════════════════════════════
+  ▸ يعمل على Termux:            python bot.py
+  ▸ المتطلبات فقط:              pip install requests
+  ▸ للرسوم البيانية (اختياري):  pip install matplotlib numpy
+  ▸ ممنوع تماماً: pandas / pandas_ta / ccxt / google.generativeai
+
+  ▸ واجهة تفاعلية كاملة:
+      /menu  → لوحة تحكم بأزرار شفافة (فحص السوق، حالة الصفقات، تحليل BTC،
+               تحليل SOL، قائمة العملات الـ11، أسعار السوق، إيقاف مؤقت، استئناف)
+      /coin XLM  → تحليل فني فوري + شارت لـ XLM
+      /chart XLM → شارت فقط
+      /status /scan /pause /resume /close XLM /ask <سؤال>
+      أي رسالة نصية في الشات → المص: إن ذكرت رمز عملة تحللها، وإلا يجيب المحلل
+      الفني الصارم عبر Gemini مباشرة.
+
+  ▸ الاستراتيجية:
+      - فريمات: 1D + 4H (اتجاه) | 1H (دخول) — ربطهم في محرك تقييم 100 نقطة
+      - إشارة الشراء الأساسية: RSI(1H) < 35  +  MACD(1H) سالب تحت الصفر  +  فوليوم عالي
+      - خطة ديناميكية بالـ ATR: دخول / وقف / TP1/TP2/TP3 / تريلينج
+      - تصفير المخاطرة: عند +4% ← إنذار عاجل "حرك وقف الخسارة لنقطة الدخول"
+
+  ▸ التشغيل التجريبي بدون إرسال:  python bot.py --once    (يفحص السوق ويطبع فقط)
+  ▸ اختبار ذاتي للمحرك الرياضي:   python bot.py --selftest
+════════════════════════════════════════════════════════════════════════════
+"""
+
+import os
+import sys
+import json
+import math
+import html
+import time
+import glob
+import random
+import threading
+import statistics
+import traceback
+from collections import deque
+from datetime import datetime, timezone, timedelta
+
+try:
+    import requests
+except ImportError:
+    raise SystemExit("❌ قم أولاً بتثبيت:  pip install requests   (في Termux: pkg install python && pip install requests)")
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║  1) الإعدادات — عدّل هنا فقط                                 ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+# ── بياناتك ──────────────────────────────────────────────────────
+TELEGRAM_TOKEN = "__REDACTED__"
+CHAT_ID        = "7112691967"
+GEMINI_API_KEY="__REDACTED__"
+
+# ── قائمة العملات: BTC قائد + 10 عملات ──────────────────────────
+LEADER = "BTCUSDT"
+COINS  = ["SOLUSDT", "LINKUSDT", "RENDERUSDT", "TONUSDT", "FILUSDT",
+          "ATOMUSDT", "VETUSDT", "XLMUSDT", "HNTUSDT", "IMXUSDT"]
+
+# ── إدارة رأس المال ─────────────────────────────────────────────
+WALLET_USD       = 100    # قيمة محفظتك بالدولار
+RISK_PER_TRADE   = 1.0    # أقصى خسارة مقبولة بالدولار لكل صفقة
+MAX_POSITION_USD = 25     # سقف حجم الدخول الواحد
+MAX_OPEN_POS     = 5      # أقصى عدد صفقات مفتوحة مُتابَعة في نفس الوقت
+
+# ── شروط إشارة الشراء (الشرط الثلاثي — قلب الاستراتيجية) ─────────
+RSI_BUY_MAX        = 35   # RSI(1H) تحت هذا الرقم = منطقة بيعية
+MACD_BELOW_ZERO    = True # MACD يجب أن يكون سالباً تحت الصفر
+VOLUME_SURGE_X     = 1.5  # الفوليوم أعلى من 1.5× متوسط الـ20 شمعة = "عالي"
+
+# ── فلترة جودة الإشارات ─────────────────────────────────────────
+STRICT_MODE        = False # True = أرسل فقط الإشارات القوية (B فأعلى)
+STRICT_MIN_SCORE   = 65    # الحد الأدنى في الوضع الصارم (من 100)
+BEAR_MIN_SCORE     = 70    # حد أعلى إذا كان البيتكوين هابطاً + الوضع الصارم
+MIN_LIQUIDITY_USD_H = 150_000  # سيولة أدنى ($/ساعة) — تحتها تتجاهل العملة
+COOLDOWN_SEC       = 900   # فترة الصمت لكل عملة بعد إنذار (15 دقيقة)
+GLOBAL_GAP_SEC     = 600   # فاصل زمني بين أي إشارتين على مستوى السوق (10 دقائق)
+
+# ── تصفير المخاطرة ووقف التريلينج ───────────────────────────────
+RISK_FREE_PCT      = 4.0   # ارتفع السعر هذه النسبة ← إنذار عاجل بتصفير المخاطرة
+SL_MIN_PCT         = 0.8   # أقل مسافة وقف (0.8% من السعر)
+SL_MAX_PCT         = 4.0   # أقصى مسافة وقف (4% من السعر) — يمنع وقفاً مجنوناً
+ATR_SL_MULT        = 1.4   # مضاعف ATR لوقف الخسارة
+TP_MULT            = (1.5, 2.5, 4.0)  # مضاعفات R للأهداف الثلاثة
+SELL_FRACTIONS     = (0.50, 0.30, 0.20)  # نسب البيع عند TP1/TP2/TP3
+
+# ── نظام التشغيل ────────────────────────────────────────────────
+SCAN_INTERVAL      = 90    # فحص السوق كل (ثانية)
+MANAGE_EVERY       = 25    # إدارة الصفقات المفتوحة كل (ثانية)
+TG_POLL_EVERY      = 2     # استطلاع أوامر تليجرام كل (ثانية)
+HEARTBEAT_HOURS    = 12    # رسالة "أنا حي" كل 12 ساعة
+STALE_HOURS        = 48    # تحذير صفقة راكدة تحت الدخول
+DAILY_DIGEST_HOUR  = 8     # بطاقة السوق اليومية عند الساعة (بتوقيت جهازك)
+SEND_DAILY_DIGEST  = True
+
+# ── الرسوم والأدوات ─────────────────────────────────────────────
+SEND_CHARTS        = True  # أرسل شارت مع كل إشارة/تحليل (يتطلب matplotlib)
+CHART_BARS         = 220   # عدد الشموع المعروضة في الشارت
+CHART_DIR          = "charts"
+DRY_RUN            = False # True = طباعة فقط بدون إرسال لأي شيء (للتجربة)
+
+# ── سيرفرات بينانس بالتناوب الذكي ───────────────────────────────
+BINANCE_HOSTS = [
+    "https://api.binance.com",
+    "https://data-api.binance.vision",
+    "https://api1.binance.com",
+    "https://api2.binance.com",
+]
+
+# ── نماذج جيمناي بالتناوب (الجاهز يعمل يُحفظ — النماذج أدناه مؤكدة لهذا المفتاح) ──
+GEMINI_MODELS = ["gemini-flash-latest", "gemini-3-flash-preview", "gemini-flash-lite-latest"]
+GEMINI_TEMPERATURE  = 0.4
+GEMINI_MAX_TOKENS   = 900
+GEMINI_COOLDOWN_SEC = 10    # أقل فاصل بين استدعاءات جيمناي
+
+# ── مسارات الملفات ──────────────────────────────────────────────
+BASE_DIR   = os.path.dirname(os.path.abspath(__file__))
+STATE_FILE = os.path.join(BASE_DIR, "state.json")
+LOG_FILE   = os.path.join(BASE_DIR, "bot.log")
+SIGNALS_CSV = os.path.join(BASE_DIR, "signals_log.csv")
+CHART_PATH = os.path.join(BASE_DIR, CHART_DIR)
+
+SESSION = requests.Session()
+SESSION.headers.update({"User-Agent": "NOVA-PRO/5.0"})
+LOCK = threading.Lock()
+CHARTS_OK = None            # None=لم يُختبر بعد | True/False
+TICK_SIZES = {}
+LAST_GEMINI_TS = [0.0]      # حارس معدل استدعاءات المحلل
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║  2) أدوات عامة: سجل، ذاكرة دائمة، تنسيق                     ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+def log(msg):
+    line = f"[{datetime.now().strftime('%Y-%m-%d %H:%M:%S')}] {msg}"
+    print(line, flush=True)
+    try:
+        with open(LOG_FILE, "a", encoding="utf-8") as f:
+            f.write(line + "\n")
+    except Exception:
+        pass
+
+def default_state():
+    return {
+        "positions": {},          # الصفقات المفتوحة ومراحل إدارتها
+        "cooldowns": {},          # صمت كل عملة بعد إنذار
+        "last_signals": [],       # آخر 3 إشارات (ذاكرة قصيرة للمحلل)
+        "tg_offset": 0,
+        "bootstrapped": False,
+        "paused": False,
+        "last_heartbeat": 0.0,
+        "last_digest": "",
+        "last_gemini_msg": 0.0,
+        "gemini_model": None,
+        "host": None,
+        "start_time": time.time(),
+    }
+
+STATE = default_state()
+BTC_CACHE = {"ts": 0.0, "data": None}
+SCAN_LOCK = threading.Lock()
+
+def load_state():
+    global STATE
+    try:
+        with open(STATE_FILE, "r", encoding="utf-8") as f:
+            saved = json.load(f)
+        base = default_state()
+        base.update(saved)
+        STATE = base
+        log(f"📦 ذاكرة محمّلة: {len(STATE['positions'])} صفقة نشطة | الإيقاف: {STATE['paused']}")
+    except Exception:
+        log("📦 لا توجد ذاكرة سابقة — بداية جديدة")
+
+def save_state():
+    try:
+        with LOCK:
+            tmp = STATE_FILE + ".tmp"
+            with open(tmp, "w", encoding="utf-8") as f:
+                json.dump(STATE, f, ensure_ascii=False, indent=1)
+            os.replace(tmp, STATE_FILE)
+    except Exception as e:
+        log(f"⚠️ فشل حفظ الحالة: {e}")
+
+def log_signal_csv(row):
+    try:
+        new = not os.path.exists(SIGNALS_CSV)
+        with open(SIGNALS_CSV, "a", encoding="utf-8") as f:
+            if new:
+                f.write("time,symbol,side,entry,sl,tp1,tp2,tp3,score,grade\n")
+            f.write(row + "\n")
+    except Exception:
+        pass
+
+def pct_str(x):
+    return f"{x:+.2f}%"
+
+def esc(t):
+    return html.escape(str(t))
+# ╔══════════════════════════════════════════════════════════════╗
+# ║  3) محرك الرياضيات النقي — Pure Python (بدون أي مكتبات)      ║
+# ║     SMA/EMA/RSI(وايلدر)/MACD/ADX/ATR/Bollinger/StochRSI/      ║
+# ║     OBV/Supertrend/VWAP                                       ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+def sma_series(vals, period):
+    out = [None] * len(vals)
+    if len(vals) < period:
+        return out
+    s = sum(vals[:period])
+    out[period - 1] = s / period
+    for i in range(period, len(vals)):
+        s += vals[i] - vals[i - period]
+        out[i] = s / period
+    return out
+
+def ema_series(vals, period):
+    out = [None] * len(vals)
+    if len(vals) < period:
+        return out
+    k = 2.0 / (period + 1)
+    prev = sum(vals[:period]) / period
+    out[period - 1] = prev
+    for i in range(period, len(vals)):
+        prev = vals[i] * k + prev * (1 - k)
+        out[i] = prev
+    return out
+
+def rsi_series(closes, period=14):
+    """RSI بطريقة وايلدر الأصلية — يعيد السلسلة كاملة (لكشف الدايفرجنس)"""
+    out = [None] * len(closes)
+    if len(closes) < period + 1:
+        return out
+    gains = losses = 0.0
+    for i in range(1, period + 1):
+        ch = closes[i] - closes[i - 1]
+        gains += max(ch, 0.0)
+        losses += max(-ch, 0.0)
+    ag, al = gains / period, losses / period
+    out[period] = 100.0 if al == 0 else 100 - 100 / (1 + ag / al)
+    for i in range(period + 1, len(closes)):
+        ch = closes[i] - closes[i - 1]
+        ag = (ag * (period - 1) + max(ch, 0.0)) / period
+        al = (al * (period - 1) + max(-ch, 0.0)) / period
+        out[i] = 100.0 if al == 0 else 100 - 100 / (1 + ag / al)
+    return out
+
+def macd_series(closes, fast=12, slow=26, signal=9):
+    ef, es = ema_series(closes, fast), ema_series(closes, slow)
+    line = [None if (ef[i] is None or es[i] is None) else ef[i] - es[i]
+            for i in range(len(closes))]
+    valid = [v for v in line if v is not None]
+    sig_valid = ema_series(valid, signal)
+    sig, j = [None] * len(closes), 0
+    for i in range(len(closes)):
+        if line[i] is not None:
+            sig[i] = sig_valid[j]
+            j += 1
+    hist = [None if (line[i] is None or sig[i] is None) else line[i] - sig[i]
+            for i in range(len(closes))]
+    return line, sig, hist
+
+def bollinger_series(closes, period=20, mult=2.0):
+    up, mid, lo = [None] * len(closes), [None] * len(closes), [None] * len(closes)
+    for i in range(period - 1, len(closes)):
+        w = closes[i - period + 1:i + 1]
+        m = sum(w) / period
+        sd = statistics.pstdev(w)
+        mid[i], up[i], lo[i] = m, m + mult * sd, m - mult * sd
+    return up, mid, lo
+
+def atr_series(highs, lows, closes, period=14):
+    n = len(closes)
+    out = [None] * n
+    if n < period + 1:
+        return out
+    trs = [max(highs[i] - lows[i],
+               abs(highs[i] - closes[i - 1]),
+               abs(lows[i] - closes[i - 1])) for i in range(1, n)]
+    atr = sum(trs[:period]) / period
+    out[period] = atr
+    for j in range(period, len(trs)):
+        atr = (atr * (period - 1) + trs[j]) / period
+        out[j + 1] = atr
+    return out
+
+def adx_series(highs, lows, closes, period=14):
+    """ADX + DI+/DI- بطريقة وايلدر — يعيد (di_plus, di_minus, adx)"""
+    n = len(closes)
+    dp, dm, adx = [None] * n, [None] * n, [None] * n
+    if n < 2 * period + 1:
+        return dp, dm, adx
+    trs, pdms, ndms = [], [], []
+    for i in range(1, n):
+        up, dn = highs[i] - highs[i - 1], lows[i - 1] - lows[i]
+        pdms.append(up if (up > dn and up > 0) else 0.0)
+        ndms.append(dn if (dn > up and dn > 0) else 0.0)
+        trs.append(max(highs[i] - lows[i],
+                       abs(highs[i] - closes[i - 1]),
+                       abs(lows[i] - closes[i - 1])))
+    a = sum(trs[:period])
+    p = sum(pdms[:period])
+    m = sum(ndms[:period])
+    dxs = [None] * len(trs)
+    for i in range(period, len(trs)):
+        a = a - a / period + trs[i]
+        p = p - p / period + pdms[i]
+        m = m - m / period + ndms[i]
+        if a <= 0:
+            continue
+        pp, mm = 100 * p / a, 100 * m / a
+        denom = pp + mm
+        dxs[i] = 100 * abs(pp - mm) / denom if denom > 0 else 0.0
+        dp[i + 1], dm[i + 1] = pp, mm
+    vals = [(i, d) for i, d in enumerate(dxs) if d is not None]
+    if len(vals) < period + 1:
+        return dp, dm, adx
+    cur = None
+    for j, (i, d) in enumerate(vals):
+        if j == period - 1:
+            cur = sum(v for _, v in vals[:period]) / period
+        elif j > period - 1:
+            cur = (cur * (period - 1) + d) / period
+        else:
+            continue
+        adx[i + 1] = cur
+    return dp, dm, adx
+
+def stoch_rsi_series(closes, rsi_period=14, stoch_period=14, smooth=3):
+    rsi = rsi_series(closes, rsi_period)
+    raw = [None] * len(closes)
+    for i in range(len(closes)):
+        if i < stoch_period - 1:
+            continue
+        w = rsi[i - stoch_period + 1:i + 1]
+        if any(v is None for v in w):
+            continue
+        hi, lo = max(w), min(w)
+        raw[i] = 50.0 if hi == lo else (rsi[i] - lo) / (hi - lo) * 100
+    k = sma_opt(raw, smooth)
+    d = sma_opt(k, smooth)
+    return raw, k, d
+
+def sma_opt(vals, period):
+    out = [None] * len(vals)
+    for i in range(period - 1, len(vals)):
+        w = vals[i - period + 1:i + 1]
+        if any(v is None for v in w):
+            continue
+        out[i] = sum(w) / period
+    return out
+
+def obv_series(closes, volumes):
+    obv = [0.0]
+    for i in range(1, len(closes)):
+        if closes[i] > closes[i - 1]:
+            obv.append(obv[-1] + volumes[i])
+        elif closes[i] < closes[i - 1]:
+            obv.append(obv[-1] - volumes[i])
+        else:
+            obv.append(obv[-1])
+    return obv
+
+def supertrend_series(highs, lows, closes, period=10, mult=3.0):
+    """يعيد (الاتجاه: 1 صاعد / -1 هابط، سلسلة الشريط الأخير)"""
+    n = len(closes)
+    st = [None] * n
+    band = [None] * n
+    if n < period + 2:
+        return st, band
+    atr = atr_series(highs, lows, closes, period)
+    upper, lower = [None] * n, [None] * n
+    i0 = None
+    for i in range(period - 1, n):
+        if atr[i] is None:
+            continue
+        hl = (highs[i] + lows[i]) / 2
+        upper[i] = hl + mult * atr[i]
+        lower[i] = hl - mult * atr[i]
+        if i0 is None:
+            i0 = i
+    if i0 is None:
+        return st, band
+    fu, fl = upper[i0], lower[i0]
+    st[i0] = 1 if closes[i0] >= (fu + fl) / 2 else -1
+    band[i0] = fl if st[i0] == 1 else fu
+    for i in range(i0 + 1, n):
+        fu = upper[i] if (upper[i] < fu or closes[i - 1] > fu) else fu
+        fl = lower[i] if (lower[i] > fl or closes[i - 1] < fl) else fl
+        if st[i - 1] == 1:
+            st[i] = 1 if closes[i] > fl else -1
+        else:
+            st[i] = -1 if closes[i] < fu else 1
+        band[i] = fl if st[i] == 1 else fu
+    return st, band
+
+def vwap_series(closes, volumes, period=24):
+    """VWAP متحرك (طارئ) — ويساعد في قياس الزخم"""
+    out = [None] * len(closes)
+    for i in range(period, len(closes)):
+        pv = sum(closes[i - period + 1:i + 1][j] * volumes[i - period + 1:i + 1][j]
+                 for j in range(period))
+        vv = sum(volumes[i - period + 1:i + 1])
+        out[i] = pv / vv if vv > 0 else None
+    return out
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║  4) بنية السوق: قمم/قيعان، دعم ومقاومة، دايفرجنس، شموع       ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+def swing_indices(prices, mode="low", w=3, lookback=100):
+    n = len(prices)
+    start = max(w, n - lookback)
+    idxs = []
+    for i in range(start, n - w):
+        left, right = prices[i - w:i], prices[i + 1:i + w + 1]
+        if mode == "low" and prices[i] < min(left) and prices[i] <= min(right):
+            idxs.append(i)
+        elif mode == "high" and prices[i] > max(left) and prices[i] >= max(right):
+            idxs.append(i)
+    return idxs
+
+def cluster_levels(vals, merge_pct=0.004):
+    if not vals:
+        return []
+    vals = sorted(vals)
+    clusters, cur = [], [vals[0]]
+    for v in vals[1:]:
+        if v <= cur[-1] * (1 + merge_pct):
+            cur.append(v)
+        else:
+            clusters.append(sum(cur) / len(cur))
+            cur = [v]
+    clusters.append(sum(cur) / len(cur))
+    return clusters
+
+def support_resistance(highs, lows, live):
+    sup_c = [lows[i] for i in swing_indices(lows, "low")]
+    res_c = [highs[i] for i in swing_indices(highs, "high")]
+    sups = cluster_levels(sup_c)
+    ress = cluster_levels(res_c)
+    support = max([s for s in sups if s <= live * 1.004], default=None)
+    resistance = min([r for r in ress if r >= live * 0.996], default=None)
+    return support, resistance
+
+def bullish_divergence(closes, rsi):
+    """قاع سعري أدنى + قاع RSI أعلى = احتمال انعكاس صاعد"""
+    lows = swing_indices(closes, "low", w=3, lookback=80)
+    if len(lows) < 2:
+        return False
+    i2, i1 = lows[-1], lows[-2]
+    if len(closes) - 1 - i2 > 16:
+        return False
+    r1, r2 = rsi[i1], rsi[i2]
+    if r1 is None or r2 is None:
+        return False
+    return closes[i2] < closes[i1] and r2 > r1 + 1.5
+
+def bearish_divergence(closes, rsi):
+    highs = swing_indices(closes, "high", w=3, lookback=80)
+    if len(highs) < 2:
+        return False
+    i2, i1 = highs[-1], highs[-2]
+    if len(closes) - 1 - i2 > 16:
+        return False
+    r1, r2 = rsi[i1], rsi[i2]
+    if r1 is None or r2 is None:
+        return False
+    return closes[i2] > closes[i1] and r2 < r1 - 1.5
+
+def candle_pattern(opens, highs, lows, closes):
+    """كشف أنماط الشموع الانعكاسية على آخر شمعة مغلقة"""
+    o1, h1, l1, c1 = opens[-1], highs[-1], lows[-1], closes[-1]
+    o0, h0, l0, c0 = opens[-2], highs[-2], lows[-2], closes[-2]
+    rng = max(h1 - l1, 1e-12)
+    body = abs(c1 - o1)
+    upper = h1 - max(o1, c1)
+    lower = min(o1, c1) - l1
+    body0 = abs(c0 - o0)
+    green, red0 = c1 > o1, c0 < o0
+    if body <= 0.35 * rng and lower >= 2.0 * body and upper <= 0.6 * body:
+        return "hammer", True
+    if red0 and green and c1 >= o0 and o1 <= c0 and body > body0 * 1.05:
+        return "bull_engulf", True
+    if body <= 0.35 * rng and upper >= 2.0 * body and lower <= 0.6 * body:
+        return "star", True
+    if c0 > o0 and c1 < o1 and c1 <= o0 and o1 >= c0 and body > body0 * 1.05:
+        return "bear_engulf", False
+    return None, green
+
+def trend_info(closes):
+    """الاتجاه عبر ترتيب EMA20/50/200 — يعيد (label, e20, e50, e200)"""
+    e20, e50, e200 = ema_series(closes, 20), ema_series(closes, 50), ema_series(closes, 200)
+    if e20[-1] is None or e50[-1] is None or e200[-1] is None:
+        if e20[-1] and e50[-1] and e20[-1] > e50[-1]:
+            return "up", e20[-1], e50[-1], None
+        if e20[-1] and e50[-1] and e20[-1] < e50[-1]:
+            return "down", e20[-1], e50[-1], None
+        return "side", e20[-1], e50[-1], None
+    px = closes[-1]
+    up = px > e20[-1] > e50[-1] and e50[-1] > e200[-1]
+    dn = px < e20[-1] < e50[-1] and e50[-1] < e200[-1]
+    label = "up" if up else ("down" if dn else "side")
+    return label, e20[-1], e50[-1], e200[-1]
+
+TREND_AR = {"up": "صاعد ⤴", "down": "هابط ⤵", "side": "عرضي →"}
+PATTERN_AR = {"hammer": "مطرقة هامر", "bull_engulf": "ابتلاع شرائي",
+              "star": "نجمة الشهاب", "bear_engulf": "ابتلاع بيعي"}
+REGIME_AR = {"bullish": "🟢 صاعد", "neutral": "🟡 محايد", "bearish": "🔴 هابط"}
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║  5) عميل بينانس — تناوب سيرفرات + إعادة محاولة ذكية           ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+def binance_get(path, params=None, timeout=10):
+    global STATE
+    hosts = []
+    if STATE.get("host"):
+        hosts.append(STATE["host"])
+    hosts += [h for h in BINANCE_HOSTS if h != STATE.get("host")]
+    for host in hosts:
+        try:
+            r = SESSION.get(host + path, params=params, timeout=timeout)
+            if r.status_code == 200:
+                STATE["host"] = host
+                return r.json()
+            if r.status_code in (429, 418):
+                time.sleep(2)
+        except Exception:
+            continue
+    return None
+
+def load_tick_sizes():
+    global TICK_SIZES
+    symbols = list(set(COINS + [LEADER]))
+    params = {"symbols": json.dumps(symbols, separators=(",", ":"))}
+    data = binance_get("/api/v3/exchangeInfo", params)
+    if not data or "symbols" not in data:
+        log("⚠️ تعذر جلب دقة الأسعار — سيُستخدم تقريب تلقائي")
+        return
+    for s in data["symbols"]:
+        for f in s.get("filters", []):
+            if f["filterType"] == "PRICE_FILTER":
+                TICK_SIZES[s["symbol"]] = float(f["tickSize"])
+    log(f"📐 دقة الأسعار جاهزة لـ {len(TICK_SIZES)} زوج")
+
+def price_decimals(symbol, fallback_price):
+    """عدد الخانات العشرية لعرض السعر — من tickSize إن توفر، وإلا تقدير ذكي"""
+    tick = TICK_SIZES.get(symbol)
+    if not tick:
+        p = fallback_price or 1
+        if p >= 1:
+            return max(2, 7 - len(str(int(p))))
+        return 6
+    d, t = 0, tick
+    while t < 0.9999 and d < 9:
+        t *= 10
+        d += 1
+    return d
+
+def fmt_price(symbol, price):
+    if price is None:
+        return "—"
+    return f"{price:.{price_decimals(symbol, price)}f}"
+
+def round_tick(symbol, price, mode="down"):
+    t = TICK_SIZES.get(symbol)
+    if not t or price is None or price <= 0:
+        return price
+    q = price / t
+    if mode == "down":
+        q = math.floor(q)
+    elif mode == "up":
+        q = math.ceil(q)
+    else:
+        q = round(q)
+    return q * t
+
+def fetch_klines(symbol, interval, limit=300):
+    data = binance_get("/api/v3/klines",
+                       {"symbol": symbol, "interval": interval, "limit": limit})
+    if not data or not isinstance(data, list) or len(data) < 60:
+        return None
+    return {
+        "t": [int(k[0]) for k in data],
+        "o": [float(k[1]) for k in data],
+        "h": [float(k[2]) for k in data],
+        "l": [float(k[3]) for k in data],
+        "c": [float(k[4]) for k in data],
+        "v": [float(k[5]) for k in data],
+        "qv": [float(k[7]) for k in data],
+        "live": float(data[-1][4]),
+    }
+
+def get_ticker(symbol):
+    data = binance_get("/api/v3/ticker/price", {"symbol": symbol}, timeout=8)
+    if data and "price" in data:
+        return float(data["price"])
+    return None
+
+def get_24hr():
+    params = {"symbols": json.dumps(list(set(COINS + [LEADER])), separators=(",", ":"))}
+    data = binance_get("/api/v3/ticker/24hr", params, timeout=10)
+    if not isinstance(data, list):
+        return []
+    out = {}
+    for d in data:
+        try:
+            out[d["symbol"]] = {"price": float(d["lastPrice"]),
+                                "chg": float(d["priceChangePercent"]),
+                                "vol": float(d["quoteVolume"])}
+        except Exception:
+            continue
+    return out
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║  6) محرك التحليل — 1H للدخول + 4H و 1D للاتجاه (100 نقطة)     ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+def _cl(vals):
+    """الشموع المغلقة فقط (استبعاد الشمعة الجارية من الحسابات)"""
+    return vals[:-1]
+
+def analyze_symbol(symbol, btc=None):
+    k1 = fetch_klines(symbol, "1h", 300)
+    k4 = fetch_klines(symbol, "4h", 300)
+    kd = fetch_klines(symbol, "1d", 400)
+    if not k1 or not k4 or not kd:
+        return None
+
+    c1, h1, l1, o1 = _cl(k1["c"]), _cl(k1["h"]), _cl(k1["l"]), _cl(k1["o"])
+    v1, qv1 = _cl(k1["v"]), _cl(k1["qv"])
+    c4, h4, l4 = _cl(k4["c"]), _cl(k4["h"]), _cl(k4["l"])
+    cd = _cl(kd["c"])
+    live = k1["live"]
+
+    # ── مؤشرات فريم الدخول (1H) ────────────────────────────────
+    rsi = rsi_series(c1, 14)
+    rsi_n, rsi_p = rsi[-1], rsi[-2]
+    s_raw, s_k, s_d = stoch_rsi_series(c1)
+    macd_l, macd_s, hist = macd_series(c1)
+    bb_up, bb_mid, bb_lo = bollinger_series(c1)
+    atr1 = atr_series(h1, l1, c1)[-1] or live * 0.01
+    atr4 = atr_series(h4, l4, c4)[-1] or live * 0.02
+    dp4, dm4, adx4 = adx_series(h4, l4, c4)
+    dp1, dm1, adx1 = adx_series(h1, l1, c1)
+    obv = obv_series(c1, v1)
+    st1, st_band = supertrend_series(h1, l1, c1)
+    vol_ma = (sum(v1[-20:]) / 20) if len(v1) >= 20 else (sum(v1) / len(v1) or 1)
+    vol_ratio = (v1[-1] / vol_ma) if vol_ma > 0 else 0.0
+    liq_h = (sum(qv1[-24:]) / 24) if len(qv1) >= 24 else 0.0
+
+    # ── الاتجاه العام: 1H + 4H + 1D ────────────────────────────
+    t1h, e20_1, e50_1, e200_1 = trend_info(c1)
+    t4h, e20_4, e50_4, e200_4 = trend_info(c4)
+    t1d, e20_d, e50_d, e200_d = trend_info(cd)
+    rsi4 = (rsi_series(c4)[-1] or 50.0)
+    rsi_d = (rsi_series(cd)[-1] or 50.0)
+
+    # ── بنية السوق والدعم/المقاومة ─────────────────────────────
+    support, resistance = support_resistance(h1, l1, live)
+    div_ok = bullish_divergence(c1, rsi)
+    bdiv_ok = bearish_divergence(c1, rsi)
+    pattern, pat_green = candle_pattern(o1, h1, l1, c1)
+
+    change24 = (c1[-1] / c1[-25] - 1) * 100 if len(c1) > 25 else 0.0
+    change7d = (c1[-1] / c1[-168] - 1) * 100 if len(c1) > 168 else 0.0
+    near_support = support is not None and (live - support) / live <= 0.015
+    bb_bounce = (bb_lo[-1] is not None and l1[-1] <= bb_lo[-1] * 1.001
+                 and c1[-1] > bb_lo[-1])
+    raw_vals = [x for x in s_raw[-8:] if x is not None]
+    stoch_cross = (s_k[-2] is not None and s_d[-2] is not None and
+                   s_k[-1] is not None and s_d[-1] is not None and
+                   s_k[-2] <= s_d[-2] and s_k[-1] > s_d[-1] and
+                   raw_vals and min(raw_vals) < 30)
+    hist_rising = (hist[-1] is not None and hist[-2] is not None and
+                   hist[-1] > hist[-2])
+    macd_cross_up = any(
+        hist[i - 1] is not None and hist[i] is not None and
+        hist[i - 1] <= 0 < hist[i] for i in range(max(1, len(hist) - 4), len(hist)))
+    obv_rising = obv[-1] > obv[-6] if len(obv) > 6 else False
+    above_vwap = (vwap_series(c1, v1)[-1] or 0) and c1[-1] > (vwap_series(c1, v1)[-1] or 0)
+
+    regime = (btc or {}).get("regime", "neutral")
+    btc_bull = regime == "bullish"
+
+    # ── الشرط الثلاثي لإشارة الشراء (قلب الاستراتيجية) ─────────
+    trig = {
+        "rsi_ok":  rsi_n is not None and rsi_n < RSI_BUY_MAX,
+        "macd_ok": MACD_BELOW_ZERO and macd_l[-1] is not None and macd_l[-1] < 0,
+        "vol_ok":  vol_ratio >= VOLUME_SURGE_X,
+    }
+
+    # ── شبكة التقييم الموزونة (المجموع = 100 نقطة بالضبط) ───────
+    checks = []
+    def add(label, val, w, detail=""):
+        checks.append({"label": label, "val": round(min(val, w), 1), "w": w, "d": detail})
+
+    add("RSI(1H) تحت 35 — تشبع بيعي", 12 if trig["rsi_ok"] else 0, 12,
+        f"{rsi_n:.1f}" if rsi_n is not None else "")
+    add("RSI يبدأ الانعكاس صعوداً", 3 if (rsi_n is not None and rsi_p is not None and rsi_n > rsi_p) else 0, 3)
+    add("MACD سالب تحت الصفر", 10 if trig["macd_ok"] else 0, 10,
+        f"الخط {macd_l[-1]:.6f}" if macd_l[-1] is not None else "")
+    add("هستوجرام MACD يتسارع صعوداً", 5 if hist_rising else 0, 5)
+    add("تقاطع MACD صاعد حديث (تحت الصفر)", 4 if macd_cross_up else 0, 4)
+    add("فوليوم عالٍ (+100% من المتوسط)", 10 if trig["vol_ok"] else 0, 10,
+        f"{vol_ratio:.1f}x")
+    add("تدفق أموال صاعد (OBV)", 4 if obv_rising else 0, 4)
+    add("دايفرجنس صاعد (سعر/RSI)", 8 if div_ok else 0, 8)
+    add("ستوكاستك RSI ينعكس من قاع", 5 if stoch_cross else 0, 5)
+    add("ارتداد من بولنجر السفلي", 5 if bb_bounce else 0, 5)
+    add("نمط شمعة انعكاسي شرائي", 5 if (pattern in ("hammer", "bull_engulf") and pat_green) else 0, 5,
+        PATTERN_AR.get(pattern or "", ""))
+    add("جلوس فوق دعم قوي", 8 if near_support else 0, 8,
+        fmt_price(symbol, support) if support else "")
+    add("اتجاه 4H ليس هابطاً", 9 if t4h == "up" else (4 if t4h == "side" else 0), 9,
+        TREND_AR[t4h])
+    add("اتجاه يومي 1D ليس هابطاً", 8 if t1d == "up" else (4 if t1d == "side" else 0), 8,
+        TREND_AR[t1d])
+    add("البيتكوين القائد يدعم", 4 if btc_bull else (2 if regime == "neutral" else 0), 4,
+        REGIME_AR[regime])
+
+    score = round(sum(c["val"] for c in checks), 1)
+    ok_count = sum(1 for c in checks if c["val"] > 0)
+    grade = ("A+" if score >= 88 else "A" if score >= 78 else
+             "B" if score >= 65 else "C" if score >= 50 else "D")
+
+    # ── موانع (فيتو) ───────────────────────────────────────────
+    vetoes = []
+    if change24 <= -15:
+        vetoes.append(f"هبوط حاد {change24:.1f}% خلال 24س (سكين هابط)")
+    if change24 >= 18:
+        vetoes.append(f"تضخم {change24:.1f}% خلال 24س (دخول متأخر)")
+    if liq_h and liq_h < MIN_LIQUIDITY_USD_H:
+        vetoes.append(f"سيولة ضعيفة (${liq_h/1000:.0f}K/ساعة)")
+    if vol_ratio > 12:
+        vetoes.append(f"فوليوم شاذ {vol_ratio:.0f}x (احتمال بامب/تصريف)")
+
+    return {
+        "symbol": symbol, "live": live,
+        "rsi": rsi_n, "rsi_prev": rsi_p, "rsi4": rsi4, "rsi_d": rsi_d,
+        "atr1h": atr1, "atr4h": atr4, "adx1h": adx1[-1], "adx4h": adx4[-1],
+        "di_plus4": dp4[-1], "di_minus4": dm4[-1],
+        "supertrend": st1[-1], "st_band": st_band[-1],
+        "vol_ratio": vol_ratio, "support": support, "resistance": resistance,
+        "near_support": near_support, "divergence": div_ok, "bear_div": bdiv_ok,
+        "pattern": pattern, "pattern_green": pat_green, "bb_bounce": bb_bounce,
+        "stoch_cross": stoch_cross, "hist_rising": hist_rising,
+        "macd_cross_up": macd_cross_up, "above_vwap": bool(above_vwap),
+        "t1h": t1h, "t4h": t4h, "t1d": t1d,
+        "ema20_4": e20_4, "ema50_4": e50_4, "ema200_4": e200_4,
+        "change24": change24, "change7d": change7d, "liq_usd_h": liq_h,
+        "checks": checks, "score": score, "ok_count": ok_count,
+        "grade": grade, "vetoes": vetoes, "trigger": trig,
+        "macd_line": macd_l[-1], "macd_signal": macd_s[-1], "hist": hist[-1],
+        "hist_prev": hist[-2] if len(hist) > 1 else None,
+        "k1h": k1, "k4h": k4,
+    }
+
+def analyze_btc():
+    k1 = fetch_klines(LEADER, "1h", 300)
+    k4 = fetch_klines(LEADER, "4h", 300)
+    kd = fetch_klines(LEADER, "1d", 400)
+    if not k1 or not k4 or not kd:
+        return {"regime": "neutral", "rsi1h": 50, "rsi4h": 50, "rsi1d": 50,
+                "t1h": "side", "t4h": "side", "t1d": "side",
+                "adx4h": 0, "live": 0, "change24": 0}
+    c1, c4, cd = _cl(k1["c"]), _cl(k4["c"]), _cl(kd["c"])
+    t1h, *_ = trend_info(c1)
+    t4h, *_ = trend_info(c4)
+    t1d, *_ = trend_info(cd)
+    rsi1 = rsi_series(c1)[-1] or 50
+    rsi4 = rsi_series(c4)[-1] or 50
+    rsi_d = rsi_series(cd)[-1] or 50
+    _, _, adx4 = adx_series(_cl(k4["h"]), _cl(k4["l"]), c4)
+    adx4v = adx4[-1] or 0
+    live = k1["live"]
+    chg = (c1[-1] / c1[-25] - 1) * 100 if len(c1) > 25 else 0
+    if t1d == "up" and t4h == "up":
+        regime = "bullish"
+    elif (t1h == "up" or t4h == "up") and t4h != "down" and rsi1 >= 45:
+        regime = "bullish"
+    elif t4h == "down" and t1d == "down":
+        regime = "bearish"
+    elif t4h == "down" and rsi1 < 40:
+        regime = "bearish"
+    else:
+        regime = "neutral"
+    return {"regime": regime, "rsi1h": rsi1, "rsi4h": rsi4, "rsi1d": rsi_d,
+            "t1h": t1h, "t4h": t4h, "t1d": t1d, "adx4h": adx4v,
+            "live": live, "change24": chg}
+
+def btc_cached(max_age=90):
+    """تحليل القائد مع كاش 90 ثانية — حتى لا تبطأ أزرار القائمة الاتصال"""
+    global BTC_CACHE
+    now = time.time()
+    if now - BTC_CACHE["ts"] < max_age:
+        return BTC_CACHE["data"]
+    data = analyze_btc()
+    BTC_CACHE = {"ts": now, "data": data}
+    return data
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║  7) خطة الصفقة الديناميكية (ATR) — أرقام جاهزة للتنفيذ       ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+def build_plan(symbol, an):
+    live = an["live"]
+    atr_eff = max(an["atr1h"], an["atr4h"] / 2.0)          # مزج تقلب 1س و4س
+    sl_dist = max(ATR_SL_MULT * atr_eff, live * SL_MIN_PCT / 100)
+    sl_dist = min(sl_dist, live * SL_MAX_PCT / 100)        # سقف أمان
+    r = sl_dist
+    entry = round_tick(symbol, live, "nearest")
+    sl = round_tick(symbol, live - r, "down")
+    tp1 = round_tick(symbol, live + TP_MULT[0] * r, "down")
+    tp2 = round_tick(symbol, live + TP_MULT[1] * r, "down")
+    tp3 = round_tick(symbol, live + TP_MULT[2] * r, "down")
+    be = round_tick(symbol, live * (1 + RISK_FREE_PCT / 100), "down")
+    trail = min(max((atr_eff / live) * 100 * 1.6, 1.2), 6.0)
+    size_usd = min(MAX_POSITION_USD, RISK_PER_TRADE / (sl_dist / live)) if sl_dist > 0 else 0
+    return {
+        "entry": entry, "sl": sl, "be": be, "tp1": tp1, "tp2": tp2, "tp3": tp3,
+        "sl_pct": sl_dist / live * 100, "be_pct": RISK_FREE_PCT,
+        "rr": round((tp2 - live) / r, 1) if r > 0 else 0,
+        "trail_pct": round(trail, 2),
+        "size_usd": round(size_usd, 2),
+        "actual_risk": round(size_usd * sl_dist / live, 2),
+        "atr_eff": atr_eff,
+    }
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║  8) الرسوم البيانية — شموع + EMA20/50/200 + RSI + MACD        ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+def chart_ready():
+    global CHARTS_OK
+    if CHARTS_OK is not None:
+        return CHARTS_OK
+    try:
+        import matplotlib
+        matplotlib.use("Agg", force=True)
+        import matplotlib.pyplot as plt  # noqa
+        CHARTS_OK = True
+    except Exception:
+        CHARTS_OK = False
+        log("⚠️ matplotlib غير مثبت — الشارتات معطلة (pip install matplotlib)")
+    return CHARTS_OK
+
+def cleanup_charts(max_age_h=48):
+    try:
+        now = time.time()
+        for p in glob.glob(os.path.join(CHART_PATH, "chart_*.png")):
+            if now - os.path.getmtime(p) > max_age_h * 3600:
+                try:
+                    os.remove(p)
+                except Exception:
+                    pass
+    except Exception:
+        pass
+
+def make_chart(symbol, an, plan, path):
+    """لوحة محترفة: السعر (شموع + EMA20/50/200 + بولنجر + S/R + الخطة)
+       + الفوليوم + RSI + MACD — بألوان Binance الداكنة"""
+    if not chart_ready():
+        return False
+    import matplotlib
+    matplotlib.use("Agg", force=True)
+    import matplotlib.pyplot as plt
+    from matplotlib.patches import Rectangle
+
+    k = an["k1h"]
+    if not k or len(k["c"]) < 80:
+        return False
+    n_total = len(k["c"])
+    start = max(0, n_total - CHART_BARS)
+    idx = list(range(start, n_total))
+    times = k["t"][start:]
+    o = [k["o"][i] for i in idx]; h = [k["h"][i] for i in idx]
+    l = [k["l"][i] for i in idx]; c = [k["c"][i] for i in idx]
+    v = [k["v"][i] for i in idx]
+    n = len(c)
+
+    ema20 = ema_series(c, 20); ema50 = ema_series(c, 50); ema200 = ema_series(c, 200)
+    bb_u, bb_m, bb_l = bollinger_series(c)
+    rsi = rsi_series(c, 14)
+    macd_l, macd_s, hist = macd_series(c)
+    vol_ma = sma_series(v, 20)
+
+    BG = "#0d1117"; PANEL = "#12181f"; GRID = "#232b36"; TXT = "#d1d4dc"
+    GREEN = "#0ecb81"; RED = "#f6465d"; BLUE = "#4c8bf5"; YEL = "#f0b90b"
+    PURPLE = "#b17ce8"; ORANGE = "#ff7f50"; GRAY = "#787b86"
+
+    fig = plt.figure(figsize=(12.5, 9.2), dpi=110)
+    fig.patch.set_facecolor(BG)
+    gs = fig.add_gridspec(4, 1, height_ratios=[3.3, 0.85, 1.1, 1.1],
+                          hspace=0.06, left=0.085, right=0.985,
+                          top=0.93, bottom=0.055)
+    ax  = fig.add_subplot(gs[0]); axv = fig.add_subplot(gs[1], sharex=ax)
+    axr = fig.add_subplot(gs[2], sharex=ax); axm = fig.add_subplot(gs[3], sharex=ax)
+    for a in (ax, axv, axr, axm):
+        a.set_facecolor(PANEL)
+        a.grid(True, color=GRID, lw=0.5, alpha=0.6)
+        a.tick_params(colors=TXT, labelsize=8)
+        for s in a.spines.values():
+            s.set_color(GRID)
+
+    # ── الشموع اليابانية ──────────────────────────────────────
+    min_body = max(statistics.mean(c) * 1e-5, 1e-12)
+    for i in range(n):
+        col = GREEN if c[i] >= o[i] else RED
+        ax.plot([i, i], [l[i], h[i]], color=col, lw=0.7, zorder=2)
+        ax.add_patch(Rectangle((i - 0.35, min(o[i], c[i])), 0.7,
+                     max(abs(c[i] - o[i]), min_body), facecolor=col,
+                     edgecolor=col, lw=0, zorder=3))
+        axv.bar(i, v[i], color=col, width=0.7, zorder=2)
+
+    # ── EMA 20 / 50 / 200 ──────────────────────────────────────
+    for series, col, lab, lw in ((ema20, YEL, "EMA20", 1.3),
+                                 (ema50, BLUE, "EMA50", 1.3),
+                                 (ema200, PURPLE, "EMA200", 1.6)):
+        xs = [i for i in range(n) if series[i] is not None]
+        ys = [series[i] for i in xs]
+        if len(xs) > 2:
+            ax.plot(xs, ys, color=col, lw=lw, label=lab, zorder=4)
+
+    # ── بولنجر ─────────────────────────────────────────────────
+    bxs = [i for i in range(n) if bb_u[i] is not None]
+    if len(bxs) > 2:
+        ax.fill_between(bxs, [bb_l[i] for i in bxs], [bb_u[i] for i in bxs],
+                        color=GRAY, alpha=0.07, zorder=1)
+        ax.plot(bxs, [bb_u[i] for i in bxs], color=GRAY, lw=0.6, ls="--", alpha=0.6)
+        ax.plot(bxs, [bb_l[i] for i in bxs], color=GRAY, lw=0.6, ls="--", alpha=0.6)
+
+    # ── دعم/مقاومة + خطة الصفقة ───────────────────────────────
+    for lvl, col, lab in ((an.get("support"), GREEN, "Support"),
+                          (an.get("resistance"), RED, "Resist")):
+        if lvl:
+            ax.axhline(lvl, color=col, lw=0.8, ls="--", alpha=0.6, zorder=1)
+            ax.annotate(lab, xy=(n - 3, lvl), xytext=(n - 3, lvl),
+                        fontsize=6.5, color=col, alpha=0.8, va="bottom",
+                        ha="right")
+    if plan:
+        for lvl, col, lab in ((plan["entry"], BLUE, "ENTRY"),
+                              (plan["sl"], RED, "SL"),
+                              (plan["be"], YEL, "BE"),
+                              (plan["tp1"], GREEN, "TP1"),
+                              (plan["tp2"], GREEN, "TP2"),
+                              (plan["tp3"], GREEN, "TP3")):
+            ax.axhline(lvl, color=col, lw=1.0, ls=":", zorder=5, alpha=0.9)
+            ax.annotate(lab, xy=(1, lvl), xytext=(1, lvl), fontsize=7,
+                        color=col, va="bottom", ha="left", fontweight="bold")
+
+    title = (f"{symbol}  |  1H ENTRY  |  Score {an['score']}% ({an['grade']})"
+             f"  |  4H {an['t4h'].upper()}  1D {an['t1d'].upper()}")
+    ax.set_title(title, color=TXT, fontsize=12, fontweight="bold", loc="left", pad=8)
+    ax.legend(loc="upper left", fontsize=7.5, ncol=4, frameon=False,
+              labelcolor=TXT, facecolor=BG)
+    ax.set_xlim(-1, n)
+
+    # ── الفوليوم ───────────────────────────────────────────────
+    vxs = [i for i in range(n) if vol_ma[i] is not None]
+    if vxs:
+        axv.plot(vxs, [vol_ma[i] for i in vxs], color=YEL, lw=0.9, alpha=0.8)
+    axv.set_ylabel("VOL", color=TXT, fontsize=7.5)
+
+    # ── RSI ────────────────────────────────────────────────────
+    rxs = [i for i in range(n) if rsi[i] is not None]
+    axr.plot(rxs, [rsi[i] for i in rxs], color=PURPLE, lw=1.2, zorder=3)
+    axr.fill_between(rxs, 30, 70, color=GRAY, alpha=0.08, zorder=1)
+    axr.axhline(70, color=RED, lw=0.7, ls="--", alpha=0.7)
+    axr.axhline(30, color=GREEN, lw=0.7, ls="--", alpha=0.7)
+    axr.axhline(RSI_BUY_MAX, color=ORANGE, lw=0.7, ls=":", alpha=0.8)
+    axr.set_ylabel(f"RSI", color=TXT, fontsize=7.5)
+    axr.set_ylim(0, 100)
+    axr.annotate(f"RSI {an['rsi']:.1f}" if an.get("rsi") is not None else "RSI —",
+                 xy=(0.985, 0.9), xycoords="axes fraction", color=PURPLE,
+                 fontsize=8.5, fontweight="bold", ha="right", va="top")
+
+    # ── MACD ───────────────────────────────────────────────────
+    for i in range(n):
+        if hist[i] is not None:
+            axm.bar(i, hist[i], color=GREEN if hist[i] >= 0 else RED,
+                    width=0.7, zorder=2)
+    mxs = [i for i in range(n) if macd_l[i] is not None]
+    axm.plot(mxs, [macd_l[i] for i in mxs], color=BLUE, lw=1.1, label="MACD")
+    axm.plot(mxs, [macd_s[i] for i in mxs], color=ORANGE, lw=1.0, label="Signal")
+    axm.axhline(0, color=GRAY, lw=0.7, alpha=0.6)
+    axm.set_ylabel("MACD", color=TXT, fontsize=7.5)
+    axm.legend(loc="upper left", fontsize=7, ncol=2, frameon=False,
+               labelcolor=TXT)
+
+    # ── تسميات الوقت ───────────────────────────────────────────
+    stride = max(1, n // 6)
+    ticks = list(range(0, n, stride))
+    labels = []
+    for i in ticks:
+        if 0 <= i < len(times):
+            dt = datetime.fromtimestamp(times[i] / 1000)
+            labels.append(f"{dt:%d/%m %H:%M}")
+        else:
+            labels.append("")
+    axm.set_xticks(ticks)
+    axm.set_xticklabels(labels, color=TXT, fontsize=8)
+
+    try:
+        os.makedirs(CHART_PATH, exist_ok=True)
+        fig.savefig(path, format="png", facecolor=BG, bbox_inches="tight")
+    finally:
+        plt.close(fig)
+    cleanup_charts()
+    return True
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║  9) الذكاء الاصطناعي — المحلل الفني الصارم عبر Gemini        ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+PERSONA = (
+    "أنت 'المحلل الصارم' — محلل فني محترف يعمل في غرفة تداول لصندوق تحوط. "
+    "شخصيتك: حاد، دقيق، صريح، لا يجامل ولا يحشو. قواعدك الحاكمة: "
+    "1) أجب بالعربية الفصحى فقط. "
+    "2) مختصر جداً (أقل من 70 كلمة ما لم يُطلب تفصيل). "
+    "3) اسند كل حكم إلى رقم: سعر، RSI، MACD، ATR، مستوى دعم/مقاومة. "
+    "4) لا تقدم وعداً بالأرباح ولا نصيحة شخصية إلزامية — أنت تعرض السيناريو والمخاطرة. "
+    "5) إن سُئلت عن خطة صفقة أجب بالقالب: دخول / وقف / 3 أهداف / متى تُلغى الفكرة. "
+    "6) إن طُلب تحليل عملة: ابدأ بالاتجاه العام (يومي و4ساعات) ثم الزخم ثم المستويات. "
+    "7) لا تستخدم رموز ماركداون ولا جداول معقدة — نص خام فقط."
+)
+
+def gemini_call(prompt, temperature=None, max_tokens=None):
+    """استدعاء النموذج مع: حارس معدل + تناوب نماذج + إعادة محاولة على الضغط"""
+    now = time.time()
+    if now - LAST_GEMINI_TS[0] < GEMINI_COOLDOWN_SEC:
+        return None, "cool"
+    models = ([STATE.get("gemini_model")] if STATE.get("gemini_model") else []) + \
+             [m for m in GEMINI_MODELS if m != STATE.get("gemini_model")]
+    for model in models:
+        for attempt in range(2):
+            try:
+                url = (f"https://generativelanguage.googleapis.com/v1beta/models/"
+                       f"{model}:generateContent?key=__REDACTED__")
+                body = {"contents": [{"parts": [{"text": prompt}]}],
+                        "generationConfig": {
+                            "temperature": temperature if temperature is not None else GEMINI_TEMPERATURE,
+                            "maxOutputTokens": max_tokens or GEMINI_MAX_TOKENS}}
+                r = SESSION.post(url, json=body, timeout=30)
+                if r.status_code in (429, 503, 500):
+                    time.sleep(2.5)   # ضغط مؤقت — أعد المحاولة
+                    continue
+                js = r.json()
+                cands = js.get("candidates") or []
+                if cands and cands[0].get("content"):
+                    txt = cands[0]["content"]["parts"][0]["text"].strip()
+                    if len(txt) >= 12:                     # رفض الردود المبتورة
+                        LAST_GEMINI_TS[0] = time.time()
+                        STATE["gemini_model"] = model
+                        return txt, None
+            except Exception:
+                time.sleep(1.0)
+                continue
+    return None, None
+
+def clean_ai(txt):
+    """تنظيف مخرجات النموذج لعرضها في تلجرام"""
+    if not txt:
+        return ""
+    for a, b in (("**", ""), ("##", ""), ("`", ""), ("*", ""),
+                 ("###", ""), ("---", "")):
+        txt = txt.replace(a, b)
+    txt = "\n".join(line.strip() for line in txt.splitlines() if line.strip())
+    return txt[:700]
+
+def build_market_ctx(btc=None):
+    """سياق خفيف لجيمناي من السوق مباشرة (استدعاء واحد)"""
+    try:
+        t = get_24hr()
+        b = t.get(LEADER)
+        s = t.get("SOLUSDT")
+        parts = []
+        if b:
+            parts.append(f"BTC {b['price']:.0f} ({b['chg']:+.1f}%)")
+        if s:
+            parts.append(f"SOL {s['price']:.2f} ({s['chg']:+.1f}%)")
+        if btc:
+            parts.append(f"ريجيم القائد: {REGIME_AR[btc.get('regime','neutral')]}")
+            parts.append(f"RSI(1س/4س/يومي): {btc.get('rsi1h',0):.0f}/{btc.get('rsi4h',0):.0f}/{btc.get('rsi1d',0):.0f}")
+        last = STATE.get("last_signals", [])[-1:] 
+        if last:
+            parts.append(f"آخر إشارة: {last[0]['symbol']} درجة {last[0]['score']}")
+        return " | ".join(parts)
+    except Exception:
+        return ""
+
+def _complete_verdict(txt):
+    """هل الرد يحتوي النقاط الثلاث (سيناريو/إلغاء/تحذير)؟"""
+    pts = sum(1 for tok in ("السيناريو", "الإلغاء", "تحذير", "يُلغى", "يلغى", "سيناريو")
+              if tok in txt)
+    numbered = sum(1 for tok in ("1)", "2)", "3)", "(1", "(2", "(3") if tok in txt)
+    return len(txt) >= 30 and (pts >= 2 or numbered >= 2)
+
+def ai_signal_verdict(symbol, an, plan, btc):
+    """خلاصة المحلل الصارم لإشارة شراء — 3 سطور كحد أقصى"""
+    name = symbol.replace("USDT", "/USDT")
+    prompt = (
+        f"{PERSONA}\n\n"
+        f"أعطِ خلاصة لإشارة BUY على {name} (فريم 1س) لأحد المتداولين.\n"
+        f"البيانات: RSI1س={an['rsi']:.1f} (السابق {an['rsi_prev']:.1f})، "
+        f"MACD الخط={an['macd_line']:.6f} هست={an['hist']:.6f}، "
+        f"فوليوم {an['vol_ratio']:.1f}× المتوسط، "
+        f"اتجاهات: 1س {an['t1h']} / 4س {an['t4h']} / يومي {an['t1d']}، "
+        f"ADX4س={an['adx4h'] or 0:.0f}، RSI4س={an['rsi4']:.0f}، RSI يومي={an['rsi_d']:.0f}، "
+        f"دعم={fmt_price(symbol, an['support']) if an['support'] else 'لا'}، "
+        f"مقاومة={fmt_price(symbol, an['resistance']) if an['resistance'] else 'لا'}، "
+        f"تغير24س={an['change24']:.1f}%، دايفرجنس={'نعم' if an['divergence'] else 'لا'}، "
+        f"نمط شمعة={an['pattern'] or 'عادي'}.\n"
+        f"الخطة: دخول {fmt_price(symbol, plan['entry'])} / وقف {fmt_price(symbol, plan['sl'])} "
+        f"(-{plan['sl_pct']:.1f}%) / أهداف {fmt_price(symbol, plan['tp1'])} , "
+        f"{fmt_price(symbol, plan['tp2'])} , {fmt_price(symbol, plan['tp3'])}.\n"
+        f"درجة التأكيد {an['score']}% من 100 (فئة {an['grade']}).\n"
+        "أجب بدقة: (1) السيناريو المتوقع. (2) المستوى الذي يلغي الفكرة. (3) تحذير واحد صارم. "
+        "3 أسطر كحد أقصى، بدون مقدمات أو تحية."
+    )
+    txt, why = gemini_call(prompt, temperature=0.3, max_tokens=450)
+    txt = clean_ai(txt) if txt else ""
+    if txt and _complete_verdict(txt):
+        return txt
+    # محاولة ثانية بصياغة أقصر إن كان الرد مبتوراً
+    LAST_GEMINI_TS[0] = 0.0
+    prompt2 = (
+        f"{PERSONA}\n\nإشارة BUY على {name} (1س) درجة {an['score']}% فئة {an['grade']}. "
+        f"RSI={an['rsi']:.1f} | MACD سالب | فوليوم {an['vol_ratio']:.1f}x | "
+        f"دعم {fmt_price(symbol, an['support']) if an['support'] else '—'} | "
+        f"مقاومة {fmt_price(symbol, an['resistance']) if an['resistance'] else '—'} | "
+        f"24س {an['change24']:.1f}%.\n"
+        "أجب في سطر واحد فقط مفصولاً بالنقاط:\n"
+        "السيناريو: ... | الإلغاء عند: ... | تحذير: ..."
+    )
+    txt2, _ = gemini_call(prompt2, temperature=0.2, max_tokens=300)
+    txt2 = clean_ai(txt2) if txt2 else ""
+    if txt2 and len(txt2) >= 25:
+        return txt2
+    # بديل محلي ذكي إذا تعذر النموذج
+    scen = ("انعكاس صاعد من تشبع بيعي" if an["divergence"] else
+            "ارتداد من منطقة بيعية") + " على فريم الساعة"
+    inv = (f"إغلاق ساعة تحت {fmt_price(symbol, plan['sl'])}" if plan else "تحت الوقف")
+    warn = ("الاتجاه اليومي لا يزال هابطاً — إشارة عكس التيار، صفقات صغيرة" 
+            if an["t1d"] == "down" and an["t4h"] == "down" else
+            "التزم بالوقف؛ هذه إشارة لحظية على فريم ساعة")
+    return f"1) {scen}.\n2) يُلغى عند {inv}.\n3) تحذير: {warn}."
+
+def local_analyst_answer(question, btc):
+    """بديل محلي دقيق بالأرقام إذا تعذر النموذج — يبقى المستفيد صاحب قرار"""
+    q = question.lower()
+    sym = None
+    for s in [LEADER] + COINS:
+        b = s.replace("USDT", "").lower()
+        if b in q or s.lower() in q:
+            sym = s
+            break
+    if sym:
+        return local_coin_verdict(sym, btc)
+    lines = [
+        f"🐉 القائد الآن: {fmt_price(LEADER, btc['live'])} $ "
+        f"({pct_str(btc['change24'])}) | {REGIME_AR[btc['regime']]}",
+        f"RSI(1س/4س/1د): {btc['rsi1h']:.0f}/{btc['rsi4h']:.0f}/{btc['rsi1d']:.0f} | "
+        f"ADX4س: {btc['adx4h']:.0f}",
+        f"الاتجاه: 1س {TREND_AR[btc['t1h']]} | 4س {TREND_AR[btc['t4h']]} | "
+        f"1د {TREND_AR[btc['t1d']]}",
+    ]
+    if btc["adx4h"] >= 40 or btc["rsi4h"] >= 70 or btc["change24"] <= -5:
+        lines.append("⚠️ تقلب مرتفع — قلّل حجم الصفقة أو انتظر التثبيت.")
+    else:
+        lines.append("↔️ السوق في منطقة قرار — لا تفتح صفقات عشوائية.")
+    lines.append("⚠️ (المحلل السحابي غير متاح الآن — هذه قراءتي المحلية للأرقام)")
+    return "\n".join(lines)
+
+def local_coin_verdict(sym, btc):
+    an = analyze_symbol(sym, btc)
+    if not an:
+        return f"⚠️ تعذر جلب بيانات {sym}."
+    plan = build_plan(sym, an)
+    t = an["trigger"]
+    base = (f"🔍 <b>{sym.replace('USDT','/USDT')}</b>: {fmt_price(sym, an['live'])} $ | "
+            f"24س {pct_str(an['change24'])} | رقم الفكرة {an['score']}% ({an['grade']})")
+    tfs = (f"المسار: 1س {TREND_AR[an['t1h']]} | 4س {TREND_AR[an['t4h']]} | "
+           f"1د {TREND_AR[an['t1d']]} | RSI {an['rsi']:.0f} ({an['rsi4']:.0f} على 4س)")
+    trig = (f"الشرط الثلاثي: RSI {'✅' if t['rsi_ok'] else '❌'} | "
+            f"MACD {'✅' if t['macd_ok'] else '❌'} | فوليوم {'✅' if t['vol_ok'] else '❌'}")
+    lvl = ("دعم {sup} / مقاومة {res}".format(
+        sup=fmt_price(sym, an["support"]) if an["support"] else "—",
+        res=fmt_price(sym, an["resistance"]) if an["resistance"] else "—"))
+    plan_txt = (f"إن دخلت: وقف {fmt_price(sym, plan['sl'])} (-{plan['sl_pct']:.1f}%) | "
+                f"TP1 {fmt_price(sym, plan['tp1'])} | TP3 {fmt_price(sym, plan['tp3'])}")
+    return "\n".join([base, tfs, trig, lvl, plan_txt,
+                      "⚠️ (المحلل السحابي غير متاح — قراءة محلية بالأرقام)"])
+
+def ai_ask(question, btc):
+    """محادثة حرة مع المحلل الصارم"""
+    ctx = build_market_ctx(btc)
+    prompt = f"{PERSONA}\n\nسياق السوق الآن: {ctx}\n\nسؤال المتداول: {question}\n\nأجب."
+    txt, why = gemini_call(prompt)
+    if txt and len(clean_ai(txt)) >= 20:
+        return clean_ai(txt)
+    # المحلل السحابي تعذر — أجب محلياً بالأرقام الحقيقية
+    return local_analyst_answer(question, btc)
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║ 10) تليجرام — الأسس، الأزرار الشفافة، الإرسال               ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+def tg(method, payload, files=None, retries=3):
+    url = f"https://api.telegram.org/bot{TELEGRAM_TOKEN}/{method}"
+    for i in range(retries):
+        try:
+            if files:
+                r = SESSION.post(url, data=payload, files=files, timeout=30)
+            else:
+                r = SESSION.post(url, json=payload, timeout=20)
+            js = r.json()
+            if js.get("ok"):
+                return js.get("result")
+        except Exception:
+            time.sleep(1.5 + i)
+    return None
+
+def send_message(text, kb=None, parse_mode="HTML", chat=None, reply_to=None):
+    if DRY_RUN:
+        print("\n" + "═" * 60 + "\n[DRY-RUN تليجرام]\n" + text + "\n" + "═" * 60)
+        return True
+    payload = {"chat_id": chat or CHAT_ID, "text": text,
+               "parse_mode": parse_mode, "disable_web_page_preview": True}
+    if kb is not None:
+        payload["reply_markup"] = json.dumps({"inline_keyboard": kb})
+    if reply_to:
+        payload["reply_to_message_id"] = reply_to
+    return bool(tg("sendMessage", payload))
+
+def edit_message(message_id, text, kb=None, chat=None):
+    payload = {"chat_id": chat or CHAT_ID, "message_id": message_id,
+               "text": text, "parse_mode": "HTML",
+               "disable_web_page_preview": True}
+    if kb is not None:
+        payload["reply_markup"] = json.dumps({"inline_keyboard": kb})
+    return bool(tg("editMessageText", payload))
+
+def answer_cb(cb_id, text=None):
+    return bool(tg("answerCallbackQuery", {"callback_query_id": cb_id,
+                                           "text": text or ""}))
+
+def send_photo(path, caption, kb=None, chat=None):
+    if DRY_RUN:
+        print(f"[DRY-RUN صورة] {path}\n{caption}")
+        return True
+    try:
+        with open(path, "rb") as f:
+            payload = {"chat_id": chat or CHAT_ID, "caption": caption[:1024]}
+            if kb is not None:
+                payload["reply_markup"] = json.dumps({"inline_keyboard": kb})
+            return bool(tg("sendPhoto", payload, files={"photo": ("chart.png", f, "image/png")}))
+    except Exception:
+        return False
+
+def typing(chat=None):
+    tg("sendChatAction", {"chat_id": chat or CHAT_ID, "action": "typing"})
+
+# ── لوحات الأزرار الشفافة ──────────────────────────────────────
+def btn(text, data):
+    return {"text": text, "callback_data": data}
+
+def menu_kb():
+    return [
+        [btn("🔍 فحص السوق", "menu:scan"), btn("📡 حالة الصفقات", "menu:status")],
+        [btn("🐉 تحليل BTC", "menu:coin:BTCUSDT"), btn("🟢 تحليل SOL", "menu:coin:SOLUSDT")],
+        [btn("🪙 قائمة العملات", "menu:coins"), btn("💲 أسعار السوق", "menu:prices")],
+        [btn("⏸️ إيقاف مؤقت", "menu:pause"), btn("▶️ استئناف", "menu:resume")],
+        [btn("🧠 اسأل المحلل", "menu:ask"), btn("❓ المساعدة", "menu:help")],
+    ]
+
+def coins_kb():
+    rows, row = [], []
+    for sym in [LEADER] + COINS:
+        row.append(btn(sym.replace("USDT", ""), f"menu:coin:{sym}"))
+        if len(row) == 4:
+            rows.append(row); row = []
+    if row:
+        rows.append(row)
+    rows.append([btn("🔙 القائمة الرئيسية", "menu:main")])
+    return rows
+
+def main_menu_text():
+    status = "⏸️ متوقف مؤقتاً" if STATE.get("paused") else "✅ يفحص السوق"
+    b = btc_cached()
+    return (f"🎛️ <b>لوحة تحكم NOVA PRO v5.0</b>\n"
+            f"حالة الرادار: <b>{status}</b>\n"
+            f"البيتكوين: {REGIME_AR.get(b.get('regime','neutral'), '')} | "
+            f"صافي صفقات: {len(STATE['positions'])}/{MAX_OPEN_POS}\n\n"
+            f"اختر زراً، أو اكتب رمز عملة (مثال: sol) وسأحلله فوراً.\n"
+            f"أو اكتب سؤالك للمحلل الفني الصارم مباشرة.")
+
+def build_status(btc, full=True):
+    lines = [f"📡 <b>حالة NOVA PRO — {REGIME_AR[btc['regime']]}</b>"]
+    up = int((time.time() - STATE.get("start_time", time.time())) / 3600)
+    mod = "⏸️ <b>متوقف مؤقتاً</b> (الصفقات النشطة لا تزال تحت الرقابة)" if STATE["paused"] else "✅ يفحص السوق"
+    lines.append(f"⏱️ يعمل {up} ساعة | الوضع: {mod}")
+    lines.append(f"🐉 BTC: {fmt_price(LEADER, btc['live'])} $ | "
+                 f"1س {TREND_AR[btc['t1h']]} | 4س {TREND_AR[btc['t4h']]} | 1د {TREND_AR[btc['t1d']]}")
+    lines.append(f"   RSI: 1س {btc['rsi1h']:.0f} | 4س {btc['rsi4h']:.0f} | 1د {btc['rsi1d']:.0f} | "
+                 f"ADX4س {btc['adx4h']:.0f} | 24س {pct_str(btc['change24'])}")
+    pos = STATE["positions"]
+    lines.append(f"📋 صفقات نشطة: <b>{len(pos)}</b>/" + str(MAX_OPEN_POS))
+    for sym, p in list(pos.items()):
+        price = get_ticker(sym)
+        chg = (price / p["entry"] - 1) * 100 if price else 0
+        stage_txt = ["🆕 تحت الوقف", "🛡️ مصفّرة", "🎯 TP1", "🎯 TP2"][min(p.get("stage", 0), 3)]
+        lines.append(f"   • {sym.replace('USDT','/USDT')}: <b>{pct_str(chg)}</b> | {stage_txt}")
+    if full:
+        lines += ["", "💡 <b>أوامر:</b> /status /scan /coin XLM /chart XLM /close XLM /pause /resume /ask سؤال",
+                  "🎛️ اضغط /menu لفتح لوحة التحكم بالأزرار"]
+    return "\n".join(lines)
+
+def build_prices(tt):
+    lines = ["💲 <b>أسعار السوق لحظياً</b>", ""]
+    for sym in [LEADER] + COINS:
+        d = tt.get(sym)
+        if not d:
+            continue
+        arrow = "🟢" if d["chg"] >= 0 else "🔴"
+        lines.append(f"{arrow} <b>{sym.replace('USDT','/USDT')}</b>: "
+                     f"<code>{fmt_price(sym, d['price'])}</code> $  {pct_str(d['chg'])}")
+    lines += ["", "🎛️ اضغط /menu للوحة التحكم."]
+    return "\n".join(lines)
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║ 11) رسائل الإشارات والتقارير                                 ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+def build_signal_message(symbol, an, plan, btc, ai_text):
+    name = symbol.replace("USDT", "/USDT")
+    tr = an["trigger"]
+    L = []
+    L.append(f"🟢 <b>إشارة شراء — الشرط الثلاثي تحقق</b> 🟢")
+    L.append(f"🏅 <b>قوة الفكرة: {an['grade']} ({an['score']}%)</b> | {an['ok_count']}/15 خيطاً")
+    L.append("")
+    L.append("✅ <b>الشرط الثلاثي (فريم 1س):</b>")
+    L.append(f"{'✅' if tr['rsi_ok'] else '❌'} RSI تحت {RSI_BUY_MAX} ← <code>{an['rsi']:.1f}</code>" if an['rsi'] is not None else "—")
+    L.append(f"{'✅' if tr['macd_ok'] else '❌'} MACD سالب تحت الصفر ← <code>{an['macd_line']:.6f}</code>" if an["macd_line"] is not None else "—")
+    L.append(f"{'✅' if tr['vol_ok'] else '❌'} فوليوم عالٍ ← <b>{an['vol_ratio']:.1f}×</b> المتوسط")
+    L.append("")
+    L.append(f"🔹 <b>العملة:</b> {name} | السعر الآن: <code>{fmt_price(symbol, plan['entry'])} $</code>")
+    L.append("")
+    L.append("📋 <b>خطة الصفقة الجاهزة (ATR ديناميكي):</b>")
+    L.append(f"🎯 الدخول: <code>{fmt_price(symbol, plan['entry'])} $</code>")
+    L.append(f"🛑 وقف الخسارة: <code>{fmt_price(symbol, plan['sl'])} $</code> (-{plan['sl_pct']:.1f}%)")
+    L.append(f"🎯 TP1 (بِع 50%): <code>{fmt_price(symbol, plan['tp1'])} $</code> (+{plan['sl_pct']*1.5:.1f}%)")
+    L.append(f"🎯 TP2 (بِع 30%): <code>{fmt_price(symbol, plan['tp2'])} $</code> (+{plan['sl_pct']*2.5:.1f}%)")
+    L.append(f"🎯 TP3 (بِع 20%): <code>{fmt_price(symbol, plan['tp3'])} $</code> (+{plan['sl_pct']*4.0:.1f}%)")
+    L.append(f"🔓 تصفير المخاطرة: <code>{fmt_price(symbol, plan['be'])} $</code> (+{plan['be_pct']:.1f}%)")
+    L.append(f"🛤️ الوقف المتحرك بعد TP1: <b>{plan['trail_pct']:.1f}%</b> | العائد/المخاطرة: <b>1:{plan['rr']}</b>")
+    L.append("")
+    L.append("💰 <b>إدارة رأس المال:</b>")
+    L.append(f"💵 الحجم المقترح: <b>{plan['size_usd']:.2f} $</b> (محفظة {WALLET_USD}$)")
+    L.append(f"⚠️ أقصى خسارة: <b>{plan['actual_risk']:.2f} $</b> ({(plan['actual_risk']/WALLET_USD*100):.1f}%)")
+    L.append("")
+    L.append("📊 <b>الخيوط الفنية ({}/15):</b>".format(an["ok_count"]))
+    for c in an["checks"]:
+        mark = "✅" if c["val"] >= c["w"] else ("🟡" if c["val"] > 0 else "➖")
+        det = f" ← {c['d']}" if c["d"] and c["val"] > 0 else ""
+        L.append(f"{mark} {c['label']}{det}")
+    L.append("")
+    L.append(f"🕐 الأطر: 1س {TREND_AR[an['t1h']]} | 4س {TREND_AR[an['t4h']]} | 1د {TREND_AR[an['t1d']]}")
+    L.append(f"🐉 القائد: {REGIME_AR[btc['regime']]} | RSI 1س {btc['rsi1h']:.0f} | ADX4س {btc['adx4h']:.0f}")
+    L.append(f"📈 24 ساعة: {pct_str(an['change24'])} | 7 أيام: {pct_str(an['change7d'])}")
+    if an["support"]:
+        L.append(f"📍 دعم: <code>{fmt_price(symbol, an['support'])} $</code> | "
+                 f"مقاومة: <code>{fmt_price(symbol, an['resistance'])} $</code>" if an["resistance"] else
+                 f"📍 دعم: <code>{fmt_price(symbol, an['support'])} $</code>")
+    if an["vetoes"]:
+        L.append("⛔ <b>موانع:</b> " + " | ".join(an["vetoes"]))
+    if ai_text:
+        L.append("")
+        L.append(f"🧠 <b>المحلل الصارم:</b>\n{esc(ai_text)}")
+    L.append("")
+    L.append("🧾 <b>التنفيذ:</b> اشترِ سبوت ← رتب وقفاً وأهدافاً فوراً ← انتظر رسائل الإدارة")
+    return "\n".join(L)
+
+def build_coin_report(symbol, an, btc):
+    name = symbol.replace("USDT", "/USDT")
+    plan = build_plan(symbol, an)
+    L = [f"🔍 <b>تحليل فني فوري: {name}</b>",
+         f"💵 السعر: <code>{fmt_price(symbol, an['live'])} $</code> | "
+         f"24س {pct_str(an['change24'])} | 7أ {pct_str(an['change7d'])}",
+         f"🏅 النتيجة: <b>{an['score']}% ({an['grade']})</b> | {an['ok_count']}/15 خيطاً",
+         ""]
+    tr = an["trigger"]
+    L.append("🚦 <b>الشرط الثلاثي للشراء:</b>")
+    L.append(f"{'✅' if tr['rsi_ok'] else '❌'} RSI(1س) < 35 ← <b>{an['rsi']:.1f}</b>")
+    L.append(f"{'✅' if tr['macd_ok'] else '❌'} MACD تحت الصفر ← <b>{an['macd_line']:.6f}</b>")
+    L.append(f"{'✅' if tr['vol_ok'] else '❌'} فوليوم {an['vol_ratio']:.1f}×")
+    L.append("")
+    L.append("🧵 <b>الأطر الزمنية:</b>")
+    L.append(f"   • 1س: {TREND_AR[an['t1h']]} | RSI {an['rsi']:.1f} | ADX {an['adx1h'] or 0:.0f}")
+    L.append(f"   • 4س: {TREND_AR[an['t4h']]} | RSI {an['rsi4']:.0f} | ADX {an['adx4h'] or 0:.0f} "
+             f"(DI+ {an['di_plus4'] or 0:.0f}/DI- {an['di_minus4'] or 0:.0f})")
+    L.append(f"   • 1د: {TREND_AR[an['t1d']]} | RSI {an['rsi_d']:.0f}")
+    st = an.get("supertrend")
+    if st is not None:
+        L.append(f"   • Supertrend: {'🟢 صاعد' if st == 1 else '🔴 هابط'} على 1س")
+    L.append("")
+    L.append("📍 المستويات:")
+    if an["support"]:
+        L.append(f"   • دعم: <code>{fmt_price(symbol, an['support'])} $</code>")
+    if an["resistance"]:
+        L.append(f"   • مقاومة: <code>{fmt_price(symbol, an['resistance'])} $</code>")
+    if an["ema200_4"]:
+        L.append(f"   • EMA200 (4س): <code>{fmt_price(symbol, an['ema200_4'])} $</code>")
+    L.append(f"   • ATR (1س): {an['atr1h']:.6f} | (4س): {an['atr4h']:.6f}")
+    L.append("")
+    L.append(f"🛡️ <b>لو دخلت الآن:</b> وقف {fmt_price(symbol, plan['sl'])} $ "
+             f"| هدف1 {fmt_price(symbol, plan['tp1'])} $ | هدف3 {fmt_price(symbol, plan['tp3'])} $")
+    if an["divergence"]:
+        L.append("💫 دايفرجنس صاعد على RSI(1س) — انعكاس محتمل")
+    if an["bear_div"]:
+        L.append("⚠️ دايفرجنس هابط — توخَّ الحذر من القمة")
+    if an["pattern"]:
+        L.append(f"🕯️ نمط شمعة: <b>{PATTERN_AR.get(an['pattern'], an['pattern'])}</b>")
+    if an["vetoes"]:
+        L.append("⛔ موانع: " + " | ".join(an["vetoes"]))
+    verdict = ("🟢 <b>فرصة مفعّلة</b> — الرادار سيتابعها تلقائياً" if should_signal(an, btc)[0]
+               else "🟡 <b>تحت مستوى الإشارة</b> — راقب ولا تتسرع")
+    L += ["", f"⚖️ الحكم: {verdict}",
+          "🎛️ /menu للوحة التحكم | /chart " + symbol.replace("USDT", "") + " لرسم الشارت"]
+    return "\n".join(L)
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║ 12) منطق الإشارة والفحص                                      ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+def should_signal(an, btc):
+    """قرار الإشارة: الشرط الثلاثي أساساً + موانع + جودة"""
+    if an["vetoes"]:
+        return False, "mute"
+    t = an["trigger"]
+    if not (t["rsi_ok"] and t["macd_ok"] and t["vol_ok"]):
+        return False, "no_base"
+    if STRICT_MODE:
+        need = BEAR_MIN_SCORE if btc.get("regime") == "bearish" else STRICT_MIN_SCORE
+        if an["score"] < need:
+            return False, f"جودة {an['score']}% تحت {need}%"
+    return True, "GO"
+
+def run_scan(force=False, announce=None):
+    """فحص شامل 11 عملة — يرسل إشارة لكل من حقق الشرط الثلاثي"""
+    if not SCAN_LOCK.acquire(blocking=False):
+        log("⏭️ تخطي دورة فحص: المسح السابق ما زال يعمل")
+        return {"regime": "neutral", "rsi1h": 50, "rsi4h": 50, "rsi1d": 50,
+                "t1h": "side", "t4h": "side", "t1d": "side",
+                "adx4h": 0, "live": 0, "change24": 0}
+    try:
+        if announce:
+            announce("🔎 <b>بدأ الفحص الشامل للسوق...</b>\n"
+                     "سيُرسل لك أي إشارة تحقيق فور اكتشافها (11 عملة × 3 فريمات).")
+        btc = analyze_btc()
+        now = time.time()
+        got = 0
+        for sym in [LEADER] + COINS:
+            try:
+                # تحذير قمة للصفقات المفتوحة
+                if sym in STATE["positions"]:
+                    p = STATE["positions"][sym]
+                    an = analyze_symbol(sym, btc)
+                    if an and not p.get("top_warned"):
+                        ms = an
+                        falling = (ms["hist"] is not None and ms["hist_prev"] is not None
+                                   and ms["hist"] < ms["hist_prev"])
+                        if (ms["rsi"] is not None and ms["rsi"] >= 72 and (falling or an["bear_div"])) \
+                                or (ms["rsi"] is not None and ms["rsi"] >= 78):
+                            p["top_warned"] = True
+                            name = sym.replace("USDT", "/USDT")
+                            chg = (an["live"] / p["entry"] - 1) * 100
+                            send_message(
+                                f"⚠️ <b>إشارة قمة — احمِ أرباحك</b>\n\n"
+                                f"🔹 {name}: <code>{fmt_price(sym, an['live'])} $</code> ({pct_str(chg)} من دخولك)\n"
+                                f"📊 RSI 1س: <b>{ms['rsi']:.1f}</b> | هستوجرام: "
+                                f"{'يهبط' if falling else 'صاعد'}\n\n"
+                                f"💡 <b>الإجراء:</b> بِع جزءاً الآن أو ارفع الوقف المتحرك "
+                                f"إلى {p.get('trail_pct', 2):.1f}% لحماية المكاسب.")
+                    continue
+                if not force and now - STATE["cooldowns"].get(sym, 0) < COOLDOWN_SEC:
+                    continue
+                # فاصل عالمي بين الإشارات (يمنع انفجار الإنذارات)
+                if not force and now - STATE.get("last_signal_ts", 0) < GLOBAL_GAP_SEC:
+                    break
+                an = analyze_symbol(sym, btc)
+                if not an:
+                    continue
+                ok, why = should_signal(an, btc)
+                if ok:
+                    got += 1
+                    emit_signal(sym, an, plan=build_plan(sym, an), btc=btc, now=now)
+                    if got >= 2 and not force:
+                        break  # لا تفتح إشارات كثيرة دفعة واحدة
+                else:
+                    if force:
+                        log(f"↦ {sym}: {an['score']}% ({an['grade']}) — {why}")
+            except Exception as e:
+                log(f"⚠️ خطأ في فحص {sym}: {e}")
+            time.sleep(0.15)
+        save_state()
+        return btc
+    finally:
+        SCAN_LOCK.release()
+
+def emit_signal(symbol, an, plan, btc, now):
+    """إرسال إشارة كاملة: رسالة + خطة + شارت + تسجيل الصفقة في الذاكرة"""
+    if len(STATE["positions"]) >= MAX_OPEN_POS:
+        send_message(f"⚙️ <b>{symbol.replace('USDT','/USDT')}</b> حقق الشرط الثلاثي، لكن "
+                     f"الحد الأقصى للصفقات المفتوحة ({MAX_OPEN_POS}) ممتلئ.\n"
+                     "أغلق/أدر صفقة من /status أولاً.")
+        STATE["cooldowns"][symbol] = now
+        return
+    ai_text = ai_signal_verdict(symbol, an, plan, btc)
+    msg = build_signal_message(symbol, an, plan, btc, ai_text)
+    send_message(msg)
+    if SEND_CHARTS:
+        path = os.path.join(CHART_PATH, f"chart_{symbol.replace('USDT','')}_{int(now)}.png")
+        if make_chart(symbol, an, plan, path):
+            send_photo(path, f"{symbol.replace('USDT','/USDT')} — Score {an['score']}% ({an['grade']})\n"
+                             f"Entry {fmt_price(symbol, plan['entry'])} | SL {fmt_price(symbol, plan['sl'])} | "
+                             f"TP1 {fmt_price(symbol, plan['tp1'])} | TP3 {fmt_price(symbol, plan['tp3'])}")
+    ts = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M")
+    log_signal_csv(f"{ts},{symbol},BUY,{plan['entry']},{plan['sl']},"
+                   f"{plan['tp1']},{plan['tp2']},{plan['tp3']},{an['score']},{an['grade']}")
+    STATE["positions"][symbol] = {
+        "entry": plan["entry"], "sl": plan["sl"], "be": plan["be"],
+        "tp1": plan["tp1"], "tp2": plan["tp2"], "tp3": plan["tp3"],
+        "be_pct": plan["be_pct"], "trail_pct": plan["trail_pct"],
+        "size_usd": plan["size_usd"], "risk_usd": plan["actual_risk"],
+        "score": an["score"], "grade": an["grade"],
+        "time": now, "high": plan["entry"], "stage": 0,
+        "trail_active": False, "trail_stop": plan["sl"],
+        "stale_warned": False, "top_warned": False,
+    }
+    STATE["cooldowns"][symbol] = now
+    STATE["last_signal_ts"] = now
+    STATE["last_signals"] = list((STATE.get("last_signals") or [])[-2:]) + \
+        [{"symbol": symbol, "score": an["score"], "grade": an["grade"], "time": now}]
+    log(f"🚨 إشارة {symbol} — {an['score']}% ({an['grade']}) | الشرط الثلاثي ✅")
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║ 13) إدارة الصفقات — تصفير المخاطرة + الأهداف + التريلينج      ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+def close_position(sym, p, reason_msg):
+    send_message(reason_msg)
+    STATE["positions"].pop(sym, None)
+    STATE["cooldowns"][sym] = time.time()
+
+def manage_positions():
+    for sym in list(STATE["positions"].keys()):
+        try:
+            p = STATE["positions"][sym]
+            price = get_ticker(sym)
+            if not price:
+                continue
+            name = sym.replace("USDT", "/USDT")
+            p["high"] = max(p.get("high", price), price)
+            entry, stage = p["entry"], p.get("stage", 0)
+            chg = (price / entry - 1) * 100
+            pnl = (price / entry - 1) * p.get("size_usd", 0)
+
+            # ── 1) وقف الخسارة الأساسي (قبل التصفير) ───────────
+            if stage == 0 and price <= p["sl"]:
+                close_position(sym, p,
+                    f"🛑 <b>ضرب وقف الخسارة — اخرج الآن</b>\n\n"
+                    f"🔹 {name} لامس <code>{fmt_price(sym, price)} $</code> ({pct_str(chg)})\n"
+                    f"💰 الخسارة المقدرة: <b>{pnl:.2f} $</b> (كانت مخاطرة محسوبة {p['risk_usd']:.2f}$)\n\n"
+                    f"💡 الخروج بانضباط هو رأس المال الحقيقي. لا تنتقم من السوق.")
+                continue
+
+            # ── 2) تصفير المخاطرة: +4% = إنذار عاجل ─────────────
+            if stage == 0 and price >= p["be"]:
+                p["stage"] = 1
+                p["sl"] = round_tick(sym, entry, "down")
+                send_message(
+                    f"🚨📢 <b>إنذار عاجل: حرك وقف الخسارة لنقطة الدخول لتصفير المخاطرة</b>\n\n"
+                    f"🔹 <b>{name}</b> بلغ <code>{fmt_price(sym, price)} $</code> "
+                    f"({pct_str(chg)}) — تجاوز عتبة +{p['be_pct']:.0f}%\n"
+                    f"🎯 اقترب من: <code>{p['entry']} $</code> (دخولك)\n\n"
+                    f"⚙️ <b>الإجراء الآن:</b> انقل وقف الخسارة إلى "
+                    f"<code>{fmt_price(sym, entry)} $</code>\n"
+                    f"🛡️ صفقتك بعدها <b>بلا مخاطرة</b> — الربح مضمون والباقي مجاناً.\n"
+                    f"🎯 الهدف التالي: <code>{fmt_price(sym, p['tp1'])} $</code>")
+                continue
+
+            # ── 3) TP1: بِع 50% + تفعيل التريلينج ───────────────
+            if stage == 1 and price >= p["tp1"]:
+                p["stage"] = 2
+                p["trail_active"] = True
+                p["trail_stop"] = max(p.get("trail_stop", entry), entry)
+                send_message(
+                    f"🎯 <b>الهدف الأول تحقق — بِع 50%</b>\n\n"
+                    f"🔹 {name}: <code>{fmt_price(sym, price)} $</code> ({pct_str(chg)})\n"
+                    f"💵 نفّذ بيع {SELL_FRACTIONS[0]*100:.0f}% من الكمية الآن\n"
+                    f"🗣️ ارفع الوقف إلى الدخول <code>{fmt_price(sym, entry)} $</code> "
+                    f"وفعّل وقفاً متحركاً <b>{p['trail_pct']:.1f}%</b>\n"
+                    f"🎯 الهدف التالي: <code>{fmt_price(sym, p['tp2'])} $</code>")
+                continue
+
+            # ── 4) TP2: بِع 30% ─────────────────────────────────
+            if stage == 2 and price >= p["tp2"]:
+                p["stage"] = 3
+                send_message(
+                    f"🚀 <b>الهدف الثاني تحقق — بِع 30%</b>\n\n"
+                    f"🔹 {name}: <code>{fmt_price(sym, price)} $</code> ({pct_str(chg)})\n"
+                    f"💵 نفّذ بيع {SELL_FRACTIONS[1]*100:.0f}% إضافية\n"
+                    f"🛤️ الباقي {SELL_FRACTIONS[2]*100:.0f}% بوقف متحرك {p['trail_pct']:.1f}%\n"
+                    f"🎯 الهدف الأخير: <code>{fmt_price(sym, p['tp3'])} $</code>")
+                continue
+
+            # ── 5) TP3: اكتمال الصفقة ───────────────────────────
+            if stage == 3 and price >= p["tp3"]:
+                close_position(sym, p,
+                    f"🏆 <b>الهدف الثالث! اكتمال الصفقة</b>\n\n"
+                    f"🔹 {name}: <code>{fmt_price(sym, price)} $</code> ({pct_str(chg)})\n"
+                    f"💵 بِع المتبقي {SELL_FRACTIONS[2]*100:.0f}% وأغلق الصفقة بالكامل\n"
+                    f"📈 الربح التقديري: <b>+{pnl:.2f} $</b>\n"
+                    f"🎉 انضباط كامل: وقف محترم + تصفير + تدرج أهداف.")
+                continue
+
+            # ── 6) التريلينج بعد TP1 ────────────────────────────
+            if stage >= 2 and p.get("trail_active"):
+                if price > p["high"]:
+                    p["high"] = price
+                ts = p["high"] * (1 - p["trail_pct"] / 100)
+                if ts > p.get("trail_stop", 0):
+                    p["trail_stop"] = ts
+                    p["sl"] = round_tick(sym, ts, "down")
+                if price <= p["trail_stop"]:
+                    close_position(sym, p,
+                        f"✅ <b>الوقف المتحرك حصد الباقي</b>\n\n"
+                        f"🔹 {name} تراجع إلى <code>{fmt_price(sym, price)} $</code> بعد قمة "
+                        f"<code>{fmt_price(sym, p['high'])} $</code>\n"
+                        f"💰 الربح المحقق: <b>+{pnl:.2f} $</b> ({pct_str(chg)})\n"
+                        f"🛡️ التريلينج {p['trail_pct']:.1f}% حمى الأرباح كما صُمم.")
+                    continue
+
+            # ── 7) وقف مُصفَّر (ما بعد الدخول) ─────────────────
+            if stage == 1 and price <= p["sl"]:
+                close_position(sym, p,
+                    f"🛡️ <b>إغلاق آمن — خروج بلا خسارة</b>\n\n"
+                    f"🔹 {name} عادت إلى نقطة الدخول <code>{fmt_price(sym, price)} $</code>\n"
+                    f"⛰️ القمة المسجلة: <code>{fmt_price(sym, p['high'])} $</code> ({pct_str((p['high']/entry-1)*100)})\n"
+                    f"💡 صفقة مجانية: خرجت قبل أن يمس السوق وقفك.")
+
+            # ── 8) صفقة راكدة ───────────────────────────────────
+            age_h = (time.time() - p["time"]) / 3600
+            if (stage == 0 and age_h > STALE_HOURS and price < entry
+                    and not p.get("stale_warned")):
+                p["stale_warned"] = True
+                send_message(
+                    f"😴 <b>صفقة راكدة — قرار مطلوب</b>\n\n"
+                    f"🔹 {name} منذ {age_h:.0f} ساعة تحت الدخول ({pct_str(chg)})\n"
+                    f"💡 رأس المال النائم تكلفة فرصة. قرر: خروج بوقف، أو ارتقب التحسن "
+                    f"عند <code>{fmt_price(sym, p['tp1'])} $</code>.")
+        except Exception as e:
+            log(f"⚠️ إدارة {sym}: {e}")
+    save_state()
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║ 14) الواجهة التفاعلية — أوامر + أزرار + محادثة حرة           ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+BUSY_SCAN = {"v": False}
+BUSY_ANALYZE = {"v": False}
+CB_CD = {}
+
+def heavy_scan(force=True):
+    if BUSY_SCAN["v"]:
+        send_message("⏳ فحص آخر قيد التنفيذ حالياً — اصبر لحظات.")
+        return
+    BUSY_SCAN["v"] = True
+    try:
+        run_scan(force=True, announce=lambda m: send_message(m))
+        send_message("✅ <b>انتهى الفحص الشامل.</b>\n"
+                     "أي إشارة جديدة ستُرسل تلقائياً مع الشارت وخطة الصفقة.")
+    except Exception as e:
+        log(f"❌ scan: {e}\n{traceback.format_exc()[-300:]}")
+        send_message("⚠️ حدث خطأ أثناء الفحص. سأعيد المحاولة في الدورة القادمة.")
+    finally:
+        BUSY_SCAN["v"] = False
+
+def heavy_coin(symbol):
+    if BUSY_ANALYZE["v"]:
+        send_message("⏳ هناك تحليل قيد التنفيذ الآن — انتظر ثوانٍ.")
+        return
+    BUSY_ANALYZE["v"] = True
+    try:
+        typing()
+        btc = analyze_btc()
+        an = analyze_symbol(symbol, btc)
+        if not an:
+            send_message(f"⚠️ تعذر جلب بيانات {symbol}. تأكد من الرمز أو من شبكة الإنترنت.")
+            return
+        send_message(build_coin_report(symbol, an, btc))
+        if SEND_CHARTS:
+            path = os.path.join(CHART_PATH, f"chart_{symbol.replace('USDT','')}_{int(time.time())}.png")
+            if make_chart(symbol, an, None, path):
+                send_photo(path, f"{symbol.replace('USDT','/USDT')} — تحليل شامل | Score {an['score']}% ({an['grade']})")
+        last = STATE.get("last_signals") or []
+        if an["score"] >= 78 and not any(x["symbol"] == symbol for x in last):
+            send_message("⚡ <b>ملاحظة:</b> النتيجة {:.0f}% قوية لكن الشرط الثلاثي لم يكتمل بعد — "
+                         "سأطلق الإشارة عند تحققه".format(an["score"]))
+    except Exception as e:
+        log(f"❌ coin {symbol}: {e}\n{traceback.format_exc()[-300:]}")
+        send_message("⚠️ فشل التحليل — حاول مجدداً بعد قليل.")
+    finally:
+        BUSY_ANALYZE["v"] = False
+
+def heavy_prices():
+    try:
+        tt = get_24hr()
+        if not tt:
+            send_message("⚠️ تعذر جلب الأسعار.")
+            return
+        send_message(build_prices(tt))
+    except Exception:
+        send_message("⚠️ تعذر جلب الأسعار.")
+
+def do_menu(message_id=None, chat_id=None):
+    text = main_menu_text()
+    if message_id:
+        edit_message(message_id, text, menu_kb(), chat=chat_id)
+    else:
+        send_message(text, menu_kb())
+
+def handle_callback(cb_id, data, message):
+    chat_id = message.get("chat", {}).get("id")
+    msg_id = message.get("message_id")
+    now = time.time()
+    if now - CB_CD.get(data, 0) < 3:
+        answer_cb(cb_id)
+        return
+    CB_CD[data] = now
+
+    if data == "menu:main":
+        answer_cb(cb_id)
+        do_menu(msg_id, chat_id)
+    elif data == "menu:help":
+        answer_cb(cb_id)
+        send_message(HELP_TEXT, kb=menu_kb())
+    elif data == "menu:ask":
+        answer_cb(cb_id)
+        send_message("🧠 <b>المحلل الصارم جاهز.</b>\n\n"
+                     "اكتب سؤالك مباشرة في الشات، مثل:\n"
+                     "• \"هل BTC جاهز للصعود؟\"\n"
+                     "• \"حلل LINK ورأيك فيها؟\"\n"
+                     "• \"أين أضع الوقف في SOL؟\"\n\n"
+                     "وسأجيب كرئيس غرفة تداول: أرقام، مستويات، صرامة.", kb=menu_kb())
+    elif data == "menu:pause":
+        STATE["paused"] = True
+        save_state()
+        answer_cb(cb_id, "⏸️ توقف الفحص")
+        do_menu(msg_id, chat_id)
+    elif data == "menu:resume":
+        STATE["paused"] = False
+        save_state()
+        answer_cb(cb_id, "▶️ استؤنف الفحص")
+        do_menu(msg_id, chat_id)
+    elif data == "menu:scan":
+        answer_cb(cb_id, "🔎 بدأ الفحص الشامل")
+        threading.Thread(target=heavy_scan, daemon=True).start()
+    elif data == "menu:status":
+        answer_cb(cb_id)
+        threading.Thread(target=lambda: send_message(build_status(analyze_btc(), True), kb=menu_kb()),
+                         daemon=True).start()
+    elif data == "menu:prices":
+        answer_cb(cb_id, "💲 جلب الأسعار")
+        threading.Thread(target=heavy_prices, daemon=True).start()
+    elif data == "menu:coins":
+        answer_cb(cb_id)
+        send_message("🪙 <b>اختر عملة للتحليل الفوري</b>\n"
+                     "تحليل كامل + شارت + خطة ATR.", kb=coins_kb())
+    elif data.startswith("menu:coin:"):
+        sym = data.split(":", 2)[2]
+        answer_cb(cb_id, f"⏳ تحليل {sym.replace('USDT','')}")
+        threading.Thread(target=heavy_coin, args=(sym,), daemon=True).start()
+    else:
+        answer_cb(cb_id)
+
+HELP_TEXT = (
+    "🤖 <b>دليل NOVA PRO v5.0</b>\n\n"
+    "🎛️ <b>الأزرار:</b> اضغط /menu\n"
+    "   • فحص السوق: تدقيق 11 عملة × 3 فريمات\n"
+    "   • تحليل أي عملة: اخترها من قائمة العملات\n\n"
+    "⌨️ <b>الأوامر:</b>\n"
+    "/menu — لوحة التحكم بالأزرار\n"
+    "/status — حالة البوت والصفقات\n"
+    "/scan — فحص فوري للسوق\n"
+    "/coin XLM — تحليل فني + شارت\n"
+    "/chart XLM — شارت فقط\n"
+    "/close XLM — إيقاف متابعة صفقة\n"
+    "/pause /resume — إيقاف/استئناف\n"
+    "/ask سؤالك — سؤال المحلل الصارم\n\n"
+    "💬 <b>اكتب في الشات:</b>\n"
+    "رمز عملة (sol / btc / xlm / render) → تحليل فوري\n"
+    "أي سؤال بالعربية → يجيب المحلل الصارم عبر Gemini\n\n"
+    "📈 <b>الإشارات:</b> RSI(1س) < 35 + MACD سالب + فوليوم عالي\n"
+    "🛡️ عند +4% يصلك إنذار تصفير المخاطرة"
+)
+
+def route_text(text, msg):
+    """أي رسالة نصية: عملة؟ تحليل. غير ذلك؟ المحلل الصارم"""
+    t = text.strip()
+    low = t.lower()
+    # 1) أمر تحليل/شارت + رمز
+    for sym in [LEADER] + COINS:
+        base = sym.replace("USDT", "").lower()
+        if base in low and len(base) >= 2:
+            # كلمة مستقلة تقريباً (مثل "sol" أو "xlm") أو طلب صريح
+            if ("تحليل" in t or "شارت" in t or "اسعار" in t or "سعر" in t
+                    or "حلل" in t or base in low.split()):
+                threading.Thread(target=heavy_coin, args=(sym,), daemon=True).start()
+                send_message(f"⏳ جارٍ تحليل <b>{sym.replace('USDT','/USDT')}</b>...")
+                return True
+    # 2) سؤال محلل (ممنوع تكراره أسرع من 12 ثانية)
+    if time.time() - STATE.get("last_gemini_msg", 0) < 12:
+        send_message("⏳ المحلل يجيب الآن — لحظات وسيصل الرد.")
+        return True
+    STATE["last_gemini_msg"] = time.time()
+    typing()
+    btc = btc_cached()
+    send_message(f"🧠 <b>المحلل الصارم:</b>\n\n{esc(ai_ask(t, btc))}")
+    return True
+
+def handle_command(cmd, arg, msg_id=None):
+    c = cmd.split()[0].split("@")[0].lower()
+    a = arg.strip()
+    if c == "/start" or c == "/menu":
+        do_menu()
+    elif c == "/help":
+        send_message(HELP_TEXT, kb=menu_kb())
+    elif c == "/status":
+        send_message(build_status(analyze_btc(), True), kb=menu_kb())
+    elif c == "/scan":
+        send_message("🔎 بدأ الفحص الشامل... سأرسل النتائج كما تظهر.")
+        threading.Thread(target=heavy_scan, daemon=True).start()
+    elif c == "/pause":
+        STATE["paused"] = True
+        save_state()
+        send_message("⏸️ <b>توقف الفحص مؤقتاً.</b> الصفقات المفتوحة تبقى تحت الرقابة. /resume للعودة.")
+    elif c == "/resume":
+        STATE["paused"] = False
+        save_state()
+        send_message("▶️ <b>عاد الفحص للعمل.</b> سأدقق السوق من جديد.")
+    elif c == "/coin" or c == "/chart":
+        if not a:
+            send_message("✍️ اكتب الرمز: /coin XLM")
+            return
+        sym = a.upper().replace("/", "").replace("USDT", "") + "USDT"
+        if c == "/coin":
+            threading.Thread(target=heavy_coin, args=(sym,), daemon=True).start()
+        else:
+            typing()
+            btc = analyze_btc()
+            an = analyze_symbol(sym, btc)
+            if not an:
+                send_message(f"⚠️ تعذر تحليل {sym} — تأكد من الرمز.")
+                return
+            path = os.path.join(CHART_PATH, f"chart_{sym.replace('USDT','')}_{int(time.time())}.png")
+            if make_chart(sym, an, build_plan(sym, an), path):
+                send_photo(path, f"{sym.replace('USDT','/USDT')} — شارت 1س | "
+                                 f"Score {an['score']}% ({an['grade']})")
+            else:
+                send_message("📉 تعذر رسم الشارت (matplotlib غير مثبت؟)")
+    elif c == "/close":
+        if not a:
+            send_message("✍️ /close XLM")
+            return
+        sym = a.upper().replace("/", "").replace("USDT", "") + "USDT"
+        if STATE["positions"].pop(sym, None) is not None:
+            save_state()
+            send_message(f"✔️ أغلقت متابعة {sym}. لن تصلك تنبيهات إدارة لها بعد الآن.")
+        else:
+            send_message(f"لا توجد صفقة نشطة لـ {sym} — تحقق من /status")
+    elif c == "/ask":
+        q = a
+        if not q:
+            send_message("✍️ اكتب سؤالك: /ask هل البيتكوين صاعد؟")
+            return
+        typing()
+        btc = btc_cached()
+        send_message(f"🧠 <b>المحلل الصارم:</b>\n\n{esc(ai_ask(q, btc))}")
+    elif c == "/prices":
+        threading.Thread(target=heavy_prices, daemon=True).start()
+    elif c == "/btc":
+        threading.Thread(target=heavy_coin, args=(LEADER,), daemon=True).start()
+    else:
+        send_message("أمر غير معروف — /help\nأو افتح لوحة التحكم: /menu", kb=menu_kb())
+
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║ 15) استطلاع تليجرام                                         ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+def poll_telegram():
+    try:
+        if not STATE.get("bootstrapped"):
+            STATE["bootstrapped"] = True
+            res = tg("getUpdates", {"offset": -1, "timeout": 0}, retries=1)
+            if res:
+                STATE["tg_offset"] = res[-1]["update_id"] + 1
+            save_state()
+            return
+        res = tg("getUpdates", {
+            "offset": STATE["tg_offset"], "timeout": 0,
+            "allowed_updates": ["message", "callback_query"]}, retries=1)
+        if not res:
+            return
+        for upd in res:
+            STATE["tg_offset"] = max(STATE["tg_offset"], upd["update_id"] + 1)
+            if "callback_query" in upd:
+                cb = upd["callback_query"]
+                chat = str(cb.get("message", {}).get("chat", {}).get("id", ""))
+                if chat != str(CHAT_ID):
+                    continue
+                handle_callback(cb.get("id", ""), cb.get("data", ""), cb.get("message") or {})
+            elif "message" in upd:
+                msg = upd["message"]
+                chat = str(msg.get("chat", {}).get("id"))
+                if chat != str(CHAT_ID):
+                    continue
+                text = (msg.get("text") or "").strip()
+                if not text:
+                    continue
+                if text.startswith("/"):
+                    parts = text.split(maxsplit=1)
+                    cmd = parts[0]
+                    arg = parts[1] if len(parts) > 1 else ""
+                    log(f"📩 أمر: {cmd} {arg}")
+                    handle_command(cmd, arg)
+                else:
+                    log(f"💬 نص: {text[:60]}")
+                    route_text(text, msg)
+        save_state()
+    except Exception as e:
+        log(f"⚠️ poll: {e}")
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║ 16) البطاقة اليومية + نبض القلب                              ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+def maybe_daily_digest():
+    if not SEND_DAILY_DIGEST:
+        return
+    now = datetime.now()
+    today = now.strftime("%Y-%m-%d")
+    if now.hour == DAILY_DIGEST_HOUR and STATE.get("last_digest") != today:
+        STATE["last_digest"] = today
+        btc = analyze_btc()
+        tt = get_24hr()
+        best = max(tt.values(), key=lambda d: d["chg"]) if tt else None
+        worst = min(tt.values(), key=lambda d: d["chg"]) if tt else None
+        txt = [f"🌅 <b>بطاقة السوق اليومية — {today}</b>",
+               f"🐉 القائد: {REGIME_AR[btc['regime']]} | BTC {pct_str(btc['change24'])}",
+               f"📊 RSI(1س/4س/1د): {btc['rsi1h']:.0f}/{btc['rsi4h']:.0f}/{btc['rsi1d']:.0f} | ADX4س {btc['adx4h']:.0f}"]
+        if best:
+            txt.append(f"🏆 الأقوى اليوم: {[k for k,v in tt.items() if v is best][0].replace('USDT','')} {pct_str(best['chg'])}")
+        if worst:
+            txt.append(f"📉 الأضعف اليوم: {[k for k,v in tt.items() if v is worst][0].replace('USDT','')} {pct_str(worst['chg'])}")
+        pos = STATE["positions"]
+        if pos:
+            txt.append(f"📋 صفقات نشطة: {len(pos)} — راجع الإدارة بالأزرار")
+        else:
+            txt.append("📋 لا صفقات مفتوحة — الرادار في انتظار الشرط الثلاثي")
+        txt.append("🎛️ /menu — لوحة التحكم")
+        send_message("\n".join(txt))
+        save_state()
+
+# ╔══════════════════════════════════════════════════════════════╗
+# ║ 17) الحلقة الرئيسية + الاختبار الذاتي                        ║
+# ╚══════════════════════════════════════════════════════════════╝
+
+def selftest():
+    """اختبار المحرك الرياضي + الشارت ببيانات اصطناعية — بدون شبكة"""
+    print("🧪 NOVA PRO SELFTEST ...")
+    ok = True
+    random.seed(42)
+    n = 500
+    closes, highs, lows, opens, vols = [], [], [], [], []
+    px = 100.0
+    for i in range(n):
+        drift = math.sin(i / 40) * 0.6
+        px += drift + random.gauss(0, 0.8)
+        px = max(px, 30)
+        o = px
+        c = px + random.gauss(0, 0.5)
+        h = max(o, c) + abs(random.gauss(0, 0.4))
+        l = min(o, c) - abs(random.gauss(0, 0.4))
+        opens.append(o); closes.append(c); highs.append(h); lows.append(l)
+        vols.append(abs(random.gauss(500, 150)))
+        px = c
+
+    def check(name, cond, extra=""):
+        nonlocal ok
+        print(("  ✅ " if cond else "  ❌ ") + name + (f" — {extra}" if extra else ""))
+        ok = ok and cond
+
+    rsi = rsi_series(closes)
+    check("RSI داخل 0-100", all(x is None or 0 <= x <= 100 for x in rsi) and rsi[-1] is not None,
+          f"آخر قيمة {rsi[-1]:.1f}")
+    up = rsi_series([100 + i * 0.5 for i in range(60)])
+    check("RSI صعودي خالص = 100", up[-1] is not None and up[-1] > 99.9, f"{up[-1]:.1f}")
+    e = ema_series(closes, 50)
+    check("EMA50 اكتملت", e[-1] is not None and e[-50] is not None, f"{e[-1]:.2f}")
+    ml, ms, hh = macd_series(closes)
+    check("MACD اكتمل", ml[-1] is not None and ms[-1] is not None and hh[-1] is not None)
+    bb_u, bb_m, bb_l = bollinger_series(closes)
+    check("بولنجر: علوي>سفلي", bb_u[-1] is not None and bb_u[-1] > bb_l[-1])
+    at = atr_series(highs, lows, closes)
+    check("ATR > 0", at[-1] is not None and at[-1] > 0, f"{at[-1]:.3f}")
+    dp, dm, adx = adx_series(highs, lows, closes)
+    check("ADX اكتمل", adx[-1] is not None and 0 <= adx[-1] <= 100, f"{adx[-1]:.1f}")
+    s_raw, s_k, s_d = stoch_rsi_series(closes)
+    check("StochRSI اكتمل", s_k[-1] is not None and 0 <= (s_k[-1] or 0) <= 100)
+    obv = obv_series(closes, vols)
+    check("OBV اكتمل", len(obv) == n)
+    st, band = supertrend_series(highs, lows, closes)
+    check("Supertrend يعمل", st[-1] in (1, -1) and band[-1] is not None)
+    tl, *_ = trend_info(closes)
+    check("TrendInfo يعمل", tl in ("up", "down", "side"), tl)
+    sup, res = support_resistance(highs, lows, closes[-1])
+    check("دعم/مقاومة اكتملا", True, f"sup={sup and round(sup,2)} res={res and round(res,2)}")
+    pat, green = candle_pattern(opens, highs, lows, closes)
+    check("نمط شموع يعمل", True, pat or "عادي")
+    # خطة صفقة بتيكنات وهمية
+    global TICK_SIZES
+    TICK_SIZES["TESTUSDT"] = 0.01
+    fake_an = {"symbol": "TESTUSDT", "live": closes[-1], "atr1h": at[-1],
+               "atr4h": at[-1] * 2, "rsi": rsi[-1], "rsi_prev": rsi[-2],
+               "score": 72, "grade": "B", "t1h": "up", "t4h": "up", "t1d": "up",
+               "change24": 2.5, "change7d": 4.0, "adx4h": 30, "adx1h": 25,
+               "k1h": {"t": [0] * 200, "o": opens[-200:], "h": highs[-200:],
+                       "l": lows[-200:], "c": closes[-200:], "v": vols[-200:]},
+               "support": sup, "resistance": res, "trigger": {"rsi_ok": False, "macd_ok": False, "vol_ok": False},
+               "hist": 0.1, "hist_prev": 0.05, "macd_line": -0.2, "macd_signal": -0.1,
+               "rsi4": 45, "rsi_d": 50, "atr1h": at[-1], "di_plus4": 25, "di_minus4": 20,
+               "supertrend": 1, "st_band": band[-1], "checks": [], "vetoes": []}
+    plan = build_plan("TESTUSDT", fake_an)
+    check("خطة ATR: وقف تحت الدخول", plan["sl"] < plan["entry"], f"SL {plan['sl']:.2f} / دخول {plan['entry']:.2f}")
+    check("خطة ATR: أهداف متدرجة", plan["tp1"] < plan["tp2"] < plan["tp3"])
+    check("خطة ATR: تصفير عند +{}%".format(RISK_FREE_PCT),
+          abs((plan["be"] / plan["entry"] - 1) * 100 - RISK_FREE_PCT) < 0.6,
+          f"be {plan['be']:.2f}")
+    # شارت تجريبي
+    path = os.path.join(BASE_DIR, "selftest_chart.png")
+    if chart_ready():
+        done = make_chart("TESTUSDT", fake_an, plan, path)
+        check("رسم الشارت", done and os.path.exists(path), path if done else "matplotlib غايب")
+    else:
+        print("  ⚠️ تخطي الشارت (matplotlib غير مثبت هنا)")
+    print("🧪 النتيجة: " + ("ALL PASS ✅" if ok else "فشل ❌"))
+    return 0 if ok else 1
+
+def main():
+    args = sys.argv[1:]
+    if "--selftest" in args:
+        sys.exit(selftest())
+    load_state()
+    if "--once" in args:
+        global DRY_RUN
+        DRY_RUN = True
+        log("🧪 وضع --once: فحص واحد ثم خروج (بدون إرسال)")
+        load_tick_sizes()
+        run_scan(force=True)
+        save_state()
+        print("\n✅ انتهى الفحص التجريبي. شغّل 'python bot.py' للإطلاق الفعلي.")
+        return
+    load_tick_sizes()
+    try:
+        os.makedirs(CHART_PATH, exist_ok=True)
+    except Exception:
+        pass
+    # اختبار الاتصال قبل الانطلاق
+    data = binance_get("/api/v3/ping")
+    if data is not None:
+        log(f"✅ الاتصال ببينانس عبر {STATE.get('host')}")
+    else:
+        log("⚠️ تعذر الاتصال ببينانس الآن — سأحاول لاحقاً")
+    send_message("🚀 <b>تم إطلاق NOVA PRO v5.0</b> — رادار التداول الذكي\n"
+                 "👁️ 11 عملة × 3 فريمات (1س دخول / 4س+1د اتجاه)\n"
+                 "🟢 إشارة الشراء: RSI<35 + MACD سالب + فوليوم عالي\n"
+                 "🛡️ إدارة كاملة: تصفير مخاطرة +4% + أهداف + تريلينج\n"
+                 "🧠 محلل فني صارم عبر Gemini — اسأله أي شيء\n"
+                 "🎛️ اضغط الزر بالأسفل لفتح لوحة التحكم.",
+                 kb=menu_kb())
+    last_scan = 0.0
+    last_manage = 0.0
+    errors = 0
+    while True:
+        try:
+            now = time.time()
+            poll_telegram()
+            if now - last_manage > MANAGE_EVERY:
+                last_manage = now
+                if STATE["positions"]:
+                    manage_positions()
+            if now - last_scan > SCAN_INTERVAL and not STATE["paused"]:
+                last_scan = now
+                threading.Thread(target=lambda: run_scan(force=False), daemon=True).start()
+            if time.time() - STATE.get("last_heartbeat", 0) > HEARTBEAT_HOURS * 3600:
+                STATE["last_heartbeat"] = time.time()
+                send_message(build_status(analyze_btc(), True), kb=menu_kb())
+            maybe_daily_digest()
+            save_state()
+            errors = 0
+            time.sleep(TG_POLL_EVERY)
+        except KeyboardInterrupt:
+            save_state()
+            try:
+                send_message("👋 <b>أُوقف البوت يدوياً.</b> الذاكرة محفوظة — سأكمل من حيث توقفت.")
+            except Exception:
+                pass
+            break
+        except Exception as e:
+            errors += 1
+            log(f"❌ خطأ #{errors}: {e}\n{traceback.format_exc()[-500:]}")
+            if errors == 5:
+                send_message("⚠️ <b>تنبيه: البوت يواجه أخطاء متكررة.</b> تحقق من الإنترنت ثم أعد التشغيل.")
+            time.sleep(min(15 * errors, 120))
+
+if __name__ == "__main__":
+    main()

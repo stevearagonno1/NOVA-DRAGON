@@ -1,0 +1,78 @@
+//@version=5
+indicator('Jackson Zones', overlay = true)
+///
+
+Timeframe = input.timeframe('D', title ='Time frame')
+width = input.int(defval = 1, title='Line width', minval = 1)
+fillzones = input(defval = true, title='Clouds')
+showlast = input(title = 'Show only last period', defval = false)
+
+////
+r1 = 0.5
+r2 = 0.618
+r3 = 1
+r4 = 1.382
+resextsup = 2.74
+///
+s1 = -0.5
+s2 = -0.618
+s3 = -1
+s4 = -1.382
+sopextinf = -2.74
+///
+pHigh = request.security(syminfo.tickerid, Timeframe, high[1], lookahead=barmerge.lookahead_on)
+pLow = request.security(syminfo.tickerid, Timeframe, low[1], lookahead=barmerge.lookahead_on)
+pClose = request.security(syminfo.tickerid, Timeframe, close[1], lookahead=barmerge.lookahead_on)
+
+islast = showlast ? request.security(syminfo.tickerid, Timeframe, barstate.islast, lookahead=barmerge.lookahead_on) : true
+///
+pvp = (pHigh + pLow + pClose) / 3
+cp = (pHigh + pLow) / 2
+dp = pvp + pvp - cp
+fibrange(pv, h, l, ratio) =>
+    pv + (h - l) * ratio
+
+
+vS1 = fibrange(pvp, pHigh, pLow, s1)
+vS2 = fibrange(pvp, pHigh, pLow, s2)
+vS3 = fibrange(pvp, pHigh, pLow, s3)
+vS4 = fibrange(pvp, pHigh, pLow, s4)
+vSEX = fibrange(pvp, pHigh, pLow, sopextinf)
+///
+vR1 = fibrange(pvp, pHigh, pLow, r1)
+vR2 = fibrange(pvp, pHigh, pLow, r2)
+vR3 = fibrange(pvp, pHigh, pLow, r3)
+vR4 = fibrange(pvp, pHigh, pLow, r4)
+vREX = fibrange(pvp, pHigh, pLow, resextsup)
+///
+pvplot = plot(islast and pvp > 0 ? ta.change(pvp) != 0 ? na : pvp : na, color=color.new(#fb00ff, 0), title='POC', style=plot.style_linebr, linewidth=width)
+///
+res1 = plot(islast and vR1 > 0 ? ta.change(vR1) != 0 ? na : vR1 : na, color=color.new(#368a43, 0), title='R1', style=plot.style_linebr, linewidth=width)
+res2 = plot(islast and vR2 > 0 ? ta.change(vR2) != 0 ? na : vR2 : na, color=color.new(#368a43, 0), title='RB1', style=plot.style_linebr, linewidth=width)
+res3 = plot(islast and vR3 > 0 ? ta.change(vR3) != 0 ? na : vR3 : na, color=color.new(#368a43, 0), title='R2', style=plot.style_linebr, linewidth=width)
+res4 = plot(islast and vR4 > 0 ? ta.change(vR4) != 0 ? na : vR4 : na, color=color.new(#368a43, 0), title='RB2', style=plot.style_linebr, linewidth=width)
+resex = plot(islast and vREX > 0 ? ta.change(vREX) != 0 ? na : vREX : na, color=color.new(#368a43, 0), title='R3', style=plot.style_cross, linewidth=width)
+
+///
+sup1 = plot(islast and vS1 > 0 ? ta.change(vS1) != 0 ? na : vS1 : na, color=color.new(#e63c3c, 0), title='S1', style=plot.style_linebr, linewidth=width)
+sup2 = plot(islast and vS2 > 0 ? ta.change(vS2) != 0 ? na : vS2 : na, color=color.new(#e63c3c, 0), title='SB1', style=plot.style_linebr, linewidth=width)
+sup3 = plot(islast and vS3 > 0 ? ta.change(vS3) != 0 ? na : vS3 : na, color=color.new(#e63c3c, 0), title='S2', style=plot.style_linebr, linewidth=width)
+sup4 = plot(islast and vS4 > 0 ? ta.change(vS4) != 0 ? na : vS4 : na, color=color.new(#e63c3c, 0), title='SB2', style=plot.style_linebr, linewidth=width)
+supex = plot(islast and vSEX > 0 ? ta.change(vSEX) != 0 ? na : vSEX : na, color=color.new(#e63c3c, 0), title='S3', style=plot.style_cross, linewidth=width)
+
+///
+cpplot = plot(islast and cp > 0 ? ta.change(cp) != 0 ? na : cp : na, color=#ffffff00, style=plot.style_linebr, linewidth=width)
+dpplot = plot(islast and dp > 0 ? ta.change(dp) != 0 ? na : dp : na, color=#ffffff00, style=plot.style_linebr, linewidth=width)
+
+///clouds
+
+fillcolor_sp = fillzones ? #d10315 : na
+fillcolor_rs = fillzones ? #00bb00 : na
+fillcolor_poc = fillzones ? #fb00ff : na
+
+fill(cpplot, dpplot, color=fillcolor_poc, title='POC Cloud', transp=85)
+fill(sup1, sup2, color=fillcolor_sp, title='S1 Cloud', transp=85)
+fill(sup3, sup4, color=fillcolor_sp, title='S2 Cloud', transp=85)
+fill(res1, res2, color=fillcolor_rs, title='R1 Cloud', transp=85)
+fill(res3, res4, color=fillcolor_rs, title='R2 Cloud', transp=85)
+
