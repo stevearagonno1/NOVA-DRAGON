@@ -2,6 +2,7 @@
 
 الهيكل من `tools/organize_incoming.py`. المكرر الحرفي (نفس sha256) شُطب، وغيره نُقل بمساره — ولا معلومة ضاعت.
 آخر تنظيم: 2026-09-14 | الملفات الواردة: 523 | منقولة: 332 | محذوفة لتطابقها: 191
+تحديث المرآة: 2026‑09‑14 — صُححت مسارات ما نُقل بعد التنظيم (الجذر → `docs/source` و`archive`؛ `docs/misc/مؤشرات` → `library/indicators`؛ `docs/misc/ملفات` → `docs/library`) وأُضيف الجديد. فحص المطابقة وأوامره: `docs/STATS-2026-09-14.md` §6.
 
 | `library/indicators` | مكتبة المؤشرات: 129 ملفاً (مؤشرات/0..7) — خامات أفكار الفلاتر |
 | `docs/library` | 14 ملفاً مرجعياً (أدلة ومؤشرات نصية) |
@@ -16,18 +17,22 @@
 | `docs/reports` | تقارير التدقيق والنتائج والمراجعات |
 | `docs/conversations` | سجلات المحادثات ورسائل التوجيه (ذاكرة القرارات) |
 | `docs/lanes` | الحارات: كل تجربة = ملف فيه عقده وحكمه |
+| `docs/library` | 14 ملفاً مرجعياً (استشارات + مراجع قصيرة) — نُقلت من docs/misc/ملفات |
+| `docs/source` | متفرقات الجذر المنقولة: دليل البداية + عقد الإصدارات (D-0016) + الملفات الشاملة |
 | `hypotheses` | الفرضيات: الـ212 + النخبة + لوحة الخط + عقد المصنع |
 | `bot_versions` | كل نسخ البوت القديمة — تاريخ محفوظ، لا كود حيّ |
 | `data` | باركيه صغير أعيد منه حساب النتائج |
 | `research` | نتائج التشغيل الحقيقية (الأرشيف) |
 | `tools` | أدواتنا: الفحص، البروبي، جدول الأرشيف، المنظّم |
-| `crypto_archive` | البيانات الضخمة (BTC 1m لخمس سنوات) |
+| `hyp_lab` | آلة اختبار الفرضيات الجديدة (من جلسة موازية، PR #3) — بلا مساس بـ`nova_v8/**` |
+| `crypto_archive` | البيانات الضخمة (14 عملة 1m — أغلبيتها 5 سنوات) |
 | `code_drafts` | مسودات كود مستقلة ليست من المحرك |
 | `archive` | القديم وغير المطابق — محفوظ لا مربوط |
 
 ## كل ملف بمكانه
 
-### `(أرشيف النتائج — على مستوى المجلد)` (27)
+### `(أرشيف النتائج — على مستوى المجلد)` (28)
+- `research/hyp_lab_out/L0004/` — جولة مختبر الفرضيات الأولى: 9 فرضيات × 4 رموز (114 تركيبة) على نافذة 2026 (مسار L‑0006)
 
 - `research/nova_v8_out/ATOMUSDT/` — 13 ملف (370K)
 - `research/nova_v8_out/BNBUSDT/` — 13 ملف (377K)
@@ -57,18 +62,22 @@
 - `research/nova_v8_out/test_don_filter/` — 12 ملف (153K)
 - `research/nova_v8_out/test_don_macro/` — 12 ملف (70K)
 
-### `.` (10)
+### `.` (7)
 
-- `.gitignore` (1K) 
-- `AGENTS.md` (4K) — NOVA-DRAGON — عقود العمل للوكلاء (اقرأ هذا أولاً)
-- `NOVA_v8_bundle.zip` (101K) 
-- `START.txt` (1K) — NOVA_V8 — خطوات ما بعد فك الضغط (Termux) ===
-- `bot_output.log` (1K) — nohup: ignoring input
-- `fetch_archive.py` (4K) — !/usr/bin/env python3
-- `requirements.txt` (1K) — NOVA_V8 — إصدارات المرجع المُنتِجة للأرقام الموثقة (شغّل مساراتك عليها لتفادي فروق ULP).
-- `الملف_الشامل_للوكيل_الجديد.txt` (64K) — ═══════════════════════════════════════════════════════════════════════
-- `حزمة_الوكيل_كاملة.txt` (309K) — الجزء: العقد (اقرأه أولاً) =========================
-- `نتائج_الاستراتيجيات_الكاملة.txt` (16K) — ═══════════════════════════════════════════════════════════════
+- `.gitignore` (46B) 
+- `AGENTS.md` (5K) — NOVA-DRAGON — عقود العمل للوكلاء (اقرأ هذا أولاً)
+- `CONSTITUTION.md` (30K) — دستور المشروع (الأعلى + التشغيلي) — يُقرأ قبل أي أمر
+- `INDEX.md` (51K) — هذا الفهرس — مرآة المستودع
+- `LOG.md` (4K) — السجل التراكمي: بلوك لكل نتيجة (Append-only بقالبه أعلى الملف)
+- `README.md` (82B) — واجهة المستودع
+- `fetch_archive.py` (4K) — تنزيل أرشيف 1m من data.binance.vision — open_time عمود int64 بالملي ثانية (بلا افتراض وحدة)
+
+> **نُقل بعد التنظيم إلى مواضع جديدة:** `NOVA_v8_bundle.zip` و`bot_output.log` → `archive/` — و`START.txt` و`requirements.txt` و`الملف_الشامل_للوكيل_الجديد.txt` و`حزمة_الوكيل_كاملة.txt` و`نتائج_الاستراتيجيات_الكاملة.txt` → `docs/source/`.
+
+### `archive` (2)
+
+- `archive/NOVA_v8_bundle.zip` (102K) — حزمة التوثيق الأصلية (نُقلت من الجذر)
+- `archive/bot_output.log` (64B) — nohup: ignoring input (نُقل من الجذر)
 
 ### `archive/code_snapshot` (1)
 
@@ -242,28 +251,43 @@
 - `code_drafts/telegram_bot.py.txt` (6K) — """Modules 11 & 12 — non-blocking Telegram interface.
 - `code_drafts/telemetry.py.txt` (7K) — """Module 10 — Master Telemetry Database (the Quant Matrix).
 
-### `data` (4)
+### `hyp_lab` (11 — من جلسة موازية، PR #3)
 
-- `data/BNBUSDT_1m.parquet` (2.8M) 
-- `data/BTCUSDT_1m.parquet` (4.8M) 
-- `data/LINKUSDT_1m.parquet` (2.6M) 
-- `data/SOLUSDT_1m.parquet` (2.8M) 
+- `hyp_lab/` — آلة اختبار الفرضيات: ملفات فرضيات (F_*) + مشغّل مشترك + اختبارات ذاتية (9/9) وحتمية بايت‑ببايت؛ بُنيت خارج `nova_v8/**` المجمد. التشغيل: `.venv/bin/python hyp_lab/run_lab.py --out research/hyp_lab_out/L0004`
+
+### `crypto_archive` (14 عملة محلياً وبعيداً بعد التوحيد: الثمانية المعتمدة + 6 بحثية — انظر `docs/DATA-INVENTORY-2026-09-14.md`)
+
+- `crypto_archive/BTCUSDT_1m.parquet` (85M) — بيتكوين 1m لخمس سنوات 2021‑09→2026‑08 (open_time بالمللي ثانية int64؛ 2,629,240 شمعة)؛ فجوتان ~200 دقيقة — الجرد الكامل: `docs/DATA-INVENTORY-2026-09-14.md`
+
+### `data` (5 — بعد دمج main)
+
+- `data/MANIFEST.md` — بيان البيانات الخمس (على main البعيد): صفوف وفترات وبصمات وشرح غير المرفوع
+
+- `data/BNBUSDT_1m.parquet` (2.9M) — شموع 1m: 132,480 شمعة · 2026-06-01→2026-08-31 (92 يوماً، صفر فجوات)
+- `data/BTCUSDT_1m.parquet` (5.0M) — شموع 1m: 132,480 شمعة · 2026-06-01→2026-08-31 (92 يوماً، صفر فجوات)
+- `data/LINKUSDT_1m.parquet` (2.7M) — شموع 1m: 132,480 شمعة · 2026-06-01→2026-08-31 (92 يوماً، صفر فجوات)
+- `data/SOLUSDT_1m.parquet` (2.9M) — شموع 1m: 132,480 شمعة · 2026-06-01→2026-08-31 (92 يوماً، صفر فجوات)
 
 ### `data/archive` (3)
 
-- `data/archive/BTCUSDT_1m.parquet` (1.6M) 
-- `data/archive/SOLUSDT_1m.parquet` (1.6M) 
-- `data/archive/XLMUSDT_1m.parquet` (1.6M) 
+- `data/archive/BTCUSDT_1m.parquet` (1.7M) — شموع 1m: 30,000 شمعة · 2025-01-01→2025-01-21 (21 يوماً) — شريحة اختبار قديمة
+- `data/archive/SOLUSDT_1m.parquet` (1.7M) — مثلها (2025-01-01→2025-01-21)
+- `data/archive/XLMUSDT_1m.parquet` (1.7M) — مثلها (2025-01-01→2025-01-21)
 
-### `docs` (8)
+### `docs` (10)
 
 - `docs/ARCHIVE-VERIFIED-2026-09-14.md` (9K) — أرشيف الأدلة — تدقيق 14 سبتمبر 2026 (874 ملفاً / 72 تجربة)
 - `docs/AUDIT-2026-09-13.md` (5K) — تدقيق 2026‑09‑13 — ما وجده العقل حين أعاد الاشتقاق بدل القراءة
 - `docs/BRAIN.md` (11K) — BRAIN — ميثاق «العقل» (المحادثة التنسيقية العليا)
+- `docs/DATA-INVENTORY-2026-09-14.md` (3K) — جرد ملفات الأسعار في المستودع: من منها وبأي فترة وبأي فجوات
+- `docs/HALAL-LIQUID-20-2026-09-14.md` (6K) — بحث أقوى 20 عملة حلالاً ونشاطاً وسيولة (بالمصادر) + اكتشاف GRAM = TON بعد استعادة الاسم
+- `docs/CORRELATION-2026-09-14.md` (4K) — قياس ارتباط 12 عملة من بياناتنا (مصفوفة 5 سنوات + سلوك الهبوط + عناقيد التوصية)
 - `docs/DECISIONS.md` (8K) — DECISIONS — سجل القرارات الملزمة (Append‑only)
 - `docs/EXECUTION_REPORT.md` (4K) — تقرير تنفيذ — NOVA_V8 adaptive_trend sweep (477→1920)
+- `docs/NEXT-SESSION.md` (3K) — تسليم الجلسة: أين نحن والمهمات القادمة (اقرأه بعد الدستور)
 - `docs/NOVA_V8_ORIGINAL_BUNDLE.txt` (309K) — الجزء: العقد (اقرأه أولاً) =========================
 - `docs/PROJECT_LOG.txt` (17K) — ════════════════════════════════════════════════════════════════════
+- `docs/STATS-2026-09-14.md` (28K) — ناتج tools/archive_report.py كاملاً + تدقيق أرقام BRAIN + فحص مطابقة الفهرس (أوامر قابلة للتكرار)
 - `docs/sweep_run.log` (176K) — البحث الشامل: adaptive_trend — 1920 تركيبة × نافذتين (تدريب+اختبار)
 
 ### `docs/constitution` (2)
@@ -306,13 +330,14 @@
 - `docs/designs/المخطط_الشامل_للبوت/09_ورقة_الثوابت_وجميع_الأرقام.md` (12K) — 📋 ورقة الثوابت — كل رقم ومعامل ورد في الملفات الأربعة
 - `docs/designs/المخطط_الشامل_للبوت/المخطط_الشامل_ملف_واحد.txt` (367K) — المخطط الشامل للبوت  —  NOVA_V8_QUANT_LAB
 
-### `docs/lanes` (6)
+### `docs/lanes` (7)
 
 - `docs/lanes/INDEX.md` (2K) — LANES — لوحة المسارات (كل تجربة = ملف هنا)
 - `docs/lanes/L0000-adaptive-trend-1920.md` (3K) — L0000 — adaptive_trend: جولة السويپ 477 → 1920 (مغلقة)
 - `docs/lanes/L0001-donchian-current-engine-grid.md` (3K) — L0001 — donchian: إعادة التشغيل بمحاور المحرك الفعلية (DON_FILTER)
 - `docs/lanes/L0002-grid-collapse-dead-axes.md` (3K) — L0002 — تخفيض الشبكة: إزالة الأعمدة الخاملة (grid_collapse)
 - `docs/lanes/L0003-adoption-gate-holdout.md` (3K) — L0003 — بوابة القبول على holdout 2021-09:2023-08 (موجود في المستودع)
+- `docs/lanes/L0006-hyp-lab-first-sweep.md` (11K) — L0006 — hyp_lab: الجولة الأولى (9 فرضيات × 4 رموز، نافذة 2026) — جلسة موازية، أُعيد ترقيمها من L0004 (D‑0020)
 - `docs/lanes/_TEMPLATE.md` (3K) — L{{ID}} — {{TITLE}}
 
 ### `docs/misc` (17)
@@ -335,176 +360,32 @@
 - `docs/misc/مخطط البوت الجديد.txt` (40K) — PAGE 1 ---
 - `docs/misc/مخطط_الباك_تست_الشامل.txt` (22K) — المخطط الشامل لمحرك الباك تست — NOVA_V8
 
-### `docs/misc/مؤشرات/0` (6)
+### `docs/library` (14)
 
-- `docs/misc/مؤشرات/0/hft_edge_extraction_batch2.md` (71K) — Reverse-Engineered Trading Logic — Batch 2 — Distilled for a Tick-Based Binance Spot Engin
-- `docs/misc/مؤشرات/0/hft_edge_extraction_batch3.md` (76K) — HFT Edge Extraction — Batch 3 (20 files)
-- `docs/misc/مؤشرات/0/hft_edge_extraction_batch4.md` (58K) — HFT Edge Extraction — Batch 4 (Files 61–81)
-- `docs/misc/مؤشرات/0/hft_edge_extraction_batch5.md` (62K) — HFT Edge Extraction — Batch 5 (Files 82–101)
-- `docs/misc/مؤشرات/0/hft_edge_extraction_batch6.md` (59K) — HFT Edge Extraction — BATCH 6 (files 102–121)
-- `docs/misc/مؤشرات/0/hft_edge_extraction_batch7.md` (47K) — HFT Edge Extraction — BATCH 7 (files 122–130)
+- `docs/library/claude.txt` (26K) — خطة شاملة لموازنة البوت وتحسين أدائه
+- `docs/library/gemini.txt` (12K) — لماذا لا يرى البوت فرصاً في السوق حالياً؟
+- `docs/library/gpt.txt` (23K) — معضلة الدقة مقابل التردد في السكالبينج
+- `docs/library/kimi.txt` (17K) — تشخيص مشكلة التوازن بين الدقة والتردد
+- `docs/library/qwen.txt` (22K) — تحليل معضلة الدقة مقابل التردد في بوتات التداول
+- `docs/library/اخطاء و فخاخ.txt` (7K) — فخ البوابات المنطقية المتسلسلة (Boolean AND Trap)
+- `docs/library/اسماء المؤشرات.txt` (3K) — كشف المؤشرات الفنية من ملف مشروع الكريبتو
+- `docs/library/اعدادات المؤشرات.txt` (4K) — أفضل إعدادات القراءة البصرية للـ Gem (4h/اليومي)
+- `docs/library/البوت الهجين.txt` (7K) — حسم التركيبة: Testnet + أولوية عدد الصفقات + هجين + رسوم 0.1%
+- `docs/library/التقرير_النهائي_تحليل_البوت_والمؤشرات.md` (14K) — 🔬 التقرير الشامل: تدقيق البوت «NOVA» + مراجعة مكتبة المؤشرات
+- `docs/library/العملات الاقوى و الحلال تماما.txt` (53B) — قائمة العملات المختارة
+- `docs/library/بوت جريد.txt` (3K) — الميكانيكية الرياضية لربح بوت الشبكة (Spot Grid)
+- `docs/library/فخاخ المبتدئين.txt` (27B) — فخاخ المبتدئين
+- `docs/library/كثر خسارات البوت.txt` (7K) — الأسباب الجذرية لسلسلة خسائر NOVA V7.0
 
-### `docs/misc/مؤشرات/1` (20)
+### `docs/misc/مؤشرات` — نُقلت مكتبة المؤشرات
 
-- `docs/misc/مؤشرات/1/2-1 strategy.txt` (82K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/1/ABO LANA-𝑀.txt` (35K) — //@version=5
-- `docs/misc/مؤشرات/1/AI Gold Scalping.txt` (22K) — //@version=5
-- `docs/misc/مؤشرات/1/AI RSI MTF STRATEGY.txt` (53K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/1/AI SWING Algo.txt` (7K) — //@version=5
-- `docs/misc/مؤشرات/1/AI Signal Remastered.txt` (11K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/1/AI Signal.txt` (11K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/1/AI Vanga V3.txt` (45K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/1/AI_TRENDLINE.txt` (10K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/1/ALGOX V11.txt` (62K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/1/ASK.txt` (47K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/1/Adaptive Ichimoku Nexus.txt` (44K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/1/Advanced Liquidity Sweep.txt` (37K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/1/Advanced SMC.txt` (122K) — //@version=5
-- `docs/misc/مؤشرات/1/AlgoX V22 SuperTrend.txt` (97K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/1/Alpha Hunter.txt` (10K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/1/Anchored VWAP Trade Planner.txt` (28K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/1/Apex Trend.txt` (11K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/1/Ayman Entry.txt` (25K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/1/breakout +TP-SL.txt` (9K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
+> ملفات الأقسام الثمانية القديمة هنا (129 ملفاً: 6+20+19+20+19+17+19+9) نُقلت إلى `library/indicators/0..7` بالتقسيم نفسه — انظر صف `library/indicators` في الجدول أعلى الفهرس. المجلدات القديمة أزيلت بعد النقل.
 
-### `docs/misc/مؤشرات/2` (19)
+### `docs/misc/ملفات` — نُقلت
 
-- `docs/misc/مؤشرات/2/Breakout Lines + TPSL.txt` (17K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/2/Breakout Lines.txt` (17K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/2/Breakout Targets.txt` (13K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/2/Clear Trend Algo.txt` (9K) — // This indicator is brought to you by @mrexpert_ai
-- `docs/misc/مؤشرات/2/Clustering Clouds v2.txt` (67K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/2/Combined Algo v5.txt` (17K) — //@version=5
-- `docs/misc/مؤشرات/2/Combined Trendlines Breakouts.txt` (24K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/2/Cute Dragon.txt` (13K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/2/DTC V1.35.txt` (15K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/2/DTC.txt` (94K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/2/DTC_V1.txt` (3K) — //@version=6
-- `docs/misc/مؤشرات/2/Delta Reaction Zones.txt` (30K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/2/Double SuperTrend.txt` (5K) — //@version=6
-- `docs/misc/مؤشرات/2/Drone Arrows.txt` (14K) — //@version=6
-- `docs/misc/مؤشرات/2/ELITE SMART.txt` (54K) — // ALERT READY ON TELEGRAM ==> https://t.me/mrexpert_ai
-- `docs/misc/مؤشرات/2/Edge Algo pro.txt` (5K) — ﻿//@version=6
-- `docs/misc/مؤشرات/2/ExProfit SuperTrend.txt` (121K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/2/Eyops Fx Premium.txt` (102K) — //@version=5
-- `docs/misc/مؤشرات/2/Fibonacci.txt` (50K) — //@version=6
+> ملفاتها الثلاثة عشر نُقلت إلى `docs/library/` (القسم أعلاه): 5 استشارات ذكاء اصطناعي + 8 مراجع قصيرة، ومعها `التقرير_النهائي_تحليل_البوت_والمؤشرات.md` من `docs/reports/ملفات`.
 
-### `docs/misc/مؤشرات/3` (20)
-
-- `docs/misc/مؤشرات/3/FLI.txt` (10K) — //@version=5
-- `docs/misc/مؤشرات/3/FTR.txt` (44K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/3/FVG Sniper.txt` (41K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/3/FVG+Fractals.txt` (2K) — //@version=5
-- `docs/misc/مؤشرات/3/Fresh Algo (1).txt` (49K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/3/Fresh Algo.txt` (58K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/3/GBS.txt` (3K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/3/GainzAlgo Pro.txt` (3K) — // © GainzAlgo
-- `docs/misc/مؤشرات/3/GainzAlgo V2.txt` (5K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/3/HADYAN NEW SCALPING V 2.9.txt` (63K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/3/HalfTrend.txt` (16K) — // This work is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 I
-- `docs/misc/مؤشرات/3/Haper Trend.txt` (46K) — //@version=5
-- `docs/misc/مؤشرات/3/Historical Pattern Projection.txt` (26K) — // This work is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 I
-- `docs/misc/مؤشرات/3/ICT Validated SMC v1.txt` (89K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/3/Indicator GG Beluga KHST.txt` (28K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/3/Indicator ICT Master Suite.txt` (51K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/3/Indicator MM ALGO PREMIUM for TradingView.txt` (28K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/3/Infinity and Sniper by Leo.txt` (68K) — //@version=5
-- `docs/misc/مؤشرات/3/Institutional Flow Toolkit MMDV.txt` (103K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/3/floop pro.txt` (42K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-
-### `docs/misc/مؤشرات/4` (19)
-
-- `docs/misc/مؤشرات/4/Inversion Order Blocks [iOB].txt` (31K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/4/Jack Of All Trades.txt` (32K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/4/Jackson_Zones.txt` (3K) — //@version=5
-- `docs/misc/مؤشرات/4/Joker.txt` (47K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/4/KD System.txt` (61K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/4/Key Levels.txt` (63K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/4/LIQUIDITY TRAIL MATRIX.txt` (78K) — //@version=6
-- `docs/misc/مؤشرات/4/Lion Trend.txt` (11K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/4/Liquidity Reaper.txt` (29K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/4/Liquidity sweep (1;2RR).txt` (3K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/4/Luxy BIG beautiful Dynamic.txt` (185K) — //@version=6
-- `docs/misc/مؤشرات/4/LyroRS v1.txt` (13K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/4/MELONA.txt` (34K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/4/MONEY ALGORITHM.txt` (47K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/4/Market Matrice.txt` (23K) — / © MarkitTick
-- `docs/misc/مؤشرات/4/Million Moves Alga.txt` (32K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/4/Mirage Liquidity Sweep Pro.txt` (61K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/4/Money Moves.txt` (36K) — //@version=5
-- `docs/misc/مؤشرات/4/iqfxpro.txt` (4K) — //@version=5
-
-### `docs/misc/مؤشرات/5` (17)
-
-- `docs/misc/مؤشرات/5/NAS Ultimate Algo Remastered.txt` (11K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/5/NEXT CANDLE PREDICTOR V4.txt` (25K) — // ============================================================================
-- `docs/misc/مؤشرات/5/NOSTRADAMUS.txt` (48K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/5/NOVA ALGO.txt` (22K) — //@version=5
-- `docs/misc/مؤشرات/5/PRECISION SNIPER.txt` (45K) — //@version=6
-- `docs/misc/مؤشرات/5/Pearson SLTP.txt` (20K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/5/RSI divergence entry.txt` (57K) — //@version=6
-- `docs/misc/مؤشرات/5/RSI entry.txt` (21K) — //@version=6
-- `docs/misc/مؤشرات/5/Reactive Trail System.txt` (57K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/5/River Strategy.txt` (80K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/5/S&D zones.txt` (4K) — // This work is licensed under Creative Commons Attribution-NonCommercial-ShareAlike 4.0 I
-- `docs/misc/مؤشرات/5/SELF-AWARE TREND SYSTEM.txt` (65K) — //@version=6
-- `docs/misc/مؤشرات/5/SFI MAGIC.txt` (6K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/5/Scalper.txt` (41K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/5/Setup Scanner [GBB].txt` (39K) — //@version=6
-- `docs/misc/مؤشرات/5/sfi scalper 1.0.txt` (9K) — //@version=5
-- `docs/misc/مؤشرات/5/short and long.txt` (3K) — //@version=5
-
-### `docs/misc/مؤشرات/6` (19)
-
-- `docs/misc/مؤشرات/6/SMC Algo Pro.txt` (206K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/6/SMC.txt` (93K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/6/SUPER Scalping.txt` (80K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/6/SWIFT ALGO.txt` (46K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/6/Simple System.txt` (67K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/6/Smart Money Trades Pro.txt` (17K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/6/Sniper Trading Algo Pro.txt` (56K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/6/Stocks Algo.txt` (7K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/6/TJR SMC.txt` (33K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/6/TM Sniper Pro.txt` (34K) — //@version=6
-- `docs/misc/مؤشرات/6/Trend Trader Pro.txt` (22K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/6/TrendFilter.txt` (86K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/6/Ultimate Opening Range Breakout.txt` (25K) — // This work is licensed under a Attribution-NonCommercial-ShareAlike 4.0 International (C
-- `docs/misc/مؤشرات/6/Unmitigated.txt` (42K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/6/VCE - Volatility Coil Edge.txt` (48K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/6/simplealgo v3.txt` (43K) — //@version=5
-- `docs/misc/مؤشرات/6/sniper entry with tp&sl.txt` (9K) — //@version=6
-- `docs/misc/مؤشرات/6/sqzmom.txt` (13K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/6/strategy with signals.txt` (83K) — // This Pine Script® code is subject to the terms of the Mozilla Public License 2.0 at htt
-
-### `docs/misc/مؤشرات/7` (9)
-
-- `docs/misc/مؤشرات/7/Viprasol.txt` (26K) — // This Pine Script™ v6 indicator is subject to the terms of the Mozilla Public License 2.
-- `docs/misc/مؤشرات/7/Volatility Covenant Ribbon.txt` (19K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/7/WaveTrend.txt` (153K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/7/X.txt` (59K) — //@version=5
-- `docs/misc/مؤشرات/7/XALGOX-15M_1H_1D.txt` (47K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/7/XALGOX.txt` (47K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/7/Xpert Algo.txt` (59K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/7/ZZ Algo  Signals & Overlays.txt` (49K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `docs/misc/مؤشرات/7/ZZ Algo.txt` (49K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-
-### `docs/misc/ملفات` (13)
-
-- `docs/misc/ملفات/claude.txt` (25K) — خطة شاملة لموازنة البوت وتحسين أدائه
-- `docs/misc/ملفات/gemini.txt` (11K) — لماذا لا يرى البوت فرصاً في السوق حالياً؟
-- `docs/misc/ملفات/gpt.txt` (22K) — المشكلة التي تصفها شائعة في أنظمة السكالبينج: عندما تجمع عدة شروط ثنائية صارمة AND، تصبح ا
-- `docs/misc/ملفات/kimi.txt` (16K) — المشكلة التي تواجهك هي **مشكلة التوازن بين الدقة والتردد (Precision vs. Frequency)**، وهي 
-- `docs/misc/ملفات/qwen.txt` (21K) — مشكلتك كلاسيكية جداً في تطوير بوتات التداول الخوارزمية، وتُعرف بمعضلة **"الموازنة بين الدق
-- `docs/misc/ملفات/اخطاء و فخاخ.txt` (6K) — فخ البوابات المنطقية المتسلسلة (Boolean AND Trap): اشتراط تقاطع (EMA200 + MSS + FVG + Orde
-- `docs/misc/ملفات/اسماء المؤشرات.txt` (2K) — بكل سرور. لقد قمت بمسح ملف "مشروع الكريبتو" واستخرجت لك كافة المؤشرات الفنية وأدوات التحلي
-- `docs/misc/ملفات/اعدادات المؤشرات.txt` (3K) — لتحقيق أفضل قراءة بصرية للـ Gem على الفريمات الكبيرة (4 ساعات واليومي)، إليك أفضل الإعدادا
-- `docs/misc/ملفات/البوت الهجين.txt` (6K) — ممتاز — إجاباتك حسمت الصورة. **Testnet + أولوية لعدد الصفقات + هجين + رسوم 0.1%** = التركي
-- `docs/misc/ملفات/العملات الاقوى و الحلال تماما.txt` (1K) — BTC
-- `docs/misc/ملفات/بوت جريد.txt` (3K) — نعم، يمكن لبوت الشبكة (Spot Grid) تحقيق أرباح حقيقية، والسر يكمن في فهم الميكانيكية الرياض
-- `docs/misc/ملفات/فخاخ المبتدئين.txt` (1K) — فخاخ المبتدئين
-- `docs/misc/ملفات/كثر خسارات البوت.txt` (7K) — بعد مراجعة شيفرة الإصدار البرمجي (NOVA V7.0), تتضح عدة أسباب جذرية تؤدي إلى سلسلة الخسائر 
-
-### `docs/reports` (9)
+### `docs/reports` (10)
 
 - `docs/reports/استشارة_NOVA_V8_التقنية.txt` (17K) — استشارة تقنية — NOVA_V8
 - `docs/reports/الاستعداد للتحليل المعماري للاستراتيجيات.txt` (53K) — PAGE 1 ---
@@ -515,10 +396,19 @@
 - `docs/reports/سجل_العمل_الكامل.md` (8K) — 📋 سجل العمل الكامل — NOVA_V8
 - `docs/reports/مراجعة_مطابقة_NOVA_V8_للمخطط.txt` (22K) — مراجعة مطابقة التطبيق (nova_v8) للمخطط النهائي الموحّد
 - `docs/reports/ملخص_التشطيب_NOVA_V8.txt` (11K) — NOVA_V8 — ملخص التشطيب النهائي / FINAL FINISHING SUMMARY
+- `docs/reports/ORGANIZATION-2026-09-14.md` (26K) — تقرير التنظيم: 523 وارد / 332 منقول / 191 مكرر بالبصمة / 0 مفقود
 
-### `docs/reports/ملفات` (1)
+### `docs/reports/ملفات` — نُقل
 
-- `docs/reports/ملفات/التقرير_النهائي_تحليل_البوت_والمؤشرات.md` (14K) — 🔬 التقرير الشامل النهائي — تدقيق البوت «NOVA» + مراجعة مكتبة المؤشرات
+> `التقرير_النهائي_تحليل_البوت_والمؤشرات.md` نُقل إلى `docs/library/` (انظر قسمها أعلاه).
+
+### `docs/source` (5)
+
+- `docs/source/START.txt` (1K) — خطوات ما بعد فك الضغط (Termux) — نُقل من الجذر
+- `docs/source/requirements.txt` (456B) — عقد الإصدارات المرجعية: pandas 2.2.3 / numpy 2.3.5 / pyarrow 25.0.1 (D‑0010/D‑0016) — نُقل من الجذر
+- `docs/source/الملف_الشامل_للوكيل_الجديد.txt` (65K) — الملف الشامل للوكيل الجديد — نُقل من الجذر
+- `docs/source/حزمة_الوكيل_كاملة.txt` (309K) — حزمة الوكيل الكاملة — نُقل من الجذر
+- `docs/source/نتائج_الاستراتيجيات_الكاملة.txt` (17K) — نتائج الاستراتيجيات الكاملة — نُقل من الجذر
 
 ### `hypotheses` (4)
 
@@ -569,6 +459,16 @@
 - `sweep_results/donchian/best_on_test.txt` (1K) — NOVA_DON_ENTRY1 NOVA_DON_EXIT1 NOVA_DON_MACRO NOVA_DON_CHOP   train_net    plateau        
 - `sweep_results/donchian/sweep_test.csv` (1K) — ﻿NOVA_DON_ENTRY1,NOVA_DON_EXIT1,NOVA_DON_MACRO,NOVA_DON_CHOP,train_net,plateau,net,trades,
 - `sweep_results/donchian/sweep_train.csv` (4K) — ﻿NOVA_DON_ENTRY1,NOVA_DON_EXIT1,NOVA_DON_MACRO,NOVA_DON_CHOP,net,trades,win_pct
+  - محاور MACRO/CHOP كانت بلا أثر — أعاد المحرك الحالي إنتاج هذه النتائج 20/20 (D‑0019)؛ انظر `sweep_results_donchian_v2/`
+
+### `sweep_results_donchian_v2/donchian` (6)
+
+- `sweep_results_donchian_v2/donchian/sweep_train.csv` (2K) — ناتج L‑0001: 40 تركيبة على تدريب 2023‑09→2024‑12؛ الأفضل 288/192 = ‎+1,105.23$ (101 صفقة)
+- `sweep_results_donchian_v2/donchian/sweep_test.csv` (785B) — 8 نهائيين على اختبار 2025‑01→2026‑08: كلهم سالبون (أفضلهم ‎-295.04$)
+- `sweep_results_donchian_v2/donchian/best_on_test.txt` (344B) — الفائز الرسمي 576/96 → ‎-295.04$ ⇒ لا نشر حياً
+- `sweep_results_donchian_v2/donchian/holdout_2021-09_2023-08.csv` (1K) — النافذة النظيفة: 20 تركيبة كلها سالبة (أفضلها ‎-128.47$)
+- `sweep_results_donchian_v2/donchian/sweep_train_partial.csv` (2K) — نسخة الاستكمال (تُحفظ دائماً)
+- `sweep_results_donchian_v2/donchian/env_dump.txt` (2K) — توثيق البيئة والأوامر الحرفية كاملة (D‑0013)
 
 ### `tools` (8)
 

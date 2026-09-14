@@ -1,0 +1,24 @@
+# env_dump — L-0001: سويب donchian بمحاور المحرك الفعلية (التزام D-0013)
+التاريخ: 2026-09-14 | المنفِّذ: وكيل جلسة العقل بأمر المستخدم المباشر («ابدأ بالتجارب والاختبارات والتعديلات»)
+
+الأوامر الحرفية:
+  1) الكاناري (البوابة):
+     NOVA_ARCHIVE=/tmp/nova_canary/archive /tmp/nvenv/bin/python tools/canary.py --scratch /tmp/nova_canary
+     ← PASS: net=-98.5903161993732 · صفقات=68 · |Δnet|=2.842e-14
+  2) السويب (كما في نص إطلاق L-0001 حرفياً):
+     NOVA_ARCHIVE=/tmp/nova_canary/archive /tmp/nvenv/bin/python nova_v8/sweep_engine.py \
+       --strategy donchian --symbol BTCUSDT --train 2023-09:2024-12 --test 2025-01:2026-08 \
+       --out sweep_results_donchian_v2
+     ← 40 تركيبة، 0 فشل، 104 ث تدريب + 35 ث اختبار
+  3) النافذة النظيفة (تكملة سؤال العقد: «هل تركيبة موجبة على holdout 2021-09:2023-08؟»):
+     run_combo('donchian', {NOVA_DON_ENTRY1 × NOVA_DON_EXIT1, NOVA_DON_FILTER=1}, '2021-09', '2023-08', 'BTCUSDT')
+     لكل الـ20 تركيبة مميزة ← holdout_2021-09_2023-08.csv (86 ث شاملة بناء كاش النافذة)
+
+البيئة: python 3.11.2 | pandas 2.2.3 | numpy 2.3.5 | pyarrow 25.0.1 (عقد docs/source/requirements.txt — D-0010/D-0016)
+البيانات: crypto_archive/BTCUSDT_1m.parquet (89,135,771 بايت؛ 2,629,240 شمعة؛ 2021-09→2026-08؛ open_time بالمللي ثانية int64)
+متغيرات البيئة العامة: NOVA_ARCHIVE=/tmp/nova_canary/archive فقط (كاش النوافذ خارج git بحسب الدستور — لا يُخزَّن)
+محاور الشبكة: NOVA_DON_ENTRY1∈{48,96,192,288,576} × NOVA_DON_EXIT1∈{24,48,96,192} × NOVA_DON_FILTER∈{1,0} = 40 تركيبة
+حالة المحرك: nova_v8/** بلا أي تعديل (فرع الجلسة؛ الكود المجمّد لم يُمسّ)
+ملاحظة جوهرية: NOVA_DON_FILTER خامل قياساً 20/20 زوجاً — فلتر الدب/الصدمة مفعّل دائماً في donchian.py
+  (شرط _allow يتحقق دائماً) ⇒ الفلتر=0 والفلتر=1 يعطيان نتائج متطابقة حرفياً. موثق في D-0019.
+جودة البيانات: أبلغ المحرك large_gaps في نافذة 2021-09:2023-08 (الفجوتان المعروفتان، 200 دقيقة إجمالاً — موثقتان في تدقيق 13 سبتمبر)
