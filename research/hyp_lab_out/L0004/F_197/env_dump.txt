@@ -1,0 +1,5 @@
+# 2026-09-14T12:17:50.325893+00:00
+pandas 2.2.3 numpy 2.3.5 python 3.11.2
+window=2026-06-01→2026-09-01 tf=1m symbols=BTCUSDT,BNBUSDT,LINKUSDT,SOLUSDT
+cost_per_side=0.0013 (fee 0.001 + slip 0.0003)
+exit_std: stop=2.0×ATR14 tp=4.0×ATR14 · notional=1000.0

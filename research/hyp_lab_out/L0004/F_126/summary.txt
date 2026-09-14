@@ -1,0 +1,9 @@
+# F_126 — 2026-06-01→2026-09-01 — 4 رموز — 27 تركيبة — 4.3 ث
+  net=   -833.29$ trades= 322 win= 23.6% NOVA_BODY=0.6 NOVA_RNG_ATR=1.0 NOVA_LB=50 | LINKUSDT
+  net=   -857.82$ trades= 336 win= 23.5% NOVA_BODY=0.6 NOVA_RNG_ATR=1.0 NOVA_LB=50 | SOLUSDT
+  net=   -860.90$ trades= 352 win= 24.1% NOVA_BODY=0.6 NOVA_RNG_ATR=0.8 NOVA_LB=50 | LINKUSDT
+  net=   -874.42$ trades= 359 win= 24.2% NOVA_BODY=0.6 NOVA_RNG_ATR=0.6 NOVA_LB=50 | LINKUSDT
+  net=   -899.97$ trades= 354 win= 23.4% NOVA_BODY=0.6 NOVA_RNG_ATR=0.8 NOVA_LB=50 | SOLUSDT
+  net=   -925.99$ trades= 362 win= 23.5% NOVA_BODY=0.6 NOVA_RNG_ATR=0.6 NOVA_LB=50 | SOLUSDT
+  net=   -961.77$ trades= 373 win= 16.4% NOVA_BODY=0.6 NOVA_RNG_ATR=1.0 NOVA_LB=50 | BNBUSDT
+  net=   -998.50$ trades= 396 win= 24.5% NOVA_BODY=0.5 NOVA_RNG_ATR=0.8 NOVA_LB=50 | LINKUSDT

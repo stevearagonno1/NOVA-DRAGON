@@ -1,0 +1,9 @@
+# F_015 — 2026-06-01→2026-09-01 — 4 رموز — 18 تركيبة — 0.9 ث
+  net=      2.99$ trades=   2 win= 50.0% NOVA_ZP=20 NOVA_ZTH=-2.5 NOVA_WICK=0.5 | SOLUSDT
+  net=      2.99$ trades=   2 win= 50.0% NOVA_ZP=20 NOVA_ZTH=-2.5 NOVA_WICK=0.6 | SOLUSDT
+  net=      0.00$ trades=   0 win=  0.0% NOVA_ZP=20 NOVA_ZTH=-2.5 NOVA_WICK=0.5 | BNBUSDT
+  net=      0.00$ trades=   0 win=  0.0% NOVA_ZP=20 NOVA_ZTH=-2.5 NOVA_WICK=0.6 | BNBUSDT
+  net=     -3.68$ trades=   7 win= 28.6% NOVA_ZP=30 NOVA_ZTH=-2.5 NOVA_WICK=0.6 | BTCUSDT
+  net=    -12.86$ trades=   3 win=  0.0% NOVA_ZP=20 NOVA_ZTH=-2.5 NOVA_WICK=0.6 | BTCUSDT
+  net=    -16.50$ trades=   4 win=  0.0% NOVA_ZP=20 NOVA_ZTH=-2.5 NOVA_WICK=0.5 | BTCUSDT
+  net=    -34.05$ trades=  12 win= 16.7% NOVA_ZP=30 NOVA_ZTH=-2.5 NOVA_WICK=0.5 | BTCUSDT

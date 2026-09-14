@@ -1,0 +1,9 @@
+# F_204 — 2026-06-01→2026-09-01 — 4 رموز — 18 تركيبة — 3.2 ث
+  net=    -19.18$ trades= 671 win= 23.9% NOVA_R=0.2 NOVA_CAP=12.0 NOVA_HALVE=1.3 | LINKUSDT
+  net=    -19.31$ trades= 671 win= 23.9% NOVA_R=1.0 NOVA_CAP=12.0 NOVA_HALVE=1.3 | LINKUSDT
+  net=    -19.31$ trades= 671 win= 23.9% NOVA_R=2.0 NOVA_CAP=12.0 NOVA_HALVE=1.3 | LINKUSDT
+  net=    -20.33$ trades= 671 win= 23.9% NOVA_R=0.2 NOVA_CAP=12.0 NOVA_HALVE=1.5 | LINKUSDT
+  net=    -20.46$ trades= 671 win= 23.9% NOVA_R=2.0 NOVA_CAP=12.0 NOVA_HALVE=1.5 | LINKUSDT
+  net=    -20.46$ trades= 671 win= 23.9% NOVA_R=1.0 NOVA_CAP=12.0 NOVA_HALVE=1.5 | LINKUSDT
+  net=    -20.98$ trades= 671 win= 23.9% NOVA_R=0.2 NOVA_CAP=12.0 NOVA_HALVE=2.0 | LINKUSDT
+  net=    -21.11$ trades= 671 win= 23.9% NOVA_R=1.0 NOVA_CAP=12.0 NOVA_HALVE=2.0 | LINKUSDT

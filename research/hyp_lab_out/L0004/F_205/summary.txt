@@ -1,0 +1,9 @@
+# F_205 — 2026-06-01→2026-09-01 — 4 رموز — 4 تركيبة — 3.6 ث
+  net=  -8003.75$ trades=3426 win= 10.7% NOVA_COOL_S=300.0 NOVA_MAX_PER=2 | SOLUSDT
+  net=  -8004.62$ trades=4011 win=  4.7% NOVA_COOL_S=300.0 NOVA_MAX_PER=2 | BTCUSDT
+  net=  -8039.99$ trades=4024 win=  4.8% NOVA_COOL_S=300.0 NOVA_MAX_PER=3 | BTCUSDT
+  net=  -8054.25$ trades=3457 win= 10.9% NOVA_COOL_S=300.0 NOVA_MAX_PER=3 | SOLUSDT
+  net=  -8102.63$ trades=3608 win= 11.1% NOVA_COOL_S=300.0 NOVA_MAX_PER=2 | LINKUSDT
+  net=  -8199.15$ trades=3950 win=  4.9% NOVA_COOL_S=300.0 NOVA_MAX_PER=2 | BNBUSDT
+  net=  -8220.07$ trades=3653 win= 11.1% NOVA_COOL_S=300.0 NOVA_MAX_PER=3 | LINKUSDT
+  net=  -8225.14$ trades=3964 win=  4.9% NOVA_COOL_S=300.0 NOVA_MAX_PER=3 | BNBUSDT

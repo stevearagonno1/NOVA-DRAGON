@@ -1,0 +1,9 @@
+# F_008 — 2026-06-01→2026-09-01 — 4 رموز — 9 تركيبة — 0.5 ث
+  net=    -83.15$ trades=  50 win= 26.0% NOVA_LB=55 NOVA_WICK=0.7 | LINKUSDT
+  net=    -84.23$ trades=  52 win= 21.1% NOVA_LB=55 NOVA_WICK=0.7 | BNBUSDT
+  net=   -120.21$ trades=  88 win= 28.4% NOVA_LB=55 NOVA_WICK=0.6 | LINKUSDT
+  net=   -126.94$ trades=  41 win= 26.8% NOVA_LB=55 NOVA_WICK=0.7 | SOLUSDT
+  net=   -161.93$ trades=  89 win= 25.8% NOVA_LB=20 NOVA_WICK=0.7 | LINKUSDT
+  net=   -173.08$ trades=  53 win=  9.4% NOVA_LB=55 NOVA_WICK=0.7 | BTCUSDT
+  net=   -183.66$ trades=  82 win= 19.5% NOVA_LB=55 NOVA_WICK=0.6 | BNBUSDT
+  net=   -201.98$ trades= 118 win= 27.1% NOVA_LB=10 NOVA_WICK=0.7 | LINKUSDT
