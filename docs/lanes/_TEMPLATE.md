@@ -36,6 +36,11 @@
 
 3) التدقيق قبل التسليم
    python3 tools/audit_lane.py <مجلد النتائج> --json      # ألصِق خلاصته في HANDOFF
+   # إلزامي (D-0013): احفظ إعدادات التشغيل بجانب النتائج، وإلا لا تُعتمد:
+   { echo "# $(date -u +%FT%TZ)"; env | grep '^NOVA_' | sort; echo "ARCHIVE=$NOVA_ARCHIVE";
+     python3 -c "import sys,platform;print('py',platform.python_version())";
+     python3 -c "import pandas,numpy,pyarrow;print('pandas',pandas.__version__,'numpy',numpy.__version__,'pyarrow',pyarrow.__version__)";
+   } > <مجلد_النتائج>/env_dump.txt
 
 4) السلّم الأخلاقي: سلّم الأرقام كما هي. السالب نتيجة كاملة. لا «تحسينات» بعد رؤية الاختبار.
 ```
