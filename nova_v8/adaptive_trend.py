@@ -205,14 +205,34 @@ def replay_adaptive_trend(mat) -> list[dict]:
                       and (vol_sma is None or not np.isfinite(vol_sma[j])
                            or v[j] >= vol_sma[j]))
                 if ok and _v3a:
-                    # (a) close must sit in lower 40% between EMA20 and local high
+                    # (a) no-chase guard. ── مصلَّح 2026-09-14 (قرار D-0012) ──
+                    # الصيغة القديمة كانت مستحيلة رياضياً: المحفّز الأساسي يشترط
+                    #   الإغلاق > القمة المحلية  (c[j] > _top)
+                    # ثم كان الشرط القديم يرفض إذا (c[j]-e20) > 0.6×(_top-e20)،
+                    # وهو صحيح دائماً بمجرد c[j] > _top ⇒ رفض كل صفقة ⇒ net=0.00
+                    # في 960 تركيبة من 1920 (مقيس من sweep_train.csv).
+                    # الجديد: نسمح بالاختراق لكن نرفض «الجرى بعيداً فوق القمة»:
+                    #   الطَفْو فوق القمة لا يتجاوز 40% من نطاق (EMA20 ← القمة).
+                    # للإبقاء على السلوك القديم حرفياً: NOVA_AT_V3A_LEGACY=1
                     _top = float(np.nanmax(c[k:j]))
-                    if (c[j] - e20) > 0.6 * max(_top - e20, 1e-9):
+                    _band = max(_top - e20, 1e-9)
+                    if os.getenv("NOVA_AT_V3A_LEGACY", "0") == "1":
+                        if (c[j] - e20) > 0.6 * _band:
+                            ok = False
+                    elif (c[j] - _top) > 0.4 * _band:
                         ok = False
                 if ok and _v3b:
-                    # (b) skip runaway trigger bars (body <= 1.5×ATR-4h)
-                    _a4 = tf["atr_tf"][j]
-                    if np.isfinite(_a4) and _a4 > 0 and abs(c[j] - o[j]) > 1.5 * _a4:
+                    # (b) skip runaway trigger bars. ── مصلَّح 2026-09-14 (D-0012) ──
+                    # الخطأ: جسم شمعة الإطار المتداول (5m) كان يُقاس على 1.5×ATR-4h،
+                    # وهو مقياس أكبر بمراتب من جسم الشمعة ⇒ لم يشتغل الشرط ولا مرة
+                    # (960/960 زوجاً بلا أي تغيّر في sweep_train.csv).
+                    # الصحيح: نفس الياردستيك المستخدم في بقية حسابات الدخول = ATR-5m (`a`).
+                    # للعودة للسلوك القديم: NOVA_AT_V3B_ATR=4h
+                    if os.getenv("NOVA_AT_V3B_ATR", "5m") == "4h":
+                        _a4 = tf["atr_tf"][j]
+                        if np.isfinite(_a4) and _a4 > 0 and abs(c[j] - o[j]) > 1.5 * _a4:
+                            ok = False
+                    elif np.isfinite(a) and a > 0 and abs(c[j] - o[j]) > 1.5 * a:
                         ok = False
                 if ok and _v3c:
                     # (c) require a second higher low within the trigger window
