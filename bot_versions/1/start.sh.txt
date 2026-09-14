@@ -1,0 +1,27 @@
+export BINANCE_ENV='testnet'
+export BINANCE_API_KEY='__REDACTED__'
+export BINANCE_API_SECRET='__REDACTED__'
+export TELEGRAM_BOT_TOKEN="__REDACTED_TG__"
+export TELEGRAM_CHAT_ID="7112691967"
+export AI_GATE_ENABLED='1'
+export GEMINI_API_KEY="__REDACTED__"
+export AUTO_TRADE='1'
+export TOP_N_SYMBOLS='50'
+
+# 1. إزالة الأزرار الإنجليزية السفلية القديمة
+curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+     -d chat_id="${TELEGRAM_CHAT_ID}" \
+     -d text="⏳ جاري تحديث واجهة البوت..." \
+     -d reply_markup='{"remove_keyboard":true}' > /dev/null
+
+# 2. تصميم وإرسال الأزرار الشفافة الأنيقة
+INLINE_KEYBOARD='{"inline_keyboard":[[{"text":"📊 الحالة","callback_data":"/status"},{"text":"🌍 السياق","callback_data":"/context"}],[{"text":"⏸ إيقاف","callback_data":"/pause"},{"text":"▶ استئناف","callback_data":"/resume"}],[{"text":"🧯 إلغاء الأوامر","callback_data":"/cancelall"},{"text":"🆘 تصفية","callback_data":"/panic"}]]}'
+
+curl -s -X POST "https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage" \
+     -d chat_id="${TELEGRAM_CHAT_ID}" \
+     -d text="✅ بوت NOVA يعمل الآن في الخلفية. اختر الإجراء المطلوب:" \
+     -d reply_markup="${INLINE_KEYBOARD}" > /dev/null
+
+python check.py
+python NOVA.py
+

@@ -1,0 +1,81 @@
+//@version=5
+indicator('Short and Long Indicator Pro', shorttitle='Short and Long', overlay=true)
+
+i_lineCount     = input(10, 'Label count')
+
+i_showFirst     = input(true, 'Show first')
+i_firstDepth    = input(150, 'Depth')
+i_firstDeviation= input(24.0, 'Deviation')
+i_firstColor    = input(color.red, 'Color')
+
+i_showSecond    = input(true, 'Show second')
+i_secondDepth   = input(34, 'Depth')
+i_secondDeviation= input(6.0, 'Deviation')
+i_secondColor   = input(color.orange, 'Color')
+
+i_showThird     = input(false, 'Show third')
+i_thirdDepth    = input(14, 'Depth')
+i_thirdDeviation= input(3.0, 'Deviation')
+i_thirdColor    = input(color.lime, 'Color')
+
+var zigZagLabelArray = array.new_label()
+
+// Zigzag
+f_zigzag(_depth, _deviation) =>
+    var lw = 1
+    var hg = 1
+    lw += 1
+    hg += 1
+    lowestValue = -ta.lowestbars(_depth)
+    highestValue = -ta.highestbars(_depth)
+    lowing = lw == lowestValue or low - low[lowestValue] > _deviation * syminfo.mintick
+    highing = hg == highestValue or high[highestValue] - high > _deviation * syminfo.mintick
+    lh = ta.barssince(not highing)
+    ll = ta.barssince(not lowing)
+    down = lh > ll
+    lower = low[lw] > low[lowestValue]
+    higher = high[hg] < high[highestValue]
+    if lw != lowestValue and (not down[1] or lower)
+        lw := lowestValue < hg ? lowestValue : 0
+        lw
+    if hg != highestValue and (down[1] or higher)
+        hg := highestValue < lw ? highestValue : 0
+        hg
+    x1 = down ? lw : hg
+    y1 = down ? low[lw] : high[hg]
+    [down != down[1], x1, y1, lw, hg, down]
+
+// ✅ فقط مربعات Long / Short
+f_drawLabel(_x, _y, _down) =>
+    _text = _down ? "Short" : "Long"
+    _color = _down ? color.red : color.green
+    label.new(_x, _y, _text, xloc.bar_index, yloc.price, _color, label.style_label_center, color.white, size=size.small)
+
+// إضافة مربعات + تنبيه
+f_addLabel(_switch, _x1, _y1, _lw, _hg, _down, _colorLine) =>
+    if _switch
+        label lab = na
+        nx = _down ? _hg : _lw
+        yValue = _down ? high[nx] : low[nx]
+        x1 = bar_index - nx
+        if _down != _down[1]
+            lab := f_drawLabel(x1, yValue, _down)
+            // 🚨 توليد تنبيه مشترك
+            alert("🚨 إشارة جديدة ظهرت: " + (_down ? "Short" : "Long"), alert.freq_once_per_bar_close)
+            lab
+        if array.size(zigZagLabelArray) == i_lineCount
+            label.delete(array.shift(zigZagLabelArray))
+        array.push(zigZagLabelArray, lab)
+
+// الحسابات
+[switch1, x11, y11, lw1, hg1, down1] = f_zigzag(i_firstDepth, i_firstDeviation)
+[switch2, x12, y12, lw2, hg2, down2] = f_zigzag(i_secondDepth, i_secondDeviation)
+[switch3, x13, y13, lw3, hg3, down3] = f_zigzag(i_thirdDepth, i_thirdDeviation)
+
+// التنفيذ
+if i_showFirst
+    f_addLabel(switch1, x11, y11, lw1, hg1, down1, i_firstColor)
+if i_showSecond
+    f_addLabel(switch2, x12, y12, lw2, hg2, down2, i_secondColor)
+if i_showThird
+    f_addLabel(switch3, x13, y13, lw3, hg3, down3, i_thirdColor)

@@ -1,0 +1,153 @@
+"""Module 5 — microstructure execution triggers (the catalysts).
+
+Vectorized detectors for historical matrices plus a stateful Shrink-on-Fill
+FVG registry shared by backtest and live modes.
+"""
+from __future__ import annotations
+
+from collections import deque
+from dataclasses import dataclass, field
+
+import numpy as np
+import pandas as pd
+
+
+# ------------------------------------------------------- 1) Liquidity Sweep
+def sfp_signal(o: pd.Series, h: pd.Series, l: pd.Series, c: pd.Series,
+               look: int = 20) -> pd.Series:
+    """Swing-Failure-Pattern: wick pierces a known structural swing but the
+    body closes firmly back inside. +1 bullish sweep, −1 bearish sweep."""
+    prior_hi = h.shift(2).rolling(look).max()      # strictly older structure
+    prior_lo = l.shift(2).rolling(look).min()
+    body_hi = np.maximum(o, c)
+    body_lo = np.minimum(o, c)
+    bear = ((h > prior_hi) & (body_hi < prior_hi)).fillna(False)
+    bull = ((l < prior_lo) & (body_lo > prior_lo)).fillna(False)
+    sig = pd.Series(np.int8(0), index=h.index, dtype=np.int8)
+    sig[bull] = 1
+    sig[bear] = -1
+    return sig
+
+
+# ------------------------------------------------- 2) Monotonic Fractal MSS
+def mss_signal(o: np.ndarray, h: np.ndarray, l: np.ndarray, c: np.ndarray,
+               atr14: np.ndarray, L: int = 5) -> np.ndarray:
+    """Strict monotonicity of the sign sequence over L bars:
+    Sum(sign(x[p-i] − x[p-i+1])) covers the L-bar fractal; breaker candle must
+    displace (body/range > 50% and range > 0.8·ATR14). No N-bar lag."""
+    n = len(c)
+    sig = np.zeros(n, dtype=np.int8)
+    if n <= L:
+        return sig
+    dsh = np.r_[np.nan, np.sign(np.diff(h))]       # dsh[t] = sign(h[t]-h[t-1])
+    dsl = np.r_[np.nan, np.sign(np.diff(l))]
+    rs_h = pd.Series(dsh).rolling(L - 1).sum().to_numpy()   # ends at t, bars t-4..t
+    rs_l = pd.Series(dsl).rolling(L - 1).sum().to_numpy()
+    desc = np.nan_to_num(rs_h) == -(L - 1)         # strictly descending highs
+    asc = np.nan_to_num(rs_l) == (L - 1)           # strictly ascending lows
+
+    atr = np.nan_to_num(atr14)
+    rng = h - l
+    body = np.abs(c - o)
+    disp_up = (body > 0.5 * rng) & (rng > 0.8 * atr) & (c > o)
+    disp_dn = (body > 0.5 * rng) & (rng > 0.8 * atr) & (c < o)
+
+    bull = np.zeros(n, bool)                       # breaker bar t, fractal t-5..t-1
+    bear = np.zeros(n, bool)
+    bull[L:] = desc[L - 1:-1] & disp_up[L:] & (c[L:] > h[:-L])
+    bear[L:] = asc[L - 1:-1] & disp_dn[L:] & (c[L:] < l[:-L])
+    sig[bull] = 1
+    sig[bear] = -1
+    return sig
+
+
+# -------------------------------------------- 3) Shrink-on-Fill FVG (state)
+def fvg_levels(h: np.ndarray, l: np.ndarray):
+    """Vectorized birth detection of 3-bar imbalances.
+    Bullish gap: low[t] > high[t-2]  → zone (high[t-2], low[t]).
+    Bearish gap: high[t] < low[t-2] → zone (high[t], low[t-2])."""
+    n = len(h)
+    nan = np.nan
+    bull_t, bull_b = np.full(n, nan), np.full(n, nan)
+    bear_t, bear_b = np.full(n, nan), np.full(n, nan)
+    if n > 2:
+        bull = l[2:] > h[:-2]
+        bull_t[2:][bull] = l[2:][bull]
+        bull_b[2:][bull] = h[:-2][bull]
+        bear = h[2:] < l[:-2]
+        bear_t[2:][bear] = l[:-2][bear]
+        bear_b[2:][bear] = h[2:][bear]
+    return bull_t, bull_b, bear_t, bear_b
+
+
+@dataclass
+class _Gap:
+    direction: int          # +1 bullish (long entry), −1 bearish (short entry)
+    top: float
+    bot: float
+    fill: float             # deepest fill so far (bullish: min price; bearish: max)
+    born_ts: int = 0
+    active: bool = True
+
+    @property
+    def ce(self) -> float | None:
+        """Consequent Encroachment of the *remaining* unfilled zone."""
+        if not self.active:
+            return None
+        if self.direction == 1 and self.fill > self.bot:
+            return (self.bot + self.fill) / 2.0
+        if self.direction == -1 and self.fill < self.top:
+            return (self.top + self.fill) / 2.0
+        return None
+
+    @property
+    def remaining(self) -> float:
+        return (self.fill - self.bot) if self.direction == 1 else (self.top - self.fill)
+
+
+class FVGRegistry:
+    """Shrink-on-Fill: gaps are not invalidated on touch — they shrink as
+    price fills them tick-by-tick; the remaining CE is the exact limit entry."""
+
+    def __init__(self, max_active: int = 24):
+        self.gaps: deque[_Gap] = deque(maxlen=64)
+        self.max_active = max_active
+
+    def on_bar(self, high: float, low: float, ts: int,
+               bull_top: float, bull_bot: float,
+               bear_top: float, bear_bot: float) -> None:
+        for g in self.gaps:
+            if not g.active:
+                continue
+            if g.direction == 1:
+                if low <= g.bot:                  # fully filled → retire
+                    g.active = False
+                elif low < g.fill:
+                    g.fill = low                   # shrink from the top down
+            else:
+                if high >= g.top:
+                    g.active = False
+                elif high > g.fill:
+                    g.fill = high                  # shrink from the bottom up
+        if np.isfinite(bull_top):
+            self.gaps.append(_Gap(1, float(bull_top), float(bull_bot), float(bull_top), ts))
+        if np.isfinite(bear_top):
+            self.gaps.append(_Gap(-1, float(bear_top), float(bear_bot), float(bear_bot), ts))
+        actives = [g for g in self.gaps if g.active]
+        if len(actives) > self.max_active:         # shed the oldest
+            for g in actives[:len(actives) - self.max_active]:
+                g.active = False
+
+    def entry(self, direction: int, ref_price: float) -> float | None:
+        """CE limit of the nearest active gap aligned with `direction`."""
+        best, best_d = None, np.inf
+        for g in self.gaps:
+            if g.direction != direction or not g.active or g.remaining <= 0:
+                continue
+            ce = g.ce
+            if ce is None:
+                continue
+            d = abs(ref_price - ce) / ref_price
+            if d < best_d:
+                best, best_d = ce, d
+        return best

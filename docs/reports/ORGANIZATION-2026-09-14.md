@@ -1,0 +1,201 @@
+# تقرير التنظيم — 2026-09-14
+
+وارد: 523 | منقول: 332 | محذوف لتطابق البصمة: 191 | مفقودات بعد التحقق: 0 (يجب صفر)
+
+## 1) مطابق لملف موجود في المستودع (الحذف بلا خسارة)
+
+- `workspace/nova/sweep_train_partial_476.csv` == `sweep_results/adaptive_trend/sweep_train_partial.csv` (20K)
+- `workspace/nova/تنزيل_الأرشيف_الكامل.py` == `fetch_archive.py` (4K)
+- `workspace/nova_pack/docs/EXECUTION_REPORT.md` == `docs/EXECUTION_REPORT.md` (4K)
+- `workspace/nova_pack/docs/sweep_run.log` == `docs/sweep_run.log` (176K)
+- `workspace/nova_pack/sweep_results/adaptive_trend/best_on_test.txt` == `sweep_results/adaptive_trend/best_on_test.txt` (1K)
+- `workspace/nova_pack/sweep_results/adaptive_trend/sweep_test.csv` == `sweep_results/adaptive_trend/sweep_test.csv` (1K)
+- `workspace/nova_pack/sweep_results/adaptive_trend/sweep_train.csv` == `sweep_results/adaptive_trend/sweep_train.csv` (84K)
+- `workspace/nova_pack/tools/backtest_stream_demo.py` == `tools/backtest_stream_demo.py` (2K)
+- `workspace/nova_pack/tools/rebuild_archive.py` == `tools/rebuild_archive.py` (2K)
+- `workspace/nova_v8/README.py` == `nova_v8/README.py` (16K)
+- `workspace/nova_v8/__init__.py` == `nova_v8/__init__.py` (1K)
+- `workspace/nova_v8/__main__.py` == `nova_v8/__main__.py` (12K)
+- `workspace/nova_v8/btc_leadlag.py` == `nova_v8/btc_leadlag.py` (10K)
+- `workspace/nova_v8/don_filter_doc.py` == `nova_v8/don_filter_doc.py` (1K)
+- `workspace/nova_v8/donchian.py` == `nova_v8/donchian.py` (6K)
+- `workspace/nova_v8/dynamic_grid.py` == `nova_v8/dynamic_grid.py` (18K)
+- `workspace/nova_v8/engine.py` == `nova_v8/engine.py` (47K)
+- `workspace/nova_v8/evaluation.py` == `nova_v8/evaluation.py` (14K)
+- `workspace/nova_v8/execution.py` == `nova_v8/execution.py` (13K)
+- `workspace/nova_v8/grid.py` == `nova_v8/grid.py` (5K)
+- `workspace/nova_v8/indicators.py` == `nova_v8/indicators.py` (9K)
+- `workspace/nova_v8/long_cycle.py` == `nova_v8/long_cycle.py` (9K)
+- `workspace/nova_v8/market_open.py` == `nova_v8/market_open.py` (13K)
+- `workspace/nova_v8/microstructure.py` == `nova_v8/microstructure.py` (2K)
+- `workspace/nova_v8/oracle.py` == `nova_v8/oracle.py` (5K)
+- `workspace/nova_v8/regime.py` == `nova_v8/regime.py` (4K)
+- `workspace/nova_v8/risk.py` == `nova_v8/risk.py` (7K)
+- `workspace/nova_v8/smc.py` == `nova_v8/smc.py` (2K)
+- `workspace/nova_v8/strategy_registry.py` == `nova_v8/strategy_registry.py` (1K)
+- `workspace/nova_v8/synth.py` == `nova_v8/synth.py` (7K)
+- `workspace/nova_v8/triggers.py` == `nova_v8/triggers.py` (4K)
+- `workspace/الملف_الشامل_للوكيل_الجديد (1).txt` == `الملف_الشامل_للوكيل_الجديد.txt` (64K)
+- `workspace/الملف_الشامل_للوكيل_الجديد.txt` == `الملف_الشامل_للوكيل_الجديد.txt` (64K)
+- `workspace/نتائج_الاستراتيجيات_الكاملة.txt` == `نتائج_الاستراتيجيات_الكاملة.txt` (16K)
+
+## 2) نسخة ثانية من نفس المحتوى داخل الوارد (بقي الأول)
+
+- بقي `workspace/START.txt` — حُذف: `workspace/nova/START.txt`
+- بقي `workspace/nova/sweep_محلي_4_رموز.md` — حُذف: `workspace/nova/sweep_محلي_4_رموز.txt`
+- بقي `workspace/nova/الجدول_الختامي_5_سنوات.md` — حُذف: `workspace/nova/الجدول_الختامي_5_سنوات.txt`, `workspace/الجدول_الختامي_5_سنوات.txt`
+- بقي `workspace/nova/الدستور_الأعلى.md` — حُذف: `workspace/nova/الدستور_الأعلى.txt`, `workspace/الدستور_الأعلى.txt`
+- بقي `workspace/nova/الدستور_التشغيلي.md` — حُذف: `workspace/nova/الدستور_التشغيلي.txt`, `workspace/الدستور_التشغيلي.txt`
+- بقي `workspace/nova/تصميم_محرك_الواجهة.md` — حُذف: `workspace/nova/تصميم_محرك_الواجهة.txt`, `workspace/تصميم_محرك_الواجهة.txt`
+- بقي `workspace/nova/تقرير_الجولة_الشاملة.md` — حُذف: `workspace/nova/تقرير_الجولة_الشاملة.txt`, `workspace/تقرير_الجولة_الشاملة.txt`
+- بقي `workspace/nova/سجل_العمل_الكامل.md` — حُذف: `workspace/nova/سجل_العمل_الكامل.txt`, `workspace/سجل_العمل_الكامل.txt`
+- بقي `workspace/nova/لوحة_خط_الفرضيات.md` — حُذف: `workspace/nova/لوحة_خط_الفرضيات.txt`
+- بقي `workspace/uploads/استراتيجيتان_منفصلتان_NOVA_V8_وثيقة_مبدئية.txt` — حُذف: `workspace/استراتيجيتان_منفصلتان_NOVA_V8_وثيقة_مبدئية.txt`
+- بقي `workspace/uploads/استشارة_NOVA_V8_التقنية.txt` — حُذف: `workspace/استشارة_NOVA_V8_التقنية.txt`
+- بقي `workspace/uploads/التداول_الفوري_بحث_شامل.txt` — حُذف: `workspace/التداول_الفوري_بحث_شامل.txt`
+- بقي `workspace/uploads/مخطط_الباك_تست_الشامل.txt` — حُذف: `workspace/المخطط_الشامل_للبوت/مخطط_الباك_تست_الشامل.txt`
+- بقي `workspace/uploads/تحليل_ارتباط_العملات_بالبيتكوين.txt` — حُذف: `workspace/تحليل_ارتباط_العملات_بالبيتكوين.txt`
+- بقي `workspace/uploads/تحليل_استراتيجيات_تداول_السبوت_مقابل_NOVA_V8.txt` — حُذف: `workspace/تحليل_استراتيجيات_تداول_السبوت_مقابل_NOVA_V8.txt`
+- بقي `workspace/uploads/تصميم_NOVA_V8_النهائي.txt` — حُذف: `workspace/تصميم_NOVA_V8_النهائي.txt`
+- بقي `workspace/nova/دليل_الرموز.txt` — حُذف: `workspace/دليل_الرموز.txt`
+- بقي `workspace/nova/عقد_الترجمة_البرمجية.txt` — حُذف: `workspace/عقد_الترجمة_البرمجية.txt`
+- بقي `workspace/uploads/مراجعة_مطابقة_NOVA_V8_للمخطط.txt` — حُذف: `workspace/مراجعة_مطابقة_NOVA_V8_للمخطط.txt`
+- بقي `workspace/uploads/ملخص_التشطيب_NOVA_V8.txt` — حُذف: `workspace/ملخص_التشطيب_NOVA_V8.txt`
+- بقي `workspace/uploads/وثيقة_السياق_الرئيسية_NOVA_V8.txt` — حُذف: `workspace/وثيقة_السياق_الرئيسية_NOVA_V8.txt`
+- بقي `workspace/uploads/وثيقة_تفويض_تطوير_NOVA_V8_المنهج_المحافظ.txt` — حُذف: `workspace/وثيقة_تفويض_تطوير_NOVA_V8_المنهج_المحافظ.txt`
+- بقي `جميع اصدارات البوت/1/NOVA (3).py` — حُذف: `جميع اصدارات البوت/1/NOVA.txt`, `جميع اصدارات البوت/NOVA.V7.0.py`, `جميع اصدارات البوت/NOVA.V7.0.py.txt`
+- بقي `جميع اصدارات البوت/1/NOVA.py` — حُذف: `جميع اصدارات البوت/1fg/NOVA.py`, `جميع اصدارات البوت/NOVA/NOVA (22).py.txt`
+- بقي `جميع اصدارات البوت/1/NOVA.py.txt` — حُذف: `جميع اصدارات البوت/1fg/NOVA.py.txt`, `جميع اصدارات البوت/NOVA/NOVA.py.txt`
+- بقي `جميع اصدارات البوت/1/check.py` — حُذف: `جميع اصدارات البوت/1fg/check.py`, `جميع اصدارات البوت/NOVA/NOVA (11).py.txt`
+- بقي `جميع اصدارات البوت/1/check.py.txt` — حُذف: `جميع اصدارات البوت/1fg/check.py.txt`, `جميع اصدارات البوت/NOVA/check.py.txt`
+- بقي `جميع اصدارات البوت/1/start.sh` — حُذف: `جميع اصدارات البوت/1fg/start.sh`, `جميع اصدارات البوت/NOVA/start (3).sh.txt`
+- بقي `جميع اصدارات البوت/1/start.sh.txt` — حُذف: `جميع اصدارات البوت/1fg/start.sh.txt`, `جميع اصدارات البوت/NOVA/start.sh.txt`, `جميع اصدارات البوت/start.sh.txt`
+- بقي `جميع اصدارات البوت/1/NOVA (2).py` — حُذف: `جميع اصدارات البوت/NOVA (2).py`, `جميع اصدارات البوت/NOVA/NOVA (16).py.txt`
+- بقي `جميع اصدارات البوت/NOVA.ZERO.WAIT.py` — حُذف: `جميع اصدارات البوت/NOVA.ZERO.WAIT.py.txt`, `جميع اصدارات البوت/NOVA/NOVA (20).py.txt`, `جميع اصدارات البوت/اصدارات متنوعه/NOVA (6).py`
+- بقي `جميع اصدارات البوت/NOVA (3).py` — حُذف: `جميع اصدارات البوت/NOVA.txt`, `جميع اصدارات البوت/NOVA/NOVA (24).py.txt`
+- بقي `جميع اصدارات البوت/1/check (2).py` — حُذف: `جميع اصدارات البوت/NOVA/NOVA (12).py.txt`, `جميع اصدارات البوت/check (2).py`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (15).py.txt` — حُذف: `جميع اصدارات البوت/NOVA/NOVA (17).py.txt`, `جميع اصدارات البوت/اصدارات متنوعه/NOVA (2).py`, `جميع اصدارات البوت/اصدارات متنوعه/NOVA (3).py`
+- بقي `جميع اصدارات البوت/NOVA.1.txt` — حُذف: `جميع اصدارات البوت/NOVA/NOVA (18).py.txt`, `جميع اصدارات البوت/اصدارات متنوعه/NOVA (4).py`, `جميع اصدارات البوت/تداول متوسط/NOVA.txt`
+- بقي `جميع اصدارات البوت/NOVA.py` — حُذف: `جميع اصدارات البوت/NOVA/NOVA (19).py.txt`, `جميع اصدارات البوت/NOVA_2.txt`, `جميع اصدارات البوت/اصدارات متنوعه/NOVA (5).py`, `جميع اصدارات البوت/تداول قصير و سريع/NOVA.py`
+- بقي `جميع اصدارات البوت/NOVA (2).txt` — حُذف: `جميع اصدارات البوت/NOVA/NOVA (2).txt`, `جميع اصدارات البوت/NOVA/NOVA (7).py.txt`, `جميع اصدارات البوت/مقتنص بطي حذر بخساره قليه جدا.py`
+- بقي `جميع اصدارات البوت/NOVA/1 (2).txt` — حُذف: `جميع اصدارات البوت/NOVA/NOVA (21).py.txt`, `جميع اصدارات البوت/اصدارات متنوعه/1 (2).txt`, `جميع اصدارات البوت/اصدارات متنوعه/NOVA.py`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (2) (2) (2).txt` — حُذف: `جميع اصدارات البوت/NOVA/NOVA (3) (2) (2).txt`, `جميع اصدارات البوت/اصدارات متنوعه/NOVA (2) (2).txt`, `جميع اصدارات البوت/اصدارات متنوعه/NOVA (3) (2).txt`
+- بقي `جميع اصدارات البوت/NOVA (3).txt` — حُذف: `جميع اصدارات البوت/NOVA/NOVA (3).txt`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (3) (2).txt` — حُذف: `جميع اصدارات البوت/NOVA/NOVA (4).txt`, `جميع اصدارات البوت/اصدارات متنوعه/NOVA (3).txt`, `جميع اصدارات البوت/اصدارات متنوعه/NOVA (4).txt`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (10).py.txt` — حُذف: `جميع اصدارات البوت/NOVA/NOVA (8).py.txt`, `جميع اصدارات البوت/NOVA/NOVA (9).py.txt`, `جميع اصدارات البوت/اصدارات متنوعه/bot (2).py`, `جميع اصدارات البوت/اصدارات متنوعه/bot (3).py`, `جميع اصدارات البوت/اصدارات متنوعه/bot.py`
+- بقي `جميع اصدارات البوت/NOVA (4).txt` — حُذف: `جميع اصدارات البوت/NOVA/NOVA.txt`, `جميع اصدارات البوت/بوت نهائي/NOVA.pro.py`
+- بقي `جميع اصدارات البوت/1/start (2).sh` — حُذف: `جميع اصدارات البوت/NOVA/start (4).sh.txt`, `جميع اصدارات البوت/start (2).sh`
+- بقي `workspace/nova_v8/tests/__init__.py` — حُذف: `جميع اصدارات البوت/V2/__init__.py`, `جميع اصدارات البوت/V3/.hidden`, `جميع اصدارات البوت/V3/__init__.py`, `جميع اصدارات البوت/البوت الامن النهائي/__init__.py`
+- بقي `جميع اصدارات البوت/V0.0.1/engine.py.txt` — حُذف: `جميع اصدارات البوت/V2/engine.py`, `جميع اصدارات البوت/V3/engine.py.txt`
+- بقي `جميع اصدارات البوت/V0.0.1/execution.py.txt` — حُذف: `جميع اصدارات البوت/V2/execution.py`, `جميع اصدارات البوت/V3/execution.py`, `جميع اصدارات البوت/V3/execution.py.txt`, `جميع اصدارات البوت/البوت الامن النهائي/execution.py`
+- بقي `جميع اصدارات البوت/V0.0.1/nb.py.txt` — حُذف: `جميع اصدارات البوت/V2/nb.py`, `جميع اصدارات البوت/V3/nb.py.txt`
+- بقي `جميع اصدارات البوت/V0.0.1/telegram.py.txt` — حُذف: `جميع اصدارات البوت/V2/telegram.py`, `جميع اصدارات البوت/V3/telegram.py.txt`, `جميع اصدارات البوت/البوت الامن النهائي/telegram.py`
+- بقي `جميع اصدارات البوت/V0.0.1/trigger.py.txt` — حُذف: `جميع اصدارات البوت/V2/trigger.py`, `جميع اصدارات البوت/V3/trigger.py.txt`
+- بقي `جميع اصدارات البوت/V2/README.md` — حُذف: `جميع اصدارات البوت/V3/README.md`, `جميع اصدارات البوت/البوت الامن النهائي/README.md`
+- بقي `جميع اصدارات البوت/V2/config.py` — حُذف: `جميع اصدارات البوت/V3/config.py`, `جميع اصدارات البوت/البوت الامن النهائي/config.py`
+- بقي `جميع اصدارات البوت/V2/data.py` — حُذف: `جميع اصدارات البوت/V3/data.py`, `جميع اصدارات البوت/البوت الامن النهائي/data.py`
+- بقي `جميع اصدارات البوت/V2/indicators.py` — حُذف: `جميع اصدارات البوت/V3/indicators.py`, `جميع اصدارات البوت/البوت الامن النهائي/indicators.py`
+- بقي `جميع اصدارات البوت/V2/main.py` — حُذف: `جميع اصدارات البوت/V3/main.py`, `جميع اصدارات البوت/البوت الامن النهائي/main.py`
+- بقي `جميع اصدارات البوت/V2/quant.py` — حُذف: `جميع اصدارات البوت/V3/quant.py`, `جميع اصدارات البوت/البوت الامن النهائي/quant.py`
+- بقي `جميع اصدارات البوت/V2/requirements.txt` — حُذف: `جميع اصدارات البوت/V3/requirements.txt`, `جميع اصدارات البوت/البوت الامن النهائي/requirements.txt`
+- بقي `جميع اصدارات البوت/V2/risk.py` — حُذف: `جميع اصدارات البوت/V3/risk.py`, `جميع اصدارات البوت/البوت الامن النهائي/risk.py`
+- بقي `جميع اصدارات البوت/V2/scoring.py` — حُذف: `جميع اصدارات البوت/V3/scoring.py`, `جميع اصدارات البوت/البوت الامن النهائي/scoring.py`
+- بقي `جميع اصدارات البوت/V2/start.sh` — حُذف: `جميع اصدارات البوت/V3/start.sh`, `جميع اصدارات البوت/البوت الامن النهائي/start.sh`
+- بقي `جميع اصدارات البوت/V3/engine.py` — حُذف: `جميع اصدارات البوت/engine.py.txt`
+- بقي `جميع اصدارات البوت/V3/trigger.py` — حُذف: `جميع اصدارات البوت/trigger.py.txt`
+- بقي `جميع اصدارات البوت/NOVA/, (2).txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/, (2).txt`
+- بقي `جميع اصدارات البوت/NOVA/,.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/,.txt`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (2).py.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/0.py`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (1).py.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/000.py`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (3).py.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/1.py`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (4).py.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/2.py`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (5).py.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/3.py`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (6).py.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/9.p9`
+- بقي `جميع اصدارات البوت/NOVA/9.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/9.txt`
+- بقي `جميع اصدارات البوت/NOVA/999.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/999.txt`
+- بقي `جميع اصدارات البوت/NOVA/9_3.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/9_3.txt`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (13).py.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/NOVA (2) (2).py`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (14).py.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/NOVA (2) (3).py`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (2) (2).txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/NOVA (2).txt`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (5).txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/NOVA.txt`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (23).py.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/NOVA_V4_1.py`
+- بقي `جميع اصدارات البوت/NOVA/bot.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/bot.txt`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (25).py.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/scalp_bot (2).py`
+- بقي `جميع اصدارات البوت/NOVA/NOVA (26).py.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/scalp_bot.py`
+- بقي `جميع اصدارات البوت/NOVA/start (1).sh.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/start (2).sh`
+- بقي `جميع اصدارات البوت/NOVA/start (2).sh.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/start.sh`
+- بقي `جميع اصدارات البوت/NOVA/super_bot.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/super_bot.txt`
+- بقي `جميع اصدارات البوت/NOVA/،،.txt` — حُذف: `جميع اصدارات البوت/اصدارات متنوعه/،،.txt`
+- بقي `جميع اصدارات البوت/NOVA_4.txt` — حُذف: `جميع اصدارات البوت/تداول طويل المدى/NOVA.py`
+- بقي `جميع اصدارات البوت/NOVA_3.txt` — حُذف: `جميع اصدارات البوت/تداول طويل المدى/NOVA_V4_2_fixed.py`
+- بقي `جميع اصدارات البوت/check.txt` — حُذف: `جميع اصدارات البوت/تداول قصير و سريع/check.py`
+- بقي `جميع اصدارات البوت/hft_edge_extraction.md` — حُذف: `مؤشرات/0/hft_edge_extraction (1).md`
+- بقي `مؤشرات/2/Delta Reaction Zones.txt` — حُذف: `مؤشرات/2/Delta zones.txt`
+- بقي `مؤشرات/4/Luxy BIG beautiful Dynamic.txt` — حُذف: `مؤشرات/4/luxy OB.txt`
+- بقي `جميع اصدارات البوت/Order&Breake.txt` — حُذف: `مؤشرات/5/Order&Breake.txt`
+- بقي `مؤشرات/5/PRECISION SNIPER.txt` — حُذف: `مؤشرات/5/PSniper.txt`
+- بقي `جميع اصدارات البوت/phantom flow.txt` — حُذف: `مؤشرات/5/phantom flow.txt`
+- بقي `مؤشرات/5/S&D zones.txt` — حُذف: `مؤشرات/6/Supply and Demand Zones.txt`
+
+## 3) محتويات مختلفة أُبقيت (مجردة من التكرار)
+
+- `docs/misc/START.txt` <- `workspace/START.txt` (1K)
+- `data/archive/BTCUSDT_1m.parquet` <- `workspace/_k3/archive/BTCUSDT_1m.parquet` (1.6M)
+- `data/archive/SOLUSDT_1m.parquet` <- `workspace/_k3/archive/SOLUSDT_1m.parquet` (1.6M)
+- `data/archive/XLMUSDT_1m.parquet` <- `workspace/_k3/archive/XLMUSDT_1m.parquet` (1.6M)
+- `data/BNBUSDT_1m.parquet` <- `workspace/crypto_archive/BNBUSDT_1m.parquet` (2.8M)
+- `data/BTCUSDT_1m.parquet` <- `workspace/crypto_archive/BTCUSDT_1m.parquet` (4.8M)
+- `data/LINKUSDT_1m.parquet` <- `workspace/crypto_archive/LINKUSDT_1m.parquet` (2.6M)
+- `data/SOLUSDT_1m.parquet` <- `workspace/crypto_archive/SOLUSDT_1m.parquet` (2.8M)
+- `docs/reports/الاستعداد للتحليل المعماري للاستراتيجيات.txt` <- `workspace/extracted/الاستعداد للتحليل المعماري للاستراتيجيات.txt` (53K)
+- `docs/misc/تطوير بوت تداول ذكي بتيرمكس.txt` <- `workspace/extracted/تطوير بوت تداول ذكي بتيرمكس.txt` (71K)
+- `docs/misc/شرح شامل لبوتات التداول في بينانس.txt` <- `workspace/extracted/شرح شامل لبوتات التداول في بينانس.txt` (30K)
+- `docs/misc/مخطط البوت الجديد.txt` <- `workspace/extracted/مخطط البوت الجديد.txt` (40K)
+- `docs/misc/sweep_محلي_4_رموز.md` <- `workspace/nova/sweep_محلي_4_رموز.md` (1K)
+- `docs/reports/الجدول_الختامي_5_سنوات.md` <- `workspace/nova/الجدول_الختامي_5_سنوات.md` (3K)
+- `docs/constitution/الدستور_الأعلى.md` <- `workspace/nova/الدستور_الأعلى.md` (14K)
+- `docs/constitution/الدستور_التشغيلي.md` <- `workspace/nova/الدستور_التشغيلي.md` (14K)
+- `docs/designs/تصميم_محرك_الواجهة.md` <- `workspace/nova/تصميم_محرك_الواجهة.md` (3K)
+- `docs/reports/تقرير_الجولة_الشاملة.md` <- `workspace/nova/تقرير_الجولة_الشاملة.md` (3K)
+- `docs/designs/دليل_الرموز.txt` <- `workspace/nova/دليل_الرموز.txt` (2K)
+- `docs/reports/سجل_العمل_الكامل.md` <- `workspace/nova/سجل_العمل_الكامل.md` (8K)
+- `docs/designs/عقد_الترجمة_البرمجية.txt` <- `workspace/nova/عقد_الترجمة_البرمجية.txt` (4K)
+- `hypotheses/عقد_مصنع_الفرضيات.txt` <- `workspace/nova/عقد_مصنع_الفرضيات.txt` (5K)
+- `hypotheses/فرضيات_الباحث_النهائي.txt` <- `workspace/nova/فرضيات_الباحث_النهائي.txt` (224K)
+- `hypotheses/فرضياتك_النخبة.txt` <- `workspace/nova/فرضياتك_النخبة.txt` (10K)
+- `hypotheses/لوحة_خط_الفرضيات.md` <- `workspace/nova/لوحة_خط_الفرضيات.md` (3K)
+- `archive/code_snapshot/PACK_README.txt` <- `workspace/nova_pack/PACK_README.txt` (1K)
+- `archive/code_snapshot/docs/NOVA_V8_ORIGINAL_BUNDLE.txt` <- `workspace/nova_pack/docs/NOVA_V8_ORIGINAL_BUNDLE.txt` (309K)
+- `archive/code_snapshot/docs/PROJECT_LOG.txt` <- `workspace/nova_pack/docs/PROJECT_LOG.txt` (14K)
+- `archive/code_snapshot/nova_v8/README.md` <- `workspace/nova_v8/README.md` (12K)
+- `archive/code_snapshot/nova_v8/adaptive_trend.py` <- `workspace/nova_v8/adaptive_trend.py` (13K)
+- `archive/code_snapshot/nova_v8/config.py` <- `workspace/nova_v8/config.py` (24K)
+- `archive/code_snapshot/nova_v8/feeds.py` <- `workspace/nova_v8/feeds.py` (9K)
+- `archive/code_snapshot/nova_v8/fetch_archive.py` <- `workspace/nova_v8/fetch_archive.py` (2K)
+- `archive/code_snapshot/nova_v8/requirements.txt` <- `workspace/nova_v8/requirements.txt` (1K)
+- `archive/code_snapshot/nova_v8/sweep_engine.py` <- `workspace/nova_v8/sweep_engine.py` (10K)
+- `archive/code_snapshot/nova_v8/telegram_notify.py` <- `workspace/nova_v8/telegram_notify.py` (2K)
+- `archive/code_snapshot/nova_v8/tests/__init__.py` <- `workspace/nova_v8/tests/__init__.py` (1K)
+- `archive/code_snapshot/nova_v8/tests/selftest.py` <- `workspace/nova_v8/tests/selftest.py` (14K)
+- `archive/research_variants/nova_v8_out/data_quality_report.txt` <- `workspace/nova_v8_out/data_quality_report.txt` (1K)
+- `archive/research_variants/nova_v8_out/portfolio_risk_audit.txt` <- `workspace/nova_v8_out/portfolio_risk_audit.txt` (1K)
+- `code_drafts/backtest_sk.py` <- `workspace/tools/backtest_sk.py` (3K)
+- `code_drafts/sizing.py` <- `workspace/tools/sizing.py` (2K)
+- `docs/misc/README.md` <- `workspace/uploads/README.md` (4K)
+- `code_drafts/__init__.py.txt` <- `workspace/uploads/__init__.py.txt` (1K)
+- `code_drafts/config.py.txt` <- `workspace/uploads/config.py.txt` (4K)
+- `code_drafts/data_fetcher.py.txt` <- `workspace/uploads/data_fetcher.py.txt` (7K)
+- `code_drafts/engine.py.txt` <- `workspace/uploads/engine.py.txt` (18K)
+- `code_drafts/execution.py.txt` <- `workspace/uploads/execution.py.txt` (20K)
+- `code_drafts/feeds.py.txt` <- `workspace/uploads/feeds.py.txt` (7K)
+- `code_drafts/indicators.py.txt` <- `workspace/uploads/indicators.py.txt` (10K)
+- `code_drafts/main.py.txt` <- `workspace/uploads/main.py.txt` (1K)
+- `code_drafts/microstructure.py.txt` <- `workspace/uploads/microstructure.py.txt` (5K)
+- `code_drafts/orderflow.py.txt` <- `workspace/uploads/orderflow.py.txt` (7K)
+- `code_drafts/regime.py.txt` <- `workspace/uploads/regime.py.txt` (1K)
+- `docs/misc/requirements.txt` <- `workspace/uploads/requirements.txt` (1K)
+- `code_drafts/risk.py.txt` <- `workspace/uploads/risk.py.txt` (1K)
+- `docs/misc/sf_sleeves.txt` <- `workspace/uploads/sf_sleeves.txt` (2K)
+- `docs/misc/sle_f.txt` <- `workspace/uploads/sle_f.txt` (10K)
+- `code_drafts/strategies.py.txt` <- `workspace/uploads/strategies.py.txt` (4K)
+- `docs/misc/sweep_don_btc.txt` <- `workspace/uploads/sweep_don_btc.txt` (3K)

@@ -1,0 +1,31 @@
+"""NOVA_V8_QUANT_LAB — entrypoint.
+
+Usage (Termux):
+    export NOVA_MODE=backtest               # or: live
+    export BINANCE_ENV=testnet              # testnet | live  (execution routing)
+    export BINANCE_API_KEY=...  BINANCE_API_SECRET=...
+    export TELEGRAM_TOKEN=...   TELEGRAM_CHAT_ID=...
+    python -m nova_v8.main
+"""
+from __future__ import annotations
+
+import asyncio
+import logging
+
+from . import config as C
+from .engine import NovaEngine
+
+
+def main() -> None:
+    logging.basicConfig(
+        level=getattr(logging, C.LOG_LEVEL, logging.INFO),
+        format="%(asctime)s %(levelname)-7s %(name)s | %(message)s",
+        datefmt="%H:%M:%S")
+    engine = NovaEngine()
+    try:
+        asyncio.run(engine.run())
+    except KeyboardInterrupt:__REDACTED__"nova").info("shutdown requested — bye.")
+
+
+if __name__ == "__main__":
+    main()

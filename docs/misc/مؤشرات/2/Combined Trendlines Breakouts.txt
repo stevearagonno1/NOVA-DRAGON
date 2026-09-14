@@ -1,0 +1,463 @@
+// This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// Join our channel for more free tools: https://t.me/mrexpert_ai
+
+//@version=6
+indicator('Combined Trendlines Breakouts', overlay = true, max_bars_back = 501, max_lines_count = 500)
+// Inputs for EzTrendlines
+show_trendlines = input.bool(true, 'Show Trendlines', inline = 'tl_1', group = 'Trendlines')
+upper_trendline_color = input.color(#9598a1, '', inline = 'tl_1', group = 'Trendlines')
+lower_trendline_color = input.color(#9598a1, '', inline = 'tl_1', group = 'Trendlines')
+extendLine = input.bool(true, 'Extend', inline = 'tl_1', group = 'Trendlines')
+linestyle_curr_inp = input.string(defval = 'Solid', title = 'Style', options = ['Solid', 'Dotted', 'Dashed'], inline = 'tl_3', group = 'Trendlines')
+line_width_curr = input.int(1, 'Width', step = 1, minval = 1, maxval = 4, inline = 'tl_3', group = 'Trendlines')
+pivLen_L = input.int(20, 'Lookback', step = 1, minval = 1, inline = 'tl_5', group = 'Trendlines')
+pivLen_R = pivLen_L
+hideCrossed = not input.bool(true, 'Show Broken', inline = 'tl_2', group = 'Trendlines')
+broken_color_up = input.color(#9598a1, '', inline = 'tl_2', group = 'Trendlines')
+broken_color_down = input.color(#9598a1, '', inline = 'tl_2', group = 'Trendlines')
+extendLine_B = input.bool(true, 'Extend', inline = 'tl_2', group = 'Trendlines')
+show_signals = input.bool(false, 'Show Signals', inline = 'tl_s', group = 'Trendlines')
+broken_color_up_signal = input.color(color.yellow, '', inline = 'tl_s', group = 'Trendlines')
+broken_color_down_signal = input.color(color.yellow, '', inline = 'tl_s', group = 'Trendlines')
+maxLines = input.int(3, 'Max Broken', step = 1, minval = 1, maxval = 50, inline = 'tl_2_B', group = 'Trendlines')
+Source_tl = input.string('Close', 'Mitigation', options = ['Close', 'High/Low'], inline = 'tl_2_B', group = 'Trendlines')
+linestyle_broken_inp = input.string(defval = 'Dashed', title = 'Style (Broken)', options = ['Solid', 'Dotted', 'Dashed'], inline = 'tl_2-1', group = 'Trendlines')
+line_width_broken = input.int(1, 'Width', step = 1, minval = 1, maxval = 4, inline = 'tl_2-1', group = 'Trendlines')
+lineStyle_curr = linestyle_curr_inp == 'Solid' ? line.style_solid : linestyle_curr_inp == 'Dotted' ? line.style_dotted : line.style_dashed
+lineStyle_broken = linestyle_broken_inp == 'Solid' ? line.style_solid : linestyle_broken_inp == 'Dotted' ? line.style_dotted : line.style_dashed
+s_close = request.security(ticker.standard(syminfo.tickerid), timeframe.period, close)
+s_open = request.security(ticker.standard(syminfo.tickerid), timeframe.period, open)
+s_high = request.security(ticker.standard(syminfo.tickerid), timeframe.period, high)
+s_low = request.security(ticker.standard(syminfo.tickerid), timeframe.period, low)
+var array<line> pivot_high_array = array.new_line()
+var array<line> pivot_low_array = array.new_line()
+ph_M = ta.pivothigh(s_high, pivLen_L, pivLen_R)
+pl_M = ta.pivotlow(s_low, pivLen_L, pivLen_R)
+ph = ta.pivothigh(s_high, pivLen_L, pivLen_R)
+pl = ta.pivotlow(s_low, pivLen_L, pivLen_R)
+var float prev_close_H = na
+var float curr_close_H = na
+var float prev_close_L = na
+var float curr_close_L = na
+var int X_prev_low = na
+var float Y_prev_low = na
+var int X_curr_low = na
+var float Y_curr_low = na
+var int X_curr_high = na
+var float Y_curr_high = na
+var int X_prev_high = na
+var float Y_prev_high = na
+maxLines := hideCrossed ? 0 : maxLines
+tl_array_size_up = maxLines / 2
+tl_array_size_dn = maxLines % 2 == 0 ? maxLines / 2 : maxLines / 2 + 1
+// Functions for EzTrendlines
+newTrendLine(ptype, x1, y1, x2, y2) =>
+    new_trendline = line.new(x1, y1, x2, y2, extend = extendLine ? extend.right : extend.none, color = ptype == 'ph' ? upper_trendline_color : lower_trendline_color, width = line_width_curr, style = lineStyle_curr, xloc = xloc.bar_index)
+    if ptype == 'ph'
+        pivot_high_array.unshift(new_trendline)
+    else
+        pivot_low_array.unshift(new_trendline)
+SlopeOfLine(line) =>
+    slopePh = (line.get_y2(line) - line.get_y1(line)) / (line.get_x2(line) - line.get_x1(line))
+    extendedPh = line.get_y2(line) - slopePh * (line.get_x2(line) - bar_index)
+    extendedPh
+up_trend_line_formed = false
+down_trend_line_formed = false
+if bool(pl)
+    X_prev_low := X_curr_low
+    Y_prev_low := Y_curr_low
+    prev_close_L := curr_close_L
+    X_curr_low := bar_index[pivLen_R]
+    Y_curr_low := s_low[pivLen_R]
+    curr_close_L := s_close[pivLen_R]
+    if Y_prev_low < Y_curr_low and show_trendlines and Y_curr_low > prev_close_L
+        newTrendLine('pl', X_prev_low, Y_prev_low, X_curr_low, Y_curr_low)
+        down_trend_line_formed := true
+        down_trend_line_formed
+if bool(ph)
+    X_prev_high := X_curr_high
+    Y_prev_high := Y_curr_high
+    prev_close_H := curr_close_H
+    X_curr_high := bar_index[pivLen_R]
+    Y_curr_high := s_high[pivLen_R]
+    curr_close_H := s_close[pivLen_R]
+    if Y_prev_high > Y_curr_high and show_trendlines and prev_close_H > Y_curr_high
+        newTrendLine('ph', X_prev_high, Y_prev_high, X_curr_high, Y_curr_high)
+        up_trend_line_formed := true
+        up_trend_line_formed
+if close > Y_prev_high
+    Y_prev_high := 0.000000
+    Y_prev_high
+if close < Y_prev_low
+    Y_prev_low := 9999999999.9999
+    Y_prev_low
+alertcondition(down_trend_line_formed or up_trend_line_formed, 'Trendline Formed', 'Trendline Formed')
+up_trend_line_broken = false
+down_trend_line_broken = false
+for x in pivot_low_array
+    var array<line> Down_Trend_Lines = array.new_line(tl_array_size_up)
+    var array<label> Down_Trend_Labels = array.new_label(tl_array_size_up)
+    src = Source_tl == 'Close' ? s_close : s_low
+    x.set_xy2(bar_index, SlopeOfLine(x))
+    if x.get_x2() - x.get_x1() > 300
+        x.delete()
+    if src < line.get_y2(x)
+        tl_line = line.new(line.get_x1(x), line.get_y1(x), line.get_x2(x), line.get_y2(x), color = broken_color_down, style = lineStyle_broken, width = line_width_broken, xloc = xloc.bar_index, extend = extendLine_B ? extend.right : extend.none)
+        down_trend_line_broken := true
+        Down_Trend_Lines.unshift(tl_line)
+        line.delete(x)
+    if Down_Trend_Lines.size() > tl_array_size_up
+        line.delete(Down_Trend_Lines.pop())
+for x in pivot_high_array
+    var array<line> Up_Trend_Lines = array.new_line(tl_array_size_dn)
+    var array<label> Up_Trend_Labels = array.new_label(tl_array_size_dn)
+    src = Source_tl == 'Close' ? s_close : s_high
+    x.set_xy2(bar_index, SlopeOfLine(x))
+    if x.get_x2() - x.get_x1() > 300
+        x.delete()
+    if src > line.get_y2(x)
+        tl_line = line.new(line.get_x1(x), line.get_y1(x), line.get_x2(x), line.get_y2(x), color = broken_color_up, style = lineStyle_broken, width = line_width_broken, xloc = xloc.bar_index, extend = extendLine_B ? extend.right : extend.none)
+        up_trend_line_broken := true
+        Up_Trend_Lines.unshift(tl_line)
+        line.delete(x)
+    if Up_Trend_Lines.size() > tl_array_size_dn
+        line.delete(Up_Trend_Lines.pop())
+plotshape(show_signals and up_trend_line_broken ? low : na, title = 'Trendline Broken Up', style = shape.xcross, textcolor = color.new(color.white, 0), size = size.small, location = location.belowbar, color = broken_color_up_signal, display = display.all - display.status_line, editable = false)
+plotshape(show_signals and down_trend_line_broken ? high : na, title = 'Trendline Broken Down', style = shape.xcross, textcolor = color.new(color.white, 0), size = size.small, location = location.abovebar, color = broken_color_down_signal, display = display.all - display.status_line, editable = false)
+alertcondition(up_trend_line_broken or down_trend_line_broken, 'Trendline Broken', 'Trendline Broken')
+//********************************************************
+watermarki_supp = input.bool(true, 'Watermark', group = 'Author Sign') //confirm=true)
+string i_tableYpos_oto_supp = input.string('top', 'Position', inline = '12', options = ['top', 'middle', 'bottom'])
+string i_tableXpos_oto_supp = input.string('right', '', inline = '12', options = ['left', 'center', 'right'])
+int i_height_oto_supp = input.int(7, 'Height', minval = 1, maxval = 100, inline = '13')
+int i_width_oto_supp = input.int(30, 'Width', minval = 1, maxval = 100, inline = '13a')
+color i_c_text_oto_supp = input.color(color.new(color.white, 0), '', inline = '14')
+color _bg_oto_supp = input.color(color.new(color.blue, 70), '', inline = '14')
+string i_textSize = input.string('normal', 'Size', inline = '14', options = ['tiny', 'small', 'normal', 'large', 'huge', 'auto'])
+i_text2_supp = 'EarnWithEnigma'
+i_text1_supp = 'When using the indicator EarnWithEnigma thank you'
+var table watermark_supp = table.new(i_tableYpos_oto_supp + '_' + i_tableXpos_oto_supp, 1, 1)
+if barstate.islast and watermarki_supp
+    varip bool _changeText_supp = true
+    _changeText_supp := not _changeText_supp
+    string _txt_supp = _changeText_supp ? i_text2_supp : i_text1_supp
+    table.cell(watermark_supp, 0, 0, i_text2_supp, i_width_oto_supp, i_height_oto_supp, i_c_text_oto_supp, text_size = i_textSize, bgcolor = _bg_oto_supp)
+//#!
+// Inputs for Trendline Breakouts With Targets
+bool ChartTime = time > chart.left_visible_bar_time and time < chart.right_visible_bar_time
+string CORE = '➞ Core Settings 🔸'
+var bool TradeisON = false
+var bool LongTrade = false
+var bool ShortTrade = false
+var float TP = 0.0
+var float SL = 0.0
+int BarTIME = time - time[1]
+var line tpLine = na
+var label LAB = na
+var int UpdatedX = 0
+var float UpdatedY = 0.0
+var float UpdatedSLP = 0.0
+var int UpdatedXLow = 0
+var float UpdatedYLow = 0.0
+var float UpdatedSLPLow = 0.0
+int Period = input.int(10, title = '    Period     ➞', group = CORE, inline = '001')
+bool Trendtype = input.string(title = '     Type        ➞', defval = 'Wicks', options = ['Wicks', 'Body'], group = CORE, inline = '001') == 'Wicks'
+string Extensions = input.string(title = '     Extend    ➞', defval = '  25', options = ['  25', '  50', '  75'], group = CORE, inline = '001')
+color LineCol1 = input.color(color.rgb(109, 111, 111, 19), '', group = CORE, inline = '001')
+bool ShowTargets = input.bool(true, 'Show Targets', group = CORE, inline = '002')
+ExtenSwitcher(ex) =>
+    switch ex
+        '  25' => 1
+        '  50' => 2
+        => 3
+WidthSwitcher(ex) =>
+    switch ex
+        '1' => 1
+        '2' => 2
+        => 3
+StyleSwitcher(style) =>
+    switch style
+        'Dashed' => line.style_dashed
+        'Dotted' => line.style_dotted
+        => line.style_solid
+method volAdj(int len) =>
+    math.min(ta.atr(len) * 0.3, close * (0.3 / 100))[20] / 2
+Zband = volAdj(30)
+method Trendlines(float src, int timeIndex, bool dir) =>
+    var int Start = 1
+    var int End = 0
+    var int TIME = 1
+    var float YEnd = 0
+    var float YStart = 0
+    var float Slope = 0
+    var line Line1 = line.new(na, na, na, na)
+    var line Line2 = line.new(na, na, na, na)
+    var line Line3 = line.new(na, na, na, na)
+    SCR = fixnan(src)
+    if ta.change(SCR) != 0
+        TIME := time[timeIndex]
+        YStart := SCR[1]
+        Start := TIME[1]
+        Slope := (SCR - YStart) / (TIME - Start)
+        Slope
+    EXTime = ExtenSwitcher(Extensions) * BarTIME * 25
+    End := TIME + EXTime
+    YEnd := SCR + EXTime * Slope
+    if ta.change(SCR) != 0 and not TradeisON[1]
+        LineCond = Slope * time < 0 ? dir ? na : color.rgb(11, 139, 7, 53) : dir ? color.rgb(212, 46, 0, 54) : na
+        if not na(LineCond) //and ChartTime
+            Line1 := line.new(Start, YStart, End, YEnd, xloc.bar_time, extend.none, color = color.new(color.white, 100))
+            Line2 := line.new(Start, YStart - Zband * 2, End, YEnd - Zband * 2, xloc.bar_time, extend.none, color = color.new(color.black, 100))
+            Line3 := line.new(Start, YStart - Zband * 1, End, YEnd - Zband * 1, xloc.bar_time, extend.none, color = color.new(color.black, 100))
+            linefill.new(Line3, Line2, color = LineCol1)
+            linefill.new(Line3, Line1, color = LineCond)
+    [Start, YStart, Slope]
+PH = ta.pivothigh(Trendtype ? high : close > open ? close : open, Period, Period / 2)
+PL = ta.pivotlow(Trendtype ? low : close > open ? open : close, Period, Period / 2)
+method GetlinePrice(int TIME, float Price, float SLOP, int LookB) =>
+    var float Current = 0.0
+    EsTime = time - TIME
+    Current := Price + (EsTime - LookB * BarTIME) * SLOP
+    Current
+method CheckCross(float Price, int StartTime, float StartPrice, float SLP) =>
+    var float Current = 0.0
+    var float Previous = 0.0
+    if StartPrice[Period] != StartPrice
+        Current := GetlinePrice(StartTime, StartPrice, SLP, 0)
+        Previous := GetlinePrice(StartTime, StartPrice, SLP, 1)
+        Crossover = Price[1] < Previous and Price > Current ? 1 : Price[1] > Previous - Zband * 0.1 and Price < Current - Zband * 0.1 ? -1 : 0
+        Crossover
+[Xx, XZ, SLPXZ] = Trendlines(PH, Period / 2, false)
+[XxL, XZL, SLPXZL] = Trendlines(PL, Period / 2, true)
+if ta.change(fixnan(PH)) != 0
+    UpdatedX := Xx
+    UpdatedY := XZ
+    UpdatedSLP := SLPXZ
+    UpdatedSLP
+if ta.change(fixnan(PL)) != 0
+    UpdatedXLow := XxL
+    UpdatedYLow := XZL
+    UpdatedSLPLow := SLPXZL
+    UpdatedSLPLow
+Long = not(UpdatedSLP * time > 0) and CheckCross(close, UpdatedX, UpdatedY, UpdatedSLP) == 1 and not TradeisON
+Short = not(UpdatedSLPLow * time < 0) and CheckCross(close, UpdatedXLow, UpdatedYLow, UpdatedSLPLow) == -1 and not TradeisON
+TradeFire = Long or Short
+if Long and not TradeisON
+    LongTrade := true
+    ShortTrade := false
+    ShortTrade
+if Short and not TradeisON
+    LongTrade := false
+    ShortTrade := true
+    ShortTrade
+if true
+    if TradeFire and not TradeisON
+        TP := switch 
+            Long => high + Zband * 20
+            Short => low - Zband * 20
+        SL := switch 
+            Long => low - Zband * 20
+            Short => high + Zband * 20
+        TradeisON := true
+        if ShowTargets
+            line.new(bar_index, Long ? high : low, bar_index, TP, width = 2, color = color.rgb(154, 103, 20), style = line.style_dashed)
+            tpLine := line.new(bar_index, TP, bar_index + 2, TP, style = line.style_dashed, color = color.rgb(154, 103, 20))
+            LAB := label.new(bar_index, TP, 'Target', color = color.rgb(154, 103, 20), style = label.style_label_left, size = size.small, textcolor = color.white)
+            LAB
+    if TradeisON
+        line.set_x2(tpLine, bar_index)
+        label.set_x(LAB, bar_index + 1)
+    if LongTrade and TradeisON
+        if high >= TP
+            label.set_color(LAB, color.rgb(6, 128, 10, 37))
+            TradeisON := false
+            TradeisON
+        if close <= SL
+            label.set_color(LAB, color.new(color.rgb(246, 7, 7), 70))
+            TradeisON := false
+            TradeisON
+    else if ShortTrade and TradeisON
+        if low <= TP
+            label.set_color(LAB, color.rgb(6, 128, 10, 37))
+            TradeisON := false
+            TradeisON
+        if close >= SL
+            label.set_color(LAB, color.new(color.rgb(246, 7, 7), 70))
+            TradeisON := false
+            TradeisON
+plotshape(Long and not TradeisON[1], size = size.small, color = color.rgb(46, 192, 6, 11), location = location.belowbar, style = shape.labelup, text = '', textcolor = color.white)
+plotshape(Short and not TradeisON[1], size = size.small, color = color.rgb(241, 2, 2, 11), location = location.abovebar, style = shape.labeldown, text = '', textcolor = color.white)
+// Inputs for Support Resistance Channels
+prd = input.int(10, title = 'Pivot Period', minval = 4, maxval = 30, group = 'Settings 🔨', tooltip = 'Used while calculating Pivot Points, checks left&right bars')
+ppsrc = input.string('High/Low', title = 'Source', options = ['High/Low', 'Close/Open'], group = 'Settings 🔨', tooltip = 'Source for Pivot Points')
+ChannelW = input.int(5, title = 'Maximum Channel Width %', minval = 1, maxval = 8, group = 'Settings 🔨', tooltip = 'Calculated using Highest/Lowest levels in 300 bars')
+minstrength = input.int(1, title = 'Minimum Strength', minval = 1, group = 'Settings 🔨', tooltip = 'Channel must contain at least 2 Pivot Points')
+maxnumsr = input.int(6, title = 'Maximum Number of S/R', minval = 1, maxval = 10, group = 'Settings 🔨', tooltip = 'Maximum number of Support/Resistance Channels to Show') - 1
+loopback = input.int(290, title = 'Loopback Period', minval = 100, maxval = 400, group = 'Settings 🔨', tooltip = 'While calculating S/R levels it checks Pivots in Loopback Period')
+res_col = input.color(color.new(color.red, 75), title = 'Resistance Color', group = 'Colors 🟡🟢🟣')
+sup_col = input.color(color.new(color.lime, 75), title = 'Support Color', group = 'Colors 🟡🟢🟣')
+inch_col = input.color(color.new(color.gray, 75), title = 'Color When Price in Channel', group = 'Colors 🟡🟢🟣')
+showpp = input.bool(false, title = 'Show Pivot Points', group = 'Extras ⏶⏷')
+showsrbroken = input.bool(false, title = 'Show Broken Support/Resistance', group = 'Extras ⏶⏷')
+showthema1en = input.bool(false, title = 'MA 1', inline = 'ma1')
+showthema1len = input.int(50, title = '', inline = 'ma1')
+showthema1type = input.string('SMA', title = '', options = ['SMA', 'EMA'], inline = 'ma1')
+showthema2en = input.bool(false, title = 'MA 2', inline = 'ma2')
+showthema2len = input.int(200, title = '', inline = 'ma2')
+showthema2type = input.string('SMA', title = '', options = ['SMA', 'EMA'], inline = 'ma2')
+ma1 = showthema1en ? showthema1type == 'SMA' ? ta.sma(close, showthema1len) : ta.ema(close, showthema1len) : na
+ma2 = showthema2en ? showthema2type == 'SMA' ? ta.sma(close, showthema2len) : ta.ema(close, showthema2len) : na
+plot(ma1, color = not na(ma1) ? color.blue : na)
+plot(ma2, color = not na(ma2) ? color.red : na)
+// get Pivot High/low
+float src1_sr = ppsrc == 'High/Low' ? high : math.max(close, open)
+float src2_sr = ppsrc == 'High/Low' ? low : math.min(close, open)
+float ph_sr = ta.pivothigh(src1_sr, prd, prd)
+float pl_sr = ta.pivotlow(src2_sr, prd, prd)
+// draw Pivot points
+plotshape(bool(ph_sr) and showpp, text = 'H', style = shape.labeldown, color = na, textcolor = color.red, location = location.abovebar, offset = -prd)
+plotshape(bool(pl_sr) and showpp, text = 'L', style = shape.labelup, color = na, textcolor = color.lime, location = location.belowbar, offset = -prd)
+//calculate maximum S/R channel width
+prdhighest = ta.highest(300)
+prdlowest = ta.lowest(300)
+cwidth = (prdhighest - prdlowest) * ChannelW / 100
+// get/keep Pivot levels
+var pivotvals = array.new_float(0)
+var pivotlocs = array.new_float(0)
+if bool(ph_sr) or bool(pl_sr)
+    array.unshift(pivotvals, bool(ph_sr) ? ph_sr : pl_sr)
+    array.unshift(pivotlocs, bar_index)
+    for x = array.size(pivotvals) - 1 to 0 by 1
+        if bar_index - array.get(pivotlocs, x) > loopback // remove old pivot points
+            array.pop(pivotvals)
+            array.pop(pivotlocs)
+            continue
+        break
+        //find/create SR channel of a pivot point
+get_sr_vals(ind) =>
+    float lo = array.get(pivotvals, ind)
+    float hi = lo
+    int numpp = 0
+    for y = 0 to array.size(pivotvals) - 1 by 1
+        float cpp = array.get(pivotvals, y)
+        float wdth = cpp <= hi ? hi - cpp : cpp - lo
+        if wdth <= cwidth // fits the max channel width?
+            if cpp <= hi
+                lo := math.min(lo, cpp)
+                lo
+            else
+                hi := math.max(hi, cpp)
+                hi
+            numpp := numpp + 20 // each pivot point added as 20
+            numpp
+    [hi, lo, numpp]
+    // keep old SR channels and calculate/sort new channels if we met new pivot point
+var suportresistance = array.new_float(20, 0) // min/max levels
+changeit(x, y) =>
+    tmp = array.get(suportresistance, y * 2)
+    array.set(suportresistance, y * 2, array.get(suportresistance, x * 2))
+    array.set(suportresistance, x * 2, tmp)
+    tmp := array.get(suportresistance, y * 2 + 1)
+    array.set(suportresistance, y * 2 + 1, array.get(suportresistance, x * 2 + 1))
+    array.set(suportresistance, x * 2 + 1, tmp)
+if bool(ph_sr) or bool(pl_sr)
+    supres = array.new_float(0) // number of pivot, strength, min/max levels
+    stren = array.new_float(10, 0)
+    // get levels and strengs
+    for x = 0 to array.size(pivotvals) - 1 by 1
+        [hi, lo, strength] = get_sr_vals(x)
+        array.push(supres, strength)
+        array.push(supres, hi)
+        array.push(supres, lo)
+    // add each HL to strengh
+    for x = 0 to array.size(pivotvals) - 1 by 1
+        h = array.get(supres, x * 3 + 1)
+        l = array.get(supres, x * 3 + 2)
+        s = 0
+        for y = 0 to loopback by 1
+            if high[y] <= h and high[y] >= l or low[y] <= h and low[y] >= l
+                s := s + 1
+                s
+        array.set(supres, x * 3, array.get(supres, x * 3) + s)
+    //reset SR levels
+    array.fill(suportresistance, 0)
+    // get strongest SRs
+    src = 0
+    for x = 0 to array.size(pivotvals) - 1 by 1
+        stv = -1. // value
+        stl = -1 // location
+        for y = 0 to array.size(pivotvals) - 1 by 1
+            if array.get(supres, y * 3) > stv and array.get(supres, y * 3) >= minstrength * 20
+                stv := array.get(supres, y * 3)
+                stl := y
+                stl
+        if stl >= 0
+            //get sr level
+            hh = array.get(supres, stl * 3 + 1)
+            ll = array.get(supres, stl * 3 + 2)
+            array.set(suportresistance, src * 2, hh)
+            array.set(suportresistance, src * 2 + 1, ll)
+            array.set(stren, src, array.get(supres, stl * 3))
+            // make included pivot points' strength zero
+            for y = 0 to array.size(pivotvals) - 1 by 1
+                if array.get(supres, y * 3 + 1) <= hh and array.get(supres, y * 3 + 1) >= ll or array.get(supres, y * 3 + 2) <= hh and array.get(supres, y * 3 + 2) >= ll
+                    array.set(supres, y * 3, -1)
+            src := src + 1
+            if src >= 10
+                break
+    for x = 0 to 8 by 1
+        for y = x + 1 to 9 by 1
+            if array.get(stren, y) > array.get(stren, x)
+                tmp = array.get(stren, y)
+                array.set(stren, y, array.get(stren, x))
+                changeit(x, y)
+get_level(ind) =>
+    float ret = na
+    if ind < array.size(suportresistance)
+        if array.get(suportresistance, ind) != 0
+            ret := array.get(suportresistance, ind)
+            ret
+    ret
+get_color(ind) =>
+    color ret = na
+    if ind < array.size(suportresistance)
+        if array.get(suportresistance, ind) != 0
+            ret := array.get(suportresistance, ind) > close and array.get(suportresistance, ind + 1) > close ? res_col : array.get(suportresistance, ind) < close and array.get(suportresistance, ind + 1) < close ? sup_col : inch_col
+            ret
+    ret
+var srchannels = array.new_box(10)
+for x = 0 to math.min(9, maxnumsr) by 1
+    box.delete(array.get(srchannels, x))
+    srcol = get_color(x * 2)
+    if not na(srcol)
+        array.set(srchannels, x, box.new(left = bar_index, top = get_level(x * 2), right = bar_index + 1, bottom = get_level(x * 2 + 1), border_color = srcol, border_width = 1, extend = extend.both, bgcolor = srcol))
+resistancebroken = false
+supportbroken = false
+// check if it's not in a channel
+not_in_a_channel = true
+for x = 0 to math.min(9, maxnumsr) by 1
+    if close <= array.get(suportresistance, x * 2) and close >= array.get(suportresistance, x * 2 + 1)
+        not_in_a_channel := false
+        not_in_a_channel
+        // if price is not in a channel then check broken ones
+if not_in_a_channel
+    for x = 0 to math.min(9, maxnumsr) by 1
+        if close[1] <= array.get(suportresistance, x * 2) and close > array.get(suportresistance, x * 2)
+            resistancebroken := true
+            resistancebroken
+        if close[1] >= array.get(suportresistance, x * 2 + 1) and close < array.get(suportresistance, x * 2 + 1)
+            supportbroken := true
+            supportbroken
+alertcondition(resistancebroken, title = 'Resistance Broken', message = 'Resistance Broken')
+alertcondition(supportbroken, title = 'Support Broken', message = 'Support Broken')
+plotshape(showsrbroken and resistancebroken, style = shape.triangleup, location = location.belowbar, color = color.new(color.lime, 0), size = size.tiny)
+plotshape(showsrbroken and supportbroken, style = shape.triangledown, location = location.abovebar, color = color.new(color.red, 0), size = size.tiny)
+
+
+// ==========================================================================================
+
+// === Dashboard with Telegram Link ===
+var table myTable = table.new(position.top_center, 1, 1, border_width=1, frame_color=color.black, bgcolor=color.white)
+
+// Add Telegram Message to Dashboard
+table.cell(myTable, 0, 0, "Join Telegram @mrexpert_ai", bgcolor=color.blue, text_color=color.white, text_size=size.normal)

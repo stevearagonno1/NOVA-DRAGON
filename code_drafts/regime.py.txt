@@ -1,0 +1,34 @@
+"""Module 3 — Market Regime Detection Engine.
+
+OBSERVER ONLY. Tags the environment at the millisecond of the micro-trigger;
+it NEVER blocks or filters a trade. The tag is persisted to SQLite.
+"""
+from __future__ import annotations
+
+import math
+
+from . import config as C
+
+TRENDING_BULL = "Trending Bull"
+TRENDING_BEAR = "Trending Bear"
+CHOPPY = "Choppy / Mean-Reverting"
+SHOCK = "Volatile Shock"
+
+
+def classify(*, adx: float, close: float, alma: float, hurst: float,
+             atr: float, atr_sma20: float, atr_sma100: float) -> str:
+    vals = (adx, close, alma, hurst, atr, atr_sma20, atr_sma100)
+    if any(v is None or not math.isfinite(v) for v in vals):
+        return CHOPPY
+
+    vr = atr / atr_sma100 if atr_sma100 > 0 else 0.0
+    if vr > C.VR_SHOCK:                            # liquidity expansion overrides
+        return SHOCK
+    if adx > 25.0 and close > alma and hurst > 0.55:
+        return TRENDING_BULL
+    if adx > 25.0 and close < alma and hurst > 0.55:
+        return TRENDING_BEAR
+    contracting = atr < atr_sma20
+    if adx < 20.0 or (hurst <= 0.45 and contracting):
+        return CHOPPY
+    return CHOPPY                                  # transition → ranged bucket

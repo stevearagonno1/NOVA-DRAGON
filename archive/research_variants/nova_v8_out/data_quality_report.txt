@@ -1,0 +1,7 @@
+NOVA_V8 — تقرير جودة البيانات / Data Quality
+
+[BTCUSDT] rows=30000 bad_ohlcv=0 negative_volume=0 large_gaps=0 max_gap_min=1.00 issues=[]
+[SOLUSDT] rows=30000 bad_ohlcv=0 negative_volume=0 large_gaps=0 max_gap_min=1.00 issues=[]
+[XLMUSDT] rows=30000 bad_ohlcv=0 negative_volume=0 large_gaps=0 max_gap_min=1.00 issues=[]
+
+الوضع: warn; strict يوقف التشغيل عند مشاكل البيانات.

@@ -1,0 +1,983 @@
+// This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// Join us https://t.me/simpleforextools
+
+//@version=5
+indicator           ('Key Levels Bjorgum', overlay= true, max_boxes_count= 500, max_labels_count= 500, max_lines_count=500)
+
+import              Bjorgum/BjCandlePatterns/2 as bj
+
+// ================================== //
+// ------------> Tips <-------------- //
+// ================================== //
+//Основное условие:
+//Лонг - растущий канал и ретест ниже первой поддержки
+//Шорт - нисходящий канал и ретест выше первого сопротивления
+//Важные Переменные
+//intercept - середина канала 
+//startPrice - начало отчета середины канала
+//upperb - значение отклонения
+//Соответсвенно intercept + upperb - первое сопротивление, intercept + 2*upperb - второе, и тд. intercept - upperb - первая поддержка и тд
+//lnlreg и lnl30  - направления каналов текущего тф и выбранного старшего (1 или -1)
+//dir - значение выводимый сделки - 1 лонг, -1 шорт. Пихается в плейсхолдер оповещалки
+//align30 - фильтр со старшего тф. Либо сделка по направлению канала, либо ниже середины для лонга и выше середины для шорта
+
+leftTip         =   "Look left for swing high/low in x number of bars to form pivot. The higher the number, the higher the script looks to the left for the highest/lowest point before drawing pivot"        
+rightTip        =   "Look right for swing high/low in x number of bars to form pivot. The higher the number, the higher the script looks to the right for the highest/lowest point before drawing pivot"       
+nPivTip         =   "This sets the array size, or the number of pivots to track at a time (x highs, and x number of lows)" 
+atrLenTip       =   "Number of bars to average. ATR is used to standardize zone width between assets and timeframes"     
+multTip         =   "ATR multiplier to set zone width. Default is half of one ATR from box bottom to box top"     
+perTip          =   "Max zone size as a percent of price. Some assets can be too volatile at low prices creating an unreasonably sized zone"
+maxTip          =   "Number of boxes for candlestick patterns to track historically. Note: the higher the number the less pivot zones will be tracked when looking back in time due to the limitation on the number of box elements allowed at once"
+futTip          =   "Number of bars to offset labels for price levels"
+srcTip          =   "Source input for pivots. Default tracks the highest and lowest bodies of HA candles to average price action, which can result in a level that sits in the overlap of support and resistance"     
+alignZonesTip   =   "Aligns recurring zones who's edges overlap an existing zone creating a zone that ages in time and intensifies visually"     
+extendTip       =   "Extends current zones right"
+lLabTip         =   "Show labels for price levels extended off Key Levels"
+
+dhighsTip       =   "Disabling will prevent highs from being tracked"          
+dlowsTip        =   "Disabling will prevent lows from being tracked"         
+detectBOTip     =   "Show points that price action breaks above all pivots. An arrow from below is displayed"        
+detectBDTip     =   "Show points that price action breaks below all pivots. An arrow from above is displayed"         
+breakUpTip      =   "Show points that price action breaks above resistance. An arrow from below is displayed"         
+breakDnTip      =   "Show points that price action breaks below support. An arrow from above is displayed"          
+falseBullTip    =   "Show points that price action initially breaks below support before reversing. False moves can lead to fast moves in the opposite direction (bear trap). A large arrow from below is displayed"          
+falseBearTip    =   "Show points that price action initially breaks above resistance before reversing. False moves can lead to fast moves in the opposite direction (bull trap). A large arrow from above is displayed"           
+supPushTip      =   "Show up candles that are detected within a support zone. Can show points support is being respected. A triangle from below is displayed"          
+resPushTip      =   "Show down candles that are detected within a resistance zone. Can show points resistance is being respected. A triangle from above is displayed"           
+curlTip         =   "Show Bjorgum TSI 'curl' when candles are detected in the range of a key zone. Can show momentum shift at Key Levels. (Correlates to Bjorgum TSI indicator)" 
+
+repaintTip      =   "Wait for candles end before detecting patterns. False will show potential patterns forming before they are confirmed."
+labelsTip       =   "Show a label for detected candle patterns"
+sBoxTip         =   "Show a box around detected candle patterns"
+dTip            =   "Detect Doji candle patterns"      
+beTip           =   "Detect Engulfing patterns"     
+hsTip           =   "Detect Hammers and Shooting Star patterns"     
+dgTip           =   "Detect Dragonfly Doji and Gravestone Doji patterns"     
+twTip           =   "Detect Tweezer Top and Tweezer Bottom patterns"     
+stTip           =   "Detect Spinning Top patterns"     
+pcTip           =   "Detect Piercing and Dark Cloud Cover patterns"     
+bhTip           =   "Detect Harami candle patterns"     
+lsTip           =   "Detect Long Upper Shadow and Long Lower Shadow patterns"     
+
+ecWickTip       =   "Determines if engulfing candles must engulf the wick or just the body of the preceding candle"     
+colorMatchTip   =   "Determines if hammers must be up candles and shooting stars must be down candles"     
+closeHalfTip    =   "Determines if Tweezer patterns must close beyond the half way point of the preceding candle"     
+atrMaxTip       =   "Maximum size of setup candles (as a multiplier of the current ATR)"     
+rejectWickTip   =   "The maximum wick size as a percentage of body size allowable for a rejection wick on the resolution candle of the pattern. 0 disables the filter"
+hammerFibTip    =   "The relationship of body to candle size for hammers and stars. (ie. body is 33% of total candle size)."     
+hsShadowPercTip =   "The maximum allowable opposing wick size as a percent of body size (ex. top wick for a hammer pattern etc.)"     
+hammerSizeTip   =   "The minimum size of hammers, stars, or long shadows as a multiplier of ATR. (To filter out tiny setups)"     
+dojiSizeTip     =   "The relationship of body to candle size (ie. body is 5% of total candle size)."     
+dojiWickSizeTip =   "Maximum wick size comparative to the opposite wick. (eg. 2 = bottom wick must be less than or equal to 2x the top wick)."     
+luRatioTip      =   "A relationship of the upper wick to the overall candle size expressed as a percent."     
+
+lookbackTip     =   "Number of candles that can be included in a false break signal"        
+swingTip        =   "Swing detection is used to filter signals on breakout type signals. A higher number will mean more significant points, but less of them"        
+reflectTip      =   "Filter to ensure a setup is a significant swing point. Look back this far"
+offsetTip       =   "Candle pattern high/low distance from absolute swing high/low. Example: 0 would filter patterns that are only the highest/lowest, 1 filters second highest over the significant length, etc."
+
+bullPivotTip    =   "Color of bullish Key Levels\n(border, background)"            
+bearPivotTip    =   "Color of bearish Key Levels\n(border, background)"            
+breakoutTip     =   "Color of breakout arrows\n(bull, bear,)"           
+SnRTip          =   "Color of triangles for broken support or resistance\n(bull, bear)"   
+falseBreakTip   =   "Color of arrows for false breaks\n(bull, bear, arrow max height in pixels)"            
+moveTip         =   "Color of triangles for candles that are detected within zones\n(bull, bear)"    
+patTip          =   "Color of boxes that wrap candestick patterns\nBackgrounds: (bull, neutral, bear)\nBorders: (bull, neutral, bear)"    
+labTip          =   "Color of labels that mark candestick patterns\nText: (bull, neutral, bear)\nLabels: (bull, neutral, bear)"    
+stratTip        =   "TSI speed control presets. Both speeds correlate to the Bjorgum TSI indicator"
+
+tooltip_linreg = 'Linear Regression Channel' + 
+                 '\nBase Line : a line that best fits the prices specified over a user-defined time period (Count). It is calculated using the least squares method'
+tooltip_linreg2 = 'Second Linear Regression Channel\'s User Defined Timeframe option' + 
+                  '\n - When applied the Linear Regression Channel plotting will extend by Count * (Selected Higher Timeframe) / (Current Timeframe)' + 
+                  '\n\n - Limitations' + 
+                  '\n   * May exceed maximum allowed iterations (5000) and result with study error \'the study references too many candles in history (5001)\'' + 
+                  '\n   Solution : reducing the value of count or selecting 4H or 1H is suggested' + 
+                  '\n\n   * Lines are not plotted but lables are present' + 
+                  '\n   Solution : scroll the chart to left till the lines are visable or enable "Shorthen Display when Timeframe Extend Enabled" option' + 
+                  '\n\n   * Applicable on Intraday timeframe selected charts'
+
+
+
+group_linReg    = 'Linear Regression Channel Settings'
+timeframe = input.timeframe("30", "Higher Timeframe")
+align30      =   input.bool      (false   ,   "Use Higher Timeframe filter")
+reg30        = input.bool(false, 'Higher Timeframe Middle Line Label')
+i_linreg        = input.bool(true, 'LinReg1 Count'      , inline='LinReg1', group=group_linReg, tooltip=tooltip_linreg)
+i_linregLength  = input.int(200, '', minval=2, maxval=5000, inline='LinReg1', group=group_linReg)
+i_linregSrc     = input.source(close, 'Source'     , inline='LinReg1', group=group_linReg)
+i_linreg2       = input.bool(false, 'LinReg2 Count'      , inline='LinReg2', group=group_linReg)
+i_linregLength2 = input.int(50, '', minval=2, maxval=5000 , inline='LinReg2', group=group_linReg)
+i_linregSrc2    = input.source(close, 'Source2'     , inline='LinReg2', group=group_linReg)
+i_useTF         = input.bool(false, 'LinReg2 : Extend to User Defined Timeframe (applicable on intraday charts only)', inline='HTF2', group=group_linReg, tooltip=tooltip_linreg2)
+i_htf_user      = input.string('4H', '', options=['1D', '4H', '1H'], inline='HTF2', group=group_linReg)
+i_shorten       = input.bool(false, 'LinReg2 : Shorthen Display when Timeframe Extend Enabled', inline='SHORT', group=group_linReg)
+i_showLast      = input.int(500, '', minval=200, inline='SHORT', group=group_linReg)
+
+i_extendLines   = input.bool(false, 'Extend Lines', inline='Lines', group=group_linReg)
+i_trendColor    = input.bool(true, 'Use Trend Colors'   , inline='Lines', group=group_linReg)
+i_channelLevels = input.string('Levels', 'Level Labels', options=['Levels', 'Levels (Prices)', 'None'], inline='Level', group=group_linReg)
+levelTextSize   = input.string('Small', '', options=['Small', 'Normal'], inline='Level', group=group_linReg)
+levelOffset     = input.int(0, 'Offset', minval = 0                    , inline='Level', group=group_linReg)
+
+left            =   input.int       (20     ,   "Look Left"                     ,   group= "Zones"                , tooltip= leftTip            )    
+right           =   input.int       (15     ,   "Look Right"                    ,   group= "Zones"                , tooltip= rightTip           )    
+nPiv            =   input.int       (4      ,   "Number of Pivots"              ,   group= "Zones"                , tooltip= nPivTip            )
+atrLen          =   input.int       (30     ,   "ATR Length"                    ,   group= "Zones"                , tooltip= atrLenTip          )
+mult            =   input.float     (0.5    ,   "Zone Width (ATR)"              ,   group= "Zones"                , tooltip= multTip            ,   step   = 0.1)
+per             =   input.float     (5      ,   "Max Zone Percent"              ,   group= "Zones"                , tooltip= perTip             )
+max             =   input.float     (10     ,   "Max Boxes for Patterns"        ,   group= "Zones"                , tooltip= maxTip             )
+fut             =   input.int       (30     ,   "Offset For Labels"             ,   group= "Zones"                , tooltip= futTip             )
+src             =   input.string    ("HA"   ,   "Source For Pivots"             ,   group= "Zones"                , tooltip= srcTip             ,   options= ["HA", "High/Low Body", "High/Low"])
+alignZones      =   input.bool      (true   ,   "Align Zones"                   ,   group= "Zones"                , tooltip= alignZonesTip      )
+extend          =   input.bool      (false  ,   "Extend Right"                  ,   group= "Zones"                , tooltip= extendTip          )
+lLab            =   input.bool      (false  ,   "Show Level Labels"             ,   group= "Zones"                , tooltip= lLabTip            )
+
+dhighs          =   input.bool      (true   ,   "Detect Pivot Highs"            ,   group= "Detection"            , tooltip= dhighsTip          )
+dlows           =   input.bool      (true   ,   "Detect Pivot Lows"             ,   group= "Detection"            , tooltip= dlowsTip           )
+detectBO        =   input.bool      (false  ,   "Detect Breakout"               ,   group= "Detection"            , tooltip= detectBOTip        )
+detectBD        =   input.bool      (false  ,   "Detect Breakdown"              ,   group= "Detection"            , tooltip= detectBDTip        )
+breakUp         =   input.bool      (false  ,   "Detect Resistance Break"       ,   group= "Detection"            , tooltip= breakUpTip         )
+breakDn         =   input.bool      (false  ,   "Detect Support Break"          ,   group= "Detection"            , tooltip= breakDnTip         ) 
+falseBull       =   input.bool      (false  ,   "Detect False Breakdown"        ,   group= "Detection"            , tooltip= falseBullTip       )
+falseBear       =   input.bool      (false  ,   "Detect False Breakup"          ,   group= "Detection"            , tooltip= falseBearTip       ) 
+supPush         =   input.bool      (true  ,   "Detect Moves Off Support"      ,   group= "Detection"            , tooltip= supPushTip         )
+resPush         =   input.bool      (true  ,   "Detect Moves Off Resistance"   ,   group= "Detection"            , tooltip= resPushTip         ) 
+curl            =   input.bool      (false  ,   "Detect TSI Curl"               ,   group= "Detection"            , tooltip= curlTip            ) 
+
+repaint         =   input.bool      (true   ,   "Wait For Confirmed Bar"        ,   group= "Candle Patterns"      , tooltip= repaintTip         )
+labels          =   input.bool      (false  ,   "Show Label"                    ,   group= "Candle Patterns"      , tooltip= labelsTip          )
+sBox            =   input.bool      (false  ,   "Show Boxes Around Patterns"    ,   group= "Candle Patterns"      , tooltip= sBoxTip            )
+d_              =   input.bool      (false  ,   "Detect Doji"                   ,   group= "Candle Patterns"      , tooltip= dTip               )
+be_             =   input.bool      (false  ,   "Detect Engulfing"              ,   group= "Candle Patterns"      , tooltip= beTip              )
+hs_             =   input.bool      (false  ,   "Detect Hammers and Stars"      ,   group= "Candle Patterns"      , tooltip= hsTip              )
+dg_             =   input.bool      (false  ,   "Detect Dragons and Graves"     ,   group= "Candle Patterns"      , tooltip= dgTip              )
+tw_             =   input.bool      (false  ,   "Detect Tweezers"               ,   group= "Candle Patterns"      , tooltip= twTip              )
+st_             =   input.bool      (false  ,   "Detect Spinning Top"           ,   group= "Candle Patterns"      , tooltip= stTip              )
+pc_             =   input.bool      (false  ,   "Detect Piercing and Clouds"    ,   group= "Candle Patterns"      , tooltip= pcTip              )
+bh_             =   input.bool      (false  ,   "Detect Harami"                 ,   group= "Candle Patterns"      , tooltip= bhTip              )
+ls_             =   input.bool      (false  ,   "Detect Long Shadows"           ,   group= "Candle Patterns"      , tooltip= lsTip              )
+
+alertMode       =   input.string    (alert.freq_once_per_bar_close              ,   "Alerts Mode"                 , group  = "Alert Frequency"  ,   options= [alert.freq_once_per_bar, alert.freq_once_per_bar_close]) 
+
+ecWick          =   input.bool      (false  ,   "Engulfing Must Engulf Wick"    ,   group= "Candle Filters"       , tooltip= ecWickTip          )
+colorMatch      =   input.bool      (false  ,   "H&S Must Match Color"          ,   group= "Candle Filters"       , tooltip= colorMatchTip      )
+closeHalf       =   input.bool      (false  ,   "Tweezer Close Over Half"       ,   group= "Candle Filters"       , tooltip= closeHalfTip       )
+atrMax          =   input.float     (0.0    ,   "Max Candle Size (x ATR)"       ,   group= "Candle Filters"       , tooltip= atrMaxTip          ,   step= 0.1 )
+rejectWickMax   =   input.float     (0.0    ,   "[EC] Max Reject Wick Size"     ,   group= "Candle Filters"       , tooltip= rejectWickTip      ,   step= 1   )  
+hammerFib       =   input.float     (33     ,   "[HS] H&S Ratio (%)"            ,   group= "Candle Filters"       , tooltip= hammerFibTip       ,   step= 1   ) 
+hsShadowPerc    =   input.float     (5      ,   "[HS] H&S Opposing Shadow (%)"  ,   group= "Candle Filters"       , tooltip= hsShadowPercTip    ,   step= 1   ) 
+hammerSize      =   input.float     (0.1    ,   "[HS] H&S Min Size (x ATR)"     ,   group= "Candle Filters"       , tooltip= hammerSizeTip      ,   step= 0.1 ) 
+dojiSize        =   input.float     (5      ,   "[DJ] Doji Size (%)"            ,   group= "Candle Filters"       , tooltip= dojiSizeTip        ,   step= 1   )
+dojiWickSize    =   input.float     (2      ,   "[DJ] Max Doji Wick Size"       ,   group= "Candle Filters"       , tooltip= dojiWickSizeTip    ,   step= 1   )
+luRatio         =   input.float     (75     ,   "[LS] Long Shadow (%)"          ,   group= "Candle Filters"       , tooltip= luRatioTip         ,   step= 1   ) 
+
+lookback        =   input.int       (2      ,   "Lookback For Breaks"           ,   group= "Lookback"             , tooltip= lookbackTip        )
+swing           =   input.int       (5      ,   "swing High/Low"                ,   group= "Lookback"             , tooltip= swingTip           )
+reflect         =   input.int       (10     ,   "Significant High/Low"          ,   group= "Lookback"             , tooltip= reflectTip         )
+offset          =   input.int       (1      ,   "Consider Bar From High/Low"    ,   group= "Lookback"             , tooltip= offsetTip          )
+
+bullBorder      =   input.color     (color.new  (#64b5f6, 60), "", inline= "0"  ,   group= "Pivot Color"                                        )
+bullBgCol       =   input.color     (color.new  (#64b5f6, 95), "", inline= "0"  ,   group= "Pivot Color"          , tooltip= bullPivotTip       )
+bearBorder      =   input.color     (color.new  (#ffeb3b, 60), "", inline= "1"  ,   group= "Pivot Color"                                        )   
+bearBgCol       =   input.color     (color.new  (#ffeb3b, 95), "", inline= "1"  ,   group= "Pivot Color"          , tooltip= bearPivotTip       )
+
+upCol           =   input.color     (color.new  (#ff6d00, 25), "", inline= "2"  ,   group= "Breakout Color"                                     )
+dnCol           =   input.color     (color.new  (#ff00ff, 25), "", inline= "2"  ,   group= "Breakout Color"       , tooltip= breakoutTip        ) 
+
+supCol          =   input.color     (color.new  (#17ff00, 25), "", inline= "3"  ,   group= "S&R Break Color"                                    )
+resCol          =   input.color     (color.new  (#ff0000, 25), "", inline= "3"  ,   group= "S&R Break Color"      , tooltip= SnRTip             ) 
+
+fBull           =   input.color     (color.new  (#17ff00, 25), "", inline= "4"  ,   group= "False Break Color"                                  )
+fBear           =   input.color     (color.new  (#ff0000, 25), "", inline= "4"  ,   group= "False Break Color"                                  )
+arrowMax        =   input.int       (75                      , "", inline= "4"  ,   group= "False Break Color"    , tooltip= falseBreakTip      )
+
+moveBullCol     =   input.color     (color.new  (#64b5f6, 25), "", inline= "5"  ,   group= "Moves From S&R Color"                               )
+moveBearCol     =   input.color     (color.new  (#ffeb3b, 25), "", inline= "5"  ,   group= "Moves From S&R Color" , tooltip= moveTip            ) 
+
+curlBullCol     =   input.color     (color.new  (#17ff00, 40), "", inline= "6"  ,   group= "Momentum Curl Color"                                )
+curlBearCol     =   input.color     (color.new  (#f3ff00, 40), "", inline= "6"  ,   group= "Momentum Curl Color"  , tooltip= curlTip            ) 
+
+patBullBg       =   input.color     (color.new  (#17ff00, 90), "", inline= "7"  ,   group= "Pattern Box Color"                                  )
+patNeutBg       =   input.color     (color.new  (#b2b5be, 90), "", inline= "7"  ,   group= "Pattern Box Color"                                  )
+patBearBg       =   input.color     (color.new  (#ff0000, 90), "", inline= "7"  ,   group= "Pattern Box Color"                                  )
+patBullBo       =   input.color     (color.new  (#17ff00, 80), "", inline= "8"  ,   group= "Pattern Box Color"                                  )
+patNeutBo       =   input.color     (color.new  (#b2b5be, 80), "", inline= "8"  ,   group= "Pattern Box Color"                                  )
+patBearBo       =   input.color     (color.new  (#ff0000, 80), "", inline= "8"  ,   group= "Pattern Box Color"    , tooltip= patTip             ) 
+
+textBullCol     =   input.color     (color.new  (#17ff00,  0), "", inline= "9"  ,   group= "Label Color (Text/Bg)"                              )
+textNeutCol     =   input.color     (color.new  (#b2b5be,  0), "", inline= "9"  ,   group= "Label Color (Text/Bg)"                              )
+textBearCol     =   input.color     (color.new  (#ff0000,  0), "", inline= "9"  ,   group= "Label Color (Text/Bg)"                              )
+labBullCol      =   input.color     (color.new  (#17ff00, 80), "", inline= "10" ,   group= "Label Color (Text/Bg)"                              )
+labNeutCol      =   input.color     (color.new  (#b2b5be, 80), "", inline= "10" ,   group= "Label Color (Text/Bg)"                              )
+labBearCol      =   input.color     (color.new  (#ff0000, 80), "", inline= "10" ,   group= "Label Color (Text/Bg)", tooltip= labTip             ) 
+
+strat           =   input.string    ("Fast" ,   "Select a Speed"                ,   group= "TSI Speed Control"    , tooltip= stratTip           ,   options= ["Fast", "Slow"])
+    
+longf           =   input.int       (25     ,   "Long Length"                   ,   group= "TSI Fast Settings"                                  )
+shortf          =   input.int       (5      ,   "Short Length"                  ,   group= "TSI Fast Settings"                                  )
+signalf         =   input.int       (14     ,   "Signal Length"                 ,   group= "TSI Fast Settings"                                  )
+
+longs           =   input.int       (25     ,   "Long Length"                   ,   group= "TSI Slow Settings"                                  )
+shorts          =   input.int       (13     ,   "Short Length"                  ,   group= "TSI Slow Settings"                                  )
+signals         =   input.int       (13     ,   "Signal Length"                 ,   group= "TSI Slow Settings"                                  )
+
+// ================================== //
+// -----> Immutable Constants <------ //
+// ================================== //    
+ 
+sync            =   bar_index
+labUp           =   label.style_label_up
+labDn           =   label.style_label_down
+confirmed       =   barstate.isconfirmed
+extrap          =   extend ?        extend.right  : extend.none
+
+var pivotHigh   =   array.new_box   (nPiv)
+var pivotLows   =   array.new_box   (nPiv)  
+var highBull    =   array.new_bool  (nPiv)
+var lowsBull    =   array.new_bool  (nPiv)
+var boxes       =   array.new_box   ()
+bullarr = array.new_float(0)
+beararr = array.new_float(0)
+
+
+haSrc           =   src    ==       "HA"    
+hiLoSrc         =   src    ==       "High/Low"
+tsifast         =   strat  ==       "Fast"
+tsislow         =   strat  ==       "Slow"
+
+// ================================== //
+// ---> Functional Declarations <---- //
+// ================================== //
+f_calcSlope(_source, _length) =>
+    max_bars_back(_source, 5000)
+
+    if not barstate.islast
+        [float(na), float(na)]
+    else
+        sumX = 0.0
+        sumY = 0.0
+        sumXSqr = 0.0
+        sumXY = 0.0
+
+        for i = 0 to _length - 1
+            val = _source[i]
+            per = i + 1.0
+            sumX += per
+            sumY += val
+            sumXSqr += per * per
+            sumXY += val * per
+            sumXY
+
+        slope = (_length * sumXY - sumX * sumY) / (_length * sumXSqr - sumX * sumX)
+        intercept = sumY / _length - slope * sumX / _length + slope
+
+        [slope, intercept]
+
+f_calcDev(_source, _length, _slope, _intercept) =>
+    stdDevAcc = 0.0
+    periods = _length - 1
+    val = _intercept
+
+    for i = 0 to periods
+        price = _source[i]
+        price -= val
+        stdDevAcc += price * price
+        val += _slope
+        val
+
+    stdDev = math.sqrt(stdDevAcc / periods)
+    stdDev
+
+[slope, intercept] = f_calcSlope(i_linregSrc, i_linregLength)
+stdDev = f_calcDev(i_linregSrc, i_linregLength, slope, intercept)
+startPrice = intercept + slope * (i_linregLength - 1)
+endPrice = intercept
+
+htf_multiplier = i_htf_user == '1H' ? 60 : i_htf_user == '4H' ? 240 : i_htf_user == '1D' ? 1440 : na
+linregLength2  = i_useTF and timeframe.isintraday and htf_multiplier > timeframe.multiplier ? i_linregLength2 * htf_multiplier / timeframe.multiplier : i_linregLength2
+
+[slope2, intercept2] = f_calcSlope(i_linregSrc2, linregLength2)
+stdDev2 = f_calcDev(i_linregSrc2, linregLength2, slope2, intercept2)
+startPrice2 = intercept2 + slope2 * (i_shorten and i_useTF and i_showLast < linregLength2 ? i_showLast : linregLength2 - 1)
+endPrice2 = intercept2
+
+atr             =   ta.atr          (atrLen)
+perMax          =   close*          0.02
+min             =   math.min        (perMax, atr*0.3)
+
+_haBody()       =>
+    haClose     =   (open + high  +  low  + close)    / 4
+    haOpen      =   float(na)
+    haOpen      :=  na(haOpen[1]) ? (open + close)    / 2 : 
+                   (nz(haOpen[1]) + nz(haClose[1]))   / 2
+    
+    [haOpen, haClose]
+    
+_extend(_x) =>
+    for i = 0 to               array.size       (_x)-1
+        box.set_right          (array.get       (_x, i), sync)
+        
+_arrayLoad(_x, _max, _val) =>  
+    array.unshift                               (_x,   _val)   
+    if  array.size                              (_x) > _max
+        array.pop                               (_x)
+
+_arrayBox(_x, _max, _val) =>  
+    array.unshift                               (_x,   _val)   
+    if       array.size                         (_x) > _max
+        _b = array.pop                          (_x)
+        if extend
+            box.set_extend                      (_b, extend.none)
+
+_arrayWrap(_x, _max, _val) =>  
+    array.unshift                               (_x,   _val)   
+    if  array.size                              (_x) > _max
+        box.delete(array.pop                    (_x))
+
+_delLab(_x)     =>
+    if array.size(_x) > 0 
+        label.delete           (array.pop       (_x))
+
+_delLine(_x)    =>
+    if array.size(_x) > 0 
+        line.delete            (array.pop       (_x))
+
+_delLevels(_x, _y)  =>
+    for i = 0 to array.size                     (_x)-1
+        _delLab                                 (_x)
+        _delLine                                (_y)
+
+_box(_x1, _t, _r, _b, _boCol, _bgCol, _e) =>
+    box.new(                   _x1, _t, _r, _b  , 
+     xloc        =             xloc.bar_index   ,
+     extend      =             _e               ,
+     border_color=             _boCol           ,   
+     bgcolor     =             _bgCol           ) 
+
+_wrap(_cond, _x, _bb, _bc, _bgc) =>
+    _t           =             ta.highest       (high, _bb) + min
+    _b           =             ta.lowest        (low , _bb) - min
+    _l           =             bar_index -      _bb
+    _r           =             bar_index +      1
+    if  _cond
+        _arrayWrap            (_x, max, _box    (_l, _t, _r, _b, _bc, _bgc, extend.none)) 
+
+_getBox(_x,_i)   =>
+    _box         =             array.get        (_x,_i)
+    _t           =             box.get_top      (_box)
+    _b           =             box.get_bottom   (_box)
+    [_t, _b]
+    
+_align(_x,_y)    =>
+    for i = 0 to               array.size       (_x) -1
+        [_T, _B] =             _getBox          (_y, 0)
+        [_t, _b] =             _getBox          (_x, i)
+        if _T > _b and         _T < _t or 
+           _B < _t and         _B > _b or 
+           _T > _t and         _B < _b or 
+           _B > _b and         _T < _t
+            box.set_top        (array.get       (_y, 0), _t)
+            box.set_bottom     (array.get       (_y, 0), _b)
+ 
+_color(_x, _y)     =>
+    var int _track = nPiv
+    for i = 0 to               array.size       (_x) -1
+        [t_, b_] =             _getBox          (_x, i)
+        _isBull  =             array.get        (_y, i)
+        if close > t_ and not  _isBull
+            box.set_extend(    array.get        (_x, i), extend.none)
+            array.set(_x, i,   _box             (sync  , t_, sync, b_, bullBorder, bullBgCol, extrap))
+            array.set(_y, i,   true)
+            _track += 1
+            array.push(bullarr, 1)
+        if close < b_ and _isBull
+            box.set_extend(    array.get        (_x, i), extend.none)
+            array.set(_x, i,   _box             (sync  , t_, sync, b_, bearBorder, bearBgCol, extrap))
+            array.set(_y, i,   false)
+            _track -= 1
+            array.push(beararr, 1)
+    _track
+
+_detect(_x,_y)      =>
+    int  _i         = 0
+    bool _found     = false
+    bool _isBull    = na
+    while (not _found and _i < array.size       (_x)  )
+        [t_, b_] =             _getBox          (_x,_i)
+        if low < t_ and high > b_
+            _isBull :=         array.get        (_y,_i)
+            _found  :=         true
+        _i          +=         1
+    [_found, _isBull]
+
+_falseBreak(_l)     =>       
+    bool _d         = false
+    bool _u         = false
+    for i = 1 to lookback
+        if _l[i] < _l and _l[i+1] >= _l and _l[1] < _l 
+            _d      := true
+        if _l[i] > _l and _l[i+1] <= _l and _l[1] > _l 
+            _u      := true
+    [_d, _u]
+
+_numLevel(_x,_y)    =>
+    int _above      = 0
+    int _fill       = 0
+    for i = 0 to               array.size       (_x)-1
+        _isBull     =          array.get        (_x,i)
+        if  _isBull
+            _above += 1
+        if  not na(_isBull)
+            _fill  += 1
+    for i = 0 to               array.size       (_y)-1
+        _isBull     =          array.get        (_y,i)
+        if  _isBull
+            _above += 1
+        if  not na(_isBull)
+            _fill  += 1
+    [_above, _fill]  
+
+_check(_src,_l)     =>
+    bool _check     = false
+    for i = 0 to _l
+        if _src[i]
+            _check := true
+    _check
+
+_count(_src, _l)    =>
+    int _result     = 0
+    for i = 0 to _l
+        if _src > _src[i]
+            _result += 1
+    _result
+
+_label(_x, _y, y, _s, _col1, _col2) =>
+    transp = math.min   (color.t(_col1),  color.t(_col2))
+    array.unshift       (_x,   label.new (sync+fut,   y                                        , 
+                                          text      = str.tostring(math.round_to_mintick(y)   ), 
+                                          color     = color.new(_col1, transp)                 , 
+                                          style     = _s                                       , 
+                                          textcolor = color.white                             ))
+    if not extend and fut > 0
+        array.unshift   (_y,   line.new  (sync, y, sync+fut, y, color= color.new(_col1, transp)))
+
+_level(_x, _y)          =>
+    var label [] lab    =      array.new_label  (nPiv)
+    var line  [] lines  =      array.new_line   (nPiv)
+    if barstate.islast and lLab
+        _delLevels             (lab, lines)
+        for i = 0 to           array.size       (_x)-1
+            [_t, _b]    =      _getBox          (_x,i)
+            _isBull     =      array.get        (_y,i)
+            _col1        =     _isBull ?        bullBgCol  : bearBgCol
+            _col2        =     _isBull ?        bullBorder : bearBorder
+            if close >  _t 
+                _label  (lab, lines, _t, labUp, _col1, _col2)
+            if close <  _b 
+                _label  (lab, lines, _b, labDn, _col1, _col2)
+            if close <  _t and close >   _b
+                _label  (lab, lines, _t, labDn, _col1, _col2)
+                _label  (lab, lines, _b, labUp, _col1, _col2)
+
+_alert(_x, _y) =>
+    if _x
+        alert   (_y + timeframe.period + ' chart. Price is ' + str.tostring(close), alertMode)
+        
+// ================================== //
+// ----> Variable Calculations <----- //
+// ================================== //
+
+shortvar        =   tsifast ?           shortf  :       shorts   
+longvar         =   tsifast ?           longf   :       longs    
+signalvar       =   tsifast ?           signalf :       signals 
+
+tsi             =   ta.tsi              (close,         shortvar,   longvar)
+tsl             =   ta.ema              (tsi,           signalvar)
+
+highest         =   close ==            ta.highest      (close,     right)
+lowest          =   close ==            ta.lowest       (close,     right)
+
+closeLows       =   ta.lowest           (close,         swing)
+closeHigh       =   ta.highest          (close,         swing)
+
+numLows         =   _count              (low,           reflect)
+numHigh         =   _count              (high,          reflect)
+
+[open_, close_] =   _haBody             ()
+
+hiHaBod         =   math.max            (close_,        open_)
+loHaBod         =   math.min            (close_,        open_)
+
+hiBod           =   math.max            (close,         open)
+loBod           =   math.min            (close,         open)
+
+srcHigh         =   haSrc ?             hiHaBod :       hiLoSrc ?   high :      hiBod
+srcLow          =   haSrc ?             loHaBod :       hiLoSrc ?   low  :      loBod
+
+pivot_high      =   ta.pivothigh        (srcHigh,       left,       right)
+pivot_low       =   ta.pivotlow         (srcLow,        left,       right)
+
+perc            =   close*              (per/100)
+
+band            =   math.min            (atr*mult,      perc)       [right]     /2
+
+HH              =   pivot_high+         band
+HL              =   pivot_high-         band
+
+LH              =   pivot_low+          band
+LL              =   pivot_low-          band
+
+coDiff          =   close -             open
+
+// ================================== //
+// --------> Logical Order <--------- //
+// ================================== //
+
+if pivot_high and   dhighs and  confirmed
+    _arrayLoad      (highBull , nPiv,   false)      
+    _arrayBox       (pivotHigh, nPiv,   _box(sync[right], HH, sync, HL, bearBorder, bearBgCol, extrap))
+
+if pivot_low  and   dlows and   confirmed
+    _arrayLoad      (lowsBull , nPiv,   true)      
+    _arrayBox       (pivotLows, nPiv,   _box(sync[right], LH, sync, LL, bullBorder, bullBgCol, extrap))
+
+if alignZones
+    _align          (pivotHigh,         pivotHigh)
+    _align          (pivotHigh,         pivotLows)    
+    _align          (pivotLows,         pivotLows)
+    _align          (pivotLows,         pivotHigh)
+
+_extend             (pivotHigh)
+_extend             (pivotLows)
+
+trackHigh       =   _color              (pivotHigh,     highBull)
+trackLows       =   _color              (pivotLows,     lowsBull)
+
+// ================================== //
+// ----> Conditional Parameters <---- //
+// ================================== //
+
+isLows          =   closeLows      ==   close
+isHigh          =   closeHigh      ==   close
+
+wasLows         =   _check              (isLows,        lookback)
+wasHigh         =   _check              (isHigh,        lookback)
+
+[above, total]  =   _numLevel           (highBull,      lowsBull)
+
+moveAbove       =   trackHigh       >   trackHigh[1]
+moveBelow       =   trackLows       <   trackLows[1]
+
+resBreak        =   (trackLows      >   trackLows[1]    or  moveAbove) 
+supBreak        =   (trackHigh      <   trackHigh[1]    or  moveBelow) 
+
+breakOut        =   moveAbove     and   highest and     above == total             
+breakDwn        =   moveBelow     and   lowest  and     above == 0         
+
+[dh, uh]        =   _falseBreak         (trackHigh) 
+[dl, ul]        =   _falseBreak         (trackLows) 
+
+falseBreakBull  =   wasLows       and   (dh or dl)
+falseBreakBear  =   wasHigh       and   (uh or ul)
+
+[fh,hb]         =   _detect             (pivotHigh,     highBull)
+[fl,lb]         =   _detect             (pivotLows,     lowsBull)
+
+bull            =   (fh or fl) and      (hb or lb)
+bear            =   (fh or fl) and not  (hb or lb)
+
+bullCheck       =   not resBreak  and   not resBreak[1] and (fh or fl) and  close > open and     (hb or lb)
+bearCheck       =   not supBreak  and   not supBreak[1] and (fh or fl) and  close < open and not (hb or lb)
+
+highrange       =   reflect-offset
+lowsrange       =   offset
+
+sigLows         =   numLows        <=   lowsrange  
+sigHigh         =   numHigh        >=   highrange 
+
+isBull1         =   sigLows       and   bull
+isBear1         =   sigHigh       and   bear 
+
+isBull2         =   (sigLows       or   sigLows[1]) and         (bull or bull[1])
+isBear2         =   (sigHigh       or   sigHigh[1]) and         (bear or bear[1])
+
+data            =   tsi > tsi[1]  and   tsi < tsl 
+dtat            =   tsi < tsi[1]  and   tsi > tsl 
+
+hMatch          =   not colorMatch or   close > open
+sMatch          =   not colorMatch or   close < open
+
+hsFilter        =   bj.barRange()  >=   hammerSize * atr
+atrMaxSize      =   bj.barRange()  <=   atrMax     * atr or     atrMax == 0.0
+
+rp              =   confirmed  or not   repaint
+
+// ================================== //
+// -----> Pattern Recognition <------ //
+// ================================== //
+
+dw              =   isBull1 and rp and d_  and atrMaxSize and bj.doji              (dojiSize           = dojiSize,         dojiWickSize    = dojiWickSize)
+db              =   isBear1 and rp and d_  and atrMaxSize and bj.doji              (dojiSize           = dojiSize,         dojiWickSize    = dojiWickSize)
+bew             =   isBull2 and rp and be_ and atrMaxSize and bj.bullEngulf        (maxRejectWick      = rejectWickMax,    mustEngulfWick  = ecWick) 
+beb             =   isBear2 and rp and be_ and atrMaxSize and bj.bearEngulf        (maxRejectWick      = rejectWickMax,    mustEngulfWick  = ecWick)
+h               =   isBull1 and rp and hs_ and atrMaxSize and bj.hammer            (ratio              = hammerFib,        shadowPercent   = hsShadowPerc) and hsFilter and hMatch
+ss              =   isBear1 and rp and hs_ and atrMaxSize and bj.star              (ratio              = hammerFib,        shadowPercent   = hsShadowPerc) and hsFilter and sMatch
+dd              =   isBull1 and rp and dg_ and atrMaxSize and bj.dragonflyDoji     ()
+gd              =   isBear1 and rp and dg_ and atrMaxSize and bj.gravestoneDoji    ()
+tb              =   isBull2 and rp and tw_ and atrMaxSize and bj.tweezerBottom     (closeUpperHalf     = closeHalf)
+tt              =   isBear2 and rp and tw_ and atrMaxSize and bj.tweezerTop        (closeLowerHalf     = closeHalf)
+stw             =   isBull1 and rp and st_ and atrMaxSize and bj.spinningTop       ()
+stb             =   isBear1 and rp and st_ and atrMaxSize and bj.spinningTop       ()
+p               =   isBull1 and rp and pc_ and atrMaxSize and bj.piercing          ()
+dcc             =   isBear1 and rp and pc_ and atrMaxSize and bj.darkCloudCover    ()
+bhw             =   isBull1 and rp and bh_ and atrMaxSize and bj.haramiBull        ()  
+bhb             =   isBear1 and rp and bh_ and atrMaxSize and bj.haramiBear        ()
+ll              =   isBull1 and rp and ls_ and atrMaxSize and bj.lls               (ratio              = luRatio)          and hsFilter
+lu              =   isBear1 and rp and ls_ and atrMaxSize and bj.lus               (ratio              = luRatio)          and hsFilter
+
+// ================================== //
+// ------> Graphical Display <------- //
+// ================================== //
+
+f_crossingLevel(_curret, _level) =>
+    _level > _curret and _level < _curret[1] or _level < _curret and _level > _curret[1]
+
+f_drawLabel(_index, _price, _txt, _txtColor, _style, _align, _lrc, _tooltip, size) =>
+    var id = label.new(_index, _price, _txt, textcolor=_txtColor, style=_style, textalign=_align, color=#00000000, tooltip=_tooltip, size=size)
+    label.set_xy(id, _index, _price)
+    label.set_textcolor(id, _txtColor)
+    label.set_text(id, i_extendLines ? _txt + '\n\n' : _txt)
+    label.set_tooltip(id, _tooltip)
+
+f_drawLine(_iStart, _pStart, _iEnd, _pEnd, _color, _width, _style, _extend) =>
+    style = _style == 'Solid' ? line.style_solid : _style == 'Dotted' ? line.style_dotted : _style == 'Dashed' ? line.style_dashed : line.style_arrow_right
+
+    var linReg = line.new(_iStart, _pStart, _iEnd, _pEnd, xloc.bar_index, _extend ? extend.right : extend.none, _color, style, _width)
+    line.set_xy1(linReg, _iStart, _pStart)
+    line.set_xy2(linReg, _iEnd, _pEnd)
+    line.set_color(linReg, _color)
+
+linearr = array.new_float(0)
+
+processLinRegLevel(_show, _level, _colorL, _widthL, _styleL, _linReg, _which) =>
+    if _show and _linReg
+        pStart = _which ? startPrice : startPrice2
+        pEnd = _which ? endPrice : endPrice2
+        dev = _which ? stdDev : stdDev2
+        length = _which ? i_linregLength : i_shorten and i_useTF and i_showLast < linregLength2 ? i_showLast : linregLength2
+        lrColor = i_trendColor ? pStart > pEnd ? color.red : color.green : _colorL
+
+        f_drawLine(bar_index - length + 1, pStart + _level * dev, bar_index, pEnd + _level * dev, lrColor, _widthL, _styleL, i_extendLines)
+        f_drawLine(bar_index - length + 1, pStart - _level * dev, bar_index, pEnd - _level * dev, lrColor, _widthL, _styleL, i_extendLines)
+
+        lbl = _which ? ' 1ST' : ' 2ND'
+
+        if i_channelLevels != 'None'
+            array.push(linearr, _level)
+            f_drawLabel(bar_index + levelOffset, pEnd + _level * dev, 'SD ' + str.tostring(_level) + ' R' + lbl + (i_channelLevels == 'Levels (Prices)' ? ' (' + str.tostring(pEnd + _level * dev, format.mintick) + ')': ''), lrColor, label.style_label_left, text.align_left, true, str.tostring(pEnd + _level * dev, format.mintick), levelTextSize == 'Small' ? size.small : size.normal)
+            f_drawLabel(bar_index + levelOffset, pEnd - _level * dev, 'SD ' + str.tostring(_level) + ' S' + lbl + (i_channelLevels == 'Levels (Prices)' ? ' (' + str.tostring(pEnd - _level * dev, format.mintick) + ')': ''), lrColor, label.style_label_left, text.align_left, true, str.tostring(pEnd - _level * dev, format.mintick), levelTextSize == 'Small' ? size.small : size.normal)
+
+            if levelOffset > 9
+                f_drawLine(bar_index + 3, pEnd + _level * dev, bar_index + levelOffset, pEnd + _level * dev, lrColor, 1, 'Arrow', false)
+                f_drawLine(bar_index + 3, pEnd - _level * dev, bar_index + levelOffset, pEnd - _level * dev, lrColor, 1, 'Arrow', false)
+
+        if f_crossingLevel(close, pEnd + _level * dev)
+            alert('LinRegChannel: ' + syminfo.ticker + ' crossing' + lbl + ' Linear Regression Standart Deviation Upper Line ' + str.tostring(_level) + ' : ' + str.tostring(pEnd + _level * dev, format.mintick))
+
+        if f_crossingLevel(close, pEnd - _level * dev)
+            alert('LinRegChannel: ' + syminfo.ticker + ' crossing' + lbl + ' Linear Regression Standart Deviation Lower Line ' + str.tostring(_level) + ' : ' + str.tostring(pEnd - _level * dev, format.mintick))
+
+i_lrcolor_m = input.color(#f44336, 'Linear Regression Line 1вЂ‡вЂ‡вЂ‡вЂ‡вЂ‡вЂ‡'          , inline='lrLine', group=group_linReg)
+i_lrstyle_m = input.string('Solid', '', options=['Dashed', 'Dotted', 'Solid'], inline='lrLine', group=group_linReg)
+i_lrwidth_m = input.int(3, '', minval=1                                      , inline='lrLine', group=group_linReg)
+
+if i_linreg
+    f_drawLine(bar_index - i_linregLength + 1, startPrice, bar_index, endPrice, i_trendColor ? startPrice > endPrice ? color.red : color.green : i_lrcolor_m, i_lrwidth_m, i_lrstyle_m, i_extendLines)
+
+    if i_channelLevels != 'None'
+        f_drawLabel(bar_index + levelOffset, endPrice, 'LRL 1ST' + (i_channelLevels == 'Levels (Prices)' ? ' (' + str.tostring(endPrice, format.mintick) + ')': ''), i_trendColor ? startPrice > endPrice ? color.red : color.green : i_lrcolor_m, label.style_label_left, text.align_left, true, str.tostring(endPrice, format.mintick), levelTextSize == 'Small' ? size.small : size.normal)
+        
+        if levelOffset > 9
+            f_drawLine(bar_index + 3, endPrice, bar_index + levelOffset, endPrice, i_lrcolor_m, 1, 'Arrow', false)
+
+    if f_crossingLevel(close, endPrice)
+        alert('LinRegChannel: ' + syminfo.ticker + ' crossing 1ST Linear Regression Base Line : ' + str.tostring(endPrice, format.mintick))
+
+i_lrshow_1 = input.bool(true, 'StdDev'             , inline='lrLevel_1', group=group_linReg)
+i_lrvalue_1 = input.float(1., '', minval=0, step=.1, inline='lrLevel_1', group=group_linReg)
+i_lrcolor_1 = input.color(#2196f3, ''              , inline='lrLevel_1', group=group_linReg)
+i_lrstyle_1 = input.string('Dashed', '', options=['Dashed', 'Dotted', 'Solid'], inline='lrLevel_1', group=group_linReg)
+i_lrwidth_1 = input.int(1, '', minval=1            , inline='lrLevel_1', group=group_linReg)
+processLinRegLevel(i_lrshow_1, i_lrvalue_1, i_lrcolor_1, i_lrwidth_1, i_lrstyle_1, i_linreg, true)
+
+i_lrshow_2 = input.bool(true, 'StdDev'             , inline='lrLevel_2', group=group_linReg)
+i_lrvalue_2 = input.float(2., '', minval=1, step=.1, inline='lrLevel_2', group=group_linReg)
+i_lrcolor_2 = input.color(#2196f3, ''              , inline='lrLevel_2', group=group_linReg)
+i_lrstyle_2 = input.string('Solid', '', options=['Dashed', 'Dotted', 'Solid'], inline='lrLevel_2', group=group_linReg)
+i_lrwidth_2 = input.int(2, '', minval=1            , inline='lrLevel_2', group=group_linReg)
+processLinRegLevel(i_lrshow_2, i_lrvalue_2, i_lrcolor_2, i_lrwidth_2, i_lrstyle_2, i_linreg, true)
+
+i_lrshow_3 = input.bool(true, 'StdDev'             , inline='lrLevel_3', group=group_linReg)
+i_lrvalue_3 = input.float(3., '', minval=2, step=.1, inline='lrLevel_3', group=group_linReg)
+i_lrcolor_3 = input.color(#2196f3, ''              , inline='lrLevel_3', group=group_linReg)
+i_lrstyle_3 = input.string('Dotted', '', options=['Dashed', 'Dotted', 'Solid'], inline='lrLevel_3', group=group_linReg)
+i_lrwidth_3 = input.int(2, '', minval=1            , inline='lrLevel_3', group=group_linReg)
+processLinRegLevel(i_lrshow_3, i_lrvalue_3, i_lrcolor_3, i_lrwidth_3, i_lrstyle_3, i_linreg, true)
+
+i_2lrcolor_m = input.color(#ff9800, 'Linear Regression Line 2вЂ‡вЂ‡вЂ‡вЂ‡вЂ‡вЂ‡', inline='2lrLine', group=group_linReg)
+i_2lrstyle_m = input.string('Solid', '', options=['Dashed', 'Dotted', 'Solid'], inline='2lrLine', group=group_linReg)
+i_2lrwidth_m = input.int(3, '', minval=1, inline='2lrLine', group=group_linReg)
+
+if i_linreg2
+    f_drawLine(bar_index - (i_shorten and i_useTF and i_showLast < linregLength2 ? i_showLast : linregLength2) + 1, startPrice2, bar_index, endPrice2, i_trendColor ? startPrice2 > endPrice2 ? color.red : color.green : i_2lrcolor_m, i_2lrwidth_m, i_2lrstyle_m, i_extendLines)
+
+    if i_channelLevels != 'None'
+        f_drawLabel(bar_index + levelOffset, endPrice2, 'LRL 2ND' + (i_channelLevels == 'Levels (Prices)' ? ' (' + str.tostring(endPrice2, format.mintick) + ')': ''), i_trendColor ? startPrice2 > endPrice2 ? color.red : color.green : i_2lrcolor_m, label.style_label_left, text.align_left, true, str.tostring(endPrice2, format.mintick), levelTextSize == 'Small' ? size.small : size.normal)
+        
+        if levelOffset > 9
+            f_drawLine(bar_index + 3, endPrice2, bar_index + levelOffset, endPrice2, i_2lrcolor_m, 1, 'Arrow', false)
+
+    if f_crossingLevel(close, endPrice2)
+        alert('LinRegChannel: ' + syminfo.ticker + ' crossing 2ND Linear Regression Base Line : ' + str.tostring(endPrice2, format.mintick))
+
+
+i_2lrshow_1 = input.bool(true, 'StdDev', inline='2lrLevel_1', group=group_linReg)
+i_2lrvalue_1 = input.float(1., '', minval=0, step=.1, inline='2lrLevel_1', group=group_linReg)
+i_2lrcolor_1 = input.color(#00bcd4, ''              , inline='2lrLevel_1', group=group_linReg)
+i_2lrstyle_1 = input.string('Dashed', '', options=['Dashed', 'Dotted', 'Solid'], inline='2lrLevel_1', group=group_linReg)
+i_2lrwidth_1 = input.int(1, '', minval=1            , inline='2lrLevel_1', group=group_linReg)
+processLinRegLevel(i_2lrshow_1, i_2lrvalue_1, i_2lrcolor_1, i_2lrwidth_1, i_2lrstyle_1, i_linreg2, false)
+
+i_2lrshow_2 = input.bool(true, 'StdDev'             , inline='2lrLevel_2', group=group_linReg)
+i_2lrvalue_2 = input.float(2., '', minval=1, step=.1, inline='2lrLevel_2', group=group_linReg)
+i_2lrcolor_2 = input.color(#00bcd4, ''              , inline='2lrLevel_2', group=group_linReg)
+i_2lrstyle_2 = input.string('Solid', '', options=['Dashed', 'Dotted', 'Solid'], inline='2lrLevel_2', group=group_linReg)
+i_2lrwidth_2 = input.int(2, '', minval=1            , inline='2lrLevel_2', group=group_linReg)
+processLinRegLevel(i_2lrshow_2, i_2lrvalue_2, i_2lrcolor_2, i_2lrwidth_2, i_2lrstyle_2, i_linreg2, false)
+
+i_2lrshow_3 = input.bool(true, 'StdDev'             , inline='2lrLevel_3', group=group_linReg)
+i_2lrvalue_3 = input.float(3., '', minval=2, step=.1, inline='2lrLevel_3', group=group_linReg)
+i_2lrcolor_3 = input.color(#00bcd4, ''              , inline='2lrLevel_3', group=group_linReg)
+i_2lrstyle_3 = input.string('Dotted', '', options=['Dashed', 'Dotted', 'Solid'], inline='2lrLevel_3', group=group_linReg)
+i_2lrwidth_3 = input.int(2, '', minval=1            , inline='2lrLevel_3', group=group_linReg)
+processLinRegLevel(i_2lrshow_3, i_2lrvalue_3, i_2lrcolor_3, i_2lrwidth_3, i_2lrstyle_3, i_linreg2, false)
+
+if i_linreg and i_linreg2
+    if f_crossingLevel(endPrice, endPrice2)
+        alert('LinRegChannel: ' + syminfo.ticker + ' 1ST Linear Regression Base Line crossing 2ND Linear Regression Base Line : ' + str.tostring(endPrice, format.mintick))
+
+    if f_crossingLevel(endPrice, endPrice2 + i_2lrvalue_1 * stdDev2)
+        alert('LinRegChannel: ' + syminfo.ticker + ' 1ST Linear Regression Base Line crossing 2ND Linear Regression Standart Deviation Upper Line ' + str.tostring(i_2lrvalue_1) + ', price : ' + str.tostring(endPrice, format.mintick))
+
+    if f_crossingLevel(endPrice, endPrice2 + i_2lrvalue_2 * stdDev2)
+        alert('LinRegChannel: ' + syminfo.ticker + ' 1ST Linear Regression Base Line crossing 2ND Linear Regression Standart Deviation Upper Line ' + str.tostring(i_2lrvalue_2) + ', price : ' + str.tostring(endPrice, format.mintick))
+
+    if f_crossingLevel(endPrice, endPrice2 + i_2lrvalue_3 * stdDev2)
+        alert('LinRegChannel: ' + syminfo.ticker + ' 1ST Linear Regression Base Line crossing 2ND Linear Regression Standart Deviation Upper Line ' + str.tostring(i_2lrvalue_3) + ', price : ' + str.tostring(endPrice, format.mintick))
+
+    if f_crossingLevel(endPrice, endPrice2 - i_2lrvalue_1 * stdDev2)
+        alert('LinRegChannel: ' + syminfo.ticker + ' 1ST Linear Regression Base Line crossing 2ND Linear Regression Standart Deviation Lower Line ' + str.tostring(i_2lrvalue_1) + ', price : ' + str.tostring(endPrice, format.mintick))
+
+    if f_crossingLevel(endPrice, endPrice2 - i_2lrvalue_2 * stdDev2)
+        alert('LinRegChannel: ' + syminfo.ticker + ' 1ST Linear Regression Base Line crossing 2ND Linear Regression Standart Deviation Lower Line ' + str.tostring(i_2lrvalue_2) + ', price : ' + str.tostring(endPrice, format.mintick))
+
+    if f_crossingLevel(endPrice, endPrice2 - i_2lrvalue_3 * stdDev2)
+        alert('LinRegChannel: ' + syminfo.ticker + ' 1ST Linear Regression Base Line crossing 2ND Linear Regression Standart Deviation Lower Line ' + str.tostring(i_2lrvalue_3) + ', price : ' + str.tostring(endPrice, format.mintick))
+
+
+group_linRegC = 'Linear Regression Curve Settings'
+
+i_showCurve = input.bool(true, 'Linear Regression Curve вЂ‡вЂ‡вЂ‡вЂ‡вЂ‡|вЂ‡вЂ‡вЂ‡вЂ‡ Length', inline='Curve', group=group_linRegC)
+i_linregCurveL = input.int(50, '', inline='Curve', group=group_linRegC)
+i_lrcolorCurve = input.color(#872323, '', inline='Curve', group=group_linRegC)
+
+i_showCurveBand = input.bool(false, 'Linear Regression Curve BandsвЂ‡вЂ‡вЂ‡вЂ‡вЂ‡вЂ‡вЂ‡вЂ‡вЂ‡вЂ‡вЂ‡', inline='Bands', group=group_linRegC)
+i_lrcolorBand1 = input.color(#00897b, '1', inline='Bands', group=group_linRegC)
+i_lrcolorBand2 = input.color(#00897b, '2', inline='Bands', group=group_linRegC)
+i_lrcolorBand3 = input.color(#00897b, '3', inline='Bands', group=group_linRegC)
+i_showCurveBTyp = input.string('StdDev', 'Bands', options=['StdDev', 'ATR'], inline='Bands2', group=group_linRegC)
+i_linregCurveBL = input.int(21, 'вЂ‡вЂ‡вЂ‡StdDev', inline='Bands2', group=group_linRegC)
+i_linregCurveAL = input.int(13, 'ATR', inline='Bands2', group=group_linRegC)
+
+group_linRegS = 'Linear Regression Slope Settings'
+
+i_showSlope = input.bool(false, 'Linear Regression Slope вЂ‡|вЂ‡ Length', inline='Slope', group=group_linRegS)
+i_linregSlopeL = input.int(5, '', inline='Slope', group=group_linRegS)
+i_lrcolorSlopeU = input.color(color.new(#06bad1, 50), '', inline='Slope', group=group_linRegS)
+i_lrcolorSlopeD = input.color(color.new(#f57f17, 50), '', inline='Slope', group=group_linRegS)
+
+dev = i_showCurveBTyp == 'StdDev' ? ta.stdev(i_linregSrc, i_linregCurveBL) : ta.atr(i_linregCurveAL)
+lrc = ta.linreg(i_linregSrc, i_linregCurveL, 0)
+
+
+// plot(i_showCurve ? lrc : na, 'LRC', i_lrcolorCurve, 3, show_last=3 * i_linregLength)
+plot(i_showCurve and i_showCurveBand ? lrc + 1 * dev : na, 'LRC Band StdDev 1', i_lrcolorBand1, 1, show_last=3 * i_linregLength)
+plot(i_showCurve and i_showCurveBand ? lrc - 1 * dev : na, 'LRC Band StdDev 1', i_lrcolorBand1, 1, show_last=3 * i_linregLength)
+plot(i_showCurve and i_showCurveBand ? lrc + 2 * dev : na, 'LRC Band StdDev 2', i_lrcolorBand2, 1, show_last=3 * i_linregLength)
+plot(i_showCurve and i_showCurveBand ? lrc - 2 * dev : na, 'LRC Band StdDev 2', i_lrcolorBand2, 1, show_last=3 * i_linregLength)
+plot(i_showCurve and i_showCurveBand ? lrc + 3 * dev : na, 'LRC Band StdDev 3', i_lrcolorBand3, 1, show_last=3 * i_linregLength)
+plot(i_showCurve and i_showCurveBand ? lrc - 3 * dev : na, 'LRC Band StdDev 3', i_lrcolorBand3, 1, show_last=3 * i_linregLength)
+
+plotarrow(i_showSlope ? ta.correlation(close, bar_index, i_linregSlopeL) * ta.stdev(close, i_linregSlopeL) / ta.stdev(bar_index, i_linregSlopeL) : na, 'Linear Regression Slope', i_lrcolorSlopeU, i_lrcolorSlopeD, show_last=3 * i_linregLength)
+
+
+plotFalseDn     =   falseBull     and   falseBreakBull
+plotFalseUp     =   falseBear     and   falseBreakBear
+
+falseUpCol      =   plotFalseUp     ?   upCol       :   na
+falseDnCol      =   plotFalseDn     ?   dnCol       :   na
+
+plotBreakOut    =   breakOut      and   detectBO    and not     plotFalseDn
+plotBreakDn     =   breakDwn      and   detectBD    and not     plotFalseUp
+
+plotResBreak    =   resBreak      and   breakUp     and not     (plotBreakOut or plotFalseDn)
+plotSupBreak    =   supBreak      and   breakDn     and not     (plotBreakDn  or plotFalseUp)
+
+plotBullCheck   =   bullCheck     and   supPush
+plotBearCheck   =   bearCheck     and   resPush
+
+plotCurlBull    =   curl and data and   bull
+plotCurlBear    =   curl and dtat and   bear
+
+
+
+_level              (pivotHigh, highBull)
+_level              (pivotLows, lowsBull)
+
+///////////////Mod\\\\\\\\\\\\\\\\
+var float lvl = 0
+var float upperb = 0
+var float lowerb = 0
+var float lnlreg = 0
+var int dir = 0
+var bool alert = false
+var bool waitl = false
+var bool waits = false
+
+lnl30 = request.security(syminfo.tickerid, timeframe, lnlreg)
+int30 = request.security(syminfo.tickerid, timeframe, intercept)
+
+upper = intercept + upperb
+lower = intercept - upperb
+
+londcond = close < lower
+shortcond = close > upper
+
+londcond2 = lnlreg == 1
+shortcond2 = lnlreg == -1
+
+londcond3 = lnl30 == 1
+shortcond3 = lnl30 == -1
+
+londcond4 = lnl30 == -1 and close < int30
+shortcond4 = lnl30 == 1 and close > int30
+
+londcondbull = londcond3 or londcond4
+shortcondbear = shortcond3 or shortcond4
+
+if barstate.isconfirmed
+    if intercept > startPrice
+        lnlreg := 1
+    else
+        lnlreg := -1
+
+    if array.size(linearr) > 1
+        lvl := array.get(linearr, 0)
+        array.clear(linearr)
+
+    upperb := lvl*stdDev
+
+    if not na(bullarr) and array.size(bullarr) > 0
+        waitl := true
+        array.clear(bullarr)
+
+    if not na(beararr) and array.size(beararr) > 0
+        waits := true
+        array.clear(beararr)
+
+    if plotBullCheck and waitl == true
+        if align30
+            if londcond and londcond2 and londcondbull
+                waitl := false
+                dir := 1
+                alert := true
+                label.new(bar_index, low, text = "L", color=color.rgb(67, 68, 67, 100), textcolor=#38f708, style=label.style_label_up, size=size.normal)
+            else
+                waitl := false
+                label.new(bar_index, low, text = "r", color=color.rgb(67, 68, 67, 100), textcolor=#38f708, style=label.style_label_up, size=size.normal)
+        else
+            if londcond and londcond2
+                waitl := false
+                dir := 1
+                alert := true
+                label.new(bar_index, low, text = "L", color=color.rgb(67, 68, 67, 100), textcolor=#38f708, style=label.style_label_up, size=size.normal)
+            else
+                waitl := false
+                label.new(bar_index, low, text = "r", color=color.rgb(67, 68, 67, 100), textcolor=#38f708, style=label.style_label_up, size=size.normal)
+
+    if plotBearCheck and waits == true
+        if align30
+            if shortcond and shortcond2 and shortcondbear
+                waits := false
+                dir := -1
+                alert := true
+                label.new(bar_index, high, text = "S", color=color.rgb(67, 68, 67, 100), textcolor=#e01616, style=label.style_label_down, size=size.normal)
+            else
+                waits := false
+                label.new(bar_index, high, text = "r", color=color.rgb(67, 68, 67, 100), textcolor=#e01616, style=label.style_label_down, size=size.normal)
+        else
+            if shortcond and shortcond2
+                waits := false
+                dir := -1
+                alert := true
+                label.new(bar_index, high, text = "S", color=color.rgb(67, 68, 67, 100), textcolor=#e01616, style=label.style_label_down, size=size.normal)
+            else
+                waits := false
+                label.new(bar_index, high, text = "r", color=color.rgb(67, 68, 67, 100), textcolor=#e01616, style=label.style_label_down, size=size.normal)
+
+if barstate.islast and reg30
+    label.new(bar_index, y =  int30, text = "-----30", color=#ebd50c00, textcolor= lnl30 == 1 ? color.rgb(204, 248, 9) : #aa0df3, size = size.large)
+
+plot(dir, "Dir", display = display.none)
+alertcondition(alert == true, "Check Retest")
+alert := false
+
+plotarrow           (plotFalseUp    ?   coDiff      :   na      ,   colorup  = fBull          ,     colordown=      fBear ,         maxheight=      arrowMax)
+plotarrow           (plotFalseDn    ?   coDiff      :   na      ,   colorup  = fBull          ,     colordown=      fBear ,         maxheight=      arrowMax)
+
+plotshape           (plotBreakOut   ,   style=shape.arrowup     ,   location=location.belowbar,     color=          upCol ,         size=           size.small)
+plotshape           (plotBreakDn    ,   style=shape.arrowdown   ,   location=location.abovebar,     color=          dnCol ,         size=           size.small)
+
+plotshape           (plotResBreak   ,   style=shape.arrowup     ,   location=location.belowbar,     color=          supCol,         size=           size.small)
+plotshape           (plotSupBreak   ,   style=shape.arrowdown   ,   location=location.abovebar,     color=          resCol,         size=           size.small)
+
+plotshape           (plotBullCheck  ,   style=shape.triangleup  ,   location=location.belowbar,     color=          moveBullCol)
+plotshape           (plotBearCheck  ,   style=shape.triangledown,   location=location.abovebar,     color=          moveBearCol)
+
+plotshape           (plotCurlBull   ,   style=shape.triangleup  ,   location=location.belowbar,     color=          curlBullCol)
+plotshape           (plotCurlBear   ,   style=shape.triangledown,   location=location.abovebar,     color=          curlBearCol)
+
+
+
+bj.dLab             (dw  and labels, labNeutCol, textNeutCol), _wrap (dw  and sBox, boxes, 1, patNeutBo, patNeutBg)
+bj.bewLab           (bew and labels, labBullCol, textBullCol), _wrap (bew and sBox, boxes, 2, patBullBo, patBullBg)
+bj.hLab             (h   and labels, labBullCol, textBullCol), _wrap (h   and sBox, boxes, 1, patBullBo, patBullBg)
+bj.ddLab            (dd  and labels, labBullCol, textBullCol), _wrap (dd  and sBox, boxes, 1, patBullBo, patBullBg)
+bj.tbLab            (tb  and labels, labBullCol, textBullCol), _wrap (tb  and sBox, boxes, 2, patBullBo, patBullBg)
+bj.stwLab           (stw and labels, labNeutCol, textNeutCol), _wrap (stw and sBox, boxes, 1, patBullBo, patNeutBg)
+bj.pLab             (p   and labels, labBullCol, textBullCol), _wrap (p   and sBox, boxes, 2, patBullBo, patBullBg)
+bj.hwLab            (bhw and labels, labBullCol, textBullCol), _wrap (bhw and sBox, boxes, 2, patBullBo, patBullBg)
+bj.llsLab           (ll  and labels, labBullCol, textBullCol), _wrap (ll  and sBox, boxes, 1, patBullBo, patBullBg)
+
+bj.dLab             (db  and labels, labNeutCol, textNeutCol), _wrap (db  and sBox, boxes, 1, patNeutBo, patNeutBg)
+bj.bebLab           (beb and labels, labBearCol, textBearCol), _wrap (beb and sBox, boxes, 2, patBearBo, patBearBg)
+bj.ssLab            (ss  and labels, labBearCol, textBearCol), _wrap (ss  and sBox, boxes, 1, patBearBo, patBearBg)
+bj.gdLab            (gd  and labels, labBearCol, textBearCol), _wrap (gd  and sBox, boxes, 1, patBearBo, patBearBg)
+bj.ttLab            (tt  and labels, labBearCol, textBearCol), _wrap (tt  and sBox, boxes, 2, patBearBo, patBearBg)
+bj.stbLab           (stb and labels, labNeutCol, textNeutCol), _wrap (stb and sBox, boxes, 1, patBearBo, patBearBg)
+bj.dccLab           (dcc and labels, labBearCol, textBearCol), _wrap (dcc and sBox, boxes, 2, patBearBo, patBearBg)
+bj.hbLab            (bhb and labels, labBearCol, textBearCol), _wrap (bhb and sBox, boxes, 2, patBearBo, patBearBg)
+bj.lusLab           (lu  and labels, labBearCol, textBearCol), _wrap (lu  and sBox, boxes, 1, patBearBo, patBearBg)
+
+

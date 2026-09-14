@@ -1,0 +1,102 @@
+"""Central configuration — all environment-sensitive values live here."""
+from __future__ import annotations
+
+import os
+from pathlib import Path
+
+# ---------------------------------------------------------------- modes
+MODE = os.getenv("NOVA_MODE", "backtest").lower()            # backtest | live
+BINANCE_ENV = os.getenv("BINANCE_ENV", "testnet").lower()    # testnet | live
+AUTOSTART = os.getenv("NOVA_AUTOSTART", "0") == "1"
+LOG_LEVEL = os.getenv("NOVA_LOG", "INFO").upper()
+
+# -------------------------------------------------------- target universe
+SYMBOLS: tuple[str, ...] = (
+    "BTCUSDT", "BNBUSDT", "SOLUSDT", "LINKUSDT", "XLMUSDT", "TONUSDT",
+    "ATOMUSDT", "RENDERUSDT", "VETUSDT", "FILUSDT", "IMXUSDT", "HNTUSDT",
+)
+# historical-alias fallback when loading Parquet archives (GRAM→TON, RNDR→RENDER)
+SYMBOL_ALIASES: dict[str, tuple[str, ...]] = {
+    "TONUSDT": ("GRAMUSDT",),
+    "RENDERUSDT": ("RNDRUSDT",),
+}
+
+# ------------------------------------------------------------- data paths
+ARCHIVE_DIR = Path(os.getenv("NOVA_ARCHIVE", "~/crypto_archive")).expanduser()
+DATA_DIR = Path(os.getenv("NOVA_HOME", "~/nova_v8")).expanduser()
+DATA_DIR.mkdir(parents=True, exist_ok=True)
+DB_PATH = DATA_DIR / "master_log.db"
+EXPORT_PATH = DATA_DIR / "nova_v8_export.csv"
+START_DATE = os.getenv("NOVA_START", "")                    # e.g. "2021-01-01"
+END_DATE = os.getenv("NOVA_END", "")                        # e.g. "2026-01-01"
+
+# ------------------------------------------------------------ connectivity
+# Market data: ALWAYS the live Binance stream (accurate order flow).
+WS_BASE = "wss://stream.binance.com:9443"
+STREAMS = ("kline_1m", "aggTrade", "bookTicker")
+# Order execution REST routes dynamically on BINANCE_ENV.
+REST_BASE = (
+    "https://api.binance.com" if BINANCE_ENV == "live"
+    else "https://testnet.binance.vision"
+)
+API_KEY = __REDACTED__"BINANCE_API_KEY", "")
+API_SECRET = __REDACTED__"BINANCE_API_SECRET", "")
+
+TELEGRAM_TOKEN = __REDACTED__"TELEGRAM_TOKEN", "")
+TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")
+TG_POLL_TIMEOUT = 30
+
+# ------------------------------------------------------- indicator params
+ALMA_LEN, ALMA_OFFSET, ALMA_SIGMA = 200, 0.85, 5.0
+RSI_FAST = 7
+ATR_HYST = 53
+HYST_EPS_MULT = 2.8
+HYST_LOOKBACK = 200
+HURST_LEN = 100
+ADX_LEN = 14
+KAMA_BAND_K = 2.0
+
+# ------------------------------------------------------------- risk matrix
+BASE_NOTIONAL_MIN, BASE_NOTIONAL_MAX = 10.0, 12.0
+CONF_REJECT, CONF_HALF, CONF_FULL = 50.0, 70.0, 100.0
+VR_SHOCK = 1.5                                              # >1.5 → halve size
+GOVERNOR_MAX_LOSSES = 3
+GOVERNOR_COOLDOWN_SEC = 600                                 # 10-minute timeout
+
+# ------------------------------------------------------ execution friction
+HANGING_BULLET_SEC = 12          # cancel unfilled LIMIT_MAKER after 12 s
+BACKTEST_FILL_BARS = 1           # 12 s ≈ 1 bar of 1m data (documented approx)
+MAKER_FEE = 0.00075              # 0.075 % entry — Binance BNB-discount rate
+TAKER_FEE = 0.00075              # 0.075 % exit  (Patch 6: dynamic fee engine)
+
+HARD_STOP_ATR_MULT = 1.15
+HARD_STOP_MIN_PCT = 0.003        # never tighter than 0.30 %
+HARD_STOP_MAX_PCT = 0.030        # never wider than 3.0 %
+BE_TRIGGER_PCT = 0.005           # +0.50 %
+BE_LOCK_PCT = 0.0045             # +0.45 %
+TRAIL_ACT_PCT = 0.005            # trailing ACTIVATES at +0.50 % (Patch 3)
+TRAIL_DELTA_ATR = 1.2            # Phase 1 breathing distance (0.5 %–1.0 %)
+TIME_STOP_SEC = 60
+TIME_STOP_MIN_PNL = 0.001        # +0.10 %
+
+# ---- Patch (arc review): anti-slippage micro-tick cancel -------------------
+MICRO_TICK_WATCH_SEC = 2.5       # watch window after LIMIT_MAKER placement
+MICRO_TICK_DROP_TICKS = 2        # cancel if best bid drops > 2 ticks…
+MICRO_TICK_DROP_PCT = 0.0005     #   …or > 0.05 % from our order price
+
+# ---- Patch: book wall guard + whale-wake bonus -----------------------------
+WALL_RATIO = 3.0                 # adverse side qty > 3× our side qty → VETO
+WHALE_SIGMA = 6.0                # quote-volume z-score threshold (extreme outlier)
+WHALE_MIN_QUOTE = 5_000.0        # absolute floor (USD) for a whale flag
+WHALE_MIN_SAMPLES = 200          # warm-up trades before flagging
+WHALE_TTL_SEC = 30.0             # how long a whale flag stays relevant
+WHALE_BOOST = 10.0               # confidence points added when aligned
+
+# ---- Patch: non-linear trailing ping-pong ----------------------------------
+TRAIL_PHASE2_PROFIT = 0.010      # > 1.0 % peak profit → choke the peak
+TRAIL_PHASE2_ATR = 0.5           # tightened distance 0.5 × ATR…
+TRAIL_PHASE2_FLOOR = 0.0008      #   …but never wider than needed: ≥ 0.08 %
+
+SESSION_TARGET_TRADES = int(os.getenv("NOVA_TARGET_TRADES", "500"))
+LIVE_WINDOW = 420                # rolling bars kept per symbol in live mode
+MATRIX_CACHE_VER = 2             # bump on ANY indicator-logic change (invalidates cache)

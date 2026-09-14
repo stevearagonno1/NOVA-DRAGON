@@ -1,0 +1,605 @@
+// This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at https://mozilla.org/MPL/2.0/
+// Join our channel for more free tools: https://t.me/mrexpert_ai
+
+// ============================================================================
+// Anchored VWAP Trade Planner
+// ============================================================================
+//
+// WHAT IT DOES:
+//   Calculates an Anchored VWAP (Session / Weekly / Manual / Auto-detect pivot)
+//   and projects an actionable Trade Plan (Entry / SL / TP1 / TP2 / TP3 option)
+//   using Fibonacci extension multipliers of the close-to-AVWAP distance d.
+//
+// HOW IT WORKS (W-5 formulae, d = close - AVWAP, sign auto-handles Long/Short):
+//   TP1 = AVWAP + d * 2.618    (Fib)
+//   TP2 = AVWAP + d * 4.236    (Fib)
+//   TP3 = AVWAP + d * 5.236    (Fib, option)
+//   SL  = AVWAP + d * 0.382 + bufSign * ATR(14) * 0.25
+//         (SL sits between AVWAP and close at Fib 0.618 retrace from close
+//          toward AVWAP, with a small ATR safety buffer pushed away from Entry)
+//   Real R:R (close-based, ATR buffer ignored):
+//     RR1 = 1.618 / 0.618 = 2.618
+//     RR2 = 3.236 / 0.618 = 5.236
+//     RR3 = 4.236 / 0.618 = 6.854    (all Fibonacci)
+//
+// USAGE:
+//   1. Pick an anchor type (Session is the default)
+//   2. Wait for a signal (|Z-score| >= Min |Z|, with cooldown)
+//   3. Trade Plan snapshot is fixed at the signal bar; lines do not redraw
+//   4. Dashboard reports state (INIT / ENTERED / TP1_HIT / TP2_HIT / TP3_HIT
+//      / EXITED) and recommends partial-close action
+//
+// NON-REPAINTING:
+//   Signal snapshot (Entry/SL/TP) is captured on the signal bar close and
+//   stored in var-floats; subsequent bars only update state machine and
+//   redraw existing snapshot levels. This is the expected behaviour of a
+//   real-time trade-planning tool.
+//
+// ============================================================================
+
+//@version=6
+indicator("Anchored VWAP Trade Planner",
+     shorttitle="AVWAP Planner",
+     overlay=true,
+     max_lines_count=50,
+     max_boxes_count=20,
+     max_labels_count=50,
+     explicit_plot_zorder=true)
+
+// ============================================================================
+// Color Constants
+// ============================================================================
+
+var color C_WHITE       = #FFFFFF
+var color C_NEUTRAL_UI  = #9598A1
+var color C_PANEL_BG    = color.new(#000000, 50)
+var color C_PANEL_BG2   = color.new(#000000, 60)
+var color C_PANEL_BG3   = color.new(#000000, 70)
+var color C_FRAME       = #2A2E39
+var color C_STATUS      = #FFD54F
+
+// ============================================================================
+// Inputs (23 total, 6 groups)
+// ============================================================================
+
+// --- Group 1: Anchor (4) ---
+i_anchorMode  = input.string("Session", "Anchor Type",
+     options=["Session", "Weekly", "Manual", "Auto-detect"],
+     group="Anchor",
+     tooltip="Session: daily session start. Weekly: weekly start (Monday). Manual: specify timestamp below. Auto-detect: latest fractal pivot.")
+i_manualTime  = input.time(timestamp("2026-01-01T00:00:00+00:00"), "Manual Anchor Time",
+     group="Anchor",
+     tooltip="Used only when Anchor Type = Manual. Timestamp at which AVWAP starts accumulating.")
+i_pivotLen    = input.int(5, "Auto Pivot Length",
+     minval=2, maxval=20,
+     group="Anchor",
+     tooltip="Used only when Anchor Type = Auto-detect. n_left = n_right for ta.pivothigh / pivotlow.")
+i_vwapSrc     = input.source(hlc3, "VWAP Source",
+     group="Anchor",
+     tooltip="Price source used for VWAP. Default: hlc3.")
+
+// --- Group 2: Signal (3) ---
+i_minAbsZ     = input.float(1.5, "Min |Z| for Signal",
+     minval=0.5, maxval=3.0, step=0.1,
+     group="Signal",
+     tooltip="Minimum |Z-score| required. Higher = stricter signal. Default 1.5 filters mid-range noise.")
+i_cooldown    = input.int(20, "Cooldown Bars After Signal",
+     minval=0, maxval=200,
+     group="Signal",
+     tooltip="Suppress new signals for N bars after a Long/Short trigger. Prevents whipsaw.")
+i_zStdLen     = input.int(20, "Z-score Stdev Length",
+     minval=5, maxval=100,
+     group="Signal",
+     tooltip="Rolling stdev length for Z-score normalization of (close - AVWAP).")
+
+// --- Group 3: Risk Plan (6) ---
+i_tp1Mult     = input.float(2.618, "TP1 Fib Multiplier",
+     minval=0.5, maxval=10.0, step=0.001,
+     group="Risk Plan",
+     tooltip="TP1 = AVWAP + (close - AVWAP) * TP1 Mult. Default 2.618 (Fib). Real R:R (close to SL 0.382d) approx. 2.618.")
+i_tp2Mult     = input.float(4.236, "TP2 Fib Multiplier",
+     minval=0.5, maxval=10.0, step=0.001,
+     group="Risk Plan",
+     tooltip="TP2 = AVWAP + (close - AVWAP) * TP2 Mult. Default 4.236 (Fib). Real R:R approx. 5.236.")
+i_showTP3     = input.bool(false, "Show TP3",
+     group="Risk Plan",
+     tooltip="Enable TP3 (default OFF, for advanced users).")
+i_tp3Mult     = input.float(5.236, "TP3 Fib Multiplier",
+     minval=0.5, maxval=10.0, step=0.001,
+     group="Risk Plan",
+     tooltip="Used only when Show TP3 = ON. Default 5.236 (Fib). Real R:R approx. 6.854.")
+i_slFibMult   = input.float(0.382, "SL Fib Multiplier (between AVWAP and close)",
+     minval=0.0, maxval=1.0, step=0.001,
+     group="Risk Plan",
+     tooltip="SL = AVWAP + (close - AVWAP) * SL Mult (sign auto for Long/Short). Default 0.382 (Fib). SL sits between AVWAP and close, at 0.382 of d from AVWAP (= 0.618 retrace from close toward AVWAP). When close retraces 0.618 of its distance to AVWAP, trend is considered invalidated.")
+i_atrBufMult  = input.float(0.25, "SL ATR Buffer Multiplier",
+     minval=0.0, maxval=3.0, step=0.05,
+     group="Risk Plan",
+     tooltip="Additional safety buffer on SL: ATR(14) * this, pushed further away from Entry (below for Long, above for Short) beyond the Fib 0.382 retrace point.")
+
+// --- Group 4: Visual Options (4) ---
+i_showSigma   = input.bool(false, "Show AVWAP +/- Sigma Bands",
+     group="Visual Options",
+     tooltip="Optional: shade AVWAP +/- 1 sigma area. Default OFF (cognitive load).")
+i_showTrail   = input.bool(false, "Show Chandelier Trail (after TP2)",
+     group="Visual Options",
+     tooltip="Optional: dynamic trail after TP2 hit. ATR(22) * 3 method. Default OFF.")
+i_showAnchorPin = input.bool(false, "Show Anchor Start Pin",
+     group="Visual Options",
+     tooltip="Show a vertical pin at anchor start bar.")
+i_planLookback = input.int(50, "Plan Line Length (bars)",
+     minval=10, maxval=300,
+     group="Visual Options",
+     tooltip="How far right the Entry/SL/TP lines extend from signal bar. Default 50 bars.")
+
+// --- Group 5: Dashboard (4) ---
+i_showDash    = input.bool(true, "Show Dashboard",
+     group="Dashboard")
+i_dashMin     = input.bool(false, "Dashboard Minimized",
+     group="Dashboard",
+     tooltip="When ON, dashboard shows only one icon row. Click input to expand.")
+i_dashPos     = input.string("Top Right", "Dashboard Position",
+     options=["Top Left", "Top Right", "Middle Left", "Middle Right", "Bottom Left", "Bottom Right"],
+     group="Dashboard")
+i_dashSize    = input.string("Normal", "Dashboard Size",
+     options=["Tiny", "Small", "Normal", "Large", "Huge"],
+     group="Dashboard",
+     tooltip="Text size of dashboard cells. Default Normal.")
+
+// --- Group 6: Colors (2 entries -> 3 input.color, 2 group rows) ---
+i_colAVWAP    = input.color(#FF9800, "AVWAP Line", group="Colors")
+i_colSig      = input.color(#00E5A8, "Long Plan",  group="Colors", inline="sig")
+i_colSig2     = input.color(#FF1744, "Short Plan", group="Colors", inline="sig")
+
+// ============================================================================
+// Helper Functions (top-level only, no type annotations on args)
+// ============================================================================
+
+f_tablePos(pos) =>
+    switch pos
+        "Top Left"      => position.top_left
+        "Top Right"     => position.top_right
+        "Middle Left"   => position.middle_left
+        "Middle Right"  => position.middle_right
+        "Bottom Left"   => position.bottom_left
+        "Bottom Right"  => position.bottom_right
+        => position.top_right
+
+f_dashSize(sz) =>
+    switch sz
+        "Tiny"   => size.tiny
+        "Small"  => size.small
+        "Normal" => size.normal
+        "Large"  => size.large
+        "Huge"   => size.huge
+        => size.normal
+
+// f_formatPrice: thousand separator + decimal-aware price formatter.
+// - Decimal digits derived from syminfo.mintick (min 2 digits).
+//   BTCUSD mintick=1   -> 2 dec ("81,068.24")
+//   EURUSD mintick=1e-5 -> 5 dec ("1.02340")
+//   USDJPY mintick=1e-3 -> 3 dec ("155.234")
+// - Thousand separator inserted manually into integer part (Pine v6 format
+//   spec does not officially support "#,##0.00"; safer to build by hand).
+f_formatPrice(val) =>
+    string out = ""
+    if na(val)
+        out := "NaN"
+    else
+        int nDec = syminfo.mintick < 0.01 ? math.max(2, math.round(math.log10(1.0 / syminfo.mintick))) : 2
+        float absVal = math.abs(val)
+        float scale  = math.pow(10.0, nDec)
+        float scaled = math.round(absVal * scale)
+        float intPartF = math.floor(scaled / scale)
+        float decPartF = scaled - intPartF * scale
+        // Integer part as raw digits (no decimal point thanks to format "#").
+        string intRaw = str.tostring(intPartF, "#")
+        int intLen = str.length(intRaw)
+        string intStr = ""
+        for i = 0 to intLen - 1
+            int idxFromRight = intLen - 1 - i
+            string ch = str.substring(intRaw, idxFromRight, idxFromRight + 1)
+            string sep = (i > 0 and i % 3 == 0) ? "," : ""
+            intStr := ch + sep + intStr
+        // Decimal part zero-padded to nDec digits.
+        string decRaw = str.tostring(decPartF, "#")
+        int decLen = str.length(decRaw)
+        string decStr = decLen < nDec ? str.repeat("0", nDec - decLen) + decRaw : decRaw
+        string sign = val < 0 ? "-" : ""
+        out := sign + intStr + "." + decStr
+    out
+
+f_anchorLetter(mode) =>
+    switch mode
+        "Session"     => "S"
+        "Weekly"      => "W"
+        "Manual"      => "M"
+        "Auto-detect" => "A"
+        => "S"
+
+// ============================================================================
+// Anchor Detection (4 modes)
+// ============================================================================
+
+isSessionStart = ta.change(time("D")) != 0
+isWeeklyStart  = ta.change(time("W")) != 0
+isManualStart  = (time >= i_manualTime) and (time[1] < i_manualTime)
+
+phVal = ta.pivothigh(high, i_pivotLen, i_pivotLen)
+plVal = ta.pivotlow(low,  i_pivotLen, i_pivotLen)
+isAutoStart = (not na(phVal)) or (not na(plVal))
+
+anchorCond = switch i_anchorMode
+    "Session"     => isSessionStart
+    "Weekly"      => isWeeklyStart
+    "Manual"      => isManualStart
+    "Auto-detect" => isAutoStart
+    => false
+
+// Anchor bar tracking (for pin)
+var int   anchorBarIdx = na
+var float anchorPrice  = na
+if anchorCond
+    anchorBarIdx := bar_index
+    anchorPrice  := i_vwapSrc
+
+// ============================================================================
+// AVWAP Calculation
+// ============================================================================
+
+[vwapVal, sigmaUpper, _sigmaLower] = ta.vwap(i_vwapSrc, anchorCond, 1.0)
+sigma = (not na(sigmaUpper) and not na(vwapVal)) ? sigmaUpper - vwapVal : na
+
+// ============================================================================
+// Z-score (rolling stdev normalization of (close - AVWAP))
+// ============================================================================
+
+diff    = (not na(vwapVal)) ? close - vwapVal : na
+diffStd = ta.stdev(diff, i_zStdLen)
+z       = (not na(diffStd) and diffStd > 0 and not na(vwapVal)) ? diff / diffStd : 0.0
+
+// ============================================================================
+// Signal Logic (raw + cooldown)
+// ============================================================================
+
+isLongRaw  = (not na(vwapVal)) and (close > vwapVal) and (z >= i_minAbsZ)
+isShortRaw = (not na(vwapVal)) and (close < vwapVal) and (z <= -i_minAbsZ)
+
+var int lastSigBar = na
+cooldownOK = na(lastSigBar) or (bar_index - lastSigBar) >= i_cooldown
+
+// Full non-repaint guard: trigger evaluated ONLY on confirmed bar close.
+// During the forming (real-time) bar barstate.isconfirmed is false, so no
+// signal fires. Trigger fires the instant the bar closes, snapshot is then
+// frozen in var-floats, and from the next bar onward only redraw/state
+// progression occurs. No intra-bar repaint possible.
+longTrigger  = isLongRaw  and cooldownOK and barstate.isconfirmed
+shortTrigger = isShortRaw and cooldownOK and barstate.isconfirmed
+
+// ============================================================================
+// State Machine + Snapshot (var-floats persist across bars)
+// ============================================================================
+
+var int    sigBarIdx   = na
+var int    sigDir      = 0
+var float  sigEntry    = na
+var float  sigAVWAP    = na
+var float  sigTP1      = na
+var float  sigTP2      = na
+var float  sigTP3      = na
+var float  sigSL       = na
+var string tradeState  = "INIT"
+var bool   tp1Hit      = false
+var bool   tp2Hit      = false
+var bool   tp3Hit      = false
+var bool   slHit       = false
+var float  trailLevel  = na
+
+atrVal14 = ta.atr(14)
+
+// Snapshot fix on signal bar (W-5 unified formulae, sign auto-handles Long/Short)
+if longTrigger or shortTrigger
+    sigBarIdx := bar_index
+    sigDir    := longTrigger ? 1 : -1
+    sigEntry  := close
+    sigAVWAP  := vwapVal
+    lastSigBar := bar_index
+    float d = close - vwapVal
+    float bufSign = d >= 0 ? -1.0 : 1.0
+    sigTP1 := vwapVal + d * i_tp1Mult
+    sigTP2 := vwapVal + d * i_tp2Mult
+    sigTP3 := i_showTP3 ? vwapVal + d * i_tp3Mult : na
+    sigSL  := vwapVal + d * i_slFibMult + atrVal14 * i_atrBufMult * bufSign
+    tradeState := "ENTERED"
+    tp1Hit := false
+    tp2Hit := false
+    tp3Hit := false
+    slHit  := false
+    trailLevel := na
+
+// TP/SL hit detection (state machine progression)
+if sigDir == 1 and tradeState != "INIT" and tradeState != "EXITED"
+    if not tp1Hit and high >= sigTP1
+        tp1Hit := true
+        tradeState := "TP1_HIT"
+    if not tp2Hit and high >= sigTP2
+        tp2Hit := true
+        tradeState := "TP2_HIT"
+    if not tp3Hit and not na(sigTP3) and high >= sigTP3
+        tp3Hit := true
+        tradeState := i_showTrail ? "TP3_HIT" : "EXITED"
+    if not slHit and low <= sigSL
+        slHit := true
+        tradeState := "EXITED"
+
+if sigDir == -1 and tradeState != "INIT" and tradeState != "EXITED"
+    if not tp1Hit and low <= sigTP1
+        tp1Hit := true
+        tradeState := "TP1_HIT"
+    if not tp2Hit and low <= sigTP2
+        tp2Hit := true
+        tradeState := "TP2_HIT"
+    if not tp3Hit and not na(sigTP3) and low <= sigTP3
+        tp3Hit := true
+        tradeState := i_showTrail ? "TP3_HIT" : "EXITED"
+    if not slHit and high >= sigSL
+        slHit := true
+        tradeState := "EXITED"
+
+// Chandelier trail (option, after TP2)
+if i_showTrail and (tradeState == "TP2_HIT" or tradeState == "TP3_HIT")
+    atrCh = ta.atr(22)
+    if sigDir == 1
+        newTrail = high - atrCh * 3.0
+        trailLevel := na(trailLevel) ? newTrail : math.max(trailLevel, newTrail)
+        if low <= trailLevel
+            tradeState := "EXITED"
+    else if sigDir == -1
+        newTrail = low + atrCh * 3.0
+        trailLevel := na(trailLevel) ? newTrail : math.min(trailLevel, newTrail)
+        if high >= trailLevel
+            tradeState := "EXITED"
+
+// ============================================================================
+// AVWAP Plot (single plot, static color, plot count = 1)
+// ============================================================================
+
+plot(not na(vwapVal) ? vwapVal : na, "Anchored VWAP", color=i_colAVWAP, linewidth=3)
+
+// ============================================================================
+// Drawing Object Arrays (ATR Plotter pattern: array + per-bar regenerate)
+// ============================================================================
+
+var line[]  planLines  = array.new_line()
+var label[] planLabels = array.new_label()
+var box[]   planBoxes  = array.new_box()
+var line[]  pinLines   = array.new_line()
+var label[] pinLabels  = array.new_label()
+
+// Per-bar cleanup (with guard against array.size == 0)
+if array.size(planLines) > 0
+    for i = array.size(planLines) - 1 to 0
+        line.delete(array.get(planLines, i))
+    array.clear(planLines)
+if array.size(planLabels) > 0
+    for i = array.size(planLabels) - 1 to 0
+        label.delete(array.get(planLabels, i))
+    array.clear(planLabels)
+if array.size(planBoxes) > 0
+    for i = array.size(planBoxes) - 1 to 0
+        box.delete(array.get(planBoxes, i))
+    array.clear(planBoxes)
+if array.size(pinLines) > 0
+    for i = array.size(pinLines) - 1 to 0
+        line.delete(array.get(pinLines, i))
+    array.clear(pinLines)
+if array.size(pinLabels) > 0
+    for i = array.size(pinLabels) - 1 to 0
+        label.delete(array.get(pinLabels, i))
+    array.clear(pinLabels)
+
+// ============================================================================
+// Status Text (switch, single-line per arm; no nested ternaries)
+// ============================================================================
+
+statusText = switch tradeState
+    "INIT"     => "Wait for entry signal"
+    "ENTERED"  => "Hold for TP1 / Close 1/3 at TP1, move SL to Entry"
+    "TP1_HIT"  => "Hold 2/3 for TP2 / Close 1/3 at TP2, move SL to TP1"
+    "TP2_HIT"  => "Hold 1/3 (Trail) - Chandelier recommended"
+    "TP3_HIT"  => "Hold last 1/3 with trail"
+    "EXITED"   => "Exited. Wait for next signal"
+    => "-"
+
+// ============================================================================
+// Sigma Band (option, single box, barstate.islast)
+// ============================================================================
+
+if i_showSigma and barstate.islast and not na(vwapVal) and not na(sigma) and sigma > 0
+    int xLs = bar_index - 200
+    int xRs = bar_index + i_planLookback
+    color bandFill = color.new(i_colAVWAP, 88)
+    bxSig = box.new(xLs, vwapVal + sigma, xRs, vwapVal - sigma,
+         bgcolor=bandFill, border_color=color.new(i_colAVWAP, 100))
+    array.push(planBoxes, bxSig)
+
+// ============================================================================
+// Plan Drawing (Entry / SL / TP1 / TP2 / TP3 / Trail) on barstate.islast
+// ============================================================================
+
+if barstate.islast and tradeState != "INIT" and not na(sigEntry) and not na(sigSL)
+    int xL = sigBarIdx
+    int xR = bar_index + i_planLookback
+    int labelX = bar_index + 5
+
+    // Real R:R (close-based, ATR buffer included) - W-5 unified RR
+    float slDistLbl = math.abs(sigEntry - sigSL)
+    float rr1RealLbl = slDistLbl > 0 ? math.abs(sigTP1 - sigEntry) / slDistLbl : 0.0
+    float rr2RealLbl = slDistLbl > 0 ? math.abs(sigTP2 - sigEntry) / slDistLbl : 0.0
+    float rr3RealLbl = (slDistLbl > 0 and not na(sigTP3)) ? math.abs(sigTP3 - sigEntry) / slDistLbl : 0.0
+
+    // Entry (white solid)
+    lnE = line.new(xL, sigEntry, xR, sigEntry, color=C_WHITE, width=2, style=line.style_solid)
+    array.push(planLines, lnE)
+    lblE = label.new(labelX, sigEntry, "Entry " + f_formatPrice(sigEntry),
+         style=label.style_label_left, color=C_WHITE, textcolor=color.black, size=size.large)
+    array.push(planLabels, lblE)
+
+    // SL (red solid, thick) - "(Fib 0.618 retrace)"
+    lnS = line.new(xL, sigSL, xR, sigSL, color=i_colSig2, width=3, style=line.style_solid)
+    array.push(planLines, lnS)
+    string slLblTxt = "SL " + f_formatPrice(sigSL) + "  (Fib 0.618 retrace)"
+    lblS = label.new(labelX, sigSL, slLblTxt,
+         style=label.style_label_left, color=i_colSig2, textcolor=C_WHITE, size=size.large)
+    array.push(planLabels, lblS)
+
+    // TP1 (green solid, bright)
+    lnT1 = line.new(xL, sigTP1, xR, sigTP1, color=i_colSig, width=2, style=line.style_solid)
+    array.push(planLines, lnT1)
+    string tp1Suffix = tp1Hit ? "  HIT" : "  (Fib " + str.tostring(i_tp1Mult, "#.###") + ", RR " + str.tostring(rr1RealLbl, "#.##") + ")"
+    lblT1 = label.new(labelX, sigTP1, "TP1 " + f_formatPrice(sigTP1) + tp1Suffix,
+         style=label.style_label_left, color=i_colSig, textcolor=color.white, size=size.large)
+    array.push(planLabels, lblT1)
+
+    // TP2 (green solid, dimmer)
+    lnT2 = line.new(xL, sigTP2, xR, sigTP2, color=color.new(i_colSig, 30), width=2, style=line.style_solid)
+    array.push(planLines, lnT2)
+    string tp2Suffix = tp2Hit ? "  HIT" : "  (Fib " + str.tostring(i_tp2Mult, "#.###") + ", RR " + str.tostring(rr2RealLbl, "#.##") + ")"
+    lblT2 = label.new(labelX, sigTP2, "TP2 " + f_formatPrice(sigTP2) + tp2Suffix,
+         style=label.style_label_left, color=i_colSig, textcolor=color.white, size=size.large)
+    array.push(planLabels, lblT2)
+
+    // TP3 (option, green dotted)
+    if i_showTP3 and not na(sigTP3)
+        lnT3 = line.new(xL, sigTP3, xR, sigTP3, color=color.new(i_colSig, 50), width=1, style=line.style_dotted)
+        array.push(planLines, lnT3)
+        string tp3Suffix = tp3Hit ? "  HIT" : "  (Fib " + str.tostring(i_tp3Mult, "#.###") + ", RR " + str.tostring(rr3RealLbl, "#.##") + ")"
+        lblT3 = label.new(labelX, sigTP3, "TP3 " + f_formatPrice(sigTP3) + tp3Suffix,
+             style=label.style_label_left, color=i_colSig, textcolor=color.white, size=size.large)
+        array.push(planLabels, lblT3)
+
+    // Chandelier trail (option ON + after TP2)
+    if i_showTrail and not na(trailLevel) and (tradeState == "TP2_HIT" or tradeState == "TP3_HIT")
+        lnTr = line.new(xL, trailLevel, xR, trailLevel, color=color.yellow, width=1, style=line.style_dashed)
+        array.push(planLines, lnTr)
+        lblTr = label.new(labelX, trailLevel, "Trail " + f_formatPrice(trailLevel),
+             style=label.style_label_left, color=color.new(color.yellow, 70), textcolor=#000000, size=size.small)
+        array.push(planLabels, lblTr)
+
+// ============================================================================
+// Anchor Pin (option, barstate.islast)
+// ============================================================================
+
+if i_showAnchorPin and not na(anchorBarIdx) and barstate.islast and not na(atrVal14)
+    float pinTop = high + atrVal14 * 0.5
+    float pinBot = low  - atrVal14 * 0.5
+    lnPin = line.new(anchorBarIdx, pinBot, anchorBarIdx, pinTop, color=color.new(i_colAVWAP, 50), width=1)
+    array.push(pinLines, lnPin)
+    lblPin = label.new(anchorBarIdx, pinTop, f_anchorLetter(i_anchorMode),
+         style=label.style_label_down, color=i_colAVWAP, textcolor=C_WHITE, size=size.large)
+    array.push(pinLabels, lblPin)
+
+// ============================================================================
+// Dashboard (table.new + barstate.islast, expand / minimize toggle)
+// ============================================================================
+
+var table dashTable = table.new(f_tablePos(i_dashPos), 2, 7,
+     bgcolor=C_PANEL_BG,
+     frame_color=C_FRAME, frame_width=1,
+     border_color=C_FRAME, border_width=1)
+
+if i_showDash and barstate.islast
+    dashSz = f_dashSize(i_dashSize)
+    if i_dashMin
+        // Minimized: 1 row only
+        string minText = "◆ AVWAP Plan"
+        if tradeState != "INIT"
+            string dirCh = sigDir == 1 ? "LONG" : "SHORT"
+            string stCh  = tp2Hit ? "TP2" : tp1Hit ? "TP1" : "OPEN"
+            minText := "◆ AVWAP " + dirCh + " " + stCh
+        table.cell(dashTable, 0, 0, minText, text_color=C_WHITE, text_size=dashSz, bgcolor=C_PANEL_BG)
+        // Clear remaining cells
+        table.cell(dashTable, 1, 0, "", bgcolor=C_PANEL_BG)
+        for r = 1 to 6
+            table.cell(dashTable, 0, r, "", bgcolor=C_PANEL_BG)
+            table.cell(dashTable, 1, r, "", bgcolor=C_PANEL_BG)
+    else
+        // Expanded: 7 rows
+        string dirText = sigDir == 1 ? "LONG" : sigDir == -1 ? "SHORT" : "NO TRADE"
+        color  dirCol  = sigDir == 1 ? i_colSig : sigDir == -1 ? i_colSig2 : color.gray
+        string anchorTag = "(" + i_anchorMode + " AVWAP)"
+        bool hasSig = not na(sigEntry) and not na(sigSL)
+
+        // Real R:R (close-based, ATR buffer included)
+        float slDistDash = hasSig ? math.abs(sigEntry - sigSL) : 0.0
+        float rr1Real = slDistDash > 0 ? math.abs(sigTP1 - sigEntry) / slDistDash : 0.0
+        float rr2Real = slDistDash > 0 ? math.abs(sigTP2 - sigEntry) / slDistDash : 0.0
+        float rr3Real = (slDistDash > 0 and not na(sigTP3)) ? math.abs(sigTP3 - sigEntry) / slDistDash : 0.0
+
+        // Row 0: Direction + Anchor type
+        table.cell(dashTable, 0, 0, "Direction:", text_color=C_NEUTRAL_UI, text_size=dashSz, bgcolor=C_PANEL_BG2)
+        table.cell(dashTable, 1, 0, dirText + " " + anchorTag, text_color=dirCol, text_size=dashSz, bgcolor=C_PANEL_BG2, text_formatting=text.format_bold)
+
+        // Row 1: Entry
+        table.cell(dashTable, 0, 1, "Entry:", text_color=C_NEUTRAL_UI, text_size=dashSz, bgcolor=C_PANEL_BG2)
+        table.cell(dashTable, 1, 1, hasSig ? f_formatPrice(sigEntry) : "-", text_color=C_WHITE, text_size=dashSz, bgcolor=C_PANEL_BG2)
+
+        // Row 2: SL  "(Fib 0.618 retrace - X.XX ATR)"
+        string slLabel = "  (Fib 0.618 retrace - " + str.tostring(i_atrBufMult, "#.##") + " ATR)"
+        table.cell(dashTable, 0, 2, "SL:", text_color=C_NEUTRAL_UI, text_size=dashSz, bgcolor=C_PANEL_BG2)
+        table.cell(dashTable, 1, 2, hasSig ? f_formatPrice(sigSL) + slLabel : "-", text_color=i_colSig2, text_size=dashSz, bgcolor=C_PANEL_BG2)
+
+        // Row 3: TP1
+        string tp1SuffixD = tp1Hit ? "  HIT" : "  (Fib " + str.tostring(i_tp1Mult, "#.###") + ", RR " + str.tostring(rr1Real, "#.##") + ")"
+        table.cell(dashTable, 0, 3, "TP1:", text_color=C_NEUTRAL_UI, text_size=dashSz, bgcolor=C_PANEL_BG2)
+        table.cell(dashTable, 1, 3, hasSig ? f_formatPrice(sigTP1) + tp1SuffixD : "-", text_color=i_colSig, text_size=dashSz, bgcolor=C_PANEL_BG2)
+
+        // Row 4: TP2
+        string tp2SuffixD = tp2Hit ? "  HIT" : "  (Fib " + str.tostring(i_tp2Mult, "#.###") + ", RR " + str.tostring(rr2Real, "#.##") + ")"
+        table.cell(dashTable, 0, 4, "TP2:", text_color=C_NEUTRAL_UI, text_size=dashSz, bgcolor=C_PANEL_BG2)
+        table.cell(dashTable, 1, 4, hasSig ? f_formatPrice(sigTP2) + tp2SuffixD : "-", text_color=color.new(i_colSig, 30), text_size=dashSz, bgcolor=C_PANEL_BG2)
+
+        // Row 5: TP3 (option) or blank
+        if i_showTP3
+            string tp3SuffixD = tp3Hit ? "  HIT" : "  (Fib " + str.tostring(i_tp3Mult, "#.###") + ", RR " + str.tostring(rr3Real, "#.##") + ")"
+            table.cell(dashTable, 0, 5, "TP3:", text_color=C_NEUTRAL_UI, text_size=dashSz, bgcolor=C_PANEL_BG2)
+            table.cell(dashTable, 1, 5, (hasSig and not na(sigTP3)) ? f_formatPrice(sigTP3) + tp3SuffixD : "-", text_color=color.new(i_colSig, 50), text_size=dashSz, bgcolor=C_PANEL_BG2)
+        else
+            table.cell(dashTable, 0, 5, "", bgcolor=C_PANEL_BG2)
+            table.cell(dashTable, 1, 5, "", bgcolor=C_PANEL_BG2)
+
+        // Row 6: Status
+        table.cell(dashTable, 0, 6, "Status:", text_color=C_NEUTRAL_UI, text_size=dashSz, bgcolor=C_PANEL_BG3)
+        table.cell(dashTable, 1, 6, statusText, text_color=C_STATUS, text_size=dashSz, bgcolor=C_PANEL_BG3)
+
+// ============================================================================
+// Alerts
+// ============================================================================
+
+alertcondition(longTrigger,  title="Long Setup",  message="AVWAP Trade Planner: LONG signal on {{ticker}} {{interval}}")
+alertcondition(shortTrigger, title="Short Setup", message="AVWAP Trade Planner: SHORT signal on {{ticker}} {{interval}}")
+
+if longTrigger or shortTrigger
+    float dAlert = close - vwapVal
+    float bufSignAlert = dAlert >= 0 ? -1.0 : 1.0
+    float aTP1 = vwapVal + dAlert * i_tp1Mult
+    float aTP2 = vwapVal + dAlert * i_tp2Mult
+    float aSL  = vwapVal + dAlert * i_slFibMult + atrVal14 * i_atrBufMult * bufSignAlert
+    float aSlDist = math.abs(close - aSL)
+    float aRR1 = aSlDist > 0 ? math.abs(aTP1 - close) / aSlDist : 0.0
+    float aRR2 = aSlDist > 0 ? math.abs(aTP2 - close) / aSlDist : 0.0
+    string dirStr = longTrigger ? "LONG" : "SHORT"
+    alert(dirStr + " AVWAP Plan: Entry=" + f_formatPrice(close) +
+         " SL=" + f_formatPrice(aSL) +
+         " TP1=" + f_formatPrice(aTP1) + " (RR " + str.tostring(aRR1, "#.##") + ")" +
+         " TP2=" + f_formatPrice(aTP2) + " (RR " + str.tostring(aRR2, "#.##") + ")",
+         alert.freq_once_per_bar_close)
+
+// ==========================================================================================
+
+// === Dashboard with Telegram Link ===
+var table myTable = table.new(position.top_center, 1, 1, border_width=1, frame_color=color.black, bgcolor=color.white)
+
+// Add Telegram Message to Dashboard
+table.cell(myTable, 0, 0, "Join Telegram @mrexpert_ai", bgcolor=color.blue, text_color=color.white, text_size=size.normal)
+

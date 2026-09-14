@@ -1,0 +1,48 @@
+######## ATOMUSDT
+NOVA_V8 — Strategy Sleeve Summary
+
+long_cycle: selected=False records=0 net=0.0000 win_pct=0.00
+market_open: selected=False records=0 net=0.0000 win_pct=0.00
+dynamic_grid: selected=False records=0 net=0.0000 win_pct=0.00
+donchian: selected=True records=381 net=-5131.6824 win_pct=24.67
+adaptive_trend: selected=False records=0 net=0.0000 win_pct=0.00
+######## FILUSDT
+NOVA_V8 — Strategy Sleeve Summary
+
+long_cycle: selected=False records=0 net=0.0000 win_pct=0.00
+market_open: selected=False records=0 net=0.0000 win_pct=0.00
+dynamic_grid: selected=False records=0 net=0.0000 win_pct=0.00
+donchian: selected=True records=252 net=966.0954 win_pct=36.51
+adaptive_trend: selected=False records=0 net=0.0000 win_pct=0.00
+######## LINKUSDT
+NOVA_V8 — Strategy Sleeve Summary
+
+long_cycle: selected=False records=0 net=0.0000 win_pct=0.00
+market_open: selected=False records=0 net=0.0000 win_pct=0.00
+dynamic_grid: selected=False records=0 net=0.0000 win_pct=0.00
+donchian: selected=True records=460 net=-2912.2748 win_pct=31.09
+adaptive_trend: selected=False records=0 net=0.0000 win_pct=0.00
+######## SOLUSDT
+NOVA_V8 — Strategy Sleeve Summary
+
+long_cycle: selected=False records=0 net=0.0000 win_pct=0.00
+market_open: selected=False records=0 net=0.0000 win_pct=0.00
+dynamic_grid: selected=False records=0 net=0.0000 win_pct=0.00
+donchian: selected=True records=490 net=1023.1021 win_pct=36.33
+adaptive_trend: selected=False records=0 net=0.0000 win_pct=0.00
+######## VETUSDT
+NOVA_V8 — Strategy Sleeve Summary
+
+long_cycle: selected=False records=0 net=0.0000 win_pct=0.00
+market_open: selected=False records=0 net=0.0000 win_pct=0.00
+dynamic_grid: selected=False records=0 net=0.0000 win_pct=0.00
+donchian: selected=True records=332 net=-1131.8990 win_pct=33.13
+adaptive_trend: selected=False records=0 net=0.0000 win_pct=0.00
+######## XLMUSDT
+NOVA_V8 — Strategy Sleeve Summary
+
+long_cycle: selected=False records=0 net=0.0000 win_pct=0.00
+market_open: selected=False records=0 net=0.0000 win_pct=0.00
+dynamic_grid: selected=False records=0 net=0.0000 win_pct=0.00
+donchian: selected=True records=396 net=3114.9805 win_pct=30.81
+adaptive_trend: selected=False records=0 net=0.0000 win_pct=0.00

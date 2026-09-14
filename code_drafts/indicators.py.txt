@@ -1,0 +1,253 @@
+"""Module 2 — pure vectorized indicator math (numpy/pandas, non-repainting).
+
+Every function is causal: value at t depends only on data ≤ t.
+Recursions that are mathematically sequential (KAMA, hysteresis stepping,
+Cardwell state) use tight single-pass loops over pre-fetched numpy arrays —
+everything else is strictly vectorized.
+"""
+from __future__ import annotations
+
+import numpy as np
+import pandas as pd
+
+from . import config as C
+from . import microstructure as micro
+
+
+# ---------------------------------------------------------------- helpers
+def rma(s: pd.Series, n: int) -> pd.Series:
+    """Wilder's smoothing (RMA)."""
+    return s.ewm(alpha=1.0 / n, adjust=False, min_periods=n).mean()
+
+
+def true_range(h: pd.Series, l: pd.Series, c: pd.Series) -> pd.Series:
+    pc = c.shift(1)
+    return pd.concat([h - l, (h - pc).abs(), (l - pc).abs()], axis=1).max(axis=1)
+
+
+def wilder_atr(df: pd.DataFrame, n: int) -> pd.Series:
+    return rma(true_range(df.high, df.low, df.close), n)
+
+
+# ------------------------------------------------------------------- ALMA
+def alma(close: pd.Series, length: int = C.ALMA_LEN,
+         offset: float = C.ALMA_OFFSET, sigma: float = C.ALMA_SIGMA) -> pd.Series:
+    """Arnaud Legoux Moving Average via single FFT-free convolution."""
+    m = offset * (length - 1)
+    s = length / sigma
+    w = np.exp(-((np.arange(length) - m) ** 2) / (2.0 * s * s))
+    w /= w.sum()
+    x = close.to_numpy(dtype=float)
+    out = np.full(len(x), np.nan)
+    if len(x) >= length:
+        out[length - 1:] = np.convolve(x, w[::-1])[length - 1:len(x)]
+    return pd.Series(out, index=close.index)
+
+
+# ------------------------------------------------------------- RSI family
+def rsi_wilder(close: pd.Series, n: int) -> pd.Series:
+    d = close.diff()
+    rs = rma(d.clip(lower=0.0), n) / rma(-d.clip(upper=0.0), n)
+    return 100.0 - 100.0 / (1.0 + rs)
+
+
+def cardwell_zone(rsi: pd.Series) -> pd.Series:
+    """Cardwell dynamic state tagging: Bullish zone 40-80 / Bearish 20-60.
+
+    Causal state machine (single pass): Bull confirms >55, holds ≥40;
+    Bear confirms <45, holds ≤60. Never repaints.
+    """
+    r = rsi.to_numpy(dtype=float)
+    out = np.full(len(r), "NEUTRAL", dtype=object)
+    state = "NEUTRAL"
+    for i, v in enumerate(r):
+        if np.isfinite(v):
+            if state != "BULL_ZONE" and v >= 55.0:
+                state = "BULL_ZONE"
+            elif state == "BULL_ZONE" and v < 40.0:
+                state = "NEUTRAL"
+            if state != "BEAR_ZONE" and v <= 45.0:
+                state = "BEAR_ZONE"
+            elif state == "BEAR_ZONE" and v > 60.0:
+                state = "NEUTRAL"
+        out[i] = state
+    return pd.Series(out, index=rsi.index)
+
+
+# -------------------------------------------------------------------- ADX
+def adx(df: pd.DataFrame, n: int = C.ADX_LEN) -> pd.Series:
+    h, l, c = df.high, df.low, df.close
+    up, dn = h.diff(), -l.diff()
+    plus_dm = pd.Series(np.where((up > dn) & (up > 0), up, 0.0), index=df.index)
+    minus_dm = pd.Series(np.where((dn > up) & (dn > 0), dn, 0.0), index=df.index)
+    atr = rma(true_range(h, l, c), n)
+    plus_di = 100.0 * rma(plus_dm, n) / atr
+    minus_di = 100.0 * rma(minus_dm, n) / atr
+    dx = 100.0 * (plus_di - minus_di).abs() / (plus_di + minus_di)
+    return rma(dx, n)
+
+
+def macd_hist(close: pd.Series, fast: int = 12, slow: int = 26, sig: int = 9) -> pd.Series:
+    dif = close.ewm(span=fast, adjust=False).mean() - close.ewm(span=slow, adjust=False).mean()
+    dea = dif.ewm(span=sig, adjust=False).mean()
+    return dif - dea
+
+
+# --------------------------------------- Anchored Powered KAMA + Welford
+def anchored_kama_welford(close: pd.Series, day_ids: np.ndarray,
+                          band_k: float = C.KAMA_BAND_K):
+    """KAMA anchored at each daily session open, SC = ER², plus online
+    Welford variance of (price − KAMA) → dynamic ±k·σ bands.
+
+    ER/normalisation is fully vectorized; only the two mathematically
+    sequential recursions (KAMA state, Welford accumulators) run in-loop.
+    """
+    c = close.to_numpy(dtype=float)
+    n = len(c)
+    d = np.abs(np.diff(c, prepend=c[0]))
+    # +1: flatnonzero marks the LAST bar of the old session; boundary is the next
+    bounds = np.r_[0, np.flatnonzero(day_ids[1:] != day_ids[:-1]) + 1, n]
+    seg = np.repeat(np.arange(len(bounds) - 1), np.diff(bounds))
+    cumd = np.cumsum(d)
+    start_cum = cumd[bounds[:-1]] - d[bounds[:-1]]
+    within = cumd - start_cum[seg]
+    anchor = c[bounds[:-1]][seg]
+    er = np.where(within > 0.0, np.abs(c - anchor) / np.where(within == 0.0, 1.0, within), 0.0)
+    sc = np.clip(er * er, 0.0, 1.0)
+
+    kama = np.empty(n)
+    std = np.empty(n)
+    prev_seg, k, m, M2, cnt = -1, 0.0, 0.0, 0.0, 0
+    for t in range(n):
+        if seg[t] != prev_seg:                 # new daily session → re-anchor
+            prev_seg, k, m, M2, cnt = seg[t], c[t], 0.0, 0.0, 0
+        if cnt > 0:
+            k = sc[t] * c[t] + (1.0 - sc[t]) * k
+        dev = c[t] - k
+        cnt += 1
+        dd = dev - m
+        m += dd / cnt
+        M2 += dd * (dev - m)
+        kama[t] = k
+        std[t] = np.sqrt(M2 / (cnt - 1)) if cnt > 1 else 0.0
+    slope = np.r_[np.nan, np.diff(kama)]
+    return kama, kama + band_k * std, kama - band_k * std, slope
+
+
+# --------------------------------- Quantized epsilon-midpoint hysteresis
+def hysteresis_bands(high: pd.Series, low: pd.Series, atr53: pd.Series,
+                     eps_mult: float = C.HYST_EPS_MULT,
+                     lookback: int = C.HYST_LOOKBACK):
+    """Slow state: eps = 2.8·ATR53, midpoint of 200-bar rolling max/min.
+    Fast state: pierce of m±eps steps m by exactly eps (stateful stepping).
+    Returns (mid_fast, step_event, persistent_side)."""
+    eps = (eps_mult * atr53).to_numpy(dtype=float)
+    mid_slow = ((high.rolling(lookback).max() + low.rolling(lookback).min()) / 2.0).to_numpy(dtype=float)
+    h, l = high.to_numpy(dtype=float), low.to_numpy(dtype=float)
+    n = len(h)
+    m = np.full(n, np.nan)
+    step = np.zeros(n, dtype=np.int8)
+    side = np.zeros(n, dtype=np.int8)
+    cur, last = np.nan, 0
+    for t in range(n):
+        if not (np.isfinite(mid_slow[t]) and np.isfinite(eps[t])):
+            continue
+        if not np.isfinite(cur):
+            cur = mid_slow[t]
+        if h[t] > cur + eps[t]:
+            cur += eps[t]; step[t] = 1; last = 1
+        elif l[t] < cur - eps[t]:
+            cur -= eps[t]; step[t] = -1; last = -1
+        m[t] = cur
+        side[t] = last
+    return m, step, side
+
+
+# --------------------------------------------------------- Hurst exponent
+def hurst_rolling(close: pd.Series, window: int = C.HURST_LEN,
+                  chunk: int = 200_000) -> pd.Series:
+    """Rolling Hurst via variance-of-lagged-differences regression.
+
+    Uses strided sliding-window views in chunks → constant memory,
+    fully vectorized polyfit across lag set {2,4,8,16,32}.
+    """
+    x = np.log(np.clip(close.to_numpy(dtype=float), 1e-12, None))
+    n = len(x)
+    out = np.full(n, np.nan)
+    taus = np.array([2, 4, 8, 16, 32])
+    lts = np.log(taus)
+    xm = lts - lts.mean()
+    den = float((xm * xm).sum())
+
+    def block(vals: np.ndarray) -> np.ndarray:
+        Y = np.empty((len(vals), len(taus)))
+        for i, t in enumerate(taus):
+            with np.errstate(divide="ignore"):
+                Y[:, i] = np.log((vals[:, t:] - vals[:, :-t]).std(axis=1))
+        bad = ~np.isfinite(Y).all(axis=1)
+        hh = ((Y - Y.mean(axis=1, keepdims=True)) * xm).sum(axis=1) / den
+        hh[bad] = np.nan
+        return hh
+
+    start = 0
+    while start < n:
+        end = min(n, start + chunk)
+        if end - start >= window:
+            sw = np.lib.stride_tricks.sliding_window_view(x[start:end], window)
+            out[start + window - 1:end] = block(sw)
+        start = end
+    return pd.Series(out, index=close.index)
+
+
+# ----------------------------------------------------- full feature matrix
+def compute_matrix(df: pd.DataFrame) -> pd.DataFrame:
+    """One-shot causal feature matrix; used for backtest precomputation and
+    on the rolling window in live mode (identical code → zero divergence)."""
+    df = df.copy()
+    o, h, l, c, v = df.open, df.high, df.low, df.close, df.volume
+
+    df["atr14"] = wilder_atr(df, 14)
+    df["atr53"] = wilder_atr(df, C.ATR_HYST)
+    df["atr14_sma20"] = df["atr14"].rolling(20).mean()
+    df["atr14_sma100"] = df["atr14"].rolling(100).mean()
+    df["vr"] = df["atr14"] / df["atr14_sma100"]
+
+    df["alma200"] = alma(c)
+    df["rsi7"] = rsi_wilder(c, C.RSI_FAST)
+    df["rsi_zone"] = cardwell_zone(df["rsi7"])
+    df["adx14"] = adx(df)
+    df["macd_hist"] = macd_hist(c)
+    df["hurst"] = hurst_rolling(c)
+
+    day_ids = (df.index.astype("int64").to_numpy() // 86_400_000_000_000)
+    k, ku, kl, ks = anchored_kama_welford(c, day_ids)
+    df["kama"], df["kama_hi"], df["kama_lo"], df["kama_slope"] = k, ku, kl, ks
+
+    m, step, side = hysteresis_bands(h, l, df["atr53"])
+    df["hyst_m"], df["hyst_step"], df["hyst_side"] = m, step, side
+
+    df["vol_sma20"] = v.rolling(20).mean()
+
+    rng = (h - l).replace(0.0, np.nan)                       # wick-split proxy
+    df["bar_delta"] = (v * (c - o) / rng).fillna(0.0)        # backtest CVD proxy
+    df["cvd"] = df["bar_delta"].cumsum()
+    df["clv"] = (((c - l) - (h - c)) / rng).fillna(0.0)      # book-imbalance proxy
+
+    df["sfp"] = micro.sfp_signal(o, h, l, c)
+    df["mss"] = micro.mss_signal(o.to_numpy(float), h.to_numpy(float),
+                                 l.to_numpy(float), c.to_numpy(float),
+                                 df["atr14"].to_numpy(float))
+    bt, bb, st_, sb = micro.fvg_levels(h.to_numpy(float), l.to_numpy(float))
+    df["fvg_bull_top"], df["fvg_bull_bot"] = bt, bb
+    df["fvg_bear_top"], df["fvg_bear_bot"] = st_, sb
+
+    # -------- vectorized Strategy-C pre-filter (fast path gating in replay)
+    mh, rs = df["macd_hist"], df["rsi7"]
+    rising = (mh > mh.shift(1)) & (mh.shift(1) > mh.shift(2))
+    falling = (mh < mh.shift(1)) & (mh.shift(1) < mh.shift(2))
+    d1, d2 = rs - rs.shift(1), rs.shift(1) - rs.shift(2)
+    volburst = df["volume"] > 1.5 * df["vol_sma20"]
+    df["cand_c"] = np.where(rising & (d1 > d2) & (d2 > 0) & volburst, np.int8(1),
+                    np.where(falling & (d1 < d2) & (d2 < 0) & volburst, np.int8(-1), np.int8(0)))
+    df["cand"] = (df["mss"] != 0) | (df["sfp"] != 0) | (df["cand_c"] != 0)
+    return df
