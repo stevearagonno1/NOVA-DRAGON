@@ -1,0 +1,10 @@
+NOVA_V8 — adaptive_trend sleeve report
+
+selected: True
+records: 11
+wins: 1 (9.09%)
+losses: 10 (90.91%)
+net_usd: -22.1236
+
+
+هذه وحدة مستقلة؛ لا تدخل Baseline إلا عند اختيارها صراحة.

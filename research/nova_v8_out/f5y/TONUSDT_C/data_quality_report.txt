@@ -1,0 +1,5 @@
+NOVA_V8 — تقرير جودة البيانات / Data Quality
+
+[TONUSDT] rows=435060 bad_ohlcv=0 negative_volume=0 large_gaps=0 max_gap_min=1.00 issues=[]
+
+الوضع: warn; strict يوقف التشغيل عند مشاكل البيانات.

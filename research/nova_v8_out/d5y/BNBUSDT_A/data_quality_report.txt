@@ -1,0 +1,5 @@
+NOVA_V8 — تقرير جودة البيانات / Data Quality
+
+[BNBUSDT] rows=1006361 bad_ohlcv=0 negative_volume=0 large_gaps=2 max_gap_min=121.00 issues=["large_gaps"]
+
+الوضع: warn; strict يوقف التشغيل عند مشاكل البيانات.

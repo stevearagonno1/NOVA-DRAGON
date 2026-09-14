@@ -1,0 +1,10 @@
+NOVA_V8 — donchian sleeve report
+
+selected: True
+records: 373
+wins: 116 (31.10%)
+losses: 257 (68.90%)
+net_usd: -728.9816
+
+
+هذه وحدة مستقلة؛ لا تدخل Baseline إلا عند اختيارها صراحة.

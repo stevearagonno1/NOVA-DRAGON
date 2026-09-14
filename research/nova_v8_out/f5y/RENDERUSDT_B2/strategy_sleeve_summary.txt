@@ -1,0 +1,7 @@
+NOVA_V8 — Strategy Sleeve Summary
+
+long_cycle: selected=True records=0 net=0.0000 win_pct=0.00
+market_open: selected=True records=149 net=-9.9058 win_pct=5.37
+dynamic_grid: selected=True records=1 net=5.0265 win_pct=100.00
+donchian: selected=True records=108 net=533.4175 win_pct=41.67
+adaptive_trend: selected=True records=45 net=-119.4614 win_pct=15.56

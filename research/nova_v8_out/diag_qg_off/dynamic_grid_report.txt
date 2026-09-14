@@ -1,0 +1,10 @@
+NOVA_V8 — dynamic_grid sleeve report
+
+selected: True
+records: 4
+wins: 2 (50.00%)
+losses: 2 (50.00%)
+net_usd: -0.0595
+resets: 0
+
+هذه وحدة مستقلة؛ لا تدخل Baseline إلا عند اختيارها صراحة.

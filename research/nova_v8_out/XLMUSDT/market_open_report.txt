@@ -1,0 +1,10 @@
+NOVA_V8 — market_open sleeve report
+
+selected: True
+records: 81
+wins: 5 (6.17%)
+losses: 76 (93.83%)
+net_usd: -5.3305
+
+
+هذه وحدة مستقلة؛ لا تدخل Baseline إلا عند اختيارها صراحة.

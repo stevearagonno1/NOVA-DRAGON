@@ -1,0 +1,10 @@
+NOVA_V8 — long_cycle sleeve report
+
+selected: True
+records: 2
+wins: 1 (50.00%)
+losses: 1 (50.00%)
+net_usd: 21.4623
+
+
+هذه وحدة مستقلة؛ لا تدخل Baseline إلا عند اختيارها صراحة.
