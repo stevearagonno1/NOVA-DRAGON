@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_EXT_MAX
+ETHUSDT,1,ok,-4889.968414003366,1932,-5798.90945408668,2212,21.56,0.43923251597051843,False,0.5

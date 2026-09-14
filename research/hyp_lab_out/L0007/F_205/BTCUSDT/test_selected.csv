@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_COOLDOWN_S,sel_NOVA_MAX_PER
+BTCUSDT,2,ok,-11896.917966158131,5049,-15090.851559860328,5991,15.01,0.27849996760630297,False,120.0,2
