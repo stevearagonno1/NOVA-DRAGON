@@ -1,0 +1,9 @@
+# F_192 — 2026-06-01→2026-09-01 — 4 رموز — 4 تركيبة — 0.6 ث
+  net=      4.02$ trades=   1 win=100.0% NOVA_EXT_MAX=-0.15 | LINKUSDT
+  net=      0.00$ trades=   0 win=  0.0% NOVA_EXT_MAX=-0.15 | BTCUSDT
+  net=      0.00$ trades=   0 win=  0.0% NOVA_EXT_MAX=-0.15 | SOLUSDT
+  net=      0.00$ trades=   0 win=  0.0% NOVA_EXT_MAX=-0.15 | BNBUSDT
+  net=   -132.75$ trades=  68 win= 30.9% NOVA_EXT_MAX=0.1 | LINKUSDT
+  net=   -148.13$ trades=  69 win= 24.6% NOVA_EXT_MAX=0.1 | SOLUSDT
+  net=   -188.36$ trades=  78 win= 15.4% NOVA_EXT_MAX=0.1 | BTCUSDT
+  net=   -235.49$ trades=  77 win= 14.3% NOVA_EXT_MAX=0.1 | BNBUSDT
