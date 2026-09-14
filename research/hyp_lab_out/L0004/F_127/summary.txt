@@ -1,0 +1,9 @@
+# F_127 — 2026-06-01→2026-09-01 — 4 رموز — 4 تركيبة — 0.7 ث
+  net=   -513.65$ trades= 231 win= 18.6% NOVA_DISP_MIN=2.0 | BNBUSDT
+  net=   -639.51$ trades= 244 win= 23.8% NOVA_DISP_MIN=2.0 | LINKUSDT
+  net=   -640.51$ trades= 312 win= 15.1% NOVA_DISP_MIN=2.0 | BTCUSDT
+  net=   -729.52$ trades= 242 win= 17.8% NOVA_DISP_MIN=2.0 | SOLUSDT
+  net=   -886.69$ trades= 353 win= 24.4% NOVA_DISP_MIN=1.6 | LINKUSDT
+  net=   -952.37$ trades= 384 win= 24.5% NOVA_DISP_MIN=1.5 | LINKUSDT
+  net=   -962.62$ trades= 376 win= 15.4% NOVA_DISP_MIN=1.6 | BNBUSDT
+  net=  -1054.83$ trades= 383 win= 21.7% NOVA_DISP_MIN=1.6 | SOLUSDT
