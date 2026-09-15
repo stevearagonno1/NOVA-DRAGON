@@ -2,3 +2,4 @@ __pycache__/
 *.pyc
 .venv/
 crypto_archive/*__matrix_*
+data/
