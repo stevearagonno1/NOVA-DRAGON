@@ -1,5 +1,5 @@
 # L0007 — إعادة المقاسات على 5 سنوات — أفضل (اختبار) لكل تجربة×رمز — شبكة 1h
-# مدة التشغيل: 13.8 ث
+# مدة التشغيل: 19.9 ث
   F_126 ETHUSDT: test_net=58.14$ trades=155 win=36.8% PF=1.03 gate=لا | sel={'NOVA_BODY_RATIO': 0.6, 'NOVA_RANGE_ATR': 1.0, 'NOVA_LOOKBACK': 50} | train_net=-342.93$ | ok
   F_126 XLMUSDT: test_net=-186.22$ trades=369 win=33.3% PF=0.97 gate=لا | sel={'NOVA_BODY_RATIO': 0.6, 'NOVA_RANGE_ATR': 0.8, 'NOVA_LOOKBACK': 10} | train_net=683.86$ | ok
   F_126 FILUSDT: test_net=-939.20$ trades=162 win=29.0% PF=0.71 gate=لا | sel={'NOVA_BODY_RATIO': 0.5, 'NOVA_RANGE_ATR': 1.0, 'NOVA_LOOKBACK': 50} | train_net=-498.49$ | ok

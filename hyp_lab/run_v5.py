@@ -34,7 +34,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from common import load, to_5m, to_bars, TF_MINUTES, atr, simulate  # noqa: E402
+from common import load, to_5m, to_bars, TF_MINUTES, atr, simulate, trade_rows  # noqa: E402
 
 import F_126_mss_core as M126  # noqa: E402
 import F_127_disp_gate as M127  # noqa: E402
@@ -49,6 +49,9 @@ WARM_START = "2023-06-01"          # دفء المؤشرات قبل بداية �
 TRAIN_START, TRAIN_END = "2023-09-01", "2024-12-31"
 TEST_START, TEST_END = "2025-01-01", "2026-08-31"
 GATE_PF, GATE_TRADES = 1.3, 100
+# أعمدة trades.csv (عبر common.trade_rows) — تُكتب فقط مع --trades (لا يُنتجها المسار الافتراضي)
+TRADE_COLS = ["symbol", "exp", "entry_time", "exit_time", "entry", "exit",
+              "notional", "pnl", "r_mult", "exit_side", "bars_held"]
 
 EXPS = {
     "F_126": M126,
@@ -116,7 +119,8 @@ def stats_row(st: dict, trades: list[dict]) -> dict:
     return {"net": st["net"], "trades": st["trades"], "win_pct": st["win_pct"], "pf": pf_of(trades)}
 
 
-def run_exp(exp: str, frames: dict[str, pd.DataFrame], out: pathlib.Path, bar_secs: int = 300) -> list[dict]:
+def run_exp(exp: str, frames: dict[str, pd.DataFrame], out: pathlib.Path, bar_secs: int = 300,
+            dump_trades: bool = False) -> list[dict]:
     mod = EXPS[exp]
     base = out / exp
     base.mkdir(parents=True, exist_ok=True)
@@ -150,6 +154,9 @@ def run_exp(exp: str, frames: dict[str, pd.DataFrame], out: pathlib.Path, bar_se
             for k in param_cols(exp):
                 trow[f"sel_{k}"] = np.nan
             pd.DataFrame([trow]).to_csv(symdir / "test_selected.csv", index=False, encoding="utf-8-sig")
+            if dump_trades:   # لا صفقات هنا → ملف رأس فارغ (صفر صفقات موثق لا ملف مفقود)
+                pd.DataFrame(columns=TRADE_COLS).to_csv(symdir / "trades.csv", index=False,
+                                                        encoding="utf-8-sig")
             train_rows.append(tdf)
             test_rows.append(pd.DataFrame([trow]))
             print(f"  {exp}/{sym}: بلا تركيبة غير متحللة (كل تركيبات التدريب <100 صفقة)", flush=True)
@@ -180,6 +187,9 @@ def run_exp(exp: str, frames: dict[str, pd.DataFrame], out: pathlib.Path, bar_se
             trow[f"sel_{k}"] = bc[k]
         tdf_t = pd.DataFrame([trow])
         tdf_t.to_csv(symdir / "test_selected.csv", index=False, encoding="utf-8-sig")
+        if dump_trades:   # صفقات التركيبة المنتقاة على نافذة الاختبار (لا يغيّر أي حساب)
+            pd.DataFrame(trade_rows(sym, exp, trades_t), columns=TRADE_COLS
+                         ).to_csv(symdir / "trades.csv", index=False, encoding="utf-8-sig")
         train_rows.append(tdf)
         test_rows.append(tdf_t)
         print(f"  {exp}/{sym}: تدريب {len(tr)} شمعة → اختبار {len(te)} شمعة | "
@@ -198,6 +208,9 @@ def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
         description="L0007 — نفس بروتوكول تدريب/اختبار على 5m/1h/4h (التكاليف 0.13%/طرف ثابتة)")
     ap.add_argument("--tf", choices=sorted(TF_MINUTES), default="5m",
                     help="شبكة الشموع: 5m (الافتراضي — مخرجاته مرجع L0007 المودعة) | 1h | 4h")
+    ap.add_argument("--trades", action="store_true",
+                    help="يحفظ trades.csv للتركيبة المنتقاة على نافذة الاختبار (إضافة لا تلمس "
+                         "بقية الملفات؛ المسار الافتراضي بلا --trades لا يُنتجها — شرط مطابقة 5m)")
     return ap.parse_args(argv)
 
 
@@ -235,7 +248,7 @@ def main() -> int:
     verdicts = {}
     for exp in EXPS:
         print(f"[{exp}]", flush=True)
-        verdicts[exp] = run_exp(exp, frames, out, bar_secs=bar_secs)
+        verdicts[exp] = run_exp(exp, frames, out, bar_secs=bar_secs, dump_trades=args.trades)
 
     # 3) env dump + summary
     import platform
