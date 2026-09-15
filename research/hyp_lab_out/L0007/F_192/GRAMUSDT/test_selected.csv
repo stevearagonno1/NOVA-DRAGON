@@ -1,2 +1,2 @@
 ﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_EXT_MAX
-GRAMUSDT,1,ok,-1735.822638947398,613,-6634.381250083255,2101,21.56,0.45308743443621197,False,0.5
+GRAMUSDT,1,ok,-340.28902838768295,105,-1495.2063198483952,436,21.56,0.3965154349748203,False,0.1

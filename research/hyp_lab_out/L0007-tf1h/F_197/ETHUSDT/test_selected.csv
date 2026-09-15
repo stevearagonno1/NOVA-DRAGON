@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_EXIT,sel_NOVA_TRIG,sel_NOVA_LOCK
+ETHUSDT,1,ok,-23.566320072471775,343,987.4557338452395,364,79.4,1.7486728429235279,True,dual,0.0025,0.0045

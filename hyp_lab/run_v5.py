@@ -14,8 +14,15 @@
 المخرجات: research/hyp_lab_out/L0007/<exp>/<sym>/{sweep_train.csv, test_selected.csv}
           + <exp>/all_symbols_{train,test}.csv + env_dump.txt + summary.txt
 حتمية: بلا عشوائية — إعادة التشغيل مطابقة بايت-ببايت (عدا سطر مدة التشغيل).
+
+الفريم (--tf): 5m (الافتراضي) | 1h | 4h — نفس البروتوكول والشبكات والتكاليف (0.13%/طرف).
+  - 5m: المخرجات في L0007 (المرجعية — شرط القبول: مطابقة بايت‑ببايت للملفات المودعة).
+  - 1h/4h: المخرجات في L0007-tf1h / L0007-tf4h (لا تلمس المرجع).
+  سبب الخيار (مقاس — AUDIT-L0007): على 5m كسر التعادل يحتاج فوزاً 68.4% (الساعة 41.4%،
+  و4 ساعات 37.2%) وأعلى فوز بلغته F-197 هو 62.8% ⇒ «0/40» حكم على الفريم لا على الفرضيات.
 """
 from __future__ import annotations
+import argparse
 import hashlib
 import itertools
 import json
@@ -27,7 +34,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from common import load, to_5m, atr, simulate  # noqa: E402
+from common import load, to_5m, to_bars, TF_MINUTES, atr, simulate  # noqa: E402
 
 import F_126_mss_core as M126  # noqa: E402
 import F_127_disp_gate as M127  # noqa: E402
@@ -82,7 +89,7 @@ def signals_for(exp: str, df: pd.DataFrame, combo: dict) -> pd.Series:
     if exp == "F_197":
         return M126.mss_signal(df)  # سائق MSS (نواة F-126 بالقيم الافتراضية) — نفس L‑0006
     if exp == "F_205":
-        return M205.make_signals(df)  # سائق MSS على الشبكة (هنا 5m) — التهديئة في simulate
+        return M205.make_signals(df)  # سائق MSS على شبكة الجولة — التهديئة في simulate
     return EXPS[exp].make_signals(df, **combo)
 
 
@@ -109,7 +116,7 @@ def stats_row(st: dict, trades: list[dict]) -> dict:
     return {"net": st["net"], "trades": st["trades"], "win_pct": st["win_pct"], "pf": pf_of(trades)}
 
 
-def run_exp(exp: str, frames: dict[str, pd.DataFrame], out: pathlib.Path) -> list[dict]:
+def run_exp(exp: str, frames: dict[str, pd.DataFrame], out: pathlib.Path, bar_secs: int = 300) -> list[dict]:
     mod = EXPS[exp]
     base = out / exp
     base.mkdir(parents=True, exist_ok=True)
@@ -125,7 +132,7 @@ def run_exp(exp: str, frames: dict[str, pd.DataFrame], out: pathlib.Path) -> lis
         rows = []
         for combo in combos_for(exp):
             sig = signals_for(exp, tr, combo)
-            st, trades = simulate(tr, sig, tr_a, notional=1000, bar_secs=300, **sim_kwargs(exp, combo))
+            st, trades = simulate(tr, sig, tr_a, notional=1000, bar_secs=bar_secs, **sim_kwargs(exp, combo))
             r = {"symbol": sym}
             r.update(combo_row(exp, combo))
             r.update(stats_row(st, trades))
@@ -147,8 +154,10 @@ def run_exp(exp: str, frames: dict[str, pd.DataFrame], out: pathlib.Path) -> lis
             test_rows.append(pd.DataFrame([trow]))
             print(f"  {exp}/{sym}: بلا تركيبة غير متحللة (كل تركيبات التدريب <100 صفقة)", flush=True)
             continue
-        best_i = int(cand["net"].idxmax())
-        best = cand.iloc[best_i]
+        # فخ موثق (انكشف على 1h/4h): idxmax يُعيد تسمية الصف في tdf لا موقعه في cand —
+        # القياس على ملفات 5m المودعة: loc≡iloc في 0/40 خلية (الإصلاح لا يغيّر 5m بايتاً).
+        best_label = int(cand["net"].idxmax())
+        best = cand.loc[best_label]
         n_ties = int((cand["net"] == best["net"]).sum())
         bc = {k: best[k] for k in param_cols(exp)}
         if exp == "F_197":
@@ -161,7 +170,7 @@ def run_exp(exp: str, frames: dict[str, pd.DataFrame], out: pathlib.Path) -> lis
         trow_status = "ok"
 
         sig_t = signals_for(exp, te, bcombo)
-        st_t, trades_t = simulate(te, sig_t, te_a, notional=1000, bar_secs=300, **sim_kwargs(exp, bcombo))
+        st_t, trades_t = simulate(te, sig_t, te_a, notional=1000, bar_secs=bar_secs, **sim_kwargs(exp, bcombo))
         trow = {"symbol": sym, "n_ties_train": n_ties, "sel_status": trow_status,
                 "train_net": best["net"], "train_trades": int(best["trades"]),
                 "test_net": st_t["net"], "test_trades": st_t["trades"],
@@ -184,9 +193,22 @@ def run_exp(exp: str, frames: dict[str, pd.DataFrame], out: pathlib.Path) -> lis
     return allt.to_dict("records")
 
 
+def parse_args(argv: list[str] | None = None) -> argparse.Namespace:
+    ap = argparse.ArgumentParser(
+        description="L0007 — نفس بروتوكول تدريب/اختبار على 5m/1h/4h (التكاليف 0.13%/طرف ثابتة)")
+    ap.add_argument("--tf", choices=sorted(TF_MINUTES), default="5m",
+                    help="شبكة الشموع: 5m (الافتراضي — مخرجاته مرجع L0007 المودعة) | 1h | 4h")
+    return ap.parse_args(argv)
+
+
 def main() -> int:
+    args = parse_args()
+    tf = args.tf
+    minutes = TF_MINUTES[tf]
+    bar_secs = minutes * 60
     t0 = time.time()
-    out = REPO / "research" / "hyp_lab_out" / "L0007"
+    # 5m → L0007 (المرجع). 1h/4h → L0007-tf1h / L0007-tf4h (لا تُلمَس المرجعية).
+    out = REPO / "research" / "hyp_lab_out" / ("L0007" if tf == "5m" else f"L0007-tf{tf}")
     out.mkdir(parents=True, exist_ok=True)
 
     # 0) الكاناري إلزامي (بوابة سلامة)
@@ -200,20 +222,20 @@ def main() -> int:
         return 1
     print(f"الكاناري: PASS (net={canary['got']['net']} trades={canary['got']['trades']})", flush=True)
 
-    # 1) تحميل + شبكة 5m + بصمات
+    # 1) تحميل + شبكة الفريم (5m عبر to_5m نفسها — مطابقة مرجعية) + بصمات
     frames, sha = {}, {}
     for sym in SYMBOLS:
         p = ARCHIVE / f"{sym}_1m.parquet"
         sha[sym] = hashlib.sha256(p.read_bytes()).hexdigest()[:16]
         df1m = load(str(p), start=WARM_START, end=TEST_END)
-        frames[sym] = to_5m(df1m)
-        print(f"{sym}: {len(frames[sym]):,} شمعة 5m ({frames[sym].index[0]} → {frames[sym].index[-1]})", flush=True)
+        frames[sym] = to_5m(df1m) if minutes == 5 else to_bars(df1m, minutes)
+        print(f"{sym}: {len(frames[sym]):,} شمعة {tf} ({frames[sym].index[0]} → {frames[sym].index[-1]})", flush=True)
 
     # 2) الجولات
     verdicts = {}
     for exp in EXPS:
         print(f"[{exp}]", flush=True)
-        verdicts[exp] = run_exp(exp, frames, out)
+        verdicts[exp] = run_exp(exp, frames, out, bar_secs=bar_secs)
 
     # 3) env dump + summary
     import platform
@@ -221,10 +243,12 @@ def main() -> int:
         f"python={platform.python_version()}\n"
         f"pandas={pd.__version__}\nnumpy={np.__version__}\n"
         f"window: train={TRAIN_START}→{TRAIN_END} | test={TEST_START}→{TEST_END}\n"
-        f"cost=0.13%/side | notional=1000$ | bar=5m | canary={canary['got']['net']}\n"
+        f"cost=0.13%/side | notional=1000$ | bar={tf} | canary={canary['got']['net']}\n"
         + "".join(f"sha256[:16] {k}={v}\n" for k, v in sha.items()), encoding="utf-8")
-    lines = ["# L0007 — إعادة المقاسات على 5 سنوات — أفضل (اختبار) لكل تجربة×رمز",
-             f"# مدة التشغيل: {time.time()-t0:.1f} ث"]
+    title = "# L0007 — إعادة المقاسات على 5 سنوات — أفضل (اختبار) لكل تجربة×رمز"
+    if tf != "5m":
+        title += f" — شبكة {tf}"
+    lines = [title, f"# مدة التشغيل: {time.time()-t0:.1f} ث"]
     for exp, rows in verdicts.items():
         df = pd.DataFrame(rows).sort_values("test_net", ascending=False)
         for _, x in df.head(4).iterrows():

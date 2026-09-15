@@ -1,0 +1,22 @@
+# L0007 — إعادة المقاسات على 5 سنوات — أفضل (اختبار) لكل تجربة×رمز — شبكة 4h
+# مدة التشغيل: 11.7 ث
+  F_126 SOLUSDT: test_net=284.98$ trades=133 win=35.3% PF=1.07 gate=لا | sel={'NOVA_BODY_RATIO': 0.4, 'NOVA_RANGE_ATR': 1.0, 'NOVA_LOOKBACK': 10.0} | train_net=2004.60$ | ok
+  F_126 GRAMUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_BODY_RATIO': nan, 'NOVA_RANGE_ATR': nan, 'NOVA_LOOKBACK': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_126 RENDERUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_BODY_RATIO': nan, 'NOVA_RANGE_ATR': nan, 'NOVA_LOOKBACK': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_126 BTCUSDT: test_net=-562.01$ trades=138 win=29.7% PF=0.76 gate=لا | sel={'NOVA_BODY_RATIO': 0.4, 'NOVA_RANGE_ATR': 0.8, 'NOVA_LOOKBACK': 10.0} | train_net=618.46$ | ok
+  F_127 BTCUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_DISP_MIN': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_127 ETHUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_DISP_MIN': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_127 SOLUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_DISP_MIN': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_127 XLMUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_DISP_MIN': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_192 BTCUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_EXT_MAX': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_192 ETHUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_EXT_MAX': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_192 SOLUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_EXT_MAX': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_192 XLMUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_EXT_MAX': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_197 SOLUSDT: test_net=721.42$ trades=114 win=86.0% PF=2.11 gate=نعم | sel={'NOVA_EXIT': 'dual', 'NOVA_TRIG': 0.0025, 'NOVA_LOCK': 0.0045} | train_net=1336.61$ | ok
+  F_197 ETHUSDT: test_net=663.09$ trades=110 win=85.5% PF=2.16 gate=نعم | sel={'NOVA_EXIT': 'dual', 'NOVA_TRIG': 0.0025, 'NOVA_LOCK': 0.0045} | train_net=609.67$ | ok
+  F_197 BTCUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_EXIT': nan, 'NOVA_TRIG': nan, 'NOVA_LOCK': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_197 XLMUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_EXIT': nan, 'NOVA_TRIG': nan, 'NOVA_LOCK': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_205 XLMUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_COOLDOWN_S': nan, 'NOVA_MAX_PER': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_205 GRAMUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_COOLDOWN_S': nan, 'NOVA_MAX_PER': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_205 RENDERUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_COOLDOWN_S': nan, 'NOVA_MAX_PER': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_205 ETHUSDT: test_net=-99.20$ trades=119 win=34.5% PF=0.97 gate=لا | sel={'NOVA_COOLDOWN_S': 120.0, 'NOVA_MAX_PER': 2.0} | train_net=128.41$ | ok

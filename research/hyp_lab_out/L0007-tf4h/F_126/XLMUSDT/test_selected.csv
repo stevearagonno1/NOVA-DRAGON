@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_BODY_RATIO,sel_NOVA_RANGE_ATR,sel_NOVA_LOOKBACK
+XLMUSDT,1,ok,15.503540427112995,108,-1386.1007441338631,129,29.46,0.7031425537770998,False,0.4,0.6,10

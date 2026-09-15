@@ -1,5 +1,5 @@
 # L0007 — إعادة المقاسات على 5 سنوات — أفضل (اختبار) لكل تجربة×رمز
-# مدة التشغيل: 51.6 ث
+# مدة التشغيل: 38.5 ث
   F_126 LINKUSDT: test_net=-5399.67$ trades=1802 win=24.7% PF=0.54 gate=لا | sel={'NOVA_BODY_RATIO': 0.6, 'NOVA_RANGE_ATR': 1.0, 'NOVA_LOOKBACK': 50} | train_net=-4296.34$ | ok
   F_126 GRAMUSDT: test_net=-5411.51$ trades=1733 win=22.4% PF=0.48 gate=لا | sel={'NOVA_BODY_RATIO': 0.6, 'NOVA_RANGE_ATR': 1.0, 'NOVA_LOOKBACK': 50} | train_net=-1375.23$ | ok
   F_126 XLMUSDT: test_net=-5423.40$ trades=2006 win=24.9% PF=0.56 gate=لا | sel={'NOVA_BODY_RATIO': 0.6, 'NOVA_RANGE_ATR': 1.0, 'NOVA_LOOKBACK': 50} | train_net=-3292.99$ | ok
@@ -8,10 +8,10 @@
   F_127 GRAMUSDT: test_net=-2736.72$ trades=927 win=23.4% PF=0.51 gate=لا | sel={'NOVA_DISP_MIN': 2.0} | train_net=-702.02$ | ok
   F_127 FILUSDT: test_net=-2911.85$ trades=1158 win=26.7% PF=0.59 gate=لا | sel={'NOVA_DISP_MIN': 2.0} | train_net=-1854.04$ | ok
   F_127 XLMUSDT: test_net=-2982.37$ trades=1213 win=25.5% PF=0.58 gate=لا | sel={'NOVA_DISP_MIN': 2.0} | train_net=-2197.92$ | ok
-  F_192 FILUSDT: test_net=-5723.84$ trades=2043 win=24.6% PF=0.55 gate=لا | sel={'NOVA_EXT_MAX': 0.5} | train_net=-4445.52$ | ok
-  F_192 ETHUSDT: test_net=-5798.91$ trades=2212 win=21.6% PF=0.44 gate=لا | sel={'NOVA_EXT_MAX': 0.5} | train_net=-4889.97$ | ok
-  F_192 XLMUSDT: test_net=-5858.50$ trades=2031 win=23.0% PF=0.53 gate=لا | sel={'NOVA_EXT_MAX': 0.5} | train_net=-3210.39$ | ok
-  F_192 RENDERUSDT: test_net=-5992.53$ trades=2234 win=26.9% PF=0.61 gate=لا | sel={'NOVA_EXT_MAX': 0.5} | train_net=-1876.69$ | ok
+  F_192 XLMUSDT: test_net=-1013.75$ trades=386 win=23.6% PF=0.56 gate=لا | sel={'NOVA_EXT_MAX': 0.1} | train_net=-1275.73$ | ok
+  F_192 LINKUSDT: test_net=-1079.93$ trades=425 win=25.2% PF=0.57 gate=لا | sel={'NOVA_EXT_MAX': 0.1} | train_net=-1158.79$ | ok
+  F_192 ETHUSDT: test_net=-1170.94$ trades=505 win=22.6% PF=0.49 gate=لا | sel={'NOVA_EXT_MAX': 0.1} | train_net=-1434.90$ | ok
+  F_192 FILUSDT: test_net=-1382.87$ trades=403 win=22.6% PF=0.45 gate=لا | sel={'NOVA_EXT_MAX': 0.1} | train_net=-1261.08$ | ok
   F_197 RENDERUSDT: test_net=-4316.27$ trades=4699 win=59.5% PF=0.73 gate=لا | sel={'NOVA_EXIT': 'dual', 'NOVA_TRIG': 0.0025, 'NOVA_LOCK': 0.0045} | train_net=-1026.78$ | ok
   F_197 FILUSDT: test_net=-5227.74$ trades=4438 win=53.2% PF=0.66 gate=لا | sel={'NOVA_EXIT': 'dual', 'NOVA_TRIG': 0.0025, 'NOVA_LOCK': 0.0045} | train_net=-4393.68$ | ok
   F_197 GRAMUSDT: test_net=-5288.78$ trades=4063 win=49.8% PF=0.61 gate=لا | sel={'NOVA_EXIT': 'dual', 'NOVA_TRIG': 0.0025, 'NOVA_LOCK': 0.0045} | train_net=-1708.49$ | ok

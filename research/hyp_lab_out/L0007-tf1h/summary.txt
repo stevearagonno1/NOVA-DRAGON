@@ -1,0 +1,22 @@
+# L0007 — إعادة المقاسات على 5 سنوات — أفضل (اختبار) لكل تجربة×رمز — شبكة 1h
+# مدة التشغيل: 13.8 ث
+  F_126 ETHUSDT: test_net=58.14$ trades=155 win=36.8% PF=1.03 gate=لا | sel={'NOVA_BODY_RATIO': 0.6, 'NOVA_RANGE_ATR': 1.0, 'NOVA_LOOKBACK': 50} | train_net=-342.93$ | ok
+  F_126 XLMUSDT: test_net=-186.22$ trades=369 win=33.3% PF=0.97 gate=لا | sel={'NOVA_BODY_RATIO': 0.6, 'NOVA_RANGE_ATR': 0.8, 'NOVA_LOOKBACK': 10} | train_net=683.86$ | ok
+  F_126 FILUSDT: test_net=-939.20$ trades=162 win=29.0% PF=0.71 gate=لا | sel={'NOVA_BODY_RATIO': 0.5, 'NOVA_RANGE_ATR': 1.0, 'NOVA_LOOKBACK': 50} | train_net=-498.49$ | ok
+  F_126 BTCUSDT: test_net=-1173.84$ trades=468 win=29.5% PF=0.72 gate=لا | sel={'NOVA_BODY_RATIO': 0.5, 'NOVA_RANGE_ATR': 0.8, 'NOVA_LOOKBACK': 10} | train_net=125.66$ | ok
+  F_127 RENDERUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_DISP_MIN': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_127 GRAMUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_DISP_MIN': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_127 FILUSDT: test_net=-107.86$ trades=193 win=34.7% PF=0.97 gate=لا | sel={'NOVA_DISP_MIN': 1.5} | train_net=-346.10$ | ok
+  F_127 XLMUSDT: test_net=-124.95$ trades=189 win=32.8% PF=0.96 gate=لا | sel={'NOVA_DISP_MIN': 1.6} | train_net=420.59$ | ok
+  F_192 ETHUSDT: test_net=63.16$ trades=149 win=37.6% PF=1.03 gate=لا | sel={'NOVA_EXT_MAX': 0.5} | train_net=-1000.76$ | ok
+  F_192 GRAMUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_EXT_MAX': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_192 RENDERUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel={'NOVA_EXT_MAX': nan} | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_192 XLMUSDT: test_net=-443.44$ trades=160 win=32.5% PF=0.84 gate=لا | sel={'NOVA_EXT_MAX': 0.5} | train_net=100.22$ | ok
+  F_197 FILUSDT: test_net=2133.99$ trades=365 win=83.8% PF=2.46 gate=نعم | sel={'NOVA_EXIT': 'dual', 'NOVA_TRIG': 0.0025, 'NOVA_LOCK': 0.0045} | train_net=1266.78$ | ok
+  F_197 LINKUSDT: test_net=1537.72$ trades=373 win=87.7% PF=2.50 gate=نعم | sel={'NOVA_EXIT': 'dual', 'NOVA_TRIG': 0.0025, 'NOVA_LOCK': 0.0045} | train_net=1524.51$ | ok
+  F_197 XLMUSDT: test_net=1446.14$ trades=390 win=82.0% PF=1.94 gate=نعم | sel={'NOVA_EXIT': 'dual', 'NOVA_TRIG': 0.0025, 'NOVA_LOCK': 0.0045} | train_net=1238.22$ | ok
+  F_197 RENDERUSDT: test_net=1354.01$ trades=414 win=77.3% PF=1.53 gate=نعم | sel={'NOVA_EXIT': 'dual', 'NOVA_TRIG': 0.005, 'NOVA_LOCK': 0.0045} | train_net=173.89$ | ok
+  F_205 ETHUSDT: test_net=244.97$ trades=397 win=36.5% PF=1.05 gate=لا | sel={'NOVA_COOLDOWN_S': 120.0, 'NOVA_MAX_PER': 2} | train_net=-1477.46$ | ok
+  F_205 XLMUSDT: test_net=-521.53$ trades=406 win=34.0% PF=0.93 gate=لا | sel={'NOVA_COOLDOWN_S': 120.0, 'NOVA_MAX_PER': 2} | train_net=639.37$ | ok
+  F_205 SOLUSDT: test_net=-637.80$ trades=441 win=34.0% PF=0.91 gate=لا | sel={'NOVA_COOLDOWN_S': 120.0, 'NOVA_MAX_PER': 2} | train_net=483.47$ | ok
+  F_205 FILUSDT: test_net=-657.44$ trades=395 win=33.9% PF=0.91 gate=لا | sel={'NOVA_COOLDOWN_S': 120.0, 'NOVA_MAX_PER': 2} | train_net=-207.25$ | ok
