@@ -82,7 +82,7 @@ def main() -> int:
             say(f"  تجهيز البيانات من {src} …")
             try:
                 os.link(src, parquet)                              # hardlink: صفر نسخة
-            except OSError:
+            except (OSError, AttributeError):        # AttributeError: os.link غير موجود على تيرمكس/أندرويد
                 shutil.copy2(src, parquet)
         os.environ["NOVA_ARCHIVE"] = str(archive)
     else:
