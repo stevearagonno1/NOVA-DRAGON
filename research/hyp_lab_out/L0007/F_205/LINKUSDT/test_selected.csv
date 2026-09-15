@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_COOLDOWN_S,sel_NOVA_MAX_PER
+LINKUSDT,2,ok,-9536.878448539934,4503,-12161.861203895154,4552,25.57,0.569381252755394,False,120.0,2

@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_BODY_RATIO,sel_NOVA_RANGE_ATR,sel_NOVA_LOOKBACK
+RENDERUSDT,1,ok,-1888.304653427998,556,-5758.541327515555,2134,26.34,0.6124001802239853,False,0.6,1.0,50

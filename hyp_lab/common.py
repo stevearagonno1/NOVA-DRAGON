@@ -24,9 +24,15 @@ BASE_NOTIONAL = 1000.0
 
 
 def load(path: str, start: str | None = None, end: str | None = None) -> pd.DataFrame:
-    """قراءة باركيه دقي (open_time ميكروثواني UTC) → إطار دقي مرتب."""
+    """قراءة باركيه دقي → إطار دقي مرتب.
+
+    وحدة open_time تُكتشف من حجمها: data/ بالميكروثانية (≈1.8e15) و
+    crypto_archive/ بالميلي ثانية (≈1.6e12) — عتبة 1e14 تفصل الواقعيين.
+    """
     df = pd.read_parquet(path)
-    ts = pd.to_datetime(df["open_time"], unit="us", utc=True)
+    v = int(df["open_time"].iloc[0])
+    unit = "ms" if abs(v) < 10**14 else "us"
+    ts = pd.to_datetime(df["open_time"], unit=unit, utc=True)
     out = df[["open", "high", "low", "close", "volume"]].astype(float).copy()
     out.index = ts
     out = out[~out.index.duplicated(keep="first")].sort_index()
