@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_BODY_RATIO,sel_NOVA_RANGE_ATR,sel_NOVA_LOOKBACK
+ETHUSDT,1,ok,-342.9347709018865,157,58.14004367236544,155,36.77,1.0291931493513922,False,0.6,1.0,50

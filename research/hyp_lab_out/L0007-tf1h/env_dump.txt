@@ -1,0 +1,13 @@
+python=3.11.2
+pandas=2.2.3
+numpy=2.3.5
+window: train=2023-09-01→2024-12-31 | test=2025-01-01→2026-08-31
+cost=0.13%/side | notional=1000$ | bar=1h | canary=-98.5903161993732
+sha256[:16] BTCUSDT=e321e4ad7d4ccda6
+sha256[:16] ETHUSDT=082bab3f70af3966
+sha256[:16] SOLUSDT=06d81ff3d80594d1
+sha256[:16] XLMUSDT=54a9aa8676b98bdf
+sha256[:16] LINKUSDT=e9c71a7012250694
+sha256[:16] GRAMUSDT=7fa05a52deac5e0e
+sha256[:16] RENDERUSDT=fde108879b6789b7
+sha256[:16] FILUSDT=e6f3ec6239000852

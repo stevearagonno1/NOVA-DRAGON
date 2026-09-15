@@ -49,6 +49,21 @@ def to_5m(df1m: pd.DataFrame) -> pd.DataFrame:
     ).dropna()
 
 
+TF_MINUTES = {"5m": 5, "1h": 60, "4h": 240}
+
+
+def to_bars(df1m: pd.DataFrame, minutes: int) -> pd.DataFrame:
+    """تجميع الدقي إلى شبكة أعلى (1h/4h) — نفس قواعد to_5m حرفياً.
+
+    label=left, closed=left، والاصطفاف من 00:00 UTC (origin=start_day):
+    1h → شموع ساعية، 4h → 00/04/08/12/16/20 — الاصطفاف المعياري لشمعات الكريبتو.
+    ملاحظة مسماة: مسار 5m يبقى عبر to_5m نفسه (مطابقة بايت‑ببايت لملفات L0007 المرجعية).
+    """
+    return df1m.resample(f"{minutes}min", label="left", closed="left").agg(
+        {"open": "first", "high": "max", "low": "min", "close": "last", "volume": "sum"}
+    ).dropna()
+
+
 def atr(df: pd.DataFrame, period: int = 14) -> pd.Series:
     pc = df["close"].shift(1)
     tr = pd.concat([df["high"] - df["low"],
