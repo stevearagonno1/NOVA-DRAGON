@@ -14,3 +14,7 @@ new/*
 new/_quarantine/*
 !new/_quarantine/MAP.md
 !new/CROWN-CHECK.md
+
+# ── أداة تنقية المفاتيح: مجلد عملها + ناتجها (يُحذف/يُتجاهل حمايةً من الالتزام العرضي) ──
+.redact_work/
+nova_upload_bundle.clean.tar.gz

@@ -15,7 +15,7 @@
 #      new/extract.sh (بوابة SHA_REQUIRED) · new/CENSUS.md · new/census.py
 #  والتنقية لا تحذف الأسرار من تاريخ git ولا من النسخة المنشورة — التدوير هو الحل.
 # ═══════════════════════════════════════════════════════════════════════
-import os, re, io, sys, gzip, tarfile, zipfile, hashlib, shutil
+import os, re, io, sys, gzip, tarfile, zipfile, hashlib, shutil, tempfile
 
 TOKEN = "__REDACTED__"
 SECRET_VARS = ("BINANCE_API_KEY", "BINANCE_API_SECRET", "TELEGRAM_BOT_TOKEN", "TELEGRAM_TOKEN",
@@ -93,6 +93,34 @@ def clean_zip_bytes(zb, where, report):
     return (out.getvalue() if changed else zb), changed
 
 
+
+def pick_workdir(candidates=None):
+    """يختار أول مجلد قابل للكتابة فعلاً — تيرمكس لا يملك /tmp ولا يقبل الكتابة فيه."""
+    if candidates is None:
+        c = []
+        if os.environ.get("NOVA_REDACT_WORK"):
+            c.append(os.environ["NOVA_REDACT_WORK"])
+        if os.environ.get("TMPDIR"):
+            c.append(os.path.join(os.environ["TMPDIR"], "_redact_work"))
+        c.append(os.path.join(tempfile.gettempdir(), "_redact_work"))
+        prefix = os.environ.get("PREFIX")
+        if prefix:
+            c.append(os.path.join(prefix, "tmp", "_redact_work"))
+        c.append(os.path.abspath(".redact_work"))          # داخل المستودع — يُحذف في النهاية
+        candidates = c
+    for cand in candidates:
+        try:
+            os.makedirs(cand, exist_ok=True)
+            probe = os.path.join(cand, ".w")
+            with open(probe, "w") as f:
+                f.write("ok")
+            os.remove(probe)
+            return cand
+        except OSError:
+            continue
+    raise OSError("لا يوجد مجلد عمل قابل للكتابة — حدّد NOVA_REDACT_WORK يدوياً")
+
+
 def scan_text(t):
     hits = []
     for m in ASSIGN.finditer(t):
@@ -153,7 +181,7 @@ def main():
 
     src = args[0] if len(args) > 0 else "nova_upload_bundle.tar.gz"
     dst = args[1] if len(args) > 1 else "nova_upload_bundle.clean.tar.gz"
-    work = "/tmp/_redact_work"
+    work = pick_workdir()
     report = []
 
     shutil.rmtree(work, ignore_errors=True)
@@ -199,6 +227,8 @@ def main():
     print(f"مواضع حُجبت: {sum(n for _w, n in report)} في {len(report)} مدخلاً")
     for w, n in sorted(report):
         print(f"   {n:>2}  {w}")
+
+    shutil.rmtree(work, ignore_errors=True)          # نظافة: لا بقايا بعد الجولة
 
     # تحقق ذاتي إلزامي: لا سرّ يبقى في الناتج
     bad = {n: h for n, h in ((n, scan_text(t)) for n, t in walk_tar(dst).items()) if h}
