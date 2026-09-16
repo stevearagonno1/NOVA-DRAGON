@@ -5,7 +5,7 @@ crypto_archive/*__matrix_*
 data/
 
 # ── حزمة new/: لا يُلتزم إلا وثائق الإحصاء — المحتوى المستخرج مؤقت ──
-# (المصدر الدائم هو nova_upload_bundle.tar.gz المتتبَّع في الجذر)
+# (المصدر الدائم هو history/nova_upload_bundle.tar.gz المتتبَّع (الدفعة ٢))
 new/*
 !new/census.py
 !new/extract.sh
@@ -14,3 +14,7 @@ new/*
 new/_quarantine/*
 !new/_quarantine/MAP.md
 !new/CROWN-CHECK.md
+
+# ── old/bundle_rest/: مكررات الحزمة — غير متعقبة (قابلة للاشتقاق 100% من الحزمة عبر new/extract.sh) ──
+old/bundle_rest/*
+!old/bundle_rest/README.md
