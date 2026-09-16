@@ -11,7 +11,7 @@
 set -euo pipefail
 
 SHA_REQUIRED="31d64494ec40e4cb65ea5f90fa11a68cfc2ba5324d0abdaf8a0b3b49086349f3"
-BUNDLE="nova_upload_bundle.tar.gz"
+BUNDLE="history/nova_upload_bundle.tar.gz"   # انتقلت الحزمة إلى history/ في الدفعة ٢ (D-0022)
 
 # ١) بوابة البصمة — لا عمل إلا بمطابقة تامة
 echo "[1/5] بوابة البصمة..."

@@ -4,25 +4,25 @@ import os, sys, re, hashlib, subprocess, shutil
 # python3 tools/organize_incoming.py --apply    -> ينفّذ ويحفظ commit محلي (لا يرفع)
 APPLY = '--apply' in sys.argv
 SRC = 'incoming'
-RULES = [('nova_v8_out', 'archive/research_variants'), ('nova_v8/', 'archive/code_snapshot'),
-         ('nova_pack', 'archive/code_snapshot'), ('جميع اصدارات البوت', 'bot_versions'),
-         ('اصدارات متنوعه', 'bot_versions'), ('.parquet', 'data'), ('.csv', 'data'),
-         ('الدستور', 'docs/constitution'), ('فرض', 'hypotheses'), ('نخبة', 'hypotheses'),
-         ('لوحة_خط', 'hypotheses'), ('محرك_الواجهة', 'docs/designs'), ('المخطط_الشامل', 'docs/designs'),
+RULES = [('nova_v8_out', 'history/archive/research_variants'), ('nova_v8/', 'history/archive/code_snapshot'),
+         ('nova_pack', 'history/archive/code_snapshot'), ('جميع اصدارات البوت', 'history/bot_versions'),
+         ('اصدارات متنوعه', 'history/bot_versions'), ('.parquet', 'data'), ('.csv', 'data'),
+         ('الدستور', 'docs/constitution'), ('فرض', 'history/hypotheses'), ('نخبة', 'history/hypotheses'),
+         ('لوحة_خط', 'history/hypotheses'), ('محرك_الواجهة', 'docs/designs'), ('المخطط_الشامل', 'docs/designs'),
          ('دليل_الرموز', 'docs/designs'), ('عقد_الترجمة', 'docs/designs'), ('وثيقة_تفويض', 'docs/designs'),
          ('تصميم', 'docs/designs'), ('استراتيجيتان', 'docs/designs'),
          ('نتائج', 'docs/reports'), ('تقرير', 'docs/reports'), ('مراجعة', 'docs/reports'),
          ('ملخص', 'docs/reports'), ('تحليل', 'docs/reports'), ('استشارة', 'docs/reports'),
          ('سجل_العمل', 'docs/reports'), ('الجدول_الختامي', 'docs/reports'), ('ابد_أولا', 'docs/reports'),
-         ('سجل_المحادثة', 'docs/conversations'), ('وثيقة_السياق', 'docs/conversations'),
-         ('رسالة_', 'docs/conversations'), ('نجوم', 'docs/conversations'),
-         ('.env', 'archive/quarantine'), ('credential', 'archive/quarantine'),
-         ('.py', 'code_drafts'), ('.sh', 'code_drafts'),
-         ('.zip', 'archive/binary'), ('.rar', 'archive/binary'), ('.pdf', 'archive/binary'),
-         ('.docx', 'archive/binary'), ('.doc', 'archive/binary')]
+         ('سجل_المحادثة', 'history/docs/conversations'), ('وثيقة_السياق', 'history/docs/conversations'),
+         ('رسالة_', 'history/docs/conversations'), ('نجوم', 'history/docs/conversations'),
+         ('.env', 'history/archive/quarantine'), ('credential', 'history/archive/quarantine'),
+         ('.py', 'old/code_drafts'), ('.sh', 'old/code_drafts'),
+         ('.zip', 'history/archive/binary'), ('.rar', 'history/archive/binary'), ('.pdf', 'history/archive/binary'),
+         ('.docx', 'history/archive/binary'), ('.doc', 'history/archive/binary')]
 STRIP = r'^(workspace|extracted|nova|nova_pack|uploads|crypto_archive|_k3|tools|جميع اصدارات البوت|اصدارات متنوعه)/'
 TEXT = ('.txt', '.md', '.py', '.sh', '.log', '.csv', '.json')
-BIG = ('crypto_archive/', 'research/nova_v8_out/')
+BIG = ('crypto_archive/', 'history/research/nova_v8_out/')
 
 
 def sha(p):
@@ -48,7 +48,7 @@ def dest_of(rel):
     for k, d in RULES:
         if k.lower() in low:
             return d
-    return 'docs/misc'
+    return 'history/docs/misc'
 
 
 def head(p):
@@ -162,7 +162,7 @@ if APPLY:
     for r in files('.'):
         if not r.startswith(BIG):
             buckets.setdefault(os.path.dirname(r) or '.', []).append(r)
-    base = 'research/nova_v8_out'
+    base = 'history/research/nova_v8_out'
     if os.path.isdir(base):
         s = {}
         for r in files(base):
@@ -185,17 +185,17 @@ L = ['# فهرس المستودع — NOVA V8', '',
      '| `nova_v8` | الكود المجمّد للمحرك — لا يُعدَّل إلا بقرار D |',
      '| `docs/constitution` | دستورك: الأعلى والتشغيلي |',
      '| `docs/designs` | التصاميم: محرك الواجهة، المخطط الشامل، دليل الرموز، عقد الترجمة |',
-     '| `docs/reports` | تقارير التدقيق والنتائج والمراجعات |',
-     '| `docs/conversations` | سجلات المحادثات ورسائل التوجيه (ذاكرة القرارات) |',
+     '| `docs/reports` | التقارير الجديدة الحيّة (تقارير التنظيم القادمة) — الأرشيف القديم في `history/docs/reports` |',
+     '| `history/docs/conversations` | سجلات المحادثات ورسائل التوجيه (ذاكرة القرارات) |',
      '| `docs/lanes` | الحارات: كل تجربة = ملف فيه عقده وحكمه |',
-     '| `hypotheses` | الفرضيات: الـ212 + النخبة + لوحة الخط + عقد المصنع |',
-     '| `bot_versions` | كل نسخ البوت القديمة — تاريخ محفوظ، لا كود حيّ |',
+     '| `history/hypotheses` | الفرضيات: الـ212 + النخبة + لوحة الخط + عقد المصنع |',
+     '| `history/bot_versions` | كل نسخ البوت القديمة — تاريخ محفوظ، لا كود حيّ |',
      '| `data` | باركيه صغير أعيد منه حساب النتائج |',
-     '| `research` | نتائج التشغيل الحقيقية (الأرشيف) |',
+     '| `history/research` | نتائج التشغيل الحقيقية (الأرشيف) |',
      '| `tools` | أدواتنا: الفحص، البروبي، جدول الأرشيف، المنظّم |',
      '| `crypto_archive` | البيانات الضخمة (BTC 1m لخمس سنوات) |',
-     '| `code_drafts` | مسودات كود مستقلة ليست من المحرك |',
-     '| `archive` | القديم وغير المطابق — محفوظ لا مربوط |', '', '## كل ملف بمكانه', '']
+     '| `old/code_drafts` | مسودات كود مستقلة ليست من المحرك |',
+     '| `history/archive` | القديم وغير المطابق — محفوظ لا مربوط |', '', '## كل ملف بمكانه', '']
 for d in sorted(buckets):
     it = sorted(buckets[d])
     L.append('### `%s` (%d)' % (d, len(it)))
@@ -240,8 +240,8 @@ for b in sorted({os.path.dirname(d) for _r, d, _s, _h in moves}):
     print('   %-34s %d' % (b, sum(1 for _r, d2, _s, _h in moves if os.path.dirname(d2) == b)))
 print('التحقق — مفقودات: %d %s' % (len(missing), '✓' if not missing else '⛔ أوقف ولا ترفع'))
 if APPLY and not missing:
-    ps = [x for x in ['INDEX.md', SRC, 'docs', 'hypotheses', 'bot_versions', 'data',
-                      'code_drafts', 'archive', 'tools'] if os.path.exists(x)]
+    ps = [x for x in ['INDEX.md', SRC, 'docs', 'history', 'old', 'data',
+                      'tools'] if os.path.exists(x)]
     r = subprocess.run(['git', 'add', '-A', '--'] + ps, capture_output=True, text=True)
     ch = subprocess.run(['git', 'status', '--porcelain'], capture_output=True, text=True).stdout.strip()
     if r.returncode != 0 or not ch:

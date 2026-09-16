@@ -5,8 +5,8 @@
 stdlib فقط (بلا pandas/شبكة) ليعمل على تيرمكس وأي sandbox في ثوانٍ.
 
 الاستخدام:
-    python3 tools/audit_lane.py                 # كل المسارات في sweep_results/
-    python3 tools/audit_lane.py sweep_results/adaptive_trend --json
+    python3 tools/audit_lane.py                 # كل المسارات في history/sweep_results/
+    python3 tools/audit_lane.py history/sweep_results/adaptive_trend --json
 
 الفحوص:
   A1  عدد الصفوف == حجم الشبكة المشتق من القيم الفعلية (جداء عدد القيم لكل محور)
@@ -208,11 +208,11 @@ def audit(lane_dir):
 
 def main():
     ap = argparse.ArgumentParser()
-    ap.add_argument("lanes", nargs="*", help="مجلدات التجارب (افتراضياً كل sweep_results/*)")
+    ap.add_argument("lanes", nargs="*", help="مجلدات التجارب (افتراضياً كل history/sweep_results/*)")
     ap.add_argument("--json", action="store_true")
     a = ap.parse_args()
-    lanes = a.lanes or ([os.path.join("sweep_results", d) for d in sorted(os.listdir("sweep_results"))]
-                        if os.path.isdir("sweep_results") else [])
+    lanes = a.lanes or ([os.path.join("history", "sweep_results", d) for d in sorted(os.listdir("history/sweep_results"))]
+                        if os.path.isdir("history/sweep_results") else [])
     if not lanes:
         print("لا توجد مسارات للتدقيق")
         return 1

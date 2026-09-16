@@ -268,7 +268,7 @@
 | 257 | `NOVA_bin_pending/جميع اصدارات البوت/V3/nova_v5_forward_profiling_UPDATE2_X/telegram.py` | بايثون | 30,231 | `7b27b51c7162` | NOVA v5 — Interactive Async Telegram (M6 — Forward-Profiling Refactor) | سليم | 27 | 0 |
 | 258 | `NOVA_bin_pending/جميع اصدارات البوت/V3/nova_v5_forward_profiling_UPDATE2_X/trigger.py` | بايثون | 1,567 | `094be37d6292` | NOVA v5 — محفّز الدخول (Forward-Profiling build) | سليم | 0 | 0 |
 | 259 | `census.py` | بايثون | 10,244 | `8ce565e64227` | coding: utf-8 | سليم | 8 | 2 |
-| 260 | `extract.sh` | شل | 3,565 | `8b862669818e` | NOVA — إعادة اشتقاق شجرة الفحص new/ من الحزمة الأم بأمر واحد | — | 0 | 0 |
+| 260 | `extract.sh` | شل | 3,649 | `a4686a7d708a` | NOVA — إعادة اشتقاق شجرة الفحص new/ من الحزمة الأم بأمر واحد | — | 0 | 0 |
 
 ## ملاحظات
 - «جروح» = عدد مواضع `__REDACTED__` (أثر المنقّي السري في نسخ المستودع القديمة).
