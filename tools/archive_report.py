@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""يجمع نتائج كل تجارب الأرشيف (research/nova_v8_out/**) في جدول واحد.
+"""يجمع نتائج كل تجارب الأرشيف (history/research/nova_v8_out/**) في جدول واحد.
 
 يقرأ سجلّات الصفقات (research_results.csv) ويعيد لكل تجربة × استراتيجية:
 عدد الصفقات، صافي $، نسبة الفوز، ونسبة الربح للخسارة (PF).
@@ -11,7 +11,7 @@ stdlib فقط — يعمل على تيرمكس.
 from __future__ import annotations
 import argparse, csv, os, sys, collections
 
-ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "research", "nova_v8_out")
+ROOT = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "history", "research", "nova_v8_out")
 
 
 def runs(root=ROOT):
@@ -51,7 +51,7 @@ def main():
                 rec[3] += -net
 
     if not agg:
-        print("لا نتائج — تأكد أن مجلد research/ موجود بعد git checkout")
+        print("لا نتائج — تأكد أن مجلد history/research/ موجود بعد git checkout")
         return 1
 
     print(f"{'التجربة':<26}{'الاستراتيجية':<16}{'صفقات':>7}{'صافي $':>11}{'فوز%':>7}{'PF':>7}")
