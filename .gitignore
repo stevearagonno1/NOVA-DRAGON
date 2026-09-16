@@ -3,3 +3,13 @@ __pycache__/
 .venv/
 crypto_archive/*__matrix_*
 data/
+
+# ── حزمة new/: لا يُلتزم إلا وثائق الإحصاء — المحتوى المستخرج مؤقت ──
+# (المصدر الدائم هو nova_upload_bundle.tar.gz المتتبَّع في الجذر)
+new/*
+!new/census.py
+!new/CENSUS.md
+!new/_quarantine/
+new/_quarantine/*
+!new/_quarantine/MAP.md
+!new/CROWN-CHECK.md
