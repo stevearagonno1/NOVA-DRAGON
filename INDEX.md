@@ -6,10 +6,11 @@
 تحديث إعادة التنظيم 2026‑09‑16 (الدفعة ٢ — القرار `D‑0022`): ملف قواعد التداول الحي انتقل إلى `live/` + وثيقة ربط `live/README.md`، والحزمة `nova_upload_bundle.tar.gz` إلى `history/`، و`fetch_archive.py` بقي في الجذر بعد مسح إشارات بلا أي مرجع حي.
 تحديث إعادة التنظيم 2026‑09‑16 (الدفعة ٣ — القرار `D‑0023`): الكنز النقي الفريد (٢٠٠ نسخة ببصماتها الكاملة) في `history/clean/` مع الشهادة `MANIFEST-CLEAN.md`؛ المكررات في `old/bundle_rest/` غير المتعقبة بالتصميم؛ أُغلق staging `new/` وبقي المعزل السري في `new/_quarantine/`.
 تحديث إعادة التنظيم 2026‑09‑16 (الدفعة ٤ — القرار `D‑0024`): بُني `bot/` من التاج — `bot/NOVA.py` نسخة حرفية من النقي (بصمة `3e08f1f8f103…`، ٢٦٢ دالة، صفر جروح) + وثيقة النسب؛ الأصل بقي في `history/clean/`.
-تحديث المرآة: 2026‑09‑14 — صُححت مسارات ما نُقل بعد التنظيم (الجذر → `docs/source` و`history/archive`؛ `docs/misc/مؤشرات` → `history/library/indicators`؛ `docs/misc/ملفات` → `docs/library`) وأُضيف الجديد. فحص المطابقة وأوامره: `docs/STATS-2026-09-14.md` §6.
+تحديث إعادة التنظيم 2026‑09‑16 (دفعة وثائق النتائج — نقطة القرار ٣، القرار `D‑0025`): وثائق النتائج (التقارير والمحادثة والمتفرقات والمصادر والمكتبة + الملفات الموسومة بالتاريخ) انتقلت إلى `history/docs/` بعد مسح الإشارات؛ بقي في `docs/`: الدستور والتعديلات و`BRAIN.md` و`DECISIONS.md` و`HANDOFF.md` ومصنع الفرضيات وأحكام البحث وخطة التنظيم ووثيقة المنفِّذ والتصاميم + آلية الحارات الحيّة (`docs/lanes/` — تستقبل الجديد عبر `tools/new_lane.py`).
+تحديث المرآة: 2026‑09‑14 — صُححت مسارات ما نُقل بعد التنظيم (الجذر → `history/docs/source` و`history/archive`؛ `history/docs/misc/مؤشرات` → `history/library/indicators`؛ `history/docs/misc/ملفات` → `history/docs/library`) وأُضيف الجديد. فحص المطابقة وأوامره: `history/docs/STATS-2026-09-14.md` §6.
 
 | `history/library/indicators` | مكتبة المؤشرات: 129 ملفاً (مؤشرات/0..7) — خامات أفكار الفلاتر |
-| `docs/library` | 14 ملفاً مرجعياً (أدلة ومؤشرات نصية) |
+| `history/docs/library` | 14 ملفاً مرجعياً (أدلة ومؤشرات نصية) |
 
 ## خريطة المجلدات
 
@@ -18,11 +19,11 @@
 | `nova_v8` | الكود المجمّد للمحرك — لا يُعدَّل إلا بقرار D |
 | `docs/constitution` | دستورك: الأعلى والتشغيلي |
 | `docs/designs` | التصاميم: محرك الواجهة، المخطط الشامل، دليل الرموز، عقد الترجمة |
-| `docs/reports` | تقارير التدقيق والنتائج والمراجعات |
-| `docs/conversations` | سجلات المحادثات ورسائل التوجيه (ذاكرة القرارات) |
+| `history/docs/reports` | تقارير التدقيق والنتائج والمراجعات |
+| `history/docs/conversations` | سجلات المحادثات ورسائل التوجيه (ذاكرة القرارات) |
 | `docs/lanes` | الحارات: كل تجربة = ملف فيه عقده وحكمه |
-| `docs/library` | 14 ملفاً مرجعياً (استشارات + مراجع قصيرة) — نُقلت من docs/misc/ملفات |
-| `docs/source` | متفرقات الجذر المنقولة: دليل البداية + عقد الإصدارات (D-0016) + الملفات الشاملة |
+| `history/docs/library` | 14 ملفاً مرجعياً (استشارات + مراجع قصيرة) — نُقلت من docs/misc/ملفات |
+| `history/docs/source` | متفرقات الجذر المنقولة: دليل البداية + عقد الإصدارات (D-0016) + الملفات الشاملة |
 | `history/hypotheses` | الفرضيات: الـ212 + النخبة + لوحة الخط + عقد المصنع |
 | `history/bot_versions` | كل نسخ البوت القديمة — تاريخ محفوظ، لا كود حيّ |
 | `data` | باركيه صغير أعيد منه حساب النتائج |
@@ -79,7 +80,7 @@
 - `README.md` (82B) — واجهة المستودع
 - `fetch_archive.py` (4K) — تنزيل أرشيف 1m من data.binance.vision — open_time عمود int64 بالملي ثانية (بلا افتراض وحدة)
 
-> **نُقل بعد التنظيم إلى مواضع جديدة:** `NOVA_v8_bundle.zip` و`bot_output.log` → `history/archive/` — و`START.txt` و`requirements.txt` و`الملف_الشامل_للوكيل_الجديد.txt` و`حزمة_الوكيل_كاملة.txt` و`نتائج_الاستراتيجيات_الكاملة.txt` → `docs/source/`.
+> **نُقل بعد التنظيم إلى مواضع جديدة:** `NOVA_v8_bundle.zip` و`bot_output.log` → `history/archive/` — و`START.txt` و`requirements.txt` و`الملف_الشامل_للوكيل_الجديد.txt` و`حزمة_الوكيل_كاملة.txt` و`نتائج_الاستراتيجيات_الكاملة.txt` → `history/docs/source/`.
 
 ### `history/archive` (2)
 
@@ -262,9 +263,9 @@
 
 - `history/hyp_lab/` — آلة اختبار الفرضيات: ملفات فرضيات (F_*) + مشغّل مشترك + اختبارات ذاتية (9/9) وحتمية بايت‑ببايت؛ بُنيت خارج `nova_v8/**` المجمد. التشغيل: `.venv/bin/python hyp_lab/run_lab.py --out research/hyp_lab_out/L0004`
 
-### `crypto_archive` (14 عملة محلياً وبعيداً بعد التوحيد: الثمانية المعتمدة + 6 بحثية — انظر `docs/DATA-INVENTORY-2026-09-14.md`)
+### `crypto_archive` (14 عملة محلياً وبعيداً بعد التوحيد: الثمانية المعتمدة + 6 بحثية — انظر `history/docs/DATA-INVENTORY-2026-09-14.md`)
 
-- `crypto_archive/BTCUSDT_1m.parquet` (85M) — بيتكوين 1m لخمس سنوات 2021‑09→2026‑08 (open_time بالمللي ثانية int64؛ 2,629,240 شمعة)؛ فجوتان ~200 دقيقة — الجرد الكامل: `docs/DATA-INVENTORY-2026-09-14.md`
+- `crypto_archive/BTCUSDT_1m.parquet` (85M) — بيتكوين 1m لخمس سنوات 2021‑09→2026‑08 (open_time بالمللي ثانية int64؛ 2,629,240 شمعة)؛ فجوتان ~200 دقيقة — الجرد الكامل: `history/docs/DATA-INVENTORY-2026-09-14.md`
 
 ### `data` (5 — بعد دمج main)
 
@@ -283,34 +284,34 @@
 
 ### `docs` (10)
 
-- `docs/ARCHIVE-VERIFIED-2026-09-14.md` (9K) — أرشيف الأدلة — تدقيق 14 سبتمبر 2026 (874 ملفاً / 72 تجربة)
-- `docs/AUDIT-2026-09-13.md` (5K) — تدقيق 2026‑09‑13 — ما وجده العقل حين أعاد الاشتقاق بدل القراءة
+- `history/docs/ARCHIVE-VERIFIED-2026-09-14.md` (9K) — أرشيف الأدلة — تدقيق 14 سبتمبر 2026 (874 ملفاً / 72 تجربة)
+- `history/docs/AUDIT-2026-09-13.md` (5K) — تدقيق 2026‑09‑13 — ما وجده العقل حين أعاد الاشتقاق بدل القراءة
 - `docs/BRAIN.md` (11K) — BRAIN — ميثاق «العقل» (المحادثة التنسيقية العليا)
-- `docs/DATA-INVENTORY-2026-09-14.md` (3K) — جرد ملفات الأسعار في المستودع: من منها وبأي فترة وبأي فجوات
-- `docs/HALAL-LIQUID-20-2026-09-14.md` (6K) — بحث أقوى 20 عملة حلالاً ونشاطاً وسيولة (بالمصادر) + اكتشاف GRAM = TON بعد استعادة الاسم
-- `docs/CORRELATION-2026-09-14.md` (4K) — قياس ارتباط 12 عملة من بياناتنا (مصفوفة 5 سنوات + سلوك الهبوط + عناقيد التوصية)
+- `history/docs/DATA-INVENTORY-2026-09-14.md` (3K) — جرد ملفات الأسعار في المستودع: من منها وبأي فترة وبأي فجوات
+- `history/docs/HALAL-LIQUID-20-2026-09-14.md` (6K) — بحث أقوى 20 عملة حلالاً ونشاطاً وسيولة (بالمصادر) + اكتشاف GRAM = TON بعد استعادة الاسم
+- `history/docs/CORRELATION-2026-09-14.md` (4K) — قياس ارتباط 12 عملة من بياناتنا (مصفوفة 5 سنوات + سلوك الهبوط + عناقيد التوصية)
 - `docs/DECISIONS.md` (8K) — DECISIONS — سجل القرارات الملزمة (Append‑only)
-- `docs/EXECUTION_REPORT.md` (4K) — تقرير تنفيذ — NOVA_V8 adaptive_trend sweep (477→1920)
-- `docs/NEXT-SESSION.md` (3K) — تسليم الجلسة: أين نحن والمهمات القادمة (اقرأه بعد الدستور)
-- `docs/NOVA_V8_ORIGINAL_BUNDLE.txt` (309K) — الجزء: العقد (اقرأه أولاً) =========================
-- `docs/PROJECT_LOG.txt` (17K) — ════════════════════════════════════════════════════════════════════
-- `docs/STATS-2026-09-14.md` (28K) — ناتج tools/archive_report.py كاملاً + تدقيق أرقام BRAIN + فحص مطابقة الفهرس (أوامر قابلة للتكرار)
-- `docs/sweep_run.log` (176K) — البحث الشامل: adaptive_trend — 1920 تركيبة × نافذتين (تدريب+اختبار)
+- `history/docs/EXECUTION_REPORT.md` (4K) — تقرير تنفيذ — NOVA_V8 adaptive_trend sweep (477→1920)
+- `history/docs/NEXT-SESSION.md` (3K) — تسليم الجلسة: أين نحن والمهمات القادمة (اقرأه بعد الدستور)
+- `history/docs/NOVA_V8_ORIGINAL_BUNDLE.txt` (309K) — الجزء: العقد (اقرأه أولاً) =========================
+- `history/docs/PROJECT_LOG.txt` (17K) — ════════════════════════════════════════════════════════════════════
+- `history/docs/STATS-2026-09-14.md` (28K) — ناتج tools/archive_report.py كاملاً + تدقيق أرقام BRAIN + فحص مطابقة الفهرس (أوامر قابلة للتكرار)
+- `history/docs/sweep_run.log` (176K) — البحث الشامل: adaptive_trend — 1920 تركيبة × نافذتين (تدريب+اختبار)
 
 ### `docs/constitution` (2)
 
 - `docs/constitution/الدستور_الأعلى.md` (14K) — 🏛️ الدستور الأعلى — قواعد العمل الدائمة لـ NOVA_V8
 - `docs/constitution/الدستور_التشغيلي.md` (14K) — 📜 الدستور التشغيلي — NOVA_V8 كحياة مستخدم المستخدم
 
-### `docs/conversations` (7)
+### `history/docs/conversations` (7)
 
-- `docs/conversations/رسالة_التوجيه_النهائية.txt` (6K) — رسالة توجيه كاملة — للمحادثة الجديدة (NOVA_V8)
-- `docs/conversations/رسالة_التوجيه_للوكيل_الجديد.txt` (3K) — رسالة توجيه للوكيل الجديد — تحديث كامل بعد الملفات السابقة
-- `docs/conversations/رسالة_تفضيلات_الحوار_للمحادثة_الجديدة.txt` (5K) — أريدك أن تتعامل معي بالطريقة التالية طوال هذه المحادثة:
-- `docs/conversations/سجل_المحادثة_NOVA_V8.txt` (14K) — ════════════════════════════════════════════════════════════════════
-- `docs/conversations/نجوم الارض.txt` (3K) — نجوم الارض
-- `docs/conversations/وثيقة_السياق_الرئيسية_NOVA_V8.txt` (11K) — وثيقة السياق الرئيسية — NOVA_V8
-- `docs/conversations/وثيقة_السياق_الرئيسية_المحدثة_للمحادثة_الجديدة.txt` (14K) — وثيقة السياق الرئيسية المحدثة — مشروع NOVA_V8
+- `history/docs/conversations/رسالة_التوجيه_النهائية.txt` (6K) — رسالة توجيه كاملة — للمحادثة الجديدة (NOVA_V8)
+- `history/docs/conversations/رسالة_التوجيه_للوكيل_الجديد.txt` (3K) — رسالة توجيه للوكيل الجديد — تحديث كامل بعد الملفات السابقة
+- `history/docs/conversations/رسالة_تفضيلات_الحوار_للمحادثة_الجديدة.txt` (5K) — أريدك أن تتعامل معي بالطريقة التالية طوال هذه المحادثة:
+- `history/docs/conversations/سجل_المحادثة_NOVA_V8.txt` (14K) — ════════════════════════════════════════════════════════════════════
+- `history/docs/conversations/نجوم الارض.txt` (3K) — نجوم الارض
+- `history/docs/conversations/وثيقة_السياق_الرئيسية_NOVA_V8.txt` (11K) — وثيقة السياق الرئيسية — NOVA_V8
+- `history/docs/conversations/وثيقة_السياق_الرئيسية_المحدثة_للمحادثة_الجديدة.txt` (14K) — وثيقة السياق الرئيسية المحدثة — مشروع NOVA_V8
 
 ### `docs/designs` (8)
 
@@ -347,75 +348,75 @@
 - `docs/lanes/L0006-hyp-lab-first-sweep.md` (11K) — L0006 — hyp_lab: الجولة الأولى (9 فرضيات × 4 رموز، نافذة 2026) — جلسة موازية، أُعيد ترقيمها من L0004 (D‑0020)
 - `docs/lanes/_TEMPLATE.md` (3K) — L{{ID}} — {{TITLE}}
 
-### `docs/misc` (17)
+### `history/docs/misc` (17)
 
-- `docs/misc/README.md` (4K) — NOVA_V8_QUANT_LAB
-- `docs/misc/START.txt` (1K) — NOVA_V8 — دليل البداية للمحادثة الجديدة
-- `docs/misc/requirements.txt` (1K) — Termux-safe: pure wheels, no heavy C-compilation, no matplotlib, no requests
-- `docs/misc/sf_sleeves.txt` (2K) — ATOMUSDT
-- `docs/misc/sle_f.txt` (10K) — INFO nova.research: بدء البحث...
-- `docs/misc/sweep_don_btc.txt` (3K) — البحث الشامل: donchian — 80 تركيبة × نافذتين (تدريب+اختبار)
-- `docs/misc/sweep_محلي_4_رموز.md` (1K) — 🧬 Sweep السلاحف عبر 4 رموز (نافذة محلية 2026-06→08)
-- `docs/misc/التداول_الفوري_بحث_شامل.txt` (218K) — التداول الفوري (SPOT TRADING) — بحث مرجعي مُفصّل
-- `docs/misc/الملف_الشامل_التداول_الفوري.txt` (113K) — الملف الشامل الموحد للتداول الفوري (SPOT TRADING)
-- `docs/misc/بعد الأمر الثاني.txt` (3K) — ~/nova $ python -m nova_v8 research --symbols BTCUSDT --strategies all --start 2024-09 --e
-- `docs/misc/بلا_عنوان (2).txt` (2K) — ~/nova $ cd ~/nova
-- `docs/misc/بلا_عنوان.txt` (2K) — ~/nova $ python -m nova_v8 evaluate --csv ~/nova_v8_out/BTCUSDT_2y/research_results.csv --
-- `docs/misc/تطوير بوت تداول ذكي بتيرمكس.txt` (71K) — PAGE 1 ---
-- `docs/misc/حزمة_الوكيل_كاملة.txt` (310K) — الجزء صفر: START.txt (ابدأ هنا) =========================
-- `docs/misc/شرح شامل لبوتات التداول في بينانس.txt` (30K) — PAGE 1 ---
-- `docs/misc/مخطط البوت الجديد.txt` (40K) — PAGE 1 ---
-- `docs/misc/مخطط_الباك_تست_الشامل.txt` (22K) — المخطط الشامل لمحرك الباك تست — NOVA_V8
+- `history/docs/misc/README.md` (4K) — NOVA_V8_QUANT_LAB
+- `history/docs/misc/START.txt` (1K) — NOVA_V8 — دليل البداية للمحادثة الجديدة
+- `history/docs/misc/requirements.txt` (1K) — Termux-safe: pure wheels, no heavy C-compilation, no matplotlib, no requests
+- `history/docs/misc/sf_sleeves.txt` (2K) — ATOMUSDT
+- `history/docs/misc/sle_f.txt` (10K) — INFO nova.research: بدء البحث...
+- `history/docs/misc/sweep_don_btc.txt` (3K) — البحث الشامل: donchian — 80 تركيبة × نافذتين (تدريب+اختبار)
+- `history/docs/misc/sweep_محلي_4_رموز.md` (1K) — 🧬 Sweep السلاحف عبر 4 رموز (نافذة محلية 2026-06→08)
+- `history/docs/misc/التداول_الفوري_بحث_شامل.txt` (218K) — التداول الفوري (SPOT TRADING) — بحث مرجعي مُفصّل
+- `history/docs/misc/الملف_الشامل_التداول_الفوري.txt` (113K) — الملف الشامل الموحد للتداول الفوري (SPOT TRADING)
+- `history/docs/misc/بعد الأمر الثاني.txt` (3K) — ~/nova $ python -m nova_v8 research --symbols BTCUSDT --strategies all --start 2024-09 --e
+- `history/docs/misc/بلا_عنوان (2).txt` (2K) — ~/nova $ cd ~/nova
+- `history/docs/misc/بلا_عنوان.txt` (2K) — ~/nova $ python -m nova_v8 evaluate --csv ~/nova_v8_out/BTCUSDT_2y/research_results.csv --
+- `history/docs/misc/تطوير بوت تداول ذكي بتيرمكس.txt` (71K) — PAGE 1 ---
+- `history/docs/misc/حزمة_الوكيل_كاملة.txt` (310K) — الجزء صفر: START.txt (ابدأ هنا) =========================
+- `history/docs/misc/شرح شامل لبوتات التداول في بينانس.txt` (30K) — PAGE 1 ---
+- `history/docs/misc/مخطط البوت الجديد.txt` (40K) — PAGE 1 ---
+- `history/docs/misc/مخطط_الباك_تست_الشامل.txt` (22K) — المخطط الشامل لمحرك الباك تست — NOVA_V8
 
-### `docs/library` (14)
+### `history/docs/library` (14)
 
-- `docs/library/claude.txt` (26K) — خطة شاملة لموازنة البوت وتحسين أدائه
-- `docs/library/gemini.txt` (12K) — لماذا لا يرى البوت فرصاً في السوق حالياً؟
-- `docs/library/gpt.txt` (23K) — معضلة الدقة مقابل التردد في السكالبينج
-- `docs/library/kimi.txt` (17K) — تشخيص مشكلة التوازن بين الدقة والتردد
-- `docs/library/qwen.txt` (22K) — تحليل معضلة الدقة مقابل التردد في بوتات التداول
-- `docs/library/اخطاء و فخاخ.txt` (7K) — فخ البوابات المنطقية المتسلسلة (Boolean AND Trap)
-- `docs/library/اسماء المؤشرات.txt` (3K) — كشف المؤشرات الفنية من ملف مشروع الكريبتو
-- `docs/library/اعدادات المؤشرات.txt` (4K) — أفضل إعدادات القراءة البصرية للـ Gem (4h/اليومي)
-- `docs/library/البوت الهجين.txt` (7K) — حسم التركيبة: Testnet + أولوية عدد الصفقات + هجين + رسوم 0.1%
-- `docs/library/التقرير_النهائي_تحليل_البوت_والمؤشرات.md` (14K) — 🔬 التقرير الشامل: تدقيق البوت «NOVA» + مراجعة مكتبة المؤشرات
-- `docs/library/العملات الاقوى و الحلال تماما.txt` (53B) — قائمة العملات المختارة
-- `docs/library/بوت جريد.txt` (3K) — الميكانيكية الرياضية لربح بوت الشبكة (Spot Grid)
-- `docs/library/فخاخ المبتدئين.txt` (27B) — فخاخ المبتدئين
-- `docs/library/كثر خسارات البوت.txt` (7K) — الأسباب الجذرية لسلسلة خسائر NOVA V7.0
+- `history/docs/library/claude.txt` (26K) — خطة شاملة لموازنة البوت وتحسين أدائه
+- `history/docs/library/gemini.txt` (12K) — لماذا لا يرى البوت فرصاً في السوق حالياً؟
+- `history/docs/library/gpt.txt` (23K) — معضلة الدقة مقابل التردد في السكالبينج
+- `history/docs/library/kimi.txt` (17K) — تشخيص مشكلة التوازن بين الدقة والتردد
+- `history/docs/library/qwen.txt` (22K) — تحليل معضلة الدقة مقابل التردد في بوتات التداول
+- `history/docs/library/اخطاء و فخاخ.txt` (7K) — فخ البوابات المنطقية المتسلسلة (Boolean AND Trap)
+- `history/docs/library/اسماء المؤشرات.txt` (3K) — كشف المؤشرات الفنية من ملف مشروع الكريبتو
+- `history/docs/library/اعدادات المؤشرات.txt` (4K) — أفضل إعدادات القراءة البصرية للـ Gem (4h/اليومي)
+- `history/docs/library/البوت الهجين.txt` (7K) — حسم التركيبة: Testnet + أولوية عدد الصفقات + هجين + رسوم 0.1%
+- `history/docs/library/التقرير_النهائي_تحليل_البوت_والمؤشرات.md` (14K) — 🔬 التقرير الشامل: تدقيق البوت «NOVA» + مراجعة مكتبة المؤشرات
+- `history/docs/library/العملات الاقوى و الحلال تماما.txt` (53B) — قائمة العملات المختارة
+- `history/docs/library/بوت جريد.txt` (3K) — الميكانيكية الرياضية لربح بوت الشبكة (Spot Grid)
+- `history/docs/library/فخاخ المبتدئين.txt` (27B) — فخاخ المبتدئين
+- `history/docs/library/كثر خسارات البوت.txt` (7K) — الأسباب الجذرية لسلسلة خسائر NOVA V7.0
 
-### `docs/misc/مؤشرات` — نُقلت مكتبة المؤشرات
+### `history/docs/misc/مؤشرات` — نُقلت مكتبة المؤشرات
 
 > ملفات الأقسام الثمانية القديمة هنا (129 ملفاً: 6+20+19+20+19+17+19+9) نُقلت إلى `history/library/indicators/0..7` بالتقسيم نفسه — انظر صف `history/library/indicators` في الجدول أعلى الفهرس. المجلدات القديمة أزيلت بعد النقل.
 
-### `docs/misc/ملفات` — نُقلت
+### `history/docs/misc/ملفات` — نُقلت
 
-> ملفاتها الثلاثة عشر نُقلت إلى `docs/library/` (القسم أعلاه): 5 استشارات ذكاء اصطناعي + 8 مراجع قصيرة، ومعها `التقرير_النهائي_تحليل_البوت_والمؤشرات.md` من `docs/reports/ملفات`.
+> ملفاتها الثلاثة عشر نُقلت إلى `history/docs/library/` (القسم أعلاه): 5 استشارات ذكاء اصطناعي + 8 مراجع قصيرة، ومعها `التقرير_النهائي_تحليل_البوت_والمؤشرات.md` من `history/docs/reports/ملفات`.
 
-### `docs/reports` (10)
+### `history/docs/reports` (10)
 
-- `docs/reports/استشارة_NOVA_V8_التقنية.txt` (17K) — استشارة تقنية — NOVA_V8
-- `docs/reports/الاستعداد للتحليل المعماري للاستراتيجيات.txt` (53K) — PAGE 1 ---
-- `docs/reports/الجدول_الختامي_5_سنوات.md` (3K) — 🎼 الجدول الختامي الكبير — كل استراتيجية × كل حالة سوق (5 سنوات حقيقية)
-- `docs/reports/تحليل_ارتباط_العملات_بالبيتكوين.txt` (7K) — تحليل تبعية العملات البديلة للبيتكوين (استخلاص من التقرير المرفق)
-- `docs/reports/تحليل_استراتيجيات_تداول_السبوت_مقابل_NOVA_V8.txt` (11K) — تحليل ملف «استراتيجيات تداول السبوت الناجحة» مقابل NOVA_V8
-- `docs/reports/تقرير_الجولة_الشاملة.md` (3K) — 🏁 تقرير الجولة التطويرية الشاملة — اكتملت (2026-09-11)
-- `docs/reports/سجل_العمل_الكامل.md` (8K) — 📋 سجل العمل الكامل — NOVA_V8
-- `docs/reports/مراجعة_مطابقة_NOVA_V8_للمخطط.txt` (22K) — مراجعة مطابقة التطبيق (nova_v8) للمخطط النهائي الموحّد
-- `docs/reports/ملخص_التشطيب_NOVA_V8.txt` (11K) — NOVA_V8 — ملخص التشطيب النهائي / FINAL FINISHING SUMMARY
-- `docs/reports/ORGANIZATION-2026-09-14.md` (26K) — تقرير التنظيم: 523 وارد / 332 منقول / 191 مكرر بالبصمة / 0 مفقود
+- `history/docs/reports/استشارة_NOVA_V8_التقنية.txt` (17K) — استشارة تقنية — NOVA_V8
+- `history/docs/reports/الاستعداد للتحليل المعماري للاستراتيجيات.txt` (53K) — PAGE 1 ---
+- `history/docs/reports/الجدول_الختامي_5_سنوات.md` (3K) — 🎼 الجدول الختامي الكبير — كل استراتيجية × كل حالة سوق (5 سنوات حقيقية)
+- `history/docs/reports/تحليل_ارتباط_العملات_بالبيتكوين.txt` (7K) — تحليل تبعية العملات البديلة للبيتكوين (استخلاص من التقرير المرفق)
+- `history/docs/reports/تحليل_استراتيجيات_تداول_السبوت_مقابل_NOVA_V8.txt` (11K) — تحليل ملف «استراتيجيات تداول السبوت الناجحة» مقابل NOVA_V8
+- `history/docs/reports/تقرير_الجولة_الشاملة.md` (3K) — 🏁 تقرير الجولة التطويرية الشاملة — اكتملت (2026-09-11)
+- `history/docs/reports/سجل_العمل_الكامل.md` (8K) — 📋 سجل العمل الكامل — NOVA_V8
+- `history/docs/reports/مراجعة_مطابقة_NOVA_V8_للمخطط.txt` (22K) — مراجعة مطابقة التطبيق (nova_v8) للمخطط النهائي الموحّد
+- `history/docs/reports/ملخص_التشطيب_NOVA_V8.txt` (11K) — NOVA_V8 — ملخص التشطيب النهائي / FINAL FINISHING SUMMARY
+- `history/docs/reports/ORGANIZATION-2026-09-14.md` (26K) — تقرير التنظيم: 523 وارد / 332 منقول / 191 مكرر بالبصمة / 0 مفقود
 
-### `docs/reports/ملفات` — نُقل
+### `history/docs/reports/ملفات` — نُقل
 
-> `التقرير_النهائي_تحليل_البوت_والمؤشرات.md` نُقل إلى `docs/library/` (انظر قسمها أعلاه).
+> `التقرير_النهائي_تحليل_البوت_والمؤشرات.md` نُقل إلى `history/docs/library/` (انظر قسمها أعلاه).
 
-### `docs/source` (5)
+### `history/docs/source` (5)
 
-- `docs/source/START.txt` (1K) — خطوات ما بعد فك الضغط (Termux) — نُقل من الجذر
-- `docs/source/requirements.txt` (456B) — عقد الإصدارات المرجعية: pandas 2.2.3 / numpy 2.3.5 / pyarrow 25.0.1 (D‑0010/D‑0016) — نُقل من الجذر
-- `docs/source/الملف_الشامل_للوكيل_الجديد.txt` (65K) — الملف الشامل للوكيل الجديد — نُقل من الجذر
-- `docs/source/حزمة_الوكيل_كاملة.txt` (309K) — حزمة الوكيل الكاملة — نُقل من الجذر
-- `docs/source/نتائج_الاستراتيجيات_الكاملة.txt` (17K) — نتائج الاستراتيجيات الكاملة — نُقل من الجذر
+- `history/docs/source/START.txt` (1K) — خطوات ما بعد فك الضغط (Termux) — نُقل من الجذر
+- `history/docs/source/requirements.txt` (456B) — عقد الإصدارات المرجعية: pandas 2.2.3 / numpy 2.3.5 / pyarrow 25.0.1 (D‑0010/D‑0016) — نُقل من الجذر
+- `history/docs/source/الملف_الشامل_للوكيل_الجديد.txt` (65K) — الملف الشامل للوكيل الجديد — نُقل من الجذر
+- `history/docs/source/حزمة_الوكيل_كاملة.txt` (309K) — حزمة الوكيل الكاملة — نُقل من الجذر
+- `history/docs/source/نتائج_الاستراتيجيات_الكاملة.txt` (17K) — نتائج الاستراتيجيات الكاملة — نُقل من الجذر
 
 ### `history/hypotheses` (4)
 

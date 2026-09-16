@@ -14,8 +14,8 @@ RULES = [('nova_v8_out', 'history/archive/research_variants'), ('nova_v8/', 'his
          ('نتائج', 'docs/reports'), ('تقرير', 'docs/reports'), ('مراجعة', 'docs/reports'),
          ('ملخص', 'docs/reports'), ('تحليل', 'docs/reports'), ('استشارة', 'docs/reports'),
          ('سجل_العمل', 'docs/reports'), ('الجدول_الختامي', 'docs/reports'), ('ابد_أولا', 'docs/reports'),
-         ('سجل_المحادثة', 'docs/conversations'), ('وثيقة_السياق', 'docs/conversations'),
-         ('رسالة_', 'docs/conversations'), ('نجوم', 'docs/conversations'),
+         ('سجل_المحادثة', 'history/docs/conversations'), ('وثيقة_السياق', 'history/docs/conversations'),
+         ('رسالة_', 'history/docs/conversations'), ('نجوم', 'history/docs/conversations'),
          ('.env', 'history/archive/quarantine'), ('credential', 'history/archive/quarantine'),
          ('.py', 'old/code_drafts'), ('.sh', 'old/code_drafts'),
          ('.zip', 'history/archive/binary'), ('.rar', 'history/archive/binary'), ('.pdf', 'history/archive/binary'),
@@ -48,7 +48,7 @@ def dest_of(rel):
     for k, d in RULES:
         if k.lower() in low:
             return d
-    return 'docs/misc'
+    return 'history/docs/misc'
 
 
 def head(p):
@@ -185,8 +185,8 @@ L = ['# فهرس المستودع — NOVA V8', '',
      '| `nova_v8` | الكود المجمّد للمحرك — لا يُعدَّل إلا بقرار D |',
      '| `docs/constitution` | دستورك: الأعلى والتشغيلي |',
      '| `docs/designs` | التصاميم: محرك الواجهة، المخطط الشامل، دليل الرموز، عقد الترجمة |',
-     '| `docs/reports` | تقارير التدقيق والنتائج والمراجعات |',
-     '| `docs/conversations` | سجلات المحادثات ورسائل التوجيه (ذاكرة القرارات) |',
+     '| `docs/reports` | التقارير الجديدة الحيّة (تقارير التنظيم القادمة) — الأرشيف القديم في `history/docs/reports` |',
+     '| `history/docs/conversations` | سجلات المحادثات ورسائل التوجيه (ذاكرة القرارات) |',
      '| `docs/lanes` | الحارات: كل تجربة = ملف فيه عقده وحكمه |',
      '| `history/hypotheses` | الفرضيات: الـ212 + النخبة + لوحة الخط + عقد المصنع |',
      '| `history/bot_versions` | كل نسخ البوت القديمة — تاريخ محفوظ، لا كود حيّ |',
