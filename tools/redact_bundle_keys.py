@@ -158,6 +158,35 @@ def walk_tar(path):
     return out
 
 
+
+def walk_tar_bytes(path):
+    """كل المداخل (نصية وثنائية) بما فيها ما داخل الأكياس — للمقارنة العابرة للأنظمة."""
+    out = {}
+    with tarfile.open(path) as t:
+        for m in t.getmembers():
+            if not m.isfile():
+                continue
+            stack = [(m.name, t.extractfile(m).read())]
+            while stack:
+                n, d = stack.pop()
+                if d[:2] == b"PK":
+                    z = zipfile.ZipFile(io.BytesIO(d))
+                    for it in z.infolist():
+                        if it.is_dir():
+                            continue
+                        stack.append((f"{n}!{it.filename}", z.read(it.filename)))
+                else:
+                    out[n] = d
+    return out
+
+
+def manifest_digest(path):
+    """بصمة المحتوى وحده: لا تتأثر بنسخة zlib ولا بنظام التشغيل."""
+    entries = walk_tar_bytes(path)
+    lines = sorted(f"{n} {hashlib.sha256(d).hexdigest()}" for n, d in entries.items())
+    return len(entries), hashlib.sha256("\n".join(lines).encode("utf-8")).hexdigest()
+
+
 def sha(p):
     h = hashlib.sha256()
     with open(p, "rb") as f:
@@ -168,6 +197,11 @@ def sha(p):
 
 def main():
     args = [a for a in sys.argv[1:]]
+    if args and args[0] == "--manifest":
+        path = args[1] if len(args) > 1 else "nova_upload_bundle.tar.gz"
+        n, d = manifest_digest(path)
+        print(f"بصمة المحتوى (لا تتأثر بالنظام): {n} مدخلاً · {d}")
+        return 0
     if args and args[0] == "--check":
         path = args[1] if len(args) > 1 else "nova_upload_bundle.tar.gz"
         bad = {n: scan_text(t) for n, t in walk_tar(path).items()}
