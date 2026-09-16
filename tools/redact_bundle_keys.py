@@ -15,7 +15,7 @@
 #      new/extract.sh (بوابة SHA_REQUIRED) · new/CENSUS.md · new/census.py
 #  والتنقية لا تحذف الأسرار من تاريخ git ولا من النسخة المنشورة — التدوير هو الحل.
 # ═══════════════════════════════════════════════════════════════════════
-import os, re, io, sys, tarfile, zipfile, hashlib, shutil
+import os, re, io, sys, gzip, tarfile, zipfile, hashlib, shutil
 
 TOKEN = "__REDACTED__"
 SECRET_VARS = ("BINANCE_API_KEY", "BINANCE_API_SECRET", "TELEGRAM_BOT_TOKEN", "TELEGRAM_TOKEN",
@@ -182,12 +182,17 @@ def main():
         ti.uname = ti.gname = "user"
         return ti
 
-    with tarfile.open(dst, "w:gz", format=tarfile.GNU_FORMAT) as out:
+    # بناء حتمي: tar بلا بصمات زمنية + gzip بـ mtime=0 ⇒ بصمة sha256 ثابتة بين التشغيلات
+    raw = io.BytesIO()
+    with tarfile.open(fileobj=raw, mode="w", format=tarfile.GNU_FORMAT) as out:
         for root, dirs, files in os.walk(work):
             dirs.sort(); files.sort()
             for name in files:
                 p = os.path.join(root, name)
                 out.add(p, arcname=os.path.relpath(p, work), recursive=False, filter=norm)
+    with open(dst, "wb") as fh:
+        with gzip.GzipFile(filename="", mode="wb", fileobj=fh, mtime=0) as gz:
+            gz.write(raw.getvalue())
 
     print(f"الأصلية : {os.path.getsize(src):,} بايت · sha256 {sha(src)}")
     print(f"النقية   : {os.path.getsize(dst):,} بايت · sha256 {sha(dst)}")
