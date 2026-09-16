@@ -117,6 +117,9 @@ def main():
     for dirpath, dirnames, filenames in os.walk(ROOT):
         dirnames[:] = [d for d in dirnames if d != "_quarantine"]
         for fn in sorted(filenames):
+            # مخرَج الأداة نفسها لا يُحصى — وإلا اختلف العدد بين أول تشغيلة ومتكررة
+            if fn == "CENSUS.md" and os.path.abspath(dirpath) == ROOT:
+                continue
             full = os.path.join(dirpath, fn)
             rel = os.path.relpath(full, ROOT)
             ext = os.path.splitext(fn)[1].lower()

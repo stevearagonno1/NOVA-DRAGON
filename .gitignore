@@ -8,6 +8,7 @@ data/
 # (المصدر الدائم هو nova_upload_bundle.tar.gz المتتبَّع في الجذر)
 new/*
 !new/census.py
+!new/extract.sh
 !new/CENSUS.md
 !new/_quarantine/
 new/_quarantine/*

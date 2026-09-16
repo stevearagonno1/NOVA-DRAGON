@@ -4,8 +4,8 @@
 > الحزمة الأم: `nova_upload_bundle.tar.gz` —
 > `sha256 = 31d64494ec40e4cb65ea5f90fa11a68cfc2ba5324d0abdaf8a0b3b49086349f3`
 
-**الملخص:** 259 ملف كود مُحصى · 245 بايثون سليم · 5 بايثون معطوب ·
-9 ملف شل · 17 ملف معزول (مفاتيح ⚠️ — انظر _quarantine/MAP.md) · 95 ملف غير كودي (PDF/ZIP/RAR/DOCX/وثائق نصية).
+**الملخص:** 260 ملف كود مُحصى · 245 بايثون سليم · 5 بايثون معطوب ·
+10 ملف شل · 17 ملف معزول (مفاتيح ⚠️ — انظر _quarantine/MAP.md) · 93 ملف غير كودي (PDF/ZIP/RAR/DOCX/وثائق نصية).
 
 | # | المسار | النوع | الحجم (بايت) | sha256-12 | العنوان من الترويسة | ast | دوال | جروح |
 |---|---|---|---|---|---|---|---|---|
@@ -267,7 +267,8 @@
 | 256 | `NOVA_bin_pending/جميع اصدارات البوت/V3/nova_v5_forward_profiling_UPDATE2_X/nb.py` | بايثون | 10,397 | `ebec5996a2d1` | NOVA v5 — Online Naive-Bayes Order-Flow Classifier (M4) | سليم | 15 | 0 |
 | 257 | `NOVA_bin_pending/جميع اصدارات البوت/V3/nova_v5_forward_profiling_UPDATE2_X/telegram.py` | بايثون | 30,231 | `7b27b51c7162` | NOVA v5 — Interactive Async Telegram (M6 — Forward-Profiling Refactor) | سليم | 27 | 0 |
 | 258 | `NOVA_bin_pending/جميع اصدارات البوت/V3/nova_v5_forward_profiling_UPDATE2_X/trigger.py` | بايثون | 1,567 | `094be37d6292` | NOVA v5 — محفّز الدخول (Forward-Profiling build) | سليم | 0 | 0 |
-| 259 | `census.py` | بايثون | 10,006 | `028efa447b20` | coding: utf-8 | سليم | 8 | 2 |
+| 259 | `census.py` | بايثون | 10,244 | `8ce565e64227` | coding: utf-8 | سليم | 8 | 2 |
+| 260 | `extract.sh` | شل | 3,565 | `8b862669818e` | NOVA — إعادة اشتقاق شجرة الفحص new/ من الحزمة الأم بأمر واحد | — | 0 | 0 |
 
 ## ملاحظات
 - «جروح» = عدد مواضع `__REDACTED__` (أثر المنقّي السري في نسخ المستودع القديمة).
