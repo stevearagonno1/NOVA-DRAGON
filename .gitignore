@@ -18,3 +18,12 @@ new/_quarantine/*
 # ── old/bundle_rest/: مكررات الحزمة — غير متعقبة (قابلة للاشتقاق 100% من الحزمة عبر new/extract.sh) ──
 old/bundle_rest/*
 !old/bundle_rest/README.md
+
+# ── أداة تنقية المفاتيح: مجلد عملها + ناتجها (يُحذف/يُتجاهل حمايةً من الالتزام العرضي) ──
+.redact_work/
+nova_upload_bundle.clean.tar.gz
+
+# ── الأسرار: لا يُلتزم ملف بيئة أبداً (يُستثنى النموذج الفارغ) ──
+.env
+.env.*
+!.env.example
