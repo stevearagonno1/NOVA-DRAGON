@@ -52,6 +52,9 @@ One code block per message when interacting with the User's device — if more a
 **No leverage. No short selling. No auto-withdrawal from API keys. Never the whole portfolio in one trade.**
 (Detailed governing numbers and the Live-Admission Gate live in `docs/LIVE-TRADING-RULES.md`.)
 
+**No agent merge — no PRs, no merge requests, no push to `main` — ever, on any platform.** *(User ruling 2026-09-16 — register د-١/د-٢.)*
+The agent's only role in merging: **inform the User when work is ready and hand him ready-to-run Termux commands** (`tools/merge_main.sh`). Merging into `main` is the **User's exclusive right, executed from his own device.**
+
 ## 9) 🧠 Permanent Memory *(Merged from the agents contract)*
 The repository is the **permanent memory**; the chat is a temporary work session — **what is not written down is lost.** Every judgment is documented immediately (before/after/reason/window).
 
