@@ -389,3 +389,13 @@ D-0035 : parts house + breakers dossier + audit, by user order
 
 AMEND-APPLY-2026-09-17 : 3 additions, census 22 intact
 CONSTITUTION.md : patched + verified, sacred honored
+
+## ٢٠٢٦-٠٩-١٧ — فتح حارة تعميق التتبع المزدوج بأمر القائد
+
+- عملنا: توليد الحارة الثامنة بالأداة الرسمية وحشو مواصفاتها والتحقق منها
+- المهمة: تعميق شبكة الخروج المزدوج على فريم الساعة مع الهضبة والانزلاق
+- الحالة: مسودة حتى يفتح القائد محادثة الحارة ويلصق نص الإطلاق
+- التالي: تسليم الحارة ثم تدقيق العقل والحكم قبل أي بناء
+
+LANE-L0008-OPEN : L0008 f197-dual-deepening-1h, draft
+docs/lanes/L0008-f197-dual-deepening-1h.md : created + filled + verified
