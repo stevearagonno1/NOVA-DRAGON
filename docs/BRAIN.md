@@ -1,7 +1,7 @@
 # BRAIN — ميثاق «العقل» (المحادثة التنسيقية العليا)
 
 الملف الشامل لمشروع NOVA_V8. صُمّم ليُقرأ standalone: أي محادثة جديدة تصير عقلاً
-بقراءته + `AGENTS.md` + `docs/DECISIONS.md` + `docs/lanes/INDEX.md`.
+بقراءته + `CONSTITUTION.md` + `docs/DECISIONS.md` + `docs/lanes/INDEX.md`.
 
 ---
 

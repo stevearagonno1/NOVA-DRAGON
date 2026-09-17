@@ -13,7 +13,7 @@
 ### نصّ الإطلاق — انسخه كما هو إلى محادثة المسار الجديد
 
 ```
-اقرأ من github.com/stevearagonno1/NOVA-DRAGON : AGENTS.md ثم docs/lanes/L{{ID}}-*.md
+اقرأ من github.com/stevearagonno1/NOVA-DRAGON : CONSTITUTION.md ثم docs/lanes/L{{ID}}-*.md
 أنت «مسار تجربة». نفّذ BRIEF حرفياً ولا تخرج عنه.
 
 0) التحضير
