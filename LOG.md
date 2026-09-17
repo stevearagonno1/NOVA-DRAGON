@@ -368,3 +368,14 @@ status : zero repo modifications, read-only audit
 4 live files : AGENTS.md -> CONSTITUTION.md, 1 hit each
 status : gate-verified, history untouched
 
+
+## ٢٠٢٦-٠٩-١٧ — حفظ عمل الجلسة في المستودع بأمر القائد
+
+- عملنا: إنشاء بيت الأجزاء وملف القواطع الأول وأرشفة تقرير التدقيق
+- القرار: بيت جديد للأجزاء بقرار القائد المباشر المسجل في سجل القرارات
+- الاسم: مسار لاتيني بعنوان عربي داخل الملف قابلا للتغيير بأمرك
+- النتيجة: عمل الجلسة محفوظ كاملا والجلسة مغلقة بأمرك
+
+SAVE-WORK-2026-09-17 : dossier + audit + parts house
+D-0035 : parts house + breakers dossier + audit, by user order
+

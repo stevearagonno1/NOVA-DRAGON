@@ -14,6 +14,8 @@
 
 تحديث الصقل النهائي 2026-09-17 (D‑0030): الفهرس يُولَّد بأمر واحد `python3 tools/build_index.py` — البنية مجمدة، والسرد التاريخي أعلاه محفوظ بلا مساس.
 
+تحديث الصقل النهائي 2026-09-17 (D‑0030): الفهرس يُولَّد بأمر واحد `python3 tools/build_index.py` — البنية مجمدة، والسرد التاريخي أعلاه محفوظ بلا مساس.
+
 
 ## خريطة المجلدات
 
@@ -24,7 +26,7 @@
 | `nova_v8/` | 27 | المحرك المقدَّس — لا يُعدَّل إلا بقرار D (البند ١١) |
 | `data/` | 8 | باركيه البيانات + MANIFEST.md المقدَّس — لا يُمس |
 | `crypto_archive/` | 17 | البيانات الضخمة (عملات 1m — أغلبيتها ٥ سنوات) — لا يُمس |
-| `tools/` | 14 | كل أدوات المستودع بلا استثناء: الفحص والتنظيم والدمج والخريطة |
+| `tools/` | 15 | كل أدوات المستودع بلا استثناء: الفحص والتنظيم والدمج والخريطة |
 | `docs/` | 35 | الوثائق: الست الدستورية في المستوى الأول + constitution/ designs/ lanes/ security/ |
 | `new/` | 5 | بوابة استقبال الحزم: أداتا الإحصاء والاستخراج + الشهادات + خريطة المعزل السري |
 | `history/` | 1835 | المظلة الأرشيفية — كل مادة تاريخية/اختبارية (لا يُعاد ترتيبه داخلياً) |
@@ -45,10 +47,11 @@
 - `live/LIVE-TRADING-RULES.md` (7K)
 - `live/README.md` (1K)
 
-**`tools/`** (14 ملفاً):
+**`tools/`** (15 ملفاً):
 - `tools/archive_report.py` (3K)
 - `tools/audit_lane.py` (12K)
 - `tools/backtest_stream_demo.py` (2K)
+- `tools/build_index.py` (4K)
 - `tools/canary.py` (6K)
 - `tools/combo_probe.py` (3K)
 - `tools/executor_f197.py` (31K)
@@ -70,7 +73,7 @@
 **`docs/`** (35 ملفاً):
 - `docs/BRAIN.md` (15K)
 - `docs/CONSTITUTION-AMENDMENTS.md` (5K)
-- `docs/DECISIONS.md` (26K)
+- `docs/DECISIONS.md` (30K)
 - `docs/HANDOFF.md` (3K)
 - `docs/HYPOTHESIS-FACTORY.md` (2K)
 - `docs/RESEARCH-JUDGMENTS.md` (6K)
@@ -100,7 +103,7 @@
 | `history/sweep_results_donchian_v2/` | 6 |
 | `old/bundle_rest/` | 1 |
 | `old/code_drafts/` | 17 |
-| **الإجمالي المتعقَّب** | **1973** |
+| **الإجمالي المتعقَّب** | **1974** |
 
 ---
 *وُلِّد آلياً بأمر `python3 tools/build_index.py` — البند ١٠: كل رقم قابل لإعادة الاشتقاق.*
