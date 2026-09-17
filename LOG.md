@@ -379,3 +379,13 @@ status : gate-verified, history untouched
 SAVE-WORK-2026-09-17 : dossier + audit + parts house
 D-0035 : parts house + breakers dossier + audit, by user order
 
+
+## ٢٠٢٦-٠٩-١٧ — تعديل دستوري بثلاث إضافات بأمر القائد
+
+- عملنا: ترقيع الدستور بثلاثة نصوص جراحية مع التحقق الكامل
+- الأول: أقواس النسخ في عقد الأوامر والثاني قانون البيئة والثالث إثبات القراءة
+- السجل: الحكم مسجل في سجل التعديلات والتعداد اثنان وعشرون سالما
+- النتيجة: الدستور محدث والمقدس محترم والتطبيق بيد القائد
+
+AMEND-APPLY-2026-09-17 : 3 additions, census 22 intact
+CONSTITUTION.md : patched + verified, sacred honored
