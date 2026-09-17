@@ -12,480 +12,95 @@
 | `history/library/indicators` | مكتبة المؤشرات: 129 ملفاً (مؤشرات/0..7) — خامات أفكار الفلاتر |
 | `history/docs/library` | 14 ملفاً مرجعياً (أدلة ومؤشرات نصية) |
 
+تحديث الصقل النهائي 2026-09-17 (D‑0030): الفهرس يُولَّد بأمر واحد `python3 tools/build_index.py` — البنية مجمدة، والسرد التاريخي أعلاه محفوظ بلا مساس.
+
+
 ## خريطة المجلدات
 
-| المجلد | ما فيه |
+| البيت | الملفات | ما فيه |
+|---|---|---|
+| `bot/` | 3 | البوت الجاهز للتشغيل — التاج V7.0.1 النقي (NOVA.py + النسب + شهادة الجهوزية) |
+| `live/` | 3 | التداول الحي: القواعد الملزمة + وثيقة الربط + توثيق المنفِّذ F-197 |
+| `nova_v8/` | 27 | المحرك المقدَّس — لا يُعدَّل إلا بقرار D (البند ١١) |
+| `data/` | 8 | باركيه البيانات + MANIFEST.md المقدَّس — لا يُمس |
+| `crypto_archive/` | 17 | البيانات الضخمة (عملات 1m — أغلبيتها ٥ سنوات) — لا يُمس |
+| `tools/` | 14 | كل أدوات المستودع بلا استثناء: الفحص والتنظيم والدمج والخريطة |
+| `docs/` | 35 | الوثائق: الست الدستورية في المستوى الأول + constitution/ designs/ lanes/ security/ |
+| `new/` | 5 | بوابة استقبال الحزم: أداتا الإحصاء والاستخراج + الشهادات + خريطة المعزل السري |
+| `history/` | 1835 | المظلة الأرشيفية — كل مادة تاريخية/اختبارية (لا يُعاد ترتيبه داخلياً) |
+| `old/` | 18 | المتقاعد: المسودات + مكررات الحزمة القابلة للاشتقاق بأمر واحد |
+| ملفات الجذر | 8 | طبقة الدخول الدستورية + هذا الفهرس |
+
+## الملفات التشغيلية (الجذر والبيوت الحيّة)
+
+**الجذر:** `.gitattributes` · `.gitignore` · `BACKLOG.md` · `CONSTITUTION.md` · `INDEX.md` · `LOG.md` · `README.md` · `دستوري.txt`
+
+**`bot/`** (3 ملفاً):
+- `bot/NOVA.py` (374K)
+- `bot/READINESS-CHECK.md` (3K)
+- `bot/README.md` (2K)
+
+**`live/`** (3 ملفاً):
+- `live/EXECUTOR-F197.md` (8K)
+- `live/LIVE-TRADING-RULES.md` (7K)
+- `live/README.md` (1K)
+
+**`tools/`** (14 ملفاً):
+- `tools/archive_report.py` (3K)
+- `tools/audit_lane.py` (12K)
+- `tools/backtest_stream_demo.py` (2K)
+- `tools/canary.py` (6K)
+- `tools/combo_probe.py` (3K)
+- `tools/executor_f197.py` (31K)
+- `tools/f197_plateau.py` (8K)
+- `tools/fetch_archive.py` (4K)
+- `tools/merge_main.sh` (2K)
+- `tools/new_lane.py` (3K)
+- `tools/organize_incoming.py` (12K)
+- `tools/rebuild_archive.py` (2K)
+- `tools/redact_bundle_keys.py` (11K)
+- `tools/test_executor_f197.py` (9K)
+
+**`new/`** (5 ملفاً):
+- `new/CENSUS.md` (53K)
+- `new/CROWN-CHECK.md` (3K)
+- `new/census.py` (10K)
+- `new/extract.sh` (3K)
+
+**`docs/`** (35 ملفاً):
+- `docs/BRAIN.md` (15K)
+- `docs/CONSTITUTION-AMENDMENTS.md` (5K)
+- `docs/DECISIONS.md` (26K)
+- `docs/HANDOFF.md` (3K)
+- `docs/HYPOTHESIS-FACTORY.md` (2K)
+- `docs/RESEARCH-JUDGMENTS.md` (6K)
+
+**`docs/constitution/`** (1): `الدستور_القائد_المرآة_العربية.md`
+
+**`docs/designs/`** (8): `استراتيجيتان_منفصلتان_NOVA_V8_وثيقة_مبدئية.txt` · `تصميم_NOVA_V8_النهائي.txt` · `تصميم_NOVA_v8_المتفق_عليه.txt` · `تصميم_محرك_الواجهة.md` · `دليل_الرموز.txt` · `عقد_الترجمة_البرمجية.txt` · `مراجعة_قرارات_تصميم_NOVA.txt` · `وثيقة_تفويض_تطوير_NOVA_V8_المنهج_المحافظ.txt`
+
+**`docs/lanes/`** (8): `INDEX.md` · `L0000-adaptive-trend-1920.md` · `L0001-donchian-current-engine-grid.md` · `L0002-grid-collapse-dead-axes.md` · `L0003-adoption-gate-holdout.md` · `L0006-hyp-lab-first-sweep.md` · `L0007-hyp-lab-five-year.md` · `_TEMPLATE.md`
+
+**`docs/security/`** (1): `KEY-ROTATION-GUIDE.md`
+
+## الأرشيف بالأرقام (تراكمي — لا يُعاد ترتيبه)
+
+| المجموعة | ملفات |
 |---|---|
-| `nova_v8` | الكود المجمّد للمحرك — لا يُعدَّل إلا بقرار D |
-| `docs/constitution` | دستورك: الأعلى والتشغيلي |
-| `docs/designs` | التصاميم: محرك الواجهة، المخطط الشامل، دليل الرموز، عقد الترجمة |
-| `history/docs/reports` | تقارير التدقيق والنتائج والمراجعات |
-| `history/docs/conversations` | سجلات المحادثات ورسائل التوجيه (ذاكرة القرارات) |
-| `docs/lanes` | الحارات: كل تجربة = ملف فيه عقده وحكمه |
-| `history/docs/library` | 14 ملفاً مرجعياً (استشارات + مراجع قصيرة) — نُقلت من docs/misc/ملفات |
-| `history/docs/source` | متفرقات الجذر المنقولة: دليل البداية + عقد الإصدارات (D-0016) + الملفات الشاملة |
-| `history/hypotheses` | الفرضيات: الـ212 + النخبة + لوحة الخط + عقد المصنع |
-| `history/bot_versions` | كل نسخ البوت القديمة — تاريخ محفوظ، لا كود حيّ |
-| `data` | باركيه صغير أعيد منه حساب النتائج |
-| `history/research` | نتائج التشغيل الحقيقية (الأرشيف) |
-| `tools` | أدواتنا: الفحص، البروبي، جدول الأرشيف، المنظّم |
-| `history/hyp_lab` | آلة اختبار الفرضيات الجديدة (من جلسة موازية، PR #3) — بلا مساس بـ`nova_v8/**` |
-| `crypto_archive` | البيانات الضخمة (14 عملة 1m — أغلبيتها 5 سنوات) |
-| `old/code_drafts` | مسودات كود مستقلة ليست من المحرك |
-| `history/archive` | القديم وغير المطابق — محفوظ لا مربوط |
-| `live` | التداول الحي: القواعد (`LIVE-TRADING-RULES.md` منقولة من `docs/`) + وثيقة ربط إلى المنفِّذ `tools/executor_f197.py` |
-| `history` | المظلة التاريخية (الدفعة ١): المجموعات الثماني + الحزمة الأم — كل مادة تاريخية/اختبارية |
-| `old` | كل متقاعد/متجاوز: `code_drafts` (وأخيرًا بقايا الحزمة في الدفعة ٣) |
-
-## كل ملف بمكانه
-
-### `(أرشيف النتائج — على مستوى المجلد)` (28)
-- `history/research/hyp_lab_out/L0004/` — جولة مختبر الفرضيات الأولى: 9 فرضيات × 4 رموز (114 تركيبة) على نافذة 2026 (مسار L‑0006)
-
-- `history/research/nova_v8_out/ATOMUSDT/` — 13 ملف (370K)
-- `history/research/nova_v8_out/BNBUSDT/` — 13 ملف (377K)
-- `history/research/nova_v8_out/BTCUSDT_2y/` — 12 ملف (228K)
-- `history/research/nova_v8_out/FILUSDT/` — 13 ملف (338K)
-- `history/research/nova_v8_out/IMXUSDT/` — 13 ملف (566K)
-- `history/research/nova_v8_out/LINKUSDT/` — 13 ملف (330K)
-- `history/research/nova_v8_out/RENDERUSDT/` — 13 ملف (288K)
-- `history/research/nova_v8_out/SOLUSDT/` — 13 ملف (374K)
-- `history/research/nova_v8_out/TONUSDT/` — 13 ملف (258K)
-- `history/research/nova_v8_out/VETUSDT/` — 13 ملف (294K)
-- `history/research/nova_v8_out/XLMUSDT/` — 13 ملف (169K)
-- `history/research/nova_v8_out/d5y/` — 240 ملف (2.3M)
-- `history/research/nova_v8_out/diag_fast/` — 12 ملف (5K)
-- `history/research/nova_v8_out/diag_grid/` — 12 ملف (4K)
-- `history/research/nova_v8_out/diag_grid2/` — 12 ملف (4K)
-- `history/research/nova_v8_out/diag_grid3/` — 12 ملف (5K)
-- `history/research/nova_v8_out/diag_qg_off/` — 12 ملف (5K)
-- `history/research/nova_v8_out/diag_qg_on/` — 12 ملف (5K)
-- `history/research/nova_v8_out/f5y/` — 264 ملف (22.1M)
-- `history/research/nova_v8_out/sf/` — 72 ملف (871K)
-- `history/research/nova_v8_out/test_at_atr/` — 12 ملف (16K)
-- `history/research/nova_v8_out/test_at_wide/` — 12 ملف (12K)
-- `history/research/nova_v8_out/test_don_bull/` — 12 ملف (94K)
-- `history/research/nova_v8_out/test_don_c/` — 12 ملف (67K)
-- `history/research/nova_v8_out/test_don_chop/` — 12 ملف (14K)
-- `history/research/nova_v8_out/test_don_filter/` — 12 ملف (153K)
-- `history/research/nova_v8_out/test_don_macro/` — 12 ملف (70K)
-
-### `.` (7)
-
-- `.gitignore` (46B) 
-- `AGENTS.md` (5K) — NOVA-DRAGON — عقود العمل للوكلاء (اقرأ هذا أولاً)
-- `CONSTITUTION.md` (30K) — دستور المشروع (الأعلى + التشغيلي) — يُقرأ قبل أي أمر
-- `INDEX.md` (51K) — هذا الفهرس — مرآة المستودع
-- `LOG.md` (4K) — السجل التراكمي: بلوك لكل نتيجة (Append-only بقالبه أعلى الملف)
-- `README.md` (82B) — واجهة المستودع
-- `fetch_archive.py` (4K) — تنزيل أرشيف 1m من data.binance.vision — open_time عمود int64 بالملي ثانية (بلا افتراض وحدة)
-
-> **نُقل بعد التنظيم إلى مواضع جديدة:** `NOVA_v8_bundle.zip` و`bot_output.log` → `history/archive/` — و`START.txt` و`requirements.txt` و`الملف_الشامل_للوكيل_الجديد.txt` و`حزمة_الوكيل_كاملة.txt` و`نتائج_الاستراتيجيات_الكاملة.txt` → `history/docs/source/`.
-
-### `history/archive` (2)
-
-- `history/archive/NOVA_v8_bundle.zip` (102K) — حزمة التوثيق الأصلية (نُقلت من الجذر)
-- `history/archive/bot_output.log` (64B) — nohup: ignoring input (نُقل من الجذر)
-
-### `history/archive/code_snapshot` (1)
-
-- `history/archive/code_snapshot/PACK_README.txt` (1K) — حزمة التوثيق الكاملة — مشروع NOVA_V8
-
-### `history/archive/code_snapshot/docs` (2)
-
-- `history/archive/code_snapshot/docs/NOVA_V8_ORIGINAL_BUNDLE.txt` (309K) — الجزء: العقد (اقرأه أولاً) =========================
-- `history/archive/code_snapshot/docs/PROJECT_LOG.txt` (14K) — ════════════════════════════════════════════════════════════════════
-
-### `history/archive/code_snapshot/nova_v8` (8)
-
-- `history/archive/code_snapshot/nova_v8/README.md` (12K) — NOVA_V8 — Research-first adaptive quant trading bot
-- `history/archive/code_snapshot/nova_v8/adaptive_trend.py` (13K) — """Adaptive Trend sleeve — spec 8.2 "الاتجاه + الارتداد إلى القيمة" (trend +
-- `history/archive/code_snapshot/nova_v8/config.py` (24K) — """NOVA_V8 — central configuration (single source of truth).
-- `history/archive/code_snapshot/nova_v8/feeds.py` (9K) — """Module — data ingestion + feature-matrix cache for research.
-- `history/archive/code_snapshot/nova_v8/fetch_archive.py` (2K) — !/usr/bin/env python3
-- `history/archive/code_snapshot/nova_v8/requirements.txt` (1K) — numpy>=1.24
-- `history/archive/code_snapshot/nova_v8/sweep_engine.py` (10K) — !/usr/bin/env python3
-- `history/archive/code_snapshot/nova_v8/telegram_notify.py` (2K) — """Module — Telegram notifications for the research phase.
-
-### `history/archive/code_snapshot/nova_v8/tests` (2)
-
-- `history/archive/code_snapshot/nova_v8/tests/__init__.py` (1K) 
-- `history/archive/code_snapshot/nova_v8/tests/selftest.py` (14K) — """Self-test: run the full research engine on a small synthetic archive to catch
-
-### `history/archive/research_variants/nova_v8_out` (2)
-
-- `history/archive/research_variants/nova_v8_out/data_quality_report.txt` (1K) — NOVA_V8 — تقرير جودة البيانات / Data Quality
-- `history/archive/research_variants/nova_v8_out/portfolio_risk_audit.txt` (1K) — NOVA_V8 — Portfolio Risk Audit / حماية المحفظة
-
-### `history/bot_versions` (20)
-
-- `history/bot_versions/HFT_MASTER_KNOWLEDGE_BASE.md` (139K) — MASTER KNOWLEDGE BASE — Zero-Wait Tick Execution Edge Library
-- `history/bot_versions/NOVA (2).txt` (249K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA (3).py` (249K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA (3).txt` (249K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA (4).txt` (208K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA.1.txt` (138K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA.ZERO.WAIT.py` (110K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA.py` (189K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA.py.txt` (139K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA_3.txt` (162K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA_4.txt` (187K) — !/usr/bin/env python3
-- `history/bot_versions/Order&Breake.txt` (67K) — // This Pine Script™ code is subject to the terms of the Mozilla Public License 2.0 at htt
-- `history/bot_versions/check.py` (6K) — """حاضنة تشغيل غير متصلة (V7.0): تُشغّل amain/--once وHub التوجيه مع Binance REST وهمي."""
-- `history/bot_versions/check.txt` (16K) — """حاضنة تشغيل غير متصلة: تُشغّل amain/--once وHub التوجيه مع Binance REST وهمي.
-- `history/bot_versions/hft_edge_extraction.md` (68K) — Reverse-Engineered Trading Logic — Distilled for a Tick-Based Binance Spot Engine
-- `history/bot_versions/phantom flow.txt` (46K) — //@version=6
-- `history/bot_versions/start.sh` (5K) — export BINANCE_ENV='testnet'
-- `history/bot_versions/start_zero.sh.txt` (1K) — !/bin/bash
-- `history/bot_versions/خطة_التنفيذ النهائيه_NOVA_v5.md` (18K) — 🗂 خطة التنفيذ الشاملة — NOVA v5 (وثيقة تخطيط فقط — لا كود، بانتظار الموافقة)
-- `history/bot_versions/خطة_التنفيذ_NOVA_v5.md` (17K) — 🗂 خطة التنفيذ الشاملة — NOVA v5 (وثيقة تخطيط فقط — لا كود، بانتظار الموافقة)
-
-### `history/bot_versions/1` (11)
-
-- `history/bot_versions/1/NOVA (2).py` (322K) — !/usr/bin/env python3
-- `history/bot_versions/1/NOVA (3).py` (374K) — !/usr/bin/env python3
-- `history/bot_versions/1/NOVA.py` (291K) — !/usr/bin/env python3
-- `history/bot_versions/1/NOVA.py.txt` (249K) — !/usr/bin/env python3
-- `history/bot_versions/1/bot_output.log` (177K) — [2026-08-30 01:04:43] لا توجد ذاكرة سابقة؛ بداية جديدة
-- `history/bot_versions/1/check (2).py` (5K) — """حاضنة تشغيل غير متصلة (V6.2): تُشغّل amain/--once وHub التوجيه مع Binance REST وهمي."""
-- `history/bot_versions/1/check.py` (5K) — """حاضنة تشغيل غير متصلة (V6.1): تُشغّل amain/--once وHub التوجيه مع Binance REST وهمي."""
-- `history/bot_versions/1/check.py.txt` (5K) — """حاضنة تشغيل غير متصلة: تُشغّل amain/--once وHub التوجيه مع Binance REST وهمي."""
-- `history/bot_versions/1/start (2).sh` (3K) — export BINANCE_ENV='testnet'
-- `history/bot_versions/1/start.sh` (2K) — export BINANCE_ENV='testnet'
-- `history/bot_versions/1/start.sh.txt` (1K) — export BINANCE_ENV='testnet'
-
-### `history/bot_versions/NOVA` (28)
-
-- `history/bot_versions/NOVA/, (2).txt` (23K) — coding: utf-8 -*-
-- `history/bot_versions/NOVA/,.txt` (8K) — import requests
-- `history/bot_versions/NOVA/1 (2).txt` (113K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/9.txt` (104K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/999.txt` (100K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/9_3.txt` (108K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (1).py.txt` (98K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (10).py.txt` (91K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (13).py.txt` (211K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (14).py.txt` (109K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (15).py.txt` (115K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (2) (2) (2).txt` (111K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (2) (2).txt` (112K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (2).py.txt` (98K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (23).py.txt` (171K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (25).py.txt` (77K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (26).py.txt` (88K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (3) (2).txt` (119K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (3).py.txt` (97K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (4).py.txt` (97K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (5).py.txt` (98K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (5).txt` (113K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/NOVA (6).py.txt` (109K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/bot.txt` (108K) — !/usr/bin/env python3
-- `history/bot_versions/NOVA/start (1).sh.txt` (1K) — export BINANCE_ENV='testnet'
-- `history/bot_versions/NOVA/start (2).sh.txt` (1K) — !/bin/bash
-- `history/bot_versions/NOVA/super_bot.txt` (53K) — coding: utf-8 -*-
-- `history/bot_versions/NOVA/،،.txt` (4K) — الغرض والأهداف:
-
-### `history/bot_versions/V0.0.1` (5)
-
-- `history/bot_versions/V0.0.1/engine.py.txt` (25K) — """
-- `history/bot_versions/V0.0.1/execution.py.txt` (4K) — """
-- `history/bot_versions/V0.0.1/nb.py.txt` (8K) — """
-- `history/bot_versions/V0.0.1/telegram.py.txt` (20K) — """
-- `history/bot_versions/V0.0.1/trigger.py.txt` (1K) — """
-
-### `history/bot_versions/V2` (10)
-
-- `history/bot_versions/V2/README.md` (3K) — 🤖 NOVA v5 — ZERO-WAIT QUANT ENGINE
-- `history/bot_versions/V2/config.py` (9K) — """
-- `history/bot_versions/V2/data.py` (6K) — """
-- `history/bot_versions/V2/indicators.py` (11K) — """
-- `history/bot_versions/V2/main.py` (16K) — from __future__ import annotations
-- `history/bot_versions/V2/quant.py` (4K) — """
-- `history/bot_versions/V2/requirements.txt` (1K) — aiohttp>=3.9
-- `history/bot_versions/V2/risk.py` (2K) — """
-- `history/bot_versions/V2/scoring.py` (2K) — """
-- `history/bot_versions/V2/start.sh` (1K) — !/bin/bash
-
-### `history/bot_versions/V3` (4)
-
-- `history/bot_versions/V3/engine.py` (54K) — """
-- `history/bot_versions/V3/nb.py` (10K) — """
-- `history/bot_versions/V3/telegram.py` (29K) — """
-- `history/bot_versions/V3/trigger.py` (1K) — """
-
-### `history/bot_versions/البوت الامن النهائي` (3)
-
-- `history/bot_versions/البوت الامن النهائي/engine.py` (28K) — """
-- `history/bot_versions/البوت الامن النهائي/nb.py` (10K) — """
-- `history/bot_versions/البوت الامن النهائي/trigger.py` (4K) — """
-
-### `history/bot_versions/بوت نهائي` (2)
-
-- `history/bot_versions/بوت نهائي/NOVA.1.txt` (228K) — !/usr/bin/env python3
-- `history/bot_versions/بوت نهائي/NOVA.txt` (205K) — !/usr/bin/env python3
-
-### `history/bot_versions/تداول طويل المدى` (5)
-
-- `history/bot_versions/تداول طويل المدى/claude.txt` (9K) — خطة شاملة لموازنة البوت وتحسين أدائه
-- `history/bot_versions/تداول طويل المدى/gemini.txt` (4K) — لماذا لا يرى البوت فرصاً في السوق حالياً؟
-- `history/bot_versions/تداول طويل المدى/gpt.txt` (10K) — المشكلة التي تصفها شائعة في أنظمة السكالبينج: عندما تجمع عدة شروط ثنائية صارمة AND، تصبح ا
-- `history/bot_versions/تداول طويل المدى/kimi.txt` (6K) — المشكلة التي تواجهك هي **مشكلة التوازن بين الدقة والتردد (Precision vs. Frequency)**، وهي 
-- `history/bot_versions/تداول طويل المدى/qwen.txt` (10K) — مشكلتك كلاسيكية جداً في تطوير بوتات التداول الخوارزمية، وتُعرف بمعضلة **"الموازنة بين الدق
-
-### `history/bot_versions/تداول قصير و سريع` (4)
-
-- `history/bot_versions/تداول قصير و سريع/claued.txt` (16K) — خطة تحسين شاملة لبوت NOVA
-- `history/bot_versions/تداول قصير و سريع/gpt.txt` (12K) — نعم، ويمكن تحسين NOVA بشكل واضح، لكن توجد مفاضلة أساسية: إذا أردته "رشاش صفقات"، فلا يمكن 
-- `history/bot_versions/تداول قصير و سريع/kimi.txt` (9K) — إليك تحليلاً تشخيصياً وحلولاً عملية لمشاكل بوت NOVA. المشكلة ليست في البوت ذاته، بل في **ف
-- `history/bot_versions/تداول قصير و سريع/qwen.txt` (10K) — تحليل عميق وممتاز للبوت الذي بنيته (NOVA). البنية التحتية (Infrastructure) التي وصفتها (As
-
-### `old/code_drafts` (17)
-
-- `old/code_drafts/__init__.py.txt` (1K) — """NOVA_V8_QUANT_LAB — institutional async quant engine for Termux edge."""
-- `old/code_drafts/backtest_sk.py` (3K) — import pandas as pd, numpy as np
-- `old/code_drafts/config.py.txt` (4K) — """Central configuration — all environment-sensitive values live here."""
-- `old/code_drafts/data_fetcher.py.txt` (7K) — !/usr/bin/env python3
-- `old/code_drafts/engine.py.txt` (18K) — """NOVA_V8 orchestrator — one analytical pipeline for BOTH modes.
-- `old/code_drafts/execution.py.txt` (20K) — """Modules 8 & 9 — micro-execution mechanics + hybrid in-memory exit engine.
-- `old/code_drafts/feeds.py.txt` (7K) — """Module 1 — dual-mode data ingestion engine.
-- `old/code_drafts/indicators.py.txt` (10K) — """Module 2 — pure vectorized indicator math (numpy/pandas, non-repainting).
-- `old/code_drafts/main.py.txt` (1K) — """NOVA_V8_QUANT_LAB — entrypoint.
-- `old/code_drafts/microstructure.py.txt` (5K) — """Module 5 — microstructure execution triggers (the catalysts).
-- `old/code_drafts/orderflow.py.txt` (7K) — """Module 4 — online Naive-Bayes order-flow classifier + CVD engine.
-- `old/code_drafts/regime.py.txt` (1K) — """Module 3 — Market Regime Detection Engine.
-- `old/code_drafts/risk.py.txt` (1K) — """Module 7 — dynamic position sizing + the Symbol Governor."""
-- `old/code_drafts/sizing.py` (2K) — import math
-- `old/code_drafts/strategies.py.txt` (4K) — """Module 6 — Strategy Tournament Engine (multi-trigger dispatcher).
-- `old/code_drafts/telegram_bot.py.txt` (6K) — """Modules 11 & 12 — non-blocking Telegram interface.
-- `old/code_drafts/telemetry.py.txt` (7K) — """Module 10 — Master Telemetry Database (the Quant Matrix).
-
-### `history/hyp_lab` (11 — من جلسة موازية، PR #3)
-
-- `history/hyp_lab/` — آلة اختبار الفرضيات: ملفات فرضيات (F_*) + مشغّل مشترك + اختبارات ذاتية (9/9) وحتمية بايت‑ببايت؛ بُنيت خارج `nova_v8/**` المجمد. التشغيل: `.venv/bin/python hyp_lab/run_lab.py --out research/hyp_lab_out/L0004`
-
-### `crypto_archive` (14 عملة محلياً وبعيداً بعد التوحيد: الثمانية المعتمدة + 6 بحثية — انظر `history/docs/DATA-INVENTORY-2026-09-14.md`)
-
-- `crypto_archive/BTCUSDT_1m.parquet` (85M) — بيتكوين 1m لخمس سنوات 2021‑09→2026‑08 (open_time بالمللي ثانية int64؛ 2,629,240 شمعة)؛ فجوتان ~200 دقيقة — الجرد الكامل: `history/docs/DATA-INVENTORY-2026-09-14.md`
-
-### `data` (5 — بعد دمج main)
-
-- `data/MANIFEST.md` — بيان البيانات الخمس (على main البعيد): صفوف وفترات وبصمات وشرح غير المرفوع
-
-- `data/BNBUSDT_1m.parquet` (2.9M) — شموع 1m: 132,480 شمعة · 2026-06-01→2026-08-31 (92 يوماً، صفر فجوات)
-- `data/BTCUSDT_1m.parquet` (5.0M) — شموع 1m: 132,480 شمعة · 2026-06-01→2026-08-31 (92 يوماً، صفر فجوات)
-- `data/LINKUSDT_1m.parquet` (2.7M) — شموع 1m: 132,480 شمعة · 2026-06-01→2026-08-31 (92 يوماً، صفر فجوات)
-- `data/SOLUSDT_1m.parquet` (2.9M) — شموع 1m: 132,480 شمعة · 2026-06-01→2026-08-31 (92 يوماً، صفر فجوات)
-
-### `data/archive` (3)
-
-- `data/archive/BTCUSDT_1m.parquet` (1.7M) — شموع 1m: 30,000 شمعة · 2025-01-01→2025-01-21 (21 يوماً) — شريحة اختبار قديمة
-- `data/archive/SOLUSDT_1m.parquet` (1.7M) — مثلها (2025-01-01→2025-01-21)
-- `data/archive/XLMUSDT_1m.parquet` (1.7M) — مثلها (2025-01-01→2025-01-21)
-
-### `docs` (10)
-
-- `history/docs/ARCHIVE-VERIFIED-2026-09-14.md` (9K) — أرشيف الأدلة — تدقيق 14 سبتمبر 2026 (874 ملفاً / 72 تجربة)
-- `history/docs/AUDIT-2026-09-13.md` (5K) — تدقيق 2026‑09‑13 — ما وجده العقل حين أعاد الاشتقاق بدل القراءة
-- `docs/BRAIN.md` (11K) — BRAIN — ميثاق «العقل» (المحادثة التنسيقية العليا)
-- `history/docs/DATA-INVENTORY-2026-09-14.md` (3K) — جرد ملفات الأسعار في المستودع: من منها وبأي فترة وبأي فجوات
-- `history/docs/HALAL-LIQUID-20-2026-09-14.md` (6K) — بحث أقوى 20 عملة حلالاً ونشاطاً وسيولة (بالمصادر) + اكتشاف GRAM = TON بعد استعادة الاسم
-- `history/docs/CORRELATION-2026-09-14.md` (4K) — قياس ارتباط 12 عملة من بياناتنا (مصفوفة 5 سنوات + سلوك الهبوط + عناقيد التوصية)
-- `docs/DECISIONS.md` (8K) — DECISIONS — سجل القرارات الملزمة (Append‑only)
-- `history/docs/EXECUTION_REPORT.md` (4K) — تقرير تنفيذ — NOVA_V8 adaptive_trend sweep (477→1920)
-- `history/docs/NEXT-SESSION.md` (3K) — تسليم الجلسة: أين نحن والمهمات القادمة (اقرأه بعد الدستور)
-- `history/docs/NOVA_V8_ORIGINAL_BUNDLE.txt` (309K) — الجزء: العقد (اقرأه أولاً) =========================
-- `history/docs/PROJECT_LOG.txt` (17K) — ════════════════════════════════════════════════════════════════════
-- `history/docs/STATS-2026-09-14.md` (28K) — ناتج tools/archive_report.py كاملاً + تدقيق أرقام BRAIN + فحص مطابقة الفهرس (أوامر قابلة للتكرار)
-- `history/docs/sweep_run.log` (176K) — البحث الشامل: adaptive_trend — 1920 تركيبة × نافذتين (تدريب+اختبار)
-
-### `docs/constitution` (2)
-
-- `docs/constitution/الدستور_الأعلى.md` (14K) — 🏛️ الدستور الأعلى — قواعد العمل الدائمة لـ NOVA_V8
-- `docs/constitution/الدستور_التشغيلي.md` (14K) — 📜 الدستور التشغيلي — NOVA_V8 كحياة مستخدم المستخدم
-
-### `history/docs/conversations` (7)
-
-- `history/docs/conversations/رسالة_التوجيه_النهائية.txt` (6K) — رسالة توجيه كاملة — للمحادثة الجديدة (NOVA_V8)
-- `history/docs/conversations/رسالة_التوجيه_للوكيل_الجديد.txt` (3K) — رسالة توجيه للوكيل الجديد — تحديث كامل بعد الملفات السابقة
-- `history/docs/conversations/رسالة_تفضيلات_الحوار_للمحادثة_الجديدة.txt` (5K) — أريدك أن تتعامل معي بالطريقة التالية طوال هذه المحادثة:
-- `history/docs/conversations/سجل_المحادثة_NOVA_V8.txt` (14K) — ════════════════════════════════════════════════════════════════════
-- `history/docs/conversations/نجوم الارض.txt` (3K) — نجوم الارض
-- `history/docs/conversations/وثيقة_السياق_الرئيسية_NOVA_V8.txt` (11K) — وثيقة السياق الرئيسية — NOVA_V8
-- `history/docs/conversations/وثيقة_السياق_الرئيسية_المحدثة_للمحادثة_الجديدة.txt` (14K) — وثيقة السياق الرئيسية المحدثة — مشروع NOVA_V8
-
-### `docs/designs` (8)
-
-- `docs/designs/استراتيجيتان_منفصلتان_NOVA_V8_وثيقة_مبدئية.txt` (11K) — استراتيجيتان منفصلتان داخل NOVA_V8 — وثيقة مبدئية
-- `docs/designs/تصميم_NOVA_V8_النهائي.txt` (29K) — تصميم NOVA_V8 — الوثيقة المرجعية النهائية الموحّدة
-- `docs/designs/تصميم_NOVA_v8_المتفق_عليه.txt` (23K) — تصـميم محرك NOVA_V8 (البحث على التاريخ) — النسخة المتفق عليها بعد التشاور
-- `docs/designs/تصميم_محرك_الواجهة.md` (3K) — تصميم محرك الواجهة — Vectorized Replay Engine (الجيل القادم)
-- `docs/designs/دليل_الرموز.txt` (2K) — دليل الرموز — مرجع الترجمة (من ملف المصنع الأصلي)
-- `docs/designs/عقد_الترجمة_البرمجية.txt` (4K) — عقد الترجمة البرمجية — مصنع الفرضيات NOVA_V8
-- `docs/designs/مراجعة_قرارات_تصميم_NOVA.txt` (21K) — مراجعة شاملة لكل قرارات تصميم محرك NOVA_V8
-- `docs/designs/وثيقة_تفويض_تطوير_NOVA_V8_المنهج_المحافظ.txt` (10K) — وثيقة تفويض تطوير NOVA_V8 — المنهج المحافظ
-
-### `docs/designs/المخطط_الشامل_للبوت` (11)
-
-- `docs/designs/المخطط_الشامل_للبوت/00_الفهرس_وخريطة_المشروع.md` (7K) — 🧭 المخطط الشامل للبوت — NOVA_V8_QUANT_LAB
-- `docs/designs/المخطط_الشامل_للبوت/01_الدفعة_الأولى_الأساسيات_والتشخيص.md` (13K) — 📘 الدفعة الأولى — الأساسيات، التشخيص، والبوت الهجين
-- `docs/designs/المخطط_الشامل_للبوت/02_الدفعة_الثانية_المعمارية_والركائز.md` (12K) — 📗 الدفعة الثانية — المعمارية الخمسية، الركائز الأربع، وهندسة الـ Spot
-- `docs/designs/المخطط_الشامل_للبوت/03_الدفعة_الثالثة_المؤشرات_وقرار_الدخول.md` (15K) — 📙 الدفعة الثالثة — محرك المؤشرات، قواعد القرار، الخروج، والوقف التلقائي
-- `docs/designs/المخطط_الشامل_للبوت/04_الدفعة_الرابعة_المخاطر_والتنفيذ_والخروج.md` (13K) — 📕 الدفعة الرابعة — إدارة المخاطر، التنفيذ المايكروي، ومحرك الخروج الهجين
-- `docs/designs/المخطط_الشامل_للبوت/05_الدفعة_الخامسة_التليمتري_وتلغرام_والتجميع.md` (12K) — 📓 الدفعة الخامسة — قاعدة البيانات، واجهة تلغرام، والتجميع النهائي
-- `docs/designs/المخطط_الشامل_للبوت/06_الدفعة_السادسة_البيانات_والباك_تست.md` (24K) — 📔 الدفعة السادسة — البيانات التاريخية، الأرشيف الذكي، والاختبار الرجعي
-- `docs/designs/المخطط_الشامل_للبوت/07_الدفعة_السابعة_التقنيات_المؤسسية.md` (18K) — 📒 الدفعة السابعة — التقنيات المتقدمة المستوحاة من الروبوتات المؤسسية وصناديق التحوّط الكمي
-- `docs/designs/المخطط_الشامل_للبوت/08_الدفعة_الثامنة_الثغرات_والنسخة_النهائية.md` (21K) — 📗 الدفعة الثامنة والأخيرة — الثغرات، الترقيعات السبعة، والنسخة النهائية المعتمدة
-- `docs/designs/المخطط_الشامل_للبوت/09_ورقة_الثوابت_وجميع_الأرقام.md` (12K) — 📋 ورقة الثوابت — كل رقم ومعامل ورد في الملفات الأربعة
-- `docs/designs/المخطط_الشامل_للبوت/المخطط_الشامل_ملف_واحد.txt` (367K) — المخطط الشامل للبوت  —  NOVA_V8_QUANT_LAB
-
-### `docs/lanes` (7)
-
-- `docs/lanes/INDEX.md` (2K) — LANES — لوحة المسارات (كل تجربة = ملف هنا)
-- `docs/lanes/L0000-adaptive-trend-1920.md` (3K) — L0000 — adaptive_trend: جولة السويپ 477 → 1920 (مغلقة)
-- `docs/lanes/L0001-donchian-current-engine-grid.md` (3K) — L0001 — donchian: إعادة التشغيل بمحاور المحرك الفعلية (DON_FILTER)
-- `docs/lanes/L0002-grid-collapse-dead-axes.md` (3K) — L0002 — تخفيض الشبكة: إزالة الأعمدة الخاملة (grid_collapse)
-- `docs/lanes/L0003-adoption-gate-holdout.md` (3K) — L0003 — بوابة القبول على holdout 2021-09:2023-08 (موجود في المستودع)
-- `docs/lanes/L0006-hyp-lab-first-sweep.md` (11K) — L0006 — hyp_lab: الجولة الأولى (9 فرضيات × 4 رموز، نافذة 2026) — جلسة موازية، أُعيد ترقيمها من L0004 (D‑0020)
-- `docs/lanes/_TEMPLATE.md` (3K) — L{{ID}} — {{TITLE}}
-
-### `history/docs/misc` (17)
-
-- `history/docs/misc/README.md` (4K) — NOVA_V8_QUANT_LAB
-- `history/docs/misc/START.txt` (1K) — NOVA_V8 — دليل البداية للمحادثة الجديدة
-- `history/docs/misc/requirements.txt` (1K) — Termux-safe: pure wheels, no heavy C-compilation, no matplotlib, no requests
-- `history/docs/misc/sf_sleeves.txt` (2K) — ATOMUSDT
-- `history/docs/misc/sle_f.txt` (10K) — INFO nova.research: بدء البحث...
-- `history/docs/misc/sweep_don_btc.txt` (3K) — البحث الشامل: donchian — 80 تركيبة × نافذتين (تدريب+اختبار)
-- `history/docs/misc/sweep_محلي_4_رموز.md` (1K) — 🧬 Sweep السلاحف عبر 4 رموز (نافذة محلية 2026-06→08)
-- `history/docs/misc/التداول_الفوري_بحث_شامل.txt` (218K) — التداول الفوري (SPOT TRADING) — بحث مرجعي مُفصّل
-- `history/docs/misc/الملف_الشامل_التداول_الفوري.txt` (113K) — الملف الشامل الموحد للتداول الفوري (SPOT TRADING)
-- `history/docs/misc/بعد الأمر الثاني.txt` (3K) — ~/nova $ python -m nova_v8 research --symbols BTCUSDT --strategies all --start 2024-09 --e
-- `history/docs/misc/بلا_عنوان (2).txt` (2K) — ~/nova $ cd ~/nova
-- `history/docs/misc/بلا_عنوان.txt` (2K) — ~/nova $ python -m nova_v8 evaluate --csv ~/nova_v8_out/BTCUSDT_2y/research_results.csv --
-- `history/docs/misc/تطوير بوت تداول ذكي بتيرمكس.txt` (71K) — PAGE 1 ---
-- `history/docs/misc/حزمة_الوكيل_كاملة.txt` (310K) — الجزء صفر: START.txt (ابدأ هنا) =========================
-- `history/docs/misc/شرح شامل لبوتات التداول في بينانس.txt` (30K) — PAGE 1 ---
-- `history/docs/misc/مخطط البوت الجديد.txt` (40K) — PAGE 1 ---
-- `history/docs/misc/مخطط_الباك_تست_الشامل.txt` (22K) — المخطط الشامل لمحرك الباك تست — NOVA_V8
-
-### `history/docs/library` (14)
-
-- `history/docs/library/claude.txt` (26K) — خطة شاملة لموازنة البوت وتحسين أدائه
-- `history/docs/library/gemini.txt` (12K) — لماذا لا يرى البوت فرصاً في السوق حالياً؟
-- `history/docs/library/gpt.txt` (23K) — معضلة الدقة مقابل التردد في السكالبينج
-- `history/docs/library/kimi.txt` (17K) — تشخيص مشكلة التوازن بين الدقة والتردد
-- `history/docs/library/qwen.txt` (22K) — تحليل معضلة الدقة مقابل التردد في بوتات التداول
-- `history/docs/library/اخطاء و فخاخ.txt` (7K) — فخ البوابات المنطقية المتسلسلة (Boolean AND Trap)
-- `history/docs/library/اسماء المؤشرات.txt` (3K) — كشف المؤشرات الفنية من ملف مشروع الكريبتو
-- `history/docs/library/اعدادات المؤشرات.txt` (4K) — أفضل إعدادات القراءة البصرية للـ Gem (4h/اليومي)
-- `history/docs/library/البوت الهجين.txt` (7K) — حسم التركيبة: Testnet + أولوية عدد الصفقات + هجين + رسوم 0.1%
-- `history/docs/library/التقرير_النهائي_تحليل_البوت_والمؤشرات.md` (14K) — 🔬 التقرير الشامل: تدقيق البوت «NOVA» + مراجعة مكتبة المؤشرات
-- `history/docs/library/العملات الاقوى و الحلال تماما.txt` (53B) — قائمة العملات المختارة
-- `history/docs/library/بوت جريد.txt` (3K) — الميكانيكية الرياضية لربح بوت الشبكة (Spot Grid)
-- `history/docs/library/فخاخ المبتدئين.txt` (27B) — فخاخ المبتدئين
-- `history/docs/library/كثر خسارات البوت.txt` (7K) — الأسباب الجذرية لسلسلة خسائر NOVA V7.0
-
-### `history/docs/misc/مؤشرات` — نُقلت مكتبة المؤشرات
-
-> ملفات الأقسام الثمانية القديمة هنا (129 ملفاً: 6+20+19+20+19+17+19+9) نُقلت إلى `history/library/indicators/0..7` بالتقسيم نفسه — انظر صف `history/library/indicators` في الجدول أعلى الفهرس. المجلدات القديمة أزيلت بعد النقل.
-
-### `history/docs/misc/ملفات` — نُقلت
-
-> ملفاتها الثلاثة عشر نُقلت إلى `history/docs/library/` (القسم أعلاه): 5 استشارات ذكاء اصطناعي + 8 مراجع قصيرة، ومعها `التقرير_النهائي_تحليل_البوت_والمؤشرات.md` من `history/docs/reports/ملفات`.
-
-### `history/docs/reports` (10)
-
-- `history/docs/reports/استشارة_NOVA_V8_التقنية.txt` (17K) — استشارة تقنية — NOVA_V8
-- `history/docs/reports/الاستعداد للتحليل المعماري للاستراتيجيات.txt` (53K) — PAGE 1 ---
-- `history/docs/reports/الجدول_الختامي_5_سنوات.md` (3K) — 🎼 الجدول الختامي الكبير — كل استراتيجية × كل حالة سوق (5 سنوات حقيقية)
-- `history/docs/reports/تحليل_ارتباط_العملات_بالبيتكوين.txt` (7K) — تحليل تبعية العملات البديلة للبيتكوين (استخلاص من التقرير المرفق)
-- `history/docs/reports/تحليل_استراتيجيات_تداول_السبوت_مقابل_NOVA_V8.txt` (11K) — تحليل ملف «استراتيجيات تداول السبوت الناجحة» مقابل NOVA_V8
-- `history/docs/reports/تقرير_الجولة_الشاملة.md` (3K) — 🏁 تقرير الجولة التطويرية الشاملة — اكتملت (2026-09-11)
-- `history/docs/reports/سجل_العمل_الكامل.md` (8K) — 📋 سجل العمل الكامل — NOVA_V8
-- `history/docs/reports/مراجعة_مطابقة_NOVA_V8_للمخطط.txt` (22K) — مراجعة مطابقة التطبيق (nova_v8) للمخطط النهائي الموحّد
-- `history/docs/reports/ملخص_التشطيب_NOVA_V8.txt` (11K) — NOVA_V8 — ملخص التشطيب النهائي / FINAL FINISHING SUMMARY
-- `history/docs/reports/ORGANIZATION-2026-09-14.md` (26K) — تقرير التنظيم: 523 وارد / 332 منقول / 191 مكرر بالبصمة / 0 مفقود
-
-### `history/docs/reports/ملفات` — نُقل
-
-> `التقرير_النهائي_تحليل_البوت_والمؤشرات.md` نُقل إلى `history/docs/library/` (انظر قسمها أعلاه).
-
-### `history/docs/source` (5)
-
-- `history/docs/source/START.txt` (1K) — خطوات ما بعد فك الضغط (Termux) — نُقل من الجذر
-- `history/docs/source/requirements.txt` (456B) — عقد الإصدارات المرجعية: pandas 2.2.3 / numpy 2.3.5 / pyarrow 25.0.1 (D‑0010/D‑0016) — نُقل من الجذر
-- `history/docs/source/الملف_الشامل_للوكيل_الجديد.txt` (65K) — الملف الشامل للوكيل الجديد — نُقل من الجذر
-- `history/docs/source/حزمة_الوكيل_كاملة.txt` (309K) — حزمة الوكيل الكاملة — نُقل من الجذر
-- `history/docs/source/نتائج_الاستراتيجيات_الكاملة.txt` (17K) — نتائج الاستراتيجيات الكاملة — نُقل من الجذر
-
-### `history/hypotheses` (4)
-
-- `history/hypotheses/عقد_مصنع_الفرضيات.txt` (5K) — عقد المهمة: مصنع الفرضيات التداولية — NOVA_V8
-- `history/hypotheses/فرضيات_الباحث_النهائي.txt` (224K) — ملف NOVA الشامل — كل ما تمت فلترته (الفرضيات + البحث + سجل المرفوضات)
-- `history/hypotheses/فرضياتك_النخبة.txt` (10K) — الفرضيات النخبة العشر — حصة الوكيل
-- `history/hypotheses/لوحة_خط_الفرضيات.md` (3K) — 🏭 لوحة خط إنتاج الفرضيات — مرجع سريع
-
-### `nova_v8` (27)
-
-- `nova_v8/README.py` (16K) — NOVA_V8 — Research-first adaptive quant trading bot
-- `nova_v8/__init__.py` (1K) — """NOVA_V8 — adaptive multi-mode quant research engine.
-- `nova_v8/__main__.py` (12K) — """Command-line entry for NOVA_V8.
-- `nova_v8/adaptive_trend.py` (15K) — """Adaptive Trend sleeve — spec 8.2 "الاتجاه + الارتداد إلى القيمة" (trend +
-- `nova_v8/btc_leadlag.py` (10K) — """Module — BTC lead-lag for lagging altcoins (separate research unit).
-- `nova_v8/config.py` (24K) — """NOVA_V8 — central configuration (single source of truth).
-- `nova_v8/don_filter_doc.py` (1K) — coding: utf-8 -*-
-- `nova_v8/donchian.py` (6K) — """Donchian long-only sleeve — classic Turtle-style Donchian breakout as an
-- `nova_v8/dynamic_grid.py` (18K) — """Dynamic Grid (DGT) — independent research sleeve; a variant of the static
-- `nova_v8/engine.py` (47K) — """Engine — research replay that turns a symbol's feature matrix into results.
-- `nova_v8/evaluation.py` (14K) — """Evaluation layer — post-hoc statistics on research trade records.
-- `nova_v8/execution.py` (13K) — """Module — directional trade lifecycle: entry fill, ATR-based exit engine,
-- `nova_v8/feeds.py` (9K) — """Module — data ingestion + feature-matrix cache for research.
-- `nova_v8/grid.py` (5K) — """Module — Spot Grid mode for choppy/quiet markets.
-- `nova_v8/indicators.py` (9K) — """Module — vectorized, causal indicator math (numpy/pandas, non-repainting).
-- `nova_v8/long_cycle.py` (9K) — """Long-horizon cycle accumulation/distribution research sleeve.
-- `nova_v8/market_open.py` (13K) — """Independent market-open expansion sleeve.
-- `nova_v8/microstructure.py` (2K) — """Module — microstructure structure signals (MSS / SFP / FVG levels).
-- `nova_v8/oracle.py` (5K) — """Module — Structure Truth Oracle + regime transition record.
-- `nova_v8/regime.py` (4K) — """Module — market regime classification.
-- `nova_v8/risk.py` (7K) — """Deterministic portfolio protection and audit layer.
-- `nova_v8/smc.py` (2K) — """Wyckoff/SMC entry-confirmation gate (specs 8.9/8.10) — an optional,
-- `nova_v8/strategy_registry.py` (1K) — """Independent strategy-sleeve registry.
-- `nova_v8/sweep_engine.py` (10K) — !/usr/bin/env python3
-- `nova_v8/synth.py` (7K) — """Synthetic 1m archive generator — a clearly-labeled stand-in for historical
-- `nova_v8/telegram_notify.py` (2K) — """Module — Telegram notifications for the research phase.
-- `nova_v8/triggers.py` (4K) — """Module — directional entry triggers.
-
-### `history/sweep_results/adaptive_trend` (4)
-
-- `history/sweep_results/adaptive_trend/best_on_test.txt` (1K) — NOVA_AT_TRAIL NOVA_AT_STOP NOVA_AT_PB NOVA_AT_TRIG NOVA_AT_V3A NOVA_AT_V3B NOVA_AT_V3C  tr
-- `history/sweep_results/adaptive_trend/sweep_test.csv` (1K) — ﻿NOVA_AT_TRAIL,NOVA_AT_STOP,NOVA_AT_PB,NOVA_AT_TRIG,NOVA_AT_V3A,NOVA_AT_V3B,NOVA_AT_V3C,tr
-- `history/sweep_results/adaptive_trend/sweep_train.csv` (84K) — ﻿NOVA_AT_TRAIL,NOVA_AT_STOP,NOVA_AT_PB,NOVA_AT_TRIG,NOVA_AT_V3A,NOVA_AT_V3B,NOVA_AT_V3C,ne
-- `history/sweep_results/adaptive_trend/sweep_train_partial.csv` (20K) — ﻿NOVA_AT_TRAIL,NOVA_AT_STOP,NOVA_AT_PB,NOVA_AT_TRIG,NOVA_AT_V3A,NOVA_AT_V3B,NOVA_AT_V3C,ne
-
-### `history/sweep_results/donchian` (3)
-
-- `history/sweep_results/donchian/best_on_test.txt` (1K) — NOVA_DON_ENTRY1 NOVA_DON_EXIT1 NOVA_DON_MACRO NOVA_DON_CHOP   train_net    plateau        
-- `history/sweep_results/donchian/sweep_test.csv` (1K) — ﻿NOVA_DON_ENTRY1,NOVA_DON_EXIT1,NOVA_DON_MACRO,NOVA_DON_CHOP,train_net,plateau,net,trades,
-- `history/sweep_results/donchian/sweep_train.csv` (4K) — ﻿NOVA_DON_ENTRY1,NOVA_DON_EXIT1,NOVA_DON_MACRO,NOVA_DON_CHOP,net,trades,win_pct
-  - محاور MACRO/CHOP كانت بلا أثر — أعاد المحرك الحالي إنتاج هذه النتائج 20/20 (D‑0019)؛ انظر `history/sweep_results_donchian_v2/`
-
-### `history/sweep_results_donchian_v2/donchian` (6)
-
-- `history/sweep_results_donchian_v2/donchian/sweep_train.csv` (2K) — ناتج L‑0001: 40 تركيبة على تدريب 2023‑09→2024‑12؛ الأفضل 288/192 = ‎+1,105.23$ (101 صفقة)
-- `history/sweep_results_donchian_v2/donchian/sweep_test.csv` (785B) — 8 نهائيين على اختبار 2025‑01→2026‑08: كلهم سالبون (أفضلهم ‎-295.04$)
-- `history/sweep_results_donchian_v2/donchian/best_on_test.txt` (344B) — الفائز الرسمي 576/96 → ‎-295.04$ ⇒ لا نشر حياً
-- `history/sweep_results_donchian_v2/donchian/holdout_2021-09_2023-08.csv` (1K) — النافذة النظيفة: 20 تركيبة كلها سالبة (أفضلها ‎-128.47$)
-- `history/sweep_results_donchian_v2/donchian/sweep_train_partial.csv` (2K) — نسخة الاستكمال (تُحفظ دائماً)
-- `history/sweep_results_donchian_v2/donchian/env_dump.txt` (2K) — توثيق البيئة والأوامر الحرفية كاملة (D‑0013)
-
-### `tools` (8)
-
-- `tools/archive_report.py` (3K) — !/usr/bin/env python3
-- `tools/audit_lane.py` (12K) — !/usr/bin/env python3
-- `tools/backtest_stream_demo.py` (2K) — !/usr/bin/env python3
-- `tools/canary.py` (6K) — !/usr/bin/env python3
-- `tools/combo_probe.py` (3K) — !/usr/bin/env python3
-- `tools/new_lane.py` (3K) — !/usr/bin/env python3
-- `tools/organize_incoming.py` (11K) — import os, sys, re, hashlib, subprocess, shutil
-- `tools/rebuild_archive.py` (2K) — !/usr/bin/env python3
-
+| `history/` | 1 |
+| `history/archive/` | 24 |
+| `history/bot_versions/` | 92 |
+| `history/clean/` | 201 |
+| `history/docs/` | 69 |
+| `history/hyp_lab/` | 12 |
+| `history/hypotheses/` | 4 |
+| `history/library/` | 129 |
+| `history/research/` | 1290 |
+| `history/sweep_results/` | 7 |
+| `history/sweep_results_donchian_v2/` | 6 |
+| `old/bundle_rest/` | 1 |
+| `old/code_drafts/` | 17 |
+| **الإجمالي المتعقَّب** | **1973** |
+
+---
+*وُلِّد آلياً بأمر `python3 tools/build_index.py` — البند ١٠: كل رقم قابل لإعادة الاشتقاق.*
