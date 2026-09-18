@@ -151,6 +151,8 @@ After every result or decision: append a new block at the end of the log file �
 
 | **`docs/REPORT-LANGUAGE.md`** | Unified report language (User ruling 2026-09-18): eight-line summary card · seven trading tables · verdict card · two glossaries (trading-native kept · project metaphors banned) — binding on every report |
 
+| **`docs/REPORT-LANGUAGE.md`** | Unified report language (User ruling 2026-09-18): eight-line summary card · seven trading tables · verdict card · two glossaries (trading-native kept · project metaphors banned) — binding on every report |
+
 ## 📌 Deferred-Items Register — Resolved ✅
 - The daily line −3% (Governing Numbers) — understood and settled: lives in `docs/LIVE-TRADING-RULES.md`.
 - The Autonomy Roadmap — understood; its apparent clash with "we never stop" was healed by the approved repaired wording: a written uninterruptible plan · documented burial after exhaustion · a new front opens immediately (**we never stop — we move on**) · no resurrecting the buried with tricks outside its written plan. It heads `docs/RESEARCH-JUDGMENTS.md`.
