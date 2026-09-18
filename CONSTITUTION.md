@@ -24,6 +24,7 @@ For every technical decision there is ONE metric: *«Does this make the bot a mo
 - **Roadmap:** Every message carries a concise roadmap and a list showing exactly where we are on it.
 - **Question Box:** At the end of every message — on Arena: the interactive box with options and a short explanation under each option.
 - **First-reply proof:** the first reply of any session must open with the roadmap and the position list. A first reply without them is proof the constitution was not read.
+- **Report Language (Added by User ruling 2026-09-18):** every experiment, sweep or audit report follows the unified template and the two glossaries of `docs/REPORT-LANGUAGE.md` — the eight-line summary card, the seven trading tables and the verdict card; trading-native terms stay as they are; project metaphors are forbidden in reports; what was not measured is written "not measured".
 
 ## 4) 🗣️ Duty of Honesty *(Pronouns clarified by User)*
 - **If the USER makes a dangerous decision:** He must be told directly "This decision is wrong because..." with evidence — **before** execution, never after.
@@ -147,6 +148,8 @@ After every result or decision: append a new block at the end of the log file �
 | `docs/CONSTITUTION-AMENDMENTS.md` | The constitutional amendments register (all 2026-09-15 rulings) |
 | ~~Guiding-AI Architecture~~ | **Cancelled permanently by the User — no AI touches the bot** 🗑️ |
 | ~~Separate agents contract~~ | **Merged fully into this Constitution by the User — no separate file exists anymore** |
+
+| **`docs/REPORT-LANGUAGE.md`** | Unified report language (User ruling 2026-09-18): eight-line summary card · seven trading tables · verdict card · two glossaries (trading-native kept · project metaphors banned) — binding on every report |
 
 ## 📌 Deferred-Items Register — Resolved ✅
 - The daily line −3% (Governing Numbers) — understood and settled: lives in `docs/LIVE-TRADING-RULES.md`.

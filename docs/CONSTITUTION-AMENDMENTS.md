@@ -60,3 +60,12 @@ AMEND-2026-09-17 : three surgical additions, user-approved
 section 6 : + Send-back brackets
 section 12 : + Workspace budget law
 section 3 : + First-reply proof
+
+AMEND-2026-09-18 : report language adopted into the Constitution, user-approved
+
+- الحكم: القالب الموحد للتقرير ومعجماه يصبحان ملزمين لكل تقرير؛ المرساة: بند إشارة في القسم ٣ + سطر في خريطة الملفات — إضافات فقط، بلا حذف ولا إعادة ترقيم، والتعداد ٢٢ سالم.
+- الحكم الثاني: تجربة محدودة لاستراتيجية الخروج المزدوج على رمزين بفريم الساعة سُجلت في السجل ببوابة غير مكتملة (ستة رموز + فحص ثبات المحرك الرسمي)؛ المهمة الرسمية بإذن منفصل.
+- الدرس المسطر: أوامر اللصق التفاعلية لا تحمل قواعد قاتلة للجلسة؛ المنطق يعيش في سكربت ولد مستقل.
+
+section 3 : + Report Language bullet
+File Map : + docs/REPORT-LANGUAGE.md row
