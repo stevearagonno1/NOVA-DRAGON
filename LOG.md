@@ -456,3 +456,15 @@ corrections : 1h positive is 7/8, dual+ALL14 selected is 12/16 — no effect on 
 
 LANE-L0010-OPEN : stress round authorized — run_stress.py, code+lane only
 deferred : INDEX row + D-0038 ride the verdict round to avoid merge conflict
+
+
+## 2026-09-19 — تعديل دستوري بثلاثة أقسام بأمر القائد (القوالب تسكن الدستور)
+
+- عملنا: تلقي ستة قوانين بإملاء القائد، صياغتها دستوريًا، اعتماده لها بتنقيح نطاق الجداول، ثم الترقيع على فرع الجلسة بإضافات فقط
+- المضمون: قس ٢٣ قوالب النتائج بيتها الدستور حصرًا ومعجماها ومثالها · قسم ٢٤ قالب الحوار الثابت والرموز ولسان المتداول · قسم ٢٥ التوكن والإذن المسبق وحصرية الدمج
+- النتيجة: التعداد من ٢٢ إلى ٢٥ قسمًا موثقًا في سجل التعديلات والقرار D-0039 (وD-0038 محجوز لجولة الضغط) · وثيقة القالب المنفصلة متقاعدة بإحالة بلا فقدان حرف · السجل القديم لم يُمس
+- التالي: دفع فرع الجلسة ثم الدمج بيد القائد من تيرمكس بالأداة الرسمية
+
+AMEND-APPLY-2026-09-19 : sections 23-25 added, census 25 intact, report-language retired
+branch : arena/constitutional-amendment-2026-09-19
+boundary : merge by user hand only — tools/merge_main.sh
