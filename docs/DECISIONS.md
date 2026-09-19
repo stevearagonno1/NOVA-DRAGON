@@ -173,3 +173,16 @@ D-0035 | 2026-09-17
 docs/parts/ : NEW house, one dossier per part
 docs/parts/directional-breakers.md : part dossier 1
 history/docs/AUDIT-2026-09-17.md : session audit archive
+
+D-0036 | 2026-09-19
+
+- القرار: فتح المسار التاسع والتجربة مئتان وثلاثة عشر لإخضاع القواطع الاتجاهية كاملة
+- السبب: أمر القائد 2026-09-19: ملف القواطع يجرب كل استراتيجياته ومحادثة مستقلة على الأرشيف
+- الأثر: ملفان جديدان في مختبر الفرضيات ومسودة مسار مولدة بالأداة وتوسعة ملف القواطع إضافة فقط
+- الحدود: المحرك المجمد يستورد ولا يعدل ولا دفع للفرع المحمي إلا بيد القائد نفسه
+- البيانات: بث كل رمز للذاكرة ولا حاجة لتنزيل الأرشيف كاملا في أي بيئة ضيقة
+- المؤجل: بوابة النظام صاعد وهابط وشبكة الخروج المزدوج لأي قاطع عابر بجولة مستقلة
+
+F_213 : history/hyp_lab/F_213_breakers.py
+L0009 : docs/lanes/L0009-directional-breakers-backtest.md + run_breakers.py
+boundary : nova_v8 untouched, merge by user hand only (merge_main.sh)
