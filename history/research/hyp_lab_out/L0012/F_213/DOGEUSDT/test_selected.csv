@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_EXIT,sel_NOVA_TRIGGER
+DOGEUSDT,1,ok,4575.771701448312,586,4994.617023079702,751,89.08,2.3985925048213335,True,dual,ALL14

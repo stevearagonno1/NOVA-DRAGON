@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_EXIT,sel_NOVA_TRIGGER
+BNBUSDT,1,ok,4405.863716299553,469,-1379.4935628452959,602,35.55,0.8893051092435583,False,std,ALL14

@@ -1,0 +1,15 @@
+python=3.13.14
+pandas=2.2.3
+numpy=2.3.5
+window: train=2023-09-01→2024-12-31 | test=2025-01-01→2026-08-31
+cost=0.13%/side | notional=1000$ | bar=4h | canary=-98.59031619937323
+source=stream | archive=stream:b27052e87d9c810ce401c4f64ec359944b164eaf
+dual_spec={'trig': 0.0025, 'lock': 0.0045, 'wide': 0.002, 'tight': 0.0008}
+sha256[:16] ATOMUSDT=stream:ad24fa274c5e0228:46935128
+sha256[:16] BNBUSDT=stream:42f8fd4bdc3dbf46:49508758
+sha256[:16] DOGEUSDT=stream:3efc95035012c182:51010103
+sha256[:16] IMXUSDT=stream:5cae46090ce58296:41852163
+sha256[:16] PEPEUSDT=stream:a3e3a6be6730ad85:30549441
+sha256[:16] SHIBUSDT=stream:beba75b2fb7e6763:47598236
+sha256[:16] TONUSDT=stream:a3ea3f5abc45372e:17825470
+sha256[:16] VETUSDT=stream:60d81a69b1eb58af:48253761
