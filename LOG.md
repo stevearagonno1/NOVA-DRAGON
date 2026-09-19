@@ -468,3 +468,15 @@ deferred : INDEX row + D-0038 ride the verdict round to avoid merge conflict
 AMEND-APPLY-2026-09-19 : sections 23-25 added, census 25 intact, report-language retired
 branch : arena/constitutional-amendment-2026-09-19
 boundary : merge by user hand only — tools/merge_main.sh
+
+
+## 2026-09-19 — قانون الشريط: دفتر نبضات لا يموت مع الجلسات بأمر القائد
+
+- عملنا: صياغة قسم ٢٦ لدفتر النبضات (كل حدث ملف مرقم جديد) مع بند المراجعة الواجبة المضاف بنص القائد، ثم إنشاء بيت الشريط وبذرته
+- السبب: جلسة الغرفة القديمة ماتت وكادت تضيع حزمة ١٢٩ ملفًا — فصار الحفظ لحظة بلحظة والاستئناف من آخر نبضة لكل جلسة جديدة
+- النتيجة: التعداد ٢٦ سالم · docs/journal مُنشأ بقرار هيكلي موثق · بروتوكول الاستئناف يقرأ الشريط رابعًا
+- التالي: الدمج بيد القائد من تيرمكس ثم إنقاذ حزمة الجولة العاشرة من ملفات الغرفة القديمة
+
+AMEND-APPLY-2026-09-19-b : section 26 tape law, journal house, census 26 intact
+branch : arena/tape-law-2026-09-19
+boundary : merge by user hand only — tools/merge_main.sh
