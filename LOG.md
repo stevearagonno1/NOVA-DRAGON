@@ -428,3 +428,12 @@ docs/lanes/L0008-f197-dual-deepening-1h.md : created + filled + verified
 
 LANE-L0009-OPEN : F_213 breakers 16x2 on 1h+4h, draft, stream source
 boundary : engine untouched — merge by user via tools/merge_main.sh only
+## 2026-09-19 — فتح جولة الضغط العاشرة بإذن القائد
+
+- عملنا: أذن القائد بكسر الحافة بالضغط فبنينا سائقا مستقلا يقرأ مختارات الجولة التاسعة المقفلة ولا يعيد اختيار شيء
+- المحاور الخمسة: مصفوفة الاختبار كاملة وانزلاق مجهد 0.10 و0.30 وبالمئة ونافذة عمياء 2021-2023 وجوار عشرين بالمئة وتفكيك مركب الكل
+- الاختبار قبل الدفع: تشغيل حقيقي على رمزين اجتاز كل المسارات وطابق طبقة الأساس أرقام الجولة التاسعة حرفا على العملتين
+- ملاحظتان ملزمتان: الترتيب فرع التوثيق أولا ثم هذا الفرع — وسطر اللوحة والقرار المرقم يركبان مع توثيق الحكم تفاديا لتعارض الدمج
+
+LANE-L0010-OPEN : stress round authorized — run_stress.py, code+lane only
+deferred : INDEX row + D-0038 ride the verdict round to avoid merge conflict
