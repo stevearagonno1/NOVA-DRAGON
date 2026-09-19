@@ -523,3 +523,14 @@ branch : arena/l0010-verdict — merge by user hand only (tools/merge_main.sh)
 
 LANE-L0012-OPEN : 8 symbols x 32 combos x 4h — 7 pass gate, canary exact, buyhold negative on all 8
 branch : arena/journal-resume-2026-09-19 — merge by user hand only (tools/merge_main.sh)
+
+
+## 2026-09-19 — تدقيق L0012: إعادة اشتقاق مستقلة بلا أي فرق رقمي
+
+- عملنا: بعد دمج حزمة التوسعة بيد القائد (3449b9e)، أُعيد تشغيل الجولة كاملة من الصفر في بيئة معزولة بنفس السائق وقُورنت الملفات حرفيًا
+- النتيجة: **28 ملفًا — 27 مطابق بايتيًا حرفيًا، والفرق الوحيد سطر مدة التشغيل (35.3 ث مقابل 25.1 ث)** — صفر فرق في أي رقم · كاناري التدقيق PASS بالضبط ‏−98.59031619937323‏$ · تحقق متقاطع داخلي: الصفقات مطابقة 100% وفرق net ≤ 3.41e-03$ (تقريب pnl إلى 4 خانات) · الدليل `history/research/hyp_lab_out/L0012/audit_rediff.txt` وقسم VERDICT في ملف المسار
+- الحكم: **نطوّر** — سبع عملات عبرت بوابة الامتحان، والاعتماد ينتظر الجوار والعمياء والانزلاق المجهد والاستقرار الإحصائي
+- التالي: قرار القائد في الجبهة التالية (جولة ضغط على السبع بإذن صريح · أو إكمال قياسات L0010 · أو المسبار الورقي)
+
+LANE-L0012-AUDIT : 2 independent runs byte-equal except runtime line; verdict = develop, no adoption
+branch : arena/journal-resume-2026-09-19 — merge by user hand only (tools/merge_main.sh)
