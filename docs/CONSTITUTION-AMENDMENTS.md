@@ -91,3 +91,13 @@ AMEND-2026-09-19-b : the Tape — session pulse house docs/journal + mandatory r
 section 26 : added — census 26 intact
 section 21 : + Tape review in resume protocol
 docs/journal/ : NEW house + README + seed tick 001
+
+AMEND-2026-09-19-c : birth certificate — hardened first-read proof, user-approved
+
+- الحكم: شكوى القائد من محادثات جديدة لا تلتزم الدستور كله؛ اقترح تلخيص الفهم أولًا فهُندس إلى شهادة ولادة بخاناتها التسع القابلة للفحص من المستودع — والتلخيص الحر وحده غير مقبول؛ وسلك الأمان رد «اقرأ» بيد القائد.
+- الأثر: بند محكم جديد في القسم ٣ بعد بند إثبات القراءة · بروتوكول الاستئناف (قسم ٢١) يطلب الشهادة نصًا · نص إطلاق جاهز في وثيقة التسليم · التعداد ٢٦ بلا تغيير.
+- الركوب: أُضيفت على فرع قانون الشريط المرفوع بموافقة القائد — دورة دمج واحدة للقانونين.
+
+section 3 : + birth certificate bullet (nine verifiable fields + «اقرأ» safety wire)
+section 21 : + certificate required in resume template
+docs/HANDOFF.md : resume section upgraded with paste-ready launch text

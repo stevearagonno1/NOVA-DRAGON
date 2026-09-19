@@ -480,3 +480,14 @@ boundary : merge by user hand only — tools/merge_main.sh
 AMEND-APPLY-2026-09-19-b : section 26 tape law, journal house, census 26 intact
 branch : arena/tape-law-2026-09-19
 boundary : merge by user hand only — tools/merge_main.sh
+
+
+## 2026-09-19 — شهادة الولادة: إحكام إثبات القراءة لكل جلسة جديدة بأمر القائد
+
+- عملنا: ترقيع بند الشهادة بخاناتها التسع في قسم التواصل وطلبها نصًا في بروتوكول الاستئناف وتجهيز نص الإطلاق في وثيقة التسليم
+- السبب: شكوى القائد من محادثات جديدة لا تلتزم الدستور — التلخيص الحر قابل للتزويق فصار الإثبات خانات تُفحص من المستودع
+- النتيجة: سلك «اقرأ» بيد القائد — خانة فارغة أو خاطئة = عودة للقراءة بلا عمل · التعداد ٢٦ بلا مساس
+- التالي: ركبت على فرع قانون الشريط لدورة دمج واحدة بيد القائد ثم إنقاذ حزمة الجولة العاشرة
+
+AMEND-APPLY-2026-09-19-c : birth certificate in section 3 + resume template + launch text
+branch : arena/tape-law-2026-09-19 (ride shared with tape law — user-approved)
