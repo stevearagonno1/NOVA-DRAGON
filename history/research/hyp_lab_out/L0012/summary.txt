@@ -1,0 +1,10 @@
+# L0009 — القواطع الاتجاهية (F_213) — أفضل (اختبار) لكل رمز — شبكة 4h
+# مدة التشغيل حتى هذا الفريم: 25.1 ث
+  F_213 IMXUSDT: test_net=7876.21$ trades=717 win=91.2% PF=3.23 gate=نعم | sel=dual/ALL14 | train_net=7460.05$ | ok
+  F_213 PEPEUSDT: test_net=6962.92$ trades=726 win=91.2% PF=2.82 gate=نعم | sel=dual/ALL14 | train_net=10377.82$ | ok
+  F_213 VETUSDT: test_net=5510.45$ trades=772 win=90.3% PF=2.52 gate=نعم | sel=dual/ALL14 | train_net=4816.85$ | ok
+  F_213 DOGEUSDT: test_net=4994.62$ trades=751 win=89.1% PF=2.40 gate=نعم | sel=dual/ALL14 | train_net=4575.77$ | ok
+  F_213 SHIBUSDT: test_net=4697.64$ trades=753 win=89.4% PF=2.38 gate=نعم | sel=dual/ALL14 | train_net=4648.75$ | ok
+  F_213 ATOMUSDT: test_net=4343.97$ trades=782 win=89.8% PF=2.27 gate=نعم | sel=dual/ALL14 | train_net=3197.73$ | ok
+  F_213 TONUSDT: test_net=3691.74$ trades=668 win=89.5% PF=2.23 gate=نعم | sel=dual/ALL14 | train_net=1377.27$ | ok
+  F_213 BNBUSDT: test_net=-1379.49$ trades=602 win=35.5% PF=0.89 gate=لا | sel=std/ALL14 | train_net=4405.86$ | ok

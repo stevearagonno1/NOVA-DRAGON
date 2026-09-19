@@ -17,7 +17,7 @@
 | `nova_v8/` | المحرك المقدَّس — لا يُمس |
 | `data/` · `crypto_archive/` | البيانات — لا تُمس |
 | `tools/` | كل الأدوات بلا استثناء |
-| `docs/` | الوثائق: الست الدستورية + constitution/ designs/ lanes/ security/ |
+| `docs/` | الوثائق: الست الدستورية + constitution/ designs/ lanes/ parts/ journal/ security/ |
 | `new/` | بوابة استقبال الحزم الجديدة |
 | `history/` | الأرشيف الكامل — لا يُعاد ترتيبه |
 | `old/` | المتقاعد |

@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_EXIT,sel_NOVA_TRIGGER
+SHIBUSDT,1,ok,4648.750586582552,592,4697.638008903904,753,89.38,2.3840571521550014,True,dual,ALL14

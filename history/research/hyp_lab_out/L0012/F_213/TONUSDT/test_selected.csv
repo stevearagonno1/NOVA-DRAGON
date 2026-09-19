@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_EXIT,sel_NOVA_TRIGGER
+TONUSDT,1,ok,1377.2704459561025,168,3691.741019561742,668,89.52,2.2271097709209524,True,dual,ALL14

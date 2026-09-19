@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_EXIT,sel_NOVA_TRIGGER
+ATOMUSDT,1,ok,3197.7297475827877,624,4343.972662174989,782,89.77,2.2749324065314918,True,dual,ALL14
