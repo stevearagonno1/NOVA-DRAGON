@@ -80,3 +80,24 @@ AMEND-2026-09-19 : templates housed in the Constitution — 25 sections — trad
 section 3 : revised Report Language bullet (internal anchor)
 sections 23,24,25 : added — census 25 intact
 docs/REPORT-LANGUAGE.md : retired to a pointer line (original kept in history)
+
+AMEND-2026-09-19-b : the Tape — session pulse house docs/journal + mandatory review clause, user-approved
+
+- الحكم: قسم ٢٦ جديد بإملاء القائد واعتماده: بيت شريط دائم docs/journal — كل جلسة مجلد وكل حدث مغيِّر ملفًا مرقمًا جديدًا يشرح ما حدث · الرفع الفوري لفرع الجلسة قبل أي رسالة تالية · لا تُعدَّل تكة ولا تُحذف والتصحيح تكة جديدة تشير إليها · **المراجعة الواجبة بنص القائد: كل جلسة جديدة تراجع الشريط قبل أول حركة** · LOG.md يبقى التاج · الدمج مع الحزمة بيد القائد.
+- البنية: إنشاء docs/journal قرار هيكلي جديد بأمر القائد — تحديث مقصود لتجميد D-0033.
+- المنشأ: تطوير القائد لفكرته من «سطر بعد كل رسالة» إلى «ملف مستقل لكل حدث» — فأُلغي التعارض بنيويًا وأُسقطت فاتورتا الدمج والضوضاء.
+- الأثر: التعداد ٢٥ ← ٢٦ · القسم ٢١ أضيفت إليه مراجعة الشريط رابعًا · بذرة تكة لهذه الجلسة.
+
+section 26 : added — census 26 intact
+section 21 : + Tape review in resume protocol
+docs/journal/ : NEW house + README + seed tick 001
+
+AMEND-2026-09-19-c : birth certificate — hardened first-read proof, user-approved
+
+- الحكم: شكوى القائد من محادثات جديدة لا تلتزم الدستور كله؛ اقترح تلخيص الفهم أولًا فهُندس إلى شهادة ولادة بخاناتها التسع القابلة للفحص من المستودع — والتلخيص الحر وحده غير مقبول؛ وسلك الأمان رد «اقرأ» بيد القائد.
+- الأثر: بند محكم جديد في القسم ٣ بعد بند إثبات القراءة · بروتوكول الاستئناف (قسم ٢١) يطلب الشهادة نصًا · نص إطلاق جاهز في وثيقة التسليم · التعداد ٢٦ بلا تغيير.
+- الركوب: أُضيفت على فرع قانون الشريط المرفوع بموافقة القائد — دورة دمج واحدة للقانونين.
+
+section 3 : + birth certificate bullet (nine verifiable fields + «اقرأ» safety wire)
+section 21 : + certificate required in resume template
+docs/HANDOFF.md : resume section upgraded with paste-ready launch text

@@ -3,7 +3,7 @@
 > **Status:** OFFICIAL — the supreme law for every leader chat and agent.
 > **Born:** From the User's Arabic master through his constitutional consultation rulings of 2026-09-15.
 > **Supreme reference:** The User's Arabic master text. On any doubt or ambiguity: **ask the User, never guess.**
-> **Completeness census: 25 sections + File Map** — re-verified at every regeneration. *(Raised from 22 by User ruling 2026-09-19: sections 23–25 added — register in `docs/CONSTITUTION-AMENDMENTS.md`.)* **Truncation is forbidden.** No one may produce a "short version" that drops a section.
+> **Completeness census: 26 sections + File Map** — re-verified at every regeneration. *(Raised 22 → 26 by User rulings of 2026-09-19: sections 23–25 then the Tape-law 26 — register in `docs/CONSTITUTION-AMENDMENTS.md`.)* **Truncation is forbidden.** No one may produce a "short version" that drops a section.
 > Any chat or agent: **read this document ENTIRELY before any command.** No action shall violate this constitution, even if it seems like an "improvement".
 
 ---
@@ -24,6 +24,7 @@ For every technical decision there is ONE metric: *«Does this make the bot a mo
 - **Roadmap:** Every message carries a concise roadmap and a list showing exactly where we are on it.
 - **Question Box:** At the end of every message — on Arena: the interactive box with options and a short explanation under each option.
 - **First-reply proof:** the first reply of any session must open with the roadmap and the position list. A first reply without them is proof the constitution was not read.
+- **شهادة الولادة — إحكام إثبات القراءة (حكم القائد 2026-09-19):** أول رد لأي محادثة جديدة يحمل **شهادة ولادة بخاناتها التسع**: (١ اسم الجلسة وتاريخها ومن يكون الوكيل · ٢ التعداد حرفًا: «26 قسمًا + خريطة ملفات» · ٣ المهمة المقدسة بجملة واحدة · ٤ الحواجز الحديدية حرفًا · ٥ آخر قرار مرقم في سجل القرارات وتاريخه · ٦ آخر دمج على الفرع المحمي ورمزه · ٧ الجولات المفتوحة وحالاتها من اللوحة وآخر تكة مقروءة في كل شريط مفتوح · ٨ موقفنا الحالي بدليل سطر من وثيقة التسليم · ٩ أفضل خطوة تالية مقترحة وسببها). التلخيص الحر وحده **غير مقبول** — لا يثبت القراءةَ إلا ما لا يُخترع: حقائق المستودع المرقمة. **أي خانة فارغة أو خاطئة = دليل عدم قراءة، ورد المستخدم الوحيد: «اقرأ» — فلا عمل ولا حوار قبل شهادة سليمة.**
 - **Report Language (حكم القائد 2026-09-19 — المنقّح):** قوالب النتائج تسكن هذا الدستور حصرًا في **القسم ٢٣** — بطاقة الثمانية أسطر، والجداول السبعة، وبطاقة الحكم، والمعجمان. الجداول السبعة كاملةً **إلزامية بعد كل تجربة أو اختبار لاستراتيجية أو فرضية تداول** — لا تنتظر إرادة التعمق ولا تُسقط طاولة، وتقارير التدقيق والتنظيم والتوثيق لا تحملها؛ القالب الكامل يُودع دائمًا في التقرير الموثق، والمحادثة تعرض بطاقة الثمانية والجداول الحاسمة مع إتاحة الكامل. مصطلحات التداول الأصيلة تبقى كما هي، واستعارات المشروع ممنوعة في التقارير، وما لم يُقَس يُكتب «لم يُقَس». *(نسخة البند الأصلية 2026-09-18 محفوظة في تاريخ المستودع وسجل التعديلات.)*
 
 ## 4) 🗣️ Duty of Honesty *(Pronouns clarified by User)*
@@ -130,7 +131,7 @@ The current code is untouched except by a line of documented decision — data/t
 | A tool reused across experiments | The tools folder |
 
 ## 21) 🔑 Brain Resume Template for a New Chat *(Merged — copied as-is)*
-> Read from the repository in sequence: this Constitution, then the decisions log, then the lanes board. You are the "Brain": never run long experiments; plan, order priorities, audit the numbers, and record decisions — **and no sub-agent and no lane without my explicit permission.** Start from the current state and tell me the best next step.
+> Read from the repository in sequence: this Constitution, then the decisions log, then the lanes board, **then the Tape (`docs/journal/`) — its review before any action is mandatory by §26.** You are the "Brain": never run long experiments; plan, order priorities, audit the numbers, and record decisions — **and no sub-agent and no lane without my explicit permission.** Start from the current state and tell me the best next step — **but your first reply is the Birth Certificate block (§3, the nine fields) before any work.**
 
 ## 22) 🖊️ The Log Is Mandatory *(Merged from the agents contract)*
 After every result or decision: append a new block at the end of the log file — never edit old lines, never delete a letter.
@@ -329,6 +330,18 @@ After every result or decision: append a new block at the end of the log file �
 
 ---
 
+## 26) 📼 الشريط — دفتر نبضات الجلسات لا يموت معها *(بحكم القائد 2026-09-19)*
+
+> **المنشأ:** بأمر القائد 2026-09-19 بعد درس جلسة ماتت وكاد يضيع معها عمل يوم كامل: «مجلد للسجل، بعد كل رسالة يُضاف إليه ملف جديد يشرح ما حدث» — وطُوِّر إلى ملف مستقل لكل حدث فأُلغي التعارض بنيويًا. **إنشاء بيت `docs/journal/` قرار هيكلي جديد بأمر القائد نفسه** (تحديث مقصود لتجميد البنية D‑0033).
+
+- **التكة:** كل حدث مغيِّر للحالة — نتيجة تجربة، قرار، أمر جهاز للمستخدم، تعديل مستودع، تعليمات من القائد، حدث طارئ — يُولَد له فورًا ملف مرقم جديد في مجلد الجلسة: `docs/journal/<التاريخ>-<اسم-الجلسة>/NNN-*.md`، ويشرح بلغة التداول أربعة أسطر: ماذا تقرر · ماذا نُفِّذ · ما الذي أُنتج · ما التالي. المجاملات والردود الفارغة لا تكة لها (اقتصاد سياق القسم 12).
+- **الرفع الفوري:** كل تكة تُلتزم وتُرفَع إلى فرع الجلسة فور كتابتها وقبل أي رسالة تالية — فلا تكلف الجلسة الميتة أكثر من دقائق عمل، والفرع المحمي `main` لا يُلمس إطلاقًا.
+- **الشريط لا يرجع:** لا تُعدَّل تكة قديمة ولا تُحذف أبدًا؛ التصحيح تكة جديدة تشير إلى سابقتها — ولا تعارض ممكن بنيويًا: ملفات جديدة فقط.
+- **المراجعة الواجبة (البند المضاف بنص القائد):** يُلزَم كل وكيل وكل جلسة جديدة بمراجعة بيت الشريط قبل أول حركة — فيستأنف من آخر نبضة لا من الصفر؛ ولا يدقق المنسق أرقام جلسة قبل قراءة شريطها؛ وبروتوكول الاستئناف في القسم 21 يقرأ الشريط رابعًا بعد الدستور والقرارات ولوحة المسارات.
+- **التاج يبقى:** `LOG.md` يبقى ملخص الأحداث الكبرى كما فرض القسم 22 — الشريط طبقة التفاصيل الحية تحته، لا بديل عنه.
+- **حصرية الدمج:** تكات الجلسة تُدمج مع حزمة عملها مرةً واحدة بيد القائد — لا دورة دمج تُحرق على تكة (القسم 25 والحكم د-١/د-٢ ساريان).
+
+---
 
 ## 🗂️ File Map — Where Everything Lives by User's Ruling
 | File | Contents |
@@ -350,4 +363,4 @@ After every result or decision: append a new block at the end of the log file �
 - The Autonomy Roadmap — understood; its apparent clash with "we never stop" was healed by the approved repaired wording: a written uninterruptible plan · documented burial after exhaustion · a new front opens immediately (**we never stop — we move on**) · no resurrecting the buried with tricks outside its written plan. It heads `docs/RESEARCH-JUDGMENTS.md`.
 **Not a single item remains pending — every constitutional item carries the User's ruling as of 2026-09-15.**
 
-*(End of the Leader Constitution — 25 sections + File Map, complete, untruncated.)*
+*(End of the Leader Constitution — 26 sections + File Map, complete, untruncated.)*
