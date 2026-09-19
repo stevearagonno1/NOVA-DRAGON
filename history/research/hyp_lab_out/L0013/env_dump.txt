@@ -1,0 +1,20 @@
+python=3.13.14
+pandas=2.2.3
+numpy=2.3.5
+windows: test=2025-01-01→2026-08-31 | blind=2021-09-01→2023-08-31
+cost base=0.13%/side | slip stress=(0.001, 0.003) | notional=1000$ | dual_spec base: trig=0.0025/lock=0.0045/wide=0.002/tight=0.0008
+canary=-98.59031619937323 | source=stream
+sha std ATOMUSDT=stream:ad24fa274c5e0228:46935128
+sha std DOGEUSDT=stream:3efc95035012c182:51010103
+sha std IMXUSDT=stream:5cae46090ce58296:41852163
+sha std PEPEUSDT=stream:a3e3a6be6730ad85:30549441
+sha std SHIBUSDT=stream:beba75b2fb7e6763:47598236
+sha std TONUSDT=stream:a3ea3f5abc45372e:17825470
+sha std VETUSDT=stream:60d81a69b1eb58af:48253761
+sha blind ATOMUSDT=stream:ad24fa274c5e0228:46935128
+sha blind DOGEUSDT=stream:3efc95035012c182:51010103
+sha blind IMXUSDT=stream:5cae46090ce58296:41852163
+sha blind PEPEUSDT=stream:a3e3a6be6730ad85:30549441
+sha blind SHIBUSDT=stream:beba75b2fb7e6763:47598236
+sha blind TONUSDT=stream:a3ea3f5abc45372e:17825470
+sha blind VETUSDT=stream:60d81a69b1eb58af:48253761

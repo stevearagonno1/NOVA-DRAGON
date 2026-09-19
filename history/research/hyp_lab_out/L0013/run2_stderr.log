@@ -1,0 +1,91 @@
+الكاناري: PASS (net=-98.59031619937323 trades=68)
+== تحميل نافذة الاختبار (دفء كـ L0009) ==
+  ATOMUSDT: مدفأة 2023-06-01→2026-08-31 (7,122 شمعة 4h)
+  DOGEUSDT: مدفأة 2023-06-01→2026-08-31 (7,122 شمعة 4h)
+  IMXUSDT: مدفأة 2023-06-01→2026-08-31 (7,122 شمعة 4h)
+  PEPEUSDT: مدفأة 2023-06-01→2026-08-31 (7,122 شمعة 4h)
+  SHIBUSDT: مدفأة 2023-06-01→2026-08-31 (7,122 شمعة 4h)
+  TONUSDT: مدفأة 2023-06-01→2026-08-31 (4,145 شمعة 4h)
+  VETUSDT: مدفأة 2023-06-01→2026-08-31 (7,122 شمعة 4h)
+== تحميل النافذة العمياء 2021-2023 ==
+  ATOMUSDT: مدفأة 2021-06-01→2023-08-31 (4,374 شمعة 4h)
+  DOGEUSDT: مدفأة 2021-06-01→2023-08-31 (4,374 شمعة 4h)
+  IMXUSDT: مدفأة 2021-06-01→2023-08-31 (3,586 شمعة 4h)
+  PEPEUSDT: مدفأة 2021-06-01→2023-08-31 (704 شمعة 4h)
+  SHIBUSDT: مدفأة 2021-06-01→2023-08-31 (4,374 شمعة 4h)
+  TONUSDT: مدفأة 2021-06-01→2023-08-31 — فارغة
+  VETUSDT: مدفأة 2021-06-01→2023-08-31 (4,374 شمعة 4h)
+المقفلات: {'4h': {'ATOMUSDT': 'dual/ALL14', 'DOGEUSDT': 'dual/ALL14', 'IMXUSDT': 'dual/ALL14', 'PEPEUSDT': 'dual/ALL14', 'SHIBUSDT': 'dual/ALL14', 'TONUSDT': 'dual/ALL14', 'VETUSDT': 'dual/ALL14'}}
+[matrix 4h ATOMUSDT] موجب 16/32 | الأعلى dual/ALL14 4343.97$
+[matrix 4h DOGEUSDT] موجب 14/32 | الأعلى dual/ALL14 4994.62$
+[matrix 4h IMXUSDT] موجب 14/32 | الأعلى dual/ALL14 7876.21$
+[matrix 4h PEPEUSDT] موجب 17/32 | الأعلى dual/ALL14 6962.92$
+[matrix 4h SHIBUSDT] موجب 16/32 | الأعلى dual/ALL14 4697.64$
+[matrix 4h TONUSDT] موجب 13/32 | الأعلى dual/ALL14 3691.74$
+[matrix 4h VETUSDT] موجب 14/32 | الأعلى dual/ALL14 5510.45$
+[slip 4h ATOMUSDT] انزلاق 0.030%: 4343.97$ · انزلاق 0.100%: 3210.20$ · انزلاق 0.300%: -750.91$
+[slip 4h DOGEUSDT] انزلاق 0.030%: 4994.62$ · انزلاق 0.100%: 4078.06$ · انزلاق 0.300%: 608.51$
+[slip 4h IMXUSDT] انزلاق 0.030%: 7876.21$ · انزلاق 0.100%: 6714.75$ · انزلاق 0.300%: 3095.71$
+[slip 4h PEPEUSDT] انزلاق 0.030%: 6962.92$ · انزلاق 0.100%: 5730.60$ · انزلاق 0.300%: 2863.02$
+[slip 4h SHIBUSDT] انزلاق 0.030%: 4697.64$ · انزلاق 0.100%: 3287.62$ · انزلاق 0.300%: -6.74$
+[slip 4h TONUSDT] انزلاق 0.030%: 3691.74$ · انزلاق 0.100%: 2740.95$ · انزلاق 0.300%: -724.15$
+[slip 4h VETUSDT] انزلاق 0.030%: 5510.45$ · انزلاق 0.100%: 4287.44$ · انزلاق 0.300%: 627.88$
+[blind 4h ATOMUSDT] dual/ALL14: 9625.34$ (915 صفقة)
+[blind 4h DOGEUSDT] dual/ALL14: 7077.16$ (920 صفقة)
+[blind 4h IMXUSDT] dual/ALL14: 12188.64$ (770 صفقة)
+[blind 4h PEPEUSDT] dual/ALL14: 3367.04$ (135 صفقة)
+[blind 4h SHIBUSDT] dual/ALL14: 11678.92$ (886 صفقة)
+[blind 4h TONUSDT] بلا نافذة عمياء (بداية البيانات 2024) — موثق
+[blind 4h VETUSDT] dual/ALL14: 6867.19$ (877 صفقة)
+[plateau 4h ATOMUSDT] جيران موجبون 8/8
+[plateau 4h DOGEUSDT] جيران موجبون 8/8
+[plateau 4h IMXUSDT] جيران موجبون 8/8
+[plateau 4h PEPEUSDT] جيران موجبون 8/8
+[plateau 4h SHIBUSDT] جيران موجبون 8/8
+[plateau 4h TONUSDT] جيران موجبون 8/8
+[plateau 4h VETUSDT] جيران موجبون 8/8
+[ablate 4h ATOMUSDT] الحامل الأكبر (أسوأ حذف): MicroBurst Δ=-551.51$
+[ablate 4h DOGEUSDT] الحامل الأكبر (أسوأ حذف): FVG Δ=-547.35$
+[ablate 4h IMXUSDT] الحامل الأكبر (أسوأ حذف): FVG Δ=-657.45$
+[ablate 4h PEPEUSDT] الحامل الأكبر (أسوأ حذف): MicroBurst Δ=-1076.79$
+[ablate 4h SHIBUSDT] الحامل الأكبر (أسوأ حذف): OBV Δ=-417.13$
+[ablate 4h TONUSDT] الحامل الأكبر (أسوأ حذف): OBV Δ=-485.64$
+[ablate 4h VETUSDT] الحامل الأكبر (أسوأ حذف): OBV Δ=-674.03$
+# L0010 — جولة الضغط | محاور=ablate,blind,matrix,plateau,slip | مصدر=stream | فحص الثبات=-98.59031619937323
+matrix 4h ATOMUSDT: positive=16/32 top=dual/ALL14 net=4343.97$
+matrix 4h DOGEUSDT: positive=14/32 top=dual/ALL14 net=4994.62$
+matrix 4h IMXUSDT: positive=14/32 top=dual/ALL14 net=7876.21$
+matrix 4h PEPEUSDT: positive=17/32 top=dual/ALL14 net=6962.92$
+matrix 4h SHIBUSDT: positive=16/32 top=dual/ALL14 net=4697.64$
+matrix 4h TONUSDT: positive=13/32 top=dual/ALL14 net=3691.74$
+matrix 4h VETUSDT: positive=14/32 top=dual/ALL14 net=5510.45$
+slip 4h ATOMUSDT [dual/ALL14]: انزلاق 0.030%: 4343.97$ · انزلاق 0.100%: 3210.20$ · انزلاق 0.300%: -750.91$
+slip 4h DOGEUSDT [dual/ALL14]: انزلاق 0.030%: 4994.62$ · انزلاق 0.100%: 4078.06$ · انزلاق 0.300%: 608.51$
+slip 4h IMXUSDT [dual/ALL14]: انزلاق 0.030%: 7876.21$ · انزلاق 0.100%: 6714.75$ · انزلاق 0.300%: 3095.71$
+slip 4h PEPEUSDT [dual/ALL14]: انزلاق 0.030%: 6962.92$ · انزلاق 0.100%: 5730.60$ · انزلاق 0.300%: 2863.02$
+slip 4h SHIBUSDT [dual/ALL14]: انزلاق 0.030%: 4697.64$ · انزلاق 0.100%: 3287.62$ · انزلاق 0.300%: -6.74$
+slip 4h TONUSDT [dual/ALL14]: انزلاق 0.030%: 3691.74$ · انزلاق 0.100%: 2740.95$ · انزلاق 0.300%: -724.15$
+slip 4h VETUSDT [dual/ALL14]: انزلاق 0.030%: 5510.45$ · انزلاق 0.100%: 4287.44$ · انزلاق 0.300%: 627.88$
+blind 4h ATOMUSDT [dual/ALL14]: net=9625.34$ trades=915 pf=3.58
+blind 4h DOGEUSDT [dual/ALL14]: net=7077.16$ trades=920 pf=2.40
+blind 4h IMXUSDT [dual/ALL14]: net=12188.64$ trades=770 pf=4.76
+blind 4h PEPEUSDT [dual/ALL14]: net=3367.04$ trades=135 pf=7.33
+blind 4h SHIBUSDT [dual/ALL14]: net=11678.92$ trades=886 pf=3.75
+blind 4h TONUSDT: no blind window (data starts 2024)
+blind 4h VETUSDT [dual/ALL14]: net=6867.19$ trades=877 pf=2.77
+plateau 4h ATOMUSDT [dual]: positive neighbors 8/8
+plateau 4h DOGEUSDT [dual]: positive neighbors 8/8
+plateau 4h IMXUSDT [dual]: positive neighbors 8/8
+plateau 4h PEPEUSDT [dual]: positive neighbors 8/8
+plateau 4h SHIBUSDT [dual]: positive neighbors 8/8
+plateau 4h TONUSDT [dual]: positive neighbors 8/8
+plateau 4h VETUSDT [dual]: positive neighbors 8/8
+ablate 4h ATOMUSDT: biggest carrier=MicroBurst (Δ=-551.51$)
+ablate 4h DOGEUSDT: biggest carrier=FVG (Δ=-547.35$)
+ablate 4h IMXUSDT: biggest carrier=FVG (Δ=-657.45$)
+ablate 4h PEPEUSDT: biggest carrier=MicroBurst (Δ=-1076.79$)
+ablate 4h SHIBUSDT: biggest carrier=OBV (Δ=-417.13$)
+ablate 4h TONUSDT: biggest carrier=OBV (Δ=-485.64$)
+ablate 4h VETUSDT: biggest carrier=OBV (Δ=-674.03$)
+# المدة الكلية: 34.9 ث
+اكتمل → /home/user/.work/root2/history/research/hyp_lab_out/L0013 في 34.9 ث
