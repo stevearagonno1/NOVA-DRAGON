@@ -1,0 +1,10 @@
+# L0009 — القواطع الاتجاهية (F_213) — أفضل (اختبار) لكل رمز — شبكة 1h
+# مدة التشغيل حتى هذا الفريم: 39.2 ث
+  F_213 RENDERUSDT: test_net=8228.80$ trades=2945 win=84.9% PF=1.64 gate=نعم | sel=dual/ALL14 | train_net=3468.13$ | ok
+  F_213 FILUSDT: test_net=5005.40$ trades=2891 win=82.5% PF=1.39 gate=نعم | sel=dual/ALL14 | train_net=5214.83$ | ok
+  F_213 LINKUSDT: test_net=4734.06$ trades=2879 win=83.0% PF=1.42 gate=نعم | sel=dual/ALL14 | train_net=4532.82$ | ok
+  F_213 XLMUSDT: test_net=4456.48$ trades=2903 win=81.2% PF=1.36 gate=نعم | sel=dual/ALL14 | train_net=2145.33$ | ok
+  F_213 SOLUSDT: test_net=3849.44$ trades=2877 win=81.6% PF=1.35 gate=نعم | sel=dual/ALL14 | train_net=6121.24$ | ok
+  F_213 GRAMUSDT: test_net=1302.69$ trades=668 win=80.1% PF=1.47 gate=نعم | sel=dual/MicroBurst | train_net=636.19$ | ok
+  F_213 ETHUSDT: test_net=863.14$ trades=1036 win=78.6% PF=1.22 gate=لا | sel=dual/FVG | train_net=887.44$ | ok
+  F_213 BTCUSDT: test_net=-1106.83$ trades=2919 win=69.7% PF=0.89 gate=لا | sel=dual/ALL14 | train_net=793.67$ | ok
