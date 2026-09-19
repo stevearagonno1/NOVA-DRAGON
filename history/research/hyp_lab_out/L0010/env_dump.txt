@@ -1,0 +1,23 @@
+python=3.13.14
+pandas=2.2.3
+numpy=2.3.5
+windows: test=2025-01-01→2026-08-31 | blind=2021-09-01→2023-08-31
+cost base=0.13%/side | slip stress=(0.001, 0.003) | notional=1000$ | dual_spec base: trig=0.0025/lock=0.0045/wide=0.002/tight=0.0008
+canary=-98.59031619937323 | source=stream
+sha std BTCUSDT=stream:e321e4ad7d4ccda6:89135771
+sha std ETHUSDT=stream:082bab3f70af3966:75174110
+sha std SOLUSDT=stream:06d81ff3d80594d1:51369919
+sha std XLMUSDT=stream:54a9aa8676b98bdf:40090646
+sha std LINKUSDT=stream:e9c71a7012250694:47150619
+sha std GRAMUSDT=stream:7fa05a52deac5e0e:19333094
+sha std RENDERUSDT=stream:fde108879b6789b7:20010428
+sha std FILUSDT=stream:e6f3ec6239000852:47129078
+sha blind BTCUSDT=stream:e321e4ad7d4ccda6:89135771
+sha blind ETHUSDT=stream:082bab3f70af3966:75174110
+sha blind SOLUSDT=stream:06d81ff3d80594d1:51369919
+sha blind XLMUSDT=stream:54a9aa8676b98bdf:40090646
+sha blind LINKUSDT=stream:e9c71a7012250694:47150619
+sha blind GRAMUSDT=stream:7fa05a52deac5e0e:19333094
+sha blind RENDERUSDT=stream:fde108879b6789b7:20010428
+sha blind FILUSDT=stream:e6f3ec6239000852:47129078
+# 2026-09-19T17:02:06Z — re-derivation room (arena brain)

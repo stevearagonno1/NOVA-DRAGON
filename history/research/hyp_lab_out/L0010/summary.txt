@@ -1,0 +1,80 @@
+# L0010 — جولة الضغط | محاور=ablate,blind,matrix,plateau,slip | مصدر=stream | فحص الثبات=-98.59031619937323
+matrix 1h BTCUSDT: positive=3/32 top=dual/SFP net=70.78$
+matrix 1h ETHUSDT: positive=15/32 top=dual/ALL14 net=2814.02$
+matrix 1h SOLUSDT: positive=16/32 top=dual/ALL14 net=3849.44$
+matrix 1h XLMUSDT: positive=15/32 top=dual/ALL14 net=4456.48$
+matrix 1h LINKUSDT: positive=16/32 top=dual/ALL14 net=4734.06$
+matrix 1h GRAMUSDT: positive=15/32 top=dual/ALL14 net=3783.77$
+matrix 1h RENDERUSDT: positive=16/32 top=dual/ALL14 net=8228.80$
+matrix 1h FILUSDT: positive=17/32 top=dual/ALL14 net=5005.40$
+slip 1h BTCUSDT [dual/ALL14]: انزلاق 0.030%: -1106.83$ · انزلاق 0.100%: -5398.22$ · انزلاق 0.300%: -19697.37$
+slip 1h ETHUSDT [dual/FVG]: انزلاق 0.030%: 863.14$ · انزلاق 0.100%: -569.40$ · انزلاق 0.300%: -4911.20$
+slip 1h SOLUSDT [dual/ALL14]: انزلاق 0.030%: 3849.44$ · انزلاق 0.100%: -707.01$ · انزلاق 0.300%: -13288.91$
+slip 1h XLMUSDT [dual/ALL14]: انزلاق 0.030%: 4456.48$ · انزلاق 0.100%: -114.25$ · انزلاق 0.300%: -13368.44$
+slip 1h LINKUSDT [dual/ALL14]: انزلاق 0.030%: 4734.06$ · انزلاق 0.100%: -47.96$ · انزلاق 0.300%: -11984.72$
+slip 1h GRAMUSDT [dual/MicroBurst]: انزلاق 0.030%: 1302.69$ · انزلاق 0.100%: 235.84$ · انزلاق 0.300%: -2711.85$
+slip 1h RENDERUSDT [dual/ALL14]: انزلاق 0.030%: 8228.80$ · انزلاق 0.100%: 3427.45$ · انزلاق 0.300%: -8561.80$
+slip 1h FILUSDT [dual/ALL14]: انزلاق 0.030%: 5005.40$ · انزلاق 0.100%: 217.14$ · انزلاق 0.300%: -11317.32$
+blind 1h BTCUSDT [dual/ALL14]: net=1805.16$ trades=3512 pf=1.14
+blind 1h ETHUSDT [dual/FVG]: net=1628.54$ trades=1185 pf=1.37
+blind 1h SOLUSDT [dual/ALL14]: net=12931.81$ trades=3517 pf=1.90
+blind 1h XLMUSDT [dual/ALL14]: net=6035.76$ trades=3495 pf=1.47
+blind 1h LINKUSDT [dual/ALL14]: net=9022.85$ trades=3507 pf=1.68
+blind 1h GRAMUSDT: no blind window (data starts 2024)
+blind 1h RENDERUSDT: no blind window (data starts 2024)
+blind 1h FILUSDT [dual/ALL14]: net=9320.14$ trades=3456 pf=1.63
+plateau 1h BTCUSDT [dual]: positive neighbors 2/8
+plateau 1h ETHUSDT [dual]: positive neighbors 8/8
+plateau 1h SOLUSDT [dual]: positive neighbors 8/8
+plateau 1h XLMUSDT [dual]: positive neighbors 8/8
+plateau 1h LINKUSDT [dual]: positive neighbors 8/8
+plateau 1h GRAMUSDT [dual]: positive neighbors 8/8
+plateau 1h RENDERUSDT [dual]: positive neighbors 8/8
+plateau 1h FILUSDT [dual]: positive neighbors 8/8
+ablate 1h BTCUSDT: biggest carrier=FVG (Δ=-38.63$)
+ablate 1h SOLUSDT: biggest carrier=MicroBurst (Δ=-444.28$)
+ablate 1h XLMUSDT: biggest carrier=FVG (Δ=-980.82$)
+ablate 1h LINKUSDT: biggest carrier=FVG (Δ=-608.11$)
+ablate 1h RENDERUSDT: biggest carrier=Stochastic (Δ=-1150.05$)
+ablate 1h FILUSDT: biggest carrier=OBV (Δ=-544.47$)
+matrix 4h BTCUSDT: positive=17/32 top=dual/ALL14 net=1547.87$
+matrix 4h ETHUSDT: positive=19/32 top=dual/ALL14 net=3815.57$
+matrix 4h SOLUSDT: positive=16/32 top=dual/ALL14 net=4883.32$
+matrix 4h XLMUSDT: positive=14/32 top=dual/ALL14 net=5411.93$
+matrix 4h LINKUSDT: positive=18/32 top=dual/ALL14 net=5866.74$
+matrix 4h GRAMUSDT: positive=13/32 top=dual/ALL14 net=3746.05$
+matrix 4h RENDERUSDT: positive=15/32 top=dual/ALL14 net=8813.55$
+matrix 4h FILUSDT: positive=17/32 top=dual/ALL14 net=5937.69$
+slip 4h BTCUSDT [std/ALL14]: انزلاق 0.030%: -956.58$ · انزلاق 0.100%: -1423.15$ · انزلاق 0.300%: -4111.21$
+slip 4h ETHUSDT [dual/ALL14]: انزلاق 0.030%: 3815.57$ · انزلاق 0.100%: 2556.84$ · انزلاق 0.300%: -876.45$
+slip 4h SOLUSDT [dual/ALL14]: انزلاق 0.030%: 4883.32$ · انزلاق 0.100%: 3334.87$ · انزلاق 0.300%: -399.13$
+slip 4h XLMUSDT [dual/ALL14]: انزلاق 0.030%: 5411.93$ · انزلاق 0.100%: 4711.17$ · انزلاق 0.300%: 1178.37$
+slip 4h LINKUSDT [std/ALL14]: انزلاق 0.030%: -4825.66$ · انزلاق 0.100%: -5857.06$ · انزلاق 0.300%: -8099.27$
+slip 4h GRAMUSDT [dual/ALL14]: انزلاق 0.030%: 3746.05$ · انزلاق 0.100%: 2734.69$ · انزلاق 0.300%: -1040.77$
+slip 4h RENDERUSDT [dual/ALL14]: انزلاق 0.030%: 8813.55$ · انزلاق 0.100%: 7427.79$ · انزلاق 0.300%: 3619.93$
+slip 4h FILUSDT [dual/ALL14]: انزلاق 0.030%: 5937.69$ · انزلاق 0.100%: 4915.73$ · انزلاق 0.300%: 1551.45$
+blind 4h BTCUSDT [std/ALL14]: net=-1035.79$ trades=720 pf=0.94
+blind 4h ETHUSDT [dual/ALL14]: net=5160.70$ trades=922 pf=2.32
+blind 4h SOLUSDT [dual/ALL14]: net=10246.61$ trades=892 pf=3.24
+blind 4h XLMUSDT [dual/ALL14]: net=6455.20$ trades=913 pf=2.61
+blind 4h LINKUSDT [std/ALL14]: net=-2388.34$ trades=711 pf=0.92
+blind 4h GRAMUSDT: no blind window (data starts 2024)
+blind 4h RENDERUSDT: no blind window (data starts 2024)
+blind 4h FILUSDT [dual/ALL14]: net=9041.24$ trades=885 pf=3.17
+plateau 4h BTCUSDT [std]: positive neighbors 0/8
+plateau 4h ETHUSDT [dual]: positive neighbors 8/8
+plateau 4h SOLUSDT [dual]: positive neighbors 8/8
+plateau 4h XLMUSDT [dual]: positive neighbors 8/8
+plateau 4h LINKUSDT [std]: positive neighbors 0/8
+plateau 4h GRAMUSDT [dual]: positive neighbors 8/8
+plateau 4h RENDERUSDT [dual]: positive neighbors 8/8
+plateau 4h FILUSDT [dual]: positive neighbors 8/8
+ablate 4h BTCUSDT: biggest carrier=OBV (Δ=-652.32$)
+ablate 4h ETHUSDT: biggest carrier=FVG (Δ=-632.84$)
+ablate 4h SOLUSDT: biggest carrier=OBV (Δ=-561.75$)
+ablate 4h XLMUSDT: biggest carrier=MicroBurst (Δ=-1210.89$)
+ablate 4h LINKUSDT: biggest carrier=RSI7 (Δ=-458.49$)
+ablate 4h GRAMUSDT: biggest carrier=OBV (Δ=-522.79$)
+ablate 4h RENDERUSDT: biggest carrier=FVG (Δ=-1515.29$)
+ablate 4h FILUSDT: biggest carrier=MicroBurst (Δ=-771.22$)
+# المدة الكلية: 78.5 ث
