@@ -447,3 +447,12 @@ next : lane chat pastes launch text, streams archive, returns HANDOFF
 
 BRAIN-AUDIT-L0009 : 16/16 exact re-derivation on main@2c687a2, B&H measured, verdict=develop-not-adopt
 corrections : 1h positive is 7/8, dual+ALL14 selected is 12/16 — no effect on verdict
+## 2026-09-19 — فتح جولة الضغط العاشرة بإذن القائد
+
+- عملنا: أذن القائد بكسر الحافة بالضغط فبنينا سائقا مستقلا يقرأ مختارات الجولة التاسعة المقفلة ولا يعيد اختيار شيء
+- المحاور الخمسة: مصفوفة الاختبار كاملة وانزلاق مجهد 0.10 و0.30 وبالمئة ونافذة عمياء 2021-2023 وجوار عشرين بالمئة وتفكيك مركب الكل
+- الاختبار قبل الدفع: تشغيل حقيقي على رمزين اجتاز كل المسارات وطابق طبقة الأساس أرقام الجولة التاسعة حرفا على العملتين
+- ملاحظتان ملزمتان: الترتيب فرع التوثيق أولا ثم هذا الفرع — وسطر اللوحة والقرار المرقم يركبان مع توثيق الحكم تفاديا لتعارض الدمج
+
+LANE-L0010-OPEN : stress round authorized — run_stress.py, code+lane only
+deferred : INDEX row + D-0038 ride the verdict round to avoid merge conflict
