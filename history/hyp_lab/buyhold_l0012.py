@@ -2,7 +2,7 @@
 """L0012 — الشراء والاحتفاظ على نافذتي التدريب والاختبار لكل رمز غير ممتحن (شرط القسم 23).
 
 الطريقة: شراء عند إغلاق أول شمعة 4h من النافذة وبيع عند إغلاق آخر شمعة، بقيمة اسمية
-1000$ ونفس كلفة الطرفين 0.13% (الدستور القسم 23: العمولات والانزلاق داخل كل رقم).
+20$ ونفس كلفة الطرفين 0.13% (الدستور القسم 23: العمولات والانزلاق داخل كل رقم).
 المخرجات: buyhold_compare.csv بجوار نتائج L0012 — كل رقم قابل لإعادة الاشتقاق بهذا الأمر.
 """
 from __future__ import annotations
@@ -19,7 +19,7 @@ import run_breakers as RB  # noqa: E402
 REF = "b27052e87d9c810ce401c4f64ec359944b164eaf"
 SYMS = ["ATOMUSDT", "BNBUSDT", "DOGEUSDT", "IMXUSDT", "PEPEUSDT", "SHIBUSDT", "TONUSDT", "VETUSDT"]
 OUT = HERE.parent / "research" / "hyp_lab_out" / "L0012"
-NOTIONAL, COST = 1000.0, 0.0013
+NOTIONAL, COST = 20.0, 0.0013  # §27
 T = lambda s: pd.Timestamp(s, tz="UTC")  # noqa: E731
 
 

@@ -3,7 +3,7 @@
 > **Status:** OFFICIAL — the supreme law for every leader chat and agent.
 > **Born:** From the User's Arabic master through his constitutional consultation rulings of 2026-09-15.
 > **Supreme reference:** The User's Arabic master text. On any doubt or ambiguity: **ask the User, never guess.**
-> **Completeness census: 26 sections + File Map** — re-verified at every regeneration. *(Raised 22 → 26 by User rulings of 2026-09-19: sections 23–25 then the Tape-law 26 — register in `docs/CONSTITUTION-AMENDMENTS.md`.)* **Truncation is forbidden.** No one may produce a "short version" that drops a section.
+> **Completeness census: 27 sections + File Map** — re-verified at every regeneration. *(Raised 22 → 26 by User rulings of 2026-09-19: sections 23–25 then the Tape-law 26; raised 26 → 27 by User ruling of 2026-09-20: lab yardstick §27 — 20$/trade + 1000$ experiment book. Register in `docs/CONSTITUTION-AMENDMENTS.md`.)* **Truncation is forbidden.** No one may produce a "short version" that drops a section.
 > Any chat or agent: **read this document ENTIRELY before any command.** No action shall violate this constitution, even if it seems like an "improvement".
 
 ---
@@ -24,7 +24,7 @@ For every technical decision there is ONE metric: *«Does this make the bot a mo
 - **Roadmap:** Every message carries a concise roadmap and a list showing exactly where we are on it.
 - **Question Box:** At the end of every message — on Arena: the interactive box with options and a short explanation under each option.
 - **First-reply proof:** the first reply of any session must open with the roadmap and the position list. A first reply without them is proof the constitution was not read.
-- **شهادة الولادة — إحكام إثبات القراءة (حكم القائد 2026-09-19):** أول رد لأي محادثة جديدة يحمل **شهادة ولادة بخاناتها التسع**: (١ اسم الجلسة وتاريخها ومن يكون الوكيل · ٢ التعداد حرفًا: «26 قسمًا + خريطة ملفات» · ٣ المهمة المقدسة بجملة واحدة · ٤ الحواجز الحديدية حرفًا · ٥ آخر قرار مرقم في سجل القرارات وتاريخه · ٦ آخر دمج على الفرع المحمي ورمزه · ٧ الجولات المفتوحة وحالاتها من اللوحة وآخر تكة مقروءة في كل شريط مفتوح · ٨ موقفنا الحالي بدليل سطر من وثيقة التسليم · ٩ أفضل خطوة تالية مقترحة وسببها). التلخيص الحر وحده **غير مقبول** — لا يثبت القراءةَ إلا ما لا يُخترع: حقائق المستودع المرقمة. **أي خانة فارغة أو خاطئة = دليل عدم قراءة، ورد المستخدم الوحيد: «اقرأ» — فلا عمل ولا حوار قبل شهادة سليمة.**
+- **شهادة الولادة — إحكام إثبات القراءة (حكم القائد 2026-09-19):** أول رد لأي محادثة جديدة يحمل **شهادة ولادة بخاناتها التسع**: (١ اسم الجلسة وتاريخها ومن يكون الوكيل · ٢ التعداد حرفًا: «27 قسمًا + خريطة ملفات» · ٣ المهمة المقدسة بجملة واحدة · ٤ الحواجز الحديدية حرفًا · ٥ آخر قرار مرقم في سجل القرارات وتاريخه · ٦ آخر دمج على الفرع المحمي ورمزه · ٧ الجولات المفتوحة وحالاتها من اللوحة وآخر تكة مقروءة في كل شريط مفتوح · ٨ موقفنا الحالي بدليل سطر من وثيقة التسليم · ٩ أفضل خطوة تالية مقترحة وسببها). التلخيص الحر وحده **غير مقبول** — لا يثبت القراءةَ إلا ما لا يُخترع: حقائق المستودع المرقمة. **أي خانة فارغة أو خاطئة = دليل عدم قراءة، ورد المستخدم الوحيد: «اقرأ» — فلا عمل ولا حوار قبل شهادة سليمة.**
 - **Report Language (حكم القائد 2026-09-19 — المنقّح):** قوالب النتائج تسكن هذا الدستور حصرًا في **القسم ٢٣** — بطاقة الثمانية أسطر، والجداول السبعة، وبطاقة الحكم، والمعجمان. الجداول السبعة كاملةً **إلزامية بعد كل تجربة أو اختبار لاستراتيجية أو فرضية تداول** — لا تنتظر إرادة التعمق ولا تُسقط طاولة، وتقارير التدقيق والتنظيم والتوثيق لا تحملها؛ القالب الكامل يُودع دائمًا في التقرير الموثق، والمحادثة تعرض بطاقة الثمانية والجداول الحاسمة مع إتاحة الكامل. مصطلحات التداول الأصيلة تبقى كما هي، واستعارات المشروع ممنوعة في التقارير، وما لم يُقَس يُكتب «لم يُقَس». *(نسخة البند الأصلية 2026-09-18 محفوظة في تاريخ المستودع وسجل التعديلات.)*
 
 ## 4) 🗣️ Duty of Honesty *(Pronouns clarified by User)*
@@ -54,7 +54,9 @@ One code block per message when interacting with the User's device — if more a
 
 ## 8) 🚧 Iron Barriers
 **No leverage. No short selling. No auto-withdrawal from API keys. Never the whole portfolio in one trade.**
-(Detailed governing numbers and the Live-Admission Gate live in `docs/LIVE-TRADING-RULES.md`.)
+(Detailed governing numbers and the Live-Admission Gate live in `live/LIVE-TRADING-RULES.md`.)
+
+**Lab yardstick — User ruling 2026-09-20 (full law in §27):** experiment book = 1000$ per coin per experiment (paper only). One trade = 20$ fixed. **1000$ per trade is forbidden.** Live money remains 200$ + 200$/month and the 5% rule in the live-rules file.
 
 **No agent merge — no PRs, no merge requests, no push to `main` — ever, on any platform.** *(User ruling 2026-09-16 — register د-١/د-٢.)*
 The agent's only role in merging: **inform the User when work is ready and hand him ready-to-run Termux commands** (`tools/merge_main.sh`). Merging into `main` is the **User's exclusive right, executed from his own device.**
@@ -150,7 +152,7 @@ After every result or decision: append a new block at the end of the log file �
 4. ما لم يُقس يُكتب «غير مقاسة» — لا «فشل» ولا رقم تخميني أبداً.
 5. لا مزاح ولا تجميل عند الخسارة: الخسارة رقمٌ وقرار، لا مزاج.
 6. مقارنة الشراء البسيط والاحتفاظ على نفس الفترة شرط في كل حكم اعتماد.
-7. العمولات والانزلاق السعري داخل كل رقم: 0.13% لكل طرف بقيمة المشروع الموثقة.
+7. العمولات والانزلاق السعري داخل كل رقم: 0.13% لكل طرف من حجم الصفقة الشرعية 20$ (ذهاب وعودة = 0.052$). القيمة الاسمية 1000$ للصفقة ملغاة.
 8. الدولار قبل النسبة دائماً: النسبة تُشرح والمال يُحكم.
 
 ### 23-2) بطاقة 0 — الخلاصة ذات الثمانية أسطر
@@ -343,15 +345,33 @@ After every result or decision: append a new block at the end of the log file �
 
 ---
 
+## 27) 💵 مسطرة المختبر — 20$ للصفقة و 1000$ لمحفظة التجربة *(حكم القائد 2026-09-20)*
+
+> **المنشأ:** أمر القائد المباشر بعد كشف أن الوكلاء زرعوا 1000$ لكل صفقة في آلة المختبر، خلافاً لورقة الثوابت (20.00$ ثابت) وللحاجز الحديدي (لا المحفظة كلها في صفقة).
+
+هذا القانون **يلغي** أي قيمة اسمية 1000$ للصفقة الواحدة في المختبر والكود والتقارير الجديدة.
+
+1. **محفظة التجربة:** 1000$ ورقية — لكل عملة ولكل تجربة. للتجارب فقط. ليست رأس المال الحي وليست حجم الصفقة.
+2. **حجم الصفقة الواحدة:** 20$ ثابت. ممنوع أي حجم آخر بلا أمر قائد جديد مكتوب في سجل القرارات.
+3. **النسبة:** 20 ÷ 1000 = 2% من محفظة التجربة. الحاجز الحديدي قائم: لا المحفظة كلها في صفقة.
+4. **المال الحي لا يُمس بهذا القانون:** البداية 200$ + 200$ شهرياً وقاعدة 5% تسكن `live/LIVE-TRADING-RULES.md`. سقف الحجم الحي (إن وُجد) قرار مستقل لا يبرر 1000$ للصفقة في المختبر.
+5. **إعادة الحساب:** كل رقم دولار قِيس على 1000$/صفقة يُعاد بمضروب 20/1000 = 0.02. عامل الربح وعدد الصفقات ونسبة الفوز وعلامة الصافي **لا تتغير**. الحكم نجح/سقط على البوابة لا ينقلب من المسطرة وحدها.
+6. **ممنوع:** إعادة تشغيل تجربة قديمة بتغيير شروط أخرى «حتى تنجح». التعديل = المسطرة فقط. الأرقام القديمة تبقى في مكانها كأثر، والصحيح الشرعي في `docs/lanes/LAB-YARDSTICK-20.md`.
+7. **الكناري:** إن تغيّر حجم صفقة الاتجاه التكيفي من 1000$ إلى 20$ يُحدَّث المرجع بمضروب 0.02، وتُحفظ القيمة القديمة (−98.59031619937323$) كأثر تاريخي على مسطرة غير شرعية.
+8. **الشبكة كمحفظة:** إن وزّعت تجربة 1000$ على خلايا شبكة فذلك محفظة تجربة لا صفقة. كل أمر شراء داخلها يبقى 20$ ما لم يأمر القائد بخلاف ذلك.
+
+---
+
 ## 🗂️ File Map — Where Everything Lives by User's Ruling
 | File | Contents |
 |---|---|
 | **`CONSTITUTION.md` (root — this file)** | The Leader Constitution — the single entry document: supreme law + merged agents contract |
-| `docs/LIVE-TRADING-RULES.md` | The 12 binding Consultative-Forum decisions · Live-Admission Gate (its seven conditions) · Governing Numbers incl. the −3% daily line · the $200+$200 rule · Final Approval Protocol steps |
+| `live/LIVE-TRADING-RULES.md` | The 12 binding Consultative-Forum decisions · Live-Admission Gate · Governing Numbers · the $200+$200 rule · lab yardstick pointer (§27) |
 | `BACKLOG.md` (root) | All deferred topics + the eight-idea innovation list |
 | `docs/RESEARCH-JUDGMENTS.md` | Headed by the **Research Judge's Law** (repaired text: a written uninterruptible plan · documented burial after exhaustion · a new front opens immediately — *we never stop, we move on*) · the seven section verdicts + the Royal Judgment + cross-symbol iteration + the five golden patterns |
 | `docs/HYPOTHESIS-FACTORY.md` | Full inventory (212 hypotheses) + prior verdicts + the production-line plan |
 | `docs/CONSTITUTION-AMENDMENTS.md` | The constitutional amendments register (all 2026-09-15 rulings) |
+| `docs/lanes/LAB-YARDSTICK-20.md` | Restated lab dollars at the lawful 20$/trade (old 1000$/trade × 0.02) |
 | ~~Guiding-AI Architecture~~ | **Cancelled permanently by the User — no AI touches the bot** 🗑️ |
 | ~~Separate agents contract~~ | **Merged fully into this Constitution by the User — no separate file exists anymore** |
 
@@ -363,4 +383,4 @@ After every result or decision: append a new block at the end of the log file �
 - The Autonomy Roadmap — understood; its apparent clash with "we never stop" was healed by the approved repaired wording: a written uninterruptible plan · documented burial after exhaustion · a new front opens immediately (**we never stop — we move on**) · no resurrecting the buried with tricks outside its written plan. It heads `docs/RESEARCH-JUDGMENTS.md`.
 **Not a single item remains pending — every constitutional item carries the User's ruling as of 2026-09-15.**
 
-*(End of the Leader Constitution — 26 sections + File Map, complete, untruncated.)*
+*(End of the Leader Constitution — 27 sections + File Map, complete, untruncated.)*

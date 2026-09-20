@@ -55,7 +55,7 @@ SLIPPAGE_PCT = 0.0003         # 0.03% effective market cost per side (base)
 # use the volatility-reactive effective proxy. Grid limit fills use commission
 # only; no order-book spread is claimed without live depth data.
 MARKET_COST_ON_ENTRY = True
-NOTIONAL_BASE = 20.0          # nominal $ per unit position (equal sizing)
+NOTIONAL_BASE = 20.0          # lawful trade size (Constitution §27) — 20$/trade; experiment book 1000$
 # Per-strategy portfolio notionals (user order 2026-09-10: every technique has
 # its own dedicated portfolio). Defaults equal NOTIONAL_BASE so the research
 # Baseline stays byte-identical; the per-portfolio execution mode rescales
@@ -121,7 +121,7 @@ PER_PORTFOLIO_PATH = DATA_DIR / "portfolios_report.txt"
 # These are deliberately not part of the default core Baseline.  They can be
 # selected explicitly in research after their own self-checks.
 LONG_CYCLE_ENABLED = os.getenv("NOVA_LONG_CYCLE", "0") == "1"
-LONG_CYCLE_CAPITAL_USD = 1000.0
+LONG_CYCLE_CAPITAL_USD = 1000.0  # experiment BOOK (§27), not trade size; each fill still 20$ pending sleeve rewrite
 LONG_CYCLE_STAGE_WEIGHTS = (0.15, 0.25, 0.30, 0.30)
 LONG_CYCLE_DAILY_LOOKBACK = 90
 LONG_CYCLE_ZONE_BUFFER_PCT = 0.03
@@ -324,7 +324,7 @@ GRID_MIN_LIFE_BARS = 30
 # untouched by this sleeve. Temporary assumptions (spacing scale, cooldown,
 # stop) are kept as flags for the one-variable-at-a-time phase.
 DYNAMIC_GRID_ENABLED = os.getenv("NOVA_DYNAMIC_GRID", "0") == "1"
-DGT_CAPITAL_USD = float(os.getenv("NOVA_DGT_CAP", "1000.0"))  # $ per grid unit
+DGT_CAPITAL_USD = float(os.getenv("NOVA_DGT_CAP", "1000.0"))  # experiment BOOK per grid unit (§27)
 DGT_LEVELS_MAX = int(os.getenv("NOVA_DGT_LEVELS", "16"))  # levels (cells = levels-1)
 DGT_SPACING_ATR_MULT = 1.0           # k = ATR(regime TF) * mult / P
 DGT_SPACING_MIN_PCT = 0.0025         # cost floor: a cell edge must clear the
@@ -361,7 +361,7 @@ _x1 = int(os.getenv("NOVA_DON_EXIT1", "192"))
 _e2 = int(os.getenv("NOVA_DON_ENTRY2", str(_e1 * 3)))
 _x2 = int(os.getenv("NOVA_DON_EXIT2", str(_e1 // 2)))
 DONCHIAN_SYSTEMS = ((_e1, _x1), (_e2, _x2))
-DONCHIAN_CAPITAL_USD = 1000.0            # equal research notional per unit
+DONCHIAN_CAPITAL_USD = NOTIONAL_BASE     # 20$/trade (was 1000 — cancelled §27)
 
 # ---------------------------------------------------- Adaptive Trend sleeve
 # Spec 8.2 "الاتجاه + الارتداد إلى القيمة" as an independent research sleeve
@@ -381,7 +381,7 @@ ADAPTIVE_TREND_ENABLED = os.getenv("NOVA_ADAPTIVE_TREND", "0") == "1"
 # unless explicitly enabled. Applied in adaptive_trend.py at side selection.
 ADAPTIVE_TREND_ALLOW_SHORT = os.getenv("NOVA_AT_SHORT", "0") == "1"
 ADAPTIVE_TREND_TF = "4h"                 # the trend frame (spec: H4 or H1)
-ADAPTIVE_TREND_CAPITAL_USD = 1000.0      # equal research notional per unit
+ADAPTIVE_TREND_CAPITAL_USD = NOTIONAL_BASE  # 20$/trade (was 1000 — cancelled §27; canary REF × 0.02)
 ADAPTIVE_TREND_PULLBACK_BARS = int(os.getenv("NOVA_AT_PB", "864"))  # 3 days on 5m (pullback needs days not hours)
 ADAPTIVE_TREND_TRIGGER_BARS = int(os.getenv("NOVA_AT_TRIG", "12"))  # local-high lookback (5m bars)
 ADAPTIVE_TREND_STOP_ATR = 0.5            # stop margin beyond the structure

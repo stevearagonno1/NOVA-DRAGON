@@ -609,3 +609,9 @@ branch : arena/brain-2026-09-20 — merge by user hand only (tools/merge_main.sh
 SESSION-CLOSE : commander closes brain session for trader's-tongue violation (§24); all session work merged at 3dfb20e; L0016 awaiting worker room; closure package parked on arena/brain-2026-09-20
 branch : arena/brain-2026-09-20 — merge by user hand only (tools/merge_main.sh)
 
+
+
+## 2026-09-20 — مسطرة المختبر 20$/صفقة (D-0044)
+- أمر القائد: 20$ للصفقة · 1000$ محفظة تجارب فقط · إلغاء 1000$ للصفقة.
+- الدستور 26←27 (قسم 27). كاناري شرعي −1.9718063239874646$. محفظة 13 شرعية +1413.71$ (كانت +70685.63$). البوابة لا تنقلب.
+- فرع arena/lab-notional-20 — الدمج بيد القائد.

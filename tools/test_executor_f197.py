@@ -60,7 +60,7 @@ class TestF197Executor(unittest.TestCase):
 
         state_file = self.storage_dir / "state.json"
         client = Ex.BinanceFuturesTestnetClient(dry_run=True)
-        tracker = Ex.F197PositionTracker(state_file=state_file, client=client, notional=1000.0)
+        tracker = Ex.F197PositionTracker(state_file=state_file, client=client, notional=20.0)
 
         parquet_path = self.storage_dir / "SOLUSDT_1h.parquet"
         csv_path = self.storage_dir / "SOLUSDT_1h.csv"
@@ -85,7 +85,7 @@ class TestF197Executor(unittest.TestCase):
         """(ب) فشل طلب REST بلا --allow-archive ⇒ RuntimeError، ولا ارتداد صامت (حقن بلا شبكة)."""
         state_file = self.storage_dir / "state.json"
         client = Ex.BinanceFuturesTestnetClient(dry_run=True)
-        tracker = Ex.F197PositionTracker(state_file=state_file, client=client, notional=1000.0)
+        tracker = Ex.F197PositionTracker(state_file=state_file, client=client, notional=20.0)
 
         parquet_path = self.storage_dir / "SOLUSDT_1h.parquet"
         csv_path = self.storage_dir / "SOLUSDT_1h.csv"
@@ -133,7 +133,7 @@ class TestF197Executor(unittest.TestCase):
         """التأكد من أن علم الأرشيف يحجب أي إشارة أو مركز حماية للمحفظة."""
         state_file = self.storage_dir / "state.json"
         client = Ex.BinanceFuturesTestnetClient(dry_run=True)
-        tracker = Ex.F197PositionTracker(state_file=state_file, client=client, notional=1000.0)
+        tracker = Ex.F197PositionTracker(state_file=state_file, client=client, notional=20.0)
 
         df = pd.DataFrame({
             "open_time": [1788210000000 + i * 3600000 for i in range(25)],
@@ -152,7 +152,7 @@ class TestF197Executor(unittest.TestCase):
         """فحص منطق التسليح والقفل والخروج لـ F-197 dual trail في الوضع الحي."""
         state_file = self.storage_dir / "state.json"
         client = Ex.BinanceFuturesTestnetClient(dry_run=True)
-        tracker = Ex.F197PositionTracker(state_file=state_file, client=client, notional=1000.0)
+        tracker = Ex.F197PositionTracker(state_file=state_file, client=client, notional=20.0)
 
         sym = "SOLUSDT"
         tracker.positions[sym] = {

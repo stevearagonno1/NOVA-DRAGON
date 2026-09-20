@@ -46,7 +46,7 @@ ROOT = HERE.parents[1]
 sys.path.insert(0, str(HERE))
 
 import common  # noqa: E402
-from common import to_bars, TF_MINUTES, atr, simulate, trade_rows  # noqa: E402
+from common import BASE_NOTIONAL, to_bars, TF_MINUTES, atr, simulate, trade_rows  # noqa: E402
 import run_breakers as RB  # noqa: E402  (إعادة استعمال: البث/الأرشيف/الشبكة/الإشارات)
 import F_213_breakers as M213  # noqa: E402
 
@@ -117,7 +117,7 @@ def sim_eval(window: pd.DataFrame, sig: pd.Series, combo: dict, bar_secs: int,
         kwargs = RB.sim_kwargs("F_213", combo)
         if dual_spec is not None:
             kwargs = {"exit_mode": "dual", "dual": dual_spec}
-        return simulate(window, sig, atr(window), notional=1000, bar_secs=bar_secs, **kwargs)
+        return simulate(window, sig, atr(window), notional=BASE_NOTIONAL, bar_secs=bar_secs, **kwargs)
     finally:
         common.COST_PER_SIDE, common.STOP_ATR, common.TP_ATR = base_cost, base_stop, base_tp
 
@@ -351,7 +351,7 @@ def main() -> int:
     (OUT_ROOT / "env_dump.txt").write_text(
         f"python={platform.python_version()}\npandas={pd.__version__}\nnumpy={np.__version__}\n"
         f"windows: test={TEST_START}→{TEST_END} | blind={BLIND_START}→{BLIND_END}\n"
-        f"cost base=0.13%/side | slip stress={SLIP_TIERS} | notional=1000$ | dual_spec base:"
+        f"cost base=0.13%/side | slip stress={SLIP_TIERS} | notional=20$ | dual_spec base:"
         f" trig={DUAL_TRIG}/lock={DUAL_LOCK}/wide={M213.M197.WIDE}/tight={M213.M197.TIGHT}\n"
         f"canary={canary_net} | source={args.source}\n"
         + "".join(f"sha std {k}={v}\n" for k, v in sha_std.items())

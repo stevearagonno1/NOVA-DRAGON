@@ -36,7 +36,7 @@ ROOT = HERE.parents[1]
 sys.path.insert(0, str(HERE))
 
 import common  # noqa: E402
-from common import to_bars, TF_MINUTES  # noqa: E402
+from common import BASE_NOTIONAL, to_bars, TF_MINUTES  # noqa: E402
 from common import simulate, trade_rows, atr  # noqa: E402
 import run_breakers as RB  # noqa: E402
 import F_213_breakers as M213  # noqa: E402
@@ -210,7 +210,7 @@ def main() -> int:
         te = b4[(b4.index >= pd.Timestamp(TEST_START, tz="UTC")) &
                 (b4.index <= pd.Timestamp(TEST_END + " 23:59:59", tz="UTC"))]
         sig = M213.make_signals(b4, trigger=combo["trigger"]).loc[te.index]
-        st, tr = simulate(te, sig, atr(te), notional=1000, bar_secs=BAR_SECS,
+        st, tr = simulate(te, sig, atr(te), notional=BASE_NOTIONAL, bar_secs=BAR_SECS,
                           **RB.sim_kwargs("F_213", combo))
         # تحقق متقاطع صارم مع الإيداع
         d_net = abs(float(st["net"]) - float(lk["test_net"]))
@@ -249,7 +249,7 @@ def main() -> int:
         bl = b4b[(b4b.index >= pd.Timestamp(BLIND_START, tz="UTC")) &
                  (b4b.index <= pd.Timestamp(BLIND_END, tz="UTC"))]  # اصطلاح السائق: نهاية النافذة منتصف ليل BLIND_END
         sigb = M213.make_signals(b4b, trigger=combo["trigger"]).loc[bl.index]
-        stb, trb = simulate(bl, sigb, atr(bl), notional=1000, bar_secs=BAR_SECS,
+        stb, trb = simulate(bl, sigb, atr(bl), notional=BASE_NOTIONAL, bar_secs=BAR_SECS,
                             **RB.sim_kwargs("F_213", combo))
         years_b = (pd.Timestamp(BLIND_END, tz="UTC") - pd.Timestamp(BLIND_START, tz="UTC")).days / 365.25
         brow, bdf = side_stats(sym, trb, years_b, n_trials=32)

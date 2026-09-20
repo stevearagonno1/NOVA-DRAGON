@@ -6,7 +6,7 @@
   - النوافذ: تدريب 2023-09-01→2024-12-31 | اختبار 2025-01-01→2026-08-31 (دفء من 2023-06-01)
   - الاختيار على التدريب فقط (من التركيبات غير المتحللة ≥100 صفقة)؛ الحكم على الاختبار فقط
   - بوابة القبول على الاختبار: net>0 AND PF≥1.3 AND trades≥100
-  - التكاليف: 0.13% لكل طرف · قيمة اسمية 1000$ · طرف طويل فقط (بديهي: لا بيع مكشوف)
+  - التكاليف: 0.13% لكل طرف · قيمة اسمية 20$ (محفظة التجربة 1000$) · طرف طويل فقط (بديهي: لا بيع مكشوف)
 
 الشبكة: 16 قاطعاً (14 منفرداً + ELITE8 + ALL14) × خروجان (std | dual بتركيبة L0007‑tf1h
 الذهبية trig=0.0025/lock=0.0045 والثوابت من F‑197) = 32 تركيبة لكل رمز — صغيرة عمداً:
@@ -53,7 +53,7 @@ os.environ.setdefault("NOVA_HOME", str(_SCRATCH / "home"))
 HIST = pathlib.Path(__file__).resolve().parents[1]            # history/
 ROOT = pathlib.Path(__file__).resolve().parents[2]            # جذر المستودع
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from common import load, to_bars, TF_MINUTES, atr, simulate, trade_rows  # noqa: E402
+from common import BASE_NOTIONAL, load, to_bars, TF_MINUTES, atr, simulate, trade_rows  # noqa: E402
 
 import F_213_breakers as M213  # noqa: E402
 
@@ -174,7 +174,7 @@ def run_exp(exp: str, frames: dict[str, pd.DataFrame], out: pathlib.Path,
         rows = []
         for combo in combos_for(exp):
             sig = signals_for(exp, df_full, tr, combo)
-            st, trades = simulate(tr, sig, tr_a, notional=1000, bar_secs=bar_secs,
+            st, trades = simulate(tr, sig, tr_a, notional=BASE_NOTIONAL, bar_secs=bar_secs,
                                   **sim_kwargs(exp, combo))
             r = {"symbol": sym}
             r.update(combo_row(exp, combo))
@@ -210,7 +210,7 @@ def run_exp(exp: str, frames: dict[str, pd.DataFrame], out: pathlib.Path,
         bcombo = {"exit": str(bc["NOVA_EXIT"]), "trigger": str(bc["NOVA_TRIGGER"])}
 
         sig_t = signals_for(exp, df_full, te, bcombo)
-        st_t, trades_t = simulate(te, sig_t, te_a, notional=1000, bar_secs=bar_secs,
+        st_t, trades_t = simulate(te, sig_t, te_a, notional=BASE_NOTIONAL, bar_secs=bar_secs,
                                   **sim_kwargs(exp, bcombo))
         trow = {"symbol": sym, "n_ties_train": n_ties, "sel_status": "ok",
                 "train_net": best["net"], "train_trades": int(best["trades"]),
@@ -312,7 +312,7 @@ def main() -> int:
             f"python={platform.python_version()}\n"
             f"pandas={pd.__version__}\nnumpy={np.__version__}\n"
             f"window: train={TRAIN_START}→{TRAIN_END} | test={TEST_START}→{TEST_END}\n"
-            f"cost=0.13%/side | notional=1000$ | bar={tf} | canary={canary_net}\n"
+            f"cost=0.13%/side | notional=20$ | bar={tf} | canary={canary_net}\n"
             f"source={args.source} | archive={arch}\n"
             f"dual_spec={M213.make_dual_spec()}\n"
             + "".join(f"sha256[:16] {k}={v}\n" for k, v in sha.items()), encoding="utf-8")
