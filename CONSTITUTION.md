@@ -383,4 +383,4 @@ After every result or decision: append a new block at the end of the log file �
 - The Autonomy Roadmap — understood; its apparent clash with "we never stop" was healed by the approved repaired wording: a written uninterruptible plan · documented burial after exhaustion · a new front opens immediately (**we never stop — we move on**) · no resurrecting the buried with tricks outside its written plan. It heads `docs/RESEARCH-JUDGMENTS.md`.
 **Not a single item remains pending — every constitutional item carries the User's ruling as of 2026-09-15.**
 
-*(End of the Leader Constitution — 26 sections + File Map, complete, untruncated.)*
+*(End of the Leader Constitution — 27 sections + File Map, complete, untruncated.)*
