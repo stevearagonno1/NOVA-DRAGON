@@ -23,12 +23,12 @@ NOVA-DRAGON
 روابط القراءة المباشرة من رأس فرع الجلسة:
 
 ```
-فرع الجلسة (اقرأ منه):  arena/parts-home-2026-09-20
-عقدك الملزم حرفًا حرفًا:  https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/arena/parts-home-2026-09-20/docs/lanes/L0017-inventory-batch1-elite-entries.md
-المسطرة الشرعية 20$/صفقة:  https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/arena/parts-home-2026-09-20/docs/lanes/LAB-YARDSTICK-20.md
-ملف النخبة (عقود الآلات الأصلية):  https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/arena/parts-home-2026-09-20/history/hypotheses/%D9%81%D8%B1%D8%B6%D9%8A%D8%A7%D8%AA%D9%83_%D8%A7%D9%84%D9%86%D8%AE%D8%A8%D8%A9.txt
-البروتوكول الذي تنسج عليه (L0007):  https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/arena/parts-home-2026-09-20/docs/lanes/L0007-hyp-lab-five-year.md
-الدستور القائد:  https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/arena/parts-home-2026-09-20/CONSTITUTION.md
+اقرأ من الفرع المحمي مباشرة:  main
+عقدك الملزم حرفًا حرفًا:  https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/main/docs/lanes/L0017-inventory-batch1-elite-entries.md
+المسطرة الشرعية 20$/صفقة:  https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/main/docs/lanes/LAB-YARDSTICK-20.md
+ملف النخبة (عقود الآلات الأصلية):  https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/main/history/hypotheses/%D9%81%D8%B1%D8%B6%D9%8A%D8%A7%D8%AA%D9%83_%D8%A7%D9%84%D9%86%D8%AE%D8%A8%D8%A9.txt
+البروتوكول الذي تنسج عليه (L0007):  https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/main/docs/lanes/L0007-hyp-lab-five-year.md
+الدستور القائد:  https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/main/CONSTITUTION.md
 ```
 
 من الدستور اقرأ حتمًا قبل أي حركة: القسم ٨ (الحواجز) · ١٣ (قواعد العمل) · ٢٣ (قوالب التقارير) · ٢٤ (لسان المتداول) · ٢٦ (الشريط) · ٢٧ (المسطرة).
