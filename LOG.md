@@ -600,4 +600,12 @@ branch : arena/brain-2026-09-20 — merge by user hand only (tools/merge_main.sh
 
 LANE-L0016-OPENING : F-146 state machine (sweep→MSS→touch + epsilon) founded as second driver candidate — 27 combos × 8 symbols × 3 frames, L0007 gate; untested until room runs
 branch : arena/brain-2026-09-20 — merge by user hand only (tools/merge_main.sh)
+## 2026-09-20 — إغلاق جلسة العقل: درس لسان التاجر (بأمر القائد)
+
+- عملنا: تسليم نص إطلاق L0016 لغرفة العمل + حفظ كل شيء (تكة 008 وكتلة الإغلاق (ل) وبلوك السجل هذا)
+- النتيجة: الجلسة مغلقة بحكم القائد: «فشلت — نقضت قانون الكلام كمتداول» · خلاصتها كلها داخل المحمي عند 3dfb20e (D-0042 توثيقًا · إنقاذ L0015 · D-0043 حكمًا · L0016 تأسيسًا · ثمان تكات)
+- التالي: غرفة العمل تنفّذ عقد L0016 — والعقل القادم يلتزم لسان التاجر من أول رسالة
+
+SESSION-CLOSE : commander closes brain session for trader's-tongue violation (§24); all session work merged at 3dfb20e; L0016 awaiting worker room; closure package parked on arena/brain-2026-09-20
+branch : arena/brain-2026-09-20 — merge by user hand only (tools/merge_main.sh)
 
