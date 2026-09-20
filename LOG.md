@@ -584,3 +584,12 @@ branch : arena/brain-2026-09-20 — merge by user hand only (tools/merge_main.sh
 
 PORTFOLIO-L0015-SIZING : rule 5% → 7.67x, DD -5.56%, 2 stop-days, breaker 0; mature 15% → 36.57x, DD -13.52%; BTC hold 0.87x
 branch : arena/journal-resume-2026-09-19 — merge by user hand only (tools/merge_main.sh)
+## 2026-09-20 — حكم القائد على حجم المركز L0015: قاعدة الـ5% قانونًا تشغيليًا (D-0043)
+
+- عملنا: عرض بطاقة الثمانية أسطر كاملة من ملف الجبهة على الفرع المحمي (السيناريوهات الثلاثة + الأمانة + بوابة الاعتماد 7✅/⚠️1) على القائد في جلسة العقل
+- النتيجة: **حكم القائد: نطوّر (D-0043)** — قاعدة الـ5% بسقف حجم 1000$ تُثبّت قانونًا تشغيليًا لرأس الخطة · النضج 15% مقفلة بشرطها (شهران رابحان حيًا + كلفة المسبار) · الجبهة تُغلق
+- التالي: أولوية العمل لخط إنتاج الفرضيات (جرد الـ212) — الجبهة التالية المقترحة: آلة الحالات F-146 كسائق تالٍ
+
+SIZING-L0015-VERDICT : commander rules develop (D-0043) — 5% cap 1000$ locked as operating law; 15% gated (2 live profitable months + probe); lane closed
+branch : arena/brain-2026-09-20 — merge by user hand only (tools/merge_main.sh)
+
