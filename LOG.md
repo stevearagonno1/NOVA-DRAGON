@@ -592,4 +592,12 @@ branch : arena/journal-resume-2026-09-19 — merge by user hand only (tools/merg
 
 SIZING-L0015-VERDICT : commander rules develop (D-0043) — 5% cap 1000$ locked as operating law; 15% gated (2 live profitable months + probe); lane closed
 branch : arena/brain-2026-09-20 — merge by user hand only (tools/merge_main.sh)
+## 2026-09-20 — فتح جبهة آلة الحالات F-146: السائق الثاني المرشح (L0016)
+
+- عملنا: تحقق ما بعد الدمج (3588ea0 نظيف وصفر معلق) ثم كتابة عقد تأسيس الجبهة من جرد النخبة وملف القواطع وتوصية حارة L0007 الختامية
+- النتيجة: جبهة L0016 جاهزة للإطلاق — آلة الحالات الهيكلية (كنس←كسر←لمس+إبسيلون) بمسح مصغر 27 تركيبة × 8 رموز × 3 فريمات ببوابة المختبر · لا نتيجة بعد: **غير مقاسة — بانتظار غرفة العمل**
+- التالي: دمج القائد للحزمة ثم إطلاق غرفة العمل بنص الإطلاق المسطور في ملف الجبهة
+
+LANE-L0016-OPENING : F-146 state machine (sweep→MSS→touch + epsilon) founded as second driver candidate — 27 combos × 8 symbols × 3 frames, L0007 gate; untested until room runs
+branch : arena/brain-2026-09-20 — merge by user hand only (tools/merge_main.sh)
 
