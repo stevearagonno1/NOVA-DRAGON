@@ -25,7 +25,7 @@ import pandas as pd
 REPO = pathlib.Path(__file__).resolve().parent.parent
 sys.path.insert(0, str(REPO / "hyp_lab"))
 import run_v5 as R  # noqa: E402  (الثوابت نفسها: SYMBOLS/النوافذ/الأرشيف/pf_of)
-from common import TF_MINUTES, atr, load, simulate, to_5m, to_bars  # noqa: E402
+from common import BASE_NOTIONAL, TF_MINUTES, atr, load, simulate, to_5m, to_bars  # noqa: E402
 import F_126_mss_core as M126  # noqa: E402
 import F_197_dual_trail as M197  # noqa: E402
 
@@ -58,7 +58,7 @@ def neighbors(tf: str) -> None:
         for tfac in (0.8, 1.0, 1.2):
             for lfac in (0.8, 1.0, 1.2):
                 t, l = round(trig0 * tfac, 6), round(lock0 * lfac, 6)
-                st, trades = simulate(tr, sig, a, notional=1000, bar_secs=minutes * 60,
+                st, trades = simulate(tr, sig, a, notional=BASE_NOTIONAL, bar_secs=minutes * 60,
                                       exit_mode="dual", dual=M197.make_dual_spec(trig=t, lock=l))
                 rows.append({"symbol": sym, "trig": t, "lock": l, "trig_x": tfac, "lock_x": lfac,
                              "net": st["net"], "trades": st["trades"], "win_pct": st["win_pct"],

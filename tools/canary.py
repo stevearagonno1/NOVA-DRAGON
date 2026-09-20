@@ -6,7 +6,8 @@
 
     التركيبة: AT_TRAIL=3.0 AT_STOP=0.5 AT_PB=288 AT_TRIG=6 V3A=0 V3B=0 V3C=0
     النافذة:  تدريب 2023-09 → 2024-12
-    المرجع:   net = -98.59031619937323 | trades = 68 | win_pct = 19.11764705882353
+    المرجع الشرعي (§27 — 20$/صفقة): net = -1.9718063239874646 | trades = 68 | win_pct = 19.11764705882353
+    الأثر التاريخي على مسطرة 1000$/صفقة (ملغاة): net = -98.59031619937323  (= الشرعي × 50)
 
 الاستخدام:
     python3 tools/canary.py                     # من القرص (crypto_archive/ في المستودع)
@@ -28,7 +29,9 @@ import pathlib
 import shutil
 import sys
 
-REF = {"net": -98.59031619937323, "trades": 68, "win_pct": 19.11764705882353}
+# Constitution §27 (2026-09-20): trade = 20$. Old REF net=-98.59031619937323 was at 1000$/trade.
+REF = {"net": -1.9718063239874646, "trades": 68, "win_pct": 19.11764705882353}
+REF_LEGACY_1000 = {"net": -98.59031619937323, "trades": 68, "win_pct": 19.11764705882353}
 COMBO = {"NOVA_AT_TRAIL": "3.0", "NOVA_AT_STOP": "0.5", "NOVA_AT_PB": "288",
          "NOVA_AT_TRIG": "6", "NOVA_AT_V3A": "0", "NOVA_AT_V3B": "0", "NOVA_AT_V3C": "0"}
 REPO = pathlib.Path(__file__).resolve().parent.parent

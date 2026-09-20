@@ -61,7 +61,7 @@ LOCK = 0.0045           # حد قفل الأرباح الأدنى عند الت�
 WIDE = M197.WIDE        # التتبع الواسع 0.0020 عند ربح <= 1%
 TIGHT = M197.TIGHT      # التتبع الخانق 0.0008 عند ربح > 1%
 STOP_ATR_MULT = 2.0     # الوقف القاسي الأولي 2.0×ATR14
-NOTIONAL_DEFAULT = 1000.0  # القيمة الاسمية للصفقة بالدولار (عقد L0007)
+NOTIONAL_DEFAULT = 20.0  # §27  # القيمة الاسمية للصفقة بالدولار (عقد L0007)
 TIMEFRAME = "1h"
 LOOKBACK_MSS = 20
 BODY_RATIO_MSS = 0.50
@@ -513,7 +513,7 @@ def format_execution_log(results: List[dict], canary_passed: bool) -> str:
     now_str = datetime.datetime.now(datetime.timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
     lines.append(f"  تاريخ ووقت التشغيل : {now_str}")
     lines.append(f"  بوابة الكاناري       : {'✅ PASS' if canary_passed else '❌ FAIL'}")
-    lines.append("  المعاملات المجمّدة  : trig=0.0025 | lock=0.0045 | stop=2.0×ATR | notional=1000$")
+    lines.append("  المعاملات المجمّدة  : trig=0.0025 | lock=0.0045 | stop=2.0×ATR | notional=20$")
 
     any_archive = any(r.get("is_archive") for r in results)
     if any_archive:

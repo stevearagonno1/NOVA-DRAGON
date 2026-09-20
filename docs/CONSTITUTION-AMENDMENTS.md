@@ -101,3 +101,15 @@ AMEND-2026-09-19-c : birth certificate — hardened first-read proof, user-appro
 section 3 : + birth certificate bullet (nine verifiable fields + «اقرأ» safety wire)
 section 21 : + certificate required in resume template
 docs/HANDOFF.md : resume section upgraded with paste-ready launch text
+
+AMEND-2026-09-20 : lab yardstick — 20$/trade + 1000$ experiment book — census 27, user-approved
+
+- الحكم: أمر القائد المباشر «قانون صارم في الدستور: 20 للصفقه مع 1000 محفظه للتجارب فقط · نلغي قانون 1000 للصفقه في كل المستودع · نعدل الحسابات للتجارب القديمة».
+- الأثر: قسم 27 جديد · التعداد 26 ← 27 · القسم 8 يضيف مسطرة المختبر · القسم 23: العمولة على 20$ والقيمة الاسمية 20$ · بيت المال قسم 6 · ملف إعادة الحساب docs/lanes/LAB-YARDSTICK-20.md · المضروب 0.02 · الكاناري الشرعي −1.9718063239874646$.
+- المنهج: إضافات + إلغاء 1000$/صفقة في الكود · الأرقام القديمة في الجولات لا تُمحى (الشريط لا يرجع) · القراءة الشرعية في ملف المسطرة.
+- المال الحي: 200$+200$ وقاعدة 5% لم تُمس.
+
+section 27 : added — census 27 intact
+section 8 : + lab yardstick pointer
+section 3 : birth-certificate census «27 قسمًا»
+live/LIVE-TRADING-RULES.md : + section 6

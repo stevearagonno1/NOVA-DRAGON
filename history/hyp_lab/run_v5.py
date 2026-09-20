@@ -34,7 +34,7 @@ import numpy as np
 import pandas as pd
 
 sys.path.insert(0, str(pathlib.Path(__file__).resolve().parent))
-from common import load, to_5m, to_bars, TF_MINUTES, atr, simulate, trade_rows  # noqa: E402
+from common import BASE_NOTIONAL, load, to_5m, to_bars, TF_MINUTES, atr, simulate, trade_rows  # noqa: E402
 
 import F_126_mss_core as M126  # noqa: E402
 import F_127_disp_gate as M127  # noqa: E402
@@ -136,7 +136,7 @@ def run_exp(exp: str, frames: dict[str, pd.DataFrame], out: pathlib.Path, bar_se
         rows = []
         for combo in combos_for(exp):
             sig = signals_for(exp, tr, combo)
-            st, trades = simulate(tr, sig, tr_a, notional=1000, bar_secs=bar_secs, **sim_kwargs(exp, combo))
+            st, trades = simulate(tr, sig, tr_a, notional=BASE_NOTIONAL, bar_secs=bar_secs, **sim_kwargs(exp, combo))
             r = {"symbol": sym}
             r.update(combo_row(exp, combo))
             r.update(stats_row(st, trades))
@@ -177,7 +177,7 @@ def run_exp(exp: str, frames: dict[str, pd.DataFrame], out: pathlib.Path, bar_se
         trow_status = "ok"
 
         sig_t = signals_for(exp, te, bcombo)
-        st_t, trades_t = simulate(te, sig_t, te_a, notional=1000, bar_secs=bar_secs, **sim_kwargs(exp, bcombo))
+        st_t, trades_t = simulate(te, sig_t, te_a, notional=BASE_NOTIONAL, bar_secs=bar_secs, **sim_kwargs(exp, bcombo))
         trow = {"symbol": sym, "n_ties_train": n_ties, "sel_status": trow_status,
                 "train_net": best["net"], "train_trades": int(best["trades"]),
                 "test_net": st_t["net"], "test_trades": st_t["trades"],
@@ -256,7 +256,7 @@ def main() -> int:
         f"python={platform.python_version()}\n"
         f"pandas={pd.__version__}\nnumpy={np.__version__}\n"
         f"window: train={TRAIN_START}→{TRAIN_END} | test={TEST_START}→{TEST_END}\n"
-        f"cost=0.13%/side | notional=1000$ | bar={tf} | canary={canary['got']['net']}\n"
+        f"cost=0.13%/side | notional=20$ | bar={tf} | canary={canary['got']['net']}\n"
         + "".join(f"sha256[:16] {k}={v}\n" for k, v in sha.items()), encoding="utf-8")
     title = "# L0007 — إعادة المقاسات على 5 سنوات — أفضل (اختبار) لكل تجربة×رمز"
     if tf != "5m":
