@@ -1,0 +1,11 @@
+# L0016 — آلة الحالات F_146 — أفضل (اختبار) لكل رمز — شبكة 5m
+# مدة التشغيل حتى هذا الفريم: 79.2 ث
+  F_146 FILUSDT: test_net=6.25$ trades=98 win=67.3% PF=1.03 gate=لا | sel=eps3.5/fvg0.3/w20.0 | train_net=-114.24$ | ok
+  F_146 XLMUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel=epsnan/fvgnan/wnan | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_146 GRAMUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel=epsnan/fvgnan/wnan | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_146 RENDERUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | sel=epsnan/fvgnan/wnan | train_net=nan$ | بلا تركيبة غير متحللة (تدريب <100 صفقة)
+  F_146 LINKUSDT: test_net=-7.79$ trades=99 win=67.7% PF=0.97 gate=لا | sel=eps3.5/fvg0.2/w20.0 | train_net=-68.68$ | ok
+  F_146 ETHUSDT: test_net=-129.83$ trades=135 win=45.2% PF=0.64 gate=لا | sel=eps3.5/fvg0.3/w20.0 | train_net=-270.48$ | ok
+  F_146 SOLUSDT: test_net=-200.37$ trades=170 win=52.9% PF=0.62 gate=لا | sel=eps3.5/fvg0.2/w20.0 | train_net=-120.44$ | ok
+  F_146 BTCUSDT: test_net=-342.11$ trades=175 win=24.6% PF=0.29 gate=لا | sel=eps3.5/fvg0.2/w20.0 | train_net=-266.55$ | ok
+  عبور البوابة: 0/8

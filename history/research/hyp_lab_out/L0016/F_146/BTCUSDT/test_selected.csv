@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_EPS,sel_NOVA_FVG_MIN,sel_NOVA_MSS_WINDOW
+BTCUSDT,1,ok,-266.5542981397501,130,-342.10969956523525,175,24.57,0.2870942407012783,False,3.5,0.2,20

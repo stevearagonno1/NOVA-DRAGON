@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_EPS,sel_NOVA_FVG_MIN,sel_NOVA_MSS_WINDOW
+ETHUSDT,1,ok,-270.4788240205273,133,-129.8334428424512,135,45.19,0.6436501082193503,False,3.5,0.3,20
