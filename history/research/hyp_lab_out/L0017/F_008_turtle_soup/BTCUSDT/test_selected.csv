@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_LOOKBACK,sel_NOVA_WICK_RATIO
+BTCUSDT,1,ok,-6.7656951652155035,259,-13.549977276024485,342,29.24,0.33334451975167934,False,55,0.7

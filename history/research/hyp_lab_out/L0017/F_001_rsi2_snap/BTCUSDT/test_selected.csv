@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_RSI2_OS,sel_NOVA_SMA_TREND,sel_NOVA_SMA_PULL
+BTCUSDT,1,ok,-62.49363261737126,1744,-90.48202603369201,2405,24.53,0.30030492955260446,False,5,100,3

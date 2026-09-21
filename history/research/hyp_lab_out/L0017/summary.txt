@@ -1,0 +1,48 @@
+# L0017 — دفعة الجرد الأولى — أفضل (اختبار) لكل رمز — شبكة 5m
+# مدة التشغيل حتى هذا الفريم: 139.1 ث
+## F_192_ext_entry — عابرون: 0/8
+  GRAMUSDT: test_net=-10.09$ trades=454 win=50.7% PF=0.63 gate=لا | ok
+  RENDERUSDT: test_net=-11.56$ trades=491 win=58.7% PF=0.66 gate=لا | ok
+  LINKUSDT: test_net=-11.88$ trades=443 win=52.4% PF=0.60 gate=لا | ok
+  XLMUSDT: test_net=-13.88$ trades=396 win=47.5% PF=0.51 gate=لا | ok
+  ETHUSDT: test_net=-15.78$ trades=517 win=40.8% PF=0.52 gate=لا | ok
+  SOLUSDT: test_net=-18.20$ trades=554 win=47.8% PF=0.53 gate=لا | ok
+  FILUSDT: test_net=-19.05$ trades=416 win=44.2% PF=0.44 gate=لا | ok
+  BTCUSDT: test_net=-25.91$ trades=598 win=23.4% PF=0.27 gate=لا | ok
+## F_001_rsi2_snap — عابرون: 0/8
+  RENDERUSDT: test_net=-30.17$ trades=2052 win=62.5% PF=0.75 gate=لا | ok
+  GRAMUSDT: test_net=-47.74$ trades=2026 win=53.1% PF=0.61 gate=لا | ok
+  LINKUSDT: test_net=-53.26$ trades=2237 win=56.1% PF=0.62 gate=لا | ok
+  XLMUSDT: test_net=-57.01$ trades=2107 win=51.2% PF=0.58 gate=لا | ok
+  FILUSDT: test_net=-60.97$ trades=2138 win=53.1% PF=0.57 gate=لا | ok
+  SOLUSDT: test_net=-61.74$ trades=2068 win=47.7% PF=0.53 gate=لا | ok
+  ETHUSDT: test_net=-68.68$ trades=2024 win=40.4% PF=0.45 gate=لا | ok
+  BTCUSDT: test_net=-90.48$ trades=2405 win=24.5% PF=0.30 gate=لا | ok
+## F_008_turtle_soup — عابرون: 0/8
+  LINKUSDT: test_net=-0.54$ trades=190 win=58.4% PF=0.96 gate=لا | ok
+  XLMUSDT: test_net=-2.67$ trades=224 win=59.8% PF=0.80 gate=لا | ok
+  GRAMUSDT: test_net=-4.11$ trades=153 win=55.6% PF=0.59 gate=لا | ok
+  FILUSDT: test_net=-5.94$ trades=210 win=57.1% PF=0.61 gate=لا | ok
+  SOLUSDT: test_net=-6.84$ trades=334 win=54.8% PF=0.68 gate=لا | ok
+  RENDERUSDT: test_net=-10.35$ trades=442 win=61.5% PF=0.67 gate=لا | ok
+  ETHUSDT: test_net=-10.58$ trades=312 win=45.5% PF=0.49 gate=لا | ok
+  BTCUSDT: test_net=-13.55$ trades=342 win=29.2% PF=0.33 gate=لا | ok
+## F_015_zscore_regime — عابرون: 0/8
+  LINKUSDT: test_net=-0.05$ trades=38 win=68.4% PF=0.98 gate=لا | ok
+  XLMUSDT: test_net=-0.54$ trades=115 win=60.0% PF=0.92 gate=لا | ok
+  SOLUSDT: test_net=-3.23$ trades=71 win=45.1% PF=0.43 gate=لا | ok
+  BTCUSDT: test_net=-3.31$ trades=66 win=27.3% PF=0.26 gate=لا | ok
+  FILUSDT: test_net=-3.40$ trades=114 win=54.4% PF=0.60 gate=لا | ok
+  ETHUSDT: test_net=-3.76$ trades=90 win=43.3% PF=0.40 gate=لا | ok
+  GRAMUSDT: test_net=-3.80$ trades=104 win=50.0% PF=0.54 gate=لا | ok
+  RENDERUSDT: test_net=-10.69$ trades=498 win=65.1% PF=0.69 gate=لا | ok
+## F_165_score_entry — عابرون: 0/8
+  FILUSDT: test_net=-29.42$ trades=1693 win=53.9% PF=0.74 gate=لا | ok
+  LINKUSDT: test_net=-36.91$ trades=1479 win=55.3% PF=0.63 gate=لا | ok
+  GRAMUSDT: test_net=-37.17$ trades=1382 win=49.6% PF=0.60 gate=لا | ok
+  RENDERUSDT: test_net=-38.76$ trades=2123 win=59.8% PF=0.73 gate=لا | ok
+  XLMUSDT: test_net=-46.65$ trades=1696 win=51.8% PF=0.61 gate=لا | ok
+  SOLUSDT: test_net=-51.88$ trades=1954 win=48.6% PF=0.59 gate=لا | ok
+  ETHUSDT: test_net=-57.29$ trades=1818 win=40.6% PF=0.52 gate=لا | ok
+  BTCUSDT: test_net=-74.37$ trades=1940 win=27.7% PF=0.33 gate=لا | ok
+# إجمالي العابرين على 5m: 0
