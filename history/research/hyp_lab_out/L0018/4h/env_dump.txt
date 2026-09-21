@@ -1,0 +1,13 @@
+python=3.13.14
+pandas=2.2.3
+numpy=2.3.5
+canary=-1.9718063239874648
+bar=4h
+notional=20.0$
+fee=0.001/side
+slip_tiers=[0.0003, 0.001, 0.003]
+blind=2021-09-01→2023-08-31
+plateau=±20% ([0.8, 1.0, 1.2])
+locked_from=L0017 deposit (no re-selection)
+buried_not_stressed=['F_015_zscore_regime']
+cells=21
