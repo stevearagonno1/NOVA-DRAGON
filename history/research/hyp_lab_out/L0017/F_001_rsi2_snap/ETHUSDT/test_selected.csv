@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_RSI2_OS,sel_NOVA_SMA_TREND,sel_NOVA_SMA_PULL
+ETHUSDT,3,ok,-58.90951997391099,1702,-68.6834594738912,2024,40.42,0.4492831638507833,False,5,100,3

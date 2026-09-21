@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_SCORE_TH,sel_NOVA_FLOW_MOM,sel_NOVA_VOL_MOM
+BTCUSDT,3,ok,10.098726577781356,79,2.371002605582558,74,78.38,1.3523152304502108,True,70,2.5,2.0

@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_RSI2_OS,sel_NOVA_SMA_TREND,sel_NOVA_SMA_PULL
+XLMUSDT,2,ok,25.862644436471335,103,20.291156109937987,121,95.04,3.1723595177913437,True,15,200,3

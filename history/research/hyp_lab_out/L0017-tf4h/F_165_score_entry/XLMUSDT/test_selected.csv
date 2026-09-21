@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_SCORE_TH,sel_NOVA_FLOW_MOM,sel_NOVA_VOL_MOM
+XLMUSDT,3,ok,11.253820749879043,45,16.651751662319185,55,85.45,3.1563223358370225,True,70,4.0,2.0

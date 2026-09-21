@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_RSI2_OS,sel_NOVA_SMA_TREND,sel_NOVA_SMA_PULL
+LINKUSDT,1,ok,-38.10675086508139,1759,-53.26386920051702,2237,56.1,0.6197088212246977,False,5,100,10

@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_EXT_MAX,sel_NOVA_EMA_X,sel_NOVA_EMA_PCT
+XLMUSDT,9,ok,-15.442063667139871,511,-13.878945163662381,396,47.47,0.5091349580109567,False,0.1,4,0.05

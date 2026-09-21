@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_Z_P,sel_NOVA_Z_TH,sel_NOVA_WICK_RATIO
+RENDERUSDT,0,بلا تركيبة غير متحللة (تدريب <30 صفقة),,0,0.0,0,0.0,0.0,False,,,

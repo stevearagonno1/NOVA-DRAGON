@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_SCORE_TH,sel_NOVA_FLOW_MOM,sel_NOVA_VOL_MOM
+ETHUSDT,3,ok,2.106115920242109,183,11.30497882643536,189,80.95,1.9055858579717486,True,70,4.0,2.5

@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_LOOKBACK,sel_NOVA_WICK_RATIO
+LINKUSDT,1,ok,2.976428066703602,125,4.333690414900476,141,86.52,1.3908791993258243,True,20,0.5
