@@ -1,0 +1,10 @@
+python=3.13.14
+pandas=2.2.3
+numpy=2.3.5
+canary=-1.9718063239874648
+notional=20.0$
+window=2025-01-01→2026-08-31
+cost=0.13%/side
+ma=200 slope=20 flat=50/1.0
+cells=24 symbols=15
+note=لا إعادة اختيار — الفلتر وحده المتغيّر
