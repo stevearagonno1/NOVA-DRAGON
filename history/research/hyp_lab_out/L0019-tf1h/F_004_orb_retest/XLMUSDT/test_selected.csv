@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_ORB_MIN,sel_NOVA_RETEST_WINDOW
+XLMUSDT,3,ok,19.1496756651572,503,18.026245601974978,577,77.64,1.3407638941096724,True,30,3

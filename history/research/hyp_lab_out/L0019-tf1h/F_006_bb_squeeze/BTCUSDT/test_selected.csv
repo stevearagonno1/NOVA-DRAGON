@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_BB_P,sel_NOVA_BB_STD,sel_NOVA_PCT,sel_NOVA_LOOKBACK,sel_NOVA_DURATION
+BTCUSDT,1,ok,3.5133747876968098,54,1.1675435552030209,58,70.69,1.3480774028830174,True,35,2.0,15,50,3

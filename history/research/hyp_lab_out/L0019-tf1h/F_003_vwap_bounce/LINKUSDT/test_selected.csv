@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_EMA_FAST,sel_NOVA_EMA_SLOW,sel_NOVA_VOL_MULT
+LINKUSDT,1,ok,8.3809171528445,72,0.8621455549709489,84,79.76,1.1082434592006833,False,9,20,1.0

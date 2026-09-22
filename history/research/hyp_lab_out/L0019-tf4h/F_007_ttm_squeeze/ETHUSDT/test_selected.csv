@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_LENGTH,sel_NOVA_BB_MULT,sel_NOVA_KC_MULT,sel_NOVA_MOM_P
+ETHUSDT,0,بلا تركيبة غير متحللة (تدريب <30 صفقة),,0,0.0,0,0.0,0.0,False,,,,

@@ -1,0 +1,2 @@
+﻿symbol,n_ties_train,sel_status,train_net,train_trades,test_net,test_trades,test_win_pct,test_pf,gate,sel_NOVA_BB_P,sel_NOVA_BB_STD,sel_NOVA_PCT,sel_NOVA_LOOKBACK,sel_NOVA_DURATION
+ETHUSDT,1,ok,3.0866986038688595,34,1.4772210944069086,44,70.45,1.509194708179197,True,35,2.0,12,50,3

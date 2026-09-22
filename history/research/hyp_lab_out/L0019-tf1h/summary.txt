@@ -1,0 +1,48 @@
+# L0019 — دفعة الجرد الثانية — أفضل (اختبار) لكل رمز — شبكة 1h
+# مدة التشغيل حتى هذا الفريم: 33.7 ث
+## F_002_marsdx — عابرون: 6/8
+  RENDERUSDT: test_net=140.53$ trades=2438 win=85.2% PF=1.70 gate=نعم | ok
+  FILUSDT: test_net=119.71$ trades=3161 win=82.4% PF=1.45 gate=نعم | ok
+  XLMUSDT: test_net=103.73$ trades=2691 win=81.3% PF=1.46 gate=نعم | ok
+  LINKUSDT: test_net=102.48$ trades=3295 win=83.7% PF=1.43 gate=نعم | ok
+  SOLUSDT: test_net=87.48$ trades=3257 win=81.2% PF=1.36 gate=نعم | ok
+  GRAMUSDT: test_net=84.75$ trades=3183 win=81.2% PF=1.35 gate=نعم | ok
+  ETHUSDT: test_net=37.15$ trades=2584 win=77.4% PF=1.18 gate=لا | ok
+  BTCUSDT: test_net=-19.98$ trades=2633 win=69.2% PF=0.89 gate=لا | ok
+## F_003_vwap_bounce — عابرون: 3/8
+  SOLUSDT: test_net=4.61$ trades=80 win=85.0% PF=1.87 gate=نعم | ok
+  FILUSDT: test_net=4.58$ trades=84 win=83.3% PF=1.73 gate=نعم | ok
+  ETHUSDT: test_net=2.45$ trades=53 win=79.2% PF=1.72 gate=نعم | ok
+  GRAMUSDT: test_net=2.05$ trades=102 win=77.5% PF=1.24 gate=لا | ok
+  LINKUSDT: test_net=0.86$ trades=84 win=79.8% PF=1.11 gate=لا | ok
+  RENDERUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | بلا تركيبة غير متحللة (تدريب <30 صفقة)
+  BTCUSDT: test_net=-1.92$ trades=87 win=71.3% PF=0.72 gate=لا | ok
+  XLMUSDT: test_net=-5.40$ trades=72 win=63.9% PF=0.50 gate=لا | ok
+## F_004_orb_retest — عابرون: 6/8
+  RENDERUSDT: test_net=43.67$ trades=892 win=85.3% PF=1.58 gate=نعم | ok
+  GRAMUSDT: test_net=34.03$ trades=866 win=81.8% PF=1.52 gate=نعم | ok
+  LINKUSDT: test_net=33.07$ trades=931 win=83.3% PF=1.48 gate=نعم | ok
+  FILUSDT: test_net=28.70$ trades=591 win=82.9% PF=1.58 gate=نعم | ok
+  ETHUSDT: test_net=23.94$ trades=792 win=79.5% PF=1.45 gate=نعم | ok
+  XLMUSDT: test_net=18.03$ trades=577 win=77.6% PF=1.34 gate=نعم | ok
+  SOLUSDT: test_net=13.37$ trades=918 win=78.0% PF=1.16 gate=لا | ok
+  BTCUSDT: test_net=-5.89$ trades=593 win=66.8% PF=0.87 gate=لا | ok
+## F_006_bb_squeeze — عابرون: 4/8
+  FILUSDT: test_net=4.94$ trades=65 win=81.5% PF=1.84 gate=نعم | ok
+  LINKUSDT: test_net=2.72$ trades=75 win=81.3% PF=1.47 gate=نعم | ok
+  ETHUSDT: test_net=1.48$ trades=44 win=70.5% PF=1.51 gate=نعم | ok
+  SOLUSDT: test_net=1.24$ trades=74 win=70.3% PF=1.16 gate=لا | ok
+  BTCUSDT: test_net=1.17$ trades=58 win=70.7% PF=1.35 gate=نعم | ok
+  XLMUSDT: test_net=0.07$ trades=71 win=74.7% PF=1.01 gate=لا | ok
+  GRAMUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | بلا تركيبة غير متحللة (تدريب <30 صفقة)
+  RENDERUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | بلا تركيبة غير متحللة (تدريب <30 صفقة)
+## F_007_ttm_squeeze — عابرون: 0/8
+  BTCUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | بلا تركيبة غير متحللة (تدريب <30 صفقة)
+  ETHUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | بلا تركيبة غير متحللة (تدريب <30 صفقة)
+  SOLUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | بلا تركيبة غير متحللة (تدريب <30 صفقة)
+  XLMUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | بلا تركيبة غير متحللة (تدريب <30 صفقة)
+  LINKUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | بلا تركيبة غير متحللة (تدريب <30 صفقة)
+  GRAMUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | بلا تركيبة غير متحللة (تدريب <30 صفقة)
+  RENDERUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | بلا تركيبة غير متحللة (تدريب <30 صفقة)
+  FILUSDT: test_net=0.00$ trades=0 win=0.0% PF=0.00 gate=لا | بلا تركيبة غير متحللة (تدريب <30 صفقة)
+# إجمالي العابرين على 1h: 19

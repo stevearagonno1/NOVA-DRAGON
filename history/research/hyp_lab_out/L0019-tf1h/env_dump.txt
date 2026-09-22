@@ -1,0 +1,18 @@
+python=3.12.3
+pandas=3.0.5
+numpy=2.5.2
+window: train=2023-09-01→2024-12-31 | test=2025-01-01→2026-08-31
+warm=2023-06-01
+cost=0.13%/side | notional=20.0$ | bar=1h | canary=-1.9718063239874648
+gate: net>0 AND pf>=1.3 AND trades>=30 | min_train_trades=30
+exit=dual golden {'trig': 0.0025, 'lock': 0.0045, 'wide': 0.002, 'tight': 0.0008}
+archive=/home/user/repos/NOVA-DRAGON/crypto_archive
+exps=F_002_marsdx,F_003_vwap_bounce,F_004_orb_retest,F_006_bb_squeeze,F_007_ttm_squeeze
+sha256[:16] BTCUSDT=e321e4ad7d4ccda6
+sha256[:16] ETHUSDT=082bab3f70af3966
+sha256[:16] SOLUSDT=06d81ff3d80594d1
+sha256[:16] XLMUSDT=54a9aa8676b98bdf
+sha256[:16] LINKUSDT=e9c71a7012250694
+sha256[:16] GRAMUSDT=7fa05a52deac5e0e
+sha256[:16] RENDERUSDT=fde108879b6789b7
+sha256[:16] FILUSDT=e6f3ec6239000852
