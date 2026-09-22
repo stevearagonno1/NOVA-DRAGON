@@ -1,0 +1,11 @@
+python=3.13.14
+pandas=2.2.3
+numpy=2.3.5
+canary=-1.9718063239874648
+notional=20.0$
+window=2025-01-01→2026-08-31
+base=stop2.0/trig0.0025/lock0.0045
+winner=stop2.5/trig0.0015/lock0.0060
+slips=[0.0003, 0.001, 0.003]
+plateau=3^3=27 جار ±20%
+cells=24 symbols=15
