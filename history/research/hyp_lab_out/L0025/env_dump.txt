@@ -1,0 +1,10 @@
+python=3.13.14
+pandas=2.2.3
+numpy=2.3.5
+canary=-1.9718063239874648
+notional=20.0$
+window=2025-01-01→2026-08-31
+cost=0.13%/side
+base={'stop': 2.0, 'trig': 0.0025, 'lock': 0.0045}
+winner={'stop': 2.5, 'trig': 0.0015, 'lock': 0.006}
+cells=24
