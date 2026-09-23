@@ -1,0 +1,14 @@
+python=3.13.14
+pandas=2.2.3
+numpy=2.3.5
+canary=-1.9718063239874648
+notional=20.0$
+window=2021-09-01→2026-08-31
+warm=2021-06-01
+exit={'stop': 2.5, 'trig': 0.0015, 'lock': 0.006}
+regime_classifier=nova_v8/regime.py (live engine)
+regime_tf=15m
+measurements=1 (declared cap)
+symbols=15
+trades=27051
+net=5617.185400
