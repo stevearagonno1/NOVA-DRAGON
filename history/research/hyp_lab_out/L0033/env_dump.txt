@@ -1,0 +1,11 @@
+python=3.13.14
+pandas=2.2.3
+numpy=2.3.5
+canary=-1.9718063239874648
+source=L0032/trades_5y.csv
+stable_basket=['ATOMUSDT', 'BTCUSDT', 'DOGEUSDT', 'ETHUSDT', 'FILUSDT', 'LINKUSDT', 'SHIBUSDT', 'SOLUSDT', 'VETUSDT', 'XLMUSDT']
+newer=['GRAMUSDT', 'IMXUSDT', 'PEPEUSDT', 'RENDERUSDT', 'TONUSDT']
+slope_pf=-0.749906
+slope_trade=-0.028746
+verdict=⚠️ تآكل حقيقي — النسبة والدولار ينحدران معًا على سلة ثابتة
+measurements=1 (declared cap)
