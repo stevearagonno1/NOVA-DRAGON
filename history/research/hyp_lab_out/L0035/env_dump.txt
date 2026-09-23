@@ -1,0 +1,10 @@
+python=3.13.14
+pandas=2.2.3
+numpy=2.3.5
+canary=-1.9718063239874648
+decision=2021-09-01→2023-12-31
+judgement=2024-01-01→2026-08-31
+declared_cap=46
+used=46
+exit={'stop': 2.5, 'trig': 0.0015, 'lock': 0.006}
+notional=20.0
