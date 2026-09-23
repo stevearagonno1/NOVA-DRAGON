@@ -1,0 +1,8 @@
+python=3.13.14
+pandas=2.2.3
+canary=-1.9718063239874648
+base_core={'body_ratio': 0.4, 'range_atr': 0.6, 'lookback': 10}
+decision=2021-09-01→2023-12-31
+judgement=2024-01-01→2026-08-31
+declared_cap=40
+used=40
