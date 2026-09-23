@@ -1,0 +1,11 @@
+python=3.13.14
+pandas=2.2.3
+numpy=2.3.5
+canary=-1.9718063239874648
+notional=20.0$
+window=2025-01-01→2026-08-31
+cost=0.13%/side
+base=stop2.5/trig0.0015/lock0.006
+variants=12
+calibration=ref 357.8576$ == ext 357.8576$ ✅
+cells=24 symbols=15
