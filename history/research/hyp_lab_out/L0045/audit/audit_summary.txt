@@ -1,0 +1,24 @@
+{
+ "DEC": {
+  "trades": 12009,
+  "never_traded": 2282,
+  "never_pct": 19.0,
+  "above_exit_bar_high": 6040,
+  "above_pct": 50.3,
+  "at_lock": 4558,
+  "at_lock_pct": 38.0,
+  "net_as_engine": 2784.55,
+  "net_in_never_traded": 214.15
+ },
+ "JUD": {
+  "trades": 17930,
+  "never_traded": 3337,
+  "never_pct": 18.6,
+  "above_exit_bar_high": 8617,
+  "above_pct": 48.1,
+  "at_lock": 6936,
+  "at_lock_pct": 38.7,
+  "net_as_engine": 3410.88,
+  "net_in_never_traded": 313.16
+ }
+}
