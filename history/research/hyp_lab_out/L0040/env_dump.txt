@@ -1,0 +1,9 @@
+python=3.13.14
+pandas=2.2.3
+pyarrow=25.0.1
+canary=-1.9718063239874648
+decision=2021-09-01→2023-12-31
+judgement=2024-01-01→2026-08-31
+declared_cap=25
+used=13
+verdict=retain_15_symbols_drop_loses
