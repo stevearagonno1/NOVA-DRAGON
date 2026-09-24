@@ -1,0 +1,31 @@
+﻿المجموعة,الاسم,عدد_الكواشف,قائمة_الكواشف,صافي$,صفقات,عامل الربح,ربح_الصفقة$
+أ) الأساس,ELITE8 (الأساس),8,"MACD,EMA,KAMA,OBV,ADX,Stochastic,SFP,MSS",2057.0,8839,4.9031,0.23272
+ب) حذف واحد,ELITE8 - MACD,7,"EMA,KAMA,OBV,ADX,Stochastic,SFP,MSS",1863.26,8029,4.7845,0.23207
+ب) حذف واحد,ELITE8 - EMA,7,"MACD,KAMA,OBV,ADX,Stochastic,SFP,MSS",1925.28,8309,4.8456,0.23171
+ب) حذف واحد,ELITE8 - KAMA,7,"MACD,EMA,OBV,ADX,Stochastic,SFP,MSS",1956.16,8386,4.9142,0.23326
+ب) حذف واحد,ELITE8 - OBV,7,"MACD,EMA,KAMA,ADX,Stochastic,SFP,MSS",1773.05,7366,5.1436,0.24071
+ب) حذف واحد,ELITE8 - ADX,7,"MACD,EMA,KAMA,OBV,Stochastic,SFP,MSS",1930.01,8372,4.8402,0.23053
+ب) حذف واحد,ELITE8 - Stochastic,7,"MACD,EMA,KAMA,OBV,ADX,SFP,MSS",1802.96,7860,4.9159,0.22938
+ب) حذف واحد,ELITE8 - SFP,7,"MACD,EMA,KAMA,OBV,ADX,Stochastic,MSS",2014.78,8630,4.9079,0.23346
+ب) حذف واحد,ELITE8 - MSS,7,"MACD,EMA,KAMA,OBV,ADX,Stochastic,SFP",2052.12,8829,4.8938,0.23243
+ج) إضافة واحد,ELITE8 + FVG,9,"MACD,EMA,KAMA,OBV,ADX,Stochastic,SFP,MSS,FVG",2354.32,10067,4.9022,0.23387
+ج) إضافة واحد,ELITE8 + MicroBurst,9,"MACD,EMA,KAMA,OBV,ADX,Stochastic,SFP,MSS,MicroBurst",2351.99,9622,5.0669,0.24444
+ج) إضافة واحد,ELITE8 + RSI,9,"MACD,EMA,KAMA,OBV,ADX,Stochastic,SFP,MSS,RSI",2133.68,9250,4.7249,0.23067
+ج) إضافة واحد,ELITE8 + Bollinger,9,"MACD,EMA,KAMA,OBV,ADX,Stochastic,SFP,MSS,Bollinger",2157.55,9866,4.3939,0.21869
+ج) إضافة واحد,ELITE8 + SuperTrend,9,"MACD,EMA,KAMA,OBV,ADX,Stochastic,SFP,MSS,SuperTrend",2057.0,8839,4.9031,0.23272
+ج) إضافة واحد,ELITE8 + RSI7,9,"MACD,EMA,KAMA,OBV,ADX,Stochastic,SFP,MSS,RSI7",2124.73,9233,4.743,0.23012
+د) الكل,ALL14 (كل الـ14),14,"MSS,FVG,SFP,MicroBurst,RSI,MACD,Bollinger,EMA,ADX,Stochastic,OBV,SuperTrend,RSI7,KAMA",2670.6,11646,4.5582,0.22931
+هـ) تركيبات مدمجة,ELITE8 + FVG + MicroBurst,10,"MACD,EMA,KAMA,OBV,ADX,Stochastic,SFP,MSS,FVG,MicroBurst",2514.2,10453,4.9883,0.24052
+هـ) تركيبات مدمجة,ELITE8 + FVG + MicroBurst + RSI,11,"MACD,EMA,KAMA,OBV,ADX,Stochastic,SFP,MSS,FVG,MicroBurst,RSI",2590.07,10866,4.8232,0.23836
+هـ) تركيبات مدمجة,ELITE8 + FVG + MicroBurst + RSI7,11,"MACD,EMA,KAMA,OBV,ADX,Stochastic,SFP,MSS,FVG,MicroBurst,RSI7",2577.25,10848,4.8229,0.23758
+هـ) تركيبات مدمجة,ELITE8 + FVG + MicroBurst + Bollinger,11,"MACD,EMA,KAMA,OBV,ADX,Stochastic,SFP,MSS,FVG,MicroBurst,Bollinger",2605.51,11449,4.5211,0.22758
+هـ) تركيبات مدمجة,ELITE8 - MSS + FVG,8,"MACD,EMA,KAMA,OBV,ADX,Stochastic,SFP,FVG",2349.76,10062,4.8947,0.23353
+هـ) تركيبات مدمجة,ELITE8 - MSS + MicroBurst,8,"MACD,EMA,KAMA,OBV,ADX,Stochastic,SFP,MicroBurst",2349.17,9615,5.062,0.24432
+هـ) تركيبات مدمجة,ELITE8 - MSS + FVG + MicroBurst,9,"MACD,EMA,KAMA,OBV,ADX,Stochastic,SFP,FVG,MicroBurst",2510.95,10449,4.9831,0.24031
+هـ) تركيبات مدمجة,ELITE8 - SFP + FVG,8,"MACD,EMA,KAMA,OBV,ADX,Stochastic,MSS,FVG",2308.17,9855,4.8831,0.23421
+هـ) تركيبات مدمجة,ELITE8 - SFP + MicroBurst,8,"MACD,EMA,KAMA,OBV,ADX,Stochastic,MSS,MicroBurst",2320.75,9442,5.0924,0.24579
+هـ) تركيبات مدمجة,ELITE8 - SFP + FVG + MicroBurst,9,"MACD,EMA,KAMA,OBV,ADX,Stochastic,MSS,FVG,MicroBurst",2479.63,10266,4.9949,0.24154
+هـ) تركيبات مدمجة,ALL14 - SuperTrend,13,"MSS,FVG,SFP,MicroBurst,RSI,MACD,Bollinger,EMA,ADX,Stochastic,OBV,RSI7,KAMA",2670.6,11646,4.5582,0.22931
+هـ) تركيبات مدمجة,ALL14 - Bollinger,13,"MSS,FVG,SFP,MicroBurst,RSI,MACD,EMA,ADX,Stochastic,OBV,SuperTrend,RSI7,KAMA",2607.9,10970,4.8148,0.23773
+هـ) تركيبات مدمجة,ALL14 - MSS,13,"FVG,SFP,MicroBurst,RSI,MACD,Bollinger,EMA,ADX,Stochastic,OBV,SuperTrend,RSI7,KAMA",2667.89,11643,4.5546,0.22914
+هـ) تركيبات مدمجة,ALL14 - SFP,13,"MSS,FVG,MicroBurst,RSI,MACD,Bollinger,EMA,ADX,Stochastic,OBV,SuperTrend,RSI7,KAMA",2666.11,11626,4.5567,0.22932

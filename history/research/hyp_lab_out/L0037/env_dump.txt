@@ -1,0 +1,11 @@
+python=3.13.14
+pandas=2.2.3
+pyarrow=25.0.1
+canary=-1.9718063239874648
+decision_window=2021-09-01→2023-12-31
+judgement_window=2024-01-01→2026-08-31
+declared_cap=30
+used_cap=30
+frozen_core={'body_ratio': 0.4, 'range_atr': 0.6, 'lookback': 10}
+frozen_ema_fast=21
+winner=ALL14
