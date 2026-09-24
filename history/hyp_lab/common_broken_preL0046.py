@@ -7,9 +7,6 @@
 - الخروج القياسي (موحّد لكل فرضيات الدخول لعدالة المقارنة): وقف 2.0×ATR14 · هدف 4.0×ATR14
   — القيمتان المعتمدتان في طبقة V4.1 (NOVA_3.txt البند 7: «نُبقي 2.0 ... يبقى 4.0»).
 - إن لُمس الوقف والهدف في شمعة واحدة → يُفترض الوقف أولاً (محافظ).
-- ⚠️ إصلاح L0046 (2026-09-24): ثلاثة عطوب في التعبئة صُلحت — تفاصيلها في docs/lanes/L0046-VERDICT-engine-repair.md
-  (١) القفل كان يُمنح بمجرد التسليح ⇒ تعبئة فوق السوق · (٢) لا حارس نطاق على سعر الخروج ·
-  (٣) مسار الإغلاق النهائي كان يخصم الكلفة مرتين. النسخة المعطوبة محفوظة: common_broken_preL0046.py
 - مسطرة المختبر (الدستور §27، حكم القائد 2026-09-20): صفقة واحدة = 20$ ثابت.
   محفظة التجربة = 1000$ ورقية لكل عملة/تجربة (2% للصفقة — لا المحفظة كلها).
   1000$ للصفقة ملغاة. فرضية التحجيم F-204 تبقى استثناءً مكتوباً داخل خطتها فقط.
@@ -89,14 +86,6 @@ def ll(df: pd.DataFrame, n: int) -> pd.Series:
 
 
 def _close_position(p: dict, j: int, price: float, side: str) -> None:
-    # ── إصلاح L0046 (١): حارس إلزامي — سعر التعبئة يُقيَّد بنطاق الشمعة [low, high] ──
-    #    فيستحيل تسجيل تعبئة بسعر لم تتداوله السوق في تلك الشمعة.
-    #    (p["_lo"]/p["_hi"] مراجع لمصفوفات الشمعة نفسها — لا نسخ ولا ذاكرة إضافية.)
-    _lo = p["_lo"][j]; _hi = p["_hi"][j]
-    if price < _lo:
-        price = _lo
-    elif price > _hi:
-        price = _hi
     fill = price * (1 - COST_PER_SIDE)
     qty = p["notional"] / p["entry"]
     p["pnl"] = qty * (fill - p["entry"])
@@ -161,7 +150,6 @@ def simulate(df: pd.DataFrame, sig: pd.Series, atr_s: pd.Series,
             "hard_stop": ef - STOP_ATR * a[i],
             "tp": ef + TP_ATR * a[i],
             "peak": o[e], "done": False, "pnl": 0.0, "idx": idx,
-            "_lo": l, "_hi": h,          # إصلاح L0046: مرجعا نطاق الشمعة لحارس التعبئة
             "trig": dual["trig"] if dual else None,
             "lock": dual["lock"] if dual else None,
             "wide": dual["wide"] if dual else None,
@@ -169,33 +157,20 @@ def simulate(df: pd.DataFrame, sig: pd.Series, atr_s: pd.Series,
         }
 
     def _step(p: dict, j: int) -> bool:
-        """فحص خروج المركز عند شمعة j بحالة ما قبل الشمعة (محافظ).
-
-        ── إصلاح L0046 (٢) ──
-        (أ) لا يُرفع الوقف إلى مستوى القفل (lock) إلا إذا بلغ السعر ذلك المستوى فعلًا
-            (peak >= entry*(1+lock)). سابقًا كان القفل يُمنح بمجرد التسليح (trig) — أي
-            يُحجز ربح 0.60% وقد ربحت 0.15% فقط ⇒ تعبئة مستحيلة.
-        (ب) عند الوقف: إن فتحت الشمعة تحت المستوى (فجوة هابطة) فالتعبئة عند الافتتاح لا
-            عند مستوى الوقف — لا تعبئة بسعر أفضل من الواقع.
-        (ج) عند الهدف: إن فتحت الشمعة فوق الهدف (فجوة صاعدة) فالتعبئة عند الافتتاح.
-        وحارس النطاق في _close_position يضمن الاستحالة مطلقًا.
-        """
+        """فحص خروج المركز عند شمعة j بحالة ما قبل الشمعة (محافظ)."""
         eff = p["hard_stop"]
         if p["trig"] is not None:
             peak = p["peak"]
             gain = (peak - p["entry"]) / p["entry"]
             if gain >= p["trig"]:
                 trail = p["wide"] if gain <= 0.01 else p["tight"]
-                local = peak * (1 - trail)
-                if peak >= p["entry"] * (1 + p["lock"]):     # إصلاح L0046(أ)
-                    local = max(local, p["entry"] * (1 + p["lock"]))
+                local = max(p["entry"] * (1 + p["lock"]), peak * (1 - trail))
                 eff = max(eff, local)   # الوقف يتسلق للأعلى فقط
         if l[j] <= eff:
-            fill = eff if o[j] >= eff else o[j]              # إصلاح L0046(ب)
-            _close_position(p, j, fill, "stop")
+            _close_position(p, j, eff, "stop")
             return True
         if p["trig"] is None and h[j] >= p["tp"]:
-            _close_position(p, j, max(p["tp"], o[j]), "tp")  # إصلاح L0046(ج)
+            _close_position(p, j, p["tp"], "tp")
             return True
         if p["trig"] is not None:
             p["peak"] = max(p["peak"], h[j])
@@ -206,7 +181,7 @@ def simulate(df: pd.DataFrame, sig: pd.Series, atr_s: pd.Series,
         while j < n and not _step(p, j):
             j += 1
         if not p["done"]:
-            _close_position(p, n - 1, c[-1], "eod")   # إصلاح L0046: الكلفة تُخصم مرة واحدة
+            _close_position(p, n - 1, c[-1] * (1 - COST_PER_SIDE), "eod")
 
     if max_per == 1 and cooldown_s == 0:
         pos = None
@@ -246,7 +221,7 @@ def simulate(df: pd.DataFrame, sig: pd.Series, atr_s: pd.Series,
                         last_entry_j = p["entry_j"]
         for p in open_pos:
             if not p["done"]:
-                _close_position(p, n - 1, c[-1], "eod")   # إصلاح L0046: الكلفة تُخصم مرة واحدة
+                _close_position(p, n - 1, c[-1] * (1 - COST_PER_SIDE), "eod")
             trades.append(p)
 
     trades.sort(key=lambda p: p["entry_j"])
@@ -273,10 +248,7 @@ def trade_rows(symbol: str, exp: str, trades: list[dict]) -> list[dict]:
             "symbol": symbol, "exp": exp,
             "entry_time": p["entry_time"].isoformat(),
             "exit_time": p["exit_time"].isoformat(),
-            # إصلاح L0046 (تدقيقي): دقة كاملة بدل 6 خانات — التقريب إلى 6 خانات كان
-            # يدمّر أسعار العملات دون السنت (PEPE/SHIB ≈ 8e-06) فيستحيل تدقيق التعبئة.
-            # لا أثر على الأرباح: pnl و notional كما هي.
-            "entry": float(f"{p['entry']:.12g}"), "exit": float(f"{p['exit_fill']:.12g}"),
+            "entry": round(p["entry"], 6), "exit": round(p["exit_fill"], 6),
             "notional": round(p["notional"], 2),
             "pnl": round(p["pnl"], 4),
             "r_mult": round(p["pnl"] / p["risk"], 3) if p["risk"] else "",
