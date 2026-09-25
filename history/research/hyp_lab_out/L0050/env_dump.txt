@@ -1,0 +1,12 @@
+{
+  "python": "3.13.14",
+  "note": "phase 0 only. counted measurements = 0. stopped because old-column regime table does not match the engine.",
+  "canary": "ok",
+  "canary_net": -1.9718063239874648,
+  "canary_lab": "not run; L0046 phase3 file absent; no stub",
+  "classifier": "daily EMA50/EMA200/slope10 shift(1), per symbol, entry bar",
+  "regime_py_used": false,
+  "cost_default_file": 0.0013,
+  "stop_atr": 2.5,
+  "trail": 4.0
+}
