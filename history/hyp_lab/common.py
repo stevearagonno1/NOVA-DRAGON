@@ -111,7 +111,8 @@ def simulate(df: pd.DataFrame, sig: pd.Series, atr_s: pd.Series,
              exit_mode: str = "std", dual: dict | None = None,
              sizing: dict | None = None, max_per: int = 1,
              cooldown_s: float = 0.0, notional: float = BASE_NOTIONAL,
-             bar_secs: int = 300):
+             bar_secs: int = 300, strict_single: bool = False,
+             atr_trail: float = 0.0):
     """حلقة الصفقات. ترجع (stats, trades).
 
     - sig: بولياني عند إغلاق الشمعة. الدخول على افتتاح الشمعة التالية.
@@ -122,6 +123,12 @@ def simulate(df: pd.DataFrame, sig: pd.Series, atr_s: pd.Series,
       لا هدف ثابت في هذا الوضع (التتبع هو المخرج — كما في التصميم الأصلي).
     - sizing (F-204): {R, cap, halve_vr, vr} → قيمة اسمية بمتكافؤ المخاطرة + حارس 1.05R.
     - max_per/cooldown_s (F-205): مراكز متعددة + تهدئة بالسانية.
+    - strict_single (L0048، افتراضي False): إن True، لا يُفتح مركز جديد ما دام آخر
+      مفتوحًا على السلسلة نفسها. الافتراضي False يُبقي مسار max_per==1 القديم حرفيًا
+      (بما فيه عطب نسيان الانشغال). لا يُفعَّل إلا مع max_per==1 وcooldown_s==0.
+    - atr_trail (L0048، افتراضي 0): إن >0، الخروج = وقف قاسٍ STOP_ATR×ATR
+      + تتبّع atr_trail×ATR تحت القمة (ATR لحظة الإشارة، ثابت). لا تسليح ولا قفل
+      ولا هدف. الافتراضي 0 لا يلمس مسار الخروج القديم.
     """
     o = df["open"].to_numpy(); h = df["high"].to_numpy()
     l = df["low"].to_numpy(); c = df["close"].to_numpy()
@@ -166,6 +173,7 @@ def simulate(df: pd.DataFrame, sig: pd.Series, atr_s: pd.Series,
             "lock": dual["lock"] if dual else None,
             "wide": dual["wide"] if dual else None,
             "tight": dual["tight"] if dual else None,
+            **({"atr_trail": float(atr_trail)} if atr_trail and atr_trail > 0 else {}),
         }
 
     def _step(p: dict, j: int) -> bool:
@@ -180,6 +188,17 @@ def simulate(df: pd.DataFrame, sig: pd.Series, atr_s: pd.Series,
         (ج) عند الهدف: إن فتحت الشمعة فوق الهدف (فجوة صاعدة) فالتعبئة عند الافتتاح.
         وحارس النطاق في _close_position يضمن الاستحالة مطلقًا.
         """
+        if p.get("atr_trail"):
+            eff = p["hard_stop"]
+            local = p["peak"] - p["atr_trail"] * p["atr_sig"]
+            if local > eff:
+                eff = local
+            if l[j] <= eff:
+                fill = eff if o[j] >= eff else o[j]
+                _close_position(p, j, fill, "stop")
+                return True
+            p["peak"] = max(p["peak"], h[j])
+            return False
         eff = p["hard_stop"]
         if p["trig"] is not None:
             peak = p["peak"]
@@ -208,23 +227,37 @@ def simulate(df: pd.DataFrame, sig: pd.Series, atr_s: pd.Series,
         if not p["done"]:
             _close_position(p, n - 1, c[-1], "eod")   # إصلاح L0046: الكلفة تُخصم مرة واحدة
 
+    if strict_single and not (max_per == 1 and cooldown_s == 0):
+        raise ValueError("strict_single يتطلب max_per==1 و cooldown_s==0")
     if max_per == 1 and cooldown_s == 0:
-        pos = None
-        for i in sig_i:
+        if strict_single:
+            last_exit = -1
+            for i in sig_i:
+                if last_exit > i:
+                    continue
+                p = _open(i)
+                if p is None:
+                    continue
+                _run_to_exit(p)
+                trades.append(p)
+                last_exit = int(p["exit_j"])
+        else:
+            pos = None
+            for i in sig_i:
+                if pos is not None:
+                    _run_to_exit(pos)
+                    trades.append(pos)
+                    if pos["exit_j"] > i:   # ما زالت مفتوحة عند هذه الإشارة → تُهمَل
+                        pos = None
+                        continue
+                    pos = None
+                p = _open(i)
+                if p is None:
+                    continue
+                pos = p
             if pos is not None:
                 _run_to_exit(pos)
                 trades.append(pos)
-                if pos["exit_j"] > i:   # ما زالت مفتوحة عند هذه الإشارة → تُهمَل
-                    pos = None
-                    continue
-                pos = None
-            p = _open(i)
-            if p is None:
-                continue
-            pos = p
-        if pos is not None:
-            _run_to_exit(pos)
-            trades.append(pos)
     else:
         open_pos: list[dict] = []
         last_entry_j = -10**9

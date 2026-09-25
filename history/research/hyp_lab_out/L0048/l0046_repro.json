@@ -1,0 +1,34 @@
+{
+  "official_JUD": {
+    "net": -1762.57,
+    "trades": 30539,
+    "pf": 0.6764,
+    "per": -0.05772,
+    "mdd": 1777.01
+  },
+  "official_SEL": {
+    "net": -1007.83,
+    "trades": 20475,
+    "pf": 0.7282,
+    "per": -0.04922,
+    "mdd": 1075.42
+  },
+  "default_overlap": {
+    "trades": 30539,
+    "overlapping_trades": 17076,
+    "overlap_ratio": 0.559154,
+    "max_concurrent": 6,
+    "symbols_with_overlap": 15,
+    "status": "overlap"
+  },
+  "wiring_JUD": {
+    "net": -1762.57,
+    "trades": 30539,
+    "per": -0.05772,
+    "gross": -176.84,
+    "costs": 1585.74,
+    "median_hold": 1.0,
+    "overlap_ratio": 0.559154,
+    "max_concurrent": 6
+  }
+}
