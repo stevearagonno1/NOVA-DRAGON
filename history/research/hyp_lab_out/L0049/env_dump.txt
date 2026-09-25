@@ -1,0 +1,23 @@
+{
+  "python": "3.13.14",
+  "pandas": "2.2.3",
+  "numpy": "2.3.5",
+  "platform": "Linux-6.1.158+-x86_64-with-glibc2.41",
+  "cost_default_file": 0.0013,
+  "stop": 2.5,
+  "trail": 4.0,
+  "seeds": [
+    110048,
+    210048,
+    310048,
+    410048,
+    510048
+  ],
+  "cap": 40,
+  "counted": 40,
+  "canary": "ok",
+  "canary_net": -1.9718063239874648,
+  "canary_lab": "لم يُشغَّل: phase3_basis_repaired.csv غير موجود في المستودع. لم يُصنَّع بديل.",
+  "phase0_sel": 10.76,
+  "phase0_jud": -154.84
+}

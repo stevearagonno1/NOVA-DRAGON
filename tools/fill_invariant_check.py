@@ -193,36 +193,48 @@ def selftest() -> int:
 
 
 # ═══════════════════════════ فحص ملفات الصفقات ═══════════════════════════
-def check_csv(path: pathlib.Path, frames: pathlib.Path, verbose: bool = True) -> dict:
+def check_csv(path: pathlib.Path, frames: pathlib.Path, verbose: bool = True, *,
+              cost: float | None = None, bar_tag: str = "4h") -> dict:
+    """الافتراضي cost=None (أي 0.0013) وbar_tag=4h — سلوك الفحص القديم حرفياً.
+
+    كلفة أو إطار مختلف يُمرَّران صراحة. صف بلا شمعة مطابقة يُحسب skipped ولا يُعدّ سليماً بصمت.
+    """
+    use_cost = COST if cost is None else float(cost)
     t = pd.read_csv(path, encoding="utf-8-sig")
     need = {"symbol", "entry_time", "exit_time", "entry", "exit"}
     if not need.issubset(t.columns):
-        return {"file": path.name, "status": "تخطٍّ (أعمدة ناقصة)", "n": 0, "viol": 0}
+        return {"file": path.name, "status": "تخطٍّ (أعمدة ناقصة)", "n": 0, "viol": 0,
+                "checked": 0, "skipped": 0, "missing_frames": 0}
     frames_cache = {}
     viol_exit = viol_entry = 0
     cost_out_exit = cost_out_entry = 0
     max_dev = 0.0
     examples = []
+    checked = skipped = missing_frames = 0
     for _, r in t.iterrows():
         sym = str(r["symbol"])
         if sym not in frames_cache:
-            f = frames / f"{sym}_4h.parquet"
+            f = frames / f"{sym}_{bar_tag}.parquet"
             frames_cache[sym] = pd.read_parquet(f) if f.exists() else None
         df = frames_cache[sym]
         if df is None:
+            missing_frames += 2
             continue
         for side, tcol, pcol in (("entry", "entry_time", "entry"), ("exit", "exit_time", "exit")):
             try:
                 ts = pd.Timestamp(r[tcol])
             except Exception:
+                skipped += 1
                 continue
             if ts.tzinfo is None:
                 ts = ts.tz_localize("UTC")
             if ts not in df.index:
+                skipped += 1
                 continue
+            checked += 1
             bar = df.loc[ts]
             px = float(r[pcol])
-            market = px / (1 + COST) if side == "entry" else px / (1 - COST)
+            market = px / (1 + use_cost) if side == "entry" else px / (1 - use_cost)
             lo, hi = float(bar["low"]), float(bar["high"])
             # تسامح نسبي 1e-6 (0.0001%) لأن أسعار الملفات مقرَّبة إلى 6 خانات ⇒ أثر تقريب
             # بحجم ~1e-9 عند الحد. أي انحراف أكبر = مخالفة حقيقية.
@@ -241,10 +253,13 @@ def check_csv(path: pathlib.Path, frames: pathlib.Path, verbose: bool = True) ->
                     cost_out_entry += 1
     res = {"file": path.name, "n": len(t), "viol_entry": viol_entry, "viol_exit": viol_exit,
            "cost_out_entry": cost_out_entry, "cost_out_exit": cost_out_exit,
-           "viol": viol_entry + viol_exit, "examples": examples}
+           "viol": viol_entry + viol_exit, "examples": examples,
+           "checked": checked, "skipped": skipped, "missing_frames": missing_frames,
+           "cost": use_cost, "bar_tag": bar_tag}
     if verbose:
         mark = "✅" if res["viol"] == 0 else "❌"
-        print(f"  {mark} {path.name}: صفقات={len(t)} · مخالفات الدخول={viol_entry} · "
+        print(f"  {mark} {path.name}: صفقات={len(t)} · فُحص={checked} · تُخطّي={skipped} · "
+              f"شموع ناقصة={missing_frames} · مخالفات الدخول={viol_entry} · "
               f"مخالفات الخروج={viol_exit}")
         if cost_out_entry or cost_out_exit:
             print(f"      (خارج النطاق بعد إضافة الكلفة: دخول {cost_out_entry} · خروج {cost_out_exit}"
@@ -261,6 +276,10 @@ def main() -> int:
     ap.add_argument("--dir", type=str)
     ap.add_argument("--frames", type=str,
                     default=str(pathlib.Path.home() / ".cache" / "l0046_frames"))
+    ap.add_argument("--cost", type=float, default=None,
+                    help="كلفة الطرف لعكس التعبئة. الافتراضي 0.0013 كما كان — لا تغيّره إلا لفحص ملف كلفته مختلفة")
+    ap.add_argument("--bar-tag", default="4h",
+                    help="لاحقة ملف الشمعة {sym}_{tag}.parquet. الافتراضي 4h حتى لا يتغيّر فحص الملفات القديمة")
     a = ap.parse_args()
     if a.selftest:
         return selftest()
@@ -281,7 +300,7 @@ def main() -> int:
     print("═" * 74)
     tot = 0
     for f in files:
-        r = check_csv(f, frames)
+        r = check_csv(f, frames, cost=a.cost, bar_tag=a.bar_tag)
         tot += r["viol"]
     print("═" * 74)
     print(f" مجموع المخالفات: {tot}  →  {'✅ صفر — الآلة سليمة' if tot == 0 else '❌ الإصلاح فاشل'}")
