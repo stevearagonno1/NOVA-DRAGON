@@ -1,0 +1,31 @@
+{
+  "cap": 24,
+  "counted": 16,
+  "cost": "COMMISSION=0.00115 or 0.00130, SLIPPAGE=0, in memory",
+  "v2": "1",
+  "smc": "False",
+  "universe": [
+    "BTCUSDT",
+    "BNBUSDT",
+    "SOLUSDT",
+    "LINKUSDT"
+  ],
+  "paper_17_not_run": "الكود يرفضها. nova_v8 لم يُعدَّل.",
+  "capital_programmed": 1000,
+  "weights": [
+    0.15,
+    0.25,
+    0.3,
+    0.3
+  ],
+  "better": "falling",
+  "seed_unmeasured": 510060,
+  "falling_0130": "لم يُقَس",
+  "identity": true,
+  "determinism": "sha256 match on open 0.115 both periods",
+  "regime_py": false,
+  "identity_full_selection": "4 symbols matched import, 47 trades",
+  "live_gaps": 0,
+  "slice_overlap_is_staging": true,
+  "cycle_overlap": 0
+}

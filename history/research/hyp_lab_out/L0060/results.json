@@ -1,0 +1,366 @@
+{
+  "open": {
+    "c00115": {
+      "اختيار": {
+        "net": -12.59,
+        "slices": 47,
+        "cycles": 33,
+        "slices_per_cycle": 1.424,
+        "mean_hold_bars": 255.47,
+        "mean_hold_days": 42.58,
+        "peak_concurrent": 1800.0,
+        "deployed_programmed": 4000.0,
+        "return_pct_on_peak": -0.699,
+        "return_pct_on_4000": -0.315,
+        "dd_usd": -662.54,
+        "dd_pct_of_peak": -36.808,
+        "warmup_excluded": 0,
+        "reasons": {
+          "إلغاء-دورة": 33,
+          "توزيع-قمة": 14
+        },
+        "invalidation_gaps": 0,
+        "invalidation_touches": 33,
+        "move": 0.15282,
+        "per_slice": -0.26787
+      },
+      "حكم": {
+        "net": 417.35,
+        "slices": 40,
+        "cycles": 31,
+        "slices_per_cycle": 1.29,
+        "mean_hold_bars": 235.25,
+        "mean_hold_days": 39.21,
+        "peak_concurrent": 1350.0,
+        "deployed_programmed": 4000.0,
+        "return_pct_on_peak": 30.915,
+        "return_pct_on_4000": 10.434,
+        "dd_usd": -290.89,
+        "dd_pct_of_peak": -21.547,
+        "warmup_excluded": 47,
+        "reasons": {
+          "إلغاء-دورة": 22,
+          "توزيع-قمة": 16,
+          "نهاية-العينة": 2
+        },
+        "invalidation_gaps": 0,
+        "invalidation_touches": 22,
+        "move": 10.85777,
+        "per_slice": 10.43375
+      }
+    },
+    "c00130": {
+      "اختيار": {
+        "net": -15.17,
+        "slices": 47,
+        "cycles": 33,
+        "slices_per_cycle": 1.424,
+        "mean_hold_bars": 255.47,
+        "mean_hold_days": 42.58,
+        "peak_concurrent": 1800.0,
+        "deployed_programmed": 4000.0,
+        "return_pct_on_peak": -0.843,
+        "return_pct_on_4000": -0.379,
+        "dd_usd": -663.66,
+        "dd_pct_of_peak": -36.87,
+        "warmup_excluded": 0,
+        "reasons": {
+          "إلغاء-دورة": 33,
+          "توزيع-قمة": 14
+        },
+        "invalidation_gaps": 0,
+        "invalidation_touches": 33,
+        "move": 0.15282,
+        "per_slice": -0.32277
+      },
+      "حكم": {
+        "net": 415.14,
+        "slices": 40,
+        "cycles": 31,
+        "slices_per_cycle": 1.29,
+        "mean_hold_bars": 235.25,
+        "mean_hold_days": 39.21,
+        "peak_concurrent": 1350.0,
+        "deployed_programmed": 4000.0,
+        "return_pct_on_peak": 30.751,
+        "return_pct_on_4000": 10.379,
+        "dd_usd": -292.12,
+        "dd_pct_of_peak": -21.639,
+        "warmup_excluded": 47,
+        "reasons": {
+          "إلغاء-دورة": 22,
+          "توزيع-قمة": 16,
+          "نهاية-العينة": 2
+        },
+        "invalidation_gaps": 0,
+        "invalidation_touches": 22,
+        "move": 10.85777,
+        "per_slice": 10.3785
+      }
+    }
+  },
+  "falling": {
+    "c00115": {
+      "اختيار": {
+        "net": -67.17,
+        "slices": 43,
+        "cycles": 30,
+        "slices_per_cycle": 1.433,
+        "mean_hold_bars": 262.28,
+        "mean_hold_days": 43.71,
+        "peak_concurrent": 1800.0,
+        "deployed_programmed": 4000.0,
+        "return_pct_on_peak": -3.732,
+        "return_pct_on_4000": -1.679,
+        "dd_usd": -663.69,
+        "dd_pct_of_peak": -36.872,
+        "warmup_excluded": 0,
+        "reasons": {
+          "إلغاء-دورة": 31,
+          "توزيع-قمة": 12
+        },
+        "invalidation_gaps": 0,
+        "invalidation_touches": 31,
+        "move": -1.08793,
+        "per_slice": -1.56209
+      },
+      "حكم": {
+        "net": 536.61,
+        "slices": 20,
+        "cycles": 14,
+        "slices_per_cycle": 1.429,
+        "mean_hold_bars": 337.05,
+        "mean_hold_days": 56.18,
+        "peak_concurrent": 1350.0,
+        "deployed_programmed": 4000.0,
+        "return_pct_on_peak": 39.749,
+        "return_pct_on_4000": 13.415,
+        "dd_usd": -116.72,
+        "dd_pct_of_peak": -8.646,
+        "warmup_excluded": 43,
+        "reasons": {
+          "إلغاء-دورة": 7,
+          "توزيع-قمة": 11,
+          "نهاية-العينة": 2
+        },
+        "invalidation_gaps": 0,
+        "invalidation_touches": 7,
+        "move": 27.37547,
+        "per_slice": 26.8305
+      }
+    },
+    "c00130": "لم يُقَس"
+  },
+  "better": "falling",
+  "buyhold_fair": {
+    "اختيار": {
+      "net": -422.15,
+      "capital": 1800.0,
+      "symbols": 4,
+      "return_pct": -23.453
+    },
+    "حكم": {
+      "net": 595.82,
+      "capital": 1350.0,
+      "symbols": 4,
+      "return_pct": 44.135
+    }
+  },
+  "random": [
+    {
+      "seed": 110060,
+      "window": "SEL",
+      "net": -20.91,
+      "slices": 30,
+      "cycles": 30,
+      "slices_per_cycle": 1.0,
+      "mean_hold_bars": 200.13,
+      "mean_hold_days": 33.36,
+      "peak_concurrent": 872.22,
+      "deployed_programmed": 4000.0,
+      "return_pct_on_peak": -2.397,
+      "return_pct_on_4000": -0.523,
+      "dd_usd": -527.8,
+      "dd_pct_of_peak": -60.512,
+      "warmup_excluded": 0,
+      "reasons": {
+        "عشوائي": 30
+      },
+      "invalidation_gaps": 0,
+      "invalidation_touches": 0,
+      "move": -0.0922,
+      "per_slice": -0.697
+    },
+    {
+      "seed": 110060,
+      "window": "JUD",
+      "net": 34.82,
+      "slices": 14,
+      "cycles": 14,
+      "slices_per_cycle": 1.0,
+      "mean_hold_bars": 314.14,
+      "mean_hold_days": 52.36,
+      "peak_concurrent": 783.33,
+      "deployed_programmed": 4000.0,
+      "return_pct_on_peak": 4.445,
+      "return_pct_on_4000": 0.871,
+      "dd_usd": -321.55,
+      "dd_pct_of_peak": -41.049,
+      "warmup_excluded": 0,
+      "reasons": {
+        "عشوائي": 14
+      },
+      "invalidation_gaps": 0,
+      "invalidation_touches": 0,
+      "move": 3.09338,
+      "per_slice": 2.48714
+    },
+    {
+      "seed": 210060,
+      "window": "SEL",
+      "net": 453.97,
+      "slices": 30,
+      "cycles": 30,
+      "slices_per_cycle": 1.0,
+      "mean_hold_bars": 200.13,
+      "mean_hold_days": 33.36,
+      "peak_concurrent": 872.22,
+      "deployed_programmed": 4000.0,
+      "return_pct_on_peak": 52.048,
+      "return_pct_on_4000": 11.349,
+      "dd_usd": -340.32,
+      "dd_pct_of_peak": -39.018,
+      "warmup_excluded": 0,
+      "reasons": {
+        "عشوائي": 30
+      },
+      "invalidation_gaps": 0,
+      "invalidation_touches": 0,
+      "move": 15.77346,
+      "per_slice": 15.13233
+    },
+    {
+      "seed": 210060,
+      "window": "JUD",
+      "net": 17.2,
+      "slices": 14,
+      "cycles": 14,
+      "slices_per_cycle": 1.0,
+      "mean_hold_bars": 314.14,
+      "mean_hold_days": 52.36,
+      "peak_concurrent": 1100.0,
+      "deployed_programmed": 4000.0,
+      "return_pct_on_peak": 1.564,
+      "return_pct_on_4000": 0.43,
+      "dd_usd": -328.74,
+      "dd_pct_of_peak": -29.885,
+      "warmup_excluded": 0,
+      "reasons": {
+        "عشوائي": 14
+      },
+      "invalidation_gaps": 0,
+      "invalidation_touches": 0,
+      "move": 1.832,
+      "per_slice": 1.22857
+    },
+    {
+      "seed": 310060,
+      "window": "SEL",
+      "net": 357.88,
+      "slices": 30,
+      "cycles": 30,
+      "slices_per_cycle": 1.0,
+      "mean_hold_bars": 200.13,
+      "mean_hold_days": 33.36,
+      "peak_concurrent": 872.22,
+      "deployed_programmed": 4000.0,
+      "return_pct_on_peak": 41.031,
+      "return_pct_on_4000": 8.947,
+      "dd_usd": -448.65,
+      "dd_pct_of_peak": -51.438,
+      "warmup_excluded": 0,
+      "reasons": {
+        "عشوائي": 30
+      },
+      "invalidation_gaps": 0,
+      "invalidation_touches": 0,
+      "move": 12.5633,
+      "per_slice": 11.92933
+    },
+    {
+      "seed": 310060,
+      "window": "JUD",
+      "net": -211.31,
+      "slices": 14,
+      "cycles": 14,
+      "slices_per_cycle": 1.0,
+      "mean_hold_bars": 314.14,
+      "mean_hold_days": 52.36,
+      "peak_concurrent": 866.67,
+      "deployed_programmed": 4000.0,
+      "return_pct_on_peak": -24.382,
+      "return_pct_on_4000": -5.283,
+      "dd_usd": -387.44,
+      "dd_pct_of_peak": -44.704,
+      "warmup_excluded": 0,
+      "reasons": {
+        "عشوائي": 14
+      },
+      "invalidation_gaps": 0,
+      "invalidation_touches": 0,
+      "move": -14.52812,
+      "per_slice": -15.09357
+    },
+    {
+      "seed": 410060,
+      "window": "SEL",
+      "net": -3.86,
+      "slices": 30,
+      "cycles": 30,
+      "slices_per_cycle": 1.0,
+      "mean_hold_bars": 200.13,
+      "mean_hold_days": 33.36,
+      "peak_concurrent": 872.22,
+      "deployed_programmed": 4000.0,
+      "return_pct_on_peak": -0.443,
+      "return_pct_on_4000": -0.097,
+      "dd_usd": -439.16,
+      "dd_pct_of_peak": -50.35,
+      "warmup_excluded": 0,
+      "reasons": {
+        "عشوائي": 30
+      },
+      "invalidation_gaps": 0,
+      "invalidation_touches": 0,
+      "move": 0.47747,
+      "per_slice": -0.12867
+    },
+    {
+      "seed": 410060,
+      "window": "JUD",
+      "net": 178.54,
+      "slices": 14,
+      "cycles": 14,
+      "slices_per_cycle": 1.0,
+      "mean_hold_bars": 314.14,
+      "mean_hold_days": 52.36,
+      "peak_concurrent": 933.33,
+      "deployed_programmed": 4000.0,
+      "return_pct_on_peak": 19.129,
+      "return_pct_on_4000": 4.463,
+      "dd_usd": -315.96,
+      "dd_pct_of_peak": -33.853,
+      "warmup_excluded": 0,
+      "reasons": {
+        "عشوائي": 14
+      },
+      "invalidation_gaps": 0,
+      "invalidation_touches": 0,
+      "move": 13.38291,
+      "per_slice": 12.75286
+    }
+  ],
+  "random_unmeasured": [
+    510060
+  ]
+}
