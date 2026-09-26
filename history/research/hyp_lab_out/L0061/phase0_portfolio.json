@@ -1,0 +1,21 @@
+{
+  "canary": "ok",
+  "canary_net": -1.9718063239874648,
+  "portfolio_JUD": {
+    "net": 33.24,
+    "trades": 464,
+    "ref": "33.24/464"
+  },
+  "portfolio_SEL": {
+    "net": 45.66,
+    "trades": 328,
+    "ref": "45.66/328"
+  },
+  "buyhold_L0046_JUD": {
+    "net": -73.29,
+    "n": 15,
+    "ref": -73.29
+  },
+  "root_note": "run_l0056: /home/user/l0056 → /home/user/work في الذاكرة. R46/R48 فيهما /home/user/work أصلًا.",
+  "frames_cache": "/home/user/.cache/l0046_frames"
+}

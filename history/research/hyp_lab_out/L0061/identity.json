@@ -1,0 +1,139 @@
+{
+  "ATOMUSDT": {
+    "copy_vs_engine": true,
+    "n": 33,
+    "engine_real_label_returns": 0,
+    "first": "2021-09-01",
+    "last": "2026-08-30",
+    "h4_bars": 10950
+  },
+  "BNBUSDT": {
+    "copy_vs_engine": true,
+    "n": 20,
+    "engine_real_label_returns": null,
+    "first": "2021-09-01",
+    "last": "2026-08-30",
+    "h4_bars": 10950
+  },
+  "BTCUSDT": {
+    "copy_vs_engine": true,
+    "n": 27,
+    "engine_real_label_returns": null,
+    "first": "2021-09-01",
+    "last": "2026-08-30",
+    "h4_bars": 10950,
+    "label_swap_BNB_equals_BTC": true
+  },
+  "DOGEUSDT": {
+    "copy_vs_engine": true,
+    "n": 19,
+    "engine_real_label_returns": 0,
+    "first": "2021-09-01",
+    "last": "2026-08-30",
+    "h4_bars": 10950
+  },
+  "ETHUSDT": {
+    "copy_vs_engine": true,
+    "n": 23,
+    "engine_real_label_returns": 0,
+    "first": "2021-09-01",
+    "last": "2026-08-30",
+    "h4_bars": 10950
+  },
+  "FILUSDT": {
+    "copy_vs_engine": true,
+    "n": 34,
+    "engine_real_label_returns": 0,
+    "first": "2021-09-01",
+    "last": "2026-08-30",
+    "h4_bars": 10950
+  },
+  "GRAMUSDT": {
+    "copy_vs_engine": true,
+    "n": 11,
+    "engine_real_label_returns": 0,
+    "first": "2024-08-08",
+    "last": "2026-08-30",
+    "h4_bars": 4503
+  },
+  "HNTUSDT": {
+    "copy_vs_engine": true,
+    "n": 10,
+    "engine_real_label_returns": 0,
+    "first": "2021-09-01",
+    "last": "2022-10-14",
+    "h4_bars": 2449
+  },
+  "IMXUSDT": {
+    "copy_vs_engine": true,
+    "n": 35,
+    "engine_real_label_returns": 0,
+    "first": "2022-01-10",
+    "last": "2026-08-30",
+    "h4_bars": 10162
+  },
+  "LINKUSDT": {
+    "copy_vs_engine": true,
+    "n": 20,
+    "engine_real_label_returns": null,
+    "first": "2021-09-01",
+    "last": "2026-08-30",
+    "h4_bars": 10950
+  },
+  "PEPEUSDT": {
+    "copy_vs_engine": true,
+    "n": 13,
+    "engine_real_label_returns": 0,
+    "first": "2023-05-05",
+    "last": "2026-08-30",
+    "h4_bars": 7280
+  },
+  "RENDERUSDT": {
+    "copy_vs_engine": true,
+    "n": 11,
+    "engine_real_label_returns": 0,
+    "first": "2024-07-26",
+    "last": "2026-08-30",
+    "h4_bars": 4594
+  },
+  "SHIBUSDT": {
+    "copy_vs_engine": true,
+    "n": 32,
+    "engine_real_label_returns": 0,
+    "first": "2021-09-01",
+    "last": "2026-08-30",
+    "h4_bars": 10950
+  },
+  "SOLUSDT": {
+    "copy_vs_engine": true,
+    "n": 20,
+    "engine_real_label_returns": null,
+    "first": "2021-09-01",
+    "last": "2026-08-30",
+    "h4_bars": 10950
+  },
+  "TONUSDT": {
+    "copy_vs_engine": true,
+    "n": 8,
+    "engine_real_label_returns": 0,
+    "first": "2024-08-08",
+    "last": "2026-06-30",
+    "h4_bars": 4145
+  },
+  "VETUSDT": {
+    "copy_vs_engine": true,
+    "n": 37,
+    "engine_real_label_returns": 0,
+    "first": "2021-09-01",
+    "last": "2026-08-30",
+    "h4_bars": 10950
+  },
+  "XLMUSDT": {
+    "copy_vs_engine": true,
+    "n": 29,
+    "engine_real_label_returns": 0,
+    "first": "2021-09-01",
+    "last": "2026-08-30",
+    "h4_bars": 10950
+  }
+}

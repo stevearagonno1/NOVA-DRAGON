@@ -1,0 +1,2376 @@
+{
+  "universe": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "DOGEUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "GRAMUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "PEPEUSDT",
+    "RENDERUSDT",
+    "SHIBUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+  ],
+  "allowed4": [
+    "BTCUSDT",
+    "BNBUSDT",
+    "SOLUSDT",
+    "LINKUSDT"
+  ],
+  "phase0": {
+    "open4": {
+      "SEL": {
+        "net": -12.59,
+        "slices": 47,
+        "cycles": 33,
+        "slices_per_cycle": 1.424,
+        "mean_hold_days": 42.58,
+        "median_hold_days": 31.5,
+        "peak_concurrent": 1800.0,
+        "return_pct_on_peak": -0.699,
+        "dd_usd": -662.54,
+        "dd_pct_of_peak": -36.808,
+        "peak_equity": 100.39,
+        "warmup_excluded": 0,
+        "reasons": {
+          "إلغاء-دورة": 33,
+          "توزيع-قمة": 14
+        },
+        "reason_pnl": {
+          "إلغاء-دورة": -743.21,
+          "توزيع-قمة": 730.62
+        },
+        "gross": 7.18,
+        "move": 0.15282,
+        "per_slice": -0.26787,
+        "symbols_traded": 4,
+        "symbols": [
+          "BNBUSDT",
+          "BTCUSDT",
+          "LINKUSDT",
+          "SOLUSDT"
+        ],
+        "exposure": {
+          "avg_deployed_usd": 427.48,
+          "bars_any_open_pct": 65.86,
+          "bars_total": 5112
+        },
+        "programmed_capital": 4000.0,
+        "cost": 0.00115
+      },
+      "JUD": {
+        "net": 417.35,
+        "slices": 40,
+        "cycles": 31,
+        "slices_per_cycle": 1.29,
+        "mean_hold_days": 39.21,
+        "median_hold_days": 31.0,
+        "peak_concurrent": 1350.0,
+        "return_pct_on_peak": 30.915,
+        "dd_usd": -290.89,
+        "dd_pct_of_peak": -21.547,
+        "peak_equity": 509.58,
+        "warmup_excluded": 47,
+        "reasons": {
+          "إلغاء-دورة": 22,
+          "توزيع-قمة": 16,
+          "نهاية-العينة": 2
+        },
+        "reason_pnl": {
+          "إلغاء-دورة": -403.48,
+          "توزيع-قمة": 744.06,
+          "نهاية-العينة": 76.72
+        },
+        "gross": 434.31,
+        "move": 10.85777,
+        "per_slice": 10.43375,
+        "symbols_traded": 4,
+        "symbols": [
+          "BNBUSDT",
+          "BTCUSDT",
+          "LINKUSDT",
+          "SOLUSDT"
+        ],
+        "exposure": {
+          "avg_deployed_usd": 287.74,
+          "bars_any_open_pct": 57.47,
+          "bars_total": 5838
+        },
+        "programmed_capital": 4000.0,
+        "cost": 0.00115
+      }
+    },
+    "hold4": {
+      "SEL": {
+        "net": -422.15,
+        "capital": 1800.0,
+        "symbols": 4,
+        "return_pct": -23.453,
+        "per_symbol": {
+          "BTCUSDT": -46.95,
+          "BNBUSDT": -148.24,
+          "SOLUSDT": -28.19,
+          "LINKUSDT": -198.76
+        },
+        "spans": {
+          "BTCUSDT": [
+            "2021-09-01",
+            "2023-12-31"
+          ],
+          "BNBUSDT": [
+            "2021-09-01",
+            "2023-12-31"
+          ],
+          "SOLUSDT": [
+            "2021-09-01",
+            "2023-12-31"
+          ],
+          "LINKUSDT": [
+            "2021-09-01",
+            "2023-12-31"
+          ]
+        }
+      },
+      "JUD": {
+        "net": 595.82,
+        "capital": 1350.0,
+        "symbols": 4,
+        "return_pct": 44.135,
+        "per_symbol": {
+          "BTCUSDT": 281.12,
+          "BNBUSDT": 401.74,
+          "SOLUSDT": -0.68,
+          "LINKUSDT": -86.36
+        },
+        "spans": {
+          "BTCUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ],
+          "BNBUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ],
+          "SOLUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ],
+          "LINKUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ]
+        }
+      }
+    },
+    "hold4_stats": {
+      "SEL": {
+        "net": -422.15,
+        "slices": 4,
+        "cycles": 4,
+        "slices_per_cycle": 1.0,
+        "mean_hold_days": 851.83,
+        "median_hold_days": 851.83,
+        "peak_concurrent": 1800.0,
+        "return_pct_on_peak": -23.453,
+        "dd_usd": -2415.23,
+        "dd_pct_of_peak": -134.179,
+        "peak_equity": 1137.39,
+        "warmup_excluded": 0,
+        "reasons": {
+          "احتفاظ": 4
+        },
+        "reason_pnl": {
+          "احتفاظ": -422.14
+        },
+        "gross": -418.98,
+        "move": -104.74399,
+        "per_slice": -105.5375,
+        "symbols_traded": 4,
+        "symbols": [
+          "BNBUSDT",
+          "BTCUSDT",
+          "LINKUSDT",
+          "SOLUSDT"
+        ],
+        "exposure": {
+          "avg_deployed_usd": 1799.65,
+          "bars_any_open_pct": 99.98,
+          "bars_total": 5112
+        },
+        "programmed_capital": 4000.0,
+        "cost": 0.00115
+      },
+      "JUD": {
+        "net": 595.82,
+        "slices": 4,
+        "cycles": 4,
+        "slices_per_cycle": 1.0,
+        "mean_hold_days": 972.83,
+        "median_hold_days": 972.83,
+        "peak_concurrent": 1350.0,
+        "return_pct_on_peak": 44.135,
+        "dd_usd": -2235.24,
+        "dd_pct_of_peak": -165.573,
+        "peak_equity": 2336.96,
+        "warmup_excluded": 0,
+        "reasons": {
+          "احتفاظ": 4
+        },
+        "reason_pnl": {
+          "احتفاظ": 595.82
+        },
+        "gross": 600.3,
+        "move": 150.07463,
+        "per_slice": 148.955,
+        "symbols_traded": 4,
+        "symbols": [
+          "BNBUSDT",
+          "BTCUSDT",
+          "LINKUSDT",
+          "SOLUSDT"
+        ],
+        "exposure": {
+          "avg_deployed_usd": 1349.77,
+          "bars_any_open_pct": 99.98,
+          "bars_total": 5838
+        },
+        "programmed_capital": 4000.0,
+        "cost": 0.00115
+      }
+    },
+    "bear4": {
+      "c00115": {
+        "SEL": {
+          "net": -64.82,
+          "slices": 43,
+          "cycles": 30,
+          "slices_per_cycle": 1.433,
+          "mean_hold_days": 43.71,
+          "median_hold_days": 31.5,
+          "peak_concurrent": 1800.0,
+          "return_pct_on_peak": -3.601,
+          "dd_usd": -662.54,
+          "dd_pct_of_peak": -36.808,
+          "peak_equity": 133.84,
+          "warmup_excluded": 0,
+          "reasons": {
+            "إلغاء-دورة": 31,
+            "توزيع-قمة": 12
+          },
+          "reason_pnl": {
+            "إلغاء-دورة": -709.75,
+            "توزيع-قمة": 644.93
+          },
+          "gross": -46.78,
+          "move": -1.08793,
+          "per_slice": -1.50744,
+          "symbols_traded": 4,
+          "symbols": [
+            "BNBUSDT",
+            "BTCUSDT",
+            "LINKUSDT",
+            "SOLUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 399.58,
+            "bars_any_open_pct": 65.77,
+            "bars_total": 5112
+          },
+          "programmed_capital": 4000.0,
+          "cost": 0.00115
+        },
+        "JUD": {
+          "net": 537.87,
+          "slices": 20,
+          "cycles": 14,
+          "slices_per_cycle": 1.429,
+          "mean_hold_days": 56.18,
+          "median_hold_days": 65.5,
+          "peak_concurrent": 1350.0,
+          "return_pct_on_peak": 39.842,
+          "dd_usd": -116.72,
+          "dd_pct_of_peak": -8.646,
+          "peak_equity": 630.1,
+          "warmup_excluded": 43,
+          "reasons": {
+            "إلغاء-دورة": 7,
+            "توزيع-قمة": 11,
+            "نهاية-العينة": 2
+          },
+          "reason_pnl": {
+            "إلغاء-دورة": -118.47,
+            "توزيع-قمة": 579.6,
+            "نهاية-العينة": 76.72
+          },
+          "gross": 547.51,
+          "move": 27.37547,
+          "per_slice": 26.8935,
+          "symbols_traded": 4,
+          "symbols": [
+            "BNBUSDT",
+            "BTCUSDT",
+            "LINKUSDT",
+            "SOLUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 212.02,
+            "bars_any_open_pct": 39.69,
+            "bars_total": 5838
+          },
+          "programmed_capital": 4000.0,
+          "cost": 0.00115
+        }
+      },
+      "c00130": {
+        "SEL": {
+          "net": -67.17,
+          "slices": 43,
+          "cycles": 30,
+          "slices_per_cycle": 1.433,
+          "mean_hold_days": 43.71,
+          "median_hold_days": 31.5,
+          "peak_concurrent": 1800.0,
+          "return_pct_on_peak": -3.732,
+          "dd_usd": -663.66,
+          "dd_pct_of_peak": -36.87,
+          "peak_equity": 133.44,
+          "warmup_excluded": 0,
+          "reasons": {
+            "إلغاء-دورة": 31,
+            "توزيع-قمة": 12
+          },
+          "reason_pnl": {
+            "إلغاء-دورة": -711.2,
+            "توزيع-قمة": 644.05
+          },
+          "gross": -46.78,
+          "move": -1.08793,
+          "per_slice": -1.56209,
+          "symbols_traded": 4,
+          "symbols": [
+            "BNBUSDT",
+            "BTCUSDT",
+            "LINKUSDT",
+            "SOLUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 399.58,
+            "bars_any_open_pct": 65.77,
+            "bars_total": 5112
+          },
+          "programmed_capital": 4000.0,
+          "cost": 0.0013
+        },
+        "JUD": {
+          "net": 536.61,
+          "slices": 20,
+          "cycles": 14,
+          "slices_per_cycle": 1.429,
+          "mean_hold_days": 56.18,
+          "median_hold_days": 65.5,
+          "peak_concurrent": 1350.0,
+          "return_pct_on_peak": 39.749,
+          "dd_usd": -116.68,
+          "dd_pct_of_peak": -8.643,
+          "peak_equity": 628.82,
+          "warmup_excluded": 43,
+          "reasons": {
+            "إلغاء-دورة": 7,
+            "توزيع-قمة": 11,
+            "نهاية-العينة": 2
+          },
+          "reason_pnl": {
+            "إلغاء-دورة": -118.74,
+            "توزيع-قمة": 578.78,
+            "نهاية-العينة": 76.58
+          },
+          "gross": 547.51,
+          "move": 27.37547,
+          "per_slice": 26.8305,
+          "symbols_traded": 4,
+          "symbols": [
+            "BNBUSDT",
+            "BTCUSDT",
+            "LINKUSDT",
+            "SOLUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 212.02,
+            "bars_any_open_pct": 39.69,
+            "bars_total": 5838
+          },
+          "programmed_capital": 4000.0,
+          "cost": 0.0013
+        }
+      }
+    },
+    "bear4_cost_finding": {
+      "finding": "أرقام الهابط في L0060 المنشورة بوسم 0.115% هي فعليًّا عند 0.130% (تسرّب set_cost(COST_130) قبل run_all('falling')).",
+      "L0060_published": {
+        "SEL": -67.17,
+        "JUD": 536.61
+      },
+      "reproduced_at_0.130": {
+        "SEL": -67.17,
+        "JUD": 536.61
+      },
+      "correct_at_0.115": {
+        "SEL": -64.82,
+        "JUD": 537.87
+      },
+      "trades_identical": true,
+      "verdict_impact": "لا يغيّر حكم L0060 (الاختيار سالب · تحت الاحتفاظ)."
+    }
+  },
+  "A": {
+    "open16": {
+      "c00115": {
+        "SEL": {
+          "net": 964.57,
+          "slices": 177,
+          "cycles": 121,
+          "slices_per_cycle": 1.463,
+          "mean_hold_days": 38.26,
+          "median_hold_days": 28.33,
+          "peak_concurrent": 3650.0,
+          "return_pct_on_peak": 26.427,
+          "dd_usd": -2530.26,
+          "dd_pct_of_peak": -69.322,
+          "peak_equity": 1156.29,
+          "warmup_excluded": 0,
+          "reasons": {
+            "إلغاء-دورة": 126,
+            "توزيع-قمة": 50,
+            "نهاية-العينة": 1
+          },
+          "reason_pnl": {
+            "إلغاء-دورة": -2945.1,
+            "توزيع-قمة": 3893.67,
+            "نهاية-العينة": 16.01
+          },
+          "gross": 1042.89,
+          "move": 5.89203,
+          "per_slice": 5.44955,
+          "symbols_traded": 14,
+          "symbols": [
+            "ATOMUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "FILUSDT",
+            "HNTUSDT",
+            "IMXUSDT",
+            "LINKUSDT",
+            "PEPEUSDT",
+            "SHIBUSDT",
+            "SOLUSDT",
+            "VETUSDT",
+            "XLMUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 1477.95,
+            "bars_any_open_pct": 87.13,
+            "bars_total": 5112
+          },
+          "programmed_capital": 16000.0,
+          "cost": 0.00115
+        },
+        "JUD": {
+          "net": 1581.17,
+          "slices": 197,
+          "cycles": 148,
+          "slices_per_cycle": 1.331,
+          "mean_hold_days": 35.13,
+          "median_hold_days": 26.33,
+          "peak_concurrent": 4900.0,
+          "return_pct_on_peak": 32.269,
+          "dd_usd": -1010.86,
+          "dd_pct_of_peak": -20.63,
+          "peak_equity": 2017.57,
+          "warmup_excluded": 177,
+          "reasons": {
+            "إلغاء-دورة": 128,
+            "توزيع-قمة": 57,
+            "نهاية-العينة": 12
+          },
+          "reason_pnl": {
+            "إلغاء-دورة": -2706.05,
+            "توزيع-قمة": 3984.57,
+            "نهاية-العينة": 302.54
+          },
+          "gross": 1665.29,
+          "move": 8.45325,
+          "per_slice": 8.02624,
+          "symbols_traded": 15,
+          "symbols": [
+            "ATOMUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "FILUSDT",
+            "GRAMUSDT",
+            "IMXUSDT",
+            "LINKUSDT",
+            "PEPEUSDT",
+            "RENDERUSDT",
+            "SHIBUSDT",
+            "SOLUSDT",
+            "VETUSDT",
+            "XLMUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 1215.87,
+            "bars_any_open_pct": 89.45,
+            "bars_total": 5838
+          },
+          "programmed_capital": 16000.0,
+          "cost": 0.00115
+        }
+      },
+      "c00130": {
+        "SEL": {
+          "net": 954.36,
+          "slices": 177,
+          "cycles": 121,
+          "slices_per_cycle": 1.463,
+          "mean_hold_days": 38.26,
+          "median_hold_days": 28.33,
+          "peak_concurrent": 3650.0,
+          "return_pct_on_peak": 26.147,
+          "dd_usd": -2533.55,
+          "dd_pct_of_peak": -69.412,
+          "peak_equity": 1153.69,
+          "warmup_excluded": 0,
+          "reasons": {
+            "إلغاء-دورة": 126,
+            "توزيع-قمة": 50,
+            "نهاية-العينة": 1
+          },
+          "reason_pnl": {
+            "إلغاء-دورة": -2951.25,
+            "توزيع-قمة": 3889.64,
+            "نهاية-العينة": 15.96
+          },
+          "gross": 1042.89,
+          "move": 5.89203,
+          "per_slice": 5.39186,
+          "symbols_traded": 14,
+          "symbols": [
+            "ATOMUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "FILUSDT",
+            "HNTUSDT",
+            "IMXUSDT",
+            "LINKUSDT",
+            "PEPEUSDT",
+            "SHIBUSDT",
+            "SOLUSDT",
+            "VETUSDT",
+            "XLMUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 1477.95,
+            "bars_any_open_pct": 87.13,
+            "bars_total": 5112
+          },
+          "programmed_capital": 16000.0,
+          "cost": 0.0013
+        },
+        "JUD": {
+          "net": 1570.21,
+          "slices": 197,
+          "cycles": 148,
+          "slices_per_cycle": 1.331,
+          "mean_hold_days": 35.13,
+          "median_hold_days": 26.33,
+          "peak_concurrent": 4900.0,
+          "return_pct_on_peak": 32.045,
+          "dd_usd": -1013.4,
+          "dd_pct_of_peak": -20.682,
+          "peak_equity": 2006.48,
+          "warmup_excluded": 177,
+          "reasons": {
+            "إلغاء-دورة": 128,
+            "توزيع-قمة": 57,
+            "نهاية-العينة": 12
+          },
+          "reason_pnl": {
+            "إلغاء-دورة": -2711.83,
+            "توزيع-قمة": 3980.25,
+            "نهاية-العينة": 301.79
+          },
+          "gross": 1665.29,
+          "move": 8.45325,
+          "per_slice": 7.97061,
+          "symbols_traded": 15,
+          "symbols": [
+            "ATOMUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "FILUSDT",
+            "GRAMUSDT",
+            "IMXUSDT",
+            "LINKUSDT",
+            "PEPEUSDT",
+            "RENDERUSDT",
+            "SHIBUSDT",
+            "SOLUSDT",
+            "VETUSDT",
+            "XLMUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 1215.87,
+            "bars_any_open_pct": 89.45,
+            "bars_total": 5838
+          },
+          "programmed_capital": 16000.0,
+          "cost": 0.0013
+        }
+      }
+    },
+    "hold16": {
+      "SEL": {
+        "net": -1517.94,
+        "capital": 3650.0,
+        "symbols": 14,
+        "return_pct": -41.587,
+        "per_symbol": {
+          "ATOMUSDT": -140.31,
+          "BNBUSDT": -85.88,
+          "BTCUSDT": -27.2,
+          "DOGEUSDT": -176.99,
+          "ETHUSDT": -87.63,
+          "FILUSDT": -237.02,
+          "HNTUSDT": -211.73,
+          "IMXUSDT": -112.9,
+          "LINKUSDT": -115.16,
+          "PEPEUSDT": -89.06,
+          "SHIBUSDT": 132.11,
+          "SOLUSDT": -16.34,
+          "VETUSDT": -188.01,
+          "XLMUSDT": -161.82
+        },
+        "spans": {
+          "ATOMUSDT": [
+            "2021-09-01",
+            "2023-12-31"
+          ],
+          "BNBUSDT": [
+            "2021-09-01",
+            "2023-12-31"
+          ],
+          "BTCUSDT": [
+            "2021-09-01",
+            "2023-12-31"
+          ],
+          "DOGEUSDT": [
+            "2021-09-01",
+            "2023-12-31"
+          ],
+          "ETHUSDT": [
+            "2021-09-01",
+            "2023-12-31"
+          ],
+          "FILUSDT": [
+            "2021-09-01",
+            "2023-12-31"
+          ],
+          "HNTUSDT": [
+            "2021-09-01",
+            "2022-10-14"
+          ],
+          "IMXUSDT": [
+            "2022-01-10",
+            "2023-12-31"
+          ],
+          "LINKUSDT": [
+            "2021-09-01",
+            "2023-12-31"
+          ],
+          "PEPEUSDT": [
+            "2023-05-05",
+            "2023-12-31"
+          ],
+          "SHIBUSDT": [
+            "2021-09-01",
+            "2023-12-31"
+          ],
+          "SOLUSDT": [
+            "2021-09-01",
+            "2023-12-31"
+          ],
+          "VETUSDT": [
+            "2021-09-01",
+            "2023-12-31"
+          ],
+          "XLMUSDT": [
+            "2021-09-01",
+            "2023-12-31"
+          ]
+        }
+      },
+      "JUD": {
+        "net": -600.29,
+        "capital": 4900.0,
+        "symbols": 15,
+        "return_pct": -12.251,
+        "per_symbol": {
+          "ATOMUSDT": -281.84,
+          "BNBUSDT": 388.84,
+          "BTCUSDT": 272.1,
+          "DOGEUSDT": -28.08,
+          "ETHUSDT": 18.53,
+          "FILUSDT": -295.59,
+          "GRAMUSDT": -226.62,
+          "IMXUSDT": -307.92,
+          "LINKUSDT": -83.59,
+          "PEPEUSDT": 525.73,
+          "RENDERUSDT": -261.81,
+          "SHIBUSDT": -170.63,
+          "SOLUSDT": -0.65,
+          "VETUSDT": -262.88,
+          "XLMUSDT": 114.12
+        },
+        "spans": {
+          "ATOMUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ],
+          "BNBUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ],
+          "BTCUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ],
+          "DOGEUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ],
+          "ETHUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ],
+          "FILUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ],
+          "GRAMUSDT": [
+            "2024-08-08",
+            "2026-08-30"
+          ],
+          "IMXUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ],
+          "LINKUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ],
+          "PEPEUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ],
+          "RENDERUSDT": [
+            "2024-07-26",
+            "2026-08-30"
+          ],
+          "SHIBUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ],
+          "SOLUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ],
+          "VETUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ],
+          "XLMUSDT": [
+            "2024-01-01",
+            "2026-08-30"
+          ]
+        }
+      },
+      "stats": {
+        "SEL": {
+          "net": -1517.94,
+          "slices": 14,
+          "cycles": 14,
+          "slices_per_cycle": 1.0,
+          "mean_hold_days": 767.06,
+          "median_hold_days": 851.83,
+          "peak_concurrent": 3389.29,
+          "return_pct_on_peak": -44.786,
+          "dd_usd": -5898.77,
+          "dd_pct_of_peak": -174.041,
+          "peak_equity": 3417.21,
+          "warmup_excluded": 0,
+          "reasons": {
+            "احتفاظ": 14
+          },
+          "reason_pnl": {
+            "احتفاظ": -1517.94
+          },
+          "gross": -1513.03,
+          "move": -108.07362,
+          "per_slice": -108.42429,
+          "symbols_traded": 14,
+          "symbols": [
+            "ATOMUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "FILUSDT",
+            "HNTUSDT",
+            "IMXUSDT",
+            "LINKUSDT",
+            "PEPEUSDT",
+            "SHIBUSDT",
+            "SOLUSDT",
+            "VETUSDT",
+            "XLMUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 3286.11,
+            "bars_any_open_pct": 99.98,
+            "bars_total": 5112
+          },
+          "programmed_capital": 16000.0,
+          "cost": 0.00115
+        },
+        "JUD": {
+          "net": -600.29,
+          "slices": 15,
+          "cycles": 15,
+          "slices_per_cycle": 1.0,
+          "mean_hold_days": 944.18,
+          "median_hold_days": 972.83,
+          "peak_concurrent": 4900.0,
+          "return_pct_on_peak": -12.251,
+          "dd_usd": -13280.14,
+          "dd_pct_of_peak": -271.023,
+          "peak_equity": 11761.05,
+          "warmup_excluded": 0,
+          "reasons": {
+            "احتفاظ": 15
+          },
+          "reason_pnl": {
+            "احتفاظ": -600.29
+          },
+          "gross": -590.39,
+          "move": -39.35902,
+          "per_slice": -40.01933,
+          "symbols_traded": 15,
+          "symbols": [
+            "ATOMUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "FILUSDT",
+            "GRAMUSDT",
+            "IMXUSDT",
+            "LINKUSDT",
+            "PEPEUSDT",
+            "RENDERUSDT",
+            "SHIBUSDT",
+            "SOLUSDT",
+            "VETUSDT",
+            "XLMUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 4755.58,
+            "bars_any_open_pct": 99.98,
+            "bars_total": 5838
+          },
+          "programmed_capital": 16000.0,
+          "cost": 0.00115
+        }
+      }
+    },
+    "bear16": {
+      "c00115": {
+        "SEL": {
+          "net": 998.66,
+          "slices": 166,
+          "cycles": 113,
+          "slices_per_cycle": 1.469,
+          "mean_hold_days": 38.24,
+          "median_hold_days": 28.08,
+          "peak_concurrent": 3650.0,
+          "return_pct_on_peak": 27.361,
+          "dd_usd": -2408.47,
+          "dd_pct_of_peak": -65.985,
+          "peak_equity": 1200.51,
+          "warmup_excluded": 0,
+          "reasons": {
+            "توزيع-قمة": 46,
+            "إلغاء-دورة": 119,
+            "نهاية-العينة": 1
+          },
+          "reason_pnl": {
+            "توزيع-قمة": 3749.24,
+            "إلغاء-دورة": -2766.6,
+            "نهاية-العينة": 16.01
+          },
+          "gross": 1072.34,
+          "move": 6.45987,
+          "per_slice": 6.01602,
+          "symbols_traded": 14,
+          "symbols": [
+            "ATOMUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "FILUSDT",
+            "HNTUSDT",
+            "IMXUSDT",
+            "LINKUSDT",
+            "PEPEUSDT",
+            "SHIBUSDT",
+            "SOLUSDT",
+            "VETUSDT",
+            "XLMUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 1378.37,
+            "bars_any_open_pct": 86.38,
+            "bars_total": 5112
+          },
+          "programmed_capital": 16000.0,
+          "cost": 0.00115
+        },
+        "JUD": {
+          "net": 1901.6,
+          "slices": 157,
+          "cycles": 118,
+          "slices_per_cycle": 1.331,
+          "mean_hold_days": 37.54,
+          "median_hold_days": 27.17,
+          "peak_concurrent": 4900.0,
+          "return_pct_on_peak": 38.808,
+          "dd_usd": -926.48,
+          "dd_pct_of_peak": -18.908,
+          "peak_equity": 2338.0,
+          "warmup_excluded": 166,
+          "reasons": {
+            "إلغاء-دورة": 96,
+            "توزيع-قمة": 49,
+            "نهاية-العينة": 12
+          },
+          "reason_pnl": {
+            "إلغاء-دورة": -1999.59,
+            "توزيع-قمة": 3598.57,
+            "نهاية-العينة": 302.54
+          },
+          "gross": 1970.22,
+          "move": 12.54916,
+          "per_slice": 12.1121,
+          "symbols_traded": 15,
+          "symbols": [
+            "ATOMUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "FILUSDT",
+            "GRAMUSDT",
+            "IMXUSDT",
+            "LINKUSDT",
+            "PEPEUSDT",
+            "RENDERUSDT",
+            "SHIBUSDT",
+            "SOLUSDT",
+            "VETUSDT",
+            "XLMUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 1041.44,
+            "bars_any_open_pct": 76.88,
+            "bars_total": 5838
+          },
+          "programmed_capital": 16000.0,
+          "cost": 0.00115
+        }
+      }
+    },
+    "per_symbol_open16": {
+      "SEL": {
+        "ATOMUSDT": 273.56,
+        "BNBUSDT": 2.09,
+        "BTCUSDT": 116.28,
+        "DOGEUSDT": 163.36,
+        "ETHUSDT": 102.28,
+        "FILUSDT": -249.6,
+        "GRAMUSDT": 0,
+        "HNTUSDT": -157.12,
+        "IMXUSDT": 106.32,
+        "LINKUSDT": 39.5,
+        "PEPEUSDT": 87.83,
+        "RENDERUSDT": 0,
+        "SHIBUSDT": 614.25,
+        "SOLUSDT": -170.47,
+        "VETUSDT": 21.8,
+        "XLMUSDT": 14.47
+      },
+      "JUD": {
+        "ATOMUSDT": -83.0,
+        "BNBUSDT": 79.51,
+        "BTCUSDT": 119.75,
+        "DOGEUSDT": 80.92,
+        "ETHUSDT": 192.32,
+        "FILUSDT": 70.66,
+        "GRAMUSDT": 60.01,
+        "HNTUSDT": 0,
+        "IMXUSDT": 60.64,
+        "LINKUSDT": 211.49,
+        "PEPEUSDT": 435.42,
+        "RENDERUSDT": 4.82,
+        "SHIBUSDT": -141.07,
+        "SOLUSDT": 6.6,
+        "VETUSDT": -54.36,
+        "XLMUSDT": 537.46
+      }
+    }
+  },
+  "B": {
+    "4": {
+      "open": {
+        "c00115": {
+          "net": 404.76,
+          "slices": 87,
+          "cycles": 64,
+          "slices_per_cycle": 1.359,
+          "mean_hold_days": 41.03,
+          "median_hold_days": 31.5,
+          "peak_concurrent": 1800.0,
+          "return_pct_on_peak": 22.487,
+          "dd_usd": -662.54,
+          "dd_pct_of_peak": -36.808,
+          "peak_equity": 496.99,
+          "warmup_excluded": 0,
+          "reasons": {
+            "إلغاء-دورة": 55,
+            "توزيع-قمة": 30,
+            "نهاية-العينة": 2
+          },
+          "reason_pnl": {
+            "إلغاء-دورة": -1146.69,
+            "توزيع-قمة": 1474.68,
+            "نهاية-العينة": 76.72
+          },
+          "gross": 441.49,
+          "move": 5.07464,
+          "per_slice": 4.65241,
+          "symbols_traded": 4,
+          "symbols": [
+            "BNBUSDT",
+            "BTCUSDT",
+            "LINKUSDT",
+            "SOLUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 352.98,
+            "bars_any_open_pct": 61.39,
+            "bars_total": 10950
+          },
+          "programmed_capital": 4000.0,
+          "cost": 0.00115
+        },
+        "c00130": {
+          "net": 399.97,
+          "slices": 87,
+          "cycles": 64,
+          "slices_per_cycle": 1.359,
+          "mean_hold_days": 41.03,
+          "median_hold_days": 31.5,
+          "peak_concurrent": 1800.0,
+          "return_pct_on_peak": 22.221,
+          "dd_usd": -663.66,
+          "dd_pct_of_peak": -36.87,
+          "peak_equity": 492.18,
+          "warmup_excluded": 0,
+          "reasons": {
+            "إلغاء-دورة": 55,
+            "توزيع-قمة": 30,
+            "نهاية-العينة": 2
+          },
+          "reason_pnl": {
+            "إلغاء-دورة": -1149.1,
+            "توزيع-قمة": 1472.53,
+            "نهاية-العينة": 76.58
+          },
+          "gross": 441.49,
+          "move": 5.07464,
+          "per_slice": 4.59736,
+          "symbols_traded": 4,
+          "symbols": [
+            "BNBUSDT",
+            "BTCUSDT",
+            "LINKUSDT",
+            "SOLUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 352.98,
+            "bars_any_open_pct": 61.39,
+            "bars_total": 10950
+          },
+          "programmed_capital": 4000.0,
+          "cost": 0.0013
+        }
+      },
+      "hold": {
+        "net": 212.48,
+        "capital": 1800.0,
+        "symbols": 4,
+        "return_pct": 11.804,
+        "per_symbol": {
+          "BTCUSDT": 290.47,
+          "BNBUSDT": 212.7,
+          "SOLUSDT": -28.07,
+          "LINKUSDT": -262.61
+        },
+        "spans": {
+          "BTCUSDT": [
+            "2021-09-01",
+            "2026-08-30"
+          ],
+          "BNBUSDT": [
+            "2021-09-01",
+            "2026-08-30"
+          ],
+          "SOLUSDT": [
+            "2021-09-01",
+            "2026-08-30"
+          ],
+          "LINKUSDT": [
+            "2021-09-01",
+            "2026-08-30"
+          ]
+        }
+      },
+      "hold_stats": {
+        "net": 212.48,
+        "slices": 4,
+        "cycles": 4,
+        "slices_per_cycle": 1.0,
+        "mean_hold_days": 1824.83,
+        "median_hold_days": 1824.83,
+        "peak_concurrent": 1800.0,
+        "return_pct_on_peak": 11.804,
+        "dd_usd": -2415.23,
+        "dd_pct_of_peak": -134.179,
+        "peak_equity": 1997.3,
+        "warmup_excluded": 0,
+        "reasons": {
+          "احتفاظ": 4
+        },
+        "reason_pnl": {
+          "احتفاظ": 212.49
+        },
+        "gross": 217.11,
+        "move": 54.27872,
+        "per_slice": 53.12,
+        "symbols_traded": 4,
+        "symbols": [
+          "BNBUSDT",
+          "BTCUSDT",
+          "LINKUSDT",
+          "SOLUSDT"
+        ],
+        "exposure": {
+          "avg_deployed_usd": 1799.84,
+          "bars_any_open_pct": 99.99,
+          "bars_total": 10950
+        },
+        "programmed_capital": 4000.0,
+        "cost": 0.00115
+      },
+      "bear": {
+        "c00115": {
+          "net": 473.04,
+          "slices": 63,
+          "cycles": 44,
+          "slices_per_cycle": 1.432,
+          "mean_hold_days": 47.67,
+          "median_hold_days": 39.0,
+          "peak_concurrent": 1800.0,
+          "return_pct_on_peak": 26.28,
+          "dd_usd": -662.54,
+          "dd_pct_of_peak": -36.808,
+          "peak_equity": 565.28,
+          "warmup_excluded": 0,
+          "reasons": {
+            "إلغاء-دورة": 38,
+            "توزيع-قمة": 23,
+            "نهاية-العينة": 2
+          },
+          "reason_pnl": {
+            "إلغاء-دورة": -828.22,
+            "توزيع-قمة": 1224.53,
+            "نهاية-العينة": 76.72
+          },
+          "gross": 500.73,
+          "move": 7.94807,
+          "per_slice": 7.50857,
+          "symbols_traded": 4,
+          "symbols": [
+            "BNBUSDT",
+            "BTCUSDT",
+            "LINKUSDT",
+            "SOLUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 299.58,
+            "bars_any_open_pct": 51.86,
+            "bars_total": 10950
+          },
+          "programmed_capital": 4000.0,
+          "cost": 0.00115
+        },
+        "c00130": {
+          "net": 469.44,
+          "slices": 63,
+          "cycles": 44,
+          "slices_per_cycle": 1.432,
+          "mean_hold_days": 47.67,
+          "median_hold_days": 39.0,
+          "peak_concurrent": 1800.0,
+          "return_pct_on_peak": 26.08,
+          "dd_usd": -663.66,
+          "dd_pct_of_peak": -36.87,
+          "peak_equity": 561.64,
+          "warmup_excluded": 0,
+          "reasons": {
+            "إلغاء-دورة": 38,
+            "توزيع-قمة": 23,
+            "نهاية-العينة": 2
+          },
+          "reason_pnl": {
+            "إلغاء-دورة": -829.94,
+            "توزيع-قمة": 1222.83,
+            "نهاية-العينة": 76.58
+          },
+          "gross": 500.73,
+          "move": 7.94807,
+          "per_slice": 7.45143,
+          "symbols_traded": 4,
+          "symbols": [
+            "BNBUSDT",
+            "BTCUSDT",
+            "LINKUSDT",
+            "SOLUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 299.58,
+            "bars_any_open_pct": 51.86,
+            "bars_total": 10950
+          },
+          "programmed_capital": 4000.0,
+          "cost": 0.0013
+        }
+      },
+      "per_symbol_open": {
+        "BTCUSDT": 236.03,
+        "BNBUSDT": 81.6,
+        "SOLUSDT": -163.87,
+        "LINKUSDT": 250.99
+      },
+      "per_symbol_hold": {
+        "BTCUSDT": 290.47,
+        "BNBUSDT": 212.7,
+        "SOLUSDT": -28.07,
+        "LINKUSDT": -262.61
+      }
+    },
+    "16": {
+      "open": {
+        "c00115": {
+          "net": 2545.74,
+          "slices": 374,
+          "cycles": 269,
+          "slices_per_cycle": 1.39,
+          "mean_hold_days": 36.61,
+          "median_hold_days": 27.42,
+          "peak_concurrent": 4900.0,
+          "return_pct_on_peak": 51.954,
+          "dd_usd": -2530.26,
+          "dd_pct_of_peak": -51.638,
+          "peak_equity": 2982.14,
+          "warmup_excluded": 0,
+          "reasons": {
+            "إلغاء-دورة": 254,
+            "توزيع-قمة": 107,
+            "نهاية-العينة": 13
+          },
+          "reason_pnl": {
+            "إلغاء-دورة": -5651.15,
+            "توزيع-قمة": 7878.24,
+            "نهاية-العينة": 318.55
+          },
+          "gross": 2708.18,
+          "move": 7.24112,
+          "per_slice": 6.80679,
+          "symbols_traded": 16,
+          "symbols": [
+            "ATOMUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "FILUSDT",
+            "GRAMUSDT",
+            "HNTUSDT",
+            "IMXUSDT",
+            "LINKUSDT",
+            "PEPEUSDT",
+            "RENDERUSDT",
+            "SHIBUSDT",
+            "SOLUSDT",
+            "VETUSDT",
+            "XLMUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 1338.22,
+            "bars_any_open_pct": 88.37,
+            "bars_total": 10950
+          },
+          "programmed_capital": 16000.0,
+          "cost": 0.00115
+        },
+        "c00130": {
+          "net": 2524.58,
+          "slices": 374,
+          "cycles": 269,
+          "slices_per_cycle": 1.39,
+          "mean_hold_days": 36.61,
+          "median_hold_days": 27.42,
+          "peak_concurrent": 4900.0,
+          "return_pct_on_peak": 51.522,
+          "dd_usd": -2533.55,
+          "dd_pct_of_peak": -51.705,
+          "peak_equity": 2960.84,
+          "warmup_excluded": 0,
+          "reasons": {
+            "إلغاء-دورة": 254,
+            "توزيع-قمة": 107,
+            "نهاية-العينة": 13
+          },
+          "reason_pnl": {
+            "إلغاء-دورة": -5663.08,
+            "توزيع-قمة": 7869.89,
+            "نهاية-العينة": 317.75
+          },
+          "gross": 2708.18,
+          "move": 7.24112,
+          "per_slice": 6.75021,
+          "symbols_traded": 16,
+          "symbols": [
+            "ATOMUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "FILUSDT",
+            "GRAMUSDT",
+            "HNTUSDT",
+            "IMXUSDT",
+            "LINKUSDT",
+            "PEPEUSDT",
+            "RENDERUSDT",
+            "SHIBUSDT",
+            "SOLUSDT",
+            "VETUSDT",
+            "XLMUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 1338.22,
+            "bars_any_open_pct": 88.37,
+            "bars_total": 10950
+          },
+          "programmed_capital": 16000.0,
+          "cost": 0.0013
+        }
+      },
+      "hold": {
+        "net": -2058.49,
+        "capital": 4900.0,
+        "symbols": 16,
+        "return_pct": -42.01,
+        "per_symbol": {
+          "ATOMUSDT": -286.8,
+          "BNBUSDT": 144.75,
+          "BTCUSDT": 197.68,
+          "DOGEUSDT": -216.13,
+          "ETHUSDT": -90.9,
+          "FILUSDT": -303.6,
+          "GRAMUSDT": -212.45,
+          "HNTUSDT": -248.71,
+          "IMXUSDT": -296.26,
+          "LINKUSDT": -178.72,
+          "PEPEUSDT": 221.09,
+          "RENDERUSDT": -245.44,
+          "SHIBUSDT": -85.33,
+          "SOLUSDT": -19.1,
+          "VETUSDT": -289.53,
+          "XLMUSDT": -149.02
+        },
+        "spans": {
+          "ATOMUSDT": [
+            "2021-09-01",
+            "2026-08-30"
+          ],
+          "BNBUSDT": [
+            "2021-09-01",
+            "2026-08-30"
+          ],
+          "BTCUSDT": [
+            "2021-09-01",
+            "2026-08-30"
+          ],
+          "DOGEUSDT": [
+            "2021-09-01",
+            "2026-08-30"
+          ],
+          "ETHUSDT": [
+            "2021-09-01",
+            "2026-08-30"
+          ],
+          "FILUSDT": [
+            "2021-09-01",
+            "2026-08-30"
+          ],
+          "GRAMUSDT": [
+            "2024-08-08",
+            "2026-08-30"
+          ],
+          "HNTUSDT": [
+            "2021-09-01",
+            "2022-10-14"
+          ],
+          "IMXUSDT": [
+            "2022-01-10",
+            "2026-08-30"
+          ],
+          "LINKUSDT": [
+            "2021-09-01",
+            "2026-08-30"
+          ],
+          "PEPEUSDT": [
+            "2023-05-05",
+            "2026-08-30"
+          ],
+          "RENDERUSDT": [
+            "2024-07-26",
+            "2026-08-30"
+          ],
+          "SHIBUSDT": [
+            "2021-09-01",
+            "2026-08-30"
+          ],
+          "SOLUSDT": [
+            "2021-09-01",
+            "2026-08-30"
+          ],
+          "VETUSDT": [
+            "2021-09-01",
+            "2026-08-30"
+          ],
+          "XLMUSDT": [
+            "2021-09-01",
+            "2026-08-30"
+          ]
+        }
+      },
+      "hold_stats": {
+        "net": -2058.49,
+        "slices": 16,
+        "cycles": 16,
+        "slices_per_cycle": 1.0,
+        "mean_hold_days": 1556.48,
+        "median_hold_days": 1824.83,
+        "peak_concurrent": 4593.75,
+        "return_pct_on_peak": -44.811,
+        "dd_usd": -8244.15,
+        "dd_pct_of_peak": -179.464,
+        "peak_equity": 5564.25,
+        "warmup_excluded": 0,
+        "reasons": {
+          "احتفاظ": 16
+        },
+        "reason_pnl": {
+          "احتفاظ": -2058.47
+        },
+        "gross": -2051.94,
+        "move": -128.24656,
+        "per_slice": -128.65562,
+        "symbols_traded": 16,
+        "symbols": [
+          "ATOMUSDT",
+          "BNBUSDT",
+          "BTCUSDT",
+          "DOGEUSDT",
+          "ETHUSDT",
+          "FILUSDT",
+          "GRAMUSDT",
+          "HNTUSDT",
+          "IMXUSDT",
+          "LINKUSDT",
+          "PEPEUSDT",
+          "RENDERUSDT",
+          "SHIBUSDT",
+          "SOLUSDT",
+          "VETUSDT",
+          "XLMUSDT"
+        ],
+        "exposure": {
+          "avg_deployed_usd": 4179.4,
+          "bars_any_open_pct": 99.99,
+          "bars_total": 10950
+        },
+        "programmed_capital": 16000.0,
+        "cost": 0.00115
+      },
+      "bear": {
+        "c00115": {
+          "net": 2900.25,
+          "slices": 323,
+          "cycles": 231,
+          "slices_per_cycle": 1.398,
+          "mean_hold_days": 37.9,
+          "median_hold_days": 27.83,
+          "peak_concurrent": 4900.0,
+          "return_pct_on_peak": 59.189,
+          "dd_usd": -2408.47,
+          "dd_pct_of_peak": -49.152,
+          "peak_equity": 3336.65,
+          "warmup_excluded": 0,
+          "reasons": {
+            "توزيع-قمة": 95,
+            "إلغاء-دورة": 215,
+            "نهاية-العينة": 13
+          },
+          "reason_pnl": {
+            "توزيع-قمة": 7347.81,
+            "إلغاء-دورة": -4766.19,
+            "نهاية-العينة": 318.55
+          },
+          "gross": 3042.56,
+          "move": 9.41968,
+          "per_slice": 8.9791,
+          "symbols_traded": 16,
+          "symbols": [
+            "ATOMUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "FILUSDT",
+            "GRAMUSDT",
+            "HNTUSDT",
+            "IMXUSDT",
+            "LINKUSDT",
+            "PEPEUSDT",
+            "RENDERUSDT",
+            "SHIBUSDT",
+            "SOLUSDT",
+            "VETUSDT",
+            "XLMUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 1198.74,
+            "bars_any_open_pct": 81.32,
+            "bars_total": 10950
+          },
+          "programmed_capital": 16000.0,
+          "cost": 0.00115
+        },
+        "c00130": {
+          "net": 2881.72,
+          "slices": 323,
+          "cycles": 231,
+          "slices_per_cycle": 1.398,
+          "mean_hold_days": 37.9,
+          "median_hold_days": 27.83,
+          "peak_concurrent": 4900.0,
+          "return_pct_on_peak": 58.811,
+          "dd_usd": -2411.76,
+          "dd_pct_of_peak": -49.22,
+          "peak_equity": 3317.98,
+          "warmup_excluded": 0,
+          "reasons": {
+            "توزيع-قمة": 95,
+            "إلغاء-دورة": 215,
+            "نهاية-العينة": 13
+          },
+          "reason_pnl": {
+            "توزيع-قمة": 7340.34,
+            "إلغاء-دورة": -4776.39,
+            "نهاية-العينة": 317.75
+          },
+          "gross": 3042.56,
+          "move": 9.41968,
+          "per_slice": 8.92173,
+          "symbols_traded": 16,
+          "symbols": [
+            "ATOMUSDT",
+            "BNBUSDT",
+            "BTCUSDT",
+            "DOGEUSDT",
+            "ETHUSDT",
+            "FILUSDT",
+            "GRAMUSDT",
+            "HNTUSDT",
+            "IMXUSDT",
+            "LINKUSDT",
+            "PEPEUSDT",
+            "RENDERUSDT",
+            "SHIBUSDT",
+            "SOLUSDT",
+            "VETUSDT",
+            "XLMUSDT"
+          ],
+          "exposure": {
+            "avg_deployed_usd": 1198.74,
+            "bars_any_open_pct": 81.32,
+            "bars_total": 10950
+          },
+          "programmed_capital": 16000.0,
+          "cost": 0.0013
+        }
+      },
+      "per_symbol_open": {
+        "ATOMUSDT": 190.56,
+        "BNBUSDT": 81.6,
+        "BTCUSDT": 236.03,
+        "DOGEUSDT": 244.29,
+        "ETHUSDT": 294.6,
+        "FILUSDT": -178.93,
+        "GRAMUSDT": 60.01,
+        "HNTUSDT": -157.12,
+        "IMXUSDT": 166.96,
+        "LINKUSDT": 250.99,
+        "PEPEUSDT": 523.25,
+        "RENDERUSDT": 4.82,
+        "SHIBUSDT": 473.18,
+        "SOLUSDT": -163.87,
+        "VETUSDT": -32.56,
+        "XLMUSDT": 551.94
+      },
+      "per_symbol_hold": {
+        "ATOMUSDT": -286.8,
+        "BNBUSDT": 144.75,
+        "BTCUSDT": 197.68,
+        "DOGEUSDT": -216.13,
+        "ETHUSDT": -90.9,
+        "FILUSDT": -303.6,
+        "GRAMUSDT": -212.45,
+        "HNTUSDT": -248.71,
+        "IMXUSDT": -296.26,
+        "LINKUSDT": -178.72,
+        "PEPEUSDT": 221.09,
+        "RENDERUSDT": -245.44,
+        "SHIBUSDT": -85.33,
+        "SOLUSDT": -19.1,
+        "VETUSDT": -289.53,
+        "XLMUSDT": -149.02
+      }
+    }
+  },
+  "C_summary": {
+    "open4_JUD": {
+      "ledger": "open4 · حكم",
+      "slices": 40,
+      "c1_binding_branch": {
+        "8%-من-أدنى-دخول": 2,
+        "قاع-90يومًا−2%": 18,
+        "الاثنان-متساويان": 0
+      },
+      "c1_fill_kind": {
+        "لمس-المستوى": 20,
+        "فجوة-تحت-المستوى(افتتاح)": 0
+      },
+      "c1_condition": "low ≤ min( أدنى سعر دخول في الدورة × (1−0.08) , أدنى قاع يومي في آخر 90 يومًا (المعروف حتى أمس) × (1−0.02) ) ⇒ تُغلق كل شرائح الدورة معًا؛ التعبئة عند الافتتاح إن افتتحت الشمعة تحت المستوى وإلا عند المستوى.",
+      "c2_cancel_cycles": 20,
+      "c2_total": -403.47,
+      "c2_mean": -20.17,
+      "c2_median": -16.45,
+      "c2_quantiles": {
+        "0.1": -27.22,
+        "0.25": -21.95,
+        "0.5": -16.45,
+        "0.75": -14.75,
+        "0.9": -13.08
+      },
+      "c2_worst5_share_pct": 40.4,
+      "c2_positive_cancels": 0,
+      "c2_drop_pct_median": -10.2,
+      "c2_single_tranche_cycles": 18,
+      "c2_cycle_pnl_by_size": {
+        "1": -316.16,
+        "2": -87.31
+      },
+      "c3_days_by_reason": {
+        "إلغاء-دورة": {
+          "n": 22,
+          "mean_days": 20.1,
+          "median_days": 13.0,
+          "pnl": -403.45,
+          "mean_ret_pct": -11.47
+        },
+        "توزيع-قمة": {
+          "n": 16,
+          "mean_days": 61.3,
+          "median_days": 73.4,
+          "pnl": 744.08,
+          "mean_ret_pct": 25.58
+        },
+        "نهاية-العينة": {
+          "n": 2,
+          "mean_days": 73.2,
+          "median_days": 73.2,
+          "pnl": 76.72,
+          "mean_ret_pct": 18.64
+        }
+      },
+      "c3_cancel_days_from_first_entry": {
+        "mean": 19.0,
+        "median": 8.2,
+        "under_7_days": 10
+      },
+      "c4_regime_at_exit_by_reason": {
+        "إلغاء-دورة": {
+          "عرضي": 13,
+          "هابط": 8,
+          "صاعد": 1
+        },
+        "توزيع-قمة": {
+          "عرضي": 11,
+          "صاعد": 5
+        },
+        "نهاية-العينة": {
+          "عرضي": 2
+        }
+      },
+      "c4_regime_at_entry_by_reason": {
+        "إلغاء-دورة": {
+          "عرضي": 15,
+          "هابط": 7
+        },
+        "توزيع-قمة": {
+          "هابط": 11,
+          "عرضي": 3,
+          "صاعد": 2
+        },
+        "نهاية-العينة": {
+          "هابط": 2
+        }
+      },
+      "c4_pnl_by_entry_regime": {
+        "صاعد": 48.68,
+        "عرضي": -169.2,
+        "هابط": 537.87
+      },
+      "c4_cancel_cycles_by_exit_regime": {
+        "عرضي": 11,
+        "هابط": 8,
+        "صاعد": 1
+      },
+      "c4_cancel_cycles_by_entry_regime": {
+        "عرضي": 13,
+        "هابط": 7
+      }
+    },
+    "open4_FULL": {
+      "ledger": "open4 · الدورة الكاملة",
+      "slices": 87,
+      "c1_binding_branch": {
+        "8%-من-أدنى-دخول": 5,
+        "قاع-90يومًا−2%": 40,
+        "الاثنان-متساويان": 0
+      },
+      "c1_fill_kind": {
+        "لمس-المستوى": 45,
+        "فجوة-تحت-المستوى(افتتاح)": 0
+      },
+      "c1_condition": "low ≤ min( أدنى سعر دخول في الدورة × (1−0.08) , أدنى قاع يومي في آخر 90 يومًا (المعروف حتى أمس) × (1−0.02) ) ⇒ تُغلق كل شرائح الدورة معًا؛ التعبئة عند الافتتاح إن افتتحت الشمعة تحت المستوى وإلا عند المستوى.",
+      "c2_cancel_cycles": 45,
+      "c2_total": -1146.7,
+      "c2_mean": -25.48,
+      "c2_median": -20.3,
+      "c2_quantiles": {
+        "0.1": -44.87,
+        "0.25": -26.05,
+        "0.5": -20.3,
+        "0.75": -15.2,
+        "0.9": -13.27
+      },
+      "c2_worst5_share_pct": 25.8,
+      "c2_positive_cancels": 0,
+      "c2_drop_pct_median": -10.54,
+      "c2_single_tranche_cycles": 37,
+      "c2_cycle_pnl_by_size": {
+        "1": -734.25,
+        "2": -305.71,
+        "4": -106.74
+      },
+      "c3_days_by_reason": {
+        "إلغاء-دورة": {
+          "n": 55,
+          "mean_days": 31.3,
+          "median_days": 25.0,
+          "pnl": -1146.65,
+          "mean_ret_pct": -12.39
+        },
+        "توزيع-قمة": {
+          "n": 30,
+          "mean_days": 56.8,
+          "median_days": 57.3,
+          "pnl": 1474.69,
+          "mean_ret_pct": 26.48
+        },
+        "نهاية-العينة": {
+          "n": 2,
+          "mean_days": 73.2,
+          "median_days": 73.2,
+          "pnl": 76.72,
+          "mean_ret_pct": 18.64
+        }
+      },
+      "c3_cancel_days_from_first_entry": {
+        "mean": 29.4,
+        "median": 16.2,
+        "under_7_days": 16
+      },
+      "c4_regime_at_exit_by_reason": {
+        "إلغاء-دورة": {
+          "هابط": 33,
+          "عرضي": 21,
+          "صاعد": 1
+        },
+        "توزيع-قمة": {
+          "عرضي": 22,
+          "صاعد": 8
+        },
+        "نهاية-العينة": {
+          "عرضي": 2
+        }
+      },
+      "c4_regime_at_entry_by_reason": {
+        "إلغاء-دورة": {
+          "هابط": 38,
+          "عرضي": 17
+        },
+        "توزيع-قمة": {
+          "هابط": 22,
+          "عرضي": 6,
+          "صاعد": 2
+        },
+        "نهاية-العينة": {
+          "هابط": 2
+        }
+      },
+      "c4_pnl_by_entry_regime": {
+        "صاعد": 48.68,
+        "عرضي": -100.26,
+        "هابط": 456.34
+      },
+      "c4_cancel_cycles_by_exit_regime": {
+        "هابط": 29,
+        "عرضي": 15,
+        "صاعد": 1
+      },
+      "c4_cancel_cycles_by_entry_regime": {
+        "هابط": 30,
+        "عرضي": 15
+      }
+    },
+    "open16_FULL": {
+      "ledger": "open16 · الدورة الكاملة",
+      "slices": 374,
+      "c1_binding_branch": {
+        "8%-من-أدنى-دخول": 28,
+        "قاع-90يومًا−2%": 160,
+        "الاثنان-متساويان": 0
+      },
+      "c1_fill_kind": {
+        "لمس-المستوى": 188,
+        "فجوة-تحت-المستوى(افتتاح)": 0
+      },
+      "c1_condition": "low ≤ min( أدنى سعر دخول في الدورة × (1−0.08) , أدنى قاع يومي في آخر 90 يومًا (المعروف حتى أمس) × (1−0.02) ) ⇒ تُغلق كل شرائح الدورة معًا؛ التعبئة عند الافتتاح إن افتتحت الشمعة تحت المستوى وإلا عند المستوى.",
+      "c2_cancel_cycles": 188,
+      "c2_total": -5651.15,
+      "c2_mean": -30.06,
+      "c2_median": -21.02,
+      "c2_quantiles": {
+        "0.1": -48.06,
+        "0.25": -38.39,
+        "0.5": -21.02,
+        "0.75": -15.29,
+        "0.9": -12.92
+      },
+      "c2_worst5_share_pct": 12.2,
+      "c2_positive_cancels": 0,
+      "c2_drop_pct_median": -10.49,
+      "c2_single_tranche_cycles": 138,
+      "c2_cycle_pnl_by_size": {
+        "1": -2683.53,
+        "2": -1772.02,
+        "3": -508.59,
+        "4": -687.01
+      },
+      "c3_days_by_reason": {
+        "إلغاء-دورة": {
+          "n": 254,
+          "mean_days": 28.3,
+          "median_days": 15.2,
+          "pnl": -5651.06,
+          "mean_ret_pct": -12.57
+        },
+        "توزيع-قمة": {
+          "n": 107,
+          "mean_days": 56.3,
+          "median_days": 55.5,
+          "pnl": 7878.26,
+          "mean_ret_pct": 40.73
+        },
+        "نهاية-العينة": {
+          "n": 13,
+          "mean_days": 36.6,
+          "median_days": 28.5,
+          "pnl": 318.55,
+          "mean_ret_pct": 13.47
+        }
+      },
+      "c3_cancel_days_from_first_entry": {
+        "mean": 28.1,
+        "median": 13.9,
+        "under_7_days": 67
+      },
+      "c4_regime_at_exit_by_reason": {
+        "إلغاء-دورة": {
+          "هابط": 214,
+          "عرضي": 39,
+          "صاعد": 1
+        },
+        "توزيع-قمة": {
+          "عرضي": 91,
+          "صاعد": 15,
+          "هابط": 1
+        },
+        "نهاية-العينة": {
+          "عرضي": 10,
+          "هابط": 3
+        }
+      },
+      "c4_regime_at_entry_by_reason": {
+        "إلغاء-دورة": {
+          "هابط": 213,
+          "عرضي": 40,
+          "صاعد": 1
+        },
+        "توزيع-قمة": {
+          "هابط": 93,
+          "عرضي": 12,
+          "صاعد": 2
+        },
+        "نهاية-العينة": {
+          "هابط": 13
+        }
+      },
+      "c4_pnl_by_entry_regime": {
+        "صاعد": 19.6,
+        "عرضي": -371.26,
+        "هابط": 2897.4
+      },
+      "c4_cancel_cycles_by_exit_regime": {
+        "هابط": 159,
+        "عرضي": 28,
+        "صاعد": 1
+      },
+      "c4_cancel_cycles_by_entry_regime": {
+        "هابط": 152,
+        "عرضي": 35,
+        "صاعد": 1
+      }
+    },
+    "open4_SEL": {
+      "ledger": "open4 · اختيار",
+      "slices": 47,
+      "c1_binding_branch": {
+        "8%-من-أدنى-دخول": 3,
+        "قاع-90يومًا−2%": 22,
+        "الاثنان-متساويان": 0
+      },
+      "c1_fill_kind": {
+        "لمس-المستوى": 25,
+        "فجوة-تحت-المستوى(افتتاح)": 0
+      },
+      "c1_condition": "low ≤ min( أدنى سعر دخول في الدورة × (1−0.08) , أدنى قاع يومي في آخر 90 يومًا (المعروف حتى أمس) × (1−0.02) ) ⇒ تُغلق كل شرائح الدورة معًا؛ التعبئة عند الافتتاح إن افتتحت الشمعة تحت المستوى وإلا عند المستوى.",
+      "c2_cancel_cycles": 25,
+      "c2_total": -743.23,
+      "c2_mean": -29.73,
+      "c2_median": -22.63,
+      "c2_quantiles": {
+        "0.1": -46.26,
+        "0.25": -42.16,
+        "0.5": -22.63,
+        "0.75": -17.34,
+        "0.9": -13.57
+      },
+      "c2_worst5_share_pct": 39.1,
+      "c2_positive_cancels": 0,
+      "c2_drop_pct_median": -11.35,
+      "c2_single_tranche_cycles": 19,
+      "c2_cycle_pnl_by_size": {
+        "1": -418.09,
+        "2": -218.4,
+        "4": -106.74
+      },
+      "c3_days_by_reason": {
+        "إلغاء-دورة": {
+          "n": 33,
+          "mean_days": 38.7,
+          "median_days": 28.3,
+          "pnl": -743.2,
+          "mean_ret_pct": -13.01
+        },
+        "توزيع-قمة": {
+          "n": 14,
+          "mean_days": 51.7,
+          "median_days": 55.9,
+          "pnl": 730.61,
+          "mean_ret_pct": 27.5
+        }
+      },
+      "c3_cancel_days_from_first_entry": {
+        "mean": 37.8,
+        "median": 28.3,
+        "under_7_days": 6
+      },
+      "c4_regime_at_exit_by_reason": {
+        "إلغاء-دورة": {
+          "هابط": 25,
+          "عرضي": 8
+        },
+        "توزيع-قمة": {
+          "عرضي": 11,
+          "صاعد": 3
+        }
+      },
+      "c4_regime_at_entry_by_reason": {
+        "إلغاء-دورة": {
+          "هابط": 31,
+          "عرضي": 2
+        },
+        "توزيع-قمة": {
+          "هابط": 11,
+          "عرضي": 3
+        }
+      },
+      "c4_pnl_by_entry_regime": {
+        "عرضي": 68.94,
+        "هابط": -81.53
+      },
+      "c4_cancel_cycles_by_exit_regime": {
+        "هابط": 21,
+        "عرضي": 4
+      },
+      "c4_cancel_cycles_by_entry_regime": {
+        "هابط": 23,
+        "عرضي": 2
+      }
+    },
+    "gap_open4_JUD": {
+      "window": "JUD",
+      "coins": 4,
+      "peak_capital": 1350.0,
+      "hold_capital_each": 337.5,
+      "hold_net": 595.82,
+      "strat_net": 417.35,
+      "gap_net": 178.47,
+      "hold_gross": 600.3,
+      "strat_gross": 434.31,
+      "gap_gross": 165.99,
+      "hold_cost": 4.48,
+      "strat_cost": 16.96,
+      "cost_effect(strat−hold)": 12.48,
+      "buckets_usd": {
+        "قبل-أول-دخول": 436.66,
+        "خارج-بعد-إلغاء": 836.0,
+        "خارج-بعد-توزيع": -590.74,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -516.78,
+        "داخل-بعد-توزيع-جزئي": 0.85
+      },
+      "buckets_pct_of_gap_gross": {
+        "قبل-أول-دخول": 263.1,
+        "خارج-بعد-إلغاء": 503.7,
+        "خارج-بعد-توزيع": -355.9,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -311.3,
+        "داخل-بعد-توزيع-جزئي": 0.5
+      },
+      "identity": "gap_gross = Σ buckets ; gap_net = gap_gross + (strat_cost − hold_cost)"
+    },
+    "gap_open4_FULL": {
+      "window": "FULL",
+      "coins": 4,
+      "peak_capital": 1800.0,
+      "hold_capital_each": 450.0,
+      "hold_net": 212.48,
+      "strat_net": 404.76,
+      "gap_net": -192.27,
+      "hold_gross": 217.11,
+      "strat_gross": 441.49,
+      "gap_gross": -224.38,
+      "hold_cost": 4.63,
+      "strat_cost": 36.74,
+      "cost_effect(strat−hold)": 32.1,
+      "buckets_usd": {
+        "قبل-أول-دخول": -122.37,
+        "خارج-بعد-إلغاء": 1026.03,
+        "خارج-بعد-توزيع": -169.86,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -980.97,
+        "داخل-بعد-توزيع-جزئي": 22.79
+      },
+      "buckets_pct_of_gap_gross": {
+        "قبل-أول-دخول": 54.5,
+        "خارج-بعد-إلغاء": -457.3,
+        "خارج-بعد-توزيع": 75.7,
+        "خارج-بعد-نهاية-العينة": -0.0,
+        "داخل-كامل": 437.2,
+        "داخل-بعد-توزيع-جزئي": -10.2
+      },
+      "identity": "gap_gross = Σ buckets ; gap_net = gap_gross + (strat_cost − hold_cost)"
+    },
+    "gap_open16_FULL": {
+      "window": "FULL",
+      "coins": 16,
+      "peak_capital": 4900.0,
+      "hold_capital_each": 306.25,
+      "hold_net": -2058.49,
+      "strat_net": 2545.74,
+      "gap_net": -4604.23,
+      "hold_gross": -2051.94,
+      "strat_gross": 2708.18,
+      "gap_gross": -4760.12,
+      "hold_cost": 6.54,
+      "strat_cost": 162.44,
+      "cost_effect(strat−hold)": 155.9,
+      "buckets_usd": {
+        "قبل-أول-دخول": 58.06,
+        "خارج-بعد-إلغاء": -1651.96,
+        "خارج-بعد-توزيع": -1133.3,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -1704.22,
+        "داخل-بعد-توزيع-جزئي": -328.71
+      },
+      "buckets_pct_of_gap_gross": {
+        "قبل-أول-دخول": -1.2,
+        "خارج-بعد-إلغاء": 34.7,
+        "خارج-بعد-توزيع": 23.8,
+        "خارج-بعد-نهاية-العينة": -0.0,
+        "داخل-كامل": 35.8,
+        "داخل-بعد-توزيع-جزئي": 6.9
+      },
+      "identity": "gap_gross = Σ buckets ; gap_net = gap_gross + (strat_cost − hold_cost)"
+    },
+    "gap_open4_SEL": {
+      "window": "SEL",
+      "coins": 4,
+      "peak_capital": 1800.0,
+      "hold_capital_each": 450.0,
+      "hold_net": -422.15,
+      "strat_net": -12.59,
+      "gap_net": -409.56,
+      "hold_gross": -418.98,
+      "strat_gross": 7.18,
+      "gap_gross": -426.16,
+      "hold_cost": 3.17,
+      "strat_cost": 19.77,
+      "cost_effect(strat−hold)": 16.6,
+      "buckets_usd": {
+        "قبل-أول-دخول": -122.37,
+        "خارج-بعد-إلغاء": 47.86,
+        "خارج-بعد-توزيع": 45.28,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -420.7,
+        "داخل-بعد-توزيع-جزئي": 23.77
+      },
+      "buckets_pct_of_gap_gross": {
+        "قبل-أول-دخول": 28.7,
+        "خارج-بعد-إلغاء": -11.2,
+        "خارج-بعد-توزيع": -10.6,
+        "خارج-بعد-نهاية-العينة": -0.0,
+        "داخل-كامل": 98.7,
+        "داخل-بعد-توزيع-جزئي": -5.6
+      },
+      "identity": "gap_gross = Σ buckets ; gap_net = gap_gross + (strat_cost − hold_cost)"
+    }
+  },
+  "D": {
+    "candidates_jud_return_pct": {
+      "open4": 30.915,
+      "bear4": 39.842,
+      "open16": 32.269,
+      "bear16": 38.808
+    },
+    "best": "bear4",
+    "random": [
+      {
+        "seed": 110060,
+        "window": "SEL",
+        "net": -20.91,
+        "peak": 872.22,
+        "return_pct_on_peak": -2.397,
+        "slices": 30
+      },
+      {
+        "seed": 110060,
+        "window": "JUD",
+        "net": 34.82,
+        "peak": 783.33,
+        "return_pct_on_peak": 4.445,
+        "slices": 14
+      },
+      {
+        "seed": 210060,
+        "window": "SEL",
+        "net": 453.97,
+        "peak": 872.22,
+        "return_pct_on_peak": 52.048,
+        "slices": 30
+      },
+      {
+        "seed": 210060,
+        "window": "JUD",
+        "net": 17.2,
+        "peak": 1100.0,
+        "return_pct_on_peak": 1.564,
+        "slices": 14
+      },
+      {
+        "seed": 310060,
+        "window": "SEL",
+        "net": 357.88,
+        "peak": 872.22,
+        "return_pct_on_peak": 41.031,
+        "slices": 30
+      },
+      {
+        "seed": 310060,
+        "window": "JUD",
+        "net": -211.31,
+        "peak": 866.67,
+        "return_pct_on_peak": -24.382,
+        "slices": 14
+      },
+      {
+        "seed": 410060,
+        "window": "SEL",
+        "net": -3.86,
+        "peak": 872.22,
+        "return_pct_on_peak": -0.443,
+        "slices": 30
+      },
+      {
+        "seed": 410060,
+        "window": "JUD",
+        "net": 178.54,
+        "peak": 933.33,
+        "return_pct_on_peak": 19.129,
+        "slices": 14
+      },
+      {
+        "seed": 510060,
+        "window": "SEL",
+        "net": -34.5,
+        "peak": 1057.94,
+        "return_pct_on_peak": -3.261,
+        "slices": 30
+      },
+      {
+        "seed": 510060,
+        "window": "JUD",
+        "net": -14.72,
+        "peak": 1100.0,
+        "return_pct_on_peak": -1.338,
+        "slices": 14
+      }
+    ],
+    "random_summary": {
+      "SEL": {
+        "mean": 150.52,
+        "max": 453.97,
+        "min": -34.5
+      },
+      "JUD": {
+        "mean": 0.91,
+        "max": 178.54,
+        "min": -211.31
+      }
+    }
+  },
+  "determinism": {
+    "b_open4_c00115_FULL": {
+      "pass1": "78a31820598fa5d6",
+      "pass2": "78a31820598fa5d6",
+      "match": true
+    },
+    "b_open16_c00115_FULL": {
+      "pass1": "c6738355b4d66096",
+      "pass2": "c6738355b4d66096",
+      "match": true
+    },
+    "a_open16_c00115_SEL": {
+      "pass1": "4fad72f895a1bc91",
+      "pass2": "4fad72f895a1bc91",
+      "match": true
+    },
+    "a_open16_c00115_JUD": {
+      "pass1": "3f0e12d1f4df20e9",
+      "pass2": "3f0e12d1f4df20e9",
+      "match": true
+    },
+    "b_bear16_c00115_FULL": {
+      "pass1": "ba4f8d6bc797ca82",
+      "pass2": "ba4f8d6bc797ca82",
+      "match": true
+    },
+    "b_bear4_c00115_FULL": {
+      "pass1": "737bd02c0c3cdd35",
+      "pass2": "737bd02c0c3cdd35",
+      "match": true
+    },
+    "p0_open4_c00115_SEL": {
+      "pass1": "e757c449c33536b3",
+      "pass2": "e757c449c33536b3",
+      "match": true
+    },
+    "p0_open4_c00115_JUD": {
+      "pass1": "f368b6d49acb8453",
+      "pass2": "f368b6d49acb8453",
+      "match": true
+    }
+  }
+}
