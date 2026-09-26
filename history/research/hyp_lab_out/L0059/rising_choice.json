@@ -1,0 +1,34 @@
+{
+  "written_before_judgement": true,
+  "winner": {
+    "kind": "k",
+    "value": 2.0,
+    "cool": 3,
+    "k": 2.0,
+    "rising": {
+      "net": 40.39,
+      "trades": 165,
+      "per": 0.24477,
+      "move": 0.29105
+    },
+    "rising_sig_in": 3496,
+    "rising_sig_out": 453,
+    "rising_vol_reject": 0.8704,
+    "rising_cool_blocked": 47,
+    "portfolio_net": 87.04,
+    "portfolio_trades": 425,
+    "move": 0.2510306702279799,
+    "counted": true
+  },
+  "is_reference": false,
+  "neighbors": [
+    {
+      "value": 2.5,
+      "portfolio_net": 37.4,
+      "positive": true
+    }
+  ],
+  "rejected_by_neighbor": false,
+  "reason": "عبر الاختيار والجوار. يُقاس الحكم مرة.",
+  "eligible_count": 7
+}

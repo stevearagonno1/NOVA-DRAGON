@@ -1,0 +1,20 @@
+{
+  "canary": "ok",
+  "source": "disk",
+  "got": {
+    "net": -1.9718063239874648,
+    "trades": 68,
+    "win_pct": 19.11764705882353
+  },
+  "expected": {
+    "net": -1.9718063239874646,
+    "trades": 68,
+    "win_pct": 19.11764705882353
+  },
+  "versions": {
+    "pandas": "2.2.3",
+    "numpy": "2.3.5",
+    "pyarrow": "25.0.1",
+    "python": "3.13.14"
+  }
+}

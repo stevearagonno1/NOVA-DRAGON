@@ -1,0 +1,32 @@
+{
+  "c00115": {
+    "rising": {
+      "net": -7.61,
+      "trades": 359,
+      "per": -0.02121,
+      "move": 0.02477
+    },
+    "rising_sig_in": 6900,
+    "rising_sig_out": 1019,
+    "rising_vol_reject": 0.8523,
+    "rising_cool_blocked": 83,
+    "portfolio_net": 0.92,
+    "portfolio_trades": 665,
+    "move": 0.047386747104913716
+  },
+  "c00130": {
+    "rising": {
+      "net": -9.3,
+      "trades": 359,
+      "per": -0.02591,
+      "move": 0.02605
+    },
+    "rising_sig_in": 6900,
+    "rising_sig_out": 1019,
+    "rising_vol_reject": 0.8523,
+    "rising_cool_blocked": 83,
+    "portfolio_net": -2.25,
+    "portfolio_trades": 665,
+    "move": 0.048605103389931965
+  }
+}

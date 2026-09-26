@@ -1,0 +1,168 @@
+{
+  "k": {
+    "3.5": {
+      "portfolio_net": 45.66,
+      "portfolio_trades": 328,
+      "rising": {
+        "net": -0.99,
+        "trades": 68,
+        "per": -0.01451,
+        "move": 0.03146
+      },
+      "rising_sig_in": 3496,
+      "rising_sig_out": 105,
+      "rising_vol_reject": 0.97,
+      "rising_cool_blocked": 3,
+      "move": 0.18537770225441835,
+      "counted": false,
+      "source": "match"
+    },
+    "2.0": {
+      "rising": {
+        "net": 40.39,
+        "trades": 165,
+        "per": 0.24477,
+        "move": 0.29105
+      },
+      "rising_sig_in": 3496,
+      "rising_sig_out": 453,
+      "rising_vol_reject": 0.8704,
+      "rising_cool_blocked": 47,
+      "portfolio_net": 87.04,
+      "portfolio_trades": 425,
+      "move": 0.2510306702279799,
+      "counted": true
+    },
+    "2.5": {
+      "rising": {
+        "net": -9.25,
+        "trades": 126,
+        "per": -0.07341,
+        "move": -0.0275
+      },
+      "rising_sig_in": 3496,
+      "rising_sig_out": 259,
+      "rising_vol_reject": 0.9259,
+      "rising_cool_blocked": 25,
+      "portfolio_net": 37.4,
+      "portfolio_trades": 386,
+      "move": 0.14300509420825386,
+      "counted": true
+    },
+    "3.0": {
+      "rising": {
+        "net": 18.51,
+        "trades": 93,
+        "per": 0.19904,
+        "move": 0.24526
+      },
+      "rising_sig_in": 3496,
+      "rising_sig_out": 165,
+      "rising_vol_reject": 0.9528,
+      "rising_cool_blocked": 11,
+      "portfolio_net": 65.16,
+      "portfolio_trades": 353,
+      "move": 0.23080401936395556,
+      "counted": true
+    },
+    "4.0": {
+      "rising": {
+        "net": -5.25,
+        "trades": 49,
+        "per": -0.1072,
+        "move": -0.06133
+      },
+      "rising_sig_in": 3496,
+      "rising_sig_out": 69,
+      "rising_vol_reject": 0.9803,
+      "rising_cool_blocked": 1,
+      "portfolio_net": 41.4,
+      "portfolio_trades": 309,
+      "move": 0.18012722059157502,
+      "counted": true
+    },
+    "4.5": {
+      "rising": {
+        "net": 3.43,
+        "trades": 39,
+        "per": 0.08799,
+        "move": 0.13408
+      },
+      "rising_sig_in": 3496,
+      "rising_sig_out": 53,
+      "rising_vol_reject": 0.9848,
+      "rising_cool_blocked": 1,
+      "portfolio_net": 50.08,
+      "portfolio_trades": 299,
+      "move": 0.21369115047853113,
+      "counted": true
+    }
+  },
+  "cool": {
+    "3": {
+      "portfolio_net": 45.66,
+      "portfolio_trades": 328,
+      "rising": {
+        "net": -0.99,
+        "trades": 68,
+        "per": -0.01451,
+        "move": 0.03146
+      },
+      "rising_sig_in": 3496,
+      "rising_sig_out": 105,
+      "rising_vol_reject": 0.97,
+      "rising_cool_blocked": 3,
+      "move": 0.18537770225441835,
+      "counted": false,
+      "source": "match"
+    },
+    "0": {
+      "rising": {
+        "net": 3.36,
+        "trades": 72,
+        "per": 0.04666,
+        "move": 0.09271
+      },
+      "rising_sig_in": 3496,
+      "rising_sig_out": 105,
+      "rising_vol_reject": 0.97,
+      "rising_cool_blocked": 0,
+      "portfolio_net": 50.01,
+      "portfolio_trades": 332,
+      "move": 0.196804864908919,
+      "counted": true
+    },
+    "1": {
+      "rising": {
+        "net": -0.88,
+        "trades": 69,
+        "per": -0.01278,
+        "move": 0.0332
+      },
+      "rising_sig_in": 3496,
+      "rising_sig_out": 105,
+      "rising_vol_reject": 0.97,
+      "rising_cool_blocked": 2,
+      "portfolio_net": 45.77,
+      "portfolio_trades": 329,
+      "move": 0.18527401474877433,
+      "counted": true
+    },
+    "6": {
+      "rising": {
+        "net": -2.21,
+        "trades": 67,
+        "per": -0.03296,
+        "move": 0.013
+      },
+      "rising_sig_in": 3496,
+      "rising_sig_out": 105,
+      "rising_vol_reject": 0.97,
+      "rising_cool_blocked": 4,
+      "portfolio_net": 44.44,
+      "portfolio_trades": 327,
+      "move": 0.18206529915655778,
+      "counted": true
+    }
+  }
+}

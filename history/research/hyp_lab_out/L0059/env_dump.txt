@@ -1,0 +1,16 @@
+{
+  "cap": 18,
+  "counted": 10,
+  "canary": "ok",
+  "canary_net": -1.9718063239874648,
+  "lab_canary": "لم يُشغَّل. مخرجات L0046 غير موجودة",
+  "root_patch": "/home/user/l0056 -> /home/user/l0059 in memory",
+  "regime_py": false,
+  "random": "لم يُقَس",
+  "seeds": [110059, 210059, 310059, 410059, 510059],
+  "selection_rising_trades": 68,
+  "paper_estimate_selection_rising": "~62",
+  "determinism_selection": "sha256 match after cache clear",
+  "determinism_judgement": "sha256 match in a second process",
+  "phase0_vs_private_path": "trades identical except exp column"
+}
