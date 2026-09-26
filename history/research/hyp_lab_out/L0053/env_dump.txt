@@ -1,0 +1,37 @@
+{
+  "python": "3.13.14",
+  "pandas": "2.2.3",
+  "numpy": "2.3.5",
+  "platform": "Linux-6.1.158+-x86_64-with-glibc2.41",
+  "cost_default_file": 0.0013,
+  "stop": 2.5,
+  "trail": 4.0,
+  "seeds": [
+    110053,
+    210053,
+    310053,
+    410053,
+    510053
+  ],
+  "verify_seeds": [
+    110052,
+    210052,
+    310052,
+    410052,
+    510052
+  ],
+  "cap": 45,
+  "counted": 26,
+  "map": "copied from L0051/routing_map.json",
+  "map_regenerated": false,
+  "canary": "ok",
+  "canary_net": -1.9718063239874648,
+  "canary_lab": "لم يُشغَّل: phase3_basis_repaired.csv غير موجود. لم يُصنَّع بديل.",
+  "regime_py_used": false,
+  "alternative_loader": false,
+  "move_target": 0.042,
+  "min_trades": 400,
+  "phase1_defined": 15,
+  "phase1_ceiling": 24,
+  "rule": "الفائز = أعلى حركة صفقة في الاختيار بين {الثلاثة الأولى ومركّباتها المقيسة}، بشرط صفقات ≥ 400 وصافٍ مُقرَّب > 0. كسر التعادل: صافٍ أعلى، ثم صفقات أكثر، ثم ترتيب القياس. لا فائز ⇒ لا حكم. لا استبدال بعد الرؤية."
+}
