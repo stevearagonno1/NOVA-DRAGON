@@ -1,0 +1,21 @@
+python 3.13
+pyarrow 25.0.1
+cap 30
+counted 22
+phase_0_uncounted 4
+canary ok
+canary_net -1.9718063239874648
+canary_lab لم يُشغَّل: phase3_basis_repaired.csv غير موجود
+regime_py_used false
+nova_v8_files_modified grid.py only
+dynamic_grid_py_modified false
+root /home/user/l0058
+l0056_root_was /home/user/l0056
+cost_limit 0.00115
+flatten_extra_slip 0
+seeds 110058 210058 310058 410058 510058
+winner static
+determinism second run matched every static and dynamic unit net, diffs=0
+guard_repaired 0
+guard_random 0
+guard_c00130 0

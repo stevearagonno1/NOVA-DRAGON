@@ -1,0 +1,462 @@
+{
+  "static": {
+    "اختيار": {
+      "net": -417.14,
+      "grids": 70,
+      "cycles": 1332,
+      "bars": 211928,
+      "capital_each": 1000.0,
+      "peak_concurrent": 3,
+      "peak_capital": 3000.0,
+      "mean_bars": 3027.5,
+      "return_on_1000_pct": -41.7141,
+      "return_on_peak_pct": -13.9047,
+      "leg_net": -417.14,
+      "engine_net": -417.14,
+      "used_net": -417.14
+    },
+    "حكم": {
+      "net": -1211.88,
+      "grids": 132,
+      "cycles": 1944,
+      "bars": 328937,
+      "capital_each": 1000.0,
+      "peak_concurrent": 5,
+      "peak_capital": 5000.0,
+      "mean_bars": 2491.9,
+      "return_on_1000_pct": -121.1881,
+      "return_on_peak_pct": -24.2376,
+      "leg_net": -1211.88,
+      "engine_net": -1211.88,
+      "used_net": -1211.88
+    }
+  },
+  "dynamic": {
+    "اختيار": {
+      "net": -1916.34,
+      "grids": 70,
+      "cycles": 3102,
+      "bars": 415823,
+      "capital_each": 1000.0,
+      "peak_concurrent": 5,
+      "peak_capital": 5000.0,
+      "mean_bars": 5940.3,
+      "return_on_1000_pct": -191.6336,
+      "return_on_peak_pct": -38.3267,
+      "leg_net": -937.93,
+      "engine_net": -1916.34,
+      "used_net": -937.93
+    },
+    "حكم": {
+      "net": -4944.29,
+      "grids": 132,
+      "cycles": 4903,
+      "bars": 661617,
+      "capital_each": 1000.0,
+      "peak_concurrent": 6,
+      "peak_capital": 6000.0,
+      "mean_bars": 5012.2,
+      "return_on_1000_pct": -494.4291,
+      "return_on_peak_pct": -82.4049,
+      "leg_net": -3190.16,
+      "engine_net": -4944.29,
+      "used_net": -3190.16
+    }
+  },
+  "static_broken": {
+    "اختيار": {
+      "net": -699.39,
+      "grids": 70,
+      "cycles": 1332,
+      "bars": 211928,
+      "capital_each": 1000.0,
+      "peak_concurrent": 3,
+      "peak_capital": 3000.0,
+      "mean_bars": 3027.5,
+      "return_on_1000_pct": -69.9394,
+      "return_on_peak_pct": -23.3131,
+      "leg_net": -708.01,
+      "engine_net": -699.39,
+      "used_net": -699.39
+    },
+    "حكم": {
+      "net": -1997.58,
+      "grids": 132,
+      "cycles": 1944,
+      "bars": 328937,
+      "capital_each": 1000.0,
+      "peak_concurrent": 5,
+      "peak_capital": 5000.0,
+      "mean_bars": 2491.9,
+      "return_on_1000_pct": -199.7581,
+      "return_on_peak_pct": -39.9516,
+      "leg_net": -1997.58,
+      "engine_net": -1997.58,
+      "used_net": -1997.58
+    }
+  },
+  "dynamic_broken": {
+    "اختيار": {
+      "net": -1996.04,
+      "grids": 70,
+      "cycles": 3098,
+      "bars": 415266,
+      "capital_each": 1000.0,
+      "peak_concurrent": 5,
+      "peak_capital": 5000.0,
+      "mean_bars": 5932.4,
+      "return_on_1000_pct": -199.6042,
+      "return_on_peak_pct": -39.9208,
+      "leg_net": -1343.33,
+      "engine_net": -1996.04,
+      "used_net": -1343.33
+    },
+    "حكم": {
+      "net": -5676.03,
+      "grids": 132,
+      "cycles": 4770,
+      "bars": 645295,
+      "capital_each": 1000.0,
+      "peak_concurrent": 6,
+      "peak_capital": 6000.0,
+      "mean_bars": 4888.6,
+      "return_on_1000_pct": -567.6035,
+      "return_on_peak_pct": -94.6006,
+      "leg_net": -4532.74,
+      "engine_net": -5676.03,
+      "used_net": -4532.74
+    }
+  },
+  "random": {
+    "اختيار": {
+      "110058": {
+        "net": -555.17,
+        "grids": 70,
+        "cycles": 823,
+        "bars": 153119,
+        "capital_each": 1000.0,
+        "peak_concurrent": 3,
+        "peak_capital": 3000.0,
+        "mean_bars": 2187.4,
+        "return_on_1000_pct": -55.5167,
+        "return_on_peak_pct": -18.5056,
+        "leg_net": -555.17,
+        "used_net": -555.17
+      },
+      "210058": {
+        "net": -904.14,
+        "grids": 70,
+        "cycles": 962,
+        "bars": 199416,
+        "capital_each": 1000.0,
+        "peak_concurrent": 4,
+        "peak_capital": 4000.0,
+        "mean_bars": 2848.8,
+        "return_on_1000_pct": -90.4135,
+        "return_on_peak_pct": -22.6034,
+        "leg_net": -904.14,
+        "used_net": -904.14
+      },
+      "310058": {
+        "net": -966.69,
+        "grids": 70,
+        "cycles": 1030,
+        "bars": 226548,
+        "capital_each": 1000.0,
+        "peak_concurrent": 4,
+        "peak_capital": 4000.0,
+        "mean_bars": 3236.4,
+        "return_on_1000_pct": -96.6689,
+        "return_on_peak_pct": -24.1672,
+        "leg_net": -966.69,
+        "used_net": -966.69
+      },
+      "410058": {
+        "net": -600.41,
+        "grids": 70,
+        "cycles": 1065,
+        "bars": 208372,
+        "capital_each": 1000.0,
+        "peak_concurrent": 4,
+        "peak_capital": 4000.0,
+        "mean_bars": 2976.7,
+        "return_on_1000_pct": -60.0407,
+        "return_on_peak_pct": -15.0102,
+        "leg_net": -600.41,
+        "used_net": -600.41
+      },
+      "510058": {
+        "net": -575.89,
+        "grids": 70,
+        "cycles": 1036,
+        "bars": 171113,
+        "capital_each": 1000.0,
+        "peak_concurrent": 3,
+        "peak_capital": 3000.0,
+        "mean_bars": 2444.5,
+        "return_on_1000_pct": -57.5892,
+        "return_on_peak_pct": -19.1964,
+        "leg_net": -575.89,
+        "used_net": -575.89
+      }
+    },
+    "حكم": {
+      "110058": {
+        "net": -1082.6,
+        "grids": 132,
+        "cycles": 2006,
+        "bars": 295360,
+        "capital_each": 1000.0,
+        "peak_concurrent": 5,
+        "peak_capital": 5000.0,
+        "mean_bars": 2237.6,
+        "return_on_1000_pct": -108.2604,
+        "return_on_peak_pct": -21.6521,
+        "leg_net": -1082.6,
+        "used_net": -1082.6
+      },
+      "210058": {
+        "net": -1102.43,
+        "grids": 132,
+        "cycles": 1994,
+        "bars": 297847,
+        "capital_each": 1000.0,
+        "peak_concurrent": 4,
+        "peak_capital": 4000.0,
+        "mean_bars": 2256.4,
+        "return_on_1000_pct": -110.2427,
+        "return_on_peak_pct": -27.5607,
+        "leg_net": -1102.43,
+        "used_net": -1102.43
+      },
+      "310058": {
+        "net": -758.16,
+        "grids": 132,
+        "cycles": 2047,
+        "bars": 342176,
+        "capital_each": 1000.0,
+        "peak_concurrent": 4,
+        "peak_capital": 4000.0,
+        "mean_bars": 2592.2,
+        "return_on_1000_pct": -75.8158,
+        "return_on_peak_pct": -18.9539,
+        "leg_net": -758.16,
+        "used_net": -758.16
+      },
+      "410058": {
+        "net": -840.26,
+        "grids": 132,
+        "cycles": 2103,
+        "bars": 316324,
+        "capital_each": 1000.0,
+        "peak_concurrent": 4,
+        "peak_capital": 4000.0,
+        "mean_bars": 2396.4,
+        "return_on_1000_pct": -84.026,
+        "return_on_peak_pct": -21.0065,
+        "leg_net": -840.26,
+        "used_net": -840.26
+      },
+      "510058": {
+        "net": -942.99,
+        "grids": 132,
+        "cycles": 1822,
+        "bars": 272860,
+        "capital_each": 1000.0,
+        "peak_concurrent": 3,
+        "peak_capital": 3000.0,
+        "mean_bars": 2067.1,
+        "return_on_1000_pct": -94.2988,
+        "return_on_peak_pct": -31.4329,
+        "leg_net": -942.99,
+        "used_net": -942.99
+      }
+    }
+  },
+  "cost_130": {
+    "اختيار": {
+      "net": -483.91,
+      "grids": 70,
+      "cycles": 1332,
+      "bars": 211928,
+      "capital_each": 1000.0,
+      "peak_concurrent": 3,
+      "peak_capital": 3000.0,
+      "mean_bars": 3027.5,
+      "return_on_1000_pct": -48.3906,
+      "return_on_peak_pct": -16.1302,
+      "leg_net": -483.91,
+      "used_net": -483.91
+    },
+    "حكم": {
+      "net": -1315.62,
+      "grids": 132,
+      "cycles": 1944,
+      "bars": 328937,
+      "capital_each": 1000.0,
+      "peak_concurrent": 5,
+      "peak_capital": 5000.0,
+      "mean_bars": 2491.9,
+      "return_on_1000_pct": -131.5624,
+      "return_on_peak_pct": -26.3125,
+      "leg_net": -1315.62,
+      "used_net": -1315.62
+    }
+  },
+  "silence": {
+    "dropped": [
+      [
+        "سناب المؤشر",
+        "عرضي"
+      ]
+    ],
+    "اختيار": {
+      "net": 34.72,
+      "trades": 311,
+      "sideways_trades": 0,
+      "overlapping": 0
+    },
+    "حكم": {
+      "net": 45.85,
+      "trades": 440,
+      "sideways_trades": 0,
+      "overlapping": 0
+    },
+    "sequencing_exit": 0
+  },
+  "winner": "static",
+  "ledger": [
+    {
+      "#": 1,
+      "المرحلة": "ب",
+      "القياس": "static 0.115%",
+      "الفترة": "اختيار"
+    },
+    {
+      "#": 2,
+      "المرحلة": "ب",
+      "القياس": "static 0.115%",
+      "الفترة": "حكم"
+    },
+    {
+      "#": 3,
+      "المرحلة": "ب",
+      "القياس": "dynamic 0.115%",
+      "الفترة": "اختيار"
+    },
+    {
+      "#": 4,
+      "المرحلة": "ب",
+      "القياس": "dynamic 0.115%",
+      "الفترة": "حكم"
+    },
+    {
+      "#": 5,
+      "المرحلة": "ج",
+      "القياس": "static_broken 0.115%",
+      "الفترة": "اختيار"
+    },
+    {
+      "#": 6,
+      "المرحلة": "ج",
+      "القياس": "static_broken 0.115%",
+      "الفترة": "حكم"
+    },
+    {
+      "#": 7,
+      "المرحلة": "ج",
+      "القياس": "dynamic_broken 0.115%",
+      "الفترة": "اختيار"
+    },
+    {
+      "#": 8,
+      "المرحلة": "ج",
+      "القياس": "dynamic_broken 0.115%",
+      "الفترة": "حكم"
+    },
+    {
+      "#": 9,
+      "المرحلة": "ب",
+      "القياس": "عشوائي 110058",
+      "الفترة": "اختيار"
+    },
+    {
+      "#": 10,
+      "المرحلة": "ب",
+      "القياس": "عشوائي 210058",
+      "الفترة": "اختيار"
+    },
+    {
+      "#": 11,
+      "المرحلة": "ب",
+      "القياس": "عشوائي 310058",
+      "الفترة": "اختيار"
+    },
+    {
+      "#": 12,
+      "المرحلة": "ب",
+      "القياس": "عشوائي 410058",
+      "الفترة": "اختيار"
+    },
+    {
+      "#": 13,
+      "المرحلة": "ب",
+      "القياس": "عشوائي 510058",
+      "الفترة": "اختيار"
+    },
+    {
+      "#": 14,
+      "المرحلة": "ب",
+      "القياس": "عشوائي 110058",
+      "الفترة": "حكم"
+    },
+    {
+      "#": 15,
+      "المرحلة": "ب",
+      "القياس": "عشوائي 210058",
+      "الفترة": "حكم"
+    },
+    {
+      "#": 16,
+      "المرحلة": "ب",
+      "القياس": "عشوائي 310058",
+      "الفترة": "حكم"
+    },
+    {
+      "#": 17,
+      "المرحلة": "ب",
+      "القياس": "عشوائي 410058",
+      "الفترة": "حكم"
+    },
+    {
+      "#": 18,
+      "المرحلة": "ب",
+      "القياس": "عشوائي 510058",
+      "الفترة": "حكم"
+    },
+    {
+      "#": 19,
+      "المرحلة": "ب",
+      "القياس": "static 0.130%",
+      "الفترة": "اختيار"
+    },
+    {
+      "#": 20,
+      "المرحلة": "ب",
+      "القياس": "static 0.130%",
+      "الفترة": "حكم"
+    },
+    {
+      "#": 21,
+      "المرحلة": "د",
+      "القياس": "صمت العرضي",
+      "الفترة": "اختيار"
+    },
+    {
+      "#": 22,
+      "المرحلة": "د",
+      "القياس": "صمت العرضي",
+      "الفترة": "حكم"
+    }
+  ]
+}

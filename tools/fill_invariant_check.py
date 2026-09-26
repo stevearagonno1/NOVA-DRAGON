@@ -181,13 +181,31 @@ def selftest() -> int:
     else:
         print("      ✅")
 
+    # ── س7/س8: شبكة L0058 — شمعة كلها تحت الشراء، وأخرى كلها فوق البيع ──
+    import nova_v8.grid as _grid
+    buy_cell = _grid._Cell(100.0, 110.0, 1000.0)
+    buy_cell.on_bar(90.0, 92.0, 88.0, 91.0)
+    print(f"\n س7 — شبكة: شمعة كلها تحت الشراء. التعبئة={buy_cell.fill_buy:.4f} (المتوقّع الافتتاح 90 لا المستوى 100)")
+    if not (buy_cell.open and abs(buy_cell.fill_buy - 90.0) < 1e-9 and 88.0 <= buy_cell.fill_buy <= 92.0):
+        fails.append("س7: شراء الشبكة لم يُعبَّأ عند الافتتاح داخل النطاق")
+    else:
+        print("      ✅")
+    sell_cell = _grid._Cell(100.0, 110.0, 1000.0)
+    sell_cell.on_bar(100.0, 100.0, 100.0, 100.0)
+    sell_cell.on_bar(120.0, 125.0, 118.0, 122.0)
+    print(f" س8 — شبكة: شمعة كلها فوق البيع. التعبئة={sell_cell.fill_sell:.4f} (المتوقّع الافتتاح 120 لا المستوى 110)")
+    if not (sell_cell.cycles == 1 and abs(sell_cell.fill_sell - 120.0) < 1e-9 and 118.0 <= sell_cell.fill_sell <= 125.0):
+        fails.append("س8: بيع الشبكة لم يُعبَّأ عند الافتتاح داخل النطاق")
+    else:
+        print("      ✅")
+
     print("\n" + "═" * 74)
     if fails:
         print(f" ❌ فشل {len(fails)} اختبار:")
         for f in fails:
             print("   -", f)
         return 1
-    print(" ✅ PASS — 6/6: العطب الأصلي مستحيل · الوقف والفجوة والهدف والإغلاق والقفل سليمة")
+    print(" ✅ PASS — 8/8: العطب الأصلي مستحيل · الوقف والفجوة والهدف والإغلاق والقفل سليمة · فجوات الشبكة داخل النطاق")
     print("═" * 74)
     return 0
 
