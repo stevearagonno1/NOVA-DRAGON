@@ -1,0 +1,16 @@
+{
+  "python": "3.13",
+  "cap": 36,
+  "counted": 3,
+  "phase_0_uncounted": 4,
+  "seeds_declared_unused": [110057, 210057, 310057, 410057, 510057],
+  "canary": "ok",
+  "canary_net": -1.9718063239874648,
+  "canary_lab": "لم يُشغَّل: phase3_basis_repaired.csv غير موجود",
+  "regime_py_used": false,
+  "nova_v8_files_modified": false,
+  "root": "/home/user/l0057",
+  "l0056_root_was": "/home/user/l0056",
+  "grid_stopped": true,
+  "determinism": "phase 0 and phase A trade hashes matched on a second run"
+}
