@@ -1,0 +1,21 @@
+{
+  "stopped": true,
+  "reason": "تعبئة شراء بسعر أعلى من قمة الشمعة. حارس التعبئة أعاد مخالفة واحدة. لم يُفسَّر أي ربح.",
+  "engine_file_modified": false,
+  "example": {
+    "symbol": "BTCUSDT",
+    "kind": "buy",
+    "time": "2021-11-25 00:00:00+00:00",
+    "booked_price": 57463.857143,
+    "bar_low": 57130.81,
+    "bar_high": 57232.24,
+    "later_sell_time": "2021-11-25 00:37:00+00:00",
+    "later_sell_price": 57735.0,
+    "later_sell_inside_bar": true
+  },
+  "guard": "fill_invariant_check.py مخالفات الدخول=1 مخالفات الخروج=0",
+  "synthetic": {
+    "buy_fills_above_high": true,
+    "sell_fills_below_low": true
+  }
+}

@@ -1,0 +1,2 @@
+symbol,entry_time,exit_time,entry,exit,pnl,notional,bars_held,their_entry_kind,their_exit_kind
+BTCUSDT,2021-11-25 00:00:00+00:00,2021-11-25 00:37:00+00:00,57529.940578571426,57668.60475,0,1000,1,buy,sell

@@ -1,0 +1,5 @@
+{
+  "buy_fills_above_high": true,
+  "sell_fills_below_low": true,
+  "note": "استدعاء مباشر لـ _Cell.on_bar. ليس قياس سوق. يثبت أن الشرط l<=buy لا يشترط buy<=high."
+}
