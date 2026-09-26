@@ -1,0 +1,25 @@
+{
+  "written_before_measurement": true,
+  "acceptance": {
+    "net_positive_both_periods": true,
+    "beats_zero_both": true,
+    "beats_luckiest_seed_both": true,
+    "positive_at_0.00130": true,
+    "grids_at_least_30_each_period": true
+  },
+  "winner_rule": "أعلى صافٍ في الاختيار عند 0.115% بعد حارس صفر. التعادل للثابتة.",
+  "seeds": [
+    110058,
+    210058,
+    310058,
+    410058,
+    510058
+  ],
+  "cost_note": "0.00115 على الطرفين. انزلاق مضاف 0. ثوابت _BUY_FEE/_SELL_FEE وCOMMISSION_PCT تُضبط في الذاكرة قبل التشغيل.",
+  "cap_plan": {
+    "B": 16,
+    "C": 4,
+    "D": 2,
+    "cap": 30
+  }
+}

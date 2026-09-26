@@ -21,33 +21,8 @@ _BUY_FEE = C.COMMISSION_PCT
 _SELL_FEE = C.COMMISSION_PCT
 
 
-def _inside(px: float, lo: float, hi: float) -> float:
-    """Final impossibility clamp. A fill cannot leave the candle."""
-    a, b = (lo, hi) if lo <= hi else (hi, lo)
-    if px < a:
-        return a
-    if px > b:
-        return b
-    return px
-
-
-def limit_fill(level: float, o: float, h: float, l: float, *, buy: bool) -> float:
-    """Simulate a resting limit. L0058.
-
-    Buy: the whole candle below the level fills at the open, otherwise at the
-    level. Sell: the whole candle above the level fills at the open, otherwise
-    at the level. The result is always inside [low, high].
-    """
-    if buy:
-        fill = o if h < level else level
-    else:
-        fill = o if l > level else level
-    return _inside(fill, l, h)
-
-
 class _Cell:
-    __slots__ = ("buy", "sell", "qty", "open", "realized_usd", "cycles",
-                 "fill_buy", "fill_sell")
+    __slots__ = ("buy", "sell", "qty", "open", "realized_usd", "cycles")
 
     def __init__(self, buy: float, sell: float, notional: float):
         self.buy = buy
@@ -56,19 +31,16 @@ class _Cell:
         self.open = False
         self.realized_usd = 0.0   # net $ realized from completed cycles
         self.cycles = 0
-        self.fill_buy = 0.0       # actual buy fill, not the level
-        self.fill_sell = 0.0
 
     def on_bar(self, o: float, h: float, l: float, c: float) -> None:
         if not self.open:
             if l <= self.buy:
-                self.fill_buy = limit_fill(self.buy, o, h, l, buy=True)
-                self.open = True
+                self.open = True          # buy fills at limit -> held qty
         else:
             if h >= self.sell:
-                self.fill_sell = limit_fill(self.sell, o, h, l, buy=False)
-                buy_cost = self.qty * self.fill_buy
-                sell_gross = self.qty * self.fill_sell
+                # sell the held qty at the upper limit -> realized cycle
+                buy_cost = self.qty * self.buy
+                sell_gross = self.qty * self.sell
                 fees = buy_cost * _BUY_FEE + sell_gross * _SELL_FEE
                 self.realized_usd += (sell_gross - buy_cost) - fees
                 self.cycles += 1
@@ -78,23 +50,21 @@ class _Cell:
     def unrealized_usd(self, cur: float) -> float:
         if not self.open:
             return 0.0
-        buy_cost = self.qty * self.fill_buy
+        buy_cost = self.qty * self.buy
         return (self.qty * cur - buy_cost) - buy_cost * _BUY_FEE
 
     def flatten_usd(self, cur: float, market_slip_pct: float | None = None) -> float:
         """Book an open cell's forced market exit.
 
         Limit cycles do not receive market slippage; forced flattening does.
-        The buy leg is the actual fill, not the resting level.
         """
         if not self.open:
             return 0.0
-        buy_cost = self.qty * self.fill_buy
+        buy_cost = self.qty * self.buy
         exit_gross = self.qty * cur
         slip = C.SLIPPAGE_PCT if market_slip_pct is None else market_slip_pct
         fees = buy_cost * _BUY_FEE + exit_gross * (C.COMMISSION_PCT + slip)
         pnl = (exit_gross - buy_cost) - fees
-        self.fill_sell = cur
         self.open = False
         return pnl
 
@@ -152,31 +122,19 @@ class Grid:
             return
         self.bars += 1
         self.last_price = c
-        self._bar_lo = l
-        self._bar_hi = h
         for cell in self.cells:
             cell.on_bar(o, h, l, c)
-        # range-break: same limit logic as a cell. The trigger stays the close
-        # leaving the band. The fill is the open if the candle is entirely
-        # through the boundary, otherwise the boundary itself — never the close
-        # of a candle that already traded the boundary, and never outside the bar.
-        up = self.hi * 1.02
-        dn = self.lo * 0.98
-        if c > up or c < dn:
-            if c < dn:
-                gap_cur = o if h < dn else dn
-            else:
-                gap_cur = o if l > up else up
-            self.close(bar_idx, "خروج-من-النطاق", _inside(gap_cur, l, h), market_slip_pct)
+        # range-break: price escaping the band is no longer a range -> flatten
+        if c > self.hi * 1.02 or c < self.lo * 0.98:
+            # If the new bar already opens beyond the band, the forced market
+            # flatten is filled at that open rather than an unreachable close.
+            gap_cur = o if (o > self.hi * 1.02 or o < self.lo * 0.98) else c
+            self.close(bar_idx, "خروج-من-النطاق", gap_cur, market_slip_pct)
 
     def close(self, bar_idx: int, reason: str, cur: float,
               market_slip_pct: float | None = None) -> None:
         if self.closed:
             return
-        lo = getattr(self, "_bar_lo", None)
-        hi = getattr(self, "_bar_hi", None)
-        if lo is not None and hi is not None:
-            cur = _inside(cur, lo, hi)
         self.last_price = cur
         for cell in self.cells:
             self._flat_usd += cell.flatten_usd(cur, market_slip_pct)
