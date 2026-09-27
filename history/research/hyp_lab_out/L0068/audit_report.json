@@ -1,0 +1,151 @@
+{
+ "full_match": {
+  "runs": 26,
+  "slices": 404,
+  "mismatch_runs": [],
+  "fields": [
+   "symbol",
+   "entry_time",
+   "exit_time",
+   "stage",
+   "reason",
+   "exit_px(1e-8)",
+   "pnl(1e-6)"
+  ],
+  "MATCH": true
+ },
+ "golden_summary": {
+  "n": 34,
+  "coins": 13,
+  "winners": 16,
+  "losers": 18,
+  "single_stage": 24,
+  "multi_stage": 10,
+  "invalidation": 18,
+  "end_of_sample": 3,
+  "all_engine_match": true,
+  "no_add_after_invalidation": true
+ },
+ "divergence_impact_TARGET13": {
+  "SEL": {
+   "research_L0064 (1000$ دفتر، 0.115%، انزلاق 0)": [
+    113.22,
+    172.66,
+    137
+   ],
+   "ctx_extra_lag كما في تعليق الكود": [
+    2.04,
+    62.15,
+    140
+   ],
+   "V2 بلا بوابة المناخ (الافتراضي المعتمد في الدستور)": [
+    99.12,
+    162.9,
+    147
+   ],
+   "حجم 20$ لكل شريحة (قاعدة §27)": [
+    2.04,
+    8.36,
+    137
+   ],
+   "20$ · 0.10% + انزلاق 0.03% (مضاعف الكود = 1 دائمًا)": [
+    1.22,
+    8.36,
+    137
+   ],
+   "20$ · 0.10% + انزلاق 0.03% ×2/×3 بـVR الصحيح": [
+    0.48,
+    8.36,
+    137
+   ],
+   "20$ · 0.10% + انزلاق 0.10%": [
+    -2.62,
+    8.36,
+    137
+   ],
+   "20$ · 0.10% + انزلاق 0.30%": [
+    -13.55,
+    8.36,
+    137
+   ]
+  },
+  "JUD": {
+   "research_L0064 (1000$ دفتر، 0.115%، انزلاق 0)": [
+    1314.38,
+    1370.83,
+    130
+   ],
+   "ctx_extra_lag كما في تعليق الكود": [
+    705.28,
+    763.09,
+    138
+   ],
+   "V2 بلا بوابة المناخ (الافتراضي المعتمد في الدستور)": [
+    1205.9,
+    1275.22,
+    163
+   ],
+   "حجم 20$ لكل شريحة (قاعدة §27)": [
+    132.55,
+    138.84,
+    130
+   ],
+   "20$ · 0.10% + انزلاق 0.03% (مضاعف الكود = 1 دائمًا)": [
+    131.73,
+    138.84,
+    130
+   ],
+   "20$ · 0.10% + انزلاق 0.03% ×2/×3 بـVR الصحيح": [
+    130.85,
+    138.84,
+    130
+   ],
+   "20$ · 0.10% + انزلاق 0.10%": [
+    127.9,
+    138.84,
+    130
+   ],
+   "20$ · 0.10% + انزلاق 0.30%": [
+    117.01,
+    138.84,
+    130
+   ]
+  }
+ },
+ "vol_multiplier_bug": {
+  "passed_value": "ATR14/close (≈0.01–0.10)",
+  "threshold_highvol_vr": 1.2,
+  "threshold_shock": 1.5,
+  "bars_where_code_multiplier_>1": {
+   "ATOMUSDT": 0,
+   "BNBUSDT": 0,
+   "BTCUSDT": 0,
+   "ETHUSDT": 0,
+   "FILUSDT": 0,
+   "GRAMUSDT": 0,
+   "HNTUSDT": 0,
+   "IMXUSDT": 0,
+   "LINKUSDT": 0,
+   "RENDERUSDT": 0,
+   "SOLUSDT": 0,
+   "VETUSDT": 0,
+   "XLMUSDT": 0
+  }
+ },
+ "holding_days": {
+  "median": 28.333333333333332,
+  "p75": 59.25,
+  "max": 218.0,
+  "share_ge_90d": 0.09363295880149813
+ },
+ "sizing": {
+  "research_notional_per_tranche": [
+   150.0,
+   250.0,
+   300.0,
+   300.0
+  ],
+  "rule_§27": 20.0,
+  "config_comment": "LONG_CYCLE_CAPITAL_USD = 1000.0 # experiment BOOK (§27), not trade size; each fill still 20$ pending sleeve rewrite"
+ }
+}
