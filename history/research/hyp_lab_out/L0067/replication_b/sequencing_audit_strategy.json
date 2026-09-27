@@ -1,0 +1,16 @@
+{
+  "files": 1,
+  "files_with_overlap": 1,
+  "overlap": 135,
+  "results": [
+    {
+      "trades": 267,
+      "overlapping_trades": 135,
+      "overlap_ratio": 0.505618,
+      "max_concurrent": 4,
+      "symbols_with_overlap": 13,
+      "status": "overlap",
+      "file": "trades_chosen_shared13000_FULL.csv"
+    }
+  ]
+}

@@ -1,0 +1,25 @@
+{
+  "date": "2026-09-27",
+  "python": "3.13.14",
+  "pandas": "2.2.3",
+  "numpy": "2.3.5",
+  "pyarrow": "25.0.1",
+  "platform": "Linux-6.1.158+-x86_64-with-glibc2.41",
+  "base_branch": "arena/l0066-medium-pullback-2026-09-27 @ 76aae73",
+  "n_books": 1000,
+  "seed_base": 67,
+  "cost": {
+    "base": 0.00115,
+    "stress": 0.0013,
+    "slippage": "0 — غير مقاس"
+  },
+  "pool": 13000.0,
+  "pool_sensitivity": 5000.0,
+  "cap": 1000.0,
+  "file_fingerprints": {
+    "cycle_engine67.py": "4beb6e741f5a53d8",
+    "run_l0067_match.py": "bd69aefead1230bc",
+    "acceptance_rule_l0067.json": "e041119665e9e715",
+    "match_report.json": "fb032aca9414cc16"
+  }
+}

@@ -1,0 +1,312 @@
+{
+ "window": {
+  "is_end": "2025-03-01",
+  "oos_end": "2025-09-01",
+  "coin_sets": {
+   "C1": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "C2": []
+  },
+  "chosen_in_window": "M2_C0_90",
+  "n_eligible": 8,
+  "relaxed": false,
+  "is_shared_net": 283.2,
+  "oos_chosen": {
+   "net115": 222.51,
+   "net130": 221.97,
+   "cycles": 7,
+   "peak": 1300.0,
+   "ret_pct_peak": 17.117,
+   "dd": -204.38,
+   "dd_pct_peak": -15.72,
+   "underwater_days": 41.7,
+   "avg_slice": 24.72,
+   "win_rate_pct": 77.8,
+   "top_coin": "GRAMUSDT",
+   "top_share_pct": 60.0,
+   "per_coin": {
+    "GRAMUSDT": 133.55,
+    "IMXUSDT": 49.02,
+    "VETUSDT": 28.58,
+    "ATOMUSDT": 10.71,
+    "FILUSDT": 0.65
+   }
+  },
+  "oos_reference_M0_C0_none": {
+   "net115": 188.73,
+   "cycles": 20,
+   "peak": 1150.0,
+   "dd_pct_peak": -32.91,
+   "underwater_days": 70.3
+  },
+  "oos_main_chosen": {
+   "net115": 188.73,
+   "cycles": 20,
+   "peak": 1150.0,
+   "dd_pct_peak": -32.91,
+   "underwater_days": 70.3
+  },
+  "shared_stat": {
+   "pool": 13000.0,
+   "min_cash": 11670.57,
+   "n_reduced": 0,
+   "n_rejected": 0,
+   "requested_total": 1600.0,
+   "executed_total": 1600.0
+  }
+ },
+ "selection": {
+  "chosen": "M2_C0_90",
+  "relaxed_to_reference": false,
+  "n_eligible": 8,
+  "eligible": [
+   "M2_C0_none",
+   "M2_C1_none",
+   "M2_C0_90",
+   "M2_C1_90",
+   "M2_C0_180",
+   "M2_C1_180",
+   "M2_C0_365",
+   "M2_C1_365"
+  ],
+  "plateau": {
+   "M0_C0_none": 14.657000000000002,
+   "M0_C1_none": 11.290333333333335,
+   "M0_C2_none": -999.0,
+   "M0_C0_90": 13.19525,
+   "M0_C1_90": 10.048749999999998,
+   "M0_C2_90": -999.0,
+   "M0_C0_180": 13.19525,
+   "M0_C1_180": 10.04875,
+   "M0_C2_180": -999.0,
+   "M0_C0_365": 11.976333333333335,
+   "M0_C1_365": 8.637333333333332,
+   "M0_C2_365": -999.0,
+   "M1_C0_none": 18.746499999999997,
+   "M1_C1_none": 13.76575,
+   "M1_C2_none": -999.0,
+   "M1_C0_90": 19.503800000000002,
+   "M1_C1_90": 14.4936,
+   "M1_C2_90": -999.0,
+   "M1_C0_180": 17.895400000000002,
+   "M1_C1_180": 12.9018,
+   "M1_C2_180": -999.0,
+   "M1_C0_365": 18.746499999999997,
+   "M1_C1_365": 13.76575,
+   "M1_C2_365": -999.0,
+   "M2_C0_none": 26.444666666666667,
+   "M2_C1_none": 19.865,
+   "M2_C2_none": -999.0,
+   "M2_C0_90": 27.70025,
+   "M2_C1_90": 20.92875,
+   "M2_C2_90": -999.0,
+   "M2_C0_180": 27.70025,
+   "M2_C1_180": 20.92875,
+   "M2_C2_180": -999.0,
+   "M2_C0_365": 26.444666666666667,
+   "M2_C1_365": 19.865,
+   "M2_C2_365": -999.0
+  },
+  "single_peak": "M2_C0_none",
+  "chosen_plateau": 27.70025,
+  "chosen_ret": 31.467,
+  "neighbors_of_chosen": {
+   "M1_C0_90": 16.4,
+   "M2_C0_none": 31.467,
+   "M2_C0_180": 31.467
+  }
+ },
+ "versions_is": {
+  "M0_C0_none": {
+   "shared_net": 332.29,
+   "shared_ret": 10.719,
+   "cycles": 120
+  },
+  "M0_C1_none": {
+   "shared_net": 255.23,
+   "shared_ret": 8.233,
+   "cycles": 116
+  },
+  "M0_C2_none": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M0_C0_90": {
+   "shared_net": 505.55,
+   "shared_ret": 16.852,
+   "cycles": 132
+  },
+  "M0_C1_90": {
+   "shared_net": 428.49,
+   "shared_ret": 14.283,
+   "cycles": 128
+  },
+  "M0_C2_90": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M0_C0_180": {
+   "shared_net": 273.11,
+   "shared_ret": 8.81,
+   "cycles": 120
+  },
+  "M0_C1_180": {
+   "shared_net": 196.05,
+   "shared_ret": 6.324,
+   "cycles": 116
+  },
+  "M0_C2_180": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M0_C0_365": {
+   "shared_net": 332.29,
+   "shared_ret": 10.719,
+   "cycles": 120
+  },
+  "M0_C1_365": {
+   "shared_net": 255.23,
+   "shared_ret": 8.233,
+   "cycles": 116
+  },
+  "M0_C2_365": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M1_C0_none": {
+   "shared_net": 254.19,
+   "shared_ret": 16.4,
+   "cycles": 38
+  },
+  "M1_C1_none": {
+   "shared_net": 176.01,
+   "shared_ret": 11.355,
+   "cycles": 35
+  },
+  "M1_C2_none": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M1_C0_90": {
+   "shared_net": 254.19,
+   "shared_ret": 16.4,
+   "cycles": 38
+  },
+  "M1_C1_90": {
+   "shared_net": 176.01,
+   "shared_ret": 11.355,
+   "cycles": 35
+  },
+  "M1_C2_90": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M1_C0_180": {
+   "shared_net": 254.19,
+   "shared_ret": 16.4,
+   "cycles": 38
+  },
+  "M1_C1_180": {
+   "shared_net": 176.01,
+   "shared_ret": 11.355,
+   "cycles": 35
+  },
+  "M1_C2_180": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M1_C0_365": {
+   "shared_net": 254.19,
+   "shared_ret": 16.4,
+   "cycles": 38
+  },
+  "M1_C1_365": {
+   "shared_net": 176.01,
+   "shared_ret": 11.355,
+   "cycles": 35
+  },
+  "M1_C2_365": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M2_C0_none": {
+   "shared_net": 283.2,
+   "shared_ret": 31.467,
+   "cycles": 25
+  },
+  "M2_C1_none": {
+   "shared_net": 205.02,
+   "shared_ret": 24.12,
+   "cycles": 22
+  },
+  "M2_C2_none": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M2_C0_90": {
+   "shared_net": 283.2,
+   "shared_ret": 31.467,
+   "cycles": 25
+  },
+  "M2_C1_90": {
+   "shared_net": 205.02,
+   "shared_ret": 24.12,
+   "cycles": 22
+  },
+  "M2_C2_90": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M2_C0_180": {
+   "shared_net": 283.2,
+   "shared_ret": 31.467,
+   "cycles": 25
+  },
+  "M2_C1_180": {
+   "shared_net": 205.02,
+   "shared_ret": 24.12,
+   "cycles": 22
+  },
+  "M2_C2_180": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M2_C0_365": {
+   "shared_net": 283.2,
+   "shared_ret": 31.467,
+   "cycles": 25
+  },
+  "M2_C1_365": {
+   "shared_net": 205.02,
+   "shared_ret": 24.12,
+   "cycles": 22
+  },
+  "M2_C2_365": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  }
+ }
+}

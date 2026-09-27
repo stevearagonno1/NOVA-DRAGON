@@ -1,0 +1,26 @@
+{
+  "files_sha_pass1": {
+    "sha_random_books_A_SEL": "5145ae8478f59ffd",
+    "sha_random_books_A_JUD": "be3fbd4bdb2d3ce8",
+    "sha_random_books_B_SEL": "fbd311f06bb89536",
+    "sha_random_books_B_JUD": "3c1661dedb930178"
+  },
+  "files_sha_pass2": {
+    "sha_random_books_A_SEL": "5145ae8478f59ffd",
+    "sha_random_books_A_JUD": "be3fbd4bdb2d3ce8",
+    "sha_random_books_B_SEL": "fbd311f06bb89536",
+    "sha_random_books_B_JUD": "3c1661dedb930178"
+  },
+  "files_identical": true,
+  "sweep_SEL_identical": true,
+  "selection_identical": true,
+  "walkforward_identical": true,
+  "strategy_identical": true,
+  "books_identical": true,
+  "hold_identical": true,
+  "per_coin_identical": true,
+  "acceptance_identical": true,
+  "leakage_identical": true,
+  "coin_sets_SEL_identical": true,
+  "context_sha": "e414f147a103f67e"
+}

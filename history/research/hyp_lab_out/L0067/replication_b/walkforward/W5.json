@@ -1,0 +1,303 @@
+{
+ "window": {
+  "is_end": "2024-09-01",
+  "oos_end": "2025-03-01",
+  "coin_sets": {
+   "C1": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "C2": []
+  },
+  "chosen_in_window": "M0_C0_none",
+  "n_eligible": 0,
+  "relaxed": true,
+  "is_shared_net": -207.07,
+  "oos_chosen": {
+   "net115": 430.91,
+   "net130": 430.21,
+   "cycles": 10,
+   "peak": 1300.0,
+   "ret_pct_peak": 33.147,
+   "dd": -198.66,
+   "dd_pct_peak": -15.28,
+   "underwater_days": 108.7,
+   "avg_slice": 39.17,
+   "win_rate_pct": 72.7,
+   "top_coin": "VETUSDT",
+   "top_share_pct": 33.4,
+   "per_coin": {
+    "VETUSDT": 143.74,
+    "IMXUSDT": 95.09,
+    "ATOMUSDT": 60.77,
+    "RENDERUSDT": 55.18,
+    "ETHUSDT": 54.25,
+    "GRAMUSDT": 21.88
+   }
+  },
+  "oos_reference_M0_C0_none": {
+   "net115": 430.91,
+   "cycles": 10,
+   "peak": 1300.0,
+   "dd_pct_peak": -15.28,
+   "underwater_days": 108.7
+  },
+  "oos_main_chosen": {
+   "net115": 430.91,
+   "cycles": 10,
+   "peak": 1300.0,
+   "dd_pct_peak": -15.28,
+   "underwater_days": 108.7
+  },
+  "shared_stat": {
+   "pool": 13000.0,
+   "min_cash": 11700.0,
+   "n_reduced": 0,
+   "n_rejected": 0,
+   "requested_total": 1900.0,
+   "executed_total": 1900.0
+  }
+ },
+ "selection": {
+  "chosen": "M0_C0_none",
+  "relaxed_to_reference": true,
+  "n_eligible": 0,
+  "eligible": [],
+  "plateau": {
+   "M0_C0_none": -0.6146666666666665,
+   "M0_C1_none": -0.6146666666666665,
+   "M0_C2_none": -999.0,
+   "M0_C0_90": -2.60825,
+   "M0_C1_90": -2.60825,
+   "M0_C2_90": -999.0,
+   "M0_C0_180": -2.60825,
+   "M0_C1_180": -2.60825,
+   "M0_C2_180": -999.0,
+   "M0_C0_365": -4.914666666666666,
+   "M0_C1_365": -4.914666666666666,
+   "M0_C2_365": -999.0,
+   "M1_C0_none": -0.12699999999999986,
+   "M1_C1_none": -0.12699999999999986,
+   "M1_C2_none": -999.0,
+   "M1_C0_90": 2.2016,
+   "M1_C1_90": 2.2016,
+   "M1_C2_90": -999.0,
+   "M1_C0_180": -0.37839999999999996,
+   "M1_C1_180": -0.37839999999999996,
+   "M1_C2_180": -999.0,
+   "M1_C0_365": -0.12699999999999978,
+   "M1_C1_365": -0.12699999999999978,
+   "M1_C2_365": -999.0,
+   "M2_C0_none": 3.5896666666666666,
+   "M2_C1_none": 3.5896666666666666,
+   "M2_C2_none": -999.0,
+   "M2_C0_90": 3.97275,
+   "M2_C1_90": 3.97275,
+   "M2_C2_90": -999.0,
+   "M2_C0_180": 3.97275,
+   "M2_C1_180": 3.97275,
+   "M2_C2_180": -999.0,
+   "M2_C0_365": 3.5896666666666666,
+   "M2_C1_365": 3.5896666666666666,
+   "M2_C2_365": -999.0
+  },
+  "single_peak": "M2_C0_none",
+  "chosen_plateau": -0.6146666666666665,
+  "chosen_ret": -6.68,
+  "neighbors_of_chosen": {
+   "M0_C0_90": 4.311,
+   "M1_C0_none": 0.525
+  }
+ },
+ "versions_is": {
+  "M0_C0_none": {
+   "shared_net": -207.07,
+   "shared_ret": -6.68,
+   "cycles": 111
+  },
+  "M0_C1_none": {
+   "shared_net": -207.07,
+   "shared_ret": -6.68,
+   "cycles": 111
+  },
+  "M0_C2_none": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M0_C0_90": {
+   "shared_net": 129.32,
+   "shared_ret": 4.311,
+   "cycles": 120
+  },
+  "M0_C1_90": {
+   "shared_net": 129.32,
+   "shared_ret": 4.311,
+   "cycles": 120
+  },
+  "M0_C2_90": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M0_C0_180": {
+   "shared_net": -266.25,
+   "shared_ret": -8.589,
+   "cycles": 111
+  },
+  "M0_C1_180": {
+   "shared_net": -266.25,
+   "shared_ret": -8.589,
+   "cycles": 111
+  },
+  "M0_C2_180": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M0_C0_365": {
+   "shared_net": -207.07,
+   "shared_ret": -6.68,
+   "cycles": 111
+  },
+  "M0_C1_365": {
+   "shared_net": -207.07,
+   "shared_ret": -6.68,
+   "cycles": 111
+  },
+  "M0_C2_365": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M1_C0_none": {
+   "shared_net": 8.14,
+   "shared_ret": 0.525,
+   "cycles": 29
+  },
+  "M1_C1_none": {
+   "shared_net": 8.14,
+   "shared_ret": 0.525,
+   "cycles": 29
+  },
+  "M1_C2_none": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M1_C0_90": {
+   "shared_net": 8.14,
+   "shared_ret": 0.525,
+   "cycles": 29
+  },
+  "M1_C1_90": {
+   "shared_net": 8.14,
+   "shared_ret": 0.525,
+   "cycles": 29
+  },
+  "M1_C2_90": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M1_C0_180": {
+   "shared_net": 8.14,
+   "shared_ret": 0.525,
+   "cycles": 29
+  },
+  "M1_C1_180": {
+   "shared_net": 8.14,
+   "shared_ret": 0.525,
+   "cycles": 29
+  },
+  "M1_C2_180": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M1_C0_365": {
+   "shared_net": 8.14,
+   "shared_ret": 0.525,
+   "cycles": 29
+  },
+  "M1_C1_365": {
+   "shared_net": 8.14,
+   "shared_ret": 0.525,
+   "cycles": 29
+  },
+  "M1_C2_365": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M2_C0_none": {
+   "shared_net": 43.54,
+   "shared_ret": 5.122,
+   "cycles": 17
+  },
+  "M2_C1_none": {
+   "shared_net": 43.54,
+   "shared_ret": 5.122,
+   "cycles": 17
+  },
+  "M2_C2_none": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M2_C0_90": {
+   "shared_net": 43.54,
+   "shared_ret": 5.122,
+   "cycles": 17
+  },
+  "M2_C1_90": {
+   "shared_net": 43.54,
+   "shared_ret": 5.122,
+   "cycles": 17
+  },
+  "M2_C2_90": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M2_C0_180": {
+   "shared_net": 43.54,
+   "shared_ret": 5.122,
+   "cycles": 17
+  },
+  "M2_C1_180": {
+   "shared_net": 43.54,
+   "shared_ret": 5.122,
+   "cycles": 17
+  },
+  "M2_C2_180": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  },
+  "M2_C0_365": {
+   "shared_net": 43.54,
+   "shared_ret": 5.122,
+   "cycles": 17
+  },
+  "M2_C1_365": {
+   "shared_net": 43.54,
+   "shared_ret": 5.122,
+   "cycles": 17
+  },
+  "M2_C2_365": {
+   "shared_net": 0.0,
+   "shared_ret": null,
+   "cycles": 0
+  }
+ }
+}
