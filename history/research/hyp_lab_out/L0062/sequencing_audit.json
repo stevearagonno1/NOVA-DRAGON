@@ -1,0 +1,295 @@
+{
+  "files": 32,
+  "files_with_overlap": 2,
+  "overlap": 159,
+  "results": [
+    {
+      "trades": 157,
+      "overlapping_trades": 69,
+      "overlap_ratio": 0.43949,
+      "max_concurrent": 4,
+      "symbols_with_overlap": 14,
+      "status": "overlap",
+      "file": "trades_a_bear16_c00130_JUD.csv"
+    },
+    {
+      "trades": 166,
+      "overlapping_trades": 90,
+      "overlap_ratio": 0.542169,
+      "max_concurrent": 4,
+      "symbols_with_overlap": 13,
+      "status": "overlap",
+      "file": "trades_a_bear16_c00130_SEL.csv"
+    },
+    {
+      "trades": 118,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_bear16_r_110060_JUD.csv"
+    },
+    {
+      "trades": 113,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_bear16_r_110060_SEL.csv"
+    },
+    {
+      "trades": 118,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_bear16_r_210060_JUD.csv"
+    },
+    {
+      "trades": 113,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_bear16_r_210060_SEL.csv"
+    },
+    {
+      "trades": 118,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_bear16_r_310060_JUD.csv"
+    },
+    {
+      "trades": 113,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_bear16_r_310060_SEL.csv"
+    },
+    {
+      "trades": 118,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_bear16_r_410060_JUD.csv"
+    },
+    {
+      "trades": 113,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_bear16_r_410060_SEL.csv"
+    },
+    {
+      "trades": 118,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_bear16_r_510060_JUD.csv"
+    },
+    {
+      "trades": 113,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_bear16_r_510060_SEL.csv"
+    },
+    {
+      "trades": 148,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open16_r_110060_JUD.csv"
+    },
+    {
+      "trades": 121,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open16_r_110060_SEL.csv"
+    },
+    {
+      "trades": 148,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open16_r_210060_JUD.csv"
+    },
+    {
+      "trades": 121,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open16_r_210060_SEL.csv"
+    },
+    {
+      "trades": 148,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open16_r_310060_JUD.csv"
+    },
+    {
+      "trades": 121,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open16_r_310060_SEL.csv"
+    },
+    {
+      "trades": 148,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open16_r_410060_JUD.csv"
+    },
+    {
+      "trades": 121,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open16_r_410060_SEL.csv"
+    },
+    {
+      "trades": 148,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open16_r_510060_JUD.csv"
+    },
+    {
+      "trades": 121,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open16_r_510060_SEL.csv"
+    },
+    {
+      "trades": 31,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open4_r_110060_JUD.csv"
+    },
+    {
+      "trades": 33,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open4_r_110060_SEL.csv"
+    },
+    {
+      "trades": 31,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open4_r_210060_JUD.csv"
+    },
+    {
+      "trades": 33,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open4_r_210060_SEL.csv"
+    },
+    {
+      "trades": 31,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open4_r_310060_JUD.csv"
+    },
+    {
+      "trades": 33,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open4_r_310060_SEL.csv"
+    },
+    {
+      "trades": 31,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open4_r_410060_JUD.csv"
+    },
+    {
+      "trades": 33,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open4_r_410060_SEL.csv"
+    },
+    {
+      "trades": 31,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open4_r_510060_JUD.csv"
+    },
+    {
+      "trades": 33,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_d_open4_r_510060_SEL.csv"
+    }
+  ]
+}
