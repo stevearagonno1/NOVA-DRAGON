@@ -1,0 +1,46 @@
+{
+ "lane": "L0076",
+ "title": "مقارنة محايدة ثم اختيار ثلاثة مؤشرات متنوعة (فئة/فئة) كتأكيد لإشارات البنية، مع فصل زمني train/holdout",
+ "written_before_measuring": "كُتب وثُبّت في commit مستقل قبل حساب أي نتيجة. التعريفات منقولة حرفيًا من uploads/TASK-L0076-NEUTRAL-THREE-FAMILIES.md. الأسماء الثلاثة تُختار من فترة الاختيار (train) فقط وتُثبَّت في selection_l0076.json قبل قراءة أي نتيجة holdout.",
+ "study_type": "قياس فائدة التأكيد فقط — لا إدارة صفقة، لا وقف، لا رسوم، لا رأس مال، لا تداول حي",
+ "starting_point": {"branch": "arena/l0074-classic-confirmation-2026-09-27", "baseline": "L0073 structure signals + L0074 confirmation engine", "no_edit": ["L0070", "L0071", "L0072", "L0073", "L0074"]},
+ "locked_source": {
+  "nova_v8/microstructure.py": {"blob": "b0de2b54d8c8950662750fb6441595be789e5e68", "use": "MSS/FVG/SFP عبر l0073_study.fires بلا تعديل"},
+  "nova_v8/indicators.py": {"blob": "44349d672aec159defc734db0d17628f37bab815", "use": "compute_matrix — أعمدة المؤشرات؛ wilder_atr(df,14)"},
+  "nova_v8/triggers.py": {"blob": "8c47f1b00920562a12e0c3f1ed2cd0e0964f65b2", "use": "build_triggers — شروط long/short للمؤشرات كما هي (level)، عبر l0074_study.classic_conditions"}
+ },
+ "families": {
+  "A_liquidity_flow": ["OBV"],
+  "B_price_candle_vol": ["Bollinger"],
+  "C_trend_momentum": ["RSI", "MACD", "EMA", "ADX", "Stochastic"],
+  "note": "Bollinger و Z-Score عائلة رياضية واحدة عند الإعداد المقابل ⇒ لا يُحسبان مرشحين مستقلين؛ Z-Score غير مُدرج"
+ },
+ "structure_signals": {"components": ["MSS", "FVG", "SFP"], "definition": "إشارات L0073 نفسها دون تعديل (edge fire)", "role": "سياق ثابت؛ كل مرشح كلاسيكي يختبر كتأكيد مستقل"},
+ "confirmation": {"rule": "confirmed[i] = structure_fire[i] AND classic_condition_in_direction[i]", "path": "نفس الشمعة فقط؛ لا نافذة لاحقة في مرحلة الاختيار", "level_not_edge": "شرط المؤشر يُقرأ كمستوى عند إغلاق i (كما L0074)"},
+ "time_split": {
+  "train_selection": {"start": "2021-09-01T00:00Z", "end_exclusive": "2024-08-31T00:00Z"},
+  "embargo": {"gap": "2024-08-31 → 2024-09-04", "bars_4h": 18, "days": 3, "rule": "كل إشارة بنيوية تقع في الفجوة تُسقط تمامًا؛ الفجوة (≥18 شمعة) ≥ أقصى أفق (18) فلا تتسرب نتيجة train إلى holdout"},
+  "holdout_oos": {"start_inclusive": "2024-09-04T00:00Z", "end_exclusive": "2026-08-31T00:00Z"},
+  "causality": "المؤشرات تُحسب على السلسلة الكاملة (سببية، بلا مستقبل)؛ الفصل يخص أي الإشارات تُستخدم للاختيار مقابل التقييم فقط"
+ },
+ "selection_rule": {
+  "metric_scope": "تُجمّع نتائج كل مرشح عبر المكونات الثلاثة (MSS+FVG+SFP، اتجاهان) على train فقط ⇒ رقم واحد لكل مؤشر",
+  "validity_gates": ["الحالات المحسومة ≥ 100", "التغطية ≥ 20% من إشارات البنية الخام (train)", "يتفوق على وسيط خط الأساس العشوائي (train)"],
+  "ranking_among_valid": ["الأعلى دقة اتجاهية", "ثم الأعلى حد Wilson الأدنى", "ثم الأعلى تغطية", "ثم الأعلى hit_rate_all"],
+  "per_family": "يُختار مؤشر واحد فقط من كل فئة؛ الفئة A=OBV والفئة B=Bollinger يُتحقق منهما بنفس البوابات؛ الفئة C تُقارن مرشحاتها الخمسة",
+  "no_valid": "إذا لم يجتز أي مرشح في فئة البوابات ⇒ الفئة لم تقدم مرشحًا صالحًا (لا يُجبر اختيار مؤشر ضعيف)",
+  "freeze": "الأسماء تُكتب في selection_l0076.json وتُودَع في commit قبل قراءة holdout"
+ },
+ "holdout_paths": {
+  "singles": "تأكيد كل مؤشر مختار وحده على holdout",
+  "combinations": ["2 من 3 (≥2 من المؤشرات الثلاثة المختارة متوافقة عند i)", "3 من 3 (الثلاثة متوافقة عند i)"],
+  "compare_each_to": ["الإشارة البنيوية الخام", "كل مؤشر منفرد مختار", "اتحاد 2/3", "اتحاد 3/3"],
+  "forbidden": ["مؤشر رابع", "تغيير شرط 2/3 أو 3/3", "اختبار كل المؤشرات كتركيبة نهائية"]
+ },
+ "outcome_base": {"reference": "close[i]", "atr": "ATR14[i] Wilder/RMA", "target": "+1 ATR قبل -1 ATR (يُعكس للهابط)", "horizon": 6, "engine": "l0073_study.outcome_arrays بلا تعديل"},
+ "outcome_sensitivity": {"target": "+2 ATR", "adverse": "-1 ATR", "horizon": 18, "use": "مرة واحدة للعرض"},
+ "metrics": ["signals", "decided", "directional_accuracy", "hit_rate_all", "Wilson95", "فرق عن البنية الخام", "coverage", "rejection_rate", "neither", "ambiguous", "MAE/MFE", "time_to_target", "sensitivity", "per_asset", "per_year"],
+ "random_control": {"draws": 1000, "seed": 76, "rule": "تُثبَّت شموع الإشارة البنيوية وعددها وتوزيع الأصول/الفترات؛ تُخلط حالة التأكيد داخل نفس الأصل مع حفظ عدد المؤكد لكل أصل؛ يُحسب توزيع الدقة", "use_in": ["train (بوابة الاختيار)", "holdout (المسارات النهائية)"]},
+ "checks": ["1 المؤشر عند i يستخدم ≤ i", "2 الاختيار من train فقط", "3 الأسماء الثلاثة تُثبت قبل قراءة holdout (selection_l0076.json مُودع قبله)", "4 لا تدخل بيانات holdout في اختيار الأسماء", "5 لا تتغير إشارات L0073 الخام (العدد = L0073)", "6 لا إدارة صفقة أو تكاليف", "7 Bollinger و Z-Score ليسا عائلتين مستقلتين (Bollinger مرة واحدة، لا Z-Score)", "8 لا أسرار أو رموز وصول"],
+ "forbidden": ["ثلاثة مؤشرات من نفس الفئة", "اختيار الأسماء من نتائج holdout", "أعلى رقم من عينة صغيرة", "اختبار كل المؤشرات كتركيبة نهائية", "مؤشر رابع", "fixed_stop_only", "إغلاق L0070–L0074", "دمج إلى main", "تشغيل حي", "تسمية النتيجة استراتيجية رابحة قبل دراسة إدارة مستقلة"]
+}
