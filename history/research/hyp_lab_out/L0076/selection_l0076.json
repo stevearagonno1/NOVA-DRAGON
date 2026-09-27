@@ -1,0 +1,33 @@
+{
+ "train_period": [
+  "2021-09-01 00:00:00+00:00",
+  "2024-08-31 00:00:00+00:00"
+ ],
+ "gates": {
+  "decided_min": 100,
+  "coverage_min": 0.2,
+  "beats_random_median": true
+ },
+ "ranking": [
+  "directional_accuracy",
+  "wilson_lo",
+  "coverage",
+  "hit_rate_all"
+ ],
+ "selection": {
+  "A_liquidity_flow": "OBV",
+  "B_price_candle_vol": null,
+  "C_trend_momentum": "EMA"
+ },
+ "reasons": {
+  "A_liquidity_flow": "اختير OBV: دقة اتجاهية 0.5218 على 6458 حالة محسومة، تغطية 0.642، Wilson-lo 0.5096، وسيط العشوائي 0.5128",
+  "B_price_candle_vol": "لا مرشح اجتاز البوابات (≥100 محسوم، ≥20% تغطية، يتفوق على وسيط العشوائي)",
+  "C_trend_momentum": "اختير EMA: دقة اتجاهية 0.5246 على 3849 حالة محسومة، تغطية 0.382، Wilson-lo 0.5088، وسيط العشوائي 0.5177"
+ },
+ "chosen_names": [
+  "OBV",
+  "EMA"
+ ],
+ "n_selected": 2,
+ "frozen_note": "هذه الأسماء مُثبتة من train فقط، وتُودَع في commit قبل قراءة أي نتيجة holdout."
+}
