@@ -1,0 +1,85 @@
+{
+ "sections": {
+  "prereg_sha": {
+   "pass1": "f1f5cd6e337d3ac7",
+   "pass2": "f1f5cd6e337d3ac7",
+   "equal": true
+  },
+  "sweep_SEL": {
+   "pass1": "cc3cfb3c2b230b74",
+   "pass2": "cc3cfb3c2b230b74",
+   "equal": true
+  },
+  "fixed": {
+   "pass1": "b16d899e8aa9b388",
+   "pass2": "b16d899e8aa9b388",
+   "equal": true
+  },
+  "coins_fixed": {
+   "pass1": "9bab31ab76eb1394",
+   "pass2": "9bab31ab76eb1394",
+   "equal": true
+  },
+  "coin_reasons_SEL": {
+   "pass1": "24fe7ed6531adbc1",
+   "pass2": "24fe7ed6531adbc1",
+   "equal": true
+  },
+  "research_FULL16": {
+   "pass1": "b192fce64e457f31",
+   "pass2": "b192fce64e457f31",
+   "equal": true
+  },
+  "walk_forward": {
+   "pass1": "bb5de05e734e901c",
+   "pass2": "bb5de05e734e901c",
+   "equal": true
+  },
+  "coins": {
+   "pass1": "a4550dc9710bed04",
+   "pass2": "a4550dc9710bed04",
+   "equal": true
+  },
+  "gates": {
+   "pass1": "e806601b8b6031b6",
+   "pass2": "e806601b8b6031b6",
+   "equal": true
+  },
+  "blocks": {
+   "pass1": "7db4bc794994b9de",
+   "pass2": "7db4bc794994b9de",
+   "equal": true
+  },
+  "economics": {
+   "pass1": "81aae10d867838e6",
+   "pass2": "81aae10d867838e6",
+   "equal": true
+  }
+ },
+ "sweep_csv_equal": true,
+ "ALL_EQUAL": true,
+ "python": "3.13.14",
+ "platform": "Linux-6.1.158+-x86_64-with-glibc2.41",
+ "numpy": "2.3.5",
+ "pandas": "2.2.3",
+ "files_sha256": {
+  "checks.json": "49c11153e656c751",
+  "match_report.json": "fc1de0c57a3cb1a5",
+  "preregistration_l0067.json": "567445815d279605",
+  "results.json": "79581cd9e9c0b396",
+  "results_pass1.json": "79581cd9e9c0b396",
+  "results_pass2.json": "6c264044a3df1fd7",
+  "sweep_SEL_pass1.csv": "423921602fd6b92e",
+  "sweep_SEL_pass2.csv": "423921602fd6b92e",
+  "trades_fixed_TARGET13_JUD.csv": "149e640b262bfbea",
+  "trades_fixed_TARGET13_SEL.csv": "8bd2cd2a3d845618",
+  "trades_wf_W1.csv": "0cc3c6732d35698d",
+  "trades_wf_W2.csv": "cc8780c50d38fd0b",
+  "trades_wf_W3.csv": "2f65696c6a7f33ff",
+  "trades_wf_W4.csv": "e3fac3d8d0d65f81",
+  "trades_wf_W5.csv": "b4dce6bfbf662ad6",
+  "trades_wf_W6.csv": "fde74f516ded02ab",
+  "trades_wf_W7.csv": "02d976f18f142476",
+  "wf_L0064_reference.json": "ff415dc13e8df50f"
+ }
+}

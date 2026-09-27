@@ -1,0 +1,123 @@
+{
+ "leakage": {
+  "filter_M1_2022-09-01": true,
+  "filter_M1_2023-06-01": true,
+  "filter_M1_2025-03-01": true,
+  "filter_M2_2022-09-01": true,
+  "filter_M2_2023-06-01": true,
+  "filter_M2_2025-03-01": true,
+  "engine_M0_90_BTCUSDT_2022-09-01": true,
+  "engine_M0_90_BTCUSDT_2023-06-01": true,
+  "engine_M0_90_BTCUSDT_2025-03-01": true,
+  "engine_M0_90_ETHUSDT_2022-09-01": true,
+  "engine_M0_90_ETHUSDT_2023-06-01": true,
+  "engine_M0_90_ETHUSDT_2025-03-01": true,
+  "engine_M0_90_ATOMUSDT_2022-09-01": true,
+  "engine_M0_90_ATOMUSDT_2023-06-01": true,
+  "engine_M0_90_ATOMUSDT_2025-03-01": true,
+  "engine_M0_90_LINKUSDT_2022-09-01": true,
+  "engine_M0_90_LINKUSDT_2023-06-01": true,
+  "engine_M0_90_LINKUSDT_2025-03-01": true,
+  "engine_M2_365_BTCUSDT_2022-09-01": true,
+  "engine_M2_365_BTCUSDT_2023-06-01": true,
+  "engine_M2_365_BTCUSDT_2025-03-01": true,
+  "engine_M2_365_ETHUSDT_2022-09-01": true,
+  "engine_M2_365_ETHUSDT_2023-06-01": true,
+  "engine_M2_365_ETHUSDT_2025-03-01": true,
+  "engine_M2_365_ATOMUSDT_2022-09-01": true,
+  "engine_M2_365_ATOMUSDT_2023-06-01": true,
+  "engine_M2_365_ATOMUSDT_2025-03-01": true,
+  "engine_M2_365_LINKUSDT_2022-09-01": true,
+  "engine_M2_365_LINKUSDT_2023-06-01": true,
+  "engine_M2_365_LINKUSDT_2025-03-01": true,
+  "engine_M1_180_BTCUSDT_2022-09-01": true,
+  "engine_M1_180_BTCUSDT_2023-06-01": true,
+  "engine_M1_180_BTCUSDT_2025-03-01": true,
+  "engine_M1_180_ETHUSDT_2022-09-01": true,
+  "engine_M1_180_ETHUSDT_2023-06-01": true,
+  "engine_M1_180_ETHUSDT_2025-03-01": true,
+  "engine_M1_180_ATOMUSDT_2022-09-01": true,
+  "engine_M1_180_ATOMUSDT_2023-06-01": true,
+  "engine_M1_180_ATOMUSDT_2025-03-01": true,
+  "engine_M1_180_LINKUSDT_2022-09-01": true,
+  "engine_M1_180_LINKUSDT_2023-06-01": true,
+  "engine_M1_180_LINKUSDT_2025-03-01": true
+ },
+ "fill_guard": {
+  "trades_fixed_TARGET13_JUD.csv": {
+   "rc": 0,
+   "tail": "══════════════════════════════════════════════════════════════════════════"
+  },
+  "trades_fixed_TARGET13_SEL.csv": {
+   "rc": 0,
+   "tail": "══════════════════════════════════════════════════════════════════════════"
+  },
+  "trades_wf_W1.csv": {
+   "rc": 0,
+   "tail": "══════════════════════════════════════════════════════════════════════════"
+  },
+  "trades_wf_W2.csv": {
+   "rc": 0,
+   "tail": "══════════════════════════════════════════════════════════════════════════"
+  },
+  "trades_wf_W3.csv": {
+   "rc": 0,
+   "tail": "══════════════════════════════════════════════════════════════════════════"
+  },
+  "trades_wf_W4.csv": {
+   "rc": 0,
+   "tail": "══════════════════════════════════════════════════════════════════════════"
+  },
+  "trades_wf_W5.csv": {
+   "rc": 0,
+   "tail": "══════════════════════════════════════════════════════════════════════════"
+  },
+  "trades_wf_W6.csv": {
+   "rc": 0,
+   "tail": "══════════════════════════════════════════════════════════════════════════"
+  },
+  "trades_wf_W7.csv": {
+   "rc": 0,
+   "tail": "══════════════════════════════════════════════════════════════════════════"
+  }
+ },
+ "shared_sequencing": {
+  "L0064_SEL": {
+   "scaled_bars": 0,
+   "scaled_slices": 0,
+   "requested_usd": 25700.0,
+   "cut_usd": 0.0,
+   "cap_violations": 0,
+   "min_cash": 9136.370600592185,
+   "overdraft": 0
+  },
+  "L0064_JUD": {
+   "scaled_bars": 0,
+   "scaled_slices": 0,
+   "requested_usd": 23200.0,
+   "cut_usd": 0.0,
+   "cap_violations": 0,
+   "min_cash": 9870.259529959105,
+   "overdraft": 0
+  },
+  "fixed_SEL": {
+   "scaled_bars": 0,
+   "scaled_slices": 0,
+   "requested_usd": 4800.0,
+   "cut_usd": 0.0,
+   "cap_violations": 0,
+   "min_cash": 12445.93150657162,
+   "overdraft": 0
+  },
+  "fixed_JUD": {
+   "scaled_bars": 0,
+   "scaled_slices": 0,
+   "requested_usd": 4650.0,
+   "cut_usd": 0.0,
+   "cap_violations": 0,
+   "min_cash": 12236.266099126095,
+   "overdraft": 0
+  }
+ },
+ "ALL_OK": true
+}

@@ -1,0 +1,2119 @@
+{
+ "pass": "pass1",
+ "prereg_sha": "567445815d279605",
+ "sweep_SEL": {
+  "M0·C0·بلا حد": {
+   "net130": 105.48,
+   "net115": 113.22,
+   "eligible": false,
+   "dd_pct_peak": -79.6,
+   "cycles": 92,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "GRAMUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "RENDERUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 105.48,
+   "n_neighbors": 3
+  },
+  "M0·C1·بلا حد": {
+   "net130": 105.48,
+   "net115": 113.22,
+   "eligible": false,
+   "dd_pct_peak": -79.6,
+   "cycles": 92,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 105.48,
+   "n_neighbors": 4
+  },
+  "M0·C2·بلا حد": {
+   "net130": 425.91,
+   "net115": 427.31,
+   "eligible": true,
+   "dd_pct_peak": -23.08,
+   "cycles": 16,
+   "coins": [
+    "ATOMUSDT",
+    "ETHUSDT"
+   ],
+   "plateau": 265.69,
+   "n_neighbors": 3
+  },
+  "M0·C0·365ي": {
+   "net130": 105.48,
+   "net115": 113.22,
+   "eligible": false,
+   "dd_pct_peak": -79.6,
+   "cycles": 92,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "GRAMUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "RENDERUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 105.48,
+   "n_neighbors": 4
+  },
+  "M0·C1·365ي": {
+   "net130": 105.48,
+   "net115": 113.22,
+   "eligible": false,
+   "dd_pct_peak": -79.6,
+   "cycles": 92,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 105.48,
+   "n_neighbors": 5
+  },
+  "M0·C2·365ي": {
+   "net130": 425.91,
+   "net115": 427.31,
+   "eligible": true,
+   "dd_pct_peak": -23.08,
+   "cycles": 16,
+   "coins": [
+    "ATOMUSDT",
+    "ETHUSDT"
+   ],
+   "plateau": 330.33,
+   "n_neighbors": 4
+  },
+  "M0·C0·180ي": {
+   "net130": 46.32,
+   "net115": 54.04,
+   "eligible": false,
+   "dd_pct_peak": -79.53,
+   "cycles": 92,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "GRAMUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "RENDERUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 105.48,
+   "n_neighbors": 4
+  },
+  "M0·C1·180ي": {
+   "net130": 46.32,
+   "net115": 54.04,
+   "eligible": false,
+   "dd_pct_peak": -79.53,
+   "cycles": 92,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 165.9,
+   "n_neighbors": 5
+  },
+  "M0·C2·180ي": {
+   "net130": 330.33,
+   "net115": 331.28,
+   "eligible": true,
+   "dd_pct_peak": -24.24,
+   "cycles": 12,
+   "coins": [
+    "ATOMUSDT"
+   ],
+   "plateau": 330.33,
+   "n_neighbors": 4
+  },
+  "M0·C0·90ي": {
+   "net130": 441.13,
+   "net115": 449.61,
+   "eligible": false,
+   "dd_pct_peak": -70.84,
+   "cycles": 101,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "GRAMUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "RENDERUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 333.73,
+   "n_neighbors": 3
+  },
+  "M0·C1·90ي": {
+   "net130": 441.13,
+   "net115": 449.61,
+   "eligible": false,
+   "dd_pct_peak": -70.84,
+   "cycles": 101,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 411.52,
+   "n_neighbors": 4
+  },
+  "M0·C2·90ي": {
+   "net130": 411.52,
+   "net115": 413.08,
+   "eligible": true,
+   "dd_pct_peak": -23.08,
+   "cycles": 18,
+   "coins": [
+    "ATOMUSDT",
+    "ETHUSDT"
+   ],
+   "plateau": 370.92,
+   "n_neighbors": 3
+  },
+  "M1·C0·بلا حد": {
+   "net130": 226.33,
+   "net115": 227.79,
+   "eligible": true,
+   "dd_pct_peak": -17.24,
+   "cycles": 19,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "GRAMUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "RENDERUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 226.33,
+   "n_neighbors": 4
+  },
+  "M1·C1·بلا حد": {
+   "net130": 226.33,
+   "net115": 227.79,
+   "eligible": true,
+   "dd_pct_peak": -17.24,
+   "cycles": 19,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 165.9,
+   "n_neighbors": 5
+  },
+  "M1·C2·بلا حد": {
+   "net130": 38.51,
+   "net115": 38.64,
+   "eligible": true,
+   "dd_pct_peak": -5.41,
+   "cycles": 1,
+   "coins": [
+    "ETHUSDT"
+   ],
+   "plateau": 122.14,
+   "n_neighbors": 4
+  },
+  "M1·C0·365ي": {
+   "net130": 226.33,
+   "net115": 227.79,
+   "eligible": true,
+   "dd_pct_peak": -17.24,
+   "cycles": 19,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "GRAMUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "RENDERUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 226.33,
+   "n_neighbors": 5
+  },
+  "M1·C1·365ي": {
+   "net130": 226.33,
+   "net115": 227.79,
+   "eligible": true,
+   "dd_pct_peak": -17.24,
+   "cycles": 19,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 226.33,
+   "n_neighbors": 6
+  },
+  "M1·C2·365ي": {
+   "net130": 38.51,
+   "net115": 38.64,
+   "eligible": true,
+   "dd_pct_peak": -5.41,
+   "cycles": 1,
+   "coins": [
+    "ETHUSDT"
+   ],
+   "plateau": 80.32,
+   "n_neighbors": 5
+  },
+  "M1·C0·180ي": {
+   "net130": 226.33,
+   "net115": 227.79,
+   "eligible": true,
+   "dd_pct_peak": -17.24,
+   "cycles": 19,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "GRAMUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "RENDERUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 226.33,
+   "n_neighbors": 5
+  },
+  "M1·C1·180ي": {
+   "net130": 226.33,
+   "net115": 227.79,
+   "eligible": true,
+   "dd_pct_peak": -17.24,
+   "cycles": 19,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 226.33,
+   "n_neighbors": 6
+  },
+  "M1·C2·180ي": {
+   "net130": 38.51,
+   "net115": 38.64,
+   "eligible": true,
+   "dd_pct_peak": -5.41,
+   "cycles": 1,
+   "coins": [
+    "ETHUSDT"
+   ],
+   "plateau": 80.32,
+   "n_neighbors": 5
+  },
+  "M1·C0·90ي": {
+   "net130": 226.33,
+   "net115": 227.79,
+   "eligible": true,
+   "dd_pct_peak": -17.24,
+   "cycles": 19,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "GRAMUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "RENDERUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 226.33,
+   "n_neighbors": 4
+  },
+  "M1·C1·90ي": {
+   "net130": 226.33,
+   "net115": 227.79,
+   "eligible": true,
+   "dd_pct_peak": -17.24,
+   "cycles": 19,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 226.33,
+   "n_neighbors": 5
+  },
+  "M1·C2·90ي": {
+   "net130": 38.51,
+   "net115": 38.64,
+   "eligible": true,
+   "dd_pct_peak": -5.41,
+   "cycles": 1,
+   "coins": [
+    "ETHUSDT"
+   ],
+   "plateau": 122.14,
+   "n_neighbors": 4
+  },
+  "M2·C0·بلا حد": {
+   "net130": 84.69,
+   "net115": 85.38,
+   "eligible": true,
+   "dd_pct_peak": -21.34,
+   "cycles": 13,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "GRAMUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "RENDERUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 84.69,
+   "n_neighbors": 3
+  },
+  "M2·C1·بلا حد": {
+   "net130": 84.69,
+   "net115": 85.38,
+   "eligible": true,
+   "dd_pct_peak": -21.34,
+   "cycles": 13,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 84.69,
+   "n_neighbors": 4
+  },
+  "M2·C2·بلا حد": {
+   "net130": 122.14,
+   "net115": 122.27,
+   "eligible": true,
+   "dd_pct_peak": -6.36,
+   "cycles": 2,
+   "coins": [
+    "ETHUSDT",
+    "IMXUSDT"
+   ],
+   "plateau": 103.42,
+   "n_neighbors": 3
+  },
+  "M2·C0·365ي": {
+   "net130": 84.69,
+   "net115": 85.38,
+   "eligible": true,
+   "dd_pct_peak": -21.34,
+   "cycles": 13,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "GRAMUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "RENDERUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 84.69,
+   "n_neighbors": 4
+  },
+  "M2·C1·365ي": {
+   "net130": 84.69,
+   "net115": 85.38,
+   "eligible": true,
+   "dd_pct_peak": -21.34,
+   "cycles": 13,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 84.69,
+   "n_neighbors": 5
+  },
+  "M2·C2·365ي": {
+   "net130": 122.14,
+   "net115": 122.27,
+   "eligible": true,
+   "dd_pct_peak": -6.36,
+   "cycles": 2,
+   "coins": [
+    "ETHUSDT",
+    "IMXUSDT"
+   ],
+   "plateau": 122.14,
+   "n_neighbors": 4
+  },
+  "M2·C0·180ي": {
+   "net130": 84.69,
+   "net115": 85.38,
+   "eligible": true,
+   "dd_pct_peak": -21.34,
+   "cycles": 13,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "GRAMUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "RENDERUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 84.69,
+   "n_neighbors": 4
+  },
+  "M2·C1·180ي": {
+   "net130": 84.69,
+   "net115": 85.38,
+   "eligible": true,
+   "dd_pct_peak": -21.34,
+   "cycles": 13,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 84.69,
+   "n_neighbors": 5
+  },
+  "M2·C2·180ي": {
+   "net130": 122.14,
+   "net115": 122.27,
+   "eligible": true,
+   "dd_pct_peak": -6.36,
+   "cycles": 2,
+   "coins": [
+    "ETHUSDT",
+    "IMXUSDT"
+   ],
+   "plateau": 122.14,
+   "n_neighbors": 4
+  },
+  "M2·C0·90ي": {
+   "net130": 84.69,
+   "net115": 85.38,
+   "eligible": true,
+   "dd_pct_peak": -21.34,
+   "cycles": 13,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "GRAMUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "RENDERUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 84.69,
+   "n_neighbors": 3
+  },
+  "M2·C1·90ي": {
+   "net130": 84.69,
+   "net115": 85.38,
+   "eligible": true,
+   "dd_pct_peak": -21.34,
+   "cycles": 13,
+   "coins": [
+    "ATOMUSDT",
+    "BNBUSDT",
+    "BTCUSDT",
+    "ETHUSDT",
+    "FILUSDT",
+    "HNTUSDT",
+    "IMXUSDT",
+    "LINKUSDT",
+    "SOLUSDT",
+    "VETUSDT",
+    "XLMUSDT"
+   ],
+   "plateau": 84.69,
+   "n_neighbors": 4
+  },
+  "M2·C2·90ي": {
+   "net130": 122.14,
+   "net115": 122.27,
+   "eligible": true,
+   "dd_pct_peak": -6.36,
+   "cycles": 2,
+   "coins": [
+    "ETHUSDT",
+    "IMXUSDT"
+   ],
+   "plateau": 103.42,
+   "n_neighbors": 3
+  }
+ },
+ "fixed": {
+  "config": "M0·C2·90ي",
+  "why": "أعلى هضبة جيران بين المؤهلة",
+  "top_single": "M0·C0·90ي",
+  "top_single_net130": 441.13,
+  "median_all_36": 113.81,
+  "eligible_count": 28,
+  "fixed_plateau": 370.92,
+  "fixed_net130_SEL": 411.52
+ },
+ "coins_fixed": [
+  "ATOMUSDT",
+  "ETHUSDT"
+ ],
+ "coin_reasons_SEL": {
+  "ATOMUSDT": "C2: صافي 330$ · هبوط -170$ · بلا أفضل دورة 43$",
+  "BNBUSDT": "C1: فشل ex_best_cycle>=0 (صافي 19$)",
+  "BTCUSDT": "C1: فشل ex_best_cycle>=0 (صافي 63$)",
+  "ETHUSDT": "C2: صافي 81$ · هبوط -149$ · بلا أفضل دورة 10$",
+  "FILUSDT": "C1: فشل net>0,avg>0,dd<=400,ex_best_cycle>=0 (صافي -116$)",
+  "GRAMUSDT": "C0 فقط: بيانات 0.0 شهرًا · دورات M0 0",
+  "HNTUSDT": "C1: فشل ex_best_cycle>=0 (صافي 3$)",
+  "IMXUSDT": "C1: فشل ex_best_cycle>=0 (صافي 90$)",
+  "LINKUSDT": "C1: فشل ex_best_cycle>=0 (صافي 141$)",
+  "RENDERUSDT": "C0 فقط: بيانات 0.0 شهرًا · دورات M0 0",
+  "SOLUSDT": "C1: فشل net>0,avg>0,ex_best_cycle>=0 (صافي -152$)",
+  "VETUSDT": "C1: فشل net>0,avg>0,ex_best_cycle>=0 (صافي -29$)",
+  "XLMUSDT": "C1: فشل ex_best_cycle>=0 (صافي 9$)"
+ },
+ "research_FULL16": {
+  "L0064": {
+   "SEL": 998.66,
+   "JUD": 1901.6
+  },
+  "fixed_M_TL": {
+   "SEL": 1329.97,
+   "JUD": 1629.3
+  }
+ },
+ "walk_forward": [
+  {
+   "window": "W1",
+   "test": "2022-09-01→2023-03-01",
+   "fixed": "M0·C0·بلا حد",
+   "coins": 13,
+   "net115": 465.34,
+   "net130": 463.08,
+   "cycles": 22,
+   "dd_pct_peak": -29.89,
+   "underwater_days": 69.3,
+   "L0064_net115": 465.34,
+   "buy_hold": 294.95
+  },
+  {
+   "window": "W2",
+   "test": "2023-03-01→2023-09-01",
+   "fixed": "M0·C2·365ي",
+   "coins": 1,
+   "net115": -105.97,
+   "net130": -106.27,
+   "cycles": 2,
+   "dd_pct_peak": -18.36,
+   "underwater_days": 136.8,
+   "L0064_net115": -76.49,
+   "buy_hold": -437.41
+  },
+  {
+   "window": "W3",
+   "test": "2023-09-01→2024-03-01",
+   "fixed": "M0·C2·365ي",
+   "coins": 1,
+   "net115": 18.99,
+   "net130": 18.85,
+   "cycles": 3,
+   "dd_pct_peak": -21.2,
+   "underwater_days": 115.0,
+   "L0064_net115": 463.08,
+   "buy_hold": 625.66
+  },
+  {
+   "window": "W4",
+   "test": "2024-03-01→2024-09-01",
+   "fixed": "M0·C2·90ي",
+   "coins": 2,
+   "net115": -121.02,
+   "net130": -121.27,
+   "cycles": 3,
+   "dd_pct_peak": -34.57,
+   "underwater_days": 117.5,
+   "L0064_net115": -350.64,
+   "buy_hold": -845.95
+  },
+  {
+   "window": "W5",
+   "test": "2024-09-01→2025-03-01",
+   "fixed": "M2·C2·365ي",
+   "coins": 2,
+   "net115": 88.71,
+   "net130": 88.59,
+   "cycles": 2,
+   "dd_pct_peak": -26.52,
+   "underwater_days": 89.5,
+   "L0064_net115": 430.91,
+   "buy_hold": -584.22
+  },
+  {
+   "window": "W6",
+   "test": "2025-03-01→2025-09-01",
+   "fixed": "M2·C0·365ي",
+   "coins": 13,
+   "net115": 222.51,
+   "net130": 221.97,
+   "cycles": 7,
+   "dd_pct_peak": -15.72,
+   "underwater_days": 41.7,
+   "L0064_net115": 188.73,
+   "buy_hold": 1899.72
+  },
+  {
+   "window": "W7",
+   "test": "2025-09-01→2026-03-01",
+   "fixed": "M0·C2·90ي",
+   "coins": 4,
+   "net115": -107.5,
+   "net130": -107.88,
+   "cycles": 9,
+   "dd_pct_peak": -33.37,
+   "underwater_days": 148.2,
+   "L0064_net115": -332.19,
+   "buy_hold": -2326.1
+  },
+  {
+   "window": "W8",
+   "test": "2026-03-01→2026-08-31",
+   "fixed": "M2·C0·90ي",
+   "coins": 13,
+   "net115": 0.0,
+   "net130": 0.0,
+   "cycles": 0,
+   "dd_pct_peak": 0.0,
+   "underwater_days": 0.0,
+   "L0064_net115": 960.04,
+   "buy_hold": 180.11
+  }
+ ],
+ "coins": {
+  "ATOMUSDT": {
+   "in_C0": true,
+   "in_C1": true,
+   "in_C2": true,
+   "reason": "C2: صافي 330$ · هبوط -170$ · بلا أفضل دورة 43$",
+   "SEL": {
+    "cycles": 12,
+    "wins": 4,
+    "losses": 8,
+    "win_rate": 33.3,
+    "wilson95": [
+     13.8,
+     60.9
+    ],
+    "net115": 331.28,
+    "net130": 330.33,
+    "avg_cycle": 27.61,
+    "median_cycle": -14.25,
+    "dd": -169.69,
+    "underwater_days": 258.8
+   },
+   "JUD": {
+    "cycles": 12,
+    "wins": 5,
+    "losses": 7,
+    "win_rate": 41.7,
+    "wilson95": [
+     19.3,
+     68.0
+    ],
+    "net115": -59.54,
+    "net130": -60.36,
+    "avg_cycle": -4.96,
+    "median_cycle": -12.96,
+    "dd": -138.3,
+    "underwater_days": 439.8
+   },
+   "share_of_basket_JUD": -0.316,
+   "shared_pnl_JUD": -59.54,
+   "class": "واعدة"
+  },
+  "BNBUSDT": {
+   "in_C0": true,
+   "in_C1": true,
+   "in_C2": false,
+   "reason": "C1: فشل ex_best_cycle>=0 (صافي 19$)",
+   "SEL": {
+    "cycles": 8,
+    "wins": 2,
+    "losses": 6,
+    "win_rate": 25.0,
+    "wilson95": [
+     7.1,
+     59.1
+    ],
+    "net115": 19.43,
+    "net130": 18.82,
+    "avg_cycle": 2.43,
+    "median_cycle": -22.61,
+    "dd": -139.21,
+    "underwater_days": 636.2
+   },
+   "JUD": {
+    "cycles": 2,
+    "wins": 2,
+    "losses": 0,
+    "win_rate": 100.0,
+    "wilson95": [
+     34.2,
+     100.0
+    ],
+    "net115": 138.59,
+    "net130": 138.22,
+    "avg_cycle": 69.3,
+    "median_cycle": 69.3,
+    "dd": -69.59,
+    "underwater_days": 85.0
+   },
+   "share_of_basket_JUD": null,
+   "shared_pnl_JUD": null,
+   "class": "واعدة"
+  },
+  "BTCUSDT": {
+   "in_C0": true,
+   "in_C1": true,
+   "in_C2": false,
+   "reason": "C1: فشل ex_best_cycle>=0 (صافي 63$)",
+   "SEL": {
+    "cycles": 7,
+    "wins": 3,
+    "losses": 4,
+    "win_rate": 42.9,
+    "wilson95": [
+     15.8,
+     75.0
+    ],
+    "net115": 63.84,
+    "net130": 63.26,
+    "avg_cycle": 9.12,
+    "median_cycle": -4.52,
+    "dd": -144.58,
+    "underwater_days": 348.8
+   },
+   "JUD": {
+    "cycles": 3,
+    "wins": 2,
+    "losses": 1,
+    "win_rate": 66.7,
+    "wilson95": [
+     20.8,
+     93.9
+    ],
+    "net115": 161.14,
+    "net130": 160.81,
+    "avg_cycle": 53.71,
+    "median_cycle": 77.37,
+    "dd": -52.91,
+    "underwater_days": 60.3
+   },
+   "share_of_basket_JUD": null,
+   "shared_pnl_JUD": null,
+   "class": "واعدة"
+  },
+  "ETHUSDT": {
+   "in_C0": true,
+   "in_C1": true,
+   "in_C2": true,
+   "reason": "C2: صافي 81$ · هبوط -149$ · بلا أفضل دورة 10$",
+   "SEL": {
+    "cycles": 6,
+    "wins": 3,
+    "losses": 3,
+    "win_rate": 50.0,
+    "wilson95": [
+     18.8,
+     81.2
+    ],
+    "net115": 81.8,
+    "net130": 81.19,
+    "avg_cycle": 13.63,
+    "median_cycle": 18.78,
+    "dd": -148.67,
+    "underwater_days": 353.0
+   },
+   "JUD": {
+    "cycles": 9,
+    "wins": 4,
+    "losses": 5,
+    "win_rate": 44.4,
+    "wilson95": [
+     18.9,
+     73.3
+    ],
+    "net115": 248.14,
+    "net130": 247.51,
+    "avg_cycle": 27.57,
+    "median_cycle": -12.32,
+    "dd": -109.42,
+    "underwater_days": 194.3
+   },
+   "share_of_basket_JUD": 1.316,
+   "shared_pnl_JUD": 248.14,
+   "class": "مناسبة"
+  },
+  "FILUSDT": {
+   "in_C0": true,
+   "in_C1": true,
+   "in_C2": false,
+   "reason": "C1: فشل net>0,avg>0,dd<=400,ex_best_cycle>=0 (صافي -116$)",
+   "SEL": {
+    "cycles": 12,
+    "wins": 2,
+    "losses": 10,
+    "win_rate": 16.7,
+    "wilson95": [
+     4.7,
+     44.8
+    ],
+    "net115": -114.49,
+    "net130": -115.62,
+    "avg_cycle": -9.54,
+    "median_cycle": -18.05,
+    "dd": -632.5,
+    "underwater_days": 642.3
+   },
+   "JUD": {
+    "cycles": 12,
+    "wins": 4,
+    "losses": 8,
+    "win_rate": 33.3,
+    "wilson95": [
+     13.8,
+     60.9
+    ],
+    "net115": 42.28,
+    "net130": 41.49,
+    "avg_cycle": 3.52,
+    "median_cycle": -13.82,
+    "dd": -132.24,
+    "underwater_days": 633.3
+   },
+   "share_of_basket_JUD": null,
+   "shared_pnl_JUD": null,
+   "class": "غير مناسبة"
+  },
+  "GRAMUSDT": {
+   "in_C0": true,
+   "in_C1": false,
+   "in_C2": false,
+   "reason": "C0 فقط: بيانات 0.0 شهرًا · دورات M0 0",
+   "SEL": {
+    "cycles": 0,
+    "net115": 0.0
+   },
+   "JUD": {
+    "cycles": 11,
+    "wins": 4,
+    "losses": 7,
+    "win_rate": 36.4,
+    "wilson95": [
+     15.2,
+     64.6
+    ],
+    "net115": 226.55,
+    "net130": 225.75,
+    "avg_cycle": 20.6,
+    "median_cycle": -12.32,
+    "dd": -100.2,
+    "underwater_days": 278.3
+   },
+   "share_of_basket_JUD": null,
+   "shared_pnl_JUD": null,
+   "class": "غير كافية البيانات"
+  },
+  "HNTUSDT": {
+   "in_C0": true,
+   "in_C1": true,
+   "in_C2": false,
+   "reason": "C1: فشل ex_best_cycle>=0 (صافي 3$)",
+   "SEL": {
+    "cycles": 6,
+    "wins": 3,
+    "losses": 3,
+    "win_rate": 50.0,
+    "wilson95": [
+     18.8,
+     81.2
+    ],
+    "net115": 3.94,
+    "net130": 3.42,
+    "avg_cycle": 0.66,
+    "median_cycle": 0.51,
+    "dd": -307.54,
+    "underwater_days": 637.8
+   },
+   "JUD": {
+    "cycles": 0,
+    "net115": 0.0
+   },
+   "share_of_basket_JUD": null,
+   "shared_pnl_JUD": null,
+   "class": "واعدة"
+  },
+  "IMXUSDT": {
+   "in_C0": true,
+   "in_C1": true,
+   "in_C2": false,
+   "reason": "C1: فشل ex_best_cycle>=0 (صافي 90$)",
+   "SEL": {
+    "cycles": 12,
+    "wins": 3,
+    "losses": 9,
+    "win_rate": 25.0,
+    "wilson95": [
+     8.9,
+     53.2
+    ],
+    "net115": 90.9,
+    "net130": 89.95,
+    "avg_cycle": 7.58,
+    "median_cycle": -14.51,
+    "dd": -250.48,
+    "underwater_days": 295.7
+   },
+   "JUD": {
+    "cycles": 16,
+    "wins": 5,
+    "losses": 11,
+    "win_rate": 31.2,
+    "wilson95": [
+     14.2,
+     55.6
+    ],
+    "net115": 89.1,
+    "net130": 88.12,
+    "avg_cycle": 5.57,
+    "median_cycle": -21.97,
+    "dd": -172.82,
+    "underwater_days": 236.8
+   },
+   "share_of_basket_JUD": null,
+   "shared_pnl_JUD": null,
+   "class": "واعدة"
+  },
+  "LINKUSDT": {
+   "in_C0": true,
+   "in_C1": true,
+   "in_C2": false,
+   "reason": "C1: فشل ex_best_cycle>=0 (صافي 141$)",
+   "SEL": {
+    "cycles": 10,
+    "wins": 3,
+    "losses": 7,
+    "win_rate": 30.0,
+    "wilson95": [
+     10.8,
+     60.3
+    ],
+    "net115": 142.26,
+    "net130": 141.39,
+    "avg_cycle": 14.23,
+    "median_cycle": -18.97,
+    "dd": -192.24,
+    "underwater_days": 333.5
+   },
+   "JUD": {
+    "cycles": 3,
+    "wins": 2,
+    "losses": 1,
+    "win_rate": 66.7,
+    "wilson95": [
+     20.8,
+     93.9
+    ],
+    "net115": 195.19,
+    "net130": 194.93,
+    "avg_cycle": 65.06,
+    "median_cycle": 15.81,
+    "dd": -76.02,
+    "underwater_days": 427.5
+   },
+   "share_of_basket_JUD": null,
+   "shared_pnl_JUD": null,
+   "class": "واعدة"
+  },
+  "RENDERUSDT": {
+   "in_C0": true,
+   "in_C1": false,
+   "in_C2": false,
+   "reason": "C0 فقط: بيانات 0.0 شهرًا · دورات M0 0",
+   "SEL": {
+    "cycles": 0,
+    "net115": 0.0
+   },
+   "JUD": {
+    "cycles": 8,
+    "wins": 4,
+    "losses": 4,
+    "win_rate": 50.0,
+    "wilson95": [
+     21.5,
+     78.5
+    ],
+    "net115": 3.57,
+    "net130": 2.95,
+    "avg_cycle": 0.45,
+    "median_cycle": -1.16,
+    "dd": -206.52,
+    "underwater_days": 306.0
+   },
+   "share_of_basket_JUD": null,
+   "shared_pnl_JUD": null,
+   "class": "غير كافية البيانات"
+  },
+  "SOLUSDT": {
+   "in_C0": true,
+   "in_C1": true,
+   "in_C2": false,
+   "reason": "C1: فشل net>0,avg>0,ex_best_cycle>=0 (صافي -152$)",
+   "SEL": {
+    "cycles": 8,
+    "wins": 1,
+    "losses": 7,
+    "win_rate": 12.5,
+    "wilson95": [
+     2.2,
+     47.1
+    ],
+    "net115": -151.86,
+    "net130": -152.25,
+    "avg_cycle": -18.98,
+    "median_cycle": -18.2,
+    "dd": -230.93,
+    "underwater_days": 637.5
+   },
+   "JUD": {
+    "cycles": 6,
+    "wins": 1,
+    "losses": 5,
+    "win_rate": 16.7,
+    "wilson95": [
+     3.0,
+     56.4
+    ],
+    "net115": -20.01,
+    "net130": -20.28,
+    "avg_cycle": -3.34,
+    "median_cycle": -15.44,
+    "dd": -85.95,
+    "underwater_days": 513.2
+   },
+   "share_of_basket_JUD": null,
+   "shared_pnl_JUD": null,
+   "class": "غير مناسبة"
+  },
+  "VETUSDT": {
+   "in_C0": true,
+   "in_C1": true,
+   "in_C2": false,
+   "reason": "C1: فشل net>0,avg>0,ex_best_cycle>=0 (صافي -29$)",
+   "SEL": {
+    "cycles": 12,
+    "wins": 3,
+    "losses": 9,
+    "win_rate": 25.0,
+    "wilson95": [
+     8.9,
+     53.2
+    ],
+    "net115": -27.77,
+    "net130": -28.7,
+    "avg_cycle": -2.31,
+    "median_cycle": -18.32,
+    "dd": -303.84,
+    "underwater_days": 734.5
+   },
+   "JUD": {
+    "cycles": 15,
+    "wins": 3,
+    "losses": 12,
+    "win_rate": 20.0,
+    "wilson95": [
+     7.0,
+     45.2
+    ],
+    "net115": -130.83,
+    "net130": -131.94,
+    "avg_cycle": -8.72,
+    "median_cycle": -18.51,
+    "dd": -392.86,
+    "underwater_days": 701.8
+   },
+   "share_of_basket_JUD": null,
+   "shared_pnl_JUD": null,
+   "class": "غير مناسبة"
+  },
+  "XLMUSDT": {
+   "in_C0": true,
+   "in_C1": true,
+   "in_C2": false,
+   "reason": "C1: فشل ex_best_cycle>=0 (صافي 9$)",
+   "SEL": {
+    "cycles": 8,
+    "wins": 3,
+    "losses": 5,
+    "win_rate": 37.5,
+    "wilson95": [
+     13.7,
+     69.4
+    ],
+    "net115": 10.28,
+    "net130": 9.35,
+    "avg_cycle": 1.28,
+    "median_cycle": -15.26,
+    "dd": -366.46,
+    "underwater_days": 640.5
+   },
+   "JUD": {
+    "cycles": 9,
+    "wins": 4,
+    "losses": 5,
+    "win_rate": 44.4,
+    "wilson95": [
+     18.9,
+     73.3
+    ],
+    "net115": 178.35,
+    "net130": 177.74,
+    "avg_cycle": 19.82,
+    "median_cycle": -6.94,
+    "dd": -167.57,
+    "underwater_days": 816.3
+   },
+   "share_of_basket_JUD": null,
+   "shared_pnl_JUD": null,
+   "class": "واعدة"
+  }
+ },
+ "gates": {
+  "1_net_pos_SEL_JUD": true,
+  "2_net_pos_both_costs": true,
+  "3_beats_random_median": true,
+  "4_not_materially_worse_than_BH": true,
+  "5_avg_trade_pos_JUD": true,
+  "6_dd_JUD_le35_WF_le50": true,
+  "7_underwater_JUD_le540_WF_le720": true,
+  "8_top_coin_le35pct": false,
+  "9_WF_pos_ge60pct_and_median_pos": false,
+  "10_not_one_month_or_window": false,
+  "11_every_coin_reported": true,
+  "12_annual_net_pos": true,
+  "13_stress_cost_shared_ok": true,
+  "14_leak_fill_seq_determinism": true,
+  "15_memes_excluded": true
+ },
+ "blocks": {
+  "L0064": {
+   "SEL": {
+    "independent": {
+     "empty": false,
+     "net115": 113.2198,
+     "net130": 105.477,
+     "slices": 137,
+     "cycles": 92,
+     "avg_slice": 0.8264,
+     "median_slice": -18.4195,
+     "avg_cycle": 1.2307,
+     "median_cycle": -17.2045,
+     "cycle_wins": 23,
+     "peak_dep": 3100.0,
+     "avg_dep": 1193.8185,
+     "dd": -2467.6904,
+     "dd_pct_peak": -79.6029,
+     "dd_pct_capital": -18.9822,
+     "underwater_days": 640.6667,
+     "per_coin": {
+      "ATOMUSDT": 331.28259698858005,
+      "BNBUSDT": 19.429862638580147,
+      "BTCUSDT": 30.59750311233858,
+      "ETHUSDT": 96.03238482817545,
+      "FILUSDT": -249.59578148250506,
+      "HNTUSDT": -102.27841756842463,
+      "IMXUSDT": 106.49753709605892,
+      "LINKUSDT": 39.49796460874967,
+      "SOLUSDT": -154.34795923506215,
+      "VETUSDT": 21.801409977537098,
+      "XLMUSDT": -25.697299090189418
+     },
+     "top_coin_share": 2.926,
+     "best_month": 543.4795,
+     "net_ex_best_month": -430.2597,
+     "per_month": {
+      "2021-10": 96.25487949132471,
+      "2021-12": -19.429185277056764,
+      "2022-01": 108.5424233025302,
+      "2022-02": -75.81118945827241,
+      "2022-03": 13.263184375159149,
+      "2022-04": -245.4487902781578,
+      "2022-05": -206.2086750890825,
+      "2022-06": -296.4224327778915,
+      "2022-08": 81.07396536578506,
+      "2022-10": -110.59981360979299,
+      "2022-11": -400.8069959972577,
+      "2022-12": -208.0367694551109,
+      "2023-01": 465.47009807890674,
+      "2023-02": 543.4795000487272,
+      "2023-03": 48.99004638467727,
+      "2023-05": -30.240069963527123,
+      "2023-06": -180.47128379414437,
+      "2023-07": 252.6115448861479,
+      "2023-08": -93.3843704789037,
+      "2023-09": -134.958761816637,
+      "2023-10": 107.56990440637281,
+      "2023-11": 397.7825935300424
+     },
+     "years": 2.3326,
+     "annual_net": 48.537,
+     "monthly_net": 4.0448,
+     "per_1000_annual": 15.6571,
+     "held_days_weighted": 39.5772,
+     "fees_annual": 25.3961,
+     "ret_pct_capital": 0.8709,
+     "ret_pct_peak": 3.6523,
+     "shared_log": null
+    },
+    "shared": {
+     "empty": false,
+     "net115": 113.2198,
+     "net130": 105.477,
+     "slices": 137,
+     "cycles": 92,
+     "avg_slice": 0.8264,
+     "median_slice": -18.4195,
+     "avg_cycle": 1.2307,
+     "median_cycle": -17.2045,
+     "cycle_wins": 23,
+     "peak_dep": 3100.0,
+     "avg_dep": 1193.8185,
+     "dd": -2467.6904,
+     "dd_pct_peak": -79.6029,
+     "dd_pct_capital": -18.9822,
+     "underwater_days": 640.6667,
+     "per_coin": {
+      "ATOMUSDT": 331.28259698858005,
+      "BNBUSDT": 19.429862638580147,
+      "BTCUSDT": 30.59750311233858,
+      "ETHUSDT": 96.03238482817545,
+      "FILUSDT": -249.59578148250506,
+      "HNTUSDT": -102.27841756842463,
+      "IMXUSDT": 106.49753709605892,
+      "LINKUSDT": 39.49796460874967,
+      "SOLUSDT": -154.34795923506215,
+      "VETUSDT": 21.801409977537098,
+      "XLMUSDT": -25.697299090189418
+     },
+     "top_coin_share": 2.926,
+     "best_month": 543.4795,
+     "net_ex_best_month": -430.2597,
+     "per_month": {
+      "2021-10": 96.25487949132471,
+      "2021-12": -19.429185277056764,
+      "2022-01": 108.5424233025302,
+      "2022-02": -75.81118945827241,
+      "2022-03": 13.263184375159149,
+      "2022-04": -245.4487902781578,
+      "2022-05": -206.2086750890825,
+      "2022-06": -296.4224327778915,
+      "2022-08": 81.07396536578506,
+      "2022-10": -110.59981360979299,
+      "2022-11": -400.8069959972577,
+      "2022-12": -208.0367694551109,
+      "2023-01": 465.47009807890674,
+      "2023-02": 543.4795000487272,
+      "2023-03": 48.99004638467727,
+      "2023-05": -30.240069963527123,
+      "2023-06": -180.47128379414437,
+      "2023-07": 252.6115448861479,
+      "2023-08": -93.3843704789037,
+      "2023-09": -134.958761816637,
+      "2023-10": 107.56990440637281,
+      "2023-11": 397.7825935300424
+     },
+     "years": 2.3326,
+     "annual_net": 48.537,
+     "monthly_net": 4.0448,
+     "per_1000_annual": 3.7336,
+     "held_days_weighted": 39.5772,
+     "fees_annual": 25.3961,
+     "ret_pct_capital": 0.8709,
+     "ret_pct_peak": 3.6523,
+     "shared_log": {
+      "scaled_bars": 0,
+      "scaled_slices": 0,
+      "requested_usd": 25700.0,
+      "cut_usd": 0.0,
+      "cap_violations": 0,
+      "min_cash": 9136.370600592185,
+      "overdraft": 0
+     }
+    },
+    "shared_capped": "مطابقة للمشتركة: سقف 1000$ للعملة لا يُتجاوز بالبناء (أوزان الشرائح مجموعها 1.0)",
+    "random_vs_shared": {
+     "A": {
+      "median_usd_peak": -489.28921560989386,
+      "median_usd_avg": -493.39493235866115,
+      "median_usd_peak_130": -496.99130699521,
+      "pct_below_peak": 74.7,
+      "pct_below_avg": 74.9,
+      "pct_below_peak_130": 74.7,
+      "fails": 0
+     },
+     "B": {
+      "median_usd_peak": -325.2698308177312,
+      "median_usd_avg": -313.03073694397864,
+      "median_usd_peak_130": -336.32124478634057,
+      "pct_below_peak": 69.1,
+      "pct_below_avg": 69.39999999999999,
+      "pct_below_peak_130": 69.19999999999999,
+      "fails": 0
+     }
+    },
+    "random_vs_independent": {
+     "A": {
+      "median_usd_peak": -489.28921560989386,
+      "median_usd_avg": -493.39493235866115,
+      "median_usd_peak_130": -496.99130699521,
+      "pct_below_peak": 74.7,
+      "pct_below_avg": 74.9,
+      "pct_below_peak_130": 74.7,
+      "fails": 0
+     },
+     "B": {
+      "median_usd_peak": -325.2698308177312,
+      "median_usd_avg": -313.03073694397864,
+      "median_usd_peak_130": -336.32124478634057,
+      "pct_below_peak": 69.1,
+      "pct_below_avg": 69.39999999999999,
+      "pct_below_peak_130": 69.19999999999999,
+      "fails": 0
+     }
+    },
+    "buy_hold": {
+     "net": -5308.5041372985725,
+     "deployed": 11000.0,
+     "per_coin": {
+      "ATOMUSDT": -538.1813098343019,
+      "BNBUSDT": -329.4165040662388,
+      "BTCUSDT": -104.33880383999627,
+      "ETHUSDT": -336.1033574653942,
+      "FILUSDT": -909.1087113957968,
+      "HNTUSDT": -812.1261557273651,
+      "IMXUSDT": -433.0570031081159,
+      "LINKUSDT": -441.69755904305555,
+      "SOLUSDT": -62.655280868674666,
+      "VETUSDT": -721.1405271428695,
+      "XLMUSDT": -620.6789248067639
+     }
+    }
+   },
+   "JUD": {
+    "independent": {
+     "empty": false,
+     "net115": 1314.3819,
+     "net130": 1307.0287,
+     "slices": 130,
+     "cycles": 97,
+     "avg_slice": 10.1106,
+     "median_slice": -14.9186,
+     "avg_cycle": 13.5503,
+     "median_cycle": -14.8607,
+     "cycle_wins": 35,
+     "peak_dep": 3650.0,
+     "avg_dep": 843.3967,
+     "dd": -743.9476,
+     "dd_pct_peak": -20.3821,
+     "dd_pct_capital": -5.7227,
+     "underwater_days": 291.0,
+     "per_coin": {
+      "ATOMUSDT": -83.00123477415225,
+      "BNBUSDT": 138.592066229642,
+      "BTCUSDT": 161.1425551483365,
+      "ETHUSDT": 248.14241470313493,
+      "FILUSDT": 91.79689276069729,
+      "GRAMUSDT": 98.71495828850307,
+      "IMXUSDT": 89.09512370042928,
+      "LINKUSDT": 258.14417459183653,
+      "RENDERUSDT": 4.818239447814399,
+      "SOLUSDT": -20.012653074908748,
+      "VETUSDT": -13.30508523403887,
+      "XLMUSDT": 340.2544524311335
+     },
+     "top_coin_share": 0.2589,
+     "best_month": 843.1882,
+     "net_ex_best_month": 471.1937,
+     "per_month": {
+      "2024-03": 30.353939123853692,
+      "2024-06": -117.85162255699005,
+      "2024-07": -132.15098327336824,
+      "2024-08": -132.118536502023,
+      "2024-09": 80.41134517487988,
+      "2024-11": 410.3096842994572,
+      "2024-12": 108.22382019148876,
+      "2025-02": -33.958809650794436,
+      "2025-03": -142.82814431745663,
+      "2025-04": -100.72152024981541,
+      "2025-05": 234.4964939095438,
+      "2025-06": -67.54423125641068,
+      "2025-07": 78.75896290694276,
+      "2025-08": 35.47687710969417,
+      "2025-09": 103.86569842586786,
+      "2025-10": -88.71483726796171,
+      "2025-11": -18.04696195268724,
+      "2025-12": -16.052563844174028,
+      "2026-01": -163.67458981139177,
+      "2026-02": -38.27111418293366,
+      "2026-03": -188.6159044625504,
+      "2026-05": 843.1881943735043,
+      "2026-06": 101.5551343013034,
+      "2026-07": -87.98711203978672,
+      "2026-08": 616.2786857702357
+     },
+     "years": 2.6639,
+     "annual_net": 493.3998,
+     "monthly_net": 41.1166,
+     "per_1000_annual": 135.178,
+     "held_days_weighted": 35.3718,
+     "fees_annual": 20.598,
+     "ret_pct_capital": 10.1106,
+     "ret_pct_peak": 36.0105,
+     "shared_log": null
+    },
+    "shared": {
+     "empty": false,
+     "net115": 1314.3819,
+     "net130": 1307.0287,
+     "slices": 130,
+     "cycles": 97,
+     "avg_slice": 10.1106,
+     "median_slice": -14.9186,
+     "avg_cycle": 13.5503,
+     "median_cycle": -14.8607,
+     "cycle_wins": 35,
+     "peak_dep": 3650.0,
+     "avg_dep": 843.3967,
+     "dd": -743.9476,
+     "dd_pct_peak": -20.3821,
+     "dd_pct_capital": -5.7227,
+     "underwater_days": 291.0,
+     "per_coin": {
+      "ATOMUSDT": -83.00123477415225,
+      "BNBUSDT": 138.592066229642,
+      "BTCUSDT": 161.1425551483365,
+      "ETHUSDT": 248.14241470313493,
+      "FILUSDT": 91.79689276069729,
+      "GRAMUSDT": 98.71495828850307,
+      "IMXUSDT": 89.09512370042928,
+      "LINKUSDT": 258.14417459183653,
+      "RENDERUSDT": 4.818239447814399,
+      "SOLUSDT": -20.012653074908748,
+      "VETUSDT": -13.30508523403887,
+      "XLMUSDT": 340.2544524311335
+     },
+     "top_coin_share": 0.2589,
+     "best_month": 843.1882,
+     "net_ex_best_month": 471.1937,
+     "per_month": {
+      "2024-03": 30.353939123853692,
+      "2024-06": -117.85162255699005,
+      "2024-07": -132.15098327336824,
+      "2024-08": -132.118536502023,
+      "2024-09": 80.41134517487988,
+      "2024-11": 410.3096842994572,
+      "2024-12": 108.22382019148876,
+      "2025-02": -33.958809650794436,
+      "2025-03": -142.82814431745663,
+      "2025-04": -100.72152024981541,
+      "2025-05": 234.4964939095438,
+      "2025-06": -67.54423125641068,
+      "2025-07": 78.75896290694276,
+      "2025-08": 35.47687710969417,
+      "2025-09": 103.86569842586786,
+      "2025-10": -88.71483726796171,
+      "2025-11": -18.04696195268724,
+      "2025-12": -16.052563844174028,
+      "2026-01": -163.67458981139177,
+      "2026-02": -38.27111418293366,
+      "2026-03": -188.6159044625504,
+      "2026-05": 843.1881943735043,
+      "2026-06": 101.5551343013034,
+      "2026-07": -87.98711203978672,
+      "2026-08": 616.2786857702357
+     },
+     "years": 2.6639,
+     "annual_net": 493.3998,
+     "monthly_net": 41.1166,
+     "per_1000_annual": 37.9538,
+     "held_days_weighted": 35.3718,
+     "fees_annual": 20.598,
+     "ret_pct_capital": 10.1106,
+     "ret_pct_peak": 36.0105,
+     "shared_log": {
+      "scaled_bars": 0,
+      "scaled_slices": 0,
+      "requested_usd": 23200.0,
+      "cut_usd": 0.0,
+      "cap_violations": 0,
+      "min_cash": 9870.259529959105,
+      "overdraft": 0
+     }
+    },
+    "shared_capped": "مطابقة للمشتركة: سقف 1000$ للعملة لا يُتجاوز بالبناء (أوزان الشرائح مجموعها 1.0)",
+    "random_vs_shared": {
+     "A": {
+      "median_usd_peak": -556.992054235769,
+      "median_usd_avg": -368.1301915787044,
+      "median_usd_peak_130": -566.0826664184707,
+      "pct_below_peak": 87.9,
+      "pct_below_avg": 93.30000000000001,
+      "pct_below_peak_130": 87.9,
+      "fails": 0
+     },
+     "B": {
+      "median_usd_peak": -483.12525300085156,
+      "median_usd_avg": -277.79967106634814,
+      "median_usd_peak_130": -493.959517079258,
+      "pct_below_peak": 94.0,
+      "pct_below_avg": 99.1,
+      "pct_below_peak_130": 94.0,
+      "fails": 0
+     }
+    },
+    "random_vs_independent": {
+     "A": {
+      "median_usd_peak": -556.992054235769,
+      "median_usd_avg": -368.1301915787044,
+      "median_usd_peak_130": -566.0826664184707,
+      "pct_below_peak": 87.9,
+      "pct_below_avg": 93.30000000000001,
+      "pct_below_peak_130": 87.9,
+      "fails": 0
+     },
+     "B": {
+      "median_usd_peak": -483.12525300085156,
+      "median_usd_avg": -277.79967106634814,
+      "median_usd_peak_130": -493.959517079258,
+      "pct_below_peak": 94.0,
+      "pct_below_avg": 99.1,
+      "pct_below_peak_130": 94.0,
+      "fails": 0
+     }
+    },
+    "buy_hold": {
+     "net": -2838.691756043383,
+     "deployed": 12000.0,
+     "per_coin": {
+      "ATOMUSDT": -862.7688252848847,
+      "BNBUSDT": 1190.3395545267222,
+      "BTCUSDT": 832.9464211136377,
+      "ETHUSDT": 56.7331010550558,
+      "FILUSDT": -904.8571386078961,
+      "GRAMUSDT": -693.7199610154205,
+      "IMXUSDT": -942.6139601667793,
+      "LINKUSDT": -255.89624936275757,
+      "RENDERUSDT": -801.4529166280968,
+      "SOLUSDT": -2.0031083404694616,
+      "VETUSDT": -804.7316035146823,
+      "XLMUSDT": 349.33293018218836
+     }
+    }
+   }
+  },
+  "fixed": {
+   "SEL": {
+    "independent": {
+     "empty": false,
+     "net115": 413.0787,
+     "net130": 411.515,
+     "slices": 26,
+     "cycles": 18,
+     "avg_slice": 15.8876,
+     "median_slice": -15.6217,
+     "avg_cycle": 22.9488,
+     "median_cycle": -14.2484,
+     "cycle_wins": 7,
+     "peak_dep": 850.0,
+     "avg_dep": 134.1549,
+     "dd": -196.2099,
+     "dd_pct_peak": -23.0835,
+     "dd_pct_capital": -1.5093,
+     "underwater_days": 258.8333,
+     "per_coin": {
+      "ATOMUSDT": 331.28259698858005,
+      "ETHUSDT": 81.79613533199044
+     },
+     "top_coin_share": 0.802,
+     "best_month": 270.4206,
+     "net_ex_best_month": 142.6581,
+     "per_month": {
+      "2022-01": 270.4206489667017,
+      "2022-05": -15.31014333516455,
+      "2022-06": -82.9216349675454,
+      "2022-08": 127.790487564105,
+      "2022-09": 54.86131917095103,
+      "2022-11": -46.380999087581934,
+      "2022-12": -15.933341759615754,
+      "2023-01": 57.180455482575255,
+      "2023-02": 92.72375719526438,
+      "2023-06": -77.903265508131,
+      "2023-09": -55.44140003091264,
+      "2023-10": 58.66203602644366,
+      "2023-11": 45.33081260348067
+     },
+     "years": 2.3326,
+     "annual_net": 177.0857,
+     "monthly_net": 14.7571,
+     "per_1000_annual": 208.3361,
+     "held_days_weighted": 23.8125,
+     "fees_annual": 4.9365,
+     "ret_pct_capital": 3.1775,
+     "ret_pct_peak": 48.5975,
+     "shared_log": null
+    },
+    "shared": {
+     "empty": false,
+     "net115": 413.0787,
+     "net130": 411.515,
+     "slices": 26,
+     "cycles": 18,
+     "avg_slice": 15.8876,
+     "median_slice": -15.6217,
+     "avg_cycle": 22.9488,
+     "median_cycle": -14.2484,
+     "cycle_wins": 7,
+     "peak_dep": 850.0,
+     "avg_dep": 134.1549,
+     "dd": -196.2099,
+     "dd_pct_peak": -23.0835,
+     "dd_pct_capital": -1.5093,
+     "underwater_days": 258.8333,
+     "per_coin": {
+      "ATOMUSDT": 331.28259698858005,
+      "ETHUSDT": 81.79613533199044
+     },
+     "top_coin_share": 0.802,
+     "best_month": 270.4206,
+     "net_ex_best_month": 142.6581,
+     "per_month": {
+      "2022-01": 270.4206489667017,
+      "2022-05": -15.31014333516455,
+      "2022-06": -82.9216349675454,
+      "2022-08": 127.790487564105,
+      "2022-09": 54.86131917095103,
+      "2022-11": -46.380999087581934,
+      "2022-12": -15.933341759615754,
+      "2023-01": 57.180455482575255,
+      "2023-02": 92.72375719526438,
+      "2023-06": -77.903265508131,
+      "2023-09": -55.44140003091264,
+      "2023-10": 58.66203602644366,
+      "2023-11": 45.33081260348067
+     },
+     "years": 2.3326,
+     "annual_net": 177.0857,
+     "monthly_net": 14.7571,
+     "per_1000_annual": 13.622,
+     "held_days_weighted": 23.8125,
+     "fees_annual": 4.9365,
+     "ret_pct_capital": 3.1775,
+     "ret_pct_peak": 48.5975,
+     "shared_log": {
+      "scaled_bars": 0,
+      "scaled_slices": 0,
+      "requested_usd": 4800.0,
+      "cut_usd": 0.0,
+      "cap_violations": 0,
+      "min_cash": 12445.93150657162,
+      "overdraft": 0
+     }
+    },
+    "shared_capped": "مطابقة للمشتركة: سقف 1000$ للعملة لا يُتجاوز بالبناء (أوزان الشرائح مجموعها 1.0)",
+    "random_vs_shared": {
+     "A": {
+      "median_usd_peak": -8.565712980570892,
+      "median_usd_avg": -7.45980021113683,
+      "median_usd_peak_130": -10.058019167640605,
+      "pct_below_peak": 94.5,
+      "pct_below_avg": 96.5,
+      "pct_below_peak_130": 94.5,
+      "fails": 0
+     },
+     "B": {
+      "median_usd_peak": 18.862789370095715,
+      "median_usd_avg": 11.153221341214097,
+      "median_usd_peak_130": 16.681454472423386,
+      "pct_below_peak": 88.8,
+      "pct_below_avg": 97.5,
+      "pct_below_peak_130": 88.8,
+      "fails": 0
+     }
+    },
+    "random_vs_independent": {
+     "A": {
+      "median_usd_peak": -8.565712980570892,
+      "median_usd_avg": -7.45980021113683,
+      "median_usd_peak_130": -10.058019167640605,
+      "pct_below_peak": 94.5,
+      "pct_below_avg": 96.5,
+      "pct_below_peak_130": 94.5,
+      "fails": 0
+     },
+     "B": {
+      "median_usd_peak": 18.862789370095715,
+      "median_usd_avg": 11.153221341214097,
+      "median_usd_peak_130": 16.681454472423386,
+      "pct_below_peak": 88.8,
+      "pct_below_avg": 97.5,
+      "pct_below_peak_130": 88.8,
+      "fails": 0
+     }
+    },
+    "buy_hold": {
+     "net": -874.2846672996961,
+     "deployed": 2000.0,
+     "per_coin": {
+      "ATOMUSDT": -538.1813098343019,
+      "ETHUSDT": -336.1033574653942
+     }
+    }
+   },
+   "JUD": {
+    "independent": {
+     "empty": false,
+     "net115": 188.601,
+     "net130": 187.1496,
+     "slices": 27,
+     "cycles": 21,
+     "avg_slice": 6.9852,
+     "median_slice": -18.479,
+     "avg_cycle": 8.981,
+     "median_cycle": -12.317,
+     "cycle_wins": 9,
+     "peak_dep": 800.0,
+     "avg_dep": 156.1579,
+     "dd": -138.2956,
+     "dd_pct_peak": -17.2869,
+     "dd_pct_capital": -1.0638,
+     "underwater_days": 369.0,
+     "per_coin": {
+      "ATOMUSDT": -59.54145992982559,
+      "ETHUSDT": 248.14241470313493
+     },
+     "top_coin_share": 1.3157,
+     "best_month": 210.111,
+     "net_ex_best_month": -21.5101,
+     "per_month": {
+      "2024-06": -48.02680949080369,
+      "2024-07": -44.78127853936479,
+      "2024-08": -28.210974397016365,
+      "2024-11": 115.0126626650922,
+      "2025-03": -46.358437126618014,
+      "2025-04": -39.080866362046756,
+      "2025-05": 130.20956155343416,
+      "2025-06": -13.604767889020664,
+      "2025-09": 23.459774844326674,
+      "2025-10": -12.317035409279331,
+      "2026-01": -22.022384048938438,
+      "2026-03": -42.999017296594985,
+      "2026-05": 77.30270603220222,
+      "2026-06": -12.317035409279297,
+      "2026-07": -57.7761673517877,
+      "2026-08": 210.1110229990041
+     },
+     "years": 2.6639,
+     "annual_net": 70.798,
+     "monthly_net": 5.8998,
+     "per_1000_annual": 88.4976,
+     "held_days_weighted": 32.6756,
+     "fees_annual": 4.0962,
+     "ret_pct_capital": 1.4508,
+     "ret_pct_peak": 23.5751,
+     "shared_log": null
+    },
+    "shared": {
+     "empty": false,
+     "net115": 188.601,
+     "net130": 187.1496,
+     "slices": 27,
+     "cycles": 21,
+     "avg_slice": 6.9852,
+     "median_slice": -18.479,
+     "avg_cycle": 8.981,
+     "median_cycle": -12.317,
+     "cycle_wins": 9,
+     "peak_dep": 800.0,
+     "avg_dep": 156.1579,
+     "dd": -138.2956,
+     "dd_pct_peak": -17.2869,
+     "dd_pct_capital": -1.0638,
+     "underwater_days": 369.0,
+     "per_coin": {
+      "ATOMUSDT": -59.54145992982559,
+      "ETHUSDT": 248.14241470313493
+     },
+     "top_coin_share": 1.3157,
+     "best_month": 210.111,
+     "net_ex_best_month": -21.5101,
+     "per_month": {
+      "2024-06": -48.02680949080369,
+      "2024-07": -44.78127853936479,
+      "2024-08": -28.210974397016365,
+      "2024-11": 115.0126626650922,
+      "2025-03": -46.358437126618014,
+      "2025-04": -39.080866362046756,
+      "2025-05": 130.20956155343416,
+      "2025-06": -13.604767889020664,
+      "2025-09": 23.459774844326674,
+      "2025-10": -12.317035409279331,
+      "2026-01": -22.022384048938438,
+      "2026-03": -42.999017296594985,
+      "2026-05": 77.30270603220222,
+      "2026-06": -12.317035409279297,
+      "2026-07": -57.7761673517877,
+      "2026-08": 210.1110229990041
+     },
+     "years": 2.6639,
+     "annual_net": 70.798,
+     "monthly_net": 5.8998,
+     "per_1000_annual": 5.446,
+     "held_days_weighted": 32.6756,
+     "fees_annual": 4.0962,
+     "ret_pct_capital": 1.4508,
+     "ret_pct_peak": 23.5751,
+     "shared_log": {
+      "scaled_bars": 0,
+      "scaled_slices": 0,
+      "requested_usd": 4650.0,
+      "cut_usd": 0.0,
+      "cap_violations": 0,
+      "min_cash": 12236.266099126095,
+      "overdraft": 0
+     }
+    },
+    "shared_capped": "مطابقة للمشتركة: سقف 1000$ للعملة لا يُتجاوز بالبناء (أوزان الشرائح مجموعها 1.0)",
+    "random_vs_shared": {
+     "A": {
+      "median_usd_peak": -143.16631358653774,
+      "median_usd_avg": -112.47360608024961,
+      "median_usd_peak_130": -144.81811839118953,
+      "pct_below_peak": 86.3,
+      "pct_below_avg": 89.7,
+      "pct_below_peak_130": 86.3,
+      "fails": 0
+     },
+     "B": {
+      "median_usd_peak": -156.3042377329388,
+      "median_usd_avg": -66.97010853637464,
+      "median_usd_peak_130": -158.79976067411175,
+      "pct_below_peak": 80.5,
+      "pct_below_avg": 93.7,
+      "pct_below_peak_130": 80.5,
+      "fails": 0
+     }
+    },
+    "random_vs_independent": {
+     "A": {
+      "median_usd_peak": -143.16631358653774,
+      "median_usd_avg": -112.47360608024961,
+      "median_usd_peak_130": -144.81811839118953,
+      "pct_below_peak": 86.3,
+      "pct_below_avg": 89.7,
+      "pct_below_peak_130": 86.3,
+      "fails": 0
+     },
+     "B": {
+      "median_usd_peak": -156.3042377329388,
+      "median_usd_avg": -66.97010853637464,
+      "median_usd_peak_130": -158.79976067411175,
+      "pct_below_peak": 80.5,
+      "pct_below_avg": 93.7,
+      "pct_below_peak_130": 80.5,
+      "fails": 0
+     }
+    },
+    "buy_hold": {
+     "net": -806.0357242298288,
+     "deployed": 2000.0,
+     "per_coin": {
+      "ATOMUSDT": -862.7688252848847,
+      "ETHUSDT": 56.7331010550558
+     }
+    }
+   }
+  }
+ },
+ "economics": {
+  "per_1000_annual_JUD": 5.45,
+  "monthly_net_JUD": 5.9,
+  "annual_net_JUD": 70.8,
+  "held_days_weighted_JUD": 32.7,
+  "fees_annual_JUD": 4.1,
+  "max_monthly_opex_covered": 5.9,
+  "independent_minus_shared_JUD": 0.0,
+  "L0064_shared_JUD": 1314.38
+ }
+}
