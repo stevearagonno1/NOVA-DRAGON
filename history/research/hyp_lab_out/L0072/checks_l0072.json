@@ -1,0 +1,57 @@
+{
+ "1_no_d1_leak": {
+  "ok": true,
+  "violations": 0
+ },
+ "2_no_incomplete_bar_values": {
+  "ok": true,
+  "cases": 84,
+  "mismatches": 0,
+  "note": "اختبار القطع: حذف المستقبل لا يغير أي زناد سابق (14 مؤشرًا × 3 أصول × نقطتين)"
+ },
+ "3_prior_values_available": {
+  "ok": true,
+  "note": "القنوات تستخدم shift(1)؛ العبور يستخدم i-1 و i فقط"
+ },
+ "4_exec_next_open": {
+  "ok": true,
+  "books_mismatch": 0,
+  "fills_outside_bar": 0
+ },
+ "5_no_hidden_candle_confirmation": {
+  "ok": true,
+  "note": "كل دخول منفذ على افتتاح الشمعة التالية مباشرة لشمعة الزناد"
+ },
+ "6_no_overlap_within_book": {
+  "ok": true,
+  "overlaps": 0
+ },
+ "7_no_cash_sharing": {
+  "ok": true,
+  "note": "كل دفتر تشغيل C.run مستقل برأس مال 2000$؛ لا حالة مشتركة؛ أقل نقد ≥0 في كل دفتر"
+ },
+ "8_stop_not_moved_before_protection": {
+  "ok": true,
+  "violations": 0
+ },
+ "9_trail_monotone": {
+  "ok": true,
+  "violations": 0
+ },
+ "10_protection_covers_actual_cost": {
+  "ok": true,
+  "violations": 0
+ },
+ "11_min_order_rejected": {
+  "ok": true,
+  "filled_below_20": 0
+ },
+ "12_deterministic": {
+  "ok": true,
+  "books_differing_from_saved": 0
+ },
+ "13_signal_log_reconciled": {
+  "ok": true,
+  "books_bad": 0
+ }
+}
