@@ -1,0 +1,10 @@
+﻿symbol,entry_time,exit_time,entry,exit,units,reason,window,cfg
+IMXUSDT,2024-03-05T00:00:00+00:00,2024-04-02T00:00:00+00:00,3.133,2.8927,30,خارج-الترتيب,P08,L=150|method=voladj|K=2|market=btc200|trend=c100|rebalance=14|exit=base|weights=iv30|liq_q=25
+SOLUSDT,2024-05-14T00:00:00+00:00,2024-06-12T00:00:00+00:00,147.53,149.31,30,فقدان-الاتجاه,P08,L=150|method=voladj|K=2|market=btc200|trend=c100|rebalance=14|exit=base|weights=iv30|liq_q=25
+BNBUSDT,2024-04-02T00:00:00+00:00,2024-06-25T00:00:00+00:00,575.8,568.1,30,فقدان-الاتجاه,P08,L=150|method=voladj|K=2|market=btc200|trend=c100|rebalance=14|exit=base|weights=iv30|liq_q=25
+ETHUSDT,2024-07-23T00:00:00+00:00,2024-07-25T00:00:00+00:00,3439.61,3335.82,30,فقدان-الاتجاه,P09,L=200|method=voladj|K=3|market=btc200|trend=c100|rebalance=14|exit=base|weights=iv30|liq_q=25
+BNBUSDT,2024-07-23T00:00:00+00:00,2024-08-03T00:00:00+00:00,587.3,542.9,30,فقدان-الاتجاه,P09,L=200|method=voladj|K=3|market=btc200|trend=c100|rebalance=14|exit=base|weights=iv30|liq_q=25
+BTCUSDT,2024-07-23T00:00:00+00:00,2024-08-03T00:00:00+00:00,67532.0,61498.34,30,فقدان-الاتجاه,P09,L=200|method=voladj|K=3|market=btc200|trend=c100|rebalance=14|exit=base|weights=iv30|liq_q=25
+BNBUSDT,2024-08-20T00:00:00+00:00,2024-08-21T00:00:00+00:00,558.5,569.4,30,مرشح-السوق,P09,L=200|method=voladj|K=3|market=btc200|trend=c100|rebalance=14|exit=base|weights=iv30|liq_q=25
+BNBUSDT,2025-06-10T00:00:00+00:00,2025-06-22T00:00:00+00:00,665.58,628.98,30,فقدان-الاتجاه,P13,L=200|method=voladj|K=2|market=btc200|trend=c100|rebalance=14|exit=base|weights=iv30|liq_q=25
+BNBUSDT,2025-06-24T00:00:00+00:00,2025-10-18T00:00:00+00:00,640.5,1071.15,30,مرشح-السوق,P13,L=200|method=voladj|K=2|market=btc200|trend=c100|rebalance=14|exit=base|weights=iv30|liq_q=25

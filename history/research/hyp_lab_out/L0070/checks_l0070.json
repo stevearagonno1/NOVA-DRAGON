@@ -1,0 +1,41 @@
+{
+ "leak": {
+  "2023-02-15|cfg0": true,
+  "2023-02-15|cfg1": true,
+  "2023-02-15|cfg2": true,
+  "2023-02-15|cfg3": true,
+  "2023-02-15|cfg4": true,
+  "2024-05-01|cfg0": true,
+  "2024-05-01|cfg1": true,
+  "2024-05-01|cfg2": true,
+  "2024-05-01|cfg3": true,
+  "2024-05-01|cfg4": true,
+  "2025-10-01|cfg0": true,
+  "2025-10-01|cfg1": true,
+  "2025-10-01|cfg2": true,
+  "2025-10-01|cfg3": true,
+  "2025-10-01|cfg4": true
+ },
+ "exec": {
+  "trades_checked": 393,
+  "entry_and_exit_at_open_units_ge1_cash_ok": true,
+  "note": "القرار على إغلاق D والتنفيذ على افتتاح D+1 بالبناء (pend_buy/pend_sell تُنفذ في الحلقة التالية)؛ السيولة من أيام مكتملة ≤ D"
+ },
+ "determinism": {
+  "prereg_sha": true,
+  "n_configs": true,
+  "families": true,
+  "full_period_context": true,
+  "wf": true,
+  "by_rule": true
+ },
+ "determinism_ALL_EQUAL": true,
+ "fill_guard": {
+  "rc": 0,
+  "line": [
+   "✅ trades_oos_core_primary.csv: صفقات=9 · فُحص=18 · تُخطّي=0 · شموع ناقصة=0 · مخالفات الدخول=0 · مخالفات الخروج=0"
+  ]
+ },
+ "leak_count": "15/15",
+ "ALL_OK": true
+}
