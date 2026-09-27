@@ -1,0 +1,101 @@
+{
+ "determinism": {
+  "prereg_sha": {
+   "pass1": "2ce5245a6ee50ce0",
+   "pass2": "2ce5245a6ee50ce0",
+   "equal": true
+  },
+  "A_reproduction": {
+   "pass1": "b867bc86e6b2977a",
+   "pass2": "b867bc86e6b2977a",
+   "equal": true
+  },
+  "table": {
+   "pass1": "765951080f39ac63",
+   "pass2": "765951080f39ac63",
+   "equal": true
+  },
+  "D1_isolated_20usd_measured": {
+   "pass1": "d139f4c5e26ff6c0",
+   "pass2": "d139f4c5e26ff6c0",
+   "equal": true
+  },
+  "D2_multiplier_sample": {
+   "pass1": "1be6e85b3e2a5542",
+   "pass2": "1be6e85b3e2a5542",
+   "equal": true
+  },
+  "D3_size": {
+   "pass1": "8a08d0b8bfe94f06",
+   "pass2": "8a08d0b8bfe94f06",
+   "equal": true
+  },
+  "D6_holding": {
+   "pass1": "60418df919ca6b89",
+   "pass2": "60418df919ca6b89",
+   "equal": true
+  },
+  "D6_wrapper_exit_reasons": {
+   "pass1": "11040a08f0aed648",
+   "pass2": "11040a08f0aed648",
+   "equal": true
+  },
+  "JUD_comparators": {
+   "pass1": "11d78fb8d3fc0236",
+   "pass2": "11d78fb8d3fc0236",
+   "equal": true
+  },
+  "walk_forward": {
+   "pass1": "b3a9672b3b0eb9dc",
+   "pass2": "b3a9672b3b0eb9dc",
+   "equal": true
+  },
+  "shared_capital": {
+   "pass1": "7d47f5fbc0083d00",
+   "pass2": "7d47f5fbc0083d00",
+   "equal": true
+  },
+  "shared_capital_pressed": {
+   "pass1": "865cd9b3f90fd56a",
+   "pass2": "865cd9b3f90fd56a",
+   "equal": true
+  },
+  "coins": {
+   "pass1": "7a69f092c1abcc59",
+   "pass2": "7a69f092c1abcc59",
+   "equal": true
+  },
+  "economics": {
+   "pass1": "13efe0b8a4e35f24",
+   "pass2": "13efe0b8a4e35f24",
+   "equal": true
+  },
+  "gates": {
+   "pass1": "16e4a6df591aac0b",
+   "pass2": "16e4a6df591aac0b",
+   "equal": true
+  }
+ },
+ "determinism_ALL_EQUAL": true,
+ "fill_guard": {
+  "trades_B_V3_corrected.csv": {
+   "rc": 0,
+   "line": [
+    "✅ trades_B_V3_corrected.csv: صفقات=278 · فُحص=556 · تُخطّي=0 · شموع ناقصة=0 · مخالفات الدخول=0 · مخالفات الخروج=0"
+   ]
+  },
+  "trades_C_V2_corrected.csv": {
+   "rc": 0,
+   "line": [
+    "✅ trades_C_V2_corrected.csv: صفقات=325 · فُحص=650 · تُخطّي=0 · شموع ناقصة=0 · مخالفات الدخول=0 · مخالفات الخروج=0"
+   ]
+  },
+  "trades_D_stop_H180.csv": {
+   "rc": 0,
+   "line": [
+    "✅ trades_D_stop_H180.csv: صفقات=278 · فُحص=556 · تُخطّي=0 · شموع ناقصة=0 · مخالفات الدخول=0 · مخالفات الخروج=0"
+   ]
+  }
+ },
+ "fill_ALL_OK": true
+}

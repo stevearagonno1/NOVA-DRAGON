@@ -1,0 +1,327 @@
+{
+ "match": {
+  "code_V3": {
+   "runs": 26,
+   "slices": 404,
+   "mismatch_runs": [],
+   "MATCH": true
+  },
+  "code_V2": {
+   "runs": 26,
+   "slices": 457,
+   "mismatch_runs": [],
+   "MATCH": true
+  },
+  "text_V3": {
+   "runs": 26,
+   "slices": 418,
+   "mismatch_runs": [],
+   "MATCH": true
+  },
+  "text_V2": {
+   "runs": 26,
+   "slices": 475,
+   "mismatch_runs": [],
+   "MATCH": true
+  },
+  "engine_copy_equals_L0067_engine": true
+ },
+ "D1_golden_time": {
+  "code": {
+   "bars_checked": 120258,
+   "ctx_mismatch": 0,
+   "climate_mismatch": 0,
+   "exec_not_next_open": 0,
+   "rule": "code: أيام منتهية ≤ وقت الشمعة"
+  },
+  "text": {
+   "bars_checked": 120258,
+   "ctx_mismatch": 0,
+   "climate_mismatch": 0,
+   "exec_not_next_open": 0,
+   "rule": "text: أيام منتهية ≤ وقت الشمعة − يوم"
+  }
+ },
+ "D1_trade_diff": {
+  "V3": {
+   "only_code_entries": 16,
+   "only_text_entries": 27,
+   "same_entry_diff_exit": 14,
+   "same_entry_diff_reason": 3,
+   "common": 251,
+   "code_cycles": 189,
+   "text_cycles": 201,
+   "examples": [
+    {
+     "key": [
+      "ATOMUSDT",
+      0,
+      "2026-06-08T12:00:00+00:00"
+     ],
+     "code_exit": "2026-07-24T08:00:00+00:00",
+     "code_reason": "إلغاء-دورة",
+     "text_exit": "2026-06-30T00:00:00+00:00",
+     "text_reason": "إلغاء-دورة"
+    },
+    {
+     "key": [
+      "ATOMUSDT",
+      0,
+      "2023-08-20T04:00:00+00:00"
+     ],
+     "in": "code"
+    },
+    {
+     "key": [
+      "ATOMUSDT",
+      0,
+      "2023-06-12T12:00:00+00:00"
+     ],
+     "in": "text"
+    },
+    {
+     "key": [
+      "BNBUSDT",
+      0,
+      "2026-06-07T12:00:00+00:00"
+     ],
+     "code_exit": "2026-08-30T20:00:00+00:00",
+     "code_reason": "نهاية-العينة",
+     "text_exit": "2026-06-25T12:00:00+00:00",
+     "text_reason": "إلغاء-دورة"
+    },
+    {
+     "key": [
+      "BNBUSDT",
+      0,
+      "2022-06-19T16:00:00+00:00"
+     ],
+     "code_exit": "2022-08-09T08:00:00+00:00",
+     "code_reason": "توزيع-قمة",
+     "text_exit": "2022-08-11T12:00:00+00:00",
+     "text_reason": "توزيع-قمة"
+    },
+    {
+     "key": [
+      "BNBUSDT",
+      1,
+      "2026-06-29T20:00:00+00:00"
+     ],
+     "in": "code"
+    },
+    {
+     "key": [
+      "BNBUSDT",
+      0,
+      "2026-06-29T20:00:00+00:00"
+     ],
+     "in": "text"
+    },
+    {
+     "key": [
+      "ETHUSDT",
+      0,
+      "2025-03-08T20:00:00+00:00"
+     ],
+     "in": "code"
+    },
+    {
+     "key": [
+      "ETHUSDT",
+      0,
+      "2022-01-26T12:00:00+00:00"
+     ],
+     "in": "text"
+    },
+    {
+     "key": [
+      "FILUSDT",
+      0,
+      "2023-09-09T16:00:00+00:00"
+     ],
+     "in": "code"
+    },
+    {
+     "key": [
+      "FILUSDT",
+      0,
+      "2023-09-13T16:00:00+00:00"
+     ],
+     "in": "text"
+    },
+    {
+     "key": [
+      "HNTUSDT",
+      0,
+      "2021-10-01T12:00:00+00:00"
+     ],
+     "in": "code"
+    },
+    {
+     "key": [
+      "HNTUSDT",
+      0,
+      "2022-05-02T20:00:00+00:00"
+     ],
+     "in": "text"
+    },
+    {
+     "key": [
+      "IMXUSDT",
+      0,
+      "2024-06-25T04:00:00+00:00"
+     ],
+     "in": "code"
+    }
+   ]
+  },
+  "V2": {
+   "only_code_entries": 24,
+   "only_text_entries": 39,
+   "same_entry_diff_exit": 15,
+   "same_entry_diff_reason": 3,
+   "common": 286,
+   "code_cycles": 222,
+   "text_cycles": 237,
+   "examples": [
+    {
+     "key": [
+      "ATOMUSDT",
+      0,
+      "2026-06-08T12:00:00+00:00"
+     ],
+     "code_exit": "2026-07-24T08:00:00+00:00",
+     "code_reason": "إلغاء-دورة",
+     "text_exit": "2026-06-30T00:00:00+00:00",
+     "text_reason": "إلغاء-دورة"
+    },
+    {
+     "key": [
+      "ATOMUSDT",
+      0,
+      "2023-08-20T04:00:00+00:00"
+     ],
+     "in": "code"
+    },
+    {
+     "key": [
+      "ATOMUSDT",
+      0,
+      "2023-06-12T12:00:00+00:00"
+     ],
+     "in": "text"
+    },
+    {
+     "key": [
+      "BNBUSDT",
+      0,
+      "2022-06-19T16:00:00+00:00"
+     ],
+     "code_exit": "2022-08-09T08:00:00+00:00",
+     "code_reason": "توزيع-قمة",
+     "text_exit": "2022-08-11T12:00:00+00:00",
+     "text_reason": "توزيع-قمة"
+    },
+    {
+     "key": [
+      "BNBUSDT",
+      0,
+      "2026-06-07T12:00:00+00:00"
+     ],
+     "code_exit": "2026-08-30T20:00:00+00:00",
+     "code_reason": "نهاية-العينة",
+     "text_exit": "2026-06-25T12:00:00+00:00",
+     "text_reason": "إلغاء-دورة"
+    },
+    {
+     "key": [
+      "BNBUSDT",
+      1,
+      "2026-06-29T20:00:00+00:00"
+     ],
+     "in": "code"
+    },
+    {
+     "key": [
+      "BNBUSDT",
+      0,
+      "2026-06-29T20:00:00+00:00"
+     ],
+     "in": "text"
+    },
+    {
+     "key": [
+      "BTCUSDT",
+      0,
+      "2025-03-05T12:00:00+00:00"
+     ],
+     "in": "code"
+    },
+    {
+     "key": [
+      "BTCUSDT",
+      0,
+      "2025-03-02T16:00:00+00:00"
+     ],
+     "in": "text"
+    },
+    {
+     "key": [
+      "ETHUSDT",
+      0,
+      "2024-05-15T16:00:00+00:00"
+     ],
+     "in": "code"
+    },
+    {
+     "key": [
+      "ETHUSDT",
+      0,
+      "2022-01-26T12:00:00+00:00"
+     ],
+     "in": "text"
+    },
+    {
+     "key": [
+      "FILUSDT",
+      0,
+      "2023-09-09T16:00:00+00:00"
+     ],
+     "in": "code"
+    },
+    {
+     "key": [
+      "FILUSDT",
+      0,
+      "2023-09-13T16:00:00+00:00"
+     ],
+     "in": "text"
+    },
+    {
+     "key": [
+      "HNTUSDT",
+      0,
+      "2021-10-01T12:00:00+00:00"
+     ],
+     "in": "code"
+    }
+   ]
+  }
+ },
+ "golden": {
+  "cycles": 36,
+  "coins": 13,
+  "winners": 16,
+  "losers": 20,
+  "multi_stage": 15,
+  "all_engine_match": true,
+  "no_add_after_invalidation": true,
+  "total_cycles_available": 201
+ },
+ "leak": {
+  "cases": 70,
+  "ok": 70,
+  "failed": []
+ },
+ "MEASUREMENT_GATE_PARTIAL": true
+}
