@@ -1,0 +1,104 @@
+{
+ "leakage": {
+  "2022-11-15_BTCUSDT_cfg0": true,
+  "2022-11-15_BTCUSDT_cfg1": true,
+  "2022-11-15_BTCUSDT_cfg2": true,
+  "2022-11-15_BTCUSDT_cfg3": true,
+  "2022-11-15_BTCUSDT_cfg4": true,
+  "2022-11-15_ETHUSDT_cfg0": true,
+  "2022-11-15_ETHUSDT_cfg1": true,
+  "2022-11-15_ETHUSDT_cfg2": true,
+  "2022-11-15_ETHUSDT_cfg3": true,
+  "2022-11-15_ETHUSDT_cfg4": true,
+  "2022-11-15_LINKUSDT_cfg0": true,
+  "2022-11-15_LINKUSDT_cfg1": true,
+  "2022-11-15_LINKUSDT_cfg2": true,
+  "2022-11-15_LINKUSDT_cfg3": true,
+  "2022-11-15_LINKUSDT_cfg4": true,
+  "2022-11-15_SOLUSDT_cfg0": true,
+  "2022-11-15_SOLUSDT_cfg1": true,
+  "2022-11-15_SOLUSDT_cfg2": true,
+  "2022-11-15_SOLUSDT_cfg3": true,
+  "2022-11-15_SOLUSDT_cfg4": true,
+  "2024-02-01_BTCUSDT_cfg0": true,
+  "2024-02-01_BTCUSDT_cfg1": true,
+  "2024-02-01_BTCUSDT_cfg2": true,
+  "2024-02-01_BTCUSDT_cfg3": true,
+  "2024-02-01_BTCUSDT_cfg4": true,
+  "2024-02-01_ETHUSDT_cfg0": true,
+  "2024-02-01_ETHUSDT_cfg1": true,
+  "2024-02-01_ETHUSDT_cfg2": true,
+  "2024-02-01_ETHUSDT_cfg3": true,
+  "2024-02-01_ETHUSDT_cfg4": true,
+  "2024-02-01_LINKUSDT_cfg0": true,
+  "2024-02-01_LINKUSDT_cfg1": true,
+  "2024-02-01_LINKUSDT_cfg2": true,
+  "2024-02-01_LINKUSDT_cfg3": true,
+  "2024-02-01_LINKUSDT_cfg4": true,
+  "2024-02-01_SOLUSDT_cfg0": true,
+  "2024-02-01_SOLUSDT_cfg1": true,
+  "2024-02-01_SOLUSDT_cfg2": true,
+  "2024-02-01_SOLUSDT_cfg3": true,
+  "2024-02-01_SOLUSDT_cfg4": true,
+  "2025-07-01_BTCUSDT_cfg0": true,
+  "2025-07-01_BTCUSDT_cfg1": true,
+  "2025-07-01_BTCUSDT_cfg2": true,
+  "2025-07-01_BTCUSDT_cfg3": true,
+  "2025-07-01_BTCUSDT_cfg4": true,
+  "2025-07-01_ETHUSDT_cfg0": true,
+  "2025-07-01_ETHUSDT_cfg1": true,
+  "2025-07-01_ETHUSDT_cfg2": true,
+  "2025-07-01_ETHUSDT_cfg3": true,
+  "2025-07-01_ETHUSDT_cfg4": true,
+  "2025-07-01_LINKUSDT_cfg0": true,
+  "2025-07-01_LINKUSDT_cfg1": true,
+  "2025-07-01_LINKUSDT_cfg2": true,
+  "2025-07-01_LINKUSDT_cfg3": true,
+  "2025-07-01_LINKUSDT_cfg4": true,
+  "2025-07-01_SOLUSDT_cfg0": true,
+  "2025-07-01_SOLUSDT_cfg1": true,
+  "2025-07-01_SOLUSDT_cfg2": true,
+  "2025-07-01_SOLUSDT_cfg3": true,
+  "2025-07-01_SOLUSDT_cfg4": true
+ },
+ "fill_guard": {
+  "trades_oos_primary.csv": {
+   "rc": 0,
+   "line": "✅ trades_oos_primary.csv: صفقات=84 · فُحص=168 · تُخطّي=0 · شموع ناقصة=0 · مخالفات الدخول=0 · مخالفات الخروج=0"
+  },
+  "trades_oos_sensitive.csv": {
+   "rc": 0,
+   "line": "✅ trades_oos_sensitive.csv: صفقات=198 · فُحص=396 · تُخطّي=0 · شموع ناقصة=0 · مخالفات الدخول=0 · مخالفات الخروج=0"
+  }
+ },
+ "determinism": {
+  "prereg_sha": {
+   "pass1": "772731a76fd15c17",
+   "pass2": "772731a76fd15c17",
+   "equal": true
+  },
+  "candidates": {
+   "pass1": "ec2e990b934dde55",
+   "pass2": "ec2e990b934dde55",
+   "equal": true
+  },
+  "primary": {
+   "pass1": "8097ddca1ec2c5ae",
+   "pass2": "8097ddca1ec2c5ae",
+   "equal": true
+  },
+  "sensitive": {
+   "pass1": "59861b35d17d83d2",
+   "pass2": "59861b35d17d83d2",
+   "equal": true
+  },
+  "full_period_context": {
+   "pass1": "1f4cbc2e9aa39d6c",
+   "pass2": "1f4cbc2e9aa39d6c",
+   "equal": true
+  }
+ },
+ "determinism_ALL_EQUAL": true,
+ "leak_count": "60/60",
+ "ALL_OK": true
+}
