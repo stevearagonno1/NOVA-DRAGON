@@ -26,6 +26,36 @@ def _resample(df: pd.DataFrame, rule: str) -> pd.DataFrame:
     return out
 
 
+# LC-V3 (NOVA_LC_V3=1, L0064): the L0062/L0063 research path made engine-resident.
+# Legacy path (flag off, default) is byte-for-byte the L0060/L0061 behaviour:
+# the 4-symbol literal set and no climate gate.  Nothing else changes between the two.
+LC_LEGACY_UNIVERSE = frozenset({"BTCUSDT", "BNBUSDT", "SOLUSDT", "LINKUSDT"})
+LC_V3_UNIVERSE = frozenset({
+    "ATOMUSDT", "BNBUSDT", "BTCUSDT", "DOGEUSDT", "ETHUSDT", "FILUSDT", "GRAMUSDT",
+    "HNTUSDT", "IMXUSDT", "LINKUSDT", "PEPEUSDT", "RENDERUSDT", "SHIBUSDT", "SOLUSDT",
+    "VETUSDT", "XLMUSDT",
+})
+
+
+def _regime_labels(daily: pd.DataFrame) -> pd.Series:
+    """Daily three-state climate label (L0061 المادة 13), shifted by one day.
+
+    EMA50 vs EMA200 (adjust=False) on the daily close, slope = EMA50.diff(10).
+    "صاعد" = EMA50 > EMA200 and slope > 0; "هابط" = EMA50 < EMA200 and slope < 0;
+    otherwise "عرضي".  The returned series is ``shift(1)``: the label stored at day
+    D is the classification known at the close of D-1, so a decision taken inside
+    day D never sees day D's own close.
+    """
+    c = daily["close"]
+    e50 = c.ewm(span=50, adjust=False).mean()
+    e200 = c.ewm(span=200, adjust=False).mean()
+    slope = e50.diff(10)
+    lab = pd.Series("عرضي", index=daily.index)
+    lab[(e50 > e200) & (slope > 0)] = "صاعد"
+    lab[(e50 < e200) & (slope < 0)] = "هابط"
+    return lab.shift(1)
+
+
 def _record(symbol, stage, series, entry_i, exit_i, entry_ref, entry_px,
             entry_cost, exit_px, reason, notional, idx, exit_slip=None) -> dict:
     pos = Position(symbol=symbol, side=1, entry=entry_px, entry_px=entry_px,
@@ -59,7 +89,8 @@ def _record(symbol, stage, series, entry_i, exit_i, entry_ref, entry_px,
 
 def run(df1m: pd.DataFrame, symbol: str) -> list[dict]:
     """Run the independent long-cycle sleeve on one symbol's 1m frame."""
-    if symbol not in {"BTCUSDT", "BNBUSDT", "SOLUSDT", "LINKUSDT"}:
+    _v3 = os.getenv("NOVA_LC_V3", "0") == "1"   # L0064: default off = legacy sleeve
+    if symbol not in (LC_V3_UNIVERSE if _v3 else LC_LEGACY_UNIVERSE):
         return []
     h4 = _resample(df1m, "4h")
     daily = _resample(df1m, "1D")
@@ -118,6 +149,16 @@ def run(df1m: pd.DataFrame, symbol: str) -> list[dict]:
     weakness = ((close < prior3_low) | (close < ema20)).fillna(False).astype(bool)
     weakness_event = weakness & ~weakness.shift(1, fill_value=False)
 
+    # LC-V3 climate gate: a buy decision on a 4h bar inside day D is allowed only
+    # when yesterday's closed daily classification (shift(1)) is "هابط".  Applied
+    # to every buy decision (stage 0 and add-ons); exits are untouched.
+    if _v3:
+        _lab = _regime_labels(daily)
+        _day_ok = {ts.normalize(): (val == "هابط") for ts, val in _lab.items()}
+        buy_ok = np.array([_day_ok.get(t.normalize(), False) for t in h4.index], dtype=bool)
+    else:
+        buy_ok = np.ones(len(h4), dtype=bool)
+
     idx = h4.index
     n = len(h4)
     weights = C.LONG_CYCLE_STAGE_WEIGHTS
@@ -166,7 +207,7 @@ def run(df1m: pd.DataFrame, symbol: str) -> list[dict]:
             next_stage = max(next_stage, stage + 1)
 
         if not tranches:
-            if bool(entry_signal.iloc[i]):
+            if bool(entry_signal.iloc[i]) and buy_ok[i]:
                 schedule_buy(0, i)
             continue
 
@@ -202,7 +243,7 @@ def run(df1m: pd.DataFrame, symbol: str) -> list[dict]:
         # Add only on a controlled retest/renewed structure confirmation; never
         # keep buying a falling market merely because it is cheaper.
         if (not top_seen and next_stage < len(weights)
-                and bool(entry_signal.iloc[i])
+                and bool(entry_signal.iloc[i]) and buy_ok[i]
                 and c <= min(t["entry_px"] for t in tranches)
                 * (1.0 - C.LONG_CYCLE_STAGE_GAP_PCT)):
             schedule_buy(next_stage, i)

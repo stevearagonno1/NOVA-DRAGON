@@ -1,0 +1,31 @@
+{
+  "files_sha_pass1": {
+    "sha_random_books_FULL16_A_SEL": "5a937a65883b30c5",
+    "sha_random_books_FULL16_A_JUD": "67876f4322985c1a",
+    "sha_random_books_FULL16_B_SEL": "4faeb16002a72019",
+    "sha_random_books_FULL16_B_JUD": "c3976d0350d9a5a7"
+  },
+  "files_sha_pass2": {
+    "sha_random_books_FULL16_A_SEL": "5a937a65883b30c5",
+    "sha_random_books_FULL16_A_JUD": "67876f4322985c1a",
+    "sha_random_books_FULL16_B_SEL": "4faeb16002a72019",
+    "sha_random_books_FULL16_B_JUD": "c3976d0350d9a5a7"
+  },
+  "files_identical": true,
+  "strategy_identical": true,
+  "books_identical": true,
+  "concentration_identical": true,
+  "acceptance_identical": true,
+  "final_identical": true,
+  "meme_effect_identical": true,
+  "books_csv_sha_pass2": {
+    "books_FULL16_A_JUD.csv": "0925eaeb387989f9",
+    "books_FULL16_A_SEL.csv": "33e2a10c47c1c1dd",
+    "books_FULL16_B_JUD.csv": "14937d6476ec1a77",
+    "books_FULL16_B_SEL.csv": "7015c9837470d9cf",
+    "books_TARGET13_A_JUD.csv": "07db1459198b5c58",
+    "books_TARGET13_A_SEL.csv": "3b881ce807aaacbc",
+    "books_TARGET13_B_JUD.csv": "8e77f01de192efd6",
+    "books_TARGET13_B_SEL.csv": "d22b4cb74cb4978e"
+  }
+}

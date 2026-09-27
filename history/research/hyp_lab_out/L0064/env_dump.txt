@@ -1,0 +1,61 @@
+{
+  "date": "2026-09-27",
+  "python": "3.13.14",
+  "pandas": "2.2.3",
+  "numpy": "2.3.5",
+  "pyarrow": "25.0.1",
+  "platform": "Linux-6.1.158+-x86_64-with-glibc2.41",
+  "base_branch": "arena/l0063-random-control-fair-2026-09-27 @ ce130cd",
+  "NOVA_LC_V3": "1 عند القياس؛ 0 للنسخة القديمة",
+  "n_books": 1000,
+  "designs": [
+    "A",
+    "B"
+  ],
+  "baskets": {
+    "FULL16": [
+      "ATOMUSDT",
+      "BNBUSDT",
+      "BTCUSDT",
+      "DOGEUSDT",
+      "ETHUSDT",
+      "FILUSDT",
+      "GRAMUSDT",
+      "HNTUSDT",
+      "IMXUSDT",
+      "LINKUSDT",
+      "PEPEUSDT",
+      "RENDERUSDT",
+      "SHIBUSDT",
+      "SOLUSDT",
+      "VETUSDT",
+      "XLMUSDT"
+    ],
+    "TARGET13": [
+      "ATOMUSDT",
+      "BNBUSDT",
+      "BTCUSDT",
+      "ETHUSDT",
+      "FILUSDT",
+      "GRAMUSDT",
+      "HNTUSDT",
+      "IMXUSDT",
+      "LINKUSDT",
+      "RENDERUSDT",
+      "SOLUSDT",
+      "VETUSDT",
+      "XLMUSDT"
+    ]
+  },
+  "memes_excluded": [
+    "DOGEUSDT",
+    "SHIBUSDT",
+    "PEPEUSDT"
+  ],
+  "cost": {
+    "base": 0.00115,
+    "stress": 0.0013,
+    "slippage": 0.0
+  },
+  "seed_base": 64
+}

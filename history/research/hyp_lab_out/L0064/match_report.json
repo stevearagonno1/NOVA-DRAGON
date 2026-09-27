@@ -1,0 +1,364 @@
+{
+  "per_symbol": {
+    "ATOMUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": false,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 31,
+      "n_cut": 16,
+      "legacy_returns_empty": true,
+      "seconds": 5.8
+    },
+    "BNBUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": true,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 16,
+      "n_cut": 11,
+      "legacy_full_matches_lab_open_full": true,
+      "legacy_cut_matches_lab_open_cut": true,
+      "seconds": 6.2
+    },
+    "BTCUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": true,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 15,
+      "n_cut": 10,
+      "legacy_full_matches_lab_open_full": true,
+      "legacy_cut_matches_lab_open_cut": true,
+      "seconds": 8.9
+    },
+    "DOGEUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": false,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 16,
+      "n_cut": 9,
+      "legacy_returns_empty": true,
+      "seconds": 3.3
+    },
+    "ETHUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": false,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 18,
+      "n_cut": 7,
+      "legacy_returns_empty": true,
+      "seconds": 6.1
+    },
+    "FILUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": false,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 33,
+      "n_cut": 19,
+      "legacy_returns_empty": true,
+      "seconds": 3.5
+    },
+    "GRAMUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": false,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 10,
+      "n_cut": 0,
+      "legacy_returns_empty": true,
+      "seconds": 0.9
+    },
+    "HNTUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": false,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 9,
+      "n_cut": 9,
+      "legacy_returns_empty": true,
+      "seconds": 0.8
+    },
+    "IMXUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": false,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 34,
+      "n_cut": 15,
+      "legacy_returns_empty": true,
+      "seconds": 2.9
+    },
+    "LINKUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": true,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 18,
+      "n_cut": 14,
+      "legacy_full_matches_lab_open_full": true,
+      "legacy_cut_matches_lab_open_cut": true,
+      "seconds": 5.3
+    },
+    "PEPEUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": false,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 13,
+      "n_cut": 4,
+      "legacy_returns_empty": true,
+      "seconds": 1.7
+    },
+    "RENDERUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": false,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 11,
+      "n_cut": 0,
+      "legacy_returns_empty": true,
+      "seconds": 0.9
+    },
+    "SHIBUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": false,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 27,
+      "n_cut": 16,
+      "legacy_returns_empty": true,
+      "seconds": 5.8
+    },
+    "SOLUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": true,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 14,
+      "n_cut": 8,
+      "legacy_full_matches_lab_open_full": true,
+      "legacy_cut_matches_lab_open_cut": true,
+      "seconds": 4.9
+    },
+    "TONUSDT": {
+      "in_v3_universe": false,
+      "in_legacy": false,
+      "v3_returns_empty": true,
+      "legacy_returns_empty": true,
+      "seconds": 0.2
+    },
+    "VETUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": false,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 34,
+      "n_cut": 14,
+      "legacy_returns_empty": true,
+      "seconds": 3.2
+    },
+    "XLMUSDT": {
+      "in_v3_universe": true,
+      "in_legacy": false,
+      "v3_full_matches_lab_bear_full": true,
+      "v3_cut_matches_lab_bear_cut": true,
+      "v3_full_exact_dicts": true,
+      "n_full": 24,
+      "n_cut": 14,
+      "legacy_returns_empty": true,
+      "seconds": 3.0
+    }
+  },
+  "leakage": {
+    "ATOMUSDT": {
+      "2022-09-01": {
+        "labels_equal_on_common_days": true,
+        "same_entries_before_T": true,
+        "same_exits_for_trades_closed_before_T": true,
+        "open_at_T_closed_as_end_of_sample": true,
+        "n_before_T": 6,
+        "n_open_at_T": 0
+      },
+      "2023-06-01": {
+        "labels_equal_on_common_days": true,
+        "same_entries_before_T": true,
+        "same_exits_for_trades_closed_before_T": true,
+        "open_at_T_closed_as_end_of_sample": true,
+        "n_before_T": 10,
+        "n_open_at_T": 2
+      },
+      "2025-03-01": {
+        "labels_equal_on_common_days": true,
+        "same_entries_before_T": true,
+        "same_exits_for_trades_closed_before_T": true,
+        "open_at_T_closed_as_end_of_sample": true,
+        "n_before_T": 22,
+        "n_open_at_T": 0
+      },
+      "perturb_day_D_close": {
+        "day": "2024-03-01",
+        "label_at_D_unchanged": true,
+        "labels_before_D_unchanged": true,
+        "first_day_changed": null
+      }
+    },
+    "BTCUSDT": {
+      "2022-09-01": {
+        "labels_equal_on_common_days": true,
+        "same_entries_before_T": true,
+        "same_exits_for_trades_closed_before_T": true,
+        "open_at_T_closed_as_end_of_sample": true,
+        "n_before_T": 4,
+        "n_open_at_T": 1
+      },
+      "2023-06-01": {
+        "labels_equal_on_common_days": true,
+        "same_entries_before_T": true,
+        "same_exits_for_trades_closed_before_T": true,
+        "open_at_T_closed_as_end_of_sample": true,
+        "n_before_T": 9,
+        "n_open_at_T": 0
+      },
+      "2025-03-01": {
+        "labels_equal_on_common_days": true,
+        "same_entries_before_T": true,
+        "same_exits_for_trades_closed_before_T": true,
+        "open_at_T_closed_as_end_of_sample": true,
+        "n_before_T": 10,
+        "n_open_at_T": 0
+      },
+      "perturb_day_D_close": {
+        "day": "2024-03-01",
+        "label_at_D_unchanged": true,
+        "labels_before_D_unchanged": true,
+        "first_day_changed": "2024-04-29"
+      }
+    },
+    "ETHUSDT": {
+      "2022-09-01": {
+        "labels_equal_on_common_days": true,
+        "same_entries_before_T": true,
+        "same_exits_for_trades_closed_before_T": true,
+        "open_at_T_closed_as_end_of_sample": true,
+        "n_before_T": 4,
+        "n_open_at_T": 1
+      },
+      "2023-06-01": {
+        "labels_equal_on_common_days": true,
+        "same_entries_before_T": true,
+        "same_exits_for_trades_closed_before_T": true,
+        "open_at_T_closed_as_end_of_sample": true,
+        "n_before_T": 4,
+        "n_open_at_T": 0
+      },
+      "2025-03-01": {
+        "labels_equal_on_common_days": true,
+        "same_entries_before_T": true,
+        "same_exits_for_trades_closed_before_T": true,
+        "open_at_T_closed_as_end_of_sample": true,
+        "n_before_T": 8,
+        "n_open_at_T": 0
+      },
+      "perturb_day_D_close": {
+        "day": "2024-03-01",
+        "label_at_D_unchanged": true,
+        "labels_before_D_unchanged": true,
+        "first_day_changed": "2024-06-25"
+      }
+    },
+    "SHIBUSDT": {
+      "2022-09-01": {
+        "labels_equal_on_common_days": true,
+        "same_entries_before_T": true,
+        "same_exits_for_trades_closed_before_T": true,
+        "open_at_T_closed_as_end_of_sample": true,
+        "n_before_T": 3,
+        "n_open_at_T": 0
+      },
+      "2023-06-01": {
+        "labels_equal_on_common_days": true,
+        "same_entries_before_T": true,
+        "same_exits_for_trades_closed_before_T": true,
+        "open_at_T_closed_as_end_of_sample": true,
+        "n_before_T": 14,
+        "n_open_at_T": 3
+      },
+      "2025-03-01": {
+        "labels_equal_on_common_days": true,
+        "same_entries_before_T": true,
+        "same_exits_for_trades_closed_before_T": true,
+        "open_at_T_closed_as_end_of_sample": true,
+        "n_before_T": 16,
+        "n_open_at_T": 0
+      },
+      "perturb_day_D_close": {
+        "day": "2024-03-01",
+        "label_at_D_unchanged": true,
+        "labels_before_D_unchanged": true,
+        "first_day_changed": "2024-07-15"
+      }
+    }
+  },
+  "legacy": {
+    "SEL": {
+      "net": -12.59,
+      "slices": 47,
+      "cycles": 33
+    },
+    "JUD": {
+      "net": 417.35,
+      "slices": 40,
+      "cycles": 31
+    },
+    "FULL": {
+      "net": 404.76,
+      "slices": 87,
+      "cycles": 64
+    },
+    "matches_L0060_L0061": true
+  },
+  "files": {
+    "SEL": {
+      "engine_v3_file": "trades_engine_v3_SEL.csv",
+      "sha_engine": "ca2582314faf1be3",
+      "sha_L0061": "ca2582314faf1be3",
+      "match": true,
+      "rows": 166
+    },
+    "JUD": {
+      "engine_v3_file": "trades_engine_v3_JUD.csv",
+      "sha_engine": "dfb0bc3d9cd1b3eb",
+      "sha_L0061": "dfb0bc3d9cd1b3eb",
+      "match": true,
+      "rows": 157
+    },
+    "FULL": {
+      "engine_v3_file": "trades_engine_v3_FULL.csv",
+      "sha_engine": "ba4f8d6bc797ca82",
+      "sha_L0061": "ba4f8d6bc797ca82",
+      "match": true,
+      "rows": 323
+    }
+  },
+  "long_cycle_py_sha256": "471543ec9e2d8d43",
+  "MATCH_GATE_PASSED": true
+}
