@@ -1,0 +1,87 @@
+{
+ "1_classic_uses_data_le_i": {
+  "ok": true,
+  "cases": 15,
+  "trunc_mismatches": 0,
+  "future_perturb_mismatches": 0,
+  "note": "قطع الإطار بعد i وتشويش المستقبل لا يغيّران أي شرط تأكيد عند ≤ i"
+ },
+ "2_selection_from_train_only": {
+  "ok": true,
+  "recomputed": {
+   "A_liquidity_flow": "OBV",
+   "B_price_candle_vol": null,
+   "C_trend_momentum": "EMA"
+  },
+  "committed": {
+   "A_liquidity_flow": "OBV",
+   "B_price_candle_vol": null,
+   "C_trend_momentum": "EMA"
+  },
+  "note": "إعادة اشتقاق الاختيار من شرائح train فقط تطابق selection_l0076.json المُودع"
+ },
+ "4_no_holdout_in_selection": {
+  "ok": true,
+  "holdout_fires_present": true,
+  "embargo_gap_bars": 24.0,
+  "embargo_required": 18,
+  "note": "فترة الحظر (≥18 شمعة) تفصل train عن holdout؛ الاختيار استعمل شموع train فقط"
+ },
+ "3_names_frozen_before_holdout": {
+  "ok": true,
+  "selection_commit": "4ddb557ae395",
+  "holdout_absent_in_selection_commit": true,
+  "note": "commit تجميد selection_l0076.json لا يحتوي نتائج holdout في شجرته — إثبات دائم أن الأسماء ثُبّتت قبل قراءة holdout"
+ },
+ "5_raw_structure_unchanged": {
+  "ok": true,
+  "counts_L0076": {
+   "FVG_long": 8452,
+   "FVG_short": 8922,
+   "MSS_long": 103,
+   "MSS_short": 105,
+   "SFP_long": 1881,
+   "SFP_short": 1883
+  },
+  "counts_L0073": {
+   "FVG_long": 8452,
+   "FVG_short": 8922,
+   "MSS_long": 103,
+   "MSS_short": 105,
+   "SFP_long": 1881,
+   "SFP_short": 1883
+  },
+  "note": "عدد إشارات البنية الخام (base، لكل مكوّن واتجاه) = مكوّنات L0073 حرفيًا"
+ },
+ "6_no_costs_or_trade_mgmt": {
+  "ok": true,
+  "offending_identifiers": [],
+  "note": "لا رسوم/وقف/إدارة صفقة/رأس مال كمعرّفات فعلية في كود L0076"
+ },
+ "7_bollinger_zscore_not_two_families": {
+  "ok": true,
+  "bollinger_count": 1,
+  "zscore_present": false,
+  "note": "Bollinger مرة واحدة كعائلة B؛ لا Z-Score كمرشح مستقل"
+ },
+ "8_no_secrets_in_outputs": {
+  "ok": true,
+  "hits": [],
+  "note": "فحص كل ملفات L0076 من الأسرار ورموز الوصول"
+ },
+ "_summary": {
+  "passed": 8,
+  "total": 8,
+  "all_ok": true,
+  "critical_ok": true,
+  "critical_checks": [
+   "1_classic_uses_data_le_i",
+   "2_selection_from_train_only",
+   "3_names_frozen_before_holdout",
+   "4_no_holdout_in_selection",
+   "5_raw_structure_unchanged",
+   "8_no_secrets_in_outputs"
+  ],
+  "verdict": "L0076 صالح للاختبار خارج العينة"
+ }
+}
