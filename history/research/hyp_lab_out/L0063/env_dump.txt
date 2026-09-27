@@ -1,0 +1,24 @@
+{
+  "date": "2026-09-27",
+  "python": "3.13.14",
+  "pandas": "2.2.3",
+  "numpy": "2.3.5",
+  "pyarrow": "25.0.1",
+  "platform": "Linux-6.1.158+-x86_64-with-glibc2.41",
+  "base_branch": "arena/l0062-long-cycle-random16-2026-09-27 @ 6589d77",
+  "n_books_per_window_per_design": 200,
+  "designs": [
+    "A",
+    "B"
+  ],
+  "windows": [
+    "SEL",
+    "JUD"
+  ],
+  "cost": {
+    "actual": 0.00115,
+    "stress": 0.0013,
+    "slippage": 0.0
+  },
+  "seed_scheme": "numpy SeedSequence([63, window_code(SEL=1,JUD=2), design_code(A=1,B=2), book_index(1..200), crc32(symbol)])"
+}

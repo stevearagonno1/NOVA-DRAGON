@@ -1,0 +1,22 @@
+{
+  "pass1_sha": {
+    "sha_random_books_A_SEL": "05ee76317b7c7951",
+    "sha_random_books_A_JUD": "7b1e45a2cb918f18",
+    "sha_random_books_B_SEL": "5f22bfb650814471",
+    "sha_random_books_B_JUD": "57e33c56ae5432c4"
+  },
+  "pass2_sha": {
+    "sha_random_books_A_SEL": "05ee76317b7c7951",
+    "sha_random_books_A_JUD": "7b1e45a2cb918f18",
+    "sha_random_books_B_SEL": "5f22bfb650814471",
+    "sha_random_books_B_JUD": "57e33c56ae5432c4"
+  },
+  "files_identical": true,
+  "results_sections_identical": {
+    "strategy": true,
+    "books": true,
+    "concentration": true,
+    "acceptance": true
+  },
+  "in_process_double_generation": "كل دفتر وُلِّد مرتين داخل العملية وطابق (وإلا لتوقف السكربت)"
+}

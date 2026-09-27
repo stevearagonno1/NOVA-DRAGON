@@ -1,0 +1,115 @@
+{
+  "files": 12,
+  "files_with_overlap": 0,
+  "overlap": 0,
+  "results": [
+    {
+      "trades": 118,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_random_A_JUD_book1.csv"
+    },
+    {
+      "trades": 118,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_random_A_JUD_book2.csv"
+    },
+    {
+      "trades": 118,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_random_A_JUD_book3.csv"
+    },
+    {
+      "trades": 113,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_random_A_SEL_book1.csv"
+    },
+    {
+      "trades": 113,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_random_A_SEL_book2.csv"
+    },
+    {
+      "trades": 113,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_random_A_SEL_book3.csv"
+    },
+    {
+      "trades": 118,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_random_B_JUD_book1.csv"
+    },
+    {
+      "trades": 118,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_random_B_JUD_book2.csv"
+    },
+    {
+      "trades": 118,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_random_B_JUD_book3.csv"
+    },
+    {
+      "trades": 113,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_random_B_SEL_book1.csv"
+    },
+    {
+      "trades": 113,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_random_B_SEL_book2.csv"
+    },
+    {
+      "trades": 113,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_random_B_SEL_book3.csv"
+    }
+  ]
+}
