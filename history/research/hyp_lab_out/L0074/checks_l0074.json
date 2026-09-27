@@ -1,0 +1,94 @@
+{
+ "1_classic_uses_data_le_i": {
+  "ok": true,
+  "cases": 15,
+  "mismatches": 0,
+  "note": "قطع الإطار بعد i لا يغيّر أي شرط تأكيد كلاسيكي عند ≤ i (المؤشرات السبعة، اتجاهان)"
+ },
+ "2_same_bar_no_future": {
+  "ok": true,
+  "cases": 15,
+  "mismatches": 0,
+  "note": "تشويش عشوائي (±50%) لكل شمعة بعد i لا يغيّر أي شرط تأكيد عند ≤ i — التأكيد على i سببي"
+ },
+ "3_lag_decision_at_i_plus_1_only": {
+  "ok": true,
+  "cases": 15,
+  "mismatches": 0,
+  "note": "تشويش كل الشموع بعد i+1 لا يغيّر شرط التأكيد عند i+1؛ نافذة النتيجة للمسار المتأخر تبدأ بنيويًا عند i+2 (decision_bar=i+1)"
+ },
+ "3b_decision_bar_construction": {
+  "ok": true,
+  "note": "same: decision_bar=i؛ lag: decision_bar=i+1 (نتيجة i+1 تقيس من i+2..) — تحقق بنيوي من الجدول"
+ },
+ "4_no_priority_deletion_counts_eq_L0073": {
+  "ok": true,
+  "counts_L0074": {
+   "FVG_long": 8452,
+   "FVG_short": 8922,
+   "MSS_long": 103,
+   "MSS_short": 105,
+   "SFP_long": 1881,
+   "SFP_short": 1883
+  },
+  "counts_L0073": {
+   "FVG_long": 8452,
+   "FVG_short": 8922,
+   "MSS_long": 103,
+   "MSS_short": 105,
+   "SFP_long": 1881,
+   "SFP_short": 1883
+  },
+  "exact_set_match": true,
+  "note": "عدد ومطابقة إشارات البنية الخام (MSS/FVG/SFP، اتجاهان) = L0073 حرفيًا — لا حذف بالأولوية"
+ },
+ "6_raw_signal_hash_stable": {
+  "ok": true,
+  "hash": "3b51ec4a2ce07c74f3b2bcec9a472febbb624a8ab96cfdf88393f783850c7512",
+  "note": "قائمة إشارات البنية لا تتغير قبل/بعد حساب النتائج"
+ },
+ "7_no_costs_or_trade_mgmt": {
+  "ok": true,
+  "offending_identifiers": [],
+  "note": "لا رسوم/وقف/إدارة صفقة/رأس مال كمعرّفات فعلية في كود الدراسة (تُتجاهل السلاسل الوصفية والتعليقات)"
+ },
+ "8_no_selection_from_results": {
+  "ok": true,
+  "classic": [
+   "RSI",
+   "MACD",
+   "Bollinger",
+   "EMA",
+   "ADX",
+   "Stochastic",
+   "OBV"
+  ],
+  "consensus": [
+   2,
+   3
+  ],
+  "seed": 74,
+  "note": "أسماء المؤشرات السبعة وعتبات الإجماع ونوافذ التأكيد والبذرة مقفلة في التسجيل المسبق، غير مختارة من النتائج"
+ },
+ "9_no_secrets_in_outputs": {
+  "ok": true,
+  "hits": [],
+  "note": "فحص كل ملفات L0074 من الأسرار ورموز الوصول"
+ },
+ "_summary": {
+  "passed": 9,
+  "total": 9,
+  "all_ok": true,
+  "critical_ok": true,
+  "critical_checks": [
+   "1_classic_uses_data_le_i",
+   "2_same_bar_no_future",
+   "3_lag_decision_at_i_plus_1_only",
+   "3b_decision_bar_construction",
+   "4_no_priority_deletion_counts_eq_L0073",
+   "6_raw_signal_hash_stable",
+   "9_no_secrets_in_outputs"
+  ],
+  "verdict": "L0074 صالح"
+ }
+}
