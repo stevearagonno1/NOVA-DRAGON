@@ -1,0 +1,39 @@
+{
+  "FULL16_SEL": {
+    "lab": "ca2582314faf1be3",
+    "L0064": "ca2582314faf1be3",
+    "match": true,
+    "rows": 166
+  },
+  "FULL16_JUD": {
+    "lab": "dfb0bc3d9cd1b3eb",
+    "L0064": "dfb0bc3d9cd1b3eb",
+    "match": true,
+    "rows": 157
+  },
+  "FULL16_FULL": {
+    "lab": "ba4f8d6bc797ca82",
+    "L0064": "ba4f8d6bc797ca82",
+    "match": true,
+    "rows": 323
+  },
+  "TARGET13_SEL": {
+    "lab": "97668d49006de7ff",
+    "L0064": "97668d49006de7ff",
+    "match": true,
+    "rows": 137
+  },
+  "TARGET13_JUD": {
+    "lab": "e72d9237ffce8ffe",
+    "L0064": "e72d9237ffce8ffe",
+    "match": true,
+    "rows": 130
+  },
+  "TARGET13_FULL": {
+    "lab": "701429b5f0a203aa",
+    "L0064": "701429b5f0a203aa",
+    "match": true,
+    "rows": 267
+  },
+  "MATCH_GATE_PASSED": true
+}
