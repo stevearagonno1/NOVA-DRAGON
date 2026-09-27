@@ -1,0 +1,51 @@
+{
+ "lane": "L0074",
+ "title": "المؤشرات الكلاسيكية السبعة كتأكيد لإشارات البنية MSS/FVG/SFP",
+ "written_before_measuring": "كُتب وثُبّت في commit مستقل قبل حساب أي نتيجة. التعريفات منقولة حرفيًا من uploads/TASK-L0074-CONFIRMATION-EXECUTION-BRIEF.md. كل ما تركته الورقة مفتوحًا حُسم هنا قبل القياس، ولا يجوز تغييره بعد رؤية النتائج.",
+ "study_type": "قياس فائدة التأكيد فقط — لا إدارة صفقة، لا وقف، لا رسوم، لا رأس مال، لا تداول حي",
+ "starting_point": {"branch": "arena/l0073-structure-signals-2026-09-27", "commit": "73759c8", "baseline_dir": "history/research/hyp_lab_out/L0073/"},
+ "locked_source": {
+  "nova_v8/microstructure.py": {"blob": "b0de2b54d8c8950662750fb6441595be789e5e68", "use": "mss_signal, fvg_levels, sfp_signal — عبر إعادة استخدام l0073_study.fires/conditions بلا تعديل (نفس إشارات L0073 حرفيًا)"},
+  "nova_v8/indicators.py": {"blob": "44349d672aec159defc734db0d17628f37bab815", "use": "compute_matrix(df) لحساب أعمدة المؤشرات الكلاسيكية (rsi, macd, bb_low/bb_up, ema50/ema200, adx, stoch_k/stoch_d, obv/obv_sma20)، وwilder_atr(df,14)"},
+  "nova_v8/triggers.py": {"blob": "8c47f1b00920562a12e0c3f1ed2cd0e0964f65b2", "use": "build_triggers(df) لأخذ شروط long/short للمؤشرات السبعة كما هي — تُستخدم كمستوى (level) لا كحافة، لأن التأكيد يعني توافق حالة المؤشر لحظة الإشارة (§5.1)"},
+  "note": "الملفات الثلاثة متطابقة blob-for-blob مع L0073 و main."
+ },
+ "data": {"source": "crypto_archive/{SYM}USDT_1m.parquet", "resample": "4H، label=left، closed=left؛ open=first high=max low=min close=last volume=sum؛ عمود minutes=عدد شموع الدقيقة، تُبقى الشموع ذات minutes>0", "cache_validation": "أُعيد بناء كاش 4H وأُعيد تشغيل l0073_study.py فأنتج ملفات L0073 مطابقة بايت-ببايت (نفس signal_hash 2cf2f60f…) — إثبات أن خط الأنابيب مطابق لخط أساس L0073", "period": "2021-09-01 00:00 → آخر شمعة تبدأ 2026-08-30 20:00 UTC؛ 2026-08-31 مستبعد", "assets": "TARGET13: ATOM BNB BTC ETH FIL GRAM HNT IMX LINK RENDER SOL VET XLM؛ بلا ميم ولا بيانات جديدة"},
+ "structure_signals": {"components": ["MSS", "FVG", "SFP"], "definition": "إشارات L0073 نفسها دون تعديل (edge: fire[i]=cond[i]&~cond[i-1])؛ كل اتجاه على حدة؛ لا أولوية ولا حذف بين المكونات", "raw_baseline": "نتيجة كل مكوّن بنيوي منفردًا قبل التأكيد = خط أساس L0073 (يُعاد حسابه داخل L0074 ويُتحقق من مطابقته)"},
+ "classic_confirmation_indicators": {
+  "count": 7,
+  "list": ["RSI", "MACD", "Bollinger", "EMA", "ADX", "Stochastic", "OBV"],
+  "RSI": "long=(rsi<35)&(rsi>rsi.shift(1)); short=(rsi>65)&(rsi.shift(1)>rsi)",
+  "MACD": "histogram: long=(macd>0)&(macd.shift(1)<=0); short=(macd<0)&(macd.shift(1)>=0)",
+  "Bollinger": "long=(low<=bb_low*1.005)&(close>open); short=(high>=bb_up*0.995)&(close<open)",
+  "EMA": "long=(close>ema50)&(ema50>ema200); short=(close<ema50)&(ema50<ema200)",
+  "ADX": "long=short=adx>22 — تأكيد قوة فقط، اتجاهه يُورث من إشارة البنية",
+  "Stochastic": "long=(stoch_k>stoch_d)&(stoch_k<25); short=(stoch_k<stoch_d)&(stoch_k>75)",
+  "OBV": "long=obv>obv_sma20; short=obv<obv_sma20",
+  "excluded": "MicroBurst, RSI7, KAMA, SuperTrend لا تدخل الاختبار الأساسي",
+  "level_not_edge": "شرط التأكيد يُقرأ كمستوى عند إغلاق شمعة الإشارة، لا كحافة عبور — نصّت الورقة على ذلك صراحة (§5.1)"
+ },
+ "matrix": {"3 structure x 7 classic": 21, "rule": "كل زوج يُحفظ حتى لو ضعيفًا؛ لا يُحذف أي زوج"},
+ "confirmation_paths": {
+  "same_bar": {"rule": "confirmed[i] = structure_fire[i] AND classic_condition_in_direction[i]", "dated_at": "إغلاق i", "outcome_decision_bar": "i"},
+  "one_bar_lag": {"rule": "structure_fire[i] AND classic_condition[i+1] ⇒ قرار عند i+1", "outcome_window_starts": "i+2 (نافذة النتيجة من الشمعة التالية لشمعة التأكيد)", "outcome_decision_bar": "i+1", "secondary": "ثانوي؛ لا يغيّر نتيجة المسار الأساسي"},
+  "consensus": {"rule": "على نفس شمعة الإشارة i: عدد المؤشرات السبعة المتوافقة مع الاتجاه ≥ العتبة", "thresholds": [2, 3], "secondary": "تحليل ثانوي فقط؛ ممنوع اختبار عتبات أخرى (4/7,5/7) أو اختيار أسماء المؤشرات بعد النتائج"}
+ },
+ "outcome_base": {"entry_reference": "close[decision_bar]", "atr": "ATR14[decision_bar] Wilder/RMA", "long": "هدف +1×ATR قبل -1×ATR", "short": "معكوس", "horizon": "6 شموع 4H بعد قرار التأكيد", "states": ["positive_before_negative", "negative_before_positive", "neither_within_window", "ambiguous_same_bar", "invalid_horizon/invalid_atr"], "engine": "l0073_study.outcome_arrays بلا تعديل — نفس محرك L0073 حرفيًا"},
+ "outcome_sensitivity": {"target": "+2×ATR", "adverse": "-1×ATR", "horizon": 18, "use": "مرة واحدة للعرض فقط، لا تُغيّر الإعداد الأساسي"},
+ "metrics_per_pair": ["نتيجة البنية الخام بلا تأكيد", "تأكيد نفس الشمعة", "تأكيد بشمعة واحدة", "hit_rate_all", "directional_accuracy", "accuracy_gain = confirmed_dir_acc - raw_structure_dir_acc (نقاط مئوية)", "عدد الإشارات المؤكدة", "coverage = confirmed_valid / raw_structure_valid", "rejection_rate = 1 - coverage", "neither و ambiguous", "Wilson 95% CI", "MAE/MFE و time_to_target"],
+ "baseline_definition": "raw_structure_accuracy = directional_accuracy للمكوّن البنيوي (نفس المكوّن، نفس مجموعة الاتجاهات) في config الأساس داخل L0074 = خط أساس L0073",
+ "random_control": {"draws": 1000, "seed": 74, "rule": "تُحفظ أوقات وعدد إشارات البنية؛ تُعاد إتاحة حالة التأكيد الكلاسيكي بخلط شرط المؤشر (نفس الاتجاه) عشوائيًا داخل نفس الأصل على الشموع الصالحة (ATR صالح، الشرط مُعرّف)، مع الحفاظ على نسبة انتشار الشرط، ثم تُقرأ عند شموع الإشارة البنيوية", "compare_to": ["الإشارة البنيوية الخام", "التأكيد العشوائي بنفس الكثافة"], "report": "mean/median/p5/p95 وpercentile-rank للفعلي على hit_rate_all و directional_accuracy", "weak_flag": "تفوّق بهامش صغير فقط على العشوائي = إشارة ضعيفة لا ميزة"},
+ "blind_candidate_criteria": {"all_required": true, "conditions": [
+   "1. الحالات الاتجاهية المحسومة ≥ 100",
+   "2. الدقة الاتجاهية أعلى من خط البنية الخام بـ ≥ 3 نقاط مئوية",
+   "3. الحد الأدنى لفاصل Wilson للدقة > 50%",
+   "4. coverage ≥ 20% من إشارات البنية الخام",
+   "5. لا يعتمد أكثر من 35% من التحسن على أصل واحد",
+   "6. لا يفشل في حساسية +2/-1 ATR أو يُسجَّل صراحة أن التحسن خاص بالأساس فقط",
+   "7. يتفوق على وسيط العشوائي في الاختبار الأساسي"
+ ], "no_pass_verdict": "لا يوجد تأكيد صالح للانتقال إلى تحقق أعمى", "note": "اجتياز الشروط لا يعني أن الزوج استراتيجية؛ يعني فقط أنه يستحق جولة تحقق مستقلة"},
+ "concentration_metric": "لكل زوج: مساهمة كل أصل في التحسن = (confirmed_dir_acc_asset - raw_dir_acc_asset) × decided_confirmed_asset؛ حصة الأصل الأكبر من مجموع المساهمات الموجبة > 35% ⇒ فشل الشرط 5",
+ "checks": ["1 شرط المؤشر عند i يستخدم ≤ i (قطع+تشويش المستقبل)", "2 مسار i+1 لا يستخدم ما بعد i+1", "3 نتيجة التأكيد المتأخر تبدأ بعد شمعة التأكيد (i+2) بالبناء", "4 لا حذف إشارات بنيوية بالأولوية — عدد الخام = L0073", "5 لا مستقبل في إنشاء التأكيد", "6 عدد الإشارات الخام لا يتغير عند حساب النتائج (hash)", "7 لا تكاليف/إدارة/وقف في الكود", "8 لا اختيار مؤشر/نافذة/إجماع من النتائج (كلها مقفلة هنا)", "9 لا أسرار أو رموز وصول في أي ملف"],
+ "forbidden": ["اختيار مؤشر بعد رؤية النتائج", "تغيير حدود المؤشرات", "تغيير نافذة التأكيد", "عتبات إجماع إضافية", "حذف الأزواج الضعيفة من التقرير", "إضافة تكاليف أو إدارة صفقة", "fixed_stop_only", "إغلاق L0070/L0071/L0072/L0073", "تشغيل حي أو مال حقيقي", "الدمج إلى main", "تسمية ارتفاع الدقة استراتيجية رابحة"]
+}
