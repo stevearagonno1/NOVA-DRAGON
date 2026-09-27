@@ -1,0 +1,4199 @@
+{
+  "open4_JUD": {
+    "ledger": "open4 · حكم",
+    "slices": 40,
+    "c1_binding_branch": {
+      "8%-من-أدنى-دخول": 2,
+      "قاع-90يومًا−2%": 18,
+      "الاثنان-متساويان": 0
+    },
+    "c1_fill_kind": {
+      "لمس-المستوى": 20,
+      "فجوة-تحت-المستوى(افتتاح)": 0
+    },
+    "c1_condition": "low ≤ min( أدنى سعر دخول في الدورة × (1−0.08) , أدنى قاع يومي في آخر 90 يومًا (المعروف حتى أمس) × (1−0.02) ) ⇒ تُغلق كل شرائح الدورة معًا؛ التعبئة عند الافتتاح إن افتتحت الشمعة تحت المستوى وإلا عند المستوى.",
+    "c2_cancel_cycles": 20,
+    "c2_total": -403.47,
+    "c2_mean": -20.17,
+    "c2_median": -16.45,
+    "c2_quantiles": {
+      "0.1": -27.22,
+      "0.25": -21.95,
+      "0.5": -16.45,
+      "0.75": -14.75,
+      "0.9": -13.08
+    },
+    "c2_worst5_share_pct": 40.4,
+    "c2_worst5": [
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2025-04-07 04:00",
+        "n_tranches": 2,
+        "cycle_pnl": -49.58,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -9.66,
+        "days_from_first_entry": 32.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2026-01-31 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -37.73,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.29,
+        "days_from_first_entry": 67.8,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2024-08-04 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -26.05,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -17.17,
+        "days_from_first_entry": 28.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2025-03-10 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -25.84,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -17.03,
+        "days_from_first_entry": 5.3,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-03-10 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -23.74,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -15.63,
+        "days_from_first_entry": 9.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      }
+    ],
+    "c2_positive_cancels": 0,
+    "c2_drop_pct_median": -10.2,
+    "c2_single_tranche_cycles": 18,
+    "c2_cycle_pnl_by_size": {
+      "1": -316.16,
+      "2": -87.31
+    },
+    "c3_days_by_reason": {
+      "إلغاء-دورة": {
+        "n": 22,
+        "mean_days": 20.1,
+        "median_days": 13.0,
+        "pnl": -403.45,
+        "mean_ret_pct": -11.47
+      },
+      "توزيع-قمة": {
+        "n": 16,
+        "mean_days": 61.3,
+        "median_days": 73.4,
+        "pnl": 744.08,
+        "mean_ret_pct": 25.58
+      },
+      "نهاية-العينة": {
+        "n": 2,
+        "mean_days": 73.2,
+        "median_days": 73.2,
+        "pnl": 76.72,
+        "mean_ret_pct": 18.64
+      }
+    },
+    "c3_cancel_days_from_first_entry": {
+      "mean": 19.0,
+      "median": 8.2,
+      "under_7_days": 10
+    },
+    "c4_regime_at_exit_by_reason": {
+      "إلغاء-دورة": {
+        "عرضي": 13,
+        "هابط": 8,
+        "صاعد": 1
+      },
+      "توزيع-قمة": {
+        "عرضي": 11,
+        "صاعد": 5
+      },
+      "نهاية-العينة": {
+        "عرضي": 2
+      }
+    },
+    "c4_regime_at_entry_by_reason": {
+      "إلغاء-دورة": {
+        "عرضي": 15,
+        "هابط": 7
+      },
+      "توزيع-قمة": {
+        "هابط": 11,
+        "عرضي": 3,
+        "صاعد": 2
+      },
+      "نهاية-العينة": {
+        "هابط": 2
+      }
+    },
+    "c4_pnl_by_entry_regime": {
+      "صاعد": 48.68,
+      "عرضي": -169.2,
+      "هابط": 537.87
+    },
+    "c4_cancel_cycles_by_exit_regime": {
+      "عرضي": 11,
+      "هابط": 8,
+      "صاعد": 1
+    },
+    "c4_cancel_cycles_by_entry_regime": {
+      "عرضي": 13,
+      "هابط": 7
+    },
+    "cycles_table": [
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2024-08-05 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -21.36,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -14.04,
+        "days_from_first_entry": 29.3,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2026-01-31 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -37.73,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.29,
+        "days_from_first_entry": 67.8,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2024-07-05 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.2,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.92,
+        "days_from_first_entry": 4.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2024-08-05 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.42,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.41,
+        "days_from_first_entry": 29.2,
+        "regime_exit": "صاعد",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2025-02-25 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.12,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.87,
+        "days_from_first_entry": 5.2,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2025-04-07 04:00",
+        "n_tranches": 2,
+        "cycle_pnl": -49.58,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -9.66,
+        "days_from_first_entry": 32.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2025-11-04 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 16.2,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2025-11-14 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 6.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2026-01-31 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.26,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.3,
+        "days_from_first_entry": 69.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2024-08-04 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -26.05,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -17.17,
+        "days_from_first_entry": 28.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2025-03-04 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -20.82,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -13.68,
+        "days_from_first_entry": 2.0,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2025-03-10 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -25.84,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -17.03,
+        "days_from_first_entry": 5.3,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-02-24 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.85,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.03,
+        "days_from_first_entry": 2.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-03-10 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -23.74,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -15.63,
+        "days_from_first_entry": 9.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-04-06 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.03,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.48,
+        "days_from_first_entry": 1.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-11-13 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -19.7,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.94,
+        "days_from_first_entry": 5.8,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-11-21 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -18.05,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.83,
+        "days_from_first_entry": 1.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-12-18 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.05,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.5,
+        "days_from_first_entry": 25.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2026-01-30 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -13.17,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.57,
+        "days_from_first_entry": 35.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2026-06-02 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.86,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.7,
+        "days_from_first_entry": 2.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      }
+    ]
+  },
+  "open4_FULL": {
+    "ledger": "open4 · الدورة الكاملة",
+    "slices": 87,
+    "c1_binding_branch": {
+      "8%-من-أدنى-دخول": 5,
+      "قاع-90يومًا−2%": 40,
+      "الاثنان-متساويان": 0
+    },
+    "c1_fill_kind": {
+      "لمس-المستوى": 45,
+      "فجوة-تحت-المستوى(افتتاح)": 0
+    },
+    "c1_condition": "low ≤ min( أدنى سعر دخول في الدورة × (1−0.08) , أدنى قاع يومي في آخر 90 يومًا (المعروف حتى أمس) × (1−0.02) ) ⇒ تُغلق كل شرائح الدورة معًا؛ التعبئة عند الافتتاح إن افتتحت الشمعة تحت المستوى وإلا عند المستوى.",
+    "c2_cancel_cycles": 45,
+    "c2_total": -1146.7,
+    "c2_mean": -25.48,
+    "c2_median": -20.3,
+    "c2_quantiles": {
+      "0.1": -44.87,
+      "0.25": -26.05,
+      "0.5": -20.3,
+      "0.75": -15.2,
+      "0.9": -13.27
+    },
+    "c2_worst5_share_pct": 25.8,
+    "c2_worst5": [
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2022-11-08 16:00",
+        "n_tranches": 4,
+        "cycle_pnl": -106.74,
+        "notional": 1000.0,
+        "drop_from_min_entry_pct": -8.29,
+        "days_from_first_entry": 141.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2025-04-07 04:00",
+        "n_tranches": 2,
+        "cycle_pnl": -49.58,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -9.66,
+        "days_from_first_entry": 32.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-11-21 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -47.52,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.52,
+        "days_from_first_entry": 6.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-10-21 08:00",
+        "n_tranches": 2,
+        "cycle_pnl": -46.69,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.13,
+        "days_from_first_entry": 7.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-06-13 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -45.61,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -30.25,
+        "days_from_first_entry": 31.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      }
+    ],
+    "c2_positive_cancels": 0,
+    "c2_drop_pct_median": -10.54,
+    "c2_single_tranche_cycles": 37,
+    "c2_cycle_pnl_by_size": {
+      "1": -734.25,
+      "2": -305.71,
+      "4": -106.74
+    },
+    "c3_days_by_reason": {
+      "إلغاء-دورة": {
+        "n": 55,
+        "mean_days": 31.3,
+        "median_days": 25.0,
+        "pnl": -1146.65,
+        "mean_ret_pct": -12.39
+      },
+      "توزيع-قمة": {
+        "n": 30,
+        "mean_days": 56.8,
+        "median_days": 57.3,
+        "pnl": 1474.69,
+        "mean_ret_pct": 26.48
+      },
+      "نهاية-العينة": {
+        "n": 2,
+        "mean_days": 73.2,
+        "median_days": 73.2,
+        "pnl": 76.72,
+        "mean_ret_pct": 18.64
+      }
+    },
+    "c3_cancel_days_from_first_entry": {
+      "mean": 29.4,
+      "median": 16.2,
+      "under_7_days": 16
+    },
+    "c4_regime_at_exit_by_reason": {
+      "إلغاء-دورة": {
+        "هابط": 33,
+        "عرضي": 21,
+        "صاعد": 1
+      },
+      "توزيع-قمة": {
+        "عرضي": 22,
+        "صاعد": 8
+      },
+      "نهاية-العينة": {
+        "عرضي": 2
+      }
+    },
+    "c4_regime_at_entry_by_reason": {
+      "إلغاء-دورة": {
+        "هابط": 38,
+        "عرضي": 17
+      },
+      "توزيع-قمة": {
+        "هابط": 22,
+        "عرضي": 6,
+        "صاعد": 2
+      },
+      "نهاية-العينة": {
+        "هابط": 2
+      }
+    },
+    "c4_pnl_by_entry_regime": {
+      "صاعد": 48.68,
+      "عرضي": -100.26,
+      "هابط": 456.34
+    },
+    "c4_cancel_cycles_by_exit_regime": {
+      "هابط": 29,
+      "عرضي": 15,
+      "صاعد": 1
+    },
+    "c4_cancel_cycles_by_entry_regime": {
+      "هابط": 30,
+      "عرضي": 15
+    },
+    "cycles_table": [
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-01-21 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.34,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.35,
+        "days_from_first_entry": 10.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-02-24 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -21.74,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -14.29,
+        "days_from_first_entry": 29.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-05-09 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -23.48,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -15.46,
+        "days_from_first_entry": 72.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-06-13 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -45.61,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -30.25,
+        "days_from_first_entry": 31.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-06-18 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -25.44,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -16.77,
+        "days_from_first_entry": 2.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-12-16 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 24.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2023-08-17 20:00",
+        "n_tranches": 2,
+        "cycle_pnl": -42.16,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -9.78,
+        "days_from_first_entry": 65.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2024-08-05 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -21.36,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -14.04,
+        "days_from_first_entry": 29.3,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2026-01-31 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -37.73,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.29,
+        "days_from_first_entry": 67.8,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2022-01-21 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -13.8,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.99,
+        "days_from_first_entry": 11.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2022-06-13 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -22.63,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -14.89,
+        "days_from_first_entry": 30.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2022-11-08 16:00",
+        "n_tranches": 4,
+        "cycle_pnl": -106.74,
+        "notional": 1000.0,
+        "drop_from_min_entry_pct": -8.29,
+        "days_from_first_entry": 141.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2024-07-05 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.2,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.92,
+        "days_from_first_entry": 4.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2024-08-05 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.42,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.41,
+        "days_from_first_entry": 29.2,
+        "regime_exit": "صاعد",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2025-02-25 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.12,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.87,
+        "days_from_first_entry": 5.2,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2025-04-07 04:00",
+        "n_tranches": 2,
+        "cycle_pnl": -49.58,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -9.66,
+        "days_from_first_entry": 32.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2025-11-04 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 16.2,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2025-11-14 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 6.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2026-01-31 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.26,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.3,
+        "days_from_first_entry": 69.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-02-24 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.48,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.45,
+        "days_from_first_entry": 0.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-04-30 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -31.17,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -20.6,
+        "days_from_first_entry": 64.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-05-06 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -20.3,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -13.33,
+        "days_from_first_entry": 1.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-06-13 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -43.0,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -28.5,
+        "days_from_first_entry": 30.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-11-09 20:00",
+        "n_tranches": 2,
+        "cycle_pnl": -38.28,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 148.0,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-11-21 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -47.52,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.52,
+        "days_from_first_entry": 6.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2023-06-10 04:00",
+        "n_tranches": 2,
+        "cycle_pnl": -43.75,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.05,
+        "days_from_first_entry": 28.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2024-08-04 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -26.05,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -17.17,
+        "days_from_first_entry": 28.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2025-03-04 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -20.82,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -13.68,
+        "days_from_first_entry": 2.0,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2025-03-10 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -25.84,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -17.03,
+        "days_from_first_entry": 5.3,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-01-20 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.12,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.54,
+        "days_from_first_entry": 9.0,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-02-24 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.05,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.17,
+        "days_from_first_entry": 0.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-05-08 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -19.34,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.69,
+        "days_from_first_entry": 53.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-06-11 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -24.62,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -16.22,
+        "days_from_first_entry": 5.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-10-13 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 119.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-10-21 08:00",
+        "n_tranches": 2,
+        "cycle_pnl": -46.69,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.13,
+        "days_from_first_entry": 7.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-11-08 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -13.41,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.73,
+        "days_from_first_entry": 15.2,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-12-27 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -20.92,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -13.75,
+        "days_from_first_entry": 34.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-02-24 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.85,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.03,
+        "days_from_first_entry": 2.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-03-10 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -23.74,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -15.63,
+        "days_from_first_entry": 9.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-04-06 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.03,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.48,
+        "days_from_first_entry": 1.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-11-13 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -19.7,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.94,
+        "days_from_first_entry": 5.8,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-11-21 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -18.05,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.83,
+        "days_from_first_entry": 1.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-12-18 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.05,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.5,
+        "days_from_first_entry": 25.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2026-01-30 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -13.17,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.57,
+        "days_from_first_entry": 35.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2026-06-02 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.86,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.7,
+        "days_from_first_entry": 2.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      }
+    ]
+  },
+  "open16_FULL": {
+    "ledger": "open16 · الدورة الكاملة",
+    "slices": 374,
+    "c1_binding_branch": {
+      "8%-من-أدنى-دخول": 28,
+      "قاع-90يومًا−2%": 160,
+      "الاثنان-متساويان": 0
+    },
+    "c1_fill_kind": {
+      "لمس-المستوى": 188,
+      "فجوة-تحت-المستوى(افتتاح)": 0
+    },
+    "c1_condition": "low ≤ min( أدنى سعر دخول في الدورة × (1−0.08) , أدنى قاع يومي في آخر 90 يومًا (المعروف حتى أمس) × (1−0.02) ) ⇒ تُغلق كل شرائح الدورة معًا؛ التعبئة عند الافتتاح إن افتتحت الشمعة تحت المستوى وإلا عند المستوى.",
+    "c2_cancel_cycles": 188,
+    "c2_total": -5651.15,
+    "c2_mean": -30.06,
+    "c2_median": -21.02,
+    "c2_quantiles": {
+      "0.1": -48.06,
+      "0.25": -38.39,
+      "0.5": -21.02,
+      "0.75": -15.29,
+      "0.9": -12.92
+    },
+    "c2_worst5_share_pct": 12.2,
+    "c2_worst5": [
+      {
+        "symbol": "RENDERUSDT",
+        "exit": "2026-08-10 04:00",
+        "n_tranches": 4,
+        "cycle_pnl": -165.53,
+        "notional": 1000.0,
+        "drop_from_min_entry_pct": -14.35,
+        "days_from_first_entry": 44.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "HNTUSDT",
+        "exit": "2022-04-18 04:00",
+        "n_tranches": 4,
+        "cycle_pnl": -145.68,
+        "notional": 1000.0,
+        "drop_from_min_entry_pct": -9.52,
+        "days_from_first_entry": 82.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2026-03-29 20:00",
+        "n_tranches": 4,
+        "cycle_pnl": -145.62,
+        "notional": 1000.0,
+        "drop_from_min_entry_pct": -10.51,
+        "days_from_first_entry": 51.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2022-04-30 20:00",
+        "n_tranches": 4,
+        "cycle_pnl": -123.44,
+        "notional": 1000.0,
+        "drop_from_min_entry_pct": -9.87,
+        "days_from_first_entry": 94.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2022-11-08 16:00",
+        "n_tranches": 4,
+        "cycle_pnl": -106.74,
+        "notional": 1000.0,
+        "drop_from_min_entry_pct": -8.29,
+        "days_from_first_entry": 141.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "هابط"
+      }
+    ],
+    "c2_positive_cancels": 0,
+    "c2_drop_pct_median": -10.49,
+    "c2_single_tranche_cycles": 138,
+    "c2_cycle_pnl_by_size": {
+      "1": -2683.53,
+      "2": -1772.02,
+      "3": -508.59,
+      "4": -687.01
+    },
+    "c3_days_by_reason": {
+      "إلغاء-دورة": {
+        "n": 254,
+        "mean_days": 28.3,
+        "median_days": 15.2,
+        "pnl": -5651.06,
+        "mean_ret_pct": -12.57
+      },
+      "توزيع-قمة": {
+        "n": 107,
+        "mean_days": 56.3,
+        "median_days": 55.5,
+        "pnl": 7878.26,
+        "mean_ret_pct": 40.73
+      },
+      "نهاية-العينة": {
+        "n": 13,
+        "mean_days": 36.6,
+        "median_days": 28.5,
+        "pnl": 318.55,
+        "mean_ret_pct": 13.47
+      }
+    },
+    "c3_cancel_days_from_first_entry": {
+      "mean": 28.1,
+      "median": 13.9,
+      "under_7_days": 67
+    },
+    "c4_regime_at_exit_by_reason": {
+      "إلغاء-دورة": {
+        "هابط": 214,
+        "عرضي": 39,
+        "صاعد": 1
+      },
+      "توزيع-قمة": {
+        "عرضي": 91,
+        "صاعد": 15,
+        "هابط": 1
+      },
+      "نهاية-العينة": {
+        "عرضي": 10,
+        "هابط": 3
+      }
+    },
+    "c4_regime_at_entry_by_reason": {
+      "إلغاء-دورة": {
+        "هابط": 213,
+        "عرضي": 40,
+        "صاعد": 1
+      },
+      "توزيع-قمة": {
+        "هابط": 93,
+        "عرضي": 12,
+        "صاعد": 2
+      },
+      "نهاية-العينة": {
+        "هابط": 13
+      }
+    },
+    "c4_pnl_by_entry_regime": {
+      "صاعد": 19.6,
+      "عرضي": -371.26,
+      "هابط": 2897.4
+    },
+    "c4_cancel_cycles_by_exit_regime": {
+      "هابط": 159,
+      "عرضي": 28,
+      "صاعد": 1
+    },
+    "c4_cancel_cycles_by_entry_regime": {
+      "هابط": 152,
+      "عرضي": 35,
+      "صاعد": 1
+    },
+    "cycles_table": [
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2021-12-13 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -19.27,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.65,
+        "days_from_first_entry": 2.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2022-05-07 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.31,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.0,
+        "days_from_first_entry": 3.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2022-06-10 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -18.42,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.08,
+        "days_from_first_entry": 4.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2022-06-18 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -26.13,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -17.23,
+        "days_from_first_entry": 2.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2022-11-21 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -38.45,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -25.46,
+        "days_from_first_entry": 10.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2022-12-16 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.93,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.42,
+        "days_from_first_entry": 23.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2023-06-07 12:00",
+        "n_tranches": 3,
+        "cycle_pnl": -77.9,
+        "notional": 700.0,
+        "drop_from_min_entry_pct": -9.03,
+        "days_from_first_entry": 57.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2023-09-01 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -42.25,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 12.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2023-09-11 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -13.19,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.58,
+        "days_from_first_entry": 4.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2023-10-19 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -13.15,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.56,
+        "days_from_first_entry": 34.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2024-06-14 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -48.03,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -9.34,
+        "days_from_first_entry": 44.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2024-07-04 12:00",
+        "n_tranches": 2,
+        "cycle_pnl": -44.78,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.31,
+        "days_from_first_entry": 14.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2024-08-04 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -28.21,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -18.62,
+        "days_from_first_entry": 28.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2025-06-20 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -13.6,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.86,
+        "days_from_first_entry": 4.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2025-10-10 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 109.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2026-03-29 20:00",
+        "n_tranches": 2,
+        "cycle_pnl": -43.0,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -9.24,
+        "days_from_first_entry": 27.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ATOMUSDT",
+        "exit": "2026-07-24 08:00",
+        "n_tranches": 2,
+        "cycle_pnl": -57.78,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.58,
+        "days_from_first_entry": 45.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-01-21 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.34,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.35,
+        "days_from_first_entry": 10.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-02-24 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -21.74,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -14.29,
+        "days_from_first_entry": 29.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-05-09 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -23.48,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -15.46,
+        "days_from_first_entry": 72.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-06-13 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -45.61,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -30.25,
+        "days_from_first_entry": 31.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-06-18 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -25.44,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -16.77,
+        "days_from_first_entry": 2.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-12-16 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 24.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2023-08-17 20:00",
+        "n_tranches": 2,
+        "cycle_pnl": -42.16,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -9.78,
+        "days_from_first_entry": 65.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2024-08-05 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -21.36,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -14.04,
+        "days_from_first_entry": 29.3,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2026-01-31 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -37.73,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.29,
+        "days_from_first_entry": 67.8,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2022-01-21 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -13.8,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.99,
+        "days_from_first_entry": 11.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2022-06-13 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -22.63,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -14.89,
+        "days_from_first_entry": 30.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2022-11-08 16:00",
+        "n_tranches": 4,
+        "cycle_pnl": -106.74,
+        "notional": 1000.0,
+        "drop_from_min_entry_pct": -8.29,
+        "days_from_first_entry": 141.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2024-07-05 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.2,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.92,
+        "days_from_first_entry": 4.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2024-08-05 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.42,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.41,
+        "days_from_first_entry": 29.2,
+        "regime_exit": "صاعد",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2025-02-25 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.12,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.87,
+        "days_from_first_entry": 5.2,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2025-04-07 04:00",
+        "n_tranches": 2,
+        "cycle_pnl": -49.58,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -9.66,
+        "days_from_first_entry": 32.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2025-11-04 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 16.2,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2025-11-14 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 6.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2026-01-31 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.26,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.3,
+        "days_from_first_entry": 69.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "DOGEUSDT",
+        "exit": "2021-12-04 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -23.3,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -15.34,
+        "days_from_first_entry": 4.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "DOGEUSDT",
+        "exit": "2022-02-24 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -18.66,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.24,
+        "days_from_first_entry": 0.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "DOGEUSDT",
+        "exit": "2022-05-09 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.5,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.79,
+        "days_from_first_entry": 53.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "DOGEUSDT",
+        "exit": "2023-06-10 04:00",
+        "n_tranches": 2,
+        "cycle_pnl": -45.67,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.16,
+        "days_from_first_entry": 3.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "DOGEUSDT",
+        "exit": "2024-07-04 08:00",
+        "n_tranches": 2,
+        "cycle_pnl": -44.58,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.22,
+        "days_from_first_entry": 13.8,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "DOGEUSDT",
+        "exit": "2024-08-05 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -31.03,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -20.51,
+        "days_from_first_entry": 29.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "DOGEUSDT",
+        "exit": "2026-01-31 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.7,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.6,
+        "days_from_first_entry": 3.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "DOGEUSDT",
+        "exit": "2026-06-24 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.98,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.78,
+        "days_from_first_entry": 16.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "DOGEUSDT",
+        "exit": "2026-06-30 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.57,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.17,
+        "days_from_first_entry": 2.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "exit": "2022-01-21 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.31,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.33,
+        "days_from_first_entry": 9.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "exit": "2022-06-10 20:00",
+        "n_tranches": 2,
+        "cycle_pnl": -38.37,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 11.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "exit": "2023-08-17 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 62.0,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "exit": "2024-08-04 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 81.0,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "exit": "2025-03-04 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -27.53,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -18.17,
+        "days_from_first_entry": 1.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "exit": "2025-03-10 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -18.83,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.35,
+        "days_from_first_entry": 1.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "exit": "2025-04-06 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -39.08,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 19.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "exit": "2025-11-19 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -45.57,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.21,
+        "days_from_first_entry": 11.8,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "exit": "2026-01-31 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -19.96,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -13.11,
+        "days_from_first_entry": 67.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "ETHUSDT",
+        "exit": "2026-06-02 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 2.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2021-12-04 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -19.43,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.75,
+        "days_from_first_entry": 8.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2022-01-05 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.5,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.79,
+        "days_from_first_entry": 3.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2022-01-21 00:00",
+        "n_tranches": 2,
+        "cycle_pnl": -48.03,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.82,
+        "days_from_first_entry": 8.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2022-04-30 20:00",
+        "n_tranches": 4,
+        "cycle_pnl": -123.44,
+        "notional": 1000.0,
+        "drop_from_min_entry_pct": -9.87,
+        "days_from_first_entry": 94.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2022-06-18 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -25.29,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -16.67,
+        "days_from_first_entry": 2.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2022-10-13 04:00",
+        "n_tranches": 2,
+        "cycle_pnl": -39.85,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.95,
+        "days_from_first_entry": 115.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2022-11-08 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -39.37,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.58,
+        "days_from_first_entry": 25.5,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2022-12-16 08:00",
+        "n_tranches": 2,
+        "cycle_pnl": -40.26,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.62,
+        "days_from_first_entry": 30.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2023-05-11 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.02,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.81,
+        "days_from_first_entry": 1.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2023-06-05 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 22.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2024-06-17 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -21.13,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -13.89,
+        "days_from_first_entry": 33.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2024-06-24 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.33,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.01,
+        "days_from_first_entry": 1.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2024-07-04 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.19,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.25,
+        "days_from_first_entry": 8.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2024-08-05 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -27.69,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -18.27,
+        "days_from_first_entry": 29.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2025-06-22 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -26.1,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -17.21,
+        "days_from_first_entry": 73.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2025-10-10 20:00",
+        "n_tranches": 2,
+        "cycle_pnl": -35.29,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 108.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2026-07-29 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.85,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.03,
+        "days_from_first_entry": 30.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "FILUSDT",
+        "exit": "2026-08-18 00:00",
+        "n_tranches": 2,
+        "cycle_pnl": -35.67,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 18.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "GRAMUSDT",
+        "exit": "2025-02-02 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -53.15,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -9.42,
+        "days_from_first_entry": 43.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "صاعد"
+      },
+      {
+        "symbol": "GRAMUSDT",
+        "exit": "2025-10-10 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 9.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "GRAMUSDT",
+        "exit": "2026-01-31 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.72,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.27,
+        "days_from_first_entry": 3.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "GRAMUSDT",
+        "exit": "2026-02-06 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.96,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.1,
+        "days_from_first_entry": 3.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "GRAMUSDT",
+        "exit": "2026-08-04 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 1.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "HNTUSDT",
+        "exit": "2022-04-18 04:00",
+        "n_tranches": 4,
+        "cycle_pnl": -145.68,
+        "notional": 1000.0,
+        "drop_from_min_entry_pct": -9.52,
+        "days_from_first_entry": 82.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "HNTUSDT",
+        "exit": "2022-08-19 04:00",
+        "n_tranches": 2,
+        "cycle_pnl": -85.64,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.24,
+        "days_from_first_entry": 98.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "HNTUSDT",
+        "exit": "2022-08-26 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -23.08,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -15.19,
+        "days_from_first_entry": 2.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "HNTUSDT",
+        "exit": "2022-08-30 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.99,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.78,
+        "days_from_first_entry": 0.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2022-03-04 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -26.37,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -17.39,
+        "days_from_first_entry": 3.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2022-05-11 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -43.95,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -29.14,
+        "days_from_first_entry": 64.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2022-10-11 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.82,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.67,
+        "days_from_first_entry": 117.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2022-10-19 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.93,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.41,
+        "days_from_first_entry": 3.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2022-11-08 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -13.18,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.58,
+        "days_from_first_entry": 15.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2022-11-21 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.62,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.54,
+        "days_from_first_entry": 1.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2023-06-07 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.57,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.51,
+        "days_from_first_entry": 25.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2023-08-17 20:00",
+        "n_tranches": 2,
+        "cycle_pnl": -51.23,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -11.56,
+        "days_from_first_entry": 65.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2023-09-10 04:00",
+        "n_tranches": 3,
+        "cycle_pnl": -79.52,
+        "notional": 700.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 17.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2024-06-17 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -28.45,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -18.78,
+        "days_from_first_entry": 59.5,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2024-07-04 12:00",
+        "n_tranches": 2,
+        "cycle_pnl": -42.95,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -9.48,
+        "days_from_first_entry": 9.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2024-08-04 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -22.15,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -14.57,
+        "days_from_first_entry": 22.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2025-02-02 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -19.52,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.81,
+        "days_from_first_entry": 2.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2025-03-04 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -23.35,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -15.37,
+        "days_from_first_entry": 6.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2025-03-09 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -21.78,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -14.33,
+        "days_from_first_entry": 3.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2025-04-04 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -27.11,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -17.88,
+        "days_from_first_entry": 22.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2025-06-22 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -27.84,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -18.37,
+        "days_from_first_entry": 73.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2026-01-29 12:00",
+        "n_tranches": 2,
+        "cycle_pnl": -39.45,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.79,
+        "days_from_first_entry": 40.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2026-06-30 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -22.66,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -14.91,
+        "days_from_first_entry": 22.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2026-07-29 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -13.36,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.7,
+        "days_from_first_entry": 28.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "IMXUSDT",
+        "exit": "2026-08-18 00:00",
+        "n_tranches": 2,
+        "cycle_pnl": -35.8,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 15.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-02-24 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.48,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.45,
+        "days_from_first_entry": 0.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-04-30 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -31.17,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -20.6,
+        "days_from_first_entry": 64.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-05-06 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -20.3,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -13.33,
+        "days_from_first_entry": 1.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-06-13 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -43.0,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -28.5,
+        "days_from_first_entry": 30.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-11-09 20:00",
+        "n_tranches": 2,
+        "cycle_pnl": -38.28,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 148.0,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-11-21 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -47.52,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.52,
+        "days_from_first_entry": 6.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2023-06-10 04:00",
+        "n_tranches": 2,
+        "cycle_pnl": -43.75,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.05,
+        "days_from_first_entry": 28.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2024-08-04 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -26.05,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -17.17,
+        "days_from_first_entry": 28.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2025-03-04 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -20.82,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -13.68,
+        "days_from_first_entry": 2.0,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2025-03-10 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -25.84,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -17.03,
+        "days_from_first_entry": 5.3,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "PEPEUSDT",
+        "exit": "2023-06-10 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -34.85,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -23.06,
+        "days_from_first_entry": 3.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "PEPEUSDT",
+        "exit": "2023-06-15 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -21.67,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -14.25,
+        "days_from_first_entry": 1.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "PEPEUSDT",
+        "exit": "2023-08-25 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -22.06,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -14.51,
+        "days_from_first_entry": 69.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "PEPEUSDT",
+        "exit": "2024-01-31 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.04,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.16,
+        "days_from_first_entry": 4.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "PEPEUSDT",
+        "exit": "2025-03-03 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.71,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.6,
+        "days_from_first_entry": 1.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "PEPEUSDT",
+        "exit": "2025-10-10 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 11.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "PEPEUSDT",
+        "exit": "2026-06-02 20:00",
+        "n_tranches": 2,
+        "cycle_pnl": -42.5,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -9.54,
+        "days_from_first_entry": 84.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "PEPEUSDT",
+        "exit": "2026-06-24 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -18.53,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.15,
+        "days_from_first_entry": 12.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "RENDERUSDT",
+        "exit": "2025-03-09 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -25.17,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -16.59,
+        "days_from_first_entry": 8.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "RENDERUSDT",
+        "exit": "2025-10-10 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.48,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.78,
+        "days_from_first_entry": 9.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "RENDERUSDT",
+        "exit": "2026-06-25 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.01,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.47,
+        "days_from_first_entry": 13.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "RENDERUSDT",
+        "exit": "2026-08-10 04:00",
+        "n_tranches": 4,
+        "cycle_pnl": -165.53,
+        "notional": 1000.0,
+        "drop_from_min_entry_pct": -14.35,
+        "days_from_first_entry": 44.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SHIBUSDT",
+        "exit": "2022-01-21 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -19.99,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -13.13,
+        "days_from_first_entry": 0.8,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SHIBUSDT",
+        "exit": "2022-05-11 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -36.82,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -24.37,
+        "days_from_first_entry": 1.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SHIBUSDT",
+        "exit": "2022-06-18 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -20.29,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -13.33,
+        "days_from_first_entry": 3.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SHIBUSDT",
+        "exit": "2022-11-09 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -48.14,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.87,
+        "days_from_first_entry": 26.8,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SHIBUSDT",
+        "exit": "2023-05-06 12:00",
+        "n_tranches": 2,
+        "cycle_pnl": -36.03,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 10.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SHIBUSDT",
+        "exit": "2023-06-05 16:00",
+        "n_tranches": 3,
+        "cycle_pnl": -70.04,
+        "notional": 700.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 26.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SHIBUSDT",
+        "exit": "2023-10-09 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 20.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SHIBUSDT",
+        "exit": "2024-07-04 00:00",
+        "n_tranches": 2,
+        "cycle_pnl": -41.16,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.47,
+        "days_from_first_entry": 8.3,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SHIBUSDT",
+        "exit": "2024-08-05 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -33.0,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -21.82,
+        "days_from_first_entry": 29.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SHIBUSDT",
+        "exit": "2025-03-11 00:00",
+        "n_tranches": 2,
+        "cycle_pnl": -80.16,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -11.8,
+        "days_from_first_entry": 35.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SHIBUSDT",
+        "exit": "2025-10-10 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 109.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SHIBUSDT",
+        "exit": "2026-01-31 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -39.54,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 42.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SHIBUSDT",
+        "exit": "2026-02-05 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -20.75,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -13.64,
+        "days_from_first_entry": 2.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SHIBUSDT",
+        "exit": "2026-06-04 00:00",
+        "n_tranches": 2,
+        "cycle_pnl": -44.1,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.47,
+        "days_from_first_entry": 94.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SHIBUSDT",
+        "exit": "2026-06-24 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.23,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.28,
+        "days_from_first_entry": 14.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-01-20 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.12,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.54,
+        "days_from_first_entry": 9.0,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-02-24 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.05,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.17,
+        "days_from_first_entry": 0.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-05-08 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -19.34,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.69,
+        "days_from_first_entry": 53.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-06-11 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -24.62,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -16.22,
+        "days_from_first_entry": 5.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-10-13 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 119.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-10-21 08:00",
+        "n_tranches": 2,
+        "cycle_pnl": -46.69,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.13,
+        "days_from_first_entry": 7.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-11-08 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -13.41,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.73,
+        "days_from_first_entry": 15.2,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-12-27 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -20.92,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -13.75,
+        "days_from_first_entry": 34.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-02-24 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.85,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.03,
+        "days_from_first_entry": 2.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-03-10 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -23.74,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -15.63,
+        "days_from_first_entry": 9.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-04-06 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.03,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.48,
+        "days_from_first_entry": 1.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-11-13 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -19.7,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.94,
+        "days_from_first_entry": 5.8,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-11-21 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -18.05,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.83,
+        "days_from_first_entry": 1.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2025-12-18 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.05,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.5,
+        "days_from_first_entry": 25.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2026-01-30 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -13.17,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.57,
+        "days_from_first_entry": 35.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2026-06-02 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.86,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.7,
+        "days_from_first_entry": 2.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2022-01-20 20:00",
+        "n_tranches": 3,
+        "cycle_pnl": -83.56,
+        "notional": 700.0,
+        "drop_from_min_entry_pct": -9.23,
+        "days_from_first_entry": 36.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2022-02-24 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -19.53,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.82,
+        "days_from_first_entry": 0.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2022-05-09 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -28.43,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -18.77,
+        "days_from_first_entry": 73.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2022-06-18 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -26.92,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -17.76,
+        "days_from_first_entry": 2.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2022-11-09 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.15,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.89,
+        "days_from_first_entry": 142.8,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2022-11-21 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -19.97,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -13.11,
+        "days_from_first_entry": 6.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2022-12-16 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -13.6,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.86,
+        "days_from_first_entry": 23.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2023-05-08 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.22,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.94,
+        "days_from_first_entry": 3.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2023-06-09 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.1,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.2,
+        "days_from_first_entry": 27.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2024-06-07 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 23.0,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2024-06-14 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.42,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.74,
+        "days_from_first_entry": 2.0,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2024-06-17 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 1.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2024-07-04 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.33,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.35,
+        "days_from_first_entry": 9.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2024-08-05 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -28.02,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -18.5,
+        "days_from_first_entry": 29.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2025-03-10 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -26.17,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -17.25,
+        "days_from_first_entry": 5.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2025-04-03 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -18.51,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.14,
+        "days_from_first_entry": 1.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2025-10-10 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 109.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2026-01-29 12:00",
+        "n_tranches": 2,
+        "cycle_pnl": -44.08,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -9.24,
+        "days_from_first_entry": 40.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2026-02-05 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -21.31,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -14.01,
+        "days_from_first_entry": 2.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2026-03-29 20:00",
+        "n_tranches": 4,
+        "cycle_pnl": -145.62,
+        "notional": 1000.0,
+        "drop_from_min_entry_pct": -10.51,
+        "days_from_first_entry": 51.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2026-05-27 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.04,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.82,
+        "days_from_first_entry": 58.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2026-06-02 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.96,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.44,
+        "days_from_first_entry": 3.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "VETUSDT",
+        "exit": "2026-06-25 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -19.55,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.83,
+        "days_from_first_entry": 13.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "XLMUSDT",
+        "exit": "2022-05-09 08:00",
+        "n_tranches": 2,
+        "cycle_pnl": -55.4,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -12.04,
+        "days_from_first_entry": 72.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "XLMUSDT",
+        "exit": "2022-11-08 16:00",
+        "n_tranches": 3,
+        "cycle_pnl": -92.56,
+        "notional": 700.0,
+        "drop_from_min_entry_pct": -8.6,
+        "days_from_first_entry": 145.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "XLMUSDT",
+        "exit": "2022-12-16 20:00",
+        "n_tranches": 3,
+        "cycle_pnl": -105.01,
+        "notional": 700.0,
+        "drop_from_min_entry_pct": -10.7,
+        "days_from_first_entry": 36.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "XLMUSDT",
+        "exit": "2023-06-15 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.01,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.8,
+        "days_from_first_entry": 3.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "XLMUSDT",
+        "exit": "2024-06-18 00:00",
+        "n_tranches": 2,
+        "cycle_pnl": -39.4,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.79,
+        "days_from_first_entry": 5.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "XLMUSDT",
+        "exit": "2024-06-24 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -15.1,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.86,
+        "days_from_first_entry": 4.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "XLMUSDT",
+        "exit": "2024-07-05 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.9,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.39,
+        "days_from_first_entry": 9.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "XLMUSDT",
+        "exit": "2025-03-10 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -24.33,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -16.03,
+        "days_from_first_entry": 9.5,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "XLMUSDT",
+        "exit": "2026-01-30 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -14.98,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -9.78,
+        "days_from_first_entry": 1.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      }
+    ]
+  },
+  "open4_SEL": {
+    "ledger": "open4 · اختيار",
+    "slices": 47,
+    "c1_binding_branch": {
+      "8%-من-أدنى-دخول": 3,
+      "قاع-90يومًا−2%": 22,
+      "الاثنان-متساويان": 0
+    },
+    "c1_fill_kind": {
+      "لمس-المستوى": 25,
+      "فجوة-تحت-المستوى(افتتاح)": 0
+    },
+    "c1_condition": "low ≤ min( أدنى سعر دخول في الدورة × (1−0.08) , أدنى قاع يومي في آخر 90 يومًا (المعروف حتى أمس) × (1−0.02) ) ⇒ تُغلق كل شرائح الدورة معًا؛ التعبئة عند الافتتاح إن افتتحت الشمعة تحت المستوى وإلا عند المستوى.",
+    "c2_cancel_cycles": 25,
+    "c2_total": -743.23,
+    "c2_mean": -29.73,
+    "c2_median": -22.63,
+    "c2_quantiles": {
+      "0.1": -46.26,
+      "0.25": -42.16,
+      "0.5": -22.63,
+      "0.75": -17.34,
+      "0.9": -13.57
+    },
+    "c2_worst5_share_pct": 39.1,
+    "c2_worst5": [
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2022-11-08 16:00",
+        "n_tranches": 4,
+        "cycle_pnl": -106.74,
+        "notional": 1000.0,
+        "drop_from_min_entry_pct": -8.29,
+        "days_from_first_entry": 141.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-11-21 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -47.52,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.52,
+        "days_from_first_entry": 6.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-10-21 08:00",
+        "n_tranches": 2,
+        "cycle_pnl": -46.69,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.13,
+        "days_from_first_entry": 7.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-06-13 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -45.61,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -30.25,
+        "days_from_first_entry": 31.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2023-06-10 04:00",
+        "n_tranches": 2,
+        "cycle_pnl": -43.75,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.05,
+        "days_from_first_entry": 28.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      }
+    ],
+    "c2_positive_cancels": 0,
+    "c2_drop_pct_median": -11.35,
+    "c2_single_tranche_cycles": 19,
+    "c2_cycle_pnl_by_size": {
+      "1": -418.09,
+      "2": -218.4,
+      "4": -106.74
+    },
+    "c3_days_by_reason": {
+      "إلغاء-دورة": {
+        "n": 33,
+        "mean_days": 38.7,
+        "median_days": 28.3,
+        "pnl": -743.2,
+        "mean_ret_pct": -13.01
+      },
+      "توزيع-قمة": {
+        "n": 14,
+        "mean_days": 51.7,
+        "median_days": 55.9,
+        "pnl": 730.61,
+        "mean_ret_pct": 27.5
+      }
+    },
+    "c3_cancel_days_from_first_entry": {
+      "mean": 37.8,
+      "median": 28.3,
+      "under_7_days": 6
+    },
+    "c4_regime_at_exit_by_reason": {
+      "إلغاء-دورة": {
+        "هابط": 25,
+        "عرضي": 8
+      },
+      "توزيع-قمة": {
+        "عرضي": 11,
+        "صاعد": 3
+      }
+    },
+    "c4_regime_at_entry_by_reason": {
+      "إلغاء-دورة": {
+        "هابط": 31,
+        "عرضي": 2
+      },
+      "توزيع-قمة": {
+        "هابط": 11,
+        "عرضي": 3
+      }
+    },
+    "c4_pnl_by_entry_regime": {
+      "عرضي": 68.94,
+      "هابط": -81.53
+    },
+    "c4_cancel_cycles_by_exit_regime": {
+      "هابط": 21,
+      "عرضي": 4
+    },
+    "c4_cancel_cycles_by_entry_regime": {
+      "هابط": 23,
+      "عرضي": 2
+    },
+    "cycles_table": [
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-01-21 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.34,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.35,
+        "days_from_first_entry": 10.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-02-24 04:00",
+        "n_tranches": 1,
+        "cycle_pnl": -21.74,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -14.29,
+        "days_from_first_entry": 29.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-05-09 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -23.48,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -15.46,
+        "days_from_first_entry": 72.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-06-13 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -45.61,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -30.25,
+        "days_from_first_entry": 31.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-06-18 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -25.44,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -16.77,
+        "days_from_first_entry": 2.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2022-12-16 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 24.0,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BNBUSDT",
+        "exit": "2023-08-17 20:00",
+        "n_tranches": 2,
+        "cycle_pnl": -42.16,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -9.78,
+        "days_from_first_entry": 65.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2022-01-21 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -13.8,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.99,
+        "days_from_first_entry": 11.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2022-06-13 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -22.63,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -14.89,
+        "days_from_first_entry": 30.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "BTCUSDT",
+        "exit": "2022-11-08 16:00",
+        "n_tranches": 4,
+        "cycle_pnl": -106.74,
+        "notional": 1000.0,
+        "drop_from_min_entry_pct": -8.29,
+        "days_from_first_entry": 141.7,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-02-24 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.48,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.45,
+        "days_from_first_entry": 0.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-04-30 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -31.17,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -20.6,
+        "days_from_first_entry": 64.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-05-06 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -20.3,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -13.33,
+        "days_from_first_entry": 1.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-06-13 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -43.0,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -28.5,
+        "days_from_first_entry": 30.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-11-09 20:00",
+        "n_tranches": 2,
+        "cycle_pnl": -38.28,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 148.0,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2022-11-21 16:00",
+        "n_tranches": 2,
+        "cycle_pnl": -47.52,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.52,
+        "days_from_first_entry": 6.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "LINKUSDT",
+        "exit": "2023-06-10 04:00",
+        "n_tranches": 2,
+        "cycle_pnl": -43.75,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.05,
+        "days_from_first_entry": 28.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-01-20 20:00",
+        "n_tranches": 1,
+        "cycle_pnl": -16.12,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -10.54,
+        "days_from_first_entry": 9.0,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "عرضي"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-02-24 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -17.05,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -11.17,
+        "days_from_first_entry": 0.7,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-05-08 16:00",
+        "n_tranches": 1,
+        "cycle_pnl": -19.34,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -12.69,
+        "days_from_first_entry": 53.8,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-06-11 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -24.62,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -16.22,
+        "days_from_first_entry": 5.3,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-10-13 08:00",
+        "n_tranches": 1,
+        "cycle_pnl": -12.32,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.0,
+        "days_from_first_entry": 119.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-10-21 08:00",
+        "n_tranches": 2,
+        "cycle_pnl": -46.69,
+        "notional": 400.0,
+        "drop_from_min_entry_pct": -10.13,
+        "days_from_first_entry": 7.2,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-11-08 00:00",
+        "n_tranches": 1,
+        "cycle_pnl": -13.41,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -8.73,
+        "days_from_first_entry": 15.2,
+        "regime_exit": "عرضي",
+        "regime_first_entry": "هابط"
+      },
+      {
+        "symbol": "SOLUSDT",
+        "exit": "2022-12-27 12:00",
+        "n_tranches": 1,
+        "cycle_pnl": -20.92,
+        "notional": 150.0,
+        "drop_from_min_entry_pct": -13.75,
+        "days_from_first_entry": 34.5,
+        "regime_exit": "هابط",
+        "regime_first_entry": "هابط"
+      }
+    ]
+  },
+  "gap_open4_JUD": {
+    "window": "JUD",
+    "coins": 4,
+    "peak_capital": 1350.0,
+    "hold_capital_each": 337.5,
+    "hold_net": 595.82,
+    "strat_net": 417.35,
+    "gap_net": 178.47,
+    "hold_gross": 600.3,
+    "strat_gross": 434.31,
+    "gap_gross": 165.99,
+    "hold_cost": 4.48,
+    "strat_cost": 16.96,
+    "cost_effect(strat−hold)": 12.48,
+    "buckets_usd": {
+      "قبل-أول-دخول": 436.66,
+      "خارج-بعد-إلغاء": 836.0,
+      "خارج-بعد-توزيع": -590.74,
+      "خارج-بعد-نهاية-العينة": 0.0,
+      "داخل-كامل": -516.78,
+      "داخل-بعد-توزيع-جزئي": 0.85
+    },
+    "buckets_pct_of_gap_gross": {
+      "قبل-أول-دخول": 263.1,
+      "خارج-بعد-إلغاء": 503.7,
+      "خارج-بعد-توزيع": -355.9,
+      "خارج-بعد-نهاية-العينة": 0.0,
+      "داخل-كامل": -311.3,
+      "داخل-بعد-توزيع-جزئي": 0.5
+    },
+    "identity": "gap_gross = Σ buckets ; gap_net = gap_gross + (strat_cost − hold_cost)",
+    "per_symbol": {
+      "BTCUSDT": {
+        "hold_net": 281.12,
+        "strat_net": 119.75,
+        "gap_net": 161.37,
+        "hold_gross": 282.54,
+        "strat_gross": 126.13,
+        "قبل-أول-دخول": 153.61,
+        "خارج-بعد-إلغاء": 350.97,
+        "خارج-بعد-توزيع": -160.74,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -180.95,
+        "داخل-بعد-توزيع-جزئي": -6.47
+      },
+      "BNBUSDT": {
+        "hold_net": 401.74,
+        "strat_net": 79.51,
+        "gap_net": 322.23,
+        "hold_gross": 403.44,
+        "strat_gross": 83.49,
+        "قبل-أول-دخول": 223.56,
+        "خارج-بعد-إلغاء": 287.88,
+        "خارج-بعد-توزيع": -76.63,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -122.16,
+        "داخل-بعد-توزيع-جزئي": 7.32
+      },
+      "SOLUSDT": {
+        "hold_net": -0.68,
+        "strat_net": 6.6,
+        "gap_net": -7.28,
+        "hold_gross": 0.1,
+        "strat_gross": 10.41,
+        "قبل-أول-دخول": 101.6,
+        "خارج-بعد-إلغاء": 50.59,
+        "خارج-بعد-توزيع": -85.57,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -76.93,
+        "داخل-بعد-توزيع-جزئي": 0.0
+      },
+      "LINKUSDT": {
+        "hold_net": -86.36,
+        "strat_net": 211.49,
+        "gap_net": -297.86,
+        "hold_gross": -85.79,
+        "strat_gross": 214.28,
+        "قبل-أول-دخول": -42.1,
+        "خارج-بعد-إلغاء": 146.56,
+        "خارج-بعد-توزيع": -267.8,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -136.73,
+        "داخل-بعد-توزيع-جزئي": 0.0
+      }
+    }
+  },
+  "gap_open4_FULL": {
+    "window": "FULL",
+    "coins": 4,
+    "peak_capital": 1800.0,
+    "hold_capital_each": 450.0,
+    "hold_net": 212.48,
+    "strat_net": 404.76,
+    "gap_net": -192.27,
+    "hold_gross": 217.11,
+    "strat_gross": 441.49,
+    "gap_gross": -224.38,
+    "hold_cost": 4.63,
+    "strat_cost": 36.74,
+    "cost_effect(strat−hold)": 32.1,
+    "buckets_usd": {
+      "قبل-أول-دخول": -122.37,
+      "خارج-بعد-إلغاء": 1026.03,
+      "خارج-بعد-توزيع": -169.86,
+      "خارج-بعد-نهاية-العينة": 0.0,
+      "داخل-كامل": -980.97,
+      "داخل-بعد-توزيع-جزئي": 22.79
+    },
+    "buckets_pct_of_gap_gross": {
+      "قبل-أول-دخول": 54.5,
+      "خارج-بعد-إلغاء": -457.3,
+      "خارج-بعد-توزيع": 75.7,
+      "خارج-بعد-نهاية-العينة": -0.0,
+      "داخل-كامل": 437.2,
+      "داخل-بعد-توزيع-جزئي": -10.2
+    },
+    "identity": "gap_gross = Σ buckets ; gap_net = gap_gross + (strat_cost − hold_cost)",
+    "per_symbol": {
+      "BTCUSDT": {
+        "hold_net": 290.47,
+        "strat_net": 236.03,
+        "gap_net": 54.43,
+        "hold_gross": 292.17,
+        "strat_gross": 248.21,
+        "قبل-أول-دخول": -42.09,
+        "خارج-بعد-إلغاء": 338.32,
+        "خارج-بعد-توزيع": -87.36,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -175.09,
+        "داخل-بعد-توزيع-جزئي": 10.19
+      },
+      "BNBUSDT": {
+        "hold_net": 212.7,
+        "strat_net": 81.6,
+        "gap_net": 131.1,
+        "hold_gross": 214.22,
+        "strat_gross": 90.54,
+        "قبل-أول-دخول": -15.04,
+        "خارج-بعد-إلغاء": 313.76,
+        "خارج-بعد-توزيع": 141.99,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -327.07,
+        "داخل-بعد-توزيع-جزئي": 10.03
+      },
+      "SOLUSDT": {
+        "hold_net": -28.07,
+        "strat_net": -163.87,
+        "gap_net": 135.8,
+        "hold_gross": -27.1,
+        "strat_gross": -157.11,
+        "قبل-أول-دخول": 141.9,
+        "خارج-بعد-إلغاء": 244.13,
+        "خارج-بعد-توزيع": -107.19,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -148.83,
+        "داخل-بعد-توزيع-جزئي": 0.0
+      },
+      "LINKUSDT": {
+        "hold_net": -262.61,
+        "strat_net": 250.99,
+        "gap_net": -513.6,
+        "hold_gross": -262.18,
+        "strat_gross": 259.86,
+        "قبل-أول-دخول": -207.13,
+        "خارج-بعد-إلغاء": 129.81,
+        "خارج-بعد-توزيع": -117.3,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -329.98,
+        "داخل-بعد-توزيع-جزئي": 2.57
+      }
+    }
+  },
+  "gap_open16_FULL": {
+    "window": "FULL",
+    "coins": 16,
+    "peak_capital": 4900.0,
+    "hold_capital_each": 306.25,
+    "hold_net": -2058.49,
+    "strat_net": 2545.74,
+    "gap_net": -4604.23,
+    "hold_gross": -2051.94,
+    "strat_gross": 2708.18,
+    "gap_gross": -4760.12,
+    "hold_cost": 6.54,
+    "strat_cost": 162.44,
+    "cost_effect(strat−hold)": 155.9,
+    "buckets_usd": {
+      "قبل-أول-دخول": 58.06,
+      "خارج-بعد-إلغاء": -1651.96,
+      "خارج-بعد-توزيع": -1133.3,
+      "خارج-بعد-نهاية-العينة": 0.0,
+      "داخل-كامل": -1704.22,
+      "داخل-بعد-توزيع-جزئي": -328.71
+    },
+    "buckets_pct_of_gap_gross": {
+      "قبل-أول-دخول": -1.2,
+      "خارج-بعد-إلغاء": 34.7,
+      "خارج-بعد-توزيع": 23.8,
+      "خارج-بعد-نهاية-العينة": -0.0,
+      "داخل-كامل": 35.8,
+      "داخل-بعد-توزيع-جزئي": 6.9
+    },
+    "identity": "gap_gross = Σ buckets ; gap_net = gap_gross + (strat_cost − hold_cost)",
+    "per_symbol": {
+      "ATOMUSDT": {
+        "hold_net": -286.8,
+        "strat_net": 190.56,
+        "gap_net": -477.36,
+        "hold_gross": -286.75,
+        "strat_gross": 204.35,
+        "قبل-أول-دخول": 21.13,
+        "خارج-بعد-إلغاء": -127.34,
+        "خارج-بعد-توزيع": -325.61,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -40.04,
+        "داخل-بعد-توزيع-جزئي": -19.24
+      },
+      "BNBUSDT": {
+        "hold_net": 144.75,
+        "strat_net": 81.6,
+        "gap_net": 63.15,
+        "hold_gross": 145.79,
+        "strat_gross": 90.54,
+        "قبل-أول-دخول": -10.23,
+        "خارج-بعد-إلغاء": 213.53,
+        "خارج-بعد-توزيع": 96.63,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -252.79,
+        "داخل-بعد-توزيع-جزئي": 8.11
+      },
+      "BTCUSDT": {
+        "hold_net": 197.68,
+        "strat_net": 236.03,
+        "gap_net": -38.36,
+        "hold_gross": 198.84,
+        "strat_gross": 248.21,
+        "قبل-أول-دخول": -28.65,
+        "خارج-بعد-إلغاء": 230.25,
+        "خارج-بعد-توزيع": -59.45,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -186.09,
+        "داخل-بعد-توزيع-جزئي": -5.42
+      },
+      "DOGEUSDT": {
+        "hold_net": -216.13,
+        "strat_net": 244.29,
+        "gap_net": -460.42,
+        "hold_gross": -215.93,
+        "strat_gross": 252.45,
+        "قبل-أول-دخول": -67.37,
+        "خارج-بعد-إلغاء": -54.14,
+        "خارج-بعد-توزيع": -229.35,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -117.52,
+        "داخل-بعد-توزيع-جزئي": 0.0
+      },
+      "ETHUSDT": {
+        "hold_net": -90.9,
+        "strat_net": 294.6,
+        "gap_net": -385.5,
+        "hold_gross": -90.41,
+        "strat_gross": 305.06,
+        "قبل-أول-دخول": -17.15,
+        "خارج-بعد-إلغاء": -226.59,
+        "خارج-بعد-توزيع": 91.8,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -244.43,
+        "داخل-بعد-توزيع-جزئي": 0.89
+      },
+      "FILUSDT": {
+        "hold_net": -303.6,
+        "strat_net": -178.93,
+        "gap_net": -124.66,
+        "hold_gross": -303.59,
+        "strat_gross": -164.49,
+        "قبل-أول-دخول": -87.61,
+        "خارج-بعد-إلغاء": -121.54,
+        "خارج-بعد-توزيع": -2.56,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": 60.92,
+        "داخل-بعد-توزيع-جزئي": 11.69
+      },
+      "GRAMUSDT": {
+        "hold_net": -212.45,
+        "strat_net": 60.01,
+        "gap_net": -272.46,
+        "hold_gross": -212.24,
+        "strat_gross": 64.4,
+        "قبل-أول-دخول": 32.93,
+        "خارج-بعد-إلغاء": -169.55,
+        "خارج-بعد-توزيع": -152.35,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": 12.33,
+        "داخل-بعد-توزيع-جزئي": 0.0
+      },
+      "HNTUSDT": {
+        "hold_net": -248.71,
+        "strat_net": -157.12,
+        "gap_net": -91.59,
+        "hold_gross": -248.58,
+        "strat_gross": -152.88,
+        "قبل-أول-دخول": -80.88,
+        "خارج-بعد-إلغاء": -109.23,
+        "خارج-بعد-توزيع": -76.93,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": 171.35,
+        "داخل-بعد-توزيع-جزئي": 0.0
+      },
+      "IMXUSDT": {
+        "hold_net": -296.26,
+        "strat_net": 166.96,
+        "gap_net": -463.23,
+        "hold_gross": -296.24,
+        "strat_gross": 181.16,
+        "قبل-أول-دخول": -178.88,
+        "خارج-بعد-إلغاء": -49.48,
+        "خارج-بعد-توزيع": -57.35,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -205.68,
+        "داخل-بعد-توزيع-جزئي": 13.99
+      },
+      "LINKUSDT": {
+        "hold_net": -178.72,
+        "strat_net": 250.99,
+        "gap_net": -429.71,
+        "hold_gross": -178.43,
+        "strat_gross": 259.86,
+        "قبل-أول-دخول": -140.97,
+        "خارج-بعد-إلغاء": 88.34,
+        "خارج-بعد-توزيع": -79.83,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -309.97,
+        "داخل-بعد-توزيع-جزئي": 4.14
+      },
+      "PEPEUSDT": {
+        "hold_net": 221.09,
+        "strat_net": 523.25,
+        "gap_net": -302.16,
+        "hold_gross": 222.3,
+        "strat_gross": 529.18,
+        "قبل-أول-دخول": -118.15,
+        "خارج-بعد-إلغاء": -955.47,
+        "خارج-بعد-توزيع": 110.37,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": 656.37,
+        "داخل-بعد-توزيع-جزئي": 0.0
+      },
+      "RENDERUSDT": {
+        "hold_net": -245.44,
+        "strat_net": 4.82,
+        "gap_net": -250.26,
+        "hold_gross": -245.3,
+        "strat_gross": 9.55,
+        "قبل-أول-دخول": -93.79,
+        "خارج-بعد-إلغاء": -73.26,
+        "خارج-بعد-توزيع": -214.46,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": 126.66,
+        "داخل-بعد-توزيع-جزئي": 0.0
+      },
+      "SHIBUSDT": {
+        "hold_net": -85.33,
+        "strat_net": 473.18,
+        "gap_net": -558.51,
+        "hold_gross": -84.82,
+        "strat_gross": 488.43,
+        "قبل-أول-دخول": 971.43,
+        "خارج-بعد-إلغاء": -345.25,
+        "خارج-بعد-توزيع": -29.46,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -827.19,
+        "داخل-بعد-توزيع-جزئي": -342.78
+      },
+      "SOLUSDT": {
+        "hold_net": -19.1,
+        "strat_net": -163.87,
+        "gap_net": 144.76,
+        "hold_gross": -18.44,
+        "strat_gross": -157.11,
+        "قبل-أول-دخول": 96.57,
+        "خارج-بعد-إلغاء": 166.14,
+        "خارج-بعد-توزيع": -72.95,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -51.1,
+        "داخل-بعد-توزيع-جزئي": 0.0
+      },
+      "VETUSDT": {
+        "hold_net": -289.53,
+        "strat_net": -32.56,
+        "gap_net": -256.97,
+        "hold_gross": -289.49,
+        "strat_gross": -17.09,
+        "قبل-أول-دخول": -102.58,
+        "خارج-بعد-إلغاء": -78.29,
+        "خارج-بعد-توزيع": 39.61,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -142.39,
+        "داخل-بعد-توزيع-جزئي": 11.26
+      },
+      "XLMUSDT": {
+        "hold_net": -149.02,
+        "strat_net": 551.94,
+        "gap_net": -700.95,
+        "hold_gross": -148.66,
+        "strat_gross": 566.56,
+        "قبل-أول-دخول": -137.74,
+        "خارج-بعد-إلغاء": -40.08,
+        "خارج-بعد-توزيع": -171.4,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -354.66,
+        "داخل-بعد-توزيع-جزئي": -11.34
+      }
+    }
+  },
+  "gap_open4_SEL": {
+    "window": "SEL",
+    "coins": 4,
+    "peak_capital": 1800.0,
+    "hold_capital_each": 450.0,
+    "hold_net": -422.15,
+    "strat_net": -12.59,
+    "gap_net": -409.56,
+    "hold_gross": -418.98,
+    "strat_gross": 7.18,
+    "gap_gross": -426.16,
+    "hold_cost": 3.17,
+    "strat_cost": 19.77,
+    "cost_effect(strat−hold)": 16.6,
+    "buckets_usd": {
+      "قبل-أول-دخول": -122.37,
+      "خارج-بعد-إلغاء": 47.86,
+      "خارج-بعد-توزيع": 45.28,
+      "خارج-بعد-نهاية-العينة": 0.0,
+      "داخل-كامل": -420.7,
+      "داخل-بعد-توزيع-جزئي": 23.77
+    },
+    "buckets_pct_of_gap_gross": {
+      "قبل-أول-دخول": 28.7,
+      "خارج-بعد-إلغاء": -11.2,
+      "خارج-بعد-توزيع": -10.6,
+      "خارج-بعد-نهاية-العينة": -0.0,
+      "داخل-كامل": 98.7,
+      "داخل-بعد-توزيع-جزئي": -5.6
+    },
+    "identity": "gap_gross = Σ buckets ; gap_net = gap_gross + (strat_cost − hold_cost)",
+    "per_symbol": {
+      "BTCUSDT": {
+        "hold_net": -46.95,
+        "strat_net": 116.28,
+        "gap_net": -163.24,
+        "hold_gross": -46.02,
+        "strat_gross": 122.08,
+        "قبل-أول-دخول": -42.09,
+        "خارج-بعد-إلغاء": -81.77,
+        "خارج-بعد-توزيع": -78.82,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": 16.73,
+        "داخل-بعد-توزيع-جزئي": 17.85
+      },
+      "BNBUSDT": {
+        "hold_net": -148.24,
+        "strat_net": 2.09,
+        "gap_net": -150.33,
+        "hold_gross": -147.54,
+        "strat_gross": 7.05,
+        "قبل-أول-دخول": -15.04,
+        "خارج-بعد-إلغاء": 55.69,
+        "خارج-بعد-توزيع": 10.19,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -208.78,
+        "داخل-بعد-توزيع-جزئي": 3.34
+      },
+      "SOLUSDT": {
+        "hold_net": -28.19,
+        "strat_net": -170.47,
+        "gap_net": 142.27,
+        "hold_gross": -27.22,
+        "strat_gross": -167.52,
+        "قبل-أول-دخول": 141.9,
+        "خارج-بعد-إلغاء": 53.49,
+        "خارج-بعد-توزيع": 0.0,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -55.09,
+        "داخل-بعد-توزيع-جزئي": 0.0
+      },
+      "LINKUSDT": {
+        "hold_net": -198.76,
+        "strat_net": 39.5,
+        "gap_net": -238.26,
+        "hold_gross": -198.19,
+        "strat_gross": 45.58,
+        "قبل-أول-دخول": -207.13,
+        "خارج-بعد-إلغاء": 20.45,
+        "خارج-بعد-توزيع": 113.92,
+        "خارج-بعد-نهاية-العينة": 0.0,
+        "داخل-كامل": -173.56,
+        "داخل-بعد-توزيع-جزئي": 2.57
+      }
+    }
+  }
+}
