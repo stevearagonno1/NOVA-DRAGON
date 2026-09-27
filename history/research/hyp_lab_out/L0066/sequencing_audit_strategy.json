@@ -1,0 +1,16 @@
+{
+  "files": 1,
+  "files_with_overlap": 0,
+  "overlap": 0,
+  "results": [
+    {
+      "trades": 865,
+      "overlapping_trades": 0,
+      "overlap_ratio": 0.0,
+      "max_concurrent": 1,
+      "symbols_with_overlap": 0,
+      "status": "ok",
+      "file": "trades_strategy_TARGET13_FULL.csv"
+    }
+  ]
+}

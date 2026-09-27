@@ -1,0 +1,25 @@
+{
+  "files_sha_pass1": {
+    "sha_random_books_FULL16_A_SEL": "ef2528f00995e438",
+    "sha_random_books_FULL16_A_JUD": "530f4b7dda61a98e",
+    "sha_random_books_FULL16_B_SEL": "6dd10443fc0882d5",
+    "sha_random_books_FULL16_B_JUD": "49d8e99a0f2aedf0"
+  },
+  "files_sha_pass2": {
+    "sha_random_books_FULL16_A_SEL": "ef2528f00995e438",
+    "sha_random_books_FULL16_A_JUD": "530f4b7dda61a98e",
+    "sha_random_books_FULL16_B_SEL": "6dd10443fc0882d5",
+    "sha_random_books_FULL16_B_JUD": "49d8e99a0f2aedf0"
+  },
+  "files_identical": true,
+  "strategy_identical": true,
+  "books_identical": true,
+  "concentration_identical": true,
+  "acceptance_identical": true,
+  "final_identical": true,
+  "per_coin_identical": true,
+  "hold_identical": true,
+  "leakage_identical": true,
+  "sweep_csv_sha": "3a401283f8313728",
+  "cross_environment_note": "التشغيل الأول (بيئة سابقة) ضاع قبل الرفع؛ أرقامه المدوّنة في مسوّدة التقرير طابقت هذا التشغيل: اختيار +76.63$، حكم −1,391.41$، وسيطا العشوائي −792.63$/−761.43$، المئينان 70.4/35.1."
+}
