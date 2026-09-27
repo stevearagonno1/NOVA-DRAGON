@@ -1,0 +1,70 @@
+{
+ "1_no_d1_leak": {
+  "ok": true,
+  "violations": 0
+ },
+ "2_pivot_delay_truncation": {
+  "ok": true,
+  "cases": 6,
+  "mismatches": 0,
+  "note": "الإشارات قبل نقطة القطع مطابقة عند حذف المستقبل ⇒ pivot لا يُعرف قبل شموع اليمين"
+ },
+ "4_no_incomplete_volume": {
+  "ok": true,
+  "note": "وسيط الحجم shift(1) + اختبار القطع نفسه"
+ },
+ "3_entry_after_confirm_close": {
+  "ok": true,
+  "violations": 0
+ },
+ "5_fills_inside_bar": {
+  "ok": true,
+  "fills": 901,
+  "violations": 0
+ },
+ "6_stop_priority": {
+  "ok": true,
+  "n": 420,
+  "note": "الوقف يُفحص قبل منطق الإغلاق وسعره min(open,stop)"
+ },
+ "7_stop_not_moved_before_protection": {
+  "ok": true,
+  "violations": 0
+ },
+ "8_trail_monotone": {
+  "ok": true,
+  "violations": 0
+ },
+ "9_protection_covers_actual_cost": {
+  "ok": true,
+  "n": 345,
+  "protect_stop_exits_nonneg_share": 1.0,
+  "note": "BE من الكلفة الفعلية المحققة (رسوم+انزلاق الدخول) و f_out المقاسة؛ خروج الفجوة تحت الوقف قد يكون سالبًا"
+ },
+ "10_determinism": {
+  "ok": true,
+  "hash": "181369e47ad32dad"
+ },
+ "11_capital_min_order": {
+  "ok": true,
+  "min_cash": 1603.7332023684362,
+  "min_filled": 20.67467651436253
+ },
+ "12_no_duplicate_overlap": {
+  "ok": true,
+  "overlaps": 0
+ },
+ "13_reconciliation": {
+  "ok": 1.0,
+  "signals_filled": 444,
+  "trades": 444,
+  "orders_filled": 457,
+  "rejected": 9,
+  "signal_status": {
+   "filled": 444,
+   "reject_extension": 66,
+   "reject_cooldown_or_open": 22,
+   "reject_min_order": 9
+  }
+ }
+}

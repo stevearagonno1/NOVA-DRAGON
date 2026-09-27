@@ -1,0 +1,17 @@
+{
+ "1_net_pos": false,
+ "2_stress_high_pos": false,
+ "3_median_window_pos": false,
+ "4_60pct_windows": false,
+ "5_avg_median_trade_pos": false,
+ "6_window_share_le40": false,
+ "7_coin_share_le35": false,
+ "8_mdd_le35": true,
+ "9_underwater_le540": false,
+ "10_three_coins_pos": true,
+ "11_not_single_coin": false,
+ "12_beats_first_touch": true,
+ "13_neighbours_hold": false,
+ "14_covers_run_cost": false,
+ "15_not_single_trade": false
+}
