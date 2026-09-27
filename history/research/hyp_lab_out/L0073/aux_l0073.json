@@ -1,0 +1,365 @@
+{
+ "signal_hash_before_outcomes": "2cf2f60f1ed910944a0d88702075f59c798b052f324ea97ef138a8f967747d63",
+ "signal_hash_after_outcomes": "2cf2f60f1ed910944a0d88702075f59c798b052f324ea97ef138a8f967747d63",
+ "rise_starts_per_asset": {
+  "ATOM": 912,
+  "BNB": 934,
+  "BTC": 884,
+  "ETH": 899,
+  "FIL": 873,
+  "GRAM": 380,
+  "HNT": 207,
+  "IMX": 863,
+  "LINK": 920,
+  "RENDER": 393,
+  "SOL": 893,
+  "VET": 938,
+  "XLM": 885
+ },
+ "rise_starts_total": 9981,
+ "coverage": {
+  "MSS": 0.0010019036168720569,
+  "FVG": 0.23214106802925558,
+  "SFP": 0.04628794709948903
+ },
+ "coverage_by_asset": {
+  "MSS_in_window": {
+   "ATOM": 0.0,
+   "BNB": 0.0,
+   "BTC": 0.0011,
+   "ETH": 0.0,
+   "FIL": 0.0023,
+   "GRAM": 0.0026,
+   "HNT": 0.0,
+   "IMX": 0.0023,
+   "LINK": 0.0,
+   "RENDER": 0.0025,
+   "SOL": 0.0022,
+   "VET": 0.0011,
+   "XLM": 0.0
+  },
+  "FVG_in_window": {
+   "ATOM": 0.2182,
+   "BNB": 0.2516,
+   "BTC": 0.2398,
+   "ETH": 0.2225,
+   "FIL": 0.2245,
+   "GRAM": 0.2342,
+   "HNT": 0.2512,
+   "IMX": 0.2213,
+   "LINK": 0.2402,
+   "RENDER": 0.2443,
+   "SOL": 0.2441,
+   "VET": 0.2271,
+   "XLM": 0.2203
+  },
+  "SFP_in_window": {
+   "ATOM": 0.0636,
+   "BNB": 0.0321,
+   "BTC": 0.0464,
+   "ETH": 0.0412,
+   "FIL": 0.0355,
+   "GRAM": 0.0447,
+   "HNT": 0.0483,
+   "IMX": 0.0487,
+   "LINK": 0.0413,
+   "RENDER": 0.0662,
+   "SOL": 0.0459,
+   "VET": 0.0512,
+   "XLM": 0.0486
+  }
+ },
+ "coverage_by_year": {
+  "MSS_in_window": {
+   "2021": 0.0016,
+   "2022": 0.0,
+   "2023": 0.0016,
+   "2024": 0.001,
+   "2025": 0.0018,
+   "2026": 0.0
+  },
+  "FVG_in_window": {
+   "2021": 0.2672,
+   "2022": 0.2091,
+   "2023": 0.2207,
+   "2024": 0.2373,
+   "2025": 0.2441,
+   "2026": 0.2364
+  },
+  "SFP_in_window": {
+   "2021": 0.041,
+   "2022": 0.0486,
+   "2023": 0.035,
+   "2024": 0.0461,
+   "2025": 0.0502,
+   "2026": 0.0538
+  }
+ },
+ "precedence_first_counts": {
+  "none": 7227,
+  "FVG": 2289,
+  "SFP": 455,
+  "MSS": 10
+ },
+ "after_start_only": {
+  "MSS": 47,
+  "FVG": 1455,
+  "SFP": 738
+ },
+ "gap_medians": {
+  "gap_MSS_FVG": 1.0,
+  "gap_MSS_SFP": NaN,
+  "gap_FVG_SFP": -1.0
+ },
+ "overlap": [
+  {
+   "direction": "long",
+   "a": "MSS",
+   "b": "MSS",
+   "a_signals": 103,
+   "same_bar": 103,
+   "within_2bars": 103,
+   "same_bar_share": 1.0,
+   "within_2_share": 1.0
+  },
+  {
+   "direction": "long",
+   "a": "MSS",
+   "b": "FVG",
+   "a_signals": 103,
+   "same_bar": 0,
+   "within_2bars": 90,
+   "same_bar_share": 0.0,
+   "within_2_share": 0.8737864077669902
+  },
+  {
+   "direction": "long",
+   "a": "MSS",
+   "b": "SFP",
+   "a_signals": 103,
+   "same_bar": 2,
+   "within_2bars": 5,
+   "same_bar_share": 0.019417475728155338,
+   "within_2_share": 0.04854368932038835
+  },
+  {
+   "direction": "long",
+   "a": "FVG",
+   "b": "MSS",
+   "a_signals": 8452,
+   "same_bar": 0,
+   "within_2bars": 90,
+   "same_bar_share": 0.0,
+   "within_2_share": 0.010648367250354946
+  },
+  {
+   "direction": "long",
+   "a": "FVG",
+   "b": "FVG",
+   "a_signals": 8452,
+   "same_bar": 8452,
+   "within_2bars": 8452,
+   "same_bar_share": 1.0,
+   "within_2_share": 1.0
+  },
+  {
+   "direction": "long",
+   "a": "FVG",
+   "b": "SFP",
+   "a_signals": 8452,
+   "same_bar": 0,
+   "within_2bars": 377,
+   "same_bar_share": 0.0,
+   "within_2_share": 0.04460482725982016
+  },
+  {
+   "direction": "long",
+   "a": "SFP",
+   "b": "MSS",
+   "a_signals": 1881,
+   "same_bar": 2,
+   "within_2bars": 5,
+   "same_bar_share": 0.001063264221158958,
+   "within_2_share": 0.002658160552897395
+  },
+  {
+   "direction": "long",
+   "a": "SFP",
+   "b": "FVG",
+   "a_signals": 1881,
+   "same_bar": 0,
+   "within_2bars": 375,
+   "same_bar_share": 0.0,
+   "within_2_share": 0.19936204146730463
+  },
+  {
+   "direction": "long",
+   "a": "SFP",
+   "b": "SFP",
+   "a_signals": 1881,
+   "same_bar": 1881,
+   "within_2bars": 1881,
+   "same_bar_share": 1.0,
+   "within_2_share": 1.0
+  },
+  {
+   "direction": "short",
+   "a": "MSS",
+   "b": "MSS",
+   "a_signals": 105,
+   "same_bar": 105,
+   "within_2bars": 105,
+   "same_bar_share": 1.0,
+   "within_2_share": 1.0
+  },
+  {
+   "direction": "short",
+   "a": "MSS",
+   "b": "FVG",
+   "a_signals": 105,
+   "same_bar": 0,
+   "within_2bars": 92,
+   "same_bar_share": 0.0,
+   "within_2_share": 0.8761904761904762
+  },
+  {
+   "direction": "short",
+   "a": "MSS",
+   "b": "SFP",
+   "a_signals": 105,
+   "same_bar": 0,
+   "within_2bars": 8,
+   "same_bar_share": 0.0,
+   "within_2_share": 0.0761904761904762
+  },
+  {
+   "direction": "short",
+   "a": "FVG",
+   "b": "MSS",
+   "a_signals": 8922,
+   "same_bar": 0,
+   "within_2bars": 92,
+   "same_bar_share": 0.0,
+   "within_2_share": 0.010311589329746693
+  },
+  {
+   "direction": "short",
+   "a": "FVG",
+   "b": "FVG",
+   "a_signals": 8922,
+   "same_bar": 8922,
+   "within_2bars": 8922,
+   "same_bar_share": 1.0,
+   "within_2_share": 1.0
+  },
+  {
+   "direction": "short",
+   "a": "FVG",
+   "b": "SFP",
+   "a_signals": 8922,
+   "same_bar": 0,
+   "within_2bars": 418,
+   "same_bar_share": 0.0,
+   "within_2_share": 0.04685048195471867
+  },
+  {
+   "direction": "short",
+   "a": "SFP",
+   "b": "MSS",
+   "a_signals": 1883,
+   "same_bar": 0,
+   "within_2bars": 8,
+   "same_bar_share": 0.0,
+   "within_2_share": 0.004248539564524694
+  },
+  {
+   "direction": "short",
+   "a": "SFP",
+   "b": "FVG",
+   "a_signals": 1883,
+   "same_bar": 0,
+   "within_2bars": 417,
+   "same_bar_share": 0.0,
+   "within_2_share": 0.2214551248008497
+  },
+  {
+   "direction": "short",
+   "a": "SFP",
+   "b": "SFP",
+   "a_signals": 1883,
+   "same_bar": 1883,
+   "within_2bars": 1883,
+   "same_bar_share": 1.0,
+   "within_2_share": 1.0
+  }
+ ],
+ "bars_per_asset": {
+  "ATOM": 10950,
+  "BNB": 10950,
+  "BTC": 10950,
+  "ETH": 10950,
+  "FIL": 10950,
+  "GRAM": 4503,
+  "HNT": 2449,
+  "IMX": 10162,
+  "LINK": 10950,
+  "RENDER": 4594,
+  "SOL": 10950,
+  "VET": 10950,
+  "XLM": 10950
+ },
+ "period": {
+  "ATOM": [
+   "2021-09-01 00:00:00+00:00",
+   "2026-08-30 20:00:00+00:00"
+  ],
+  "BNB": [
+   "2021-09-01 00:00:00+00:00",
+   "2026-08-30 20:00:00+00:00"
+  ],
+  "BTC": [
+   "2021-09-01 00:00:00+00:00",
+   "2026-08-30 20:00:00+00:00"
+  ],
+  "ETH": [
+   "2021-09-01 00:00:00+00:00",
+   "2026-08-30 20:00:00+00:00"
+  ],
+  "FIL": [
+   "2021-09-01 00:00:00+00:00",
+   "2026-08-30 20:00:00+00:00"
+  ],
+  "GRAM": [
+   "2024-08-08 08:00:00+00:00",
+   "2026-08-30 20:00:00+00:00"
+  ],
+  "HNT": [
+   "2021-09-01 00:00:00+00:00",
+   "2022-10-14 00:00:00+00:00"
+  ],
+  "IMX": [
+   "2022-01-10 08:00:00+00:00",
+   "2026-08-30 20:00:00+00:00"
+  ],
+  "LINK": [
+   "2021-09-01 00:00:00+00:00",
+   "2026-08-30 20:00:00+00:00"
+  ],
+  "RENDER": [
+   "2024-07-26 08:00:00+00:00",
+   "2026-08-30 20:00:00+00:00"
+  ],
+  "SOL": [
+   "2021-09-01 00:00:00+00:00",
+   "2026-08-30 20:00:00+00:00"
+  ],
+  "VET": [
+   "2021-09-01 00:00:00+00:00",
+   "2026-08-30 20:00:00+00:00"
+  ],
+  "XLM": [
+   "2021-09-01 00:00:00+00:00",
+   "2026-08-30 20:00:00+00:00"
+  ]
+ }
+}

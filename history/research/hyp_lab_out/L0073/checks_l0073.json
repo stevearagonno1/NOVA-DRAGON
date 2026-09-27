@@ -1,0 +1,42 @@
+{
+ "1_trigger_uses_data_le_i": {
+  "ok": true,
+  "cases": 15,
+  "mismatches": 0,
+  "note": "قطع البيانات بعد i لا يغير أي زناد ≤ i (مكونات وتركيبات، اتجاهان)"
+ },
+ "2_bar_i_plus_1_not_used": {
+  "ok": true,
+  "cases": 15,
+  "mismatches": 0,
+  "note": "تشويش كل الشموع من i+1 عشوائيًا (±50%) لا يغير MSS/FVG/SFP ≤ i"
+ },
+ "3_mae_mfe_from_next_bar": {
+  "ok": true,
+  "sample": 400,
+  "mismatches": 0
+ },
+ "4_no_priority_deletion": {
+  "ok": true,
+  "count_mismatch": 0,
+  "bars_with_2plus_components_same_direction": 2,
+  "note": "عدد الإشارات في الملف = مجموع الحواف لكل مكوّن؛ الإشارات المتزامنة محفوظة كلها"
+ },
+ "5_signals_unchanged_by_outcomes": {
+  "ok": true,
+  "hash": "2cf2f60f1ed91094"
+ },
+ "6_no_costs_or_trade_management": {
+  "ok": true,
+  "found": []
+ },
+ "7_params_as_preregistered": {
+  "ok": true,
+  "nova_defaults": "mss L=5، sfp look=20، ATR 14 — قيم nova_v8 الافتراضية دون تمرير"
+ },
+ "8_no_secrets": {
+  "ok": true,
+  "files": []
+ },
+ "all_ok": true
+}
