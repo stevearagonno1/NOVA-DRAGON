@@ -1,0 +1,23 @@
+{
+  "files_sha_pass1": {
+    "sha_random_books_FULL16_A_SEL": "ed36d7307cfd4f39",
+    "sha_random_books_FULL16_A_JUD": "8c32c96176125de7",
+    "sha_random_books_FULL16_B_SEL": "58260cfdf31b4967",
+    "sha_random_books_FULL16_B_JUD": "8eae81c5375bea66"
+  },
+  "files_sha_pass2": {
+    "sha_random_books_FULL16_A_SEL": "ed36d7307cfd4f39",
+    "sha_random_books_FULL16_A_JUD": "8c32c96176125de7",
+    "sha_random_books_FULL16_B_SEL": "58260cfdf31b4967",
+    "sha_random_books_FULL16_B_JUD": "8eae81c5375bea66"
+  },
+  "files_identical": true,
+  "strategy_identical": true,
+  "books_identical": true,
+  "concentration_identical": true,
+  "acceptance_identical": true,
+  "final_identical": true,
+  "per_coin_identical": true,
+  "hold_identical": true,
+  "sweep_csv_sha": "75063b0ab1cbfbf5"
+}

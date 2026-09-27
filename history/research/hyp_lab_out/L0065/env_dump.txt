@@ -1,0 +1,21 @@
+{
+  "date": "2026-09-27",
+  "python": "3.13.14",
+  "pandas": "2.2.3",
+  "numpy": "2.3.5",
+  "pyarrow": "25.0.1",
+  "platform": "Linux-6.1.158+-x86_64-with-glibc2.41",
+  "base_branch": "arena/l0064-long-cycle-full-2026-09-27 @ 6affd58",
+  "n_books": 1000,
+  "seed_base": 65,
+  "cost": {
+    "base": 0.00115,
+    "stress": 0.0013,
+    "slippage": 0.0
+  },
+  "years": {
+    "SEL": 2.3326488706365502,
+    "JUD": 2.6639288158795345,
+    "FULL": 4.996577686516085
+  }
+}
