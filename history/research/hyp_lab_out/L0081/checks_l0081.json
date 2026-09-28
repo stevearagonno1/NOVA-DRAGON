@@ -1,0 +1,101 @@
+{
+ "n_checks": 16,
+ "n_pass": 16,
+ "critical_ok": true,
+ "critical": [
+  "1_no_future_leak_incl_gatevol",
+  "2_embargo_purge_18",
+  "3_combos_cumulative_36",
+  "11_costs_measured_sourced",
+  "12_cpcv_no_leak",
+  "13_freeze_precedes_holdout",
+  "14_single_p4_candidate",
+  "15_no_secrets_seeds_recorded",
+  "16_no_hmm_viterbi_lookahead"
+ ],
+ "checks": {
+  "1_no_future_leak_incl_gatevol": {
+   "pass": true,
+   "mismatches": 0,
+   "detail": "GATE_VOL vol_t is truncation-invariant (uses only closed bars strictly before signal)"
+  },
+  "2_embargo_purge_18": {
+   "pass": true,
+   "l0080_embargo": 18,
+   "cpcv_purge": 18,
+   "cpcv_embargo": 18
+  },
+  "3_combos_cumulative_36": {
+   "pass": true,
+   "l0080": 27,
+   "gatevol": 9,
+   "total": 36
+  },
+  "4_eligibility_on_neff": {
+   "pass": true,
+   "detail": "Wilson bounds recomputed on N_eff in P1 + P4 success criteria use N_eff"
+  },
+  "5_bh_on_36": {
+   "pass": true,
+   "n_pvalues": 36,
+   "n_passed": 9
+  },
+  "6_dsr_computed_bar095": {
+   "pass": true,
+   "DSR": 0.0,
+   "passes": false
+  },
+  "7_pbo_cscv": {
+   "pass": true,
+   "pbo": 0.42857142857142855,
+   "n_paths": 70,
+   "warning": false
+  },
+  "8_effective_n_trials": {
+   "pass": true,
+   "effective_n_trials": 18.462902736917187,
+   "nominal": 36
+  },
+  "9_uniqueness_neff_present": {
+   "pass": true,
+   "detail": "neff_recompute_{l0079,l0080}.csv + confirmation carry concurrency/uniqueness/N_eff"
+  },
+  "10_wilson_on_neff": {
+   "pass": true,
+   "candidate_wilson_lo_neff_newassets": 0.47786304978481026
+  },
+  "11_costs_measured_sourced": {
+   "pass": true,
+   "platform": "Binance USDT-M futures (public schedule, no VIP/BNB discount) — DECLARED fallback",
+   "spread_source": "Corwin-Schultz (2012) from 4H OHLC, per asset",
+   "atr_and_spread_from_data": true
+  },
+  "12_cpcv_no_leak": {
+   "pass": true,
+   "n_paths": 5,
+   "n_combinations": 15
+  },
+  "13_freeze_precedes_holdout": {
+   "pass": true,
+   "freeze_commit": "c79f9cd4bf76e3ea29216a636f47f4640b14dd14",
+   "selection_in_freeze": true,
+   "holdout_absent": true,
+   "confirmation_absent": true
+  },
+  "14_single_p4_candidate": {
+   "pass": true,
+   "candidate": "GATE_ADX|FVG_3BAR_BASE|CONF_MACD"
+  },
+  "15_no_secrets_seeds_recorded": {
+   "pass": true,
+   "secret_files": "",
+   "seed": 81
+  },
+  "16_no_hmm_viterbi_lookahead": {
+   "pass": true,
+   "gate_vol_is_causal_quartile": true,
+   "note": "GATE_VOL uses frozen train quartiles of a causal vol_t; no HMM/Viterbi usage",
+   "offenders": []
+  }
+ }
+}

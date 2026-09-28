@@ -1,0 +1,2 @@
+status,reason
+not_executed,"P5 meta-labeling is conditional on G4 PASS; G4 FAILED (candidate did not confirm on new assets), so no secondary model was trained. Building a meta-label on an unconfirmed primary is forbidden by the paper."
