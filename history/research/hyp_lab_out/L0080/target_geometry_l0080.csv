@@ -1,0 +1,4 @@
+target,RR,tgt_atr,adv_atr,horizon,unconditional_win_rate,breakeven,distance_from_breakeven,decided,valid,neither_rate,unconditional_expectancy_R,expectancy_per_horizon_bar,expectancy_per_median_ttt,median_ttt
+PRIMARY,1.0,1.0,1.0,6,0.5,0.5,0.0,112448,135076,0.15797032781545203,0.0,0.0,0.0,2.0
+SEC_A,2.0,2.0,1.0,18,0.32014766254017757,0.3333333333333333,-0.013185670793155746,125692,135075,0.06685915232278364,-0.03955701237946729,-0.002197611798859294,-0.0065928353965778825,6.0
+SEC_B,1.0,1.0,1.0,12,0.5,0.5,0.0,128924,135076,0.03525422724984453,0.0,0.0,0.0,3.0
