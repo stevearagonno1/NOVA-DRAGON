@@ -1,0 +1,102 @@
+{
+ "1_no_future_leakage": {
+  "ok": true,
+  "cases": 15,
+  "trunc_mismatches": 0,
+  "future_perturb_mismatches": 0,
+  "note": "قطع وتشويش المستقبل لا يغيّران أي محفّز/بوابة/تأكيد عند ≤ i (MSS_L5, FVG, SFP, OBV, MACD, ADXDI, EMA200)"
+ },
+ "2_embargo_18": {
+  "ok": true,
+  "embargo_gap_bars": 24.0,
+  "note": "فجوة ≥18 شمعة 4H بين train وholdout"
+ },
+ "3_combos_27": {
+  "ok": true,
+  "catalog": 27,
+  "measured": 27,
+  "note": "27 تركيبة مطابقة للتسجيل المسبق (3×3×3)"
+ },
+ "4_eligibility_before_selection": {
+  "ok": true,
+  "selected": [],
+  "candidates": [],
+  "note": "كل مرشح مختار/مجتاز يحقق decided≥400 وcoverage≥0.05 وrise≥0.10 (شرط أهلية قبل الاختيار)"
+ },
+ "5_bh_and_targetdf": {
+  "ok": true,
+  "bh_passed": 12,
+  "targetdf_passed": 12,
+  "note": "تصحيح BH مسجّل (raw/bh/passed) ودرجة حرية اختيار الهدف محتسبة (m=28 حساسية)"
+ },
+ "6_costs_applied_disclosed": {
+  "ok": true,
+  "cost_columns": [
+   "expectancy_R_after_cost_005",
+   "expectancy_R_after_cost_010",
+   "sec_a_expectancy_R_after_cost_005",
+   "sec_a_expectancy_R_after_cost_010",
+   "sec_b_expectancy_R_after_cost_005",
+   "sec_b_expectancy_R_after_cost_010"
+  ],
+  "cost_values": [
+   0.05,
+   0.1
+  ],
+  "note": "التكاليف مطبقة (0.05R و0.10R) ومصدرها معلن في التسجيل المسبق"
+ },
+ "7_frozen_before_holdout": {
+  "ok": true,
+  "selection_commit": "3baf26f55875",
+  "holdout_absent_in_selection_commit": true,
+  "note": "commit تجميد selection_l0080.json لا يحتوي holdout_results — الاختيار من train سابق لقراءة holdout"
+ },
+ "8_no_secrets": {
+  "ok": true,
+  "hits": [],
+  "note": "لا أسرار/رموز في مخرجات L0080"
+ },
+ "9_seeds_reproducible": {
+  "ok": true,
+  "seed": 80,
+  "rerun_dir_pct_rank": [
+   0.996,
+   0.996
+  ],
+  "note": "البذور مسجلة (seed=80) وإعادة تشغيل الضبط العشوائي تعطي نفس النتيجة"
+ },
+ "10_asset_year_splits": {
+  "ok": true,
+  "levels": [
+   "asset",
+   "year"
+  ],
+  "periods": [
+   "holdout",
+   "train"
+  ],
+  "note": "تقسيم حسب الأصل والسنة موجود لكل التركيبات (train+holdout)"
+ },
+ "11_purged_kfold": {
+  "ok": true,
+  "k": 5,
+  "purge_bars": 18,
+  "embargo_bars": 18,
+  "note": "purged k-fold: 5 طيات لكل تركيبة، purge=embargo=18 شمعة عند حدود الطيات (لا تسريب بين الطيات)"
+ },
+ "_summary": {
+  "passed": 11,
+  "total": 11,
+  "all_ok": true,
+  "critical_ok": true,
+  "critical_checks": [
+   "1_no_future_leakage",
+   "2_embargo_18",
+   "3_combos_27",
+   "7_frozen_before_holdout",
+   "8_no_secrets",
+   "11_purged_kfold"
+  ],
+  "verdict": "L0080 صالح للتحقق خارج العينة"
+ }
+}
