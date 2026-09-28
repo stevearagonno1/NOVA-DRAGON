@@ -495,6 +495,7 @@ def run_train():
                                f"وسيط عشوائي {best.rand_dir_median:.4f}، يتفوق={bool(best.beats_random)}")
     sel["frozen_note"] = "أفضل نسخة لكل عائلة من train فقط (عينة كافية)، تُجمّد قبل قراءة holdout. لا دمج ثلاثي في L0079."
     json.dump(sel, open(f"{OUT}/selection_l0079.json", "w"), ensure_ascii=False, indent=1, default=float)
+    rnd.to_csv(f"{OUT}/random_control_l0079.csv", index=False)   # train rows; holdout appended later
     print("TRAIN done.", len(rows), "rows.", "chosen:", sel["chosen_per_family"])
 
 
@@ -504,7 +505,11 @@ def run_holdout():
     rows, BF = screen(data, catalog, "holdout")
     rows.to_csv(f"{OUT}/holdout_results_l0079.csv", index=False)
     rnd = add_random(rows, data, BF, "holdout")
-    rnd.to_csv(f"{OUT}/random_control_l0079.csv", index=False)
+    prev = f"{OUT}/random_control_l0079.csv"
+    if os.path.exists(prev):
+        old = pd.read_csv(prev); old = old[old.period != "holdout"]
+        rnd = pd.concat([old, rnd], ignore_index=True)
+    rnd.to_csv(prev, index=False)
     starts = rise_starts(data)
     rc = rise_coverage(data, catalog, starts)
     rc.to_csv(f"{OUT}/rise_coverage_l0079.csv", index=False)

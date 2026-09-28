@@ -1,0 +1,66 @@
+{
+ "1_variants_causal": {
+  "ok": true,
+  "cases": 15,
+  "trunc_mismatches": 0,
+  "future_perturb_mismatches": 0,
+  "note": "قطع الإطار بعد i وتشويش المستقبل لا يغيّران أي إشارة نسخة عند ≤ i (بنية + مؤشرات)"
+ },
+ "2_every_variant_registered": {
+  "ok": true,
+  "measured": 38,
+  "catalog": 39,
+  "unregistered": [],
+  "missing_params": [],
+  "note": "كل variant_id مُقاس له سطر في variant_catalog مع parameters وsignal_definition مسجّلين"
+ },
+ "3_frozen_before_holdout": {
+  "ok": true,
+  "selection_commit": "381c611c9de7",
+  "holdout_absent_in_selection_commit": true,
+  "note": "commit تجميد selection_l0079.json لا يحتوي holdout_results — إثبات دائم أن الاختيار سبق قراءة holdout"
+ },
+ "4_bollinger_zscore_one_family": {
+  "ok": true,
+  "bb_variants": [
+   "BB_20_1.5",
+   "BB_20_2.0",
+   "BB_50_2.0"
+  ],
+  "note": "عائلة Bollinger/Z واحدة: نسخ BB_* فقط؛ لا نسخة Z مستقلة (BB_20_2.0 long ≡ z<=-2 عند p=20)"
+ },
+ "5_vpfr_no_manual_range": {
+  "ok": true,
+  "note": "VPFR مسجّل PENDING فقط ولم يُشغّل؛ لا نطاق يدوي اختير بعد رؤية الرسم"
+ },
+ "6_train_holdout_separated": {
+  "ok": true,
+  "embargo_gap_bars": 24.0,
+  "embargo_required": 18,
+  "note": "فترة الحظر ≥18 شمعة 4H تفصل train عن holdout والفترتان غير متداخلتين"
+ },
+ "7_no_costs_or_trade_mgmt": {
+  "ok": true,
+  "offending_identifiers": [],
+  "note": "لا رسوم/وقف/إدارة صفقة/رأس مال كمعرّفات فعلية في كود L0079"
+ },
+ "8_no_secrets_in_outputs": {
+  "ok": true,
+  "hits": [],
+  "note": "فحص كل ملفات L0079 من الأسرار ورموز الوصول"
+ },
+ "_summary": {
+  "passed": 8,
+  "total": 8,
+  "all_ok": true,
+  "critical_ok": true,
+  "critical_checks": [
+   "1_variants_causal",
+   "2_every_variant_registered",
+   "3_frozen_before_holdout",
+   "6_train_holdout_separated",
+   "8_no_secrets_in_outputs"
+  ],
+  "verdict": "L0079 صالح للاختبار خارج العينة"
+ }
+}
