@@ -1,0 +1,50 @@
+{
+ "method": "Option A cross-sectional OOS (new assets, same window, frozen defs verbatim)",
+ "candidate": "GATE_ADX|FVG_3BAR_BASE|CONF_MACD",
+ "new_assets": [
+  "ADA",
+  "AVAX",
+  "BCH",
+  "DOGE",
+  "DOT",
+  "LTC",
+  "TRX",
+  "XRP"
+ ],
+ "n_assets": 7,
+ "window": [
+  "2024-09-04",
+  "2026-08-31"
+ ],
+ "pooled": {
+  "decided": 1086,
+  "wins": 554,
+  "losses": 532,
+  "valid": 1236,
+  "win_rate": 0.5101289134438306,
+  "expectancy_pre_cost_R": 0.0202578268876612,
+  "concurrency": 1.1795501022494888,
+  "average_uniqueness": 0.8477808599167823,
+  "N_eff": 920.6900138696257,
+  "wilson_lo_nominal": 0.4804137790355849,
+  "wilson_lo_neff": 0.47786304978481026
+ },
+ "cost": {
+  "avg_cost_R_taker": 0.14840994700680196,
+  "avg_cost_R_maker": 0.08811840603528867,
+  "breakeven_winrate_after_taker": 0.5742049735034009
+ },
+ "expectancy_after_cost": {
+  "taker": -0.12815212011914076,
+  "maker": -0.06786057914762747
+ },
+ "positive_direction_assets": "5/7",
+ "success_criteria": {
+  "N_eff_ge_200": true,
+  "wilson_lo_neff_above_breakeven_after_cost": false,
+  "expectancy_after_measured_cost_pos": false,
+  "positive_direction_majority_assets": true
+ },
+ "G4_PASS": false,
+ "note": "Binding scenario taker/taker. Single frozen candidate; read once."
+}

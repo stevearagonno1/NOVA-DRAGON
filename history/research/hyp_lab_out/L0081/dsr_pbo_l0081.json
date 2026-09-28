@@ -1,0 +1,22 @@
+{
+ "n_combos": 36,
+ "effective_n_trials": 18.462902736917187,
+ "pbo": 0.42857142857142855,
+ "pbo_n_paths": 70,
+ "pbo_warning": false,
+ "candidate": "GATE_ADX|FVG_3BAR_BASE|CONF_MACD",
+ "candidate_after_cost_used_R": 0.08189758271161224,
+ "dsr": {
+  "sharpe_per_trade_after_cost": -0.005266368123914363,
+  "sr_benchmark_expected_max": 0.3405638608270107,
+  "sr_std_across_trials": 0.18370396665805358,
+  "n_trials_effective": 18,
+  "n_obs": 1670,
+  "skew": -0.15374568463595092,
+  "kurtosis": 1.0236377355441775,
+  "DSR": 0.0,
+  "DSR_bar": 0.95,
+  "passes_dsr": false
+ },
+ "note": "PBO via CSCV on monthly mean-R matrix of the 36 combos; effective_n_trials via Li-Ji on their correlation."
+}
