@@ -1,0 +1,4 @@
+variant,n_signals,n_decided,win_rate,overlap,n_effective,lower_bound,p_value,prof_after_cost_scen1,prof_after_cost_scen3,cpcv_win_mean,cpcv_win_std,cpcv_win_min,cpcv_prof_mean
+FVG_V1,289,263,0.5209,1.0236,256.9,0.4598,0.50258,-0.01073,0.01349,0.5207,0.0339,0.4557,-0.01263
+FVG_V2,277,251,0.51,1.0,251.0,0.4481,0.75231,-0.03257,-0.00859,0.5116,0.0416,0.4342,-0.0309
+FVG_V3,174,160,0.525,1.0,160.0,0.4476,0.52709,-0.00142,0.02233,0.5213,0.0476,0.45,-0.01076

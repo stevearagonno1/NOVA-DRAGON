@@ -1,0 +1,2 @@
+status,reason,one_read_discipline
+NOT_REACHED,G3 فشل (FAIL-NO-VARIANT): لا نسخة فائزة تُحمَل إلى الهندسة/holdout.,HOLDOUT و FORWARD لم تُقرأ إطلاقًا — محفوظتان لقراءة واحدة مستقبلية.

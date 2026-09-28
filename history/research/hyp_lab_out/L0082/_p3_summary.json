@@ -1,0 +1,60 @@
+{
+  "filters": {
+    "A1_ge": 0.642111,
+    "A8_le": 18.212297,
+    "A7_gt": 0.0
+  },
+  "G3": "FAIL-NO-VARIANT",
+  "passers": [],
+  "winner": null,
+  "variants": [
+    {
+      "variant": "FVG_V1",
+      "n_signals": 289,
+      "n_decided": 263,
+      "win_rate": 0.5209,
+      "overlap": 1.0236,
+      "n_effective": 256.9,
+      "lower_bound": 0.4598,
+      "p_value": 0.50258,
+      "prof_after_cost_scen1": -0.01073,
+      "prof_after_cost_scen3": 0.01349,
+      "cpcv_win_mean": 0.5207,
+      "cpcv_win_std": 0.0339,
+      "cpcv_win_min": 0.4557,
+      "cpcv_prof_mean": -0.01263
+    },
+    {
+      "variant": "FVG_V2",
+      "n_signals": 277,
+      "n_decided": 251,
+      "win_rate": 0.51,
+      "overlap": 1.0,
+      "n_effective": 251.0,
+      "lower_bound": 0.4481,
+      "p_value": 0.75231,
+      "prof_after_cost_scen1": -0.03257,
+      "prof_after_cost_scen3": -0.00859,
+      "cpcv_win_mean": 0.5116,
+      "cpcv_win_std": 0.0416,
+      "cpcv_win_min": 0.4342,
+      "cpcv_prof_mean": -0.0309
+    },
+    {
+      "variant": "FVG_V3",
+      "n_signals": 174,
+      "n_decided": 160,
+      "win_rate": 0.525,
+      "overlap": 1.0,
+      "n_effective": 160.0,
+      "lower_bound": 0.4476,
+      "p_value": 0.52709,
+      "prof_after_cost_scen1": -0.00142,
+      "prof_after_cost_scen3": 0.02233,
+      "cpcv_win_mean": 0.5213,
+      "cpcv_win_std": 0.0476,
+      "cpcv_win_min": 0.45,
+      "cpcv_prof_mean": -0.01076
+    }
+  ]
+}

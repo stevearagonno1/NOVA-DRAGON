@@ -27,3 +27,4 @@ nova_upload_bundle.clean.tar.gz
 .env
 .env.*
 !.env.example
+/history/data/

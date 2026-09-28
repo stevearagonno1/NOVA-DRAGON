@@ -1,0 +1,6 @@
+{
+  "status": "NOT_REACHED",
+  "reason": "G3 فشل (FAIL-NO-VARIANT): لا نسخة فائزة تُحمَل إلى الهندسة/holdout.",
+  "one_read_discipline": "HOLDOUT و FORWARD لم تُقرأ إطلاقًا — محفوظتان لقراءة واحدة مستقبلية.",
+  "phase": "P4"
+}

@@ -1,0 +1,62 @@
+{
+  "BTCUSDT": {
+    "coverage": 0.2487,
+    "covered_bars": 3128,
+    "total_bars": 12576
+  },
+  "ETHUSDT": {
+    "coverage": 0.2624,
+    "covered_bars": 3300,
+    "total_bars": 12576
+  },
+  "BNBUSDT": {
+    "coverage": 0.262,
+    "covered_bars": 3295,
+    "total_bars": 12576
+  },
+  "SOLUSDT": {
+    "coverage": 0.2494,
+    "covered_bars": 3137,
+    "total_bars": 12576
+  },
+  "XRPUSDT": {
+    "coverage": 0.2189,
+    "covered_bars": 2753,
+    "total_bars": 12576
+  },
+  "ADAUSDT": {
+    "coverage": 0.2283,
+    "covered_bars": 2871,
+    "total_bars": 12576
+  },
+  "DOGEUSDT": {
+    "coverage": 0.2208,
+    "covered_bars": 2777,
+    "total_bars": 12576
+  },
+  "AVAXUSDT": {
+    "coverage": 0.2416,
+    "covered_bars": 3038,
+    "total_bars": 12576
+  },
+  "LINKUSDT": {
+    "coverage": 0.2532,
+    "covered_bars": 3184,
+    "total_bars": 12576
+  },
+  "DOTUSDT": {
+    "coverage": 0.2427,
+    "covered_bars": 3052,
+    "total_bars": 12576
+  },
+  "LTCUSDT": {
+    "coverage": 0.2568,
+    "covered_bars": 3230,
+    "total_bars": 12576
+  },
+  "ATOMUSDT": {
+    "coverage": 0.245,
+    "covered_bars": 3081,
+    "total_bars": 12576
+  }
+}

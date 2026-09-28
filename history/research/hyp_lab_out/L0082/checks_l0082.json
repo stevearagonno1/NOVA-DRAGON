@@ -1,0 +1,66 @@
+{
+  "1_truncation": {
+    "status": "PASS",
+    "note": "المؤشرات سببية بحتة (ATR/EMA/ADX تراكمية، والنوافذ ماضوية)؛ إعادة الحساب على بيانات مبتورة تعطي القيمة نفسها بحكم البناء."
+  },
+  "2_no_future": {
+    "status": "PASS",
+    "note": "كل قرار عند إغلاق i؛ الحسم على i+1..i+6 فقط؛ لا قيمة من i+1 فما بعد تدخل الخصائص."
+  },
+  "3_frozen_bins": {
+    "status": "PASS",
+    "note": "حدود الشرائح من TRAIN فقط، مخزّنة في slice_boundaries.json وتُطبَّق حرفيًا في P3."
+  },
+  "4_single_spread_table": {
+    "status": "PASS",
+    "note": "cost_model_l0082.csv يُحسب مرة واحدة في P1 ويُقرأ عبر cost_lookup_factory في P2/P3."
+  },
+  "5_cost_measured": {
+    "status": "PASS",
+    "note": "السبريد مقاس من bookTicker (6 تواريخ) والعمق من bookDepth؛ النموذج للسنوات غير المقاسة معلن في spread_source؛ R²=0.7643."
+  },
+  "6_limit_touch_rule": {
+    "status": "PASS",
+    "note": "resolve_limit ينفّذ باللمس؛ لمس المستوى والوقف في الشمعة نفسها ⇒ خاسر."
+  },
+  "7_frozen_before_holdout": {
+    "status": "N/A",
+    "note": "لم نصل holdout؛ لا مرشّح يُجمَّد. الانضباط محفوظ."
+  },
+  "8_forward_unread": {
+    "status": "PASS",
+    "note": "FORWARD لم تُقرأ (لم نصل P6)."
+  },
+  "9_purge_embargo": {
+    "status": "PASS",
+    "note": "purge=embargo=18 في CPCV على كل حد مجموعة."
+  },
+  "10_no_secrets_seed": {
+    "status": "PASS",
+    "note": "seed=82 في كل مكان؛ لا أسرار في الكود."
+  },
+  "11_lb_on_effective": {
+    "status": "PASS",
+    "note": "الحد الأدنى على العينة الفعلية؛ التداخل يُعاد حسابه لكل مجموعة/أصل (subset_overlap)."
+  },
+  "12_BH_m62": {
+    "status": "PASS",
+    "note": "Benjamini–Hochberg على m=62 (multiple_testing_l0082.csv)؛ العدّ: 10×5+2+6+4=62."
+  },
+  "13_all_slices_reported": {
+    "status": "PASS",
+    "note": "كل الشرائح في fvg_anatomy_l0082.csv (الرابحة والخاسرة)؛ إنذار تسريب مُعلَّم عند win≥0.60."
+  },
+  "14_undecided_reported": {
+    "status": "PASS",
+    "note": "الحالات undecided محسوبة ولم تُحذف؛ win_rate على المحسوم فقط، والعدد الكلي مُبلَّغ."
+  },
+  "15_power": {
+    "status": "PASS",
+    "note": "power_analysis_l0082.csv يبيّن أقل عينة لازمة لكل أثر مزعوم."
+  },
+  "16_verdict_language": {
+    "status": "PASS",
+    "note": "الصياغة: أثر لم يرقَ للبوابة؛ لا يُقال «ثبت انعدامه». FVG له أثر مشروط ضعيف لم يُنتج نسخة تنفيذية."
+  }
+}

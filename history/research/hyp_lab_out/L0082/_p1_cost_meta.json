@@ -1,0 +1,37 @@
+{
+  "fees": {
+    "maker_bps": 2.0,
+    "taker_bps": 5.0,
+    "notional_usdt": 10000.0
+  },
+  "spread_dates": [
+    "2023-05-17",
+    "2023-07-15",
+    "2023-09-15",
+    "2023-11-15",
+    "2024-01-15",
+    "2024-03-15"
+  ],
+  "volume_model": {
+    "a": 15.561825,
+    "b": -0.892181,
+    "r2": 0.764339,
+    "used": true
+  },
+  "asset_measured_spread_bps": {
+    "BTCUSDT": 0.0304,
+    "ETHUSDT": 0.0508,
+    "BNBUSDT": 0.3614,
+    "SOLUSDT": 0.3369,
+    "XRPUSDT": 1.6569,
+    "ADAUSDT": 2.7174,
+    "DOGEUSDT": 1.3521,
+    "AVAXUSDT": 0.6734,
+    "LINKUSDT": 1.0581,
+    "DOTUSDT": 1.8386,
+    "LTCUSDT": 1.2586,
+    "ATOMUSDT": 1.0076
+  },
+  "impact_note": "impact_bps=0 متوقع لكل الأصول عند 10k USDT (القياس المرجعي ADA).",
+  "consistency_rule": "جدول cost_model_l0082.csv مجمّد ويُطبَّق حرفيًا في كل المراحل اللاحقة."
+}

@@ -1,0 +1,107 @@
+[
+  {
+    "symbol": "BTCUSDT",
+    "monthly_ok": 68,
+    "monthly_missing": [],
+    "daily_ok": 27,
+    "daily_missing": []
+  },
+  {
+    "symbol": "ETHUSDT",
+    "monthly_ok": 68,
+    "monthly_missing": [],
+    "daily_ok": 27,
+    "daily_missing": []
+  },
+  {
+    "symbol": "BNBUSDT",
+    "monthly_ok": 68,
+    "monthly_missing": [],
+    "daily_ok": 27,
+    "daily_missing": []
+  },
+  {
+    "symbol": "SOLUSDT",
+    "monthly_ok": 68,
+    "monthly_missing": [],
+    "daily_ok": 27,
+    "daily_missing": [],
+    "backfilled_dates": [
+      "2022-02-26",
+      "2022-02-27",
+      "2022-02-28",
+      "2022-04-01",
+      "2022-04-02"
+    ]
+  },
+  {
+    "symbol": "XRPUSDT",
+    "monthly_ok": 68,
+    "monthly_missing": [],
+    "daily_ok": 27,
+    "daily_missing": [],
+    "backfilled_dates": [
+      "2022-02-26",
+      "2022-02-27",
+      "2022-02-28",
+      "2022-04-01",
+      "2022-04-02"
+    ]
+  },
+  {
+    "symbol": "ADAUSDT",
+    "monthly_ok": 68,
+    "monthly_missing": [],
+    "daily_ok": 27,
+    "daily_missing": []
+  },
+  {
+    "symbol": "DOGEUSDT",
+    "monthly_ok": 68,
+    "monthly_missing": [],
+    "daily_ok": 27,
+    "daily_missing": []
+  },
+  {
+    "symbol": "AVAXUSDT",
+    "monthly_ok": 68,
+    "monthly_missing": [],
+    "daily_ok": 27,
+    "daily_missing": []
+  },
+  {
+    "symbol": "LINKUSDT",
+    "monthly_ok": 68,
+    "monthly_missing": [],
+    "daily_ok": 27,
+    "daily_missing": []
+  },
+  {
+    "symbol": "DOTUSDT",
+    "monthly_ok": 68,
+    "monthly_missing": [],
+    "daily_ok": 27,
+    "daily_missing": []
+  },
+  {
+    "symbol": "LTCUSDT",
+    "monthly_ok": 68,
+    "monthly_missing": [],
+    "daily_ok": 27,
+    "daily_missing": [],
+    "backfilled_dates": [
+      "2022-02-26",
+      "2022-02-27",
+      "2022-02-28",
+      "2022-04-01",
+      "2022-04-02"
+    ]
+  },
+  {
+    "symbol": "ATOMUSDT",
+    "monthly_ok": 68,
+    "monthly_missing": [],
+    "daily_ok": 27,
+    "daily_missing": []
+  }
+]

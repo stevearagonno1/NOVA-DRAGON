@@ -1,0 +1,22 @@
+{
+  "m_tests": 62,
+  "train_signals": 10282,
+  "train_decided": 8898,
+  "usable_slices": 57,
+  "slices_ge_54_eff300": 1,
+  "slices_gt_53_eff300": 4,
+  "significant_after_BH": 3,
+  "high_corr_pairs": [
+    {
+      "f1": "A3",
+      "f2": "A4",
+      "corr": 0.83
+    },
+    {
+      "f1": "A6",
+      "f2": "A7",
+      "corr": 0.77
+    }
+  ],
+  "G2": "MARGINAL-REVIEW"
+}
