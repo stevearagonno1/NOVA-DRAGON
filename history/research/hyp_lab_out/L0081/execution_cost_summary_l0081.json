@@ -1,0 +1,68 @@
+{
+ "platform": "Binance USDT-M futures (public schedule, no VIP/BNB discount) — DECLARED fallback",
+ "trade_size_usd": 10000,
+ "fees": {
+  "taker_pct": 0.05,
+  "maker_pct": 0.02,
+  "slippage_bps": 2.0,
+  "spread_source": "Corwin-Schultz (2012) from 4H OHLC, per asset"
+ },
+ "candidate": "GATE_ADX|FVG_3BAR_BASE|CONF_MACD",
+ "candidate_pre_cost_expectancy_point": 0.0766,
+ "candidate_pre_cost_expectancy_conservative": 0.0287,
+ "n_assets_total": 12,
+ "assets_excluded_taker": [
+  "GRAM",
+  "VET",
+  "ATOM",
+  "IMX",
+  "BNB",
+  "BTC"
+ ],
+ "assets_kept_taker": [
+  "SOL",
+  "FIL",
+  "ETH",
+  "RENDER",
+  "LINK",
+  "XLM"
+ ],
+ "n_assets_kept": 6,
+ "candidate_all_assets": {
+  "decided": 1670,
+  "win_rate": 0.5383233532934132,
+  "expectancy_pre_cost_R": 0.07664670658682637,
+  "avg_cost_R_taker": 0.08189758271161224,
+  "expectancy_after_cost_R": -0.005250876124785864
+ },
+ "candidate_kept_assets": {
+  "decided": 827,
+  "win_rate": 0.5344619105199516,
+  "expectancy_pre_cost_R": 0.06892382103990324,
+  "avg_cost_R_taker": 0.06756870961293372,
+  "expectancy_after_cost_R": 0.0013551114269695214
+ },
+ "candidate_maker_taker_ref": {
+  "assets_kept": [
+   "SOL",
+   "FIL",
+   "ETH",
+   "RENDER",
+   "LINK",
+   "XLM",
+   "GRAM",
+   "VET",
+   "ATOM",
+   "IMX",
+   "BNB"
+  ],
+  "decided": 1517,
+  "win_rate": 0.5398813447593935,
+  "expectancy_pre_cost_R": 0.07976268951878707,
+  "avg_cost_R_maker_taker": 0.05321370059166344,
+  "expectancy_after_cost_R": 0.026548988927123623
+ },
+ "conservative_note": "NO asset reaches the conservative cost tier (<=0.0287R); on the conservative Wilson-based edge the candidate is unprofitable on every asset.",
+ "gate_G2_pass": true,
+ "note": "Binding scenario = taker/taker (owner did not confirm maker feasibility). Any asset with cost_R_taker_taker > candidate pre-cost expectancy (0.0766R) is excluded and logged."
+}
