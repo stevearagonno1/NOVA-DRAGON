@@ -1,0 +1,85 @@
+{
+ "lane": "L0079",
+ "title": "Parameter-variant screen: same indicators under varied settings, each variant a named independent hypothesis",
+ "type": "signal-quality measurement only; no trade management, no stop, no fees, no capital, no live",
+ "branch": "arena/l0079-parameter-variants-2026-09-27",
+ "off_branch": "arena/l0077-expanded-three-families-2026-09-27",
+ "does_not": ["choose a setting from holdout", "combine indicators (no triple)", "merge to main", "run live", "close prior lanes"],
+ "goal": [
+  "which setting gives higher accuracy",
+  "which setting precedes the start of the rise (rise_start_coverage is the most important metric)",
+  "which setting keeps reasonable coverage",
+  "whether the improvement persists out-of-sample"
+ ],
+ "time_split": {
+  "train": ["2021-09-01", "2024-08-31 (exclusive)"],
+  "embargo_bars_min": 18,
+  "holdout": ["2024-09-04 (inclusive)", "2026-08-30/31 (data end, exclusive)"],
+  "rule": "rank & choose variants from train only; freeze in a separate commit BEFORE reading holdout"
+ },
+ "outcome_definition": {
+  "base": "+1 ATR before -1 ATR within 6 bars",
+  "sensitivity_locked": "+2 ATR before -1 ATR within 18 bars",
+  "reference_price": "close of the decision bar i",
+  "no_future_in_trigger": true,
+  "excluded": ["fees", "management", "stop", "capital"]
+ },
+ "measurement_model": {
+  "interpretation_note": "Faithful two-track realisation of the paper: (T1) STRUCTURE-family variants (MSS/FVG/SFP parameter variants) are measured on their OWN raw structure edge-signals; (T2) INDICATOR variants are measured as LEVEL confirmations layered on the three REGISTERED baseline structures (MSS_L5, FVG_3BAR, SFP_LOOK20), exactly as the L0073/L0077 lineage. rise_start_coverage is computed uniformly for every variant from its own long-direction signal presence near rise starts.",
+  "baseline_structures": {"MSS": "mss_signal L=5", "FVG": "fvg_levels 3-bar", "SFP": "sfp_signal look=20"},
+  "confirmation_form": "LEVEL state of the indicator condition at decision bar i (matches L0073/74/76/77 lineage; edge/cross form would collapse coverage). Difference vs L0072 registered TRIGGERS (edge/cross events I01-I14) recorded here.",
+  "causality": "every value at bar i uses data <= i only; rolling look-backs on shifted/completed bars where noted",
+  "signal_coverage": {
+   "indicator_variant": "confirmed_valid / raw_structure_valid, pooled over the 3 baseline structures",
+   "structure_variant": "variant_valid / registered_same_family_baseline_valid (ratio; may exceed 1 for looser look-backs)"
+  },
+  "rise_start_coverage": "qualifying rise-starts preceded by the variant's long signal within PRE=3 bars (at or before the start) / all qualifying rise-starts. Rise start = L0073 definition: on base long config, a new run of positive_before_negative outcomes with >=6 bar gap since the previous start.",
+  "two_required_lists": ["top raw directional accuracy regardless of sample size", "top directional accuracy among variants with sufficient sample (decided>=100) and documented coverage"],
+  "weak_variants": "never hidden"
+ },
+ "locked_signal_definitions": {
+  "note": "All thresholds locked BEFORE measurement. Differences vs L0072 registered defs are recorded in 'diffs_vs_registered'. No post-hoc thresholds; no values added after seeing results.",
+  "RSI": {"lengths": [2, 7, 14], "long": "rsi(n) < os", "short": "rsi(n) > ob", "thresholds": {"2": [15, 85], "7": [30, 70], "14": [30, 70]}},
+  "MACD": {"variants": [[8, 21, 5], [12, 26, 9], [19, 39, 9]], "long": "ema(fast)-ema(slow) > 0", "short": "ema(fast)-ema(slow) < 0", "signal_period": "recorded in catalog, not used by the level trigger (registered I05 logic = line vs zero)"},
+  "EMA": {"pairs": [[10, 30], [20, 50], [50, 200]], "long": "ema(fast) > ema(slow)", "short": "ema(fast) < ema(slow)"},
+  "STOCH": {"variants": [[9, 3, 3], [14, 3, 3], [21, 5, 5]], "k_raw": "100*(c-llK)/(hhK-llK)", "k": "raw.rolling(smooth).mean", "d": "k.rolling(dperiod).mean", "long": "k>d and k<20", "short": "k<d and k>80"},
+  "OBV": {"sma_periods": [10, 20, 50], "long": "obv > sma(obv,n)", "short": "obv < sma(obv,n)"},
+  "MFI": {"lengths": [14, 20, 30], "long": "mfi(n) < 20", "short": "mfi(n) > 80"},
+  "CMF": {"lengths": [14, 20, 30], "long": "cmf(n) > 0", "short": "cmf(n) < 0"},
+  "BB": {"variants": [[20, 1.5], [20, 2.0], [50, 2.0]], "lower": "sma(p)-mult*std(p,ddof=0)", "upper": "sma(p)+mult*std(p,ddof=0)", "long": "close <= lower", "short": "close >= upper", "family_note": "Bollinger and Z-Score are ONE family; z=+/-2 with p=20 equals BB_20_2.0. No separate Z candidate."},
+  "ADXDI": {"variants": [[14, 22], [20, 22], [28, 22]], "long": "pdi>ndi and adx>=thr", "short": "ndi>pdi and adx>=thr", "thr_source": "registered ADX_TREND=22.0", "period_wilder": true},
+  "TURTLE": {"lengths": [20, 55], "long": "low<loN and close>loN", "short": "high>hiN and close<hiN", "loN": "low.shift(1).rolling(N).min", "hiN": "high.shift(1).rolling(N).max"},
+  "DONCHIAN": {"lengths": [20, 55], "long": "close>hiN", "short": "close<loN", "loN": "low.shift(1).rolling(N).min", "hiN": "high.shift(1).rolling(N).max"},
+  "MSS": {"L": [3, 5, 8], "source": "nova_v8.microstructure.mss_signal(...,L)", "baseline": 5},
+  "FVG": {"variants": ["3BAR_BASE"], "source": "nova_v8.microstructure.fvg_levels (fixed 3-bar; no independent threshold)"},
+  "SFP": {"look": [10, 20, 40], "source": "nova_v8.microstructure.sfp_signal(...,look)", "baseline": 20}
+ },
+ "diffs_vs_registered": [
+  "RSI7 threshold: L0072 registers RSI_FAST=7 but no threshold for it; locked to classic 30/70 (only registered numbers reused; RSI2 keeps registered 15/85).",
+  "MFI/CMF longer lengths (20/30) reuse the registered 20/80 and >0/<0 bands; only the window changes.",
+  "OBV variants use SMA(obv,n) per the task grid names (OBV_SMA10/20/50); registered I09 used EMA(obv,20). Deliberate parameter variant.",
+  "BB replaces the registered Z-score/BB level as (period,mult) grid; BB_20_2.0 long == registered z<=-2 with p=20.",
+  "ADX/DI threshold fixed at registered ADX_TREND=22; L0077 had used 20. Period varies 14/20/28.",
+  "Confirmation form is LEVEL state at bar i (registered I01-I14 are edge/cross events)."
+ ],
+ "vpfr": {"status": "VPFR_PENDING", "reason": "no source file or settings provided by the user; per task, do NOT invent a variant. Recorded in catalog, not run."},
+ "random_control": {"seed": 79, "draws": 1000,
+  "indicator_variant": "resample decided baseline-structure outcomes at k = confirmed count (L0077 style)",
+  "structure_variant": "resample eligible-bar outcomes within each symbol's signal range at k = fire count (L0073 style)"},
+ "validity_note": "Selection reports accuracy, sample size, coverage and Wilson together. High accuracy with collapsed coverage / tiny n is NOT treated as success. Sufficient-sample gate for list 2: decided>=100.",
+ "checks_section8": [
+  "each variant causal (no future)",
+  "each variant_id has a registered setting",
+  "no modification after reading results",
+  "Bollinger and Z-Score one family",
+  "VPFR uses no manual range chosen after seeing a chart",
+  "train separated from holdout",
+  "no trade management or fees",
+  "no secrets"
+ ],
+ "deliverables": [
+  "preregistration_l0079.json", "variant_catalog_l0079.csv", "train_results_l0079.csv",
+  "holdout_results_l0079.csv", "rise_coverage_l0079.csv", "random_control_l0079.csv",
+  "checks_l0079.json", "REPORT-L0079.md", "docs/lanes/L0079-VERDICT.md"
+ ]
+}
