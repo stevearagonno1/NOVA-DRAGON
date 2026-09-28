@@ -1,0 +1,93 @@
+{
+ "lane": "L0077",
+ "title": "Expanded classic-indicator candidates within three families, keep exactly three (one per family), train/holdout split",
+ "type": "confirmation-utility measurement only; no trade management, no stop, no fees, no capital, no live",
+ "branch": "arena/l0077-expanded-three-families-2026-09-27",
+ "off_branch": "arena/l0076-neutral-three-families-2026-09-27",
+ "does_not": ["modify or reinterpret L0074/L0076", "close L0070-L0076", "merge to main", "run live"],
+ "structure_baseline": {
+  "source": "L0073",
+  "components": ["MSS", "FVG", "SFP"],
+  "rule": "each candidate is an independent LEVEL confirmation per structure, then combined across the 3 structures the SAME way for every candidate; no priority ordering; no dropping simultaneous signals"
+ },
+ "confirmation_form": {
+  "decision": "LEVEL condition evaluated at the decision bar i (matches L0073/74/76 lineage; edge/cross form would collapse coverage)",
+  "math_source": "history/hyp_lab/l0072_ind.py (registered defs, blob 716b6a5); thresholds from L0072",
+  "recorded_difference": "L0072 registered TRIGGERS are edge/cross events (I01-I14); L0077 uses the LEVEL state of the same math+thresholds at bar i. Difference (edge-vs-level) recorded here in §2 per task.",
+  "causality": "value at i uses data <= i only; Donchian lo20/hi20 use shift(1).rolling(20) so only bars < i; no future in trigger"
+ },
+ "families_and_candidates": {
+  "A_liquidity_flow": ["OBV", "MFI14", "CMF14", "CMF20"],
+  "B_price_candle_reversal": ["BollingerZ", "RSI2", "RSI14", "Stochastic", "TurtleSoup"],
+  "C_trend_momentum_breakout": ["MACD", "EMA20_50", "EMA200", "ADX_DI", "Donchian"]
+ },
+ "bollinger_zscore_note": "Bollinger and Z-Score are ONE family member 'BollingerZ' (z=+/-2 equals BB(20,2) bands, per docs/lanes/L0072-VERDICT.md). No separate Z candidate.",
+ "candidate_conditions": {
+  "OBV": {"long": "obv > ema(obv,20)", "short": "obv < ema(obv,20)"},
+  "MFI14": {"long": "mfi(14) < 20", "short": "mfi(14) > 80"},
+  "CMF14": {"long": "cmf(14) > 0", "short": "cmf(14) < 0"},
+  "CMF20": {"long": "cmf(20) > 0", "short": "cmf(20) < 0"},
+  "BollingerZ": {"long": "z <= -2", "short": "z >= +2", "z": "(close - sma20) / std20(ddof=0)"},
+  "RSI2": {"long": "rsi(2) < 15", "short": "rsi(2) > 85"},
+  "RSI14": {"long": "rsi(14) < 30", "short": "rsi(14) > 70"},
+  "Stochastic": {"long": "k>d and k<20", "short": "k<d and k>80", "k": "raw%K.rolling(3).mean", "d": "k.rolling(3).mean", "raw": "100*(c-ll14)/(hh14-ll14)"},
+  "TurtleSoup": {"long": "low<lo20 and close>lo20", "short": "high>hi20 and close<hi20", "lo20": "low.shift(1).rolling(20).min", "hi20": "high.shift(1).rolling(20).max"},
+  "MACD": {"long": "macd_line > 0", "short": "macd_line < 0", "macd_line": "ema12 - ema26"},
+  "EMA20_50": {"long": "ema20 > ema50", "short": "ema20 < ema50"},
+  "EMA200": {"long": "close > ema200", "short": "close < ema200"},
+  "ADX_DI": {"long": "pdi>ndi and adx>=20", "short": "ndi>pdi and adx>=20", "period": 14, "method": "Wilder RMA seeded by first valid value"},
+  "Donchian": {"long": "close > hi20", "short": "close < lo20", "lo20": "low.shift(1).rolling(20).min", "hi20": "high.shift(1).rolling(20).max"}
+ },
+ "registered_math_notes": {
+  "wilder": "out=nan;s=nan; per value skip nan; s=v if s is nan else s+(v-s)/n",
+  "ema": "pandas ewm(span=n, adjust=False)",
+  "rsi": "diff prepend nan; up[0]=dn[0]=nan; au/ad=wilder(n); ad==0 -> 100",
+  "mfi": "tp=(h+l+c)/3; mf=tp*v; rolling14 sum of mf split by sign(diff tp); neg==0 -> 100",
+  "cmf": "mfm=((c-l)-(h-c))/(h-l) [h==l ->0]; rolling_n(mfm*v)/rolling_n(v), n in {14,20}",
+  "stoch": "ll/hh rolling14; raw=100*(c-ll)/(hh-ll); k=raw.rolling3.mean; d=k.rolling3.mean",
+  "z": "(c - sma20) / std20(ddof=0)",
+  "obv": "cumsum(sign(diff(c, prepend=c[0]))*v); obv_e=ema(obv,20)",
+  "adx_di": "wilder(...,14) for +DM/-DM/TR/DX"
+ },
+ "time_split": {
+  "train": ["2021-09-01", "2024-08-31 (exclusive)"],
+  "embargo_bars_min": 18,
+  "holdout": ["2024-09-04 (inclusive)", "2026-08-30/31 (data end, exclusive)"],
+  "rule": "select each name from train only; freeze names in a separate commit BEFORE reading holdout; do NOT use L0076 results"
+ },
+ "validity_gates_train": {
+  "decided_min": 100,
+  "coverage_min_fraction_of_raw_structure": 0.20,
+  "wilson_lower_bound": "documented for every candidate",
+  "beat_random": "directional accuracy must exceed random median",
+  "no_valid_in_family": "do NOT force; verdict becomes 'لم يوجد اختيار ثلاثي صالح'",
+  "no_lowering_gates_after_results": true,
+  "no_posthoc_thresholds": true
+ },
+ "ranking_between_valid": ["directional_accuracy", "wilson_lo", "coverage", "hit_rate_all"],
+ "outcome_definition": {
+  "base": "+1 ATR before -1 ATR within 6 bars (L0073 def)",
+  "sensitivity_locked": "+2 ATR before -1 ATR within 18 bars",
+  "reference_price": "close of the confirmation-decision bar i",
+  "no_future_in_trigger": true,
+  "excluded": ["fees", "management", "stop", "capital"]
+ },
+ "random_control": {"seed": 77, "draws": 1000, "method": "per-symbol/per-structure fixed-k resample of decided structure outcomes"},
+ "holdout_tests": ["each family single (A/B/C)", "2-of-3", "3-of-3", "vs raw structure", "vs random baseline"],
+ "report_must_show": "accuracy AND coverage together (high accuracy with collapsed coverage / small n is NOT success)",
+ "checks_section8": [
+  "causal <= decision bar",
+  "selection train-only",
+  "freeze commit before holdout",
+  "no holdout in selection",
+  "MSS/FVG/SFP raw match L0073",
+  "Bollinger/Z-Score not two families",
+  "no fees/management",
+  "no secrets"
+ ],
+ "deliverables": [
+  "preregistration_l0077.json", "screening_train_l0077.csv", "selection_l0077.json",
+  "holdout_results_l0077.csv", "combination_results_l0077.csv", "random_control_l0077.csv",
+  "checks_l0077.json", "REPORT-L0077.md", "docs/lanes/L0077-VERDICT.md"
+ ]
+}
