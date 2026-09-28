@@ -1,0 +1,7 @@
+setting,train_lift,holdout_lift,forward_lift,holdout_win_rate,holdout_net_R,holdout_pos_assets,holdout_p_value
+RSI14_xup_20,14.88,2.463,-2.657,0.5,-0.0384,6,0.68023
+RSI21_xup_25,13.658,6.086,-2.657,0.5362,0.0379,7,0.31196
+RSI21_xup_30,6.286,2.995,-19.323,0.5053,-0.033,7,0.41966
+Hammer,-3.033,-0.727,-0.349,0.4681,-0.1239,5,0.60838
+FVG_single,2.959,2.169,6.837,0.4971,-0.0686,11,0.0374
+RSI21_bull_divergence,5.157,-2.8,2.728,0.4474,-0.1621,6,0.27484

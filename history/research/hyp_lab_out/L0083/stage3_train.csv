@@ -1,0 +1,5 @@
+setting,train_n_signals,train_win_rate,train_lift,train_net_R
+RSI14_xup_20,238,0.6256,14.88,0.2174
+RSI21_xup_25,234,0.6134,13.658,0.1936
+RSI21_xup_30,660,0.5397,6.286,0.0431
+RSI21_bull_divergence,1357,0.5284,5.157,0.0088

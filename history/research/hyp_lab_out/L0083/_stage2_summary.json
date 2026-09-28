@@ -1,0 +1,214 @@
+{
+  "finalists_preregistered": [
+    "RSI14_xup_20",
+    "RSI21_xup_25",
+    "RSI21_xup_30",
+    "RSI21_bull_divergence"
+  ],
+  "finalists_oos": [
+    {
+      "setting": "RSI14_xup_20",
+      "train_lift": 14.88,
+      "holdout_lift": 2.463,
+      "forward_lift": -2.657,
+      "holdout_win_rate": 0.5,
+      "holdout_net_R": -0.038,
+      "holdout_pos_assets": 6,
+      "holdout_p_value": 0.68
+    },
+    {
+      "setting": "RSI21_xup_25",
+      "train_lift": 13.658,
+      "holdout_lift": 6.086,
+      "forward_lift": -2.657,
+      "holdout_win_rate": 0.536,
+      "holdout_net_R": 0.038,
+      "holdout_pos_assets": 7,
+      "holdout_p_value": 0.312
+    },
+    {
+      "setting": "RSI21_xup_30",
+      "train_lift": 6.286,
+      "holdout_lift": 2.995,
+      "forward_lift": -19.323,
+      "holdout_win_rate": 0.505,
+      "holdout_net_R": -0.033,
+      "holdout_pos_assets": 7,
+      "holdout_p_value": 0.42
+    },
+    {
+      "setting": "Hammer",
+      "train_lift": -3.033,
+      "holdout_lift": -0.727,
+      "forward_lift": -0.349,
+      "holdout_win_rate": 0.468,
+      "holdout_net_R": -0.124,
+      "holdout_pos_assets": 5,
+      "holdout_p_value": 0.608
+    },
+    {
+      "setting": "FVG_single",
+      "train_lift": 2.959,
+      "holdout_lift": 2.169,
+      "forward_lift": 6.837,
+      "holdout_win_rate": 0.497,
+      "holdout_net_R": -0.069,
+      "holdout_pos_assets": 11,
+      "holdout_p_value": 0.037
+    },
+    {
+      "setting": "RSI21_bull_divergence",
+      "train_lift": 5.157,
+      "holdout_lift": -2.8,
+      "forward_lift": 2.728,
+      "holdout_win_rate": 0.447,
+      "holdout_net_R": -0.162,
+      "holdout_pos_assets": 6,
+      "holdout_p_value": 0.275
+    }
+  ],
+  "flow_threshold_monotone_train": [
+    {
+      "vol_z": 2.0,
+      "flow_gt": "none",
+      "win_rate": 0.485,
+      "lift": 0.782
+    },
+    {
+      "vol_z": 2.0,
+      "flow_gt": 0.48,
+      "win_rate": 0.508,
+      "lift": 3.109
+    },
+    {
+      "vol_z": 2.0,
+      "flow_gt": 0.5,
+      "win_rate": 0.549,
+      "lift": 7.219
+    },
+    {
+      "vol_z": 2.0,
+      "flow_gt": 0.52,
+      "win_rate": 0.585,
+      "lift": 10.805
+    },
+    {
+      "vol_z": 2.5,
+      "flow_gt": "none",
+      "win_rate": 0.472,
+      "lift": -0.52
+    },
+    {
+      "vol_z": 2.5,
+      "flow_gt": 0.48,
+      "win_rate": 0.493,
+      "lift": 1.636
+    },
+    {
+      "vol_z": 2.5,
+      "flow_gt": 0.5,
+      "win_rate": 0.543,
+      "lift": 6.606
+    },
+    {
+      "vol_z": 2.5,
+      "flow_gt": 0.52,
+      "win_rate": 0.57,
+      "lift": 9.276
+    },
+    {
+      "vol_z": 3.0,
+      "flow_gt": "none",
+      "win_rate": 0.473,
+      "lift": -0.423
+    },
+    {
+      "vol_z": 3.0,
+      "flow_gt": 0.48,
+      "win_rate": 0.49,
+      "lift": 1.287
+    },
+    {
+      "vol_z": 3.0,
+      "flow_gt": 0.5,
+      "win_rate": 0.545,
+      "lift": 6.831
+    },
+    {
+      "vol_z": 3.0,
+      "flow_gt": 0.52,
+      "win_rate": 0.551,
+      "lift": 7.42
+    }
+  ],
+  "flow_survivor_takerZ": [
+    {
+      "setting": "TakerRatioZ_ge_1.5",
+      "train_lift": 2.35,
+      "holdout_lift": 0.961,
+      "forward_lift": 7.04,
+      "forward_pos_assets": 9.0,
+      "forward_tot_assets": 12.0
+    },
+    {
+      "setting": "TakerRatioZ_ge_2.0",
+      "train_lift": 1.877,
+      "holdout_lift": 1.265,
+      "forward_lift": 9.608,
+      "forward_pos_assets": 9.0,
+      "forward_tot_assets": 12.0
+    },
+    {
+      "setting": "TakerRatioZ_ge_2.5",
+      "train_lift": 2.638,
+      "holdout_lift": 2.463,
+      "forward_lift": 17.932,
+      "forward_pos_assets": 7.0,
+      "forward_tot_assets": 12.0
+    }
+  ],
+  "best_combo_holdout": [
+    {
+      "combo": "VOL2.5+FLOW.50+notH08",
+      "period": "train",
+      "n_signals": 1143,
+      "n_decided": 1083,
+      "win_rate": 0.55,
+      "lift": 7.35,
+      "n_eff": 1073.4,
+      "lower_bound": 0.521,
+      "p_value": 0.0,
+      "net_R": 0.054,
+      "pos_assets": 11,
+      "tot_assets": 12
+    },
+    {
+      "combo": "VOL2.5+FLOW.50+notH08",
+      "period": "holdout",
+      "n_signals": 353,
+      "n_decided": 328,
+      "win_rate": 0.445,
+      "lift": -3.025,
+      "n_eff": 326.7,
+      "lower_bound": 0.391,
+      "p_value": 0.274,
+      "net_R": -0.171,
+      "pos_assets": 5,
+      "tot_assets": 12
+    },
+    {
+      "combo": "VOL2.5+FLOW.50+notH08",
+      "period": "forward",
+      "n_signals": 95,
+      "n_decided": 91,
+      "win_rate": 0.55,
+      "lift": 2.288,
+      "n_eff": 91.0,
+      "lower_bound": 0.447,
+      "p_value": 0.662,
+      "net_R": 0.025,
+      "pos_assets": 6,
+      "tot_assets": 12
+    }
+  ]
+}

@@ -1,0 +1,75 @@
+{
+  "n_settings_defined": 52,
+  "n_produced": 52,
+  "baseline": {
+    "train": {
+      "win": 0.4768,
+      "n_decided": 94042
+    },
+    "holdout": {
+      "win": 0.4754,
+      "n_decided": 28180
+    },
+    "forward": {
+      "win": 0.5266,
+      "n_decided": 5477
+    }
+  },
+  "baseline_by_year": {
+    "2021": {
+      "win": 0.5005,
+      "n": 22264
+    },
+    "2022": {
+      "win": 0.4655,
+      "n": 22100
+    },
+    "2023": {
+      "win": 0.474,
+      "n": 21924
+    },
+    "2024": {
+      "win": 0.4694,
+      "n": 22269
+    },
+    "2025": {
+      "win": 0.4854,
+      "n": 22447
+    },
+    "2026": {
+      "win": 0.476,
+      "n": 16695
+    }
+  },
+  "mean_costR": 0.0509,
+  "breakeven_winrate": 0.5255,
+  "breakeven_lift_pts": {
+    "train": 4.865,
+    "holdout": 5.01,
+    "forward": -0.109
+  },
+  "transfer_test": {
+    "n_settings_compared": 51,
+    "spearman_rho": 0.5132,
+    "spearman_p": 0.0001,
+    "pearson_r": 0.4356,
+    "pearson_p": 0.0014,
+    "shrinkage_slope": 0.4059,
+    "train_positive": 37,
+    "stayed_positive_holdout": 26,
+    "train_negative": 14,
+    "stayed_negative_holdout": 13,
+    "winners_mean_holdout_lift": 1.343
+  },
+  "null_sim": {
+    "breakeven_lift_holdout_pts": 5.01,
+    "observed_crossers": 4,
+    "null_mean": 1.307,
+    "null_median": 1,
+    "null_p90_range": [
+      0,
+      3
+    ],
+    "prob_ge_observed": 0.0319
+  }
+}
