@@ -1,0 +1,27 @@
+{
+ "candidate_provisional": "GATE_ADX|FVG_3BAR_BASE|CONF_MACD",
+ "gate_vol_quartiles": {
+  "q25": 0.010144379192467695,
+  "q75": 0.02114421183375307,
+  "vol_win": 20
+ },
+ "gate_vol_winner": null,
+ "gate_vol_cpcv_ok": [],
+ "p4_candidate_frozen": "GATE_ADX|FVG_3BAR_BASE|CONF_MACD",
+ "reason": "default candidate kept (no GATE_VOL combo passed CPCV eligibility/dominance)",
+ "cpcv_design": {
+  "n_groups": 6,
+  "k_test": 2,
+  "purge": 18,
+  "embargo": 18,
+  "n_paths": 5
+ },
+ "eligibility": {
+  "decided_train_min": 400,
+  "signal_coverage_min": 0.05,
+  "rise_start_coverage_min": 0.1
+ },
+ "frozen_before_holdout": true,
+ "seed": 81,
+ "note": "Single P4 candidate frozen here BEFORE any holdout/confirmation read. Quartiles from train only."
+}

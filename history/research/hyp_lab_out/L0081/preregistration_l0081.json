@@ -1,0 +1,119 @@
+{
+ "lane": "L0081",
+ "title": "Consolidated execution — fill gaps, measure cost, confirm/reject the candidate",
+ "branch": "arena/l0081-consolidated-2026-09-28",
+ "base_commit": "68f2529cdd1ac4cd040a45638ba9e5620918f65e",
+ "prior": "L0080=MARGINAL",
+ "date": "2026-09-28",
+ "phases_gated": [
+  "P0 stats infra",
+  "P1 N_eff recompute",
+  "P2 execution cost (G2)",
+  "P3 GATE_VOL grid + CPCV + DSR/PBO (G3)",
+  "P4 preregistered confirmation on NEW assets (G4)",
+  "P5 meta-labeling (conditional)"
+ ],
+ "primary_target": {
+  "desc": "+1 ATR before -1 ATR within 6 bars, RR=1.0",
+  "breakeven_winrate": 0.5,
+  "note": "frozen from L0080; unconditional win-rate measured 0.5000 (zero drift)"
+ },
+ "candidate_provisional": "GATE_ADX|FVG_3BAR_BASE|CONF_MACD",
+ "candidate_rule": "single preregistered hypothesis; replaced ONLY if a GATE_VOL combo strictly dominates it in TRAIN under CPCV out-of-sample e010",
+ "gate_vol_definition": {
+  "vol_t": "stdev of log returns over 20 CLOSED 4H bars, strictly before the signal bar (causal)",
+  "gate_open_if": "Q25 <= vol_t <= Q75",
+  "quartile_source": "TRAIN only, pooled across symbols, FROZEN",
+  "forbidden": [
+   "HMM",
+   "Viterbi",
+   "any regime label using look-ahead observations"
+  ]
+ },
+ "new_combos": 9,
+ "combos_cumulative": 36,
+ "cpcv": {
+  "n_groups": 6,
+  "k_test": 2,
+  "purge_bars": 18,
+  "embargo_bars": 18,
+  "n_paths": 5
+ },
+ "multiple_testing": {
+  "bh_q": 0.1,
+  "bh_m": 36,
+  "dsr_bar": 0.95,
+  "pbo_via": "CSCV",
+  "effective_n_trials": "Li-Ji from correlation of the 36 combos"
+ },
+ "eligibility": {
+  "decided_train_min": 400,
+  "decided_holdout_min": 200,
+  "signal_coverage_min": 0.05,
+  "rise_start_coverage_min": 0.1,
+  "applied_on": "N_eff-aware where noted"
+ },
+ "execution_cost": {
+  "platform": "Binance USDT-M futures (declared fallback)",
+  "taker_pct": 0.05,
+  "maker_pct": 0.02,
+  "slippage_bps": 2,
+  "binding_scenario": "taker/taker",
+  "spread": "liquidity-tiered declared (CS reported as upper bound)"
+ },
+ "p4_confirmation": {
+  "method": "Option A — cross-sectional OOS on assets NEVER used in L0072-L0080, same window 2024-09-04..2026-08-30, frozen definitions verbatim",
+  "new_assets_pool": [
+   "ADA",
+   "XRP",
+   "DOGE",
+   "AVAX",
+   "DOT",
+   "LTC",
+   "BCH",
+   "TRX",
+   "NEAR",
+   "APT"
+  ],
+  "data_source": "binance.us klines 4h (binance.com geo-blocked); returns 2026-timeline data",
+  "fallback": "Option B (candidate on 1H) if fetch fails",
+  "success_criteria_locked": {
+   "N_eff_min": 200,
+   "wilson_lower_on_Neff_above": "RR breakeven after the P2-measured cost",
+   "expectancy_after_measured_cost_R": ">0",
+   "positive_direction_in_majority_of_assets": true
+  }
+ },
+ "p5_metalabeling": {
+  "condition": "only if G4 passes",
+  "primary": "confirmed P4 candidate",
+  "secondary": "binary take/skip classifier",
+  "weights": "average_uniqueness",
+  "validation": "CPCV purge=embargo=18",
+  "features": "only pre-existing causal features; NO new indicators; NO direction training"
+ },
+ "verdicts_possible": [
+  "PASS",
+  "MARGINAL",
+  "FAIL",
+  "BLOCKED"
+ ],
+ "fail_recommendation": "stop OHLCV-derived indicators; move to derivatives information class (funding, open interest, taker ratio)",
+ "forbidden": [
+  "indicators outside L0080 locked list",
+  "VPFR",
+  "2-of-3 or weighted votes",
+  "changing primary target",
+  "re-running L0079/L0080 measurement",
+  "re-selecting after seeing a result",
+  "reading any confirmation set more than once",
+  "more than one P4 candidate",
+  "HMM/Viterbi",
+  "volume/dollar bars",
+  "Kelly/sizing before G4",
+  "trade management",
+  "merge to main",
+  "optimistic tone before numbers"
+ ],
+ "seed": 81
+}
