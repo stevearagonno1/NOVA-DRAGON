@@ -1,0 +1,40 @@
+variant_id,family,track,parameters,source_file,train_period,holdout_period,signal_definition
+MSS_L3,MSS,structure,"{""L"": 3}",nova_v8/microstructure.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,mss_signal(L=3) edge; long=+1 short=-1
+MSS_L5,MSS,structure,"{""L"": 5}",nova_v8/microstructure.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,mss_signal(L=5) edge; long=+1 short=-1
+MSS_L8,MSS,structure,"{""L"": 8}",nova_v8/microstructure.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,mss_signal(L=8) edge; long=+1 short=-1
+FVG_3BAR_BASE,FVG,structure,"{""bars"": 3}",nova_v8/microstructure.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,"fvg_levels 3-bar imbalance; long=bull gap, short=bear gap"
+SFP_LOOK10,SFP,structure,"{""look"": 10}",nova_v8/microstructure.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,sfp_signal(look=10) with body-inside filter (long: l<prior_lo & body_lo>prior_lo & c>o)
+SFP_LOOK20,SFP,structure,"{""look"": 20}",nova_v8/microstructure.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,sfp_signal(look=20) with body-inside filter (long: l<prior_lo & body_lo>prior_lo & c>o)
+SFP_LOOK40,SFP,structure,"{""look"": 40}",nova_v8/microstructure.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,sfp_signal(look=40) with body-inside filter (long: l<prior_lo & body_lo>prior_lo & c>o)
+RSI2,RSI,indicator,"{""length"": 2, ""os"": 15, ""ob"": 85}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: rsi(2)<15; short: rsi(2)>85
+RSI7,RSI,indicator,"{""length"": 7, ""os"": 30, ""ob"": 70}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: rsi(7)<30; short: rsi(7)>70
+RSI14,RSI,indicator,"{""length"": 14, ""os"": 30, ""ob"": 70}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: rsi(14)<30; short: rsi(14)>70
+MACD_8_21_5,MACD,indicator,"{""fast"": 8, ""slow"": 21, ""signal"": 5}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,"long: ema8-ema21>0; short: <0 (signal period recorded, unused)"
+MACD_12_26_9,MACD,indicator,"{""fast"": 12, ""slow"": 26, ""signal"": 9}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,"long: ema12-ema26>0; short: <0 (signal period recorded, unused)"
+MACD_19_39_9,MACD,indicator,"{""fast"": 19, ""slow"": 39, ""signal"": 9}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,"long: ema19-ema39>0; short: <0 (signal period recorded, unused)"
+EMA_10_30,EMA,indicator,"{""fast"": 10, ""slow"": 30}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: ema10>ema30; short: ema10<ema30
+EMA_20_50,EMA,indicator,"{""fast"": 20, ""slow"": 50}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: ema20>ema50; short: ema20<ema50
+EMA_50_200,EMA,indicator,"{""fast"": 50, ""slow"": 200}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: ema50>ema200; short: ema50<ema200
+STOCH_9_3_3,STOCH,indicator,"{""k"": 9, ""smooth"": 3, ""d"": 3}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,K=9 smooth=3 D=3; long: k>d & k<20; short: k<d & k>80
+STOCH_14_3_3,STOCH,indicator,"{""k"": 14, ""smooth"": 3, ""d"": 3}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,K=14 smooth=3 D=3; long: k>d & k<20; short: k<d & k>80
+STOCH_21_5_5,STOCH,indicator,"{""k"": 21, ""smooth"": 5, ""d"": 5}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,K=21 smooth=5 D=5; long: k>d & k<20; short: k<d & k>80
+OBV_SMA10,OBV,indicator,"{""sma"": 10}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,"long: obv>sma(obv,10); short: obv<sma(obv,10)"
+OBV_SMA20,OBV,indicator,"{""sma"": 20}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,"long: obv>sma(obv,20); short: obv<sma(obv,20)"
+OBV_SMA50,OBV,indicator,"{""sma"": 50}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,"long: obv>sma(obv,50); short: obv<sma(obv,50)"
+MFI14,MFI,indicator,"{""length"": 14}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: mfi(14)<20; short: mfi(14)>80
+MFI20,MFI,indicator,"{""length"": 20}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: mfi(20)<20; short: mfi(20)>80
+MFI30,MFI,indicator,"{""length"": 30}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: mfi(30)<20; short: mfi(30)>80
+CMF14,CMF,indicator,"{""length"": 14}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: cmf(14)>0; short: cmf(14)<0
+CMF20,CMF,indicator,"{""length"": 20}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: cmf(20)>0; short: cmf(20)<0
+CMF30,CMF,indicator,"{""length"": 30}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: cmf(30)>0; short: cmf(30)<0
+BB_20_1.5,BB,indicator,"{""period"": 20, ""mult"": 1.5}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: close<=sma20-1.5*std20; short: close>=sma20+1.5*std20
+BB_20_2.0,BB,indicator,"{""period"": 20, ""mult"": 2.0}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: close<=sma20-2.0*std20; short: close>=sma20+2.0*std20
+BB_50_2.0,BB,indicator,"{""period"": 50, ""mult"": 2.0}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: close<=sma50-2.0*std50; short: close>=sma50+2.0*std50
+ADXDI_14_22,ADXDI,indicator,"{""period"": 14, ""adx_thr"": 22}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: pdi>ndi & adx>= 22; short: ndi>pdi & adx>=22 (Wilder 14)
+ADXDI_20_22,ADXDI,indicator,"{""period"": 20, ""adx_thr"": 22}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: pdi>ndi & adx>= 22; short: ndi>pdi & adx>=22 (Wilder 20)
+ADXDI_28_22,ADXDI,indicator,"{""period"": 28, ""adx_thr"": 22}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: pdi>ndi & adx>= 22; short: ndi>pdi & adx>=22 (Wilder 28)
+TURTLE_20,TURTLE,indicator,"{""look"": 20}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: low<lo20 & close>lo20; short: high>hi20 & close<hi20 (shift1)
+TURTLE_55,TURTLE,indicator,"{""look"": 55}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: low<lo55 & close>lo55; short: high>hi55 & close<hi55 (shift1)
+DONCHIAN_20,DONCHIAN,indicator,"{""look"": 20}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: close>hi20; short: close<lo20 (shift1 rolling)
+DONCHIAN_55,DONCHIAN,indicator,"{""look"": 55}",history/hyp_lab/l0079_variants.py,2021-09-01..2024-08-31,2024-09-04..2026-08-31,long: close>hi55; short: close<lo55 (shift1 rolling)
+VPFR_PENDING,VPFR,pending,{},,2021-09-01..2024-08-31,2024-09-04..2026-08-31,PENDING: no source/settings provided; not run
