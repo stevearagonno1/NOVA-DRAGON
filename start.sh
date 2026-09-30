@@ -1,7 +1,10 @@
 #!/bin/bash
 
-# إنشاء المجلد الخاص بقاعدة بيانات الوكيل لتجنب خطأ التخزين
-mkdir -p /root/.opencrabs
+# إخبار الوكيل باستخدام المجلد الحالي كمسار رئيسي له
+export OPENCRABS_HOME="/app/.opencrabs"
+
+# إنشاء المجلد الخاص بقاعدة بيانات الوكيل في المسار الجديد
+mkdir -p /app/.opencrabs
 
 # 1. تشغيل الموزع الذكي في الخلفية
 litellm --config litellm_config.yaml --port 4000 &
