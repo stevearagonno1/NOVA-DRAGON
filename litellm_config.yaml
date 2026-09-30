@@ -1,0 +1,44 @@
+model_list:
+  - model_name: opencrabs-model
+    litellm_params:
+      model: gpt-4o # إذا كنت تستخدم كلود، استبدلها بـ claude-3-5-sonnet
+      api_key: "os.environ/TOKEN_1"
+  - model_name: opencrabs-model
+    litellm_params:
+      model: gpt-4o
+      api_key: "os.environ/TOKEN_2"
+  - model_name: opencrabs-model
+    litellm_params:
+      model: gpt-4o
+      api_key: "os.environ/TOKEN_3"
+  - model_name: opencrabs-model
+    litellm_params:
+      model: gpt-4o
+      api_key: "os.environ/TOKEN_4"
+  - model_name: opencrabs-model
+    litellm_params:
+      model: gpt-4o
+      api_key: "os.environ/TOKEN_5"
+  - model_name: opencrabs-model
+    litellm_params:
+      model: gpt-4o
+      api_key: "os.environ/TOKEN_6"
+  - model_name: opencrabs-model
+    litellm_params:
+      model: gpt-4o
+      api_key: "os.environ/TOKEN_7"
+  - model_name: opencrabs-model
+    litellm_params:
+      model: gpt-4o
+      api_key: "os.environ/TOKEN_8"
+  - model_name: opencrabs-model
+    litellm_params:
+      model: gpt-4o
+      api_key: "os.environ/TOKEN_9"
+  - model_name: opencrabs-model
+    litellm_params:
+      model: gpt-4o
+      api_key: "os.environ/TOKEN_10"
+
+router_settings:
+  routing_strategy: round_robin
