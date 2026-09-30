@@ -15,8 +15,8 @@ jobs:
           
       - name: Clone and Build
         run: |
-          git clone https://github.com/adolfousier/opencrabs.git
-          cd opencrabs
+          git clone https://github.com/adolfousier/opencrabs.git source_code
+          cd source_code
           cargo build --release
           cp target/release/opencrabs ../
           
