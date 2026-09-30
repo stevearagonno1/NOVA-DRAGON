@@ -40,8 +40,5 @@ model_list:
       model: gpt-4o
       api_key: "os.environ/TOKEN_10"
 
-router_settings:
-  routing_strategy: round_robin
-
 general_settings:
   master_key: "sk-litellm-master-key"
