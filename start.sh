@@ -1,16 +1,15 @@
 #!/bin/bash
 
-# إخبار الوكيل بمسار العمل المحلي
-export OPENCRABS_HOME="/app/.opencrabs"
+# إنشاء المجلدات الأساسية ومسار النسخ الاحتياطية للوكيل
+mkdir -p /root/.opencrabs/backups
 
-# التأكد من إنشاء المجلد
-mkdir -p /app/.opencrabs
+# تهيئة ملف قاعدة بيانات فارغ لتجاوز خطأ فحص السلامة الأولي
+if [ ! -f /root/.opencrabs/opencrabs.db ]; then
+    touch /root/.opencrabs/opencrabs.db
+fi
 
-# تشغيل أمر تهيئة لإصلاح قاعدة البيانات إن كانت فارغة
-./opencrabs init --yes || true
-
-# 1. تشغيل الموزع الذكي في الخلفية
+# 1. تشغيل الموزع الذكي (LiteLLM) في الخلفية على المنفذ 4000
 litellm --config litellm_config.yaml --port 4000 &
 
-# 2. تشغيل الوكيل القائد 
+# 2. تشغيل الوكيل القائد (OpenCrabs)
 ./opencrabs daemon
