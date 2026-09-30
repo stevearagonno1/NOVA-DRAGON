@@ -1,7 +1,7 @@
 model_list:
   - model_name: opencrabs-model
     litellm_params:
-      model: gpt-4o # إذا كنت تستخدم كلود، استبدلها بـ claude-3-5-sonnet
+      model: gpt-4o
       api_key: "os.environ/TOKEN_1"
   - model_name: opencrabs-model
     litellm_params:
@@ -42,3 +42,6 @@ model_list:
 
 router_settings:
   routing_strategy: round_robin
+
+general_settings:
+  master_key: "sk-litellm-master-key"
