@@ -10,7 +10,7 @@ jobs:
       
       - name: Clone and Build
         run: |
-          git clone https://github.com/usier/opencrabs.git
+          git clone https://github.com/adolfousier/opencrabs.git
           cd opencrabs
           cargo build --release
           cp target/release/opencrabs ../
