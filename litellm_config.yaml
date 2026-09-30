@@ -42,3 +42,5 @@ model_list:
 
 general_settings:
   master_key: "sk-litellm-master-key"
+  ui_username: "admin"
+  ui_password: "sk-litellm-master-key"
