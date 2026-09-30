@@ -9,7 +9,8 @@ RUN pip3 install litellm --break-system-packages
 WORKDIR /app
 COPY . /app
 
-# فك ضغط الوكيل وإعطاء صلاحيات التشغيل
+# إنشاء مجلد البيانات وإعطاء صلاحيات واسعة للوكيل والسكربت
+RUN mkdir -p /app/.opencrabs && chmod -R 777 /app
 RUN unzip -o opencrabs.zip && chmod +x opencrabs start.sh
 
 EXPOSE 10000 4000
