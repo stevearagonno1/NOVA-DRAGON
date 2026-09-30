@@ -18,6 +18,10 @@ jobs:
           git clone https://github.com/adolfousier/opencrabs.git source_code
           cd source_code
           cargo build --release
+          
+          # هذا هو الأمر الذي يقلص حجم الملف إلى النصف لتجاوز حد جيت هاب
+          strip target/release/opencrabs
+          
           cp target/release/opencrabs ../
           
       - name: Commit Binary
@@ -25,5 +29,5 @@ jobs:
           git config --global user.name "GitHub Actions"
           git config --global user.email "actions@github.com"
           git add opencrabs
-          git commit -m "Add compiled OpenCrabs binary"
+          git commit -m "Add compressed OpenCrabs binary"
           git push
