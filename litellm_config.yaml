@@ -1,44 +1,54 @@
 model_list:
   - model_name: opencrabs-model
     litellm_params:
-      model: gpt-4o
+      model: openai/Atria-Dawn-Preview
       api_key: "os.environ/TOKEN_1"
+      api_base: "https://api.atria-asi.ai/v1"
   - model_name: opencrabs-model
     litellm_params:
-      model: gpt-4o
+      model: openai/Atria-Dawn-Preview
       api_key: "os.environ/TOKEN_2"
+      api_base: "https://api.atria-asi.ai/v1"
   - model_name: opencrabs-model
     litellm_params:
-      model: gpt-4o
+      model: openai/Atria-Dawn-Preview
       api_key: "os.environ/TOKEN_3"
+      api_base: "https://api.atria-asi.ai/v1"
   - model_name: opencrabs-model
     litellm_params:
-      model: gpt-4o
+      model: openai/Atria-Dawn-Preview
       api_key: "os.environ/TOKEN_4"
+      api_base: "https://api.atria-asi.ai/v1"
   - model_name: opencrabs-model
     litellm_params:
-      model: gpt-4o
+      model: openai/Atria-Dawn-Preview
       api_key: "os.environ/TOKEN_5"
+      api_base: "https://api.atria-asi.ai/v1"
   - model_name: opencrabs-model
     litellm_params:
-      model: gpt-4o
+      model: openai/Atria-Dawn-Preview
       api_key: "os.environ/TOKEN_6"
+      api_base: "https://api.atria-asi.ai/v1"
   - model_name: opencrabs-model
     litellm_params:
-      model: gpt-4o
+      model: openai/Atria-Dawn-Preview
       api_key: "os.environ/TOKEN_7"
+      api_base: "https://api.atria-asi.ai/v1"
   - model_name: opencrabs-model
     litellm_params:
-      model: gpt-4o
+      model: openai/Atria-Dawn-Preview
       api_key: "os.environ/TOKEN_8"
+      api_base: "https://api.atria-asi.ai/v1"
   - model_name: opencrabs-model
     litellm_params:
-      model: gpt-4o
+      model: openai/Atria-Dawn-Preview
       api_key: "os.environ/TOKEN_9"
+      api_base: "https://api.atria-asi.ai/v1"
   - model_name: opencrabs-model
     litellm_params:
-      model: gpt-4o
+      model: openai/Atria-Dawn-Preview
       api_key: "os.environ/TOKEN_10"
+      api_base: "https://api.atria-asi.ai/v1"
 
 general_settings:
   master_key: "sk-litellm-master-key"
