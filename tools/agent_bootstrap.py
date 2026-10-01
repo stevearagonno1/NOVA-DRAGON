@@ -130,12 +130,21 @@ End each reply with one next step or one concrete decision question.
     private_write(brain / 'AGENTS.md', instructions)
     return workspace
 
+def storage_mode(env, mounted):
+    mode = env.get('AGENT_STORAGE_MODE', 'ephemeral')
+    if mode not in ('ephemeral', 'persistent'):
+        raise ValueError('AGENT_STORAGE_MODE must be ephemeral or persistent')
+    if mode == 'persistent' and not mounted:
+        raise ValueError('Persistent mode requires a disk mounted at /state')
+    return mode
+
 def main():
     state = Path('/state')
-    if not state.is_mount():
-        raise ValueError('Mount a persistent disk at /state before starting; ephemeral memory is refused')
+    mode = storage_mode(os.environ, state.is_mount())
     workspace = prepare(state, os.environ)
-    print('NOVA ready: owner-only Telegram; persistent memory; approval-required tools.', flush=True)
+    if mode == 'ephemeral':
+        print('NOVA Free: local chats and unpushed work can be lost on restart; use repository journals to resume.', flush=True)
+    print('NOVA ready: owner-only Telegram; storage=' + mode + '; approval-required tools.', flush=True)
     os.chdir(workspace)
     os.execvp('opencrabs', ['opencrabs', 'daemon'])
 

@@ -9,6 +9,14 @@ from agent_git_guard import permitted
 from agent_preflight import tool_call_valid
 
 class SetupTests(unittest.TestCase):
+    def test_free_and_persistent_storage_modes(self):
+        self.assertEqual(boot.storage_mode({}, False), 'ephemeral')
+        self.assertEqual(boot.storage_mode({'AGENT_STORAGE_MODE': 'persistent'}, True), 'persistent')
+        with self.assertRaises(ValueError):
+            boot.storage_mode({'AGENT_STORAGE_MODE': 'persistent'}, False)
+        with self.assertRaises(ValueError):
+            boot.storage_mode({'AGENT_STORAGE_MODE': 'unknown'}, True)
+
     def env(self):
         return {'TELEGRAM_BOT_TOKEN': 'synthetic-test-token', 'TELEGRAM_OWNER_ID': '12345',
                 'GITHUB_TOKEN': 'synthetic-github', 'LITELLM_API_KEY': 'synthetic-key'}

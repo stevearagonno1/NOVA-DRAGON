@@ -7,6 +7,7 @@ RUN curl -fL --retry 3 https://github.com/adolfousier/opencrabs/releases/downloa
 WORKDIR /opt/nova-agent
 COPY tools/agent_bootstrap.py tools/agent_preflight.py tools/agent_git_guard.py ./
 RUN mkdir -p /root && ln -s /state/opencrabs /root/.opencrabs
-# /state must be a Render persistent disk. No repository, data archive or secrets are copied into the image.
+# /state is ephemeral on Free; persistent mode requires an explicitly mounted disk.
+# No repository, data archive or secrets are copied into the image.
 EXPOSE 10000
 CMD ["python3", "/opt/nova-agent/agent_bootstrap.py"]
