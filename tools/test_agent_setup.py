@@ -7,8 +7,22 @@ from unittest.mock import patch
 import agent_bootstrap as boot
 from agent_git_guard import permitted
 from agent_preflight import tool_call_valid
+from agent_combined import gateway_key
 
 class SetupTests(unittest.TestCase):
+    def test_combined_gateway_key(self):
+        self.assertEqual(gateway_key({'general_settings': {'master_key': 'existing'}}, {}), 'existing')
+        self.assertEqual(gateway_key({'general_settings': {'master_key': 'os.environ/PROXY_KEY'}}, {'PROXY_KEY': 'env-key'}), 'env-key')
+        with self.assertRaises(ValueError):
+            gateway_key({}, {})
+
+    def test_http_is_only_allowed_on_loopback(self):
+        env = self.env(); env['LITELLM_BASE_URL'] = 'http://127.0.0.1:10000/v1'
+        self.assertEqual(boot.settings(env)[1], env['LITELLM_BASE_URL'])
+        env['LITELLM_BASE_URL'] = 'http://example.com/v1'
+        with self.assertRaises(ValueError):
+            boot.settings(env)
+
     def test_free_and_persistent_storage_modes(self):
         self.assertEqual(boot.storage_mode({}, False), 'ephemeral')
         self.assertEqual(boot.storage_mode({'AGENT_STORAGE_MODE': 'persistent'}, True), 'persistent')

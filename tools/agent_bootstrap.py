@@ -23,8 +23,9 @@ def settings(env):
         raise ValueError('TELEGRAM_OWNER_ID must be a positive numeric user ID')
     base = env.get('LITELLM_BASE_URL', 'https://nova-dragon.onrender.com/v1').rstrip('/')
     url = urlparse(base)
-    if url.scheme != 'https' or not url.hostname or url.username or url.password or url.query or url.fragment:
-        raise ValueError('LITELLM_BASE_URL must be an HTTPS URL without embedded credentials')
+    safe_scheme = url.scheme == 'https' or (url.scheme == 'http' and url.hostname in ('127.0.0.1', 'localhost', '::1'))
+    if not safe_scheme or not url.hostname or url.username or url.password or url.query or url.fragment:
+        raise ValueError('LITELLM_BASE_URL must use HTTPS (HTTP is allowed only on loopback) without embedded credentials')
     return owner, base, env.get('AGENT_MODEL', 'opencrabs-model')
 
 def q(value):
