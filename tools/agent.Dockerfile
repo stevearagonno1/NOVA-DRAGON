@@ -7,7 +7,7 @@ RUN curl -fL --retry 3 https://github.com/adolfousier/opencrabs/releases/downloa
 # Fail at build time if the binary has unresolved runtime libraries.
 RUN opencrabs --version
 WORKDIR /opt/nova-agent
-COPY tools/agent_bootstrap.py tools/agent_preflight.py tools/agent_git_guard.py ./
+COPY tools/agent_bootstrap.py tools/agent_repo_read.py tools/agent_preflight.py tools/agent_git_guard.py ./
 RUN mkdir -p /root && ln -s /state/opencrabs /root/.opencrabs
 # /state is ephemeral on Free; persistent mode requires an explicitly mounted disk.
 # No repository, data archive or secrets are copied into the image.

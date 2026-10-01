@@ -113,3 +113,17 @@ printf '%s\n' 'NOVA_CHECK_END'
 مراجع التحقق: https://github.com/adolfousier/opencrabs/tree/v0.5.4 · https://docs.opencrabs.com/getting-started/configuration.html · https://render.com/docs/disks
 
 التالي: نشر خدمة Free ثم فتح /health واختبار قراءة المستودع والموافقة من Telegram؛ لا دمج إلى main ولا تداول حي.
+
+## Scoped repository reads without approval
+
+Bootstrap installs four managed OpenCrabs dynamic tools: `nova_repo_status`,
+`nova_repo_commits`, `nova_repo_list`, and `nova_repo_read`. Discover them with
+`tool_search`. They read GitHub main through fixed-repository GET requests and
+require no interactive approval. The executor is a fixed Python command; inputs
+are JSON through OPENCRABS_PARAMS, never interpolated into shell commands.
+Read results include commit/blob provenance. Text reads are limited to 64 KiB;
+hidden/credential paths, binaries, arbitrary URLs, writes and redirects are denied.
+The GitHub token stays inside the helper process. Other shell commands still use
+approval_policy="ask". This is not YOLO or blanket shell permission.
+The managed tools.toml is regenerated on startup. Render deployment and a real
+Telegram tool-discovery/read test are still needed to verify runtime behavior.

@@ -69,6 +69,21 @@ health_port = {port}
 enabled = false
 '''
 
+def readonly_tools_text():
+    definitions = []
+    for operation, description, parameter in [
+        ('status', 'Read fresh NOVA-DRAGON repository name and latest main commit from GitHub. Prefer this over bash.', None),
+        ('commits', 'Read the latest ten main commits from GitHub without shell approval.', None),
+        ('list', 'List supported text files on main by prefix. No secret or hidden files.', ('prefix', 'Repository-relative prefix, e.g. docs/journal/; default docs/journal/', False)),
+        ('read', 'Read a supported text file directly from GitHub main with commit provenance. No credentials.', ('path', 'Repository-relative text path, e.g. CONSTITUTION.md', True)),
+    ]:
+        entry = f'[[tools]]\nname = "nova_repo_{operation}"\ndescription = {q(description)}\nexecutor = "shell"\nenabled = true\nrequires_approval = false\ntimeout_secs = 60\ncommand = "python3 /opt/nova-agent/agent_repo_read.py {operation}"\n'
+        if parameter:
+            name, desc, required = parameter
+            entry += f'[[tools.params]]\nname = {q(name)}\ntype = "string"\ndescription = {q(desc)}\nrequired = {str(required).lower()}\n'
+        definitions.append(entry)
+    return '\n'.join(definitions)
+
 def private_write(path, text):
     temp = path.with_suffix(path.suffix + '.new')
     temp.write_text(text, encoding='utf-8')
@@ -87,6 +102,7 @@ def prepare(state, env):
     brain = state / 'opencrabs'
     brain.mkdir(mode=0o700, exist_ok=True)
     private_write(brain / 'config.toml', config_text(owner, base, model, port))
+    private_write(brain / 'tools.toml', readonly_tools_text())
     private_write(brain / 'keys.toml', f'[providers.custom.nova]\napi_key = {q(env["LITELLM_API_KEY"])}\n\n[channels.telegram]\ntoken = {q(env["TELEGRAM_BOT_TOKEN"])}\n')
     askpass = state / 'git-askpass.py'
     private_write(askpass, '#!/usr/bin/env python3\nimport os,sys\nprint("x-access-token" if "username" in sys.argv[1].lower() else os.environ["GITHUB_TOKEN"])\n')
@@ -112,10 +128,11 @@ filesystem tools to read CONSTITUTION.md in full, then docs/HANDOFF.md,
 docs/DECISIONS.md, the latest docs/journal entries, LOG.md and INDEX.md.
 Follow the current constitution; report stale or conflicting handoffs explicitly.
 Use tool_search to discover tools. Never claim repository access without a real tool read.
-The repo is the source of truth; use git fetch origin and git show origin/main:path
-to check fresh files without discarding work. Sparse checkout omits heavy data,
-but git show and gh api can read any tracked text file on demand, with approval.
-Read commit history with git log; use gh for issues and branches when needed.
+The repo is the source of truth. Discover nova_repo_status, nova_repo_read,
+nova_repo_list and nova_repo_commits through tool_search. ALWAYS prefer these
+GET-only tools for fresh main files and history; they need no approval.
+Use filesystem reads for local pending work. Use bash/gh only when the dedicated
+tools cannot perform the task; general shell commands still need approval.
 Do not run live trades, access exchange credentials, change bot/, live/, nova_v8/,
 constitutions or original data, delete files, merge, create a PR, or push main.
 Write only approved work on agent/* branches. Document state-changing work in
