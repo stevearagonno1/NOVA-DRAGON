@@ -186,3 +186,35 @@ and exposed in nova_council_status; blocked notices name the stage and safe HTTP
 code where present. This is diagnostic visibility, not proof that latency is fixed.
 The parent should finish its turn promptly after submission and avoid stale running
 claims or unrelated config_manager inspection. A small deployment retest is required.
+
+### Streaming reviewer transport after zero-completion trial
+
+The second live trial submitted a real job but stopped in independent_review with
+zero of five requests complete. The root upstream cause remains unconfirmed.
+The reviewer transport now uses the SAME configured Atria model/endpoint directly,
+with SSE rather than buffering the entire non-stream JSON response via LiteLLM.
+It reads existing private runtime deployments, never caller-selected URLs or keys.
+The lead continues to use the LiteLLM gateway. Direct review HTTP is no longer
+subject to the gateway's buffering and retry layers; it has its own bounded policy.
+
+Unique configured credentials are ordered by existing deployment order. Preferred
+slots1–3 correspond to the three reviewers; slots4–5 to cross-review/synthesis.
+Slots6–10 are first reserves, then other healthy credentials. This guarantees
+distinct preferred credentials when at least five unique keys are configured,
+not different trained models or guaranteed independent account quotas. Maximum
+three attempts per request. Auth/quota/transient failures receive cooldown;
+Retry-After is respected. HTTP400 and malformed/incomplete answers do not rotate
+blindly. Streaming is documented, but non-streaming is also officially supported;
+we do not claim non-streaming is unsupported or proven to cause the failures.
+
+Inter-read/start timeout90 seconds, total streaming bound600 seconds, body bound2MiB.
+These are transport bounds, not a promise of fast upstream completion. Final-answer
+content only is retained; reasoning fields/tags are excluded. A partial stream without
+a terminal event is never delivered as a completed collective review. Model output
+cap6144 tokens accommodates reasoning plus a concise final answer; this may consume
+more quota than the earlier1800 cap. No new paid service is introduced.
+
+References: https://api.atria-asi.ai/docs ·
+https://github.com/adolfousier/opencrabs/blob/v0.5.4/src/brain/provider/custom_openai_compatible.rs
+The preceding360-second non-stream transport description is historical and superseded
+for reviewer model calls. Other JSON control/Telegram calls retain their own timeouts.

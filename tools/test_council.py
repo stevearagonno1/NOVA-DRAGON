@@ -83,11 +83,10 @@ class CouncilTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             council.snapshot({'paths':['keys.toml']})
 
-    def test_model_wait_exceeds_gateway_retry_window(self):
-        env = {'LITELLM_BASE_URL':'http://127.0.0.1:10000/v1', 'LITELLM_API_KEY':'synthetic-key'}
-        with patch.dict(council.os.environ, env), patch.object(council, 'post_json', return_value={'choices':[{'message':{'content':'result'}}]}) as post:
-            self.assertEqual(council.model_call('rules','task'), 'result')
-        self.assertEqual(post.call_args.kwargs['timeout'], 360)
+    def test_review_uses_stream_transport_and_fixed_slot(self):
+        with patch.object(council, 'stream_model_call', return_value='result') as stream:
+            self.assertEqual(council.model_call('rules','task',slot=2), 'result')
+        self.assertEqual(stream.call_args.kwargs['slot'], 2)
 
     def test_phase_progress_covers_all_five_requests(self):
         updates = []

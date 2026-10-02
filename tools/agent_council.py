@@ -15,6 +15,7 @@ from urllib.error import HTTPError
 from urllib.parse import quote
 from urllib.request import Request, build_opener
 from agent_repo_read import NoRedirect, get, safe_path, redact, LIMIT
+from agent_council_transport import model_call as stream_model_call
 
 MAX_JOBS = 32
 MAX_CONTEXT = 32000
@@ -64,23 +65,20 @@ def post_json(url, body, token, timeout=120):
         raise ValueError('Response exceeds limit')
     return json.loads(raw)
 
-def model_call(system, user):
-    base = os.environ['LITELLM_BASE_URL'].rstrip('/')
-    # Same gateway/token pool as the lead. The gateway chooses a healthy deployment.
-    answer = post_json(base + '/chat/completions', {
-        'model': os.environ.get('AGENT_MODEL', 'opencrabs-model'),
-        'messages': [{'role': 'system', 'content': system}, {'role': 'user', 'content': user}],
-        'max_tokens': 1800, 'stream': False}, os.environ['LITELLM_API_KEY'], timeout=360)
-    content = answer['choices'][0]['message'].get('content')
-    return bounded_text(content, 16000, 'Model response')
+def model_call(system, user, slot=0):
+    # Fixed preferred credential per role, with bounded fallback to reserve slots.
+    return bounded_text(stream_model_call(system, user, slot=slot), 30000, 'Model response')
+
 
 def run_review(task, context, sources, call=model_call, progress=None):
     progress = progress or (lambda stage, completed: None)
     progress("independent_review", 0)
+    def invoke(system, user, slot):
+        return call(system, user, slot=slot) if call is model_call else call(system, user)
     material = json.dumps({'task_paper': task, 'lead_context': context, 'sources': sources}, ensure_ascii=False)
     # Only two upstream calls at once, reserving room for the main conversation.
     with ThreadPoolExecutor(max_workers=2) as pool:
-        futures = {pool.submit(call, SYSTEM + '\nYour role: ' + role, material): i for i, role in enumerate(ROLES)}
+        futures = {pool.submit(invoke, SYSTEM + '\nYour role: ' + role, material, i): i for i, role in enumerate(ROLES)}
         findings = [None] * len(ROLES)
         completed = 0
         for future in as_completed(futures):
@@ -90,9 +88,9 @@ def run_review(task, context, sources, call=model_call, progress=None):
     shared = json.dumps({'task_paper': task, 'sources': [{'path': s['path'], 'commit': s['commit']} for s in sources],
                          'reviewer_findings': findings}, ensure_ascii=False)
     progress("cross_review", 3)
-    critique = call(SYSTEM + '\nCross-review all three reports. Resolve disagreements using cited evidence; do not vote or treat consensus as proof.', shared)
+    critique = invoke(SYSTEM + '\nCross-review all three reports. Resolve disagreements using cited evidence; do not vote or treat consensus as proof.', shared, 3)
     progress("synthesis", 4)
-    result = call(SYSTEM + '\nYou are the coordinating reviewer. Combine the reports and cross-review into one concise Arabic answer for the owner. Keep the final answer under 2500 characters. Use headings, short lists or a table. Explain what is established, what is not measured, the judgment and exactly one next step. Do not expose reviewer dialogue.', shared + '\nCross-review:\n' + critique)
+    result = invoke(SYSTEM + '\nYou are the coordinating reviewer. Combine the reports and cross-review into one concise Arabic answer for the owner. Keep the final answer under 2500 characters. Use headings, short lists or a table. Explain what is established, what is not measured, the judgment and exactly one next step. Do not expose reviewer dialogue.', shared + '\nCross-review:\n' + critique, 4)
     progress('completed', 5)
     return result, {'reviewers': 3, 'cross_reviews': 1, 'syntheses': 1, 'model_requests': 5}
 

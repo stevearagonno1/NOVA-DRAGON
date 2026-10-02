@@ -41,6 +41,7 @@ def main():
     env.update(GIT_ASKPASS=str(state / 'git-askpass.py'), GIT_TERMINAL_PROMPT='0', GH_TOKEN=env['GITHUB_TOKEN'])
     runtime_path = state / 'litellm_runtime.yaml'
     private_write(runtime_path, yaml.safe_dump(build_router_config(config, env), sort_keys=False))
+    env['NOVA_COUNCIL_ROUTE_FILE'] = str(runtime_path)
     children = []
     def stop(_signum=None, _frame=None):
         for child in children:

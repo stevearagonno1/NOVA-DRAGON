@@ -1,0 +1,6 @@
+# Streaming review transport and distinct credential preferences
+
+Decided: the second actual collective test started successfully but completed zero of five model requests and stopped during independent review. Increasing the non-stream wait did not resolve it; the exact upstream cause is not yet confirmed.
+Executed: switched reviewers to bounded SSE consumption through the existing configured Atria endpoint, matching the main client's streaming style. Three reviewers prefer the first three unique configured credentials; cross-review/synthesis prefer slots four/five; slots six onward are first reserves. No new endpoint/model/account is added.
+Produced: local regression tests cover SSE completion/partial failure, private-reasoning exclusion, stream start versus idle timeouts, fixed slot selection, reserve rotation, Retry-After cooldown, bounded attempts, and endpoint validation. Direct reviewer traffic now bypasses LiteLLM buffering/retry layers; the lead keeps its existing LiteLLM gateway.
+Next: deploy this work branch and retest one small collective review. A completed live collective result and validity of all ten credentials remain unmeasured until their actual responses are observed.
