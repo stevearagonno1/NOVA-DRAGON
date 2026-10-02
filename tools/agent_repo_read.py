@@ -84,9 +84,8 @@ def execute(operation, params):
     raise ValueError('Unsupported read operation')
 
 def redact(text):
-    for name in ('GITHUB_TOKEN', 'GH_TOKEN', 'TELEGRAM_BOT_TOKEN', 'LITELLM_API_KEY', 'OPENCRABS_API_KEY'):
-        secret = os.environ.get(name)
-        if secret:
+    for name, secret in os.environ.items():
+        if re.search(r'(TOKEN|KEY|PASSWORD|SECRET)', name, re.I) and len(secret) >= 8:
             text = text.replace(secret, '[REDACTED]')
     return re.sub(r'(?:github_pat_[A-Za-z0-9_]+|gh[pousr]_[A-Za-z0-9]+)', '[REDACTED]', text)
 

@@ -1,13 +1,15 @@
 #!/usr/bin/env python3
 """Supervise the existing LiteLLM gateway and Telegram agent in one Render service."""
 import os
+import secrets
 import signal
 import socket
 import subprocess
 import sys
 import time
 from pathlib import Path
-from agent_bootstrap import prepare, storage_mode
+from agent_bootstrap import prepare, storage_mode, private_write
+from agent_router import build_router_config
 
 def gateway_key(config, env):
     key = env.get('LITELLM_API_KEY') or config.get('general_settings', {}).get('master_key')
@@ -33,7 +35,12 @@ def main():
     env['PORT'] = str(8080 if port != 8080 else 8081)
     state = Path('/state')
     mode = storage_mode(env, state.is_mount())
+    env['NOVA_COUNCIL_PORT'] = str(next(p for p in (8090, 8091, 8092) if p not in (port, int(env['PORT']))))
+    env['NOVA_COUNCIL_KEY'] = secrets.token_urlsafe(32)
     workspace = prepare(state, env)
+    env.update(GIT_ASKPASS=str(state / 'git-askpass.py'), GIT_TERMINAL_PROMPT='0', GH_TOKEN=env['GITHUB_TOKEN'])
+    runtime_path = state / 'litellm_runtime.yaml'
+    private_write(runtime_path, yaml.safe_dump(build_router_config(config, env), sort_keys=False))
     children = []
     def stop(_signum=None, _frame=None):
         for child in children:
@@ -42,7 +49,7 @@ def main():
     signal.signal(signal.SIGTERM, stop)
     signal.signal(signal.SIGINT, stop)
     try:
-        gateway = subprocess.Popen(['litellm', '--config', str(config_path), '--host', '0.0.0.0', '--port', str(port)])
+        gateway = subprocess.Popen(['litellm', '--config', str(runtime_path), '--host', '0.0.0.0', '--port', str(port)], env=env)
         children.append(gateway)
         deadline = time.monotonic() + 120
         while True:
@@ -56,7 +63,20 @@ def main():
                     raise ValueError('LiteLLM startup timed out')
                 time.sleep(1)
         # The bootstrap already wrote private config/keys; the agent uses them.
-        agent = subprocess.Popen(['opencrabs', 'daemon'], cwd=workspace)
+        council = subprocess.Popen(['python3', '/opt/nova-agent/agent_council.py', 'serve'], cwd=workspace, env=env)
+        children.append(council)
+        council_deadline = time.monotonic() + 15
+        while True:
+            if council.poll() is not None:
+                raise ValueError('Background review service stopped during startup')
+            try:
+                with socket.create_connection(('127.0.0.1', int(env['NOVA_COUNCIL_PORT'])), timeout=1):
+                    break
+            except OSError:
+                if time.monotonic() > council_deadline:
+                    raise ValueError('Background review service startup timed out')
+                time.sleep(0.2)
+        agent = subprocess.Popen(['opencrabs', 'daemon'], cwd=workspace, env=env)
         children.append(agent)
         print('NOVA combined: gateway + Telegram agent; storage=' + mode + '; /v1 retained.', flush=True)
         while all(child.poll() is None for child in children):

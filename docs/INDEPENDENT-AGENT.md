@@ -127,3 +127,50 @@ The GitHub token stays inside the helper process. Other shell commands still use
 approval_policy="ask". This is not YOLO or blanket shell permission.
 The managed tools.toml is regenerated on startup. Render deployment and a real
 Telegram tool-discovery/read test are still needed to verify runtime behavior.
+
+## Background review council and credential failover
+
+The combined service now runs a private localhost review queue alongside LiteLLM
+and the Telegram coordinator. `nova_council_submit` accepts a complete scoped
+read-only task paper, lead context and up to five source paths. The constitution
+is always read in full; all sources are pinned to the same GitHub main commit.
+Three reviewers independently propose/audit/challenge, then a cross-review resolves
+conflicts and a synthesizer emits one Arabic result. These are separate model
+requests on the existing model, not different trained models or proof by consensus.
+The roles have no tools, shell, trading or repository mutation capability.
+
+One review job runs at a time with at most two reviewer calls concurrent; one more
+job may queue. Identical active submissions return the same ID. Five model requests
+per completed review, excluding gateway retries. The coordinator remains available.
+Only the final result or a blocked notice is sent to TELEGRAM_OWNER_ID. Use
+`nova_council_status` only when asked, not busy polling. Native spawn/team tools are
+not used for this flow because v0.5.4 requires approval. A parent tool/progress card
+may still appear; this version has no Telegram setting to hide all such cards.
+
+`agent_router.py` builds a private runtime YAML overlay, preserving the original
+source configuration, endpoints, alias and configured deployment limits. It adds
+bounded same-pool retry/failover and cooldown, stable deployment IDs, and collapses
+duplicate same-upstream credentials. Extra TOKEN_N variables alone do not configure
+new deployments. A key is a credential, not a separate brain or a guaranteed
+independent quota. Shared account limits and exhausted free allowances still apply.
+The gateway returns an error after bounded attempts; it does not retry forever.
+
+Files: tools/agent_council.py, tools/agent_router.py, tools/test_council.py,
+tools/test_router.py. Runtime config and job files are private mode0600. Job state
+is temporary on Render Free, not permanent repository memory. Interrupted jobs are
+marked interrupted if the local files survived; they are not called completed.
+32 retained job records are permitted before further submissions are blocked;
+archival/cleanup must be arranged deliberately, not silently delete repository data.
+This implementation delegates research/review, not CPU-heavy backtests or execution.
+Long experiment execution still needs an explicitly scoped executor and compute.
+No new paid services/providers are introduced; more review calls consume more quota.
+
+Validation: 30 local tests passed. They cover phase ordering, final-only notification,
+duplicate suppression, queue bounds, interruption/failure state, source pinning,
+private file permissions, fixed command scopes, redaction, configuration preservation
+and failover settings. Real provider failover, Render resource usage and Telegram
+completion remain unmeasured until deployed/tested; no keys were used in local tests.
+
+References: https://docs.litellm.ai/docs/routing ·
+https://github.com/adolfousier/opencrabs/blob/v0.5.4/src/brain/tools/subagent/spawn.rs ·
+https://github.com/adolfousier/opencrabs/blob/v0.5.4/src/channels/telegram/stream_loop.rs
