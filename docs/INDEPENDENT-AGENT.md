@@ -366,3 +366,28 @@ private input/output/error content. Live latency remains unmeasured by this chan
 Do not repeat the full README review until the single small connection probe runtime
 and subsequent per-attempt timing are available. Updates restart the free ephemeral
 service and old job records can be lost.
+
+### Identical three-credential latency probe
+
+Recorded live task adedcdeff7dac22a: initial preferred slots1/2/3 completed in
+154.17/174.85/344.99 seconds; moderator slot4 completed in49.11 seconds. First-round
+votes on slots2/1 completed in209.43/260.23 seconds; slot3 was interrupted at505.98
+seconds by the shared deadline. Job runtime901.34 seconds. Slot3 was the critical
+path twice, but distinct reviewer roles/input still confound attributing this to its
+credential alone. No credential is disabled or replaced on these observations.
+
+`nova_council_probe_reviewers` schedules exactly one fixed tiny READY connection
+request for each of the first three distinct resolved credentials, concurrently.
+It does not load README, constitution, repository sources or task context; caller
+parameters cannot alter its prompt, route, model, slots or source scope. No fallback,
+no file writes apart from private job/timing records. Output cap512 per call and a
+shared180-second deadline with existing socket-read completion caveat. A failure
+is shown per slot, never as proof that all credentials succeeded. The diagnostic
+job can complete even if a probe failed; completed_requests counts only successful
+probe replies. It neither runs deliberation nor proves document-review throughput.
+
+Tool count9 in combined deployment; standalone remains4. Explicit probes bypass
+group-review dispatch. Status and the single-credential probe remain unchanged.
+Validation:69 local tests pass, including simultaneous identical prompts, selection
+of only first three slots, no retries/fallback, no sources, partial-failure reporting
+and missing-credential refusal without an API call. Live comparison pending.

@@ -86,6 +86,7 @@ def readonly_tools_text(council=False):
         ('submit', 'Delegate a read-only task to three reviewers, then up to three repeated discussion rounds on a shared proposal and one synthesis. Stops on validated unanimous approval or the round cap; unresolved dissent is reported. No shell, trades, repository writes or child tool calls. Completion goes only to the owner. Do not use native spawn_agent for this workflow.', [('task', 'Complete task paper: question, scope, evidence, acceptance checks, deliverables and next decision.', True, 'string'), ('context', 'Relevant lead context with source paths; never include secrets.', False, 'string'), ('paths', 'At most five supported repository text source paths on main. Constitution is always included.', False, 'array')]),
         ('status', 'Read background review state and final result when the owner asks. Do not repeatedly poll.', [('id', 'Optional id returned by nova_council_submit; omit to list jobs.', False, 'string')]),
         ('probe', 'Start exactly one small upstream connection check with the first configured unique credential, in the background. No fallback, no repository sources, no secrets. A successful check verifies only one credential; results go to the owner.', []),
+        ('probe_reviewers', 'Compare first three distinct credential slots with exactly three identical tiny concurrent requests. No repository sources, role differences, fallback, model reasoning transcripts or secrets. Background owner-only result includes safe durations per slot. Does not run a council or prove collective review works.', []),
         ('diagnostics', 'Check the background review endpoint/model and count unique configured credentials locally. No API calls, no secret values, no provider acceptance claim. Use this instead of config_manager when diagnosing council setup.', []),
     ] if council else []):
         entry = f'[[tools]]\nname = "nova_council_{operation}"\ndescription = {q(description)}\nexecutor = "shell"\nenabled = true\nrequires_approval = false\ntimeout_secs = 20\ncommand = "python3 /opt/nova-agent/agent_council.py {operation}"\n'
@@ -140,7 +141,7 @@ When the owner explicitly requests a group/collective/background review (Arabic
 examples: "مراجعة جماعية", "في الخلفية", "المحللين", "تشاور"), use the council
 regardless of whether the task is short, easy, one file, or read-only. Do NOT replace
 an explicit collective request with a direct solo review.
-First discover nova_council_submit and nova_council_status using tool_search.
+For an explicitly requested connection probe, use nova_council_probe or nova_council_probe_reviewers only; do not submit a review. Otherwise first discover nova_council_submit and nova_council_status using tool_search.
 Do not inspect providers, fallback, config_manager or secrets as a prerequisite.
 If nova_council_submit is absent, report that the background tool is unavailable;
 never guess configuration or silently substitute solo work.

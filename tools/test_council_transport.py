@@ -1,6 +1,7 @@
 import io
 import json
 import unittest
+import threading
 from urllib.error import HTTPError
 from unittest.mock import patch
 import agent_council_transport as transport
@@ -195,6 +196,28 @@ class StreamTests(unittest.TestCase):
         self.assertEqual(len(events),1)
         self.assertEqual(events[0]['outcome'],'failed')
         self.assertNotIn('private',json.dumps(events))
+
+    def test_three_probes_are_identical_concurrent_and_never_rotate(self):
+        pool=[{'key':'private-'+str(i)} for i in range(10)]
+        barrier=threading.Barrier(3); calls=[]
+        def request(route,system,user,**kwargs):
+            calls.append((route,system,user,kwargs));barrier.wait(timeout=2)
+            if route is pool[2]:raise transport.StreamStartTimeout()
+            return 'READY'
+        result=transport.probe_reviewers(pool,request)
+        self.assertEqual(len(calls),3)
+        self.assertEqual({id(c[0]) for c in calls},{id(p) for p in pool[:3]})
+        self.assertEqual(len({(c[1],c[2]) for c in calls}),1)
+        self.assertTrue(all(c[3]['max_tokens']==512 for c in calls))
+        self.assertEqual(result['completed_requests'],2)
+        self.assertEqual(result['results'][2]['reason_code'],'StreamStartTimeout')
+        self.assertNotIn('private',json.dumps(result))
+
+    def test_three_probe_missing_credentials_makes_no_request(self):
+        calls=[]
+        with self.assertRaises(transport.TransportConfigurationError):
+            transport.probe_reviewers([{'key':'synthetic'}],lambda *args:calls.append(args))
+        self.assertEqual(calls,[])
 
     def test_connection_probe_has_small_output_and_no_failover(self):
         pool=[{'key':'synthetic-first'},{'key':'synthetic-reserve'}]

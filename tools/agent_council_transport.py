@@ -5,6 +5,7 @@ No caller-supplied URL, credential, model or slot. Existing configured deploymen
 only. Failover is bounded; per-credential Retry-After cooldown is respected.
 """
 from functools import lru_cache
+from concurrent.futures import ThreadPoolExecutor
 import json
 import os
 import re
@@ -68,6 +69,7 @@ def safe_reason(exc):
     return {'code': known.get(str(exc), type(exc).__name__), 'slot': None}
 
 REASON_AR = {
+    'three_probe_credentials_missing': 'لا توجد ثلاثة مفاتيح مختلفة لبدء الفحص المقارن',
     'ReviewDeadlineExceeded': 'انتهت مهلة المراجعة المشتركة؛ لا توجد نتيجة جماعية معتمدة',
     'deliberation_invalid_response': 'لم يصل اقتراح أو تصويت صالح؛ لا يمكن اعتماد اتفاق جماعي',
     'endpoint_mismatch': 'عنوان اتصال المراجعين لا يطابق عنوان المزوّد المعتمد',
@@ -306,3 +308,29 @@ def probe_connection():
     stream(pool[0], 'This is a connection check. Reply with one short word only.',
            'Reply: READY', max_tokens=512)
     return {'credential_slot':1, 'api_requests':1, 'complete_response':True}
+
+
+def probe_reviewers(pool=None, requester=stream, clock=time.monotonic, observer=None):
+    """Exactly three identical tiny requests, distinct first slots, no sources/fallback."""
+    pool=routes() if pool is None else pool
+    if len(pool)<3:
+        raise TransportConfigurationError('three_probe_credentials_missing')
+    deadline=clock()+180
+    def check(index):
+        started=clock(); outcome='failed'; reason=None
+        try:
+            check_deadline(deadline,clock)
+            requester(pool[index], 'This is a connection check. Reply with one short word only.',
+                      'Reply: READY',max_tokens=512,deadline=deadline)
+            check_deadline(deadline,clock)
+            outcome='completed'
+        except Exception as exc:
+            reason=safe_reason(exc)['code']
+        event={'credential_slot':index+1,'elapsed_seconds':round(max(0,clock()-started),2),
+               'outcome':outcome,'reason_code':reason}
+        if observer is not None:observer(event)
+        return event
+    with ThreadPoolExecutor(max_workers=3) as executor:
+        results=list(executor.map(check,range(3)))
+    return {'api_requests':3,'completed_requests':sum(r['outcome']=='completed' for r in results),
+            'results':results,'scope':'first_three_credentials_only'}

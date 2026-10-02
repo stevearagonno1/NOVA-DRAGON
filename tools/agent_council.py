@@ -16,7 +16,7 @@ from urllib.error import HTTPError
 from urllib.parse import quote
 from urllib.request import Request, build_opener
 from agent_repo_read import NoRedirect, get, safe_path, redact, LIMIT
-from agent_council_transport import model_call as stream_model_call, diagnostics, safe_reason, REASON_AR, probe_connection
+from agent_council_transport import model_call as stream_model_call, diagnostics, safe_reason, REASON_AR, probe_connection, probe_reviewers
 
 MAX_JOBS = 32
 MAX_CONTEXT = 32000
@@ -112,6 +112,8 @@ class Jobs:
     def submit(self, params, kind="review"):
         if kind == "probe":
             params = {"task": "Check the first configured credential with one small request; no repository sources."}
+        elif kind == "probe_reviewers":
+            params = {"task":"Compare the first three credentials with three identical tiny requests; no sources or fallback."}
         task = bounded_text(params.get('task'), MAX_TASK, 'Task paper')
         context = params.get('context', '')
         if not isinstance(context, str) or len(context) > MAX_CONTEXT:
@@ -130,7 +132,7 @@ class Jobs:
             if len(jobs) >= MAX_JOBS or sum(j['state'] in ('queued', 'running') for j in jobs) >= 2:
                 raise ValueError('Review queue is full; do not launch more jobs')
             job = {'id': secrets.token_hex(8), 'fingerprint': fingerprint, 'state': 'queued',
-                   'kind':kind, 'expected_requests':1 if kind=='probe' else 16, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
+                   'kind':kind, 'expected_requests':1 if kind=='probe' else 3 if kind=='probe_reviewers' else 16, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
             self.save(job)
             self.pool.submit(self.work, job)
             return {'id': job['id'], 'state': 'queued', 'message': 'المراجعة في الخلفية؛ سيصلك ملخص عند اكتمالها.'}
@@ -141,7 +143,7 @@ class Jobs:
         try:
             with self.lock:
                 job['state'] = 'running'; job['phase'] = 'reading_sources'; self.save(job)
-            sources = [] if job.get('kind')=='probe' else self.source_reader({'paths': job['paths']})
+            sources = [] if job.get('kind') in ('probe','probe_reviewers') else self.source_reader({'paths': job['paths']})
             def progress(phase, completed):
                 with self.lock:
                     job.update(phase=phase, completed_requests=completed)
@@ -157,6 +159,16 @@ class Jobs:
                 connection = probe_connection()
                 result = 'نجح اختبار اتصال المزوّد بالمفتاح الأول ✅ ووصل رد مكتمل. أُرسل طلب واحد صغير فقط، دون ملفات المشروع. هذا لا يثبت قبول المفاتيح التسعة الأخرى ولا نجاح المراجعة الجماعية الكاملة.'
                 counts = {'model_requests':1, 'tested_credential_slots':[connection['credential_slot']]}
+            elif job.get('kind')=='probe_reviewers':
+                progress('connection_probe_reviewers',0)
+                check=probe_reviewers(observer=observer)
+                lines=['اكتمل الفحص المقارن للمفاتيح الثلاثة الأولى. طلب صغير واحد لكل مفتاح، بلا ملفات أو تبديل احتياطي.']
+                for item in check['results']:
+                    label='نجح' if item['outcome']=='completed' else REASON_AR.get(item['reason_code'],'تعذر إكمال الطلب')
+                    lines.append('الخانة '+str(item['credential_slot'])+': '+label+'؛ '+str(item['elapsed_seconds'])+' ثانية.')
+                lines.append('هذا يقيس طلب اتصال صغيرًا فقط، ولا يثبت نجاح التشاور أو سرعة مراجعة المستندات.')
+                result='\n'.join(lines)
+                counts={'model_requests':check['completed_requests'],'api_requests':3}
             elif self.runner is run_review:
                 result, counts = self.runner(job['task'], job['context'], sources, progress=progress, observer=observer)
             else:
@@ -164,7 +176,7 @@ class Jobs:
                 result, counts = self.runner(job['task'], job['context'], sources)
             job.update(state='completed', phase='completed', completed_requests=counts.get('model_requests',job.get('expected_requests',16)), result=redact(result), sources=[{k:s[k] for k in ('path','commit','blob_sha')} for s in sources], counts=counts)
         except Exception as exc:
-            phase_labels = {'reading_sources': 'قراءة المصادر', 'independent_review': 'تحليل المراجعين', 'cross_review': 'المراجعة المتبادلة', 'synthesis': 'جمع التوصية', 'connection_probe':'اختبار الاتصال الأول'}
+            phase_labels = {'reading_sources': 'قراءة المصادر', 'independent_review': 'تحليل المراجعين', 'cross_review': 'المراجعة المتبادلة', 'synthesis': 'جمع التوصية', 'connection_probe':'اختبار الاتصال الأول', 'connection_probe_reviewers':'اختبار الاتصال المقارن'}
             stage = phase_labels.get(job.get('phase'), 'المراجعة')
             if job.get('phase','').startswith('discussion_round_'):
                 stage = 'جولة التشاور ' + job['phase'].rsplit('_',1)[-1]
@@ -185,7 +197,7 @@ class Jobs:
             self.save(job)
         try:
             # No worker dialogue, tool progress or intermediate findings is sent.
-            if job.get('kind')=='probe':
+            if job.get('kind') in ('probe','probe_reviewers'):
                 prefix = 'نتيجة اختبار الاتصال\n\n'
             else:
                 prefix = 'اكتملت المراجعة الخلفية ✅\n\n' if job['state'] == 'completed' else 'توقفت المراجعة الخلفية ⚠️\n\n'
@@ -226,6 +238,8 @@ class Handler(BaseHTTPRequestHandler):
                 answer = self.jobs.status(params)
             elif self.path == '/diagnostics':
                 answer = diagnostics()
+            elif self.path == '/probe_reviewers':
+                answer = self.jobs.submit({},kind='probe_reviewers')
             elif self.path == '/probe':
                 answer = self.jobs.submit({},kind='probe')
             else:
@@ -243,7 +257,7 @@ def main():
         ThreadingHTTPServer(('127.0.0.1', int(os.environ['NOVA_COUNCIL_PORT'])), Handler).serve_forever()
     else:
         operation = sys.argv[1]
-        if operation not in ('submit', 'status', 'diagnostics', 'probe'):
+        if operation not in ('submit', 'status', 'diagnostics', 'probe', 'probe_reviewers'):
             raise ValueError('Unsupported operation')
         with open(os.environ['OPENCRABS_PARAMS']) as handle:
             params = json.load(handle)

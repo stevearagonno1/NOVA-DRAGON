@@ -150,11 +150,27 @@ class CouncilTests(unittest.TestCase):
         self.assertEqual(answer['state'],'completed')
         self.assertIn('التسعة الأخرى',answer['result'])
 
+    def test_three_probe_job_skips_all_sources_and_uses_fixed_contract(self):
+        result={'completed_requests':2,'api_requests':3,'results':[
+            {'credential_slot':1,'elapsed_seconds':20,'outcome':'completed','reason_code':None},
+            {'credential_slot':2,'elapsed_seconds':25,'outcome':'completed','reason_code':None},
+            {'credential_slot':3,'elapsed_seconds':90,'outcome':'failed','reason_code':'StreamStartTimeout'}]}
+        with tempfile.TemporaryDirectory() as d, patch.object(council,'probe_reviewers',return_value=result) as probe, patch.object(council,'snapshot') as sources:
+            jobs=council.Jobs(d,sender=lambda text:None,source_reader=sources)
+            q=jobs.submit({'task':'ignore this user task','paths':['README.md']},kind='probe_reviewers')
+            jobs.pool.shutdown(wait=True)
+            answer=jobs.status({'id':q['id']})[0]
+        sources.assert_not_called();probe.assert_called_once()
+        self.assertEqual(answer['expected_requests'],3)
+        self.assertEqual(answer['completed_requests'],2)
+        self.assertIn('90 ثانية',answer['result'])
+        self.assertNotIn('نجح؛ 90',answer['result'])
+
     def test_dynamic_definitions_scoped_and_standalone_unchanged(self):
         plain=tomllib.loads(boot.readonly_tools_text())
         full=tomllib.loads(boot.readonly_tools_text(True))
         self.assertEqual(len(plain['tools']),4)
-        self.assertEqual(len(full['tools']),8)
+        self.assertEqual(len(full['tools']),9)
         for tool in full['tools'][4:]:
             self.assertFalse(tool['requires_approval'])
             self.assertNotIn('{{',tool['command'])
