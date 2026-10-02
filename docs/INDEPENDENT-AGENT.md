@@ -452,3 +452,47 @@ Validation:74 local tests pass,including full independent input/compact later pa
 unchanged source provenance,explicit evidence budget failures,and rejection of
 unanimity based on uncited source claims. Existing repeated dissent and parallelism
 checks remain passing.
+
+### Default lead and two subagents (2026-10-02)
+
+Owner authorized replacing repeated council deliberation with a main brain and two
+subagents. The default Jobs runner is now run_background/agent_background.coordinate.
+Existing nova_council_submit/status/trial names remain compatible but submit and trial
+no longer invoke the repeated-voting pipeline. Legacy deliberation code/tests remain
+as historical internal helpers; no production submit/trial route selects them.
+
+The main Telegram agent answers simple questions directly and is instructed to
+automatically delegate substantive multi-step research/audit tasks using a scoped
+task paper. This routing is model guidance,not a deterministic classifier or a hard
+ban on native tools. Existing native approvals,owner allowlist,read-only source
+snapshot and no-trading/no-write rules remain. Heavy numeric execution is not enabled.
+
+Two read-only workers run concurrently: analysis and independent audit. They receive
+the complete pinned selected sources and constitution. Lead synthesis runs once on
+available reports and locally copied cited source excerpts. Preferred distinct slots
+are2,3 for workers and1 for lead; reserve failover/cooldown still belongs to transport.
+At least three configured unique credentials are required. The lead stage is a
+separate background completion on behalf of the main coordinator,not a new Telegram
+conversation or an unrestricted child-agent session.
+
+Normal worker collection budget360seconds; lead synthesis240seconds. Fixed source-free
+trial budgets120seconds each. Budgets exclude queue/source fetch/notification; existing
+in-flight network reads may outlive collection. Pending threads are not force-killed:
+their results are ignored,own deadlines remain,and late worker telemetry is dropped.
+The lead can proceed with one completed worker and explicitly labels partial coverage.
+If neither completes,job is blocked without synthesis. Lead failure blocks the task.
+No unanimous approval or repeated discussion is claimed. Incomplete source evidence
+is also explicitly labeled; these are model findings,not empirical measurement.
+
+Three logical requests maximum (two workers+one lead); reserve attempts can increase
+actual API calls. Final owner-only report includes worker completion,logical completed
+requests and runtime. Status includes mode and safe per-attempt timings. No intermediate
+worker chatter or automatic polling. Trial discards caller task/context/paths as before.
+Docker COPY includes agent_background.py. Free hosting,keys and original model pool
+are unchanged. Main repository branch is not written.
+
+Validation:80 local tests pass. New coverage verifies concurrent workers/distinct role
+slots,one synthesis without voting,partial completion without waiting for pending
+thread termination,both-worker failure without synthesis,explicit evidence gaps,and
+production job integration sending one final owner result. Live behavior and latency
+remain unverified until this deployment is running and a new trial completes.

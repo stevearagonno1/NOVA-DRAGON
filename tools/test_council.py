@@ -176,7 +176,7 @@ class CouncilTests(unittest.TestCase):
             jobs.pool.shutdown()
 
     def test_trial_has_no_sources_fixed_task_and_short_deadline(self):
-        with tempfile.TemporaryDirectory() as d, patch.object(council,'run_review',return_value=('summary',{'model_requests':8})) as run, patch.object(council,'snapshot') as sources:
+        with tempfile.TemporaryDirectory() as d, patch.object(council,'run_background',return_value=('summary',{'model_requests':3})) as run, patch.object(council,'snapshot') as sources:
             jobs=council.Jobs(d,runner=run,sender=lambda text:None,source_reader=sources)
             q=jobs.submit({'task':'change settings','context':'private input','paths':['README.md']},kind='trial')
             jobs.pool.shutdown(wait=True)
@@ -185,9 +185,29 @@ class CouncilTests(unittest.TestCase):
         self.assertEqual(run.call_args.args[2],[])
         self.assertEqual(run.call_args.args[1],'')
         self.assertNotIn('change settings',run.call_args.args[0])
-        self.assertEqual(run.call_args.kwargs['deadline_seconds'],300)
         self.assertTrue(run.call_args.kwargs['diagnostic'])
+        self.assertEqual(answer['expected_requests'],3)
+        self.assertEqual(answer['mode'],'lead_and_subagents')
         self.assertEqual(q['next_action'],'finish_turn')
+        self.assertEqual(answer['state'],'completed')
+
+    def test_default_job_uses_two_workers_and_lead_and_sends_one_final_result(self):
+        calls=[];sent=[]
+        def fake(system,user,slot=0,deadline=None,observer=None):
+            calls.append(slot)
+            return 'report CONSTITUTION.md:L1-L1'
+        def run(task,context,sources,**kwargs):
+            return original(task,context,sources,call=fake,**kwargs)
+        original=council.run_background
+        with tempfile.TemporaryDirectory() as d,patch.object(council,'run_background',side_effect=run) as runner:
+            jobs=council.Jobs(d,runner=runner,sender=sent.append,source_reader=lambda _:SOURCES)
+            q=jobs.submit({'task':'audit question'})
+            jobs.pool.shutdown(wait=True)
+            answer=jobs.status({'id':q['id']})[0]
+        self.assertEqual(sorted(calls),[0,1,2])
+        self.assertEqual(answer['counts']['discussion_rounds'],0)
+        self.assertEqual(answer['completed_requests'],3)
+        self.assertEqual(len(sent),1)
         self.assertEqual(answer['state'],'completed')
 
     def test_dynamic_definitions_scoped_and_standalone_unchanged(self):

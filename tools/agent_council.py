@@ -87,6 +87,24 @@ def run_review(task, context, sources, call=model_call, progress=None, observer=
     return deliberate(task, context, sources, invoke, system, roles, progress=progress)
 
 
+def run_background(task,context,sources,call=None,progress=None,observer=None,diagnostic=False):
+    from agent_background import coordinate
+    call=call or model_call
+    if call is model_call:
+        from agent_council_transport import routes
+        if len(routes())<3:raise ValueError('Three distinct credentials required for lead and subagents')
+    def invoke(system,user,slot,deadline):
+        import time
+        def timed_observer(event):
+            if observer and (slot==0 or time.monotonic()<=deadline):
+                observer(dict(event,phase='lead_synthesis' if slot==0 else 'subagents'))
+        return call(system,user,slot=slot,deadline=deadline,observer=timed_observer)
+    system=SYSTEM
+    if diagnostic:
+        system+='\nThis is a tiny source-free workflow diagnostic. Compare the two report orders only. Do not invent repository evidence or trading measurements.'
+    return coordinate(task,context,sources,invoke,system,progress=progress,
+                      worker_seconds=120 if diagnostic else 360,synthesis_seconds=120 if diagnostic else 240)
+
 def notify(text):
     # Owner-only destination, never a model-selected recipient or URL.
     result = post_json('https://api.telegram.org/bot' + os.environ['TELEGRAM_BOT_TOKEN'] + '/sendMessage', {
@@ -96,7 +114,7 @@ def notify(text):
         raise ValueError('Notification was not accepted')
 
 class Jobs:
-    def __init__(self, directory, runner=run_review, sender=notify, source_reader=snapshot):
+    def __init__(self, directory, runner=run_background, sender=notify, source_reader=snapshot):
         self.directory = Path(directory); self.directory.mkdir(parents=True, exist_ok=True, mode=0o700)
         self.lock = threading.Lock()
         self.pool = ThreadPoolExecutor(max_workers=1)
@@ -122,7 +140,7 @@ class Jobs:
         elif kind == "probe_reviewers":
             params = {"task":"Compare the first three credentials with three identical tiny requests; no sources or fallback."}
         elif kind == "trial":
-            params = {"task":"Diagnostic discussion only: choose one general report order: decision then evidence then next step, or evidence then decision then next step. No project files, trading analysis, measurements, settings or actions. Cite no repository evidence because none is supplied. Keep the decision and all replies short."}
+            params = {"task":"Diagnostic delegation only: compare two general report orders: decision then evidence then next step, or evidence then decision then next step. No consensus loop. No project files, trading analysis, measurements, settings or actions. Cite no repository evidence because none is supplied. Keep all replies short."}
         task = bounded_text(params.get('task'), MAX_TASK, 'Task paper')
         context = params.get('context', '')
         if not isinstance(context, str) or len(context) > MAX_CONTEXT:
@@ -141,7 +159,7 @@ class Jobs:
             if len(jobs) >= MAX_JOBS or sum(j['state'] in ('queued', 'running') for j in jobs) >= 2:
                 raise ValueError('Review queue is full; do not launch more jobs')
             job = {'id': secrets.token_hex(8), 'fingerprint': fingerprint, 'state': 'queued',
-                   'kind':kind, 'expected_requests':1 if kind=='probe' else 3 if kind=='probe_reviewers' else 16, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
+                   'kind':kind, 'mode':'lead_and_subagents' if kind in ('review','trial') else kind, 'expected_requests':1 if kind=='probe' else 3, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
             self.save(job)
             self.pool.submit(self.work, job)
             return {'id': job['id'], 'state': 'queued', 'next_action':'finish_turn', 'message': 'سُجل الطلب في الخلفية؛ أرسل المعرف وأنهِ ردك الآن. لا تقرأ الإعدادات ولا تستعلم الحالة تلقائيًا. ستصل النتيجة للمالك عند الانتهاء.'}
@@ -161,7 +179,7 @@ class Jobs:
                 with self.lock:
                     entries=job.setdefault('request_timings',[])
                     if len(entries)<48:
-                        entries.append(dict(event,phase=job.get('phase')))
+                        entries.append(dict(event,phase=event.get('phase',job.get('phase'))))
                     self.save(job)
             if job.get('kind')=='probe':
                 progress('connection_probe',0)
@@ -178,6 +196,8 @@ class Jobs:
                 lines.append('هذا يقيس طلب اتصال صغيرًا فقط، ولا يثبت نجاح التشاور أو سرعة مراجعة المستندات.')
                 result='\n'.join(lines)
                 counts={'model_requests':check['completed_requests'],'api_requests':3}
+            elif self.runner is run_background:
+                result,counts=self.runner(job['task'],job['context'],sources,progress=progress,observer=observer,diagnostic=job.get('kind')=='trial')
             elif self.runner is run_review:
                 result, counts = self.runner(job['task'], job['context'], sources, progress=progress, observer=observer, deadline_seconds=300 if job.get('kind')=='trial' else 900, diagnostic=job.get('kind')=='trial')
             else:
@@ -185,7 +205,7 @@ class Jobs:
                 result, counts = self.runner(job['task'], job['context'], sources)
             job.update(state='completed', phase='completed', completed_requests=counts.get('model_requests',job.get('expected_requests',16)), result=redact(result), sources=[{k:s[k] for k in ('path','commit','blob_sha')} for s in sources], counts=counts)
         except Exception as exc:
-            phase_labels = {'reading_sources': 'قراءة المصادر', 'independent_review': 'تحليل المراجعين', 'cross_review': 'المراجعة المتبادلة', 'synthesis': 'جمع التوصية', 'connection_probe':'اختبار الاتصال الأول', 'connection_probe_reviewers':'اختبار الاتصال المقارن'}
+            phase_labels = {'reading_sources': 'قراءة المصادر', 'subagents':'عمل الفرعيين', 'lead_synthesis':'جمع العقل الرئيسي للنتائج', 'independent_review': 'تحليل المراجعين', 'cross_review': 'المراجعة المتبادلة', 'synthesis': 'جمع التوصية', 'connection_probe':'اختبار الاتصال الأول', 'connection_probe_reviewers':'اختبار الاتصال المقارن'}
             stage = phase_labels.get(job.get('phase'), 'المراجعة')
             if job.get('phase','').startswith('discussion_round_'):
                 stage = 'جولة التشاور ' + job['phase'].rsplit('_',1)[-1]
@@ -202,6 +222,8 @@ class Jobs:
             job.update(reason_code=reason['code'], error_slot=reason['slot'], error_location=location)
             job.update(state='blocked', error_type=error, result='لم تكتمل المراجعة. توقفت في مرحلة ' + stage + '؛ ' + detail + '؛ اكتمل ' + str(job.get('completed_requests', 0)) + ' من سقف ' + str(job.get('expected_requests',16)) + ' طلبات. لم ينتج الاختبار نتيجة معتمدة.')
         job['runtime_seconds']=round(time.monotonic()-started,2)
+        if job.get('counts',{}).get('mode')=='lead_and_subagents':
+            job['result']+='\n\nالفرعيون المكتملون: '+str(job['counts']['completed_subagents'])+'/2؛ الطلبات المكتملة: '+str(job['completed_requests'])+'/3؛ مدة التشغيل: '+str(job['runtime_seconds'])+' ثانية.'
         with self.lock:
             self.save(job)
         try:
@@ -209,7 +231,8 @@ class Jobs:
             if job.get('kind') in ('probe','probe_reviewers'):
                 prefix = 'نتيجة اختبار الاتصال\n\n'
             else:
-                prefix = 'اكتملت المراجعة الخلفية ✅\n\n' if job['state'] == 'completed' else 'توقفت المراجعة الخلفية ⚠️\n\n'
+                caution=job.get('counts',{}).get('partial') or job.get('counts',{}).get('evidence_complete') is False
+                prefix = ('اكتمل العمل الخلفي مع نقص موضح ⚠️\n\n' if caution else 'اكتمل العمل الخلفي ✅\n\n') if job['state'] == 'completed' else 'توقف العمل الخلفي ⚠️\n\n'
             self.sender(prefix + job['result'])
             job['notification'] = 'sent'
         except Exception:
@@ -228,7 +251,7 @@ class Jobs:
                 if not jobs:
                     return [{'id':job_id,'state':'not_found','next_action':'finish_turn',
                              'message':'لا يوجد سجل لهذا المعرف في التخزين الحالي. قد تختفي سجلات قديمة بعد إعادة التشغيل أو النشر. لا تبحث في ملفات أخرى ولا تستنتج مشكلة مفاتيح أو مزوّد؛ أخبر المالك وأنهِ الرد.'}]
-            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location','kind','expected_requests','counts','request_timings','runtime_seconds')} for j in jobs]
+            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location','kind','mode','expected_requests','counts','request_timings','runtime_seconds')} for j in jobs]
 
 class Handler(BaseHTTPRequestHandler):
     jobs = None

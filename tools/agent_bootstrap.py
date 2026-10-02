@@ -83,8 +83,8 @@ def readonly_tools_text(council=False):
             entry += f'[[tools.params]]\nname = {q(name)}\ntype = "string"\ndescription = {q(desc)}\nrequired = {str(required).lower()}\n'
         definitions.append(entry)
     for operation, description, params in ([
-        ('submit', 'Delegate a read-only task to three reviewers, then up to three repeated discussion rounds on a shared proposal and one synthesis. Stops on validated unanimous approval or the round cap; unresolved dissent is reported. No shell, trades, repository writes or child tool calls. Completion goes only to the owner. Do not use native spawn_agent for this workflow.', [('task', 'Complete task paper: question, scope, evidence, acceptance checks, deliverables and next decision.', True, 'string'), ('context', 'Relevant lead context with source paths; never include secrets.', False, 'string'), ('paths', 'At most five supported repository text source paths on main. Constitution is always included.', False, 'array')]),
-        ('trial', 'Fixed tiny repeated-deliberation diagnostic about report order only, with three reviewers and a five-minute shared deadline. No constitution, repository sources, caller task or context, tools or file changes. Not a substantive project review. Submit once, acknowledge ID and finish the turn.', []),
+        ('submit', 'Delegate a read-only task to two parallel subagents: analyst and independent auditor. The lead synthesizes available findings once, without discussion rounds or unanimity. Worker budget six minutes; lead synthesis budget four minutes. Partial completion is explicit. No shell, trades, repository writes or child tool calls. Owner-only final result. Legacy council name; this is lead-and-subagents mode.', [('task', 'Complete task paper: question, scope, evidence, acceptance checks, deliverables and next decision.', True, 'string'), ('context', 'Relevant lead context with source paths; never include secrets.', False, 'string'), ('paths', 'At most five supported repository text source paths on main. Constitution is always included.', False, 'array')]),
+        ('trial', 'Fixed tiny lead-and-two-subagents diagnostic about report order only. Two-minute worker budget and two-minute lead synthesis budget; no votes or discussion rounds. No constitution, repository sources, caller task or context, tools or file changes. Not a substantive project review. Submit once, acknowledge ID and finish the turn.', []),
         ('status', 'Read background review state and final result when the owner asks. Do not repeatedly poll.', [('id', 'Optional id returned by nova_council_submit; omit to list jobs.', False, 'string')]),
         ('probe', 'Start exactly one small upstream connection check with the first configured unique credential, in the background. No fallback, no repository sources, no secrets. A successful check verifies only one credential; results go to the owner.', []),
         ('probe_reviewers', 'Compare first three distinct credential slots with exactly three identical tiny concurrent requests. No repository sources, role differences, fallback, model reasoning transcripts or secrets. Background owner-only result includes safe durations per slot. Does not run a council or prove collective review works.', []),
@@ -153,8 +153,15 @@ These narrowly scoped control requests skip general project startup reading.
 Explicit nova_council_trial requests use that fixed diagnostic, never council_submit.
 These instructions guide the model; native tool approval safeguards remain enabled.
 EXPLICIT GROUP-REVIEW DISPATCH:
+DEFAULT ARCHITECTURE: you are the main brain; the background service runs two
+read-only subagents (analysis and independent audit), then one lead synthesis.
+There is no consensus loop. Simple questions are answered directly. Automatically
+delegate substantial multi-step research/audit work without asking the owner to name
+tools. Submit one clear scoped task and remain available; report only completion or
+progress the owner requested. Legacy nova_council_* names now use this architecture.
+Do not promise unanimous agreement, discussion rounds, or unrestricted child execution.
 When the owner explicitly requests a group/collective/background review (Arabic
-examples: "مراجعة جماعية", "في الخلفية", "المحللين", "تشاور"), use the council
+examples: "مراجعة جماعية", "في الخلفية", "المحللين", "تشاور"), use the lead-and-subagents background service
 regardless of whether the task is short, easy, one file, or read-only. Do NOT replace
 an explicit collective request with a direct solo review.
 For an explicitly requested connection probe, use nova_council_probe or nova_council_probe_reviewers only; do not submit a review. Otherwise first discover nova_council_submit and nova_council_status using tool_search.
@@ -194,19 +201,22 @@ hypothesis or not measured, source paths, required checks, acceptance conditions
 deliverables and next decision. Include constitution constraints; no scope widening.
 Use one submission for the whole task, not one per paragraph. Supply selected main
 text source paths and relevant local pending facts with provenance in context.
-The council reads a pinned main snapshot and runs independent analysis, cross-review
-and up to three discussion rounds followed by synthesis. Each reviewer sees the
-others' reports and previous votes. Stop on unanimous approval of the exact shared
-proposal; if disagreement remains at the cap, report it honestly rather than force
-agreement. Consensus is not proof. It has NO shell, trading, file mutation or experiment execution.
+The background service reads a pinned main snapshot and runs two workers in parallel:
+analysis and independent audit. The lead combines available results once; there are
+NO discussion rounds, votes, or unanimity requirement. Worker budget is six minutes,
+then the lead has four minutes. If one fails, the result is explicitly partial; if both
+fail, report the failure. Source reading, queueing and an in-flight network read can
+add time, so do not promise an exact wall-clock finish. Distinct preferred keys and
+bounded reserve failover remain. This is read-only model analysis, not a shell or
+numeric experiment worker. It has NO trading, file mutation or experiment execution.
 For actual long numeric experiments prepare an executor paper; do not claim the
 council performed measurements. Render Free is not a heavy compute worker.
 The background service sends the single final review directly to the owner. Do not
 poll, narrate child dialogue, duplicate completion or ask permission to start a
 read-only review already requested by the owner. After submitting, finish promptly with one short Arabic acknowledgment and the
 job ID; do not keep reading sources or composing a long report in the main turn.
-If you have delayed your acknowledgment, check nova_council_status once before
-claiming the job still runs. A blocked/interrupted job is never called running.
+Report the returned state as the submission-time state; do not query automatically.
+A blocked/interrupted job is never called running.
 Remain available. If asked for progress use nova_council_status.
 Do not use native spawn_agent/team_create for this quiet review flow (they ask).
 Simple questions and ordinary file reads are handled directly ONLY if the owner
