@@ -154,12 +154,12 @@ def collect_sse(response, clock=time.monotonic):
         text += '\n[الرد محدود بسقف الإخراج؛ يجب عدم اعتبار التفاصيل الناقصة محسومة.]'
     return text
 
-def stream(route, system, user, opener=None):
+def stream(route, system, user, opener=None, max_tokens=6144):
     opener=opener or build_opener(NoRedirect)
     request=Request(route['base']+'/chat/completions', method='POST',
         headers={'Authorization':'Bearer '+route['key'],'Content-Type':'application/json','Accept':'text/event-stream'},
         data=json.dumps({'model':route['model'],'messages':[{'role':'system','content':system},{'role':'user','content':user}],
-                         'max_tokens':6144,'stream':True},ensure_ascii=False).encode())
+                         'max_tokens':max_tokens,'stream':True},ensure_ascii=False).encode())
     try:
         response=opener.open(request,timeout=IDLE_SECONDS)
     except ValueError:
@@ -228,3 +228,12 @@ def diagnostics():
         return {'configuration_valid':False, 'api_requests_made':0,
                 'provider_acceptance_verified':False, 'reason_code':reason['code'],
                 'slot':reason['slot'], 'message':REASON_AR.get(reason['code'],'تعذر فحص الإعداد المحلي؛ لم تُعرض أي مفاتيح.')}
+
+
+def probe_connection():
+    # Exactly one small request with the first configured unique credential.
+    # No fallback: success never masquerades as verification of a different key.
+    pool=routes()
+    stream(pool[0], 'This is a connection check. Reply with one short word only.',
+           'Reply: READY', max_tokens=512)
+    return {'credential_slot':1, 'api_requests':1, 'complete_response':True}

@@ -230,3 +230,14 @@ exception bodies. Outer whitespace is trimmed; internal whitespace/control/non-A
 characters in a credential are rejected with a safe credential_invalid_format code.
 Blocked jobs now expose reason_code, error_slot and source error_location; Render
 logs have only job id/phase/code/location. No traceback locals or error body is logged.
+
+### Isolated single-credential connection probe
+
+`nova_council_probe` starts one background request using the first configured unique
+credential only. It has a512-token cap, a fixed tiny connection-check prompt, zero
+repository source reads, and no fallback. It does not run three reviewers, cross-review
+or synthesis. A successful complete response verifies one real connection; it proves
+neither acceptance of the other nine credentials nor completion of a collective task.
+Use after local diagnostics are valid, before another full review trial. Probe failures
+include the safe reason/location and expected/completed request count1. Raw model
+probe text and credentials are not delivered to the owner.

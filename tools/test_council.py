@@ -69,18 +69,24 @@ class CouncilTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             jobs=council.Jobs(d, runner=lambda *args:(_ for _ in ()).throw(RuntimeError('secret')), sender=sent.append, source_reader=lambda p:SOURCES)
             q=jobs.submit({'task':'task'})
-            jobs.pool.shutdown(wait=True)
-            answer=jobs.status({'id':q['id']})[0]
-            self.assertEqual(answer['state'],'blocked')
-            self.assertNotIn('secret',answer['result'])
-            self.assertNotIn('اكتملت',sent[0])
+            j…1796 tokens truncated…=transport.stream({'base':'https://api.atria-asi.ai/v1','model':'Atria-Dawn-Preview','key':'synthetic'},'rules','task',opener)
+        body=json.loads(opener.req.data)
+        self.assertTrue(body['stream'])
+        self.assertEqual(body['max_tokens'],6144)
+        self.assertEqual(out,'ok')
 
-    def test_snapshot_pinned_and_hidden_paths_denied(self):
-        with patch.object(council,'get',return_value={'sha':'a'*40}), patch.object(council,'fetch_file',side_effect=lambda p,c:{'path':p,'commit':c,'content':'source'}) as fetch:
-            sources=council.snapshot({'paths':['README.md']})
-            self.assertEqual(len(sources),2)
-            self.assertTrue(all(s['commit']=='a'*40 for s in sources))
-        with self.assertRaise…1599 tokens truncated…            raise HTTPError('fixed',429,'quota',{'Retry-After':'120'},None)
+    def test_distinct_role_preferences_with_reserve_failover(self):
+        pool=[{'key':'synthetic-'+str(i)} for i in range(10)]
+        selected=[]
+        def request(route,*args): selected.append(route['key']); return 'done'
+        for slot in range(5):
+            transport.model_call('rules','task',slot,pool,request)
+        self.assertEqual(selected,[r['key'] for r in pool[:5]])
+        selected=[]
+        def failure(route,*args):
+            selected.append(route['key'])
+            if route is pool[0]:
+                raise HTTPError('fixed',429,'quota',{'Retry-After':'120'},None)
             return 'done'
         self.assertEqual(transport.model_call('rules','task',0,pool,failure,clock=lambda:100),'done')
         self.assertEqual(selected,[pool[0]['key'],pool[5]['key']])
@@ -133,5 +139,14 @@ class CouncilTests(unittest.TestCase):
         reason=transport.safe_reason(ValueError('Invalid header containing private-secret'))
         self.assertEqual(reason['code'],'ValueError')
         self.assertNotIn('private-secret',json.dumps(reason))
+
+    def test_connection_probe_has_small_output_and_no_failover(self):
+        pool=[{'key':'synthetic-first'},{'key':'synthetic-reserve'}]
+        with patch.object(transport,'routes',return_value=pool), patch.object(transport,'stream',return_value='READY') as call:
+            result=transport.probe_connection()
+        call.assert_called_once()
+        self.assertEqual(call.call_args.args[0],pool[0])
+        self.assertEqual(call.call_args.kwargs['max_tokens'],512)
+        self.assertEqual(result['api_requests'],1)
 
 if __name__=='__main__': unittest.main()
