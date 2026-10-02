@@ -71,13 +71,20 @@ def model_call(system, user, slot=0, deadline=None, observer=None):
     return bounded_text(stream_model_call(system, user, slot=slot, deadline=deadline, observer=observer), 30000, 'Model response')
 
 
-def run_review(task, context, sources, call=model_call, progress=None, observer=None):
+def run_review(task, context, sources, call=model_call, progress=None, observer=None, deadline_seconds=900, diagnostic=False):
     from agent_deliberation import deliberate
     import time
-    deadline=time.monotonic()+900
+    deadline=time.monotonic()+deadline_seconds
     def invoke(system, user, slot):
         return call(system, user, slot=slot, deadline=deadline, observer=observer) if call is model_call else call(system, user)
-    return deliberate(task, context, sources, invoke, SYSTEM, ROLES, progress=progress)
+    system=SYSTEM
+    roles=ROLES
+    if diagnostic:
+        system += '\nThis is a tiny workflow diagnostic, not trading research. No constitution or repository sources are supplied. Do not cite or invent them. Compare only the two report orders; no experiments or provider settings. Keep each answer very short.'
+        roles=('Recommend one report order and one reason.',
+               'Check whether that report order is clear to the reader.',
+               'Identify one practical objection, or state that none remains.')
+    return deliberate(task, context, sources, invoke, system, roles, progress=progress)
 
 
 def notify(text):
@@ -114,6 +121,8 @@ class Jobs:
             params = {"task": "Check the first configured credential with one small request; no repository sources."}
         elif kind == "probe_reviewers":
             params = {"task":"Compare the first three credentials with three identical tiny requests; no sources or fallback."}
+        elif kind == "trial":
+            params = {"task":"Diagnostic discussion only: choose one general report order: decision then evidence then next step, or evidence then decision then next step. No project files, trading analysis, measurements, settings or actions. Cite no repository evidence because none is supplied. Keep the decision and all replies short."}
         task = bounded_text(params.get('task'), MAX_TASK, 'Task paper')
         context = params.get('context', '')
         if not isinstance(context, str) or len(context) > MAX_CONTEXT:
@@ -128,14 +137,14 @@ class Jobs:
             jobs = self.all()
             for job in jobs:
                 if job['fingerprint'] == fingerprint and job['state'] in ('queued', 'running'):
-                    return {'id': job['id'], 'state': job['state'], 'duplicate': True}
+                    return {'id': job['id'], 'state': job['state'], 'duplicate': True, 'next_action':'finish_turn'}
             if len(jobs) >= MAX_JOBS or sum(j['state'] in ('queued', 'running') for j in jobs) >= 2:
                 raise ValueError('Review queue is full; do not launch more jobs')
             job = {'id': secrets.token_hex(8), 'fingerprint': fingerprint, 'state': 'queued',
                    'kind':kind, 'expected_requests':1 if kind=='probe' else 3 if kind=='probe_reviewers' else 16, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
             self.save(job)
             self.pool.submit(self.work, job)
-            return {'id': job['id'], 'state': 'queued', 'message': 'المراجعة في الخلفية؛ سيصلك ملخص عند اكتمالها.'}
+            return {'id': job['id'], 'state': 'queued', 'next_action':'finish_turn', 'message': 'سُجل الطلب في الخلفية؛ أرسل المعرف وأنهِ ردك الآن. لا تقرأ الإعدادات ولا تستعلم الحالة تلقائيًا. ستصل النتيجة للمالك عند الانتهاء.'}
 
     def work(self, job):
         import time
@@ -143,7 +152,7 @@ class Jobs:
         try:
             with self.lock:
                 job['state'] = 'running'; job['phase'] = 'reading_sources'; self.save(job)
-            sources = [] if job.get('kind') in ('probe','probe_reviewers') else self.source_reader({'paths': job['paths']})
+            sources = [] if job.get('kind') in ('probe','probe_reviewers','trial') else self.source_reader({'paths': job['paths']})
             def progress(phase, completed):
                 with self.lock:
                     job.update(phase=phase, completed_requests=completed)
@@ -170,7 +179,7 @@ class Jobs:
                 result='\n'.join(lines)
                 counts={'model_requests':check['completed_requests'],'api_requests':3}
             elif self.runner is run_review:
-                result, counts = self.runner(job['task'], job['context'], sources, progress=progress, observer=observer)
+                result, counts = self.runner(job['task'], job['context'], sources, progress=progress, observer=observer, deadline_seconds=300 if job.get('kind')=='trial' else 900, diagnostic=job.get('kind')=='trial')
             else:
                 progress('independent_review', 0)
                 result, counts = self.runner(job['task'], job['context'], sources)
@@ -216,6 +225,9 @@ class Jobs:
                 if not isinstance(job_id, str) or not re.fullmatch('[0-9a-f]{16}', job_id):
                     raise ValueError('Invalid task id')
                 jobs = [j for j in jobs if j['id'] == job_id]
+                if not jobs:
+                    return [{'id':job_id,'state':'not_found','next_action':'finish_turn',
+                             'message':'لا يوجد سجل لهذا المعرف في التخزين الحالي. قد تختفي سجلات قديمة بعد إعادة التشغيل أو النشر. لا تبحث في ملفات أخرى ولا تستنتج مشكلة مفاتيح أو مزوّد؛ أخبر المالك وأنهِ الرد.'}]
             return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location','kind','expected_requests','counts','request_timings','runtime_seconds')} for j in jobs]
 
 class Handler(BaseHTTPRequestHandler):
@@ -238,6 +250,8 @@ class Handler(BaseHTTPRequestHandler):
                 answer = self.jobs.status(params)
             elif self.path == '/diagnostics':
                 answer = diagnostics()
+            elif self.path == '/trial':
+                answer = self.jobs.submit({},kind='trial')
             elif self.path == '/probe_reviewers':
                 answer = self.jobs.submit({},kind='probe_reviewers')
             elif self.path == '/probe':
@@ -257,7 +271,7 @@ def main():
         ThreadingHTTPServer(('127.0.0.1', int(os.environ['NOVA_COUNCIL_PORT'])), Handler).serve_forever()
     else:
         operation = sys.argv[1]
-        if operation not in ('submit', 'status', 'diagnostics', 'probe', 'probe_reviewers'):
+        if operation not in ('submit', 'status', 'diagnostics', 'probe', 'probe_reviewers', 'trial'):
             raise ValueError('Unsupported operation')
         with open(os.environ['OPENCRABS_PARAMS']) as handle:
             params = json.load(handle)

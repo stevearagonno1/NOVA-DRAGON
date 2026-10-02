@@ -166,11 +166,35 @@ class CouncilTests(unittest.TestCase):
         self.assertIn('90 ثانية',answer['result'])
         self.assertNotIn('نجح؛ 90',answer['result'])
 
+    def test_missing_job_is_explicit_and_does_not_launch_search(self):
+        with tempfile.TemporaryDirectory() as d:
+            jobs=council.Jobs(d)
+            answer=jobs.status({'id':'a'*16})[0]
+            self.assertEqual(answer['state'],'not_found')
+            self.assertEqual(answer['next_action'],'finish_turn')
+            self.assertEqual(jobs.all(),[])
+            jobs.pool.shutdown()
+
+    def test_trial_has_no_sources_fixed_task_and_short_deadline(self):
+        with tempfile.TemporaryDirectory() as d, patch.object(council,'run_review',return_value=('summary',{'model_requests':8})) as run, patch.object(council,'snapshot') as sources:
+            jobs=council.Jobs(d,runner=run,sender=lambda text:None,source_reader=sources)
+            q=jobs.submit({'task':'change settings','context':'private input','paths':['README.md']},kind='trial')
+            jobs.pool.shutdown(wait=True)
+            answer=jobs.status({'id':q['id']})[0]
+        sources.assert_not_called()
+        self.assertEqual(run.call_args.args[2],[])
+        self.assertEqual(run.call_args.args[1],'')
+        self.assertNotIn('change settings',run.call_args.args[0])
+        self.assertEqual(run.call_args.kwargs['deadline_seconds'],300)
+        self.assertTrue(run.call_args.kwargs['diagnostic'])
+        self.assertEqual(q['next_action'],'finish_turn')
+        self.assertEqual(answer['state'],'completed')
+
     def test_dynamic_definitions_scoped_and_standalone_unchanged(self):
         plain=tomllib.loads(boot.readonly_tools_text())
         full=tomllib.loads(boot.readonly_tools_text(True))
         self.assertEqual(len(plain['tools']),4)
-        self.assertEqual(len(full['tools']),9)
+        self.assertEqual(len(full['tools']),10)
         for tool in full['tools'][4:]:
             self.assertFalse(tool['requires_approval'])
             self.assertNotIn('{{',tool['command'])

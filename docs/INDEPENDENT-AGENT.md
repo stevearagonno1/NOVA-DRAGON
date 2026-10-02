@@ -391,3 +391,33 @@ group-review dispatch. Status and the single-credential probe remain unchanged.
 Validation:69 local tests pass, including simultaneous identical prompts, selection
 of only first three slots, no retries/fallback, no sources, partial-failure reporting
 and missing-credential refusal without an API call. Live comparison pending.
+
+### Terminal control instructions and genuinely source-free council trial
+
+Three-key probe560f5e6e9070f430 completed with slots1/2/3 at44.51/8.09/44.50seconds.
+All three were accepted. This does not support disabling slot3 solely for the earlier
+role-dependent latency. The main agent then attempted config_manager after the owner
+asked for one probe only; that call was denied. Its claimed lack of an attempt was
+incorrect. Native dynamic tools in pinned OpenCrabs do not expose a configurable
+halts_turn flag; no hard native-tool disable is claimed by this change.
+
+Managed instructions now put terminal control rules before general startup reading:
+submit/probe/trial once, acknowledge ID/state, finish; explicit status once then finish;
+stop/wait means zero tools. No config_manager, shell/session/cron search or suggestion
+workflow around these narrowly scoped control operations. Service submit responses
+include next_action=finish_turn. Missing job IDs return explicit not_found with a
+safe ephemeral-record explanation and finish guidance instead of ambiguous []. These
+are model instructions, not a guarantee against a model attempting a forbidden tool.
+Existing approval gates remain enabled for native/general operations.
+
+`nova_council_trial` is a fixed tiny diagnostic comparing two general report orders.
+It ignores caller task/context/paths, loads no constitution or repository sources,
+uses brief diagnostic reviewer roles, and runs the same validated repeated voting
+pipeline up to3 rounds. It has a shared300-second review deadline with the existing
+in-flight read caveat. It does not test full document-review latency or trading quality.
+Normal nova_council_submit retains complete constitution/source review and900seconds.
+Combined tool count10; standalone4. One active job and all existing safeguards remain.
+
+Validation:71 local tests pass. Added explicit missing-record behavior and verification
+that the diagnostic trial discards caller input, never fetches sources, and selects
+its short deadline. Provider/model compliance and source-free trial are not live tested.

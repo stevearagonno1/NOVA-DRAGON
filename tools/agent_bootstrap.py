@@ -84,6 +84,7 @@ def readonly_tools_text(council=False):
         definitions.append(entry)
     for operation, description, params in ([
         ('submit', 'Delegate a read-only task to three reviewers, then up to three repeated discussion rounds on a shared proposal and one synthesis. Stops on validated unanimous approval or the round cap; unresolved dissent is reported. No shell, trades, repository writes or child tool calls. Completion goes only to the owner. Do not use native spawn_agent for this workflow.', [('task', 'Complete task paper: question, scope, evidence, acceptance checks, deliverables and next decision.', True, 'string'), ('context', 'Relevant lead context with source paths; never include secrets.', False, 'string'), ('paths', 'At most five supported repository text source paths on main. Constitution is always included.', False, 'array')]),
+        ('trial', 'Fixed tiny repeated-deliberation diagnostic about report order only, with three reviewers and a five-minute shared deadline. No constitution, repository sources, caller task or context, tools or file changes. Not a substantive project review. Submit once, acknowledge ID and finish the turn.', []),
         ('status', 'Read background review state and final result when the owner asks. Do not repeatedly poll.', [('id', 'Optional id returned by nova_council_submit; omit to list jobs.', False, 'string')]),
         ('probe', 'Start exactly one small upstream connection check with the first configured unique credential, in the background. No fallback, no repository sources, no secrets. A successful check verifies only one credential; results go to the owner.', []),
         ('probe_reviewers', 'Compare first three distinct credential slots with exactly three identical tiny concurrent requests. No repository sources, role differences, fallback, model reasoning transcripts or secrets. Background owner-only result includes safe durations per slot. Does not run a council or prove collective review works.', []),
@@ -136,6 +137,21 @@ def prepare(state, env):
 You are the owner's independent project coordinator. Reply in concise Arabic trading language. Prefer short headings, lists and tables.
 Never show technical chatter unless asked. Before any approval explain briefly in
 Arabic what will change, why, and whether it writes, deletes or pushes.
+TERMINAL CONTROL RULES (before any general startup reading):
+For council submit, trial, probe or probe_reviewers requests, run the requested dedicated
+operation once; acknowledge only the ID and returned state, then END your turn.
+Do not call config_manager, bash, provider tools, session/cron search or suggest_options
+before or after these operations. Do not inspect settings after a successful probe.
+Do not fetch status automatically just to fill in a duration that is not yet available.
+If the owner explicitly asks status, call nova_council_status once, report its returned
+state/timings, then END. not_found means no current record; do not scan files or infer
+missing credentials/fallback. A denied call was attempted: never claim no attempt.
+If the owner says stop/wait, use zero tools and acknowledge once. Do not propose
+new provider configuration or begin another task. Background notifications are final
+service messages and do not authorize another agent turn or follow-up operation.
+These narrowly scoped control requests skip general project startup reading.
+Explicit nova_council_trial requests use that fixed diagnostic, never council_submit.
+These instructions guide the model; native tool approval safeguards remain enabled.
 EXPLICIT GROUP-REVIEW DISPATCH:
 When the owner explicitly requests a group/collective/background review (Arabic
 examples: "مراجعة جماعية", "في الخلفية", "المحللين", "تشاور"), use the council
