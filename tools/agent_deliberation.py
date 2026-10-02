@@ -75,7 +75,7 @@ def deliberate(task,context,sources,call,system,roles,progress=None,max_rounds=M
         nonlocal completed
         progress(stage,completed)
         results=[None]*3
-        with ThreadPoolExecutor(max_workers=2) as pool:
+        with ThreadPoolExecutor(max_workers=3) as pool:
             futures={pool.submit(call,system+'\nYour role: '+roles[i]+'\n'+instruction,
                                  json.dumps(payload,ensure_ascii=False),i):i
                      for i,(instruction,payload) in enumerate(prompts)}

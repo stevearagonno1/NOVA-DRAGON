@@ -66,17 +66,17 @@ def post_json(url, body, token, timeout=120):
         raise ValueError('Response exceeds limit')
     return json.loads(raw)
 
-def model_call(system, user, slot=0, deadline=None):
+def model_call(system, user, slot=0, deadline=None, observer=None):
     # Fixed preferred credential per role, with bounded fallback to reserve slots.
-    return bounded_text(stream_model_call(system, user, slot=slot, deadline=deadline), 30000, 'Model response')
+    return bounded_text(stream_model_call(system, user, slot=slot, deadline=deadline, observer=observer), 30000, 'Model response')
 
 
-def run_review(task, context, sources, call=model_call, progress=None):
+def run_review(task, context, sources, call=model_call, progress=None, observer=None):
     from agent_deliberation import deliberate
     import time
     deadline=time.monotonic()+900
     def invoke(system, user, slot):
-        return call(system, user, slot=slot, deadline=deadline) if call is model_call else call(system, user)
+        return call(system, user, slot=slot, deadline=deadline, observer=observer) if call is model_call else call(system, user)
     return deliberate(task, context, sources, invoke, SYSTEM, ROLES, progress=progress)
 
 
@@ -136,6 +136,8 @@ class Jobs:
             return {'id': job['id'], 'state': 'queued', 'message': 'المراجعة في الخلفية؛ سيصلك ملخص عند اكتمالها.'}
 
     def work(self, job):
+        import time
+        started=time.monotonic()
         try:
             with self.lock:
                 job['state'] = 'running'; job['phase'] = 'reading_sources'; self.save(job)
@@ -144,13 +146,19 @@ class Jobs:
                 with self.lock:
                     job.update(phase=phase, completed_requests=completed)
                     self.save(job)
+            def observer(event):
+                with self.lock:
+                    entries=job.setdefault('request_timings',[])
+                    if len(entries)<48:
+                        entries.append(dict(event,phase=job.get('phase')))
+                    self.save(job)
             if job.get('kind')=='probe':
                 progress('connection_probe',0)
                 connection = probe_connection()
                 result = 'نجح اختبار اتصال المزوّد بالمفتاح الأول ✅ ووصل رد مكتمل. أُرسل طلب واحد صغير فقط، دون ملفات المشروع. هذا لا يثبت قبول المفاتيح التسعة الأخرى ولا نجاح المراجعة الجماعية الكاملة.'
                 counts = {'model_requests':1, 'tested_credential_slots':[connection['credential_slot']]}
             elif self.runner is run_review:
-                result, counts = self.runner(job['task'], job['context'], sources, progress=progress)
+                result, counts = self.runner(job['task'], job['context'], sources, progress=progress, observer=observer)
             else:
                 progress('independent_review', 0)
                 result, counts = self.runner(job['task'], job['context'], sources)
@@ -172,6 +180,7 @@ class Jobs:
             print('NOVA council blocked job=' + job['id'] + ' phase=' + job.get('phase','unknown') + ' code=' + reason['code'] + ' location=' + location, flush=True)
             job.update(reason_code=reason['code'], error_slot=reason['slot'], error_location=location)
             job.update(state='blocked', error_type=error, result='لم تكتمل المراجعة. توقفت في مرحلة ' + stage + '؛ ' + detail + '؛ اكتمل ' + str(job.get('completed_requests', 0)) + ' من سقف ' + str(job.get('expected_requests',16)) + ' طلبات. لم ينتج الاختبار نتيجة معتمدة.')
+        job['runtime_seconds']=round(time.monotonic()-started,2)
         with self.lock:
             self.save(job)
         try:
@@ -195,7 +204,7 @@ class Jobs:
                 if not isinstance(job_id, str) or not re.fullmatch('[0-9a-f]{16}', job_id):
                     raise ValueError('Invalid task id')
                 jobs = [j for j in jobs if j['id'] == job_id]
-            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location','kind','expected_requests','counts')} for j in jobs]
+            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location','kind','expected_requests','counts','request_timings','runtime_seconds')} for j in jobs]
 
 class Handler(BaseHTTPRequestHandler):
     jobs = None

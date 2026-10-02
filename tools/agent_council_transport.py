@@ -233,7 +233,7 @@ def stream(route, system, user, opener=None, max_tokens=REVIEW_OUTPUT_TOKENS, de
                                   bool(message.get('refusal')))
         return collect_sse(response,deadline=deadline)
 
-def model_call(system, user, slot=0, pool=None, requester=stream, clock=time.monotonic, deadline=None):
+def model_call(system, user, slot=0, pool=None, requester=stream, clock=time.monotonic, deadline=None, observer=None):
     pool=routes() if pool is None else pool
     errors=[]
     for index in candidates(slot,len(pool)):
@@ -244,9 +244,19 @@ def model_call(system, user, slot=0, pool=None, requester=stream, clock=time.mon
         if len(errors)>=3:
             break
         try:
-            result=requester(pool[index],system,user,deadline=deadline) if requester is stream else requester(pool[index],system,user)
-            check_deadline(deadline,clock)
-            return result
+            started=clock(); outcome='failed'; reason=None
+            try:
+                result=requester(pool[index],system,user,deadline=deadline) if requester is stream else requester(pool[index],system,user)
+                check_deadline(deadline,clock)
+                outcome='completed'
+                return result
+            except Exception as exc:
+                reason=safe_reason(exc)['code']
+                raise
+            finally:
+                if observer is not None:
+                    observer({'credential_slot':index+1,'elapsed_seconds':round(max(0,clock()-started),2),
+                              'outcome':outcome,'reason_code':reason})
         except HTTPError as exc:
             if exc.code not in (401,403,408,429,500,502,503,504):
                 raise

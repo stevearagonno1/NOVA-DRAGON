@@ -180,6 +180,22 @@ class StreamTests(unittest.TestCase):
         with self.assertRaises(transport.ReviewDeadlineExceeded):
             transport.collect_sse(io.BytesIO(self.event({'content':'answer'},'stop')),clock=lambda:100,deadline=100)
 
+    def test_attempt_timing_records_only_safe_metadata(self):
+        now=[10]; events=[]
+        def request(*args):now[0]=37;return 'private response body'
+        transport.model_call('private instructions','private input',pool=[{'key':'private-key'}],requester=request,clock=lambda:now[0],observer=events.append)
+        self.assertEqual(events,[{'credential_slot':1,'elapsed_seconds':27,'outcome':'completed','reason_code':None}])
+        self.assertNotIn('private',json.dumps(events))
+
+    def test_failed_attempt_timing_does_not_include_error_body(self):
+        events=[]
+        def request(*args):raise HTTPError('fixed',400,'private-secret',{},None)
+        with self.assertRaises(HTTPError):
+            transport.model_call('s','u',pool=[{'key':'private-key'}],requester=request,clock=lambda:10,observer=events.append)
+        self.assertEqual(len(events),1)
+        self.assertEqual(events[0]['outcome'],'failed')
+        self.assertNotIn('private',json.dumps(events))
+
     def test_connection_probe_has_small_output_and_no_failover(self):
         pool=[{'key':'synthetic-first'},{'key':'synthetic-reserve'}]
         with patch.object(transport,'routes',return_value=pool), patch.object(transport,'stream',return_value='READY') as call:

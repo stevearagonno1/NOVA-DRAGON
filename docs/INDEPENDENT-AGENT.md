@@ -340,3 +340,29 @@ Validation:63 local tests pass, including wrapped structured dissent, malformed,
 truncated and duplicate/multiple objects, existing unanimity safeguards and shared
 deadline checks before send, during streaming and after a late response. No live
 provider trial has validated this change yet.
+
+### Latency diagnosis after shared deadline trial
+
+Live job d66e16defd7acc7d reached the shared deadline with two accepted initial
+reviewer replies. No discussion round completed. This shows the current throughput
+cannot finish this trial within the chosen budget; it does not determine provider
+latency versus retry/input effects without request timings.
+
+Independent reviews and round votes now start all three calls concurrently instead
+of two with the third waiting for a worker. One active job, three rounds, request
+counts, output caps and deadline remain unchanged. Provider limits still apply.
+No throughput guarantee or free-instance load test is claimed.
+
+Every production reviewer attempt now records only credential slot, elapsed seconds,
+completed/failed outcome and enumerated reason code in request_timings, with its phase.
+Status exposes these records (up to48 for16 calls times3 attempts) plus runtime_seconds,
+including blocked jobs. No key, fingerprint, input, output or raw error body is recorded
+in timing metadata. Probe job runtime is recorded; its direct single request does not
+have reviewer attempt records. Runtime excludes queue wait and final notification.
+
+Validation:66 local tests pass. Added a barrier test proving all three initial calls
+can start together and timing tests for success/failure, ensuring metadata excludes
+private input/output/error content. Live latency remains unmeasured by this change.
+Do not repeat the full README review until the single small connection probe runtime
+and subsequent per-attempt timing are available. Updates restart the free ephemeral
+service and old job records can be lost.

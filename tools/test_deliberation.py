@@ -1,5 +1,6 @@
 import json
 import unittest
+import threading
 from agent_deliberation import object_response, deliberate, vote_response, unanimous, DeliberationContractError
 from agent_council_transport import safe_reason
 
@@ -76,6 +77,21 @@ class DeliberationTests(unittest.TestCase):
                '{"outer":{"proposal":"nested"}', '{"proposal":"unfinished']
         for text in cases:
             with self.assertRaises(DeliberationContractError):object_response(text)
+
+    def test_all_three_initial_reviewers_start_together(self):
+        barrier=threading.Barrier(3)
+        def call(system,user,slot):
+            payload=json.loads(user)
+            if slot<3 and 'shared_proposal' not in payload:
+                barrier.wait(timeout=2)
+                return 'finding'
+            if slot==3:return json.dumps({'proposal':'proposal'})
+            if 'shared_proposal' in payload:
+                return json.dumps({'proposal_id':payload['shared_proposal']['proposal_id'],
+                                   'accept_shared_proposal':True,'blocking_objections':[]})
+            return 'summary'
+        _,counts=deliberate('task','',[],call,'rules',['a','b','c'])
+        self.assertTrue(counts['consensus'])
 
     def test_round_cap_cannot_be_bypassed(self):
         for cap in [0,4,True]:
