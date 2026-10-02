@@ -18,6 +18,9 @@ from agent_repo_read import NoRedirect
 LIMIT = 2 * 1024 * 1024
 TOTAL_SECONDS = 600
 IDLE_SECONDS = 90
+# Atria supports integer generation limits through 65,536; reserve enough room
+# for a complete answer while keeping generation explicitly bounded.
+REVIEW_OUTPUT_TOKENS = 16384
 lock = threading.Lock()
 cooldowns = {}
 
@@ -186,7 +189,7 @@ def collect_sse(response, clock=time.monotonic):
         raise StreamIncomplete('No completion marker; partial text is not a finished review')
     return validate_final(''.join(pieces),finish,had_reasoning,refused)
 
-def stream(route, system, user, opener=None, max_tokens=6144):
+def stream(route, system, user, opener=None, max_tokens=REVIEW_OUTPUT_TOKENS):
     opener=opener or build_opener(NoRedirect)
     request=Request(route['base']+'/chat/completions', method='POST',
         headers={'Authorization':'Bearer '+route['key'],'Content-Type':'application/json','Accept':'text/event-stream'},

@@ -45,7 +45,7 @@ class StreamTests(unittest.TestCase):
         out=transport.stream({'base':'https://api.atria-asi.ai/v1','model':'Atria-Dawn-Preview','key':'synthetic'},'rules','task',opener)
         body=json.loads(opener.req.data)
         self.assertTrue(body['stream'])
-        self.assertEqual(body['max_tokens'],6144)
+        self.assertEqual(body['max_tokens'],16384)
         self.assertEqual(out,'ok')
 
     def test_distinct_role_preferences_with_reserve_failover(self):

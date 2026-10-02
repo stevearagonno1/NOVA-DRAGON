@@ -292,3 +292,23 @@ Validation: 58 local tests pass. Added tests cover empty versus reasoning-only o
 content parts, reserve fallback/three-attempt bound, no retry for refusal/filter/length,
 and identical truncated-output rejection in JSON. Root cause of the historical trial
 remains unconfirmed; live verification of the change is pending.
+
+### Reviewer output budget after confirmed truncation
+
+Live job 3b748395c5cb2e6d accepted two initial reviewer completions, then blocked
+on output_limit_reached in credential slot7. No discussion round completed. This
+confirms truncation in that attempt, not a credential failure or zero token usage.
+
+Reviewer generation cap increased from6144 to16384 tokens. Official Atria docs
+https://api.atria-asi.ai/docs, checked2026-10-02, state Chat Completions accepts
+max_tokens or max_completion_tokens with output integer limits1..65536. This cap
+reserves room for completion; it is not a target or a measured usage figure.
+Initial findings are now requested under2400 characters, proposals under1200,
+objections under500 and revisions under1200; these are prompt targets rather than
+claims about provider-enforced character limits. Full evidence and source guards
+remain. Three discussion rounds, concurrency two, transport time/size limits and
+bounded failover remain unchanged. Truncated output still cannot count as success.
+Higher allowed generation may increase quota use and latency; no new paid service.
+
+Validation:58 local tests pass, including request cap16384 and separate probe cap512.
+Live verification remains pending after the automatic Render deployment.
