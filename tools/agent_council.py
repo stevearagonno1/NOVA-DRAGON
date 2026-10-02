@@ -72,28 +72,11 @@ def model_call(system, user, slot=0):
 
 
 def run_review(task, context, sources, call=model_call, progress=None):
-    progress = progress or (lambda stage, completed: None)
-    progress("independent_review", 0)
+    from agent_deliberation import deliberate
     def invoke(system, user, slot):
         return call(system, user, slot=slot) if call is model_call else call(system, user)
-    material = json.dumps({'task_paper': task, 'lead_context': context, 'sources': sources}, ensure_ascii=False)
-    # Only two upstream calls at once, reserving room for the main conversation.
-    with ThreadPoolExecutor(max_workers=2) as pool:
-        futures = {pool.submit(invoke, SYSTEM + '\nYour role: ' + role, material, i): i for i, role in enumerate(ROLES)}
-        findings = [None] * len(ROLES)
-        completed = 0
-        for future in as_completed(futures):
-            findings[futures[future]] = future.result()
-            completed += 1
-            progress("independent_review", completed)
-    shared = json.dumps({'task_paper': task, 'sources': [{'path': s['path'], 'commit': s['commit']} for s in sources],
-                         'reviewer_findings': findings}, ensure_ascii=False)
-    progress("cross_review", 3)
-    critique = invoke(SYSTEM + '\nCross-review all three reports. Resolve disagreements using cited evidence; do not vote or treat consensus as proof.', shared, 3)
-    progress("synthesis", 4)
-    result = invoke(SYSTEM + '\nYou are the coordinating reviewer. Combine the reports and cross-review into one concise Arabic answer for the owner. Keep the final answer under 2500 characters. Use headings, short lists or a table. Explain what is established, what is not measured, the judgment and exactly one next step. Do not expose reviewer dialogue.', shared + '\nCross-review:\n' + critique, 4)
-    progress('completed', 5)
-    return result, {'reviewers': 3, 'cross_reviews': 1, 'syntheses': 1, 'model_requests': 5}
+    return deliberate(task, context, sources, invoke, SYSTEM, ROLES, progress=progress)
+
 
 def notify(text):
     # Owner-only destination, never a model-selected recipient or URL.
@@ -145,7 +128,7 @@ class Jobs:
             if len(jobs) >= MAX_JOBS or sum(j['state'] in ('queued', 'running') for j in jobs) >= 2:
                 raise ValueError('Review queue is full; do not launch more jobs')
             job = {'id': secrets.token_hex(8), 'fingerprint': fingerprint, 'state': 'queued',
-                   'kind':kind, 'expected_requests':1 if kind=='probe' else 5, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
+                   'kind':kind, 'expected_requests':1 if kind=='probe' else 16, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
             self.save(job)
             self.pool.submit(self.work, job)
             return {'id': job['id'], 'state': 'queued', 'message': 'المراجعة في الخلفية؛ سيصلك ملخص عند اكتمالها.'}
@@ -169,10 +152,14 @@ class Jobs:
             else:
                 progress('independent_review', 0)
                 result, counts = self.runner(job['task'], job['context'], sources)
-            job.update(state='completed', phase='completed', completed_requests=job.get('expected_requests',5), result=redact(result), sources=[{k:s[k] for k in ('path','commit','blob_sha')} for s in sources], counts=counts)
+            job.update(state='completed', phase='completed', completed_requests=counts.get('model_requests',job.get('expected_requests',16)), result=redact(result), sources=[{k:s[k] for k in ('path','commit','blob_sha')} for s in sources], counts=counts)
         except Exception as exc:
             phase_labels = {'reading_sources': 'قراءة المصادر', 'independent_review': 'تحليل المراجعين', 'cross_review': 'المراجعة المتبادلة', 'synthesis': 'جمع التوصية', 'connection_probe':'اختبار الاتصال الأول'}
             stage = phase_labels.get(job.get('phase'), 'المراجعة')
+            if job.get('phase','').startswith('discussion_round_'):
+                stage = 'جولة التشاور ' + job['phase'].rsplit('_',1)[-1]
+            elif job.get('phase','').startswith('proposal_round_'):
+                stage = 'صياغة الاقتراح المشترك ' + job['phase'].rsplit('_',1)[-1]
             error = type(exc).__name__ + (' HTTP ' + str(exc.code) if isinstance(exc, HTTPError) else '')
             reason = safe_reason(exc)
             frame = traceback.extract_tb(exc.__traceback__)[-1] if exc.__traceback__ else None
@@ -182,7 +169,7 @@ class Jobs:
                 detail += ' (الخانة ' + str(reason['slot']) + ')'
             print('NOVA council blocked job=' + job['id'] + ' phase=' + job.get('phase','unknown') + ' code=' + reason['code'] + ' location=' + location, flush=True)
             job.update(reason_code=reason['code'], error_slot=reason['slot'], error_location=location)
-            job.update(state='blocked', error_type=error, result='لم تكتمل المراجعة. توقفت في مرحلة ' + stage + '؛ ' + detail + '؛ اكتمل ' + str(job.get('completed_requests', 0)) + ' من ' + str(job.get('expected_requests',5)) + ' طلبات. لم ينتج الاختبار نتيجة معتمدة.')
+            job.update(state='blocked', error_type=error, result='لم تكتمل المراجعة. توقفت في مرحلة ' + stage + '؛ ' + detail + '؛ اكتمل ' + str(job.get('completed_requests', 0)) + ' من سقف ' + str(job.get('expected_requests',16)) + ' طلبات. لم ينتج الاختبار نتيجة معتمدة.')
         with self.lock:
             self.save(job)
         try:
@@ -206,7 +193,7 @@ class Jobs:
                 if not isinstance(job_id, str) or not re.fullmatch('[0-9a-f]{16}', job_id):
                     raise ValueError('Invalid task id')
                 jobs = [j for j in jobs if j['id'] == job_id]
-            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location','kind','expected_requests')} for j in jobs]
+            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location','kind','expected_requests','counts')} for j in jobs]
 
 class Handler(BaseHTTPRequestHandler):
     jobs = None

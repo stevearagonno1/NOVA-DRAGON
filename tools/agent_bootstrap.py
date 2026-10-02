@@ -83,7 +83,7 @@ def readonly_tools_text(council=False):
             entry += f'[[tools.params]]\nname = {q(name)}\ntype = "string"\ndescription = {q(desc)}\nrequired = {str(required).lower()}\n'
         definitions.append(entry)
     for operation, description, params in ([
-        ('submit', 'Delegate a complex read-only research task to three background reviewers, cross-review and one synthesis. No shell, trades, repository writes or child tool calls. Completion goes only to the owner. Do not use native spawn_agent for this workflow.', [('task', 'Complete task paper: question, scope, evidence, acceptance checks, deliverables and next decision.', True, 'string'), ('context', 'Relevant lead context with source paths; never include secrets.', False, 'string'), ('paths', 'At most five supported repository text source paths on main. Constitution is always included.', False, 'array')]),
+        ('submit', 'Delegate a read-only task to three reviewers, then up to three repeated discussion rounds on a shared proposal and one synthesis. Stops on validated unanimous approval or the round cap; unresolved dissent is reported. No shell, trades, repository writes or child tool calls. Completion goes only to the owner. Do not use native spawn_agent for this workflow.', [('task', 'Complete task paper: question, scope, evidence, acceptance checks, deliverables and next decision.', True, 'string'), ('context', 'Relevant lead context with source paths; never include secrets.', False, 'string'), ('paths', 'At most five supported repository text source paths on main. Constitution is always included.', False, 'array')]),
         ('status', 'Read background review state and final result when the owner asks. Do not repeatedly poll.', [('id', 'Optional id returned by nova_council_submit; omit to list jobs.', False, 'string')]),
         ('probe', 'Start exactly one small upstream connection check with the first configured unique credential, in the background. No fallback, no repository sources, no secrets. A successful check verifies only one credential; results go to the owner.', []),
         ('diagnostics', 'Check the background review endpoint/model and count unique configured credentials locally. No API calls, no secret values, no provider acceptance claim. Use this instead of config_manager when diagnosing council setup.', []),
@@ -178,7 +178,10 @@ deliverables and next decision. Include constitution constraints; no scope widen
 Use one submission for the whole task, not one per paragraph. Supply selected main
 text source paths and relevant local pending facts with provenance in context.
 The council reads a pinned main snapshot and runs independent analysis, cross-review
-and synthesis. It has NO shell, trading, file mutation or experiment execution.
+and up to three discussion rounds followed by synthesis. Each reviewer sees the
+others' reports and previous votes. Stop on unanimous approval of the exact shared
+proposal; if disagreement remains at the cap, report it honestly rather than force
+agreement. Consensus is not proof. It has NO shell, trading, file mutation or experiment execution.
 For actual long numeric experiments prepare an executor paper; do not claim the
 council performed measurements. Render Free is not a heavy compute worker.
 The background service sends the single final review directly to the owner. Do not

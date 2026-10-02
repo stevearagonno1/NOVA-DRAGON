@@ -11,18 +11,30 @@ import agent_bootstrap as boot
 SOURCES = [{'path':'CONSTITUTION.md','commit':'a'*40,'blob_sha':'b'*40,'content':'rules'}]
 
 class CouncilTests(unittest.TestCase):
-    def test_bounded_three_reviewers_cross_review_and_synthesis(self):
+    @staticmethod
+    def agreed_call(system, user):
+        payload=json.loads(user)
+        if 'Moderate the shared decision' in system:
+            return json.dumps({'proposal':'One evidence-backed scoped improvement'})
+        if 'shared_proposal' in payload:
+            return json.dumps({'proposal_id':payload['shared_proposal']['proposal_id'],
+                               'accept_shared_proposal':True,'blocking_objections':[],'revision':''})
+        return 'تقرير مدعوم بالمصدر'
+
+    def test_bounded_three_reviewers_discussion_and_synthesis(self):
         calls = []
         def fake(system, user):
             calls.append((system,user))
-            return 'تقرير مدعوم بالمصدر'
+            return self.agreed_call(system,user)
         result, counts = council.run_review('Task paper', 'source facts', SOURCES, fake)
-        self.assertEqual(len(calls), 5)
+        self.assertEqual(len(calls), 8)
         self.assertEqual(counts['reviewers'], 3)
+        self.assertEqual(counts['discussion_rounds'],1)
+        self.assertTrue(counts['consensus'])
         self.assertIn('reviewer_findings', calls[3][1])
-        self.assertIn('Cross-review:', calls[4][1])
+        self.assertIn('outcome', calls[-1][1])
         self.assertIn('No trades', calls[0][0])
-        self.assertEqual(result, 'تقرير مدعوم بالمصدر')
+        self.assertIn('اتفق المراجعون الثلاثة', result)
 
     def test_independent_job_completion_and_owner_notification(self):
         sent = []
@@ -69,84 +81,83 @@ class CouncilTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             jobs=council.Jobs(d, runner=lambda *args:(_ for _ in ()).throw(RuntimeError('secret')), sender=sent.append, source_reader=lambda p:SOURCES)
             q=jobs.submit({'task':'task'})
-            j…1796 tokens truncated…=transport.stream({'base':'https://api.atria-asi.ai/v1','model':'Atria-Dawn-Preview','key':'synthetic'},'rules','task',opener)
-        body=json.loads(opener.req.data)
-        self.assertTrue(body['stream'])
-        self.assertEqual(body['max_tokens'],6144)
-        self.assertEqual(out,'ok')
+            jobs.pool.shutdown(wait=True)
+            answer=jobs.status({'id':q['id']})[0]
+            self.assertEqual(answer['state'],'blocked')
+            self.assertNotIn('secret',answer['result'])
+            self.assertNotIn('اكتملت',sent[0])
 
-    def test_distinct_role_preferences_with_reserve_failover(self):
-        pool=[{'key':'synthetic-'+str(i)} for i in range(10)]
-        selected=[]
-        def request(route,*args): selected.append(route['key']); return 'done'
-        for slot in range(5):
-            transport.model_call('rules','task',slot,pool,request)
-        self.assertEqual(selected,[r['key'] for r in pool[:5]])
-        selected=[]
-        def failure(route,*args):
-            selected.append(route['key'])
-            if route is pool[0]:
-                raise HTTPError('fixed',429,'quota',{'Retry-After':'120'},None)
-            return 'done'
-        self.assertEqual(transport.model_call('rules','task',0,pool,failure,clock=lambda:100),'done')
-        self.assertEqual(selected,[pool[0]['key'],pool[5]['key']])
-        self.assertGreaterEqual(transport.cooldowns[0],220)
-
-    def test_attempts_bounded_and_nonretryable_errors_not_rotated(self):
-        pool=[{'key':str(i)} for i in range(10)]; calls=[]
-        def request(route,*args):
-            calls.append(route); raise transport.StreamStartTimeout()
-        with self.assertRaises(transport.StreamStartTimeout):
-            transport.model_call('rules','task',0,pool,request)
-        self.assertEqual(len(calls),3)
-        transport.cooldowns.clear(); calls=[]
-        def bad(route,*args):
-            calls.append(route); raise HTTPError('fixed',400,'invalid',{},None)
-        with self.assertRaises(HTTPError):
-            transport.model_call('rules','task',0,pool,bad)
-        self.assertEqual(len(calls),1)
-
-    def test_route_file_only_uses_existing_validated_endpoint_and_unique_keys(self):
-        def entry(key): return {'model_name':'opencrabs-model','litellm_params':{'model':'openai/Atria-Dawn-Preview','api_base':'https://api.atria-asi.ai/v1','api_key':key}}
-        env={'TOKEN_1':'synthetic-one','TOKEN_2':'synthetic-two'}
-        routes=transport.configured_routes({'model_list':[entry('os.environ/TOKEN_1'),entry('os.environ/TOKEN_2'),entry('synthetic-one')]},env)
-        self.assertEqual(len(routes),2)
-        bad=entry('synthetic'); bad['litellm_params']['api_base']='https://other.test/v1'
+    def test_snapshot_pinned_and_hidden_paths_denied(self):
+        with patch.object(council,'get',return_value={'sha':'a'*40}), patch.object(council,'fetch_file',side_effect=lambda p,c:{'path':p,'commit':c,'content':'source'}) as fetch:
+            sources=council.snapshot({'paths':['README.md']})
+            self.assertEqual(len(sources),2)
+            self.assertTrue(all(s['commit']=='a'*40 for s in sources))
         with self.assertRaises(ValueError):
-            transport.configured_routes({'model_list':[bad]},env)
+            council.snapshot({'paths':['keys.toml']})
 
-    def test_diagnostics_reports_count_without_keys_or_api_calls(self):
-        with patch.object(transport,'routes',return_value=[{'key':'private-'+str(i)} for i in range(10)]), patch.object(transport,'stream') as request:
-            result=transport.diagnostics()
-        self.assertEqual(result['unique_credentials'],10)
-        self.assertEqual(result['api_requests_made'],0)
-        self.assertFalse(result['provider_acceptance_verified'])
-        self.assertNotIn('private',json.dumps(result))
-        request.assert_not_called()
+    def test_review_uses_stream_transport_and_fixed_slot(self):
+        with patch.object(council, 'stream_model_call', return_value='result') as stream:
+            self.assertEqual(council.model_call('rules','task',slot=2), 'result')
+        self.assertEqual(stream.call_args.kwargs['slot'], 2)
 
-    def test_configuration_errors_report_slot_without_secret_value(self):
-        entry={'model_name':'opencrabs-model','litellm_params':{'model':'openai/Atria-Dawn-Preview','api_base':'https://api.atria-asi.ai/v1','api_key':'private\ninvalid'}}
-        with self.assertRaises(transport.TransportConfigurationError) as caught:
-            transport.configured_routes({'model_list':[entry]}, {})
-        reason=transport.safe_reason(caught.exception)
-        self.assertEqual(reason,{'code':'credential_invalid_format','slot':1})
-        with patch.object(transport,'routes',side_effect=caught.exception):
-            result=transport.diagnostics()
-        self.assertFalse(result['configuration_valid'])
-        self.assertNotIn('private',json.dumps(result))
+    def test_phase_progress_covers_first_round_consensus(self):
+        updates = []
+        council.run_review('task', '', SOURCES, call=self.agreed_call, progress=lambda phase,count:updates.append((phase,count)))
+        self.assertEqual(updates[0], ('independent_review',0))
+        self.assertIn(('proposal_round_1',3),updates)
+        self.assertIn(('discussion_round_1',4),updates)
+        self.assertEqual(updates[-2:], [('synthesis',7),('completed',8)])
 
-    def test_unexpected_error_message_cannot_disclose_header_token(self):
-        reason=transport.safe_reason(ValueError('Invalid header containing private-secret'))
-        self.assertEqual(reason['code'],'ValueError')
-        self.assertNotIn('private-secret',json.dumps(reason))
+    def test_timeout_reports_stage_and_completed_count(self):
+        with tempfile.TemporaryDirectory() as d:
+            jobs=council.Jobs(d, sender=lambda text:None, source_reader=lambda p:SOURCES)
+            with patch.object(council, 'model_call', side_effect=TimeoutError):
+                # Bind mock explicitly because run_review's callable default is bound at import.
+                def failing(task,context,sources):
+                    raise TimeoutError()
+                jobs.runner=failing
+                q=jobs.submit({'task':'task'})
+                jobs.pool.shutdown(wait=True)
+            answer=jobs.status({'id':q['id']})[0]
+            self.assertEqual(answer['state'],'blocked')
+            self.assertEqual(answer['phase'],'independent_review')
+            self.assertEqual(answer['completed_requests'],0)
+            self.assertEqual(answer['error_type'],'TimeoutError')
+            self.assertIn('تحليل المراجعين',answer['result'])
 
-    def test_connection_probe_has_small_output_and_no_failover(self):
-        pool=[{'key':'synthetic-first'},{'key':'synthetic-reserve'}]
-        with patch.object(transport,'routes',return_value=pool), patch.object(transport,'stream',return_value='READY') as call:
-            result=transport.probe_connection()
-        call.assert_called_once()
-        self.assertEqual(call.call_args.args[0],pool[0])
-        self.assertEqual(call.call_args.kwargs['max_tokens'],512)
-        self.assertEqual(result['api_requests'],1)
+    def test_bootstrap_explicit_group_request_overrides_solo_short_task_rule(self):
+        env={'TELEGRAM_BOT_TOKEN':'synthetic-test-token','TELEGRAM_OWNER_ID':'12345','GITHUB_TOKEN':'synthetic-gh-token','LITELLM_API_KEY':'synthetic-key','NOVA_COUNCIL_PORT':'8090'}
+        with tempfile.TemporaryDirectory() as d, patch.object(boot,'run'), patch.dict(boot.os.environ):
+            state=Path(d); (state/'repo/.git/hooks').mkdir(parents=True)
+            boot.prepare(state,env)
+            policy=(state/'opencrabs/AGENTS.md').read_text()
+            tools=tomllib.loads((state/'opencrabs/tools.toml').read_text())
+        self.assertLess(policy.index('EXPLICIT GROUP-REVIEW DISPATCH'), policy.index('At the start of a new conversation'))
+        self.assertIn('regardless of whether the task is short',policy)
+        self.assertIn('Do not inspect providers',policy)
+        self.assertIn('nova_council_submit',[t['name'] for t in tools['tools']])
 
-if __name__=='__main__': unittest.main()
+    def test_connection_probe_uses_one_request_and_never_loads_repository_sources(self):
+        with tempfile.TemporaryDirectory() as d, patch.object(council,'probe_connection',return_value={'credential_slot':1,'api_requests':1}) as probe:
+            with patch.object(council,'snapshot') as snapshot:
+                jobs=council.Jobs(d,sender=lambda text:None,source_reader=snapshot)
+                q=jobs.submit({},kind='probe')
+                jobs.pool.shutdown(wait=True)
+                answer=jobs.status({'id':q['id']})[0]
+        probe.assert_called_once(); snapshot.assert_not_called()
+        self.assertEqual(answer['completed_requests'],1)
+        self.assertEqual(answer['expected_requests'],1)
+        self.assertEqual(answer['state'],'completed')
+        self.assertIn('التسعة الأخرى',answer['result'])
+
+    def test_dynamic_definitions_scoped_and_standalone_unchanged(self):
+        plain=tomllib.loads(boot.readonly_tools_text())
+        full=tomllib.loads(boot.readonly_tools_text(True))
+        self.assertEqual(len(plain['tools']),4)
+        self.assertEqual(len(full['tools']),8)
+        for tool in full['tools'][4:]:
+            self.assertFalse(tool['requires_approval'])
+            self.assertNotIn('{{',tool['command'])
+
+if __name__=='__main__':
+    unittest.main()

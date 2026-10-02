@@ -48,9 +48,12 @@ def safe_reason(exc):
         'Stream exceeds its size limit': 'stream_size_limit',
         'Only private reasoning was returned': 'only_reasoning_no_answer',
     }
+    if type(exc).__name__ == 'DeliberationContractError':
+        return {'code':'deliberation_invalid_response','slot':None}
     return {'code': known.get(str(exc), type(exc).__name__), 'slot': None}
 
 REASON_AR = {
+    'deliberation_invalid_response': 'لم يصل اقتراح أو تصويت صالح؛ لا يمكن اعتماد اتفاق جماعي',
     'endpoint_mismatch': 'عنوان اتصال المراجعين لا يطابق عنوان المزوّد المعتمد',
     'model_mismatch': 'اسم النموذج في اتصال المراجعين غير مطابق',
     'credential_missing': 'مفتاح أحد المراجعين غير موجود',

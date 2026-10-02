@@ -241,3 +241,34 @@ neither acceptance of the other nine credentials nor completion of a collective 
 Use after local diagnostics are valid, before another full review trial. Probe failures
 include the safe reason/location and expected/completed request count1. Raw model
 probe text and credentials are not delivered to the owner.
+
+### Repeated deliberation (prepared on isolated agent branch)
+
+Supersedes the earlier single cross-review stage. Three independent reviewers first
+read the same pinned source snapshot. A moderator creates one exact shared proposal;
+all three reviewers then see every initial report, the proposal and previous votes.
+Each returns a structured vote and any blocking objections. Later rounds revise the
+proposal against those objections; reviewers are explicitly allowed to dissent.
+The application validates the proposal identifier, boolean approval and empty blocking
+objections for all three votes. A majority, prose claim of agreement, malformed vote,
+or approval with a blocking objection cannot count as unanimous consensus.
+
+Stop at validated unanimity or after three rounds. Persistent dissent is reported as
+no final collective decision, rather than forcing agreement. Consensus is not evidence
+of empirical correctness and does not replace measurement. One final Arabic summary
+is delivered; full reviewer transcripts are not sent to Telegram. Three reviewers use
+separate preferred credential slots; ten available keys do not create ten reviewers.
+Existing bounded failover remains available, subject to provider account limits.
+
+First-round unanimity uses eight completed model calls; three rounds use sixteen.
+These are logical model calls, not HTTP attempt counts: failover may add bounded
+attempts. Additional rounds consume more quota and time. No additional paid service
+is introduced, and no free quota guarantee is made. Only one job runs at a time.
+Read-only review scope and existing source/secret guards are retained.
+
+Prepared on agent/deliberation-2026-10-02 without moving the deployed branch, so the
+ongoing live review is not interrupted by an automatic Render restart. Activating
+this branch requires a later deployment after that review reaches a terminal state.
+Validation: 53 local tests pass, including early unanimity, second-round objection
+sharing, persistent dissent, invalid votes and maximum round bounds. This is local
+validation; repeated deliberation has not yet been tested with the live provider.
