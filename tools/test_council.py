@@ -112,6 +112,18 @@ class CouncilTests(unittest.TestCase):
             self.assertEqual(answer['error_type'],'TimeoutError')
             self.assertIn('تحليل المراجعين',answer['result'])
 
+    def test_bootstrap_explicit_group_request_overrides_solo_short_task_rule(self):
+        env={'TELEGRAM_BOT_TOKEN':'synthetic-test-token','TELEGRAM_OWNER_ID':'12345','GITHUB_TOKEN':'synthetic-gh-token','LITELLM_API_KEY':'synthetic-key','NOVA_COUNCIL_PORT':'8090'}
+        with tempfile.TemporaryDirectory() as d, patch.object(boot,'run'), patch.dict(boot.os.environ):
+            state=Path(d); (state/'repo/.git/hooks').mkdir(parents=True)
+            boot.prepare(state,env)
+            policy=(state/'opencrabs/AGENTS.md').read_text()
+            tools=tomllib.loads((state/'opencrabs/tools.toml').read_text())
+        self.assertLess(policy.index('EXPLICIT GROUP-REVIEW DISPATCH'), policy.index('At the start of a new conversation'))
+        self.assertIn('regardless of whether the task is short',policy)
+        self.assertIn('Do not inspect providers',policy)
+        self.assertIn('nova_council_submit',[t['name'] for t in tools['tools']])
+
     def test_dynamic_definitions_scoped_and_standalone_unchanged(self):
         plain=tomllib.loads(boot.readonly_tools_text())
         full=tomllib.loads(boot.readonly_tools_text(True))
