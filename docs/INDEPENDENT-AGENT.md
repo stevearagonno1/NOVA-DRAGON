@@ -174,3 +174,15 @@ completion remain unmeasured until deployed/tested; no keys were used in local t
 References: https://docs.litellm.ai/docs/routing ·
 https://github.com/adolfousier/opencrabs/blob/v0.5.4/src/brain/tools/subagent/spawn.rs ·
 https://github.com/adolfousier/opencrabs/blob/v0.5.4/src/channels/telegram/stream_loop.rs
+
+### Timeout correction after the first Telegram trial
+
+The initial trial started a real council job but reported TimeoutError, not a
+completed review. The original message did not identify the phase, so its exact
+source remains undetermined. Council model HTTP waits now allow 360 seconds
+(previously120), covering more gateway retry latency. Source fetching keeps its
+existing25-second per-read bound. Phase and completed-request counters are stored
+and exposed in nova_council_status; blocked notices name the stage and safe HTTP
+code where present. This is diagnostic visibility, not proof that latency is fixed.
+The parent should finish its turn promptly after submission and avoid stale running
+claims or unrelated config_manager inspection. A small deployment retest is required.

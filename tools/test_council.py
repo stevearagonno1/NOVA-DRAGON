@@ -83,6 +83,35 @@ class CouncilTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             council.snapshot({'paths':['keys.toml']})
 
+    def test_model_wait_exceeds_gateway_retry_window(self):
+        env = {'LITELLM_BASE_URL':'http://127.0.0.1:10000/v1', 'LITELLM_API_KEY':'synthetic-key'}
+        with patch.dict(council.os.environ, env), patch.object(council, 'post_json', return_value={'choices':[{'message':{'content':'result'}}]}) as post:
+            self.assertEqual(council.model_call('rules','task'), 'result')
+        self.assertEqual(post.call_args.kwargs['timeout'], 360)
+
+    def test_phase_progress_covers_all_five_requests(self):
+        updates = []
+        council.run_review('task', '', SOURCES, call=lambda *args:'findings', progress=lambda phase,count:updates.append((phase,count)))
+        self.assertEqual(updates[0], ('independent_review',0))
+        self.assertEqual(updates[-3:], [('cross_review',3),('synthesis',4),('completed',5)])
+
+    def test_timeout_reports_stage_and_completed_count(self):
+        with tempfile.TemporaryDirectory() as d:
+            jobs=council.Jobs(d, sender=lambda text:None, source_reader=lambda p:SOURCES)
+            with patch.object(council, 'model_call', side_effect=TimeoutError):
+                # Bind mock explicitly because run_review's callable default is bound at import.
+                def failing(task,context,sources):
+                    raise TimeoutError()
+                jobs.runner=failing
+                q=jobs.submit({'task':'task'})
+                jobs.pool.shutdown(wait=True)
+            answer=jobs.status({'id':q['id']})[0]
+            self.assertEqual(answer['state'],'blocked')
+            self.assertEqual(answer['phase'],'independent_review')
+            self.assertEqual(answer['completed_requests'],0)
+            self.assertEqual(answer['error_type'],'TimeoutError')
+            self.assertIn('تحليل المراجعين',answer['result'])
+
     def test_dynamic_definitions_scoped_and_standalone_unchanged(self):
         plain=tomllib.loads(boot.readonly_tools_text())
         full=tomllib.loads(boot.readonly_tools_text(True))

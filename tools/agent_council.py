@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """Bounded background review service: no shell, writes to repo, trading or agent tools."""
 import base64
-from concurrent.futures import ThreadPoolExecutor
+from concurrent.futures import ThreadPoolExecutor, as_completed
 import hashlib
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 import json
@@ -70,20 +70,30 @@ def model_call(system, user):
     answer = post_json(base + '/chat/completions', {
         'model': os.environ.get('AGENT_MODEL', 'opencrabs-model'),
         'messages': [{'role': 'system', 'content': system}, {'role': 'user', 'content': user}],
-        'max_tokens': 1800, 'stream': False}, os.environ['LITELLM_API_KEY'])
+        'max_tokens': 1800, 'stream': False}, os.environ['LITELLM_API_KEY'], timeout=360)
     content = answer['choices'][0]['message'].get('content')
     return bounded_text(content, 16000, 'Model response')
 
-def run_review(task, context, sources, call=model_call):
+def run_review(task, context, sources, call=model_call, progress=None):
+    progress = progress or (lambda stage, completed: None)
+    progress("independent_review", 0)
     material = json.dumps({'task_paper': task, 'lead_context': context, 'sources': sources}, ensure_ascii=False)
     # Only two upstream calls at once, reserving room for the main conversation.
     with ThreadPoolExecutor(max_workers=2) as pool:
-        futures = [pool.submit(call, SYSTEM + '\nYour role: ' + role, material) for role in ROLES]
-        findings = [f.result() for f in futures]
+        futures = {pool.submit(call, SYSTEM + '\nYour role: ' + role, material): i for i, role in enumerate(ROLES)}
+        findings = [None] * len(ROLES)
+        completed = 0
+        for future in as_completed(futures):
+            findings[futures[future]] = future.result()
+            completed += 1
+            progress("independent_review", completed)
     shared = json.dumps({'task_paper': task, 'sources': [{'path': s['path'], 'commit': s['commit']} for s in sources],
                          'reviewer_findings': findings}, ensure_ascii=False)
+    progress("cross_review", 3)
     critique = call(SYSTEM + '\nCross-review all three reports. Resolve disagreements using cited evidence; do not vote or treat consensus as proof.', shared)
+    progress("synthesis", 4)
     result = call(SYSTEM + '\nYou are the coordinating reviewer. Combine the reports and cross-review into one concise Arabic answer for the owner. Keep the final answer under 2500 characters. Use headings, short lists or a table. Explain what is established, what is not measured, the judgment and exactly one next step. Do not expose reviewer dialogue.', shared + '\nCross-review:\n' + critique)
+    progress('completed', 5)
     return result, {'reviewers': 3, 'cross_reviews': 1, 'syntheses': 1, 'model_requests': 5}
 
 def notify(text):
@@ -134,7 +144,7 @@ class Jobs:
             if len(jobs) >= MAX_JOBS or sum(j['state'] in ('queued', 'running') for j in jobs) >= 2:
                 raise ValueError('Review queue is full; do not launch more jobs')
             job = {'id': secrets.token_hex(8), 'fingerprint': fingerprint, 'state': 'queued',
-                   'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending'}
+                   'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
             self.save(job)
             self.pool.submit(self.work, job)
             return {'id': job['id'], 'state': 'queued', 'message': 'المراجعة في الخلفية؛ سيصلك ملخص عند اكتمالها.'}
@@ -142,12 +152,23 @@ class Jobs:
     def work(self, job):
         try:
             with self.lock:
-                job['state'] = 'running'; self.save(job)
+                job['state'] = 'running'; job['phase'] = 'reading_sources'; self.save(job)
             sources = self.source_reader({'paths': job['paths']})
-            result, counts = self.runner(job['task'], job['context'], sources)
-            job.update(state='completed', result=redact(result), sources=[{k:s[k] for k in ('path','commit','blob_sha')} for s in sources], counts=counts)
+            def progress(phase, completed):
+                with self.lock:
+                    job.update(phase=phase, completed_requests=completed)
+                    self.save(job)
+            if self.runner is run_review:
+                result, counts = self.runner(job['task'], job['context'], sources, progress=progress)
+            else:
+                progress('independent_review', 0)
+                result, counts = self.runner(job['task'], job['context'], sources)
+            job.update(state='completed', phase='completed', completed_requests=5, result=redact(result), sources=[{k:s[k] for k in ('path','commit','blob_sha')} for s in sources], counts=counts)
         except Exception as exc:
-            job.update(state='blocked', result='لم تكتمل المراجعة. توقفت بسبب ' + type(exc).__name__ + '؛ لا توجد نتيجة معتمدة. يمكنك طلب حالة المهمة.')
+            phase_labels = {'reading_sources': 'قراءة المصادر', 'independent_review': 'تحليل المراجعين', 'cross_review': 'المراجعة المتبادلة', 'synthesis': 'جمع التوصية'}
+            stage = phase_labels.get(job.get('phase'), 'المراجعة')
+            error = type(exc).__name__ + (' HTTP ' + str(exc.code) if isinstance(exc, HTTPError) else '')
+            job.update(state='blocked', error_type=error, result='لم تكتمل المراجعة. توقفت في مرحلة ' + stage + ' بسبب ' + error + '؛ اكتمل ' + str(job.get('completed_requests', 0)) + ' من 5 طلبات. لا توجد توصية جماعية معتمدة.')
         with self.lock:
             self.save(job)
         try:
@@ -168,7 +189,7 @@ class Jobs:
                 if not isinstance(job_id, str) or not re.fullmatch('[0-9a-f]{16}', job_id):
                     raise ValueError('Invalid task id')
                 jobs = [j for j in jobs if j['id'] == job_id]
-            return [{k:j[k] for k in ('id','state','result','notification')} for j in jobs]
+            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type')} for j in jobs]
 
 class Handler(BaseHTTPRequestHandler):
     jobs = None
