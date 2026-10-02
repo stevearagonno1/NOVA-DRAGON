@@ -66,15 +66,17 @@ def post_json(url, body, token, timeout=120):
         raise ValueError('Response exceeds limit')
     return json.loads(raw)
 
-def model_call(system, user, slot=0):
+def model_call(system, user, slot=0, deadline=None):
     # Fixed preferred credential per role, with bounded fallback to reserve slots.
-    return bounded_text(stream_model_call(system, user, slot=slot), 30000, 'Model response')
+    return bounded_text(stream_model_call(system, user, slot=slot, deadline=deadline), 30000, 'Model response')
 
 
 def run_review(task, context, sources, call=model_call, progress=None):
     from agent_deliberation import deliberate
+    import time
+    deadline=time.monotonic()+900
     def invoke(system, user, slot):
-        return call(system, user, slot=slot) if call is model_call else call(system, user)
+        return call(system, user, slot=slot, deadline=deadline) if call is model_call else call(system, user)
     return deliberate(task, context, sources, invoke, SYSTEM, ROLES, progress=progress)
 
 

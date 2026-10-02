@@ -164,6 +164,22 @@ class StreamTests(unittest.TestCase):
             transport.stream({'base':'https://api.atria-asi.ai/v1','model':'Atria-Dawn-Preview','key':'synthetic'},'s','u',Opener())
         self.assertEqual(caught.exception.code,'output_limit_reached')
 
+    def test_expired_job_deadline_never_sends_another_request(self):
+        calls=[]
+        with self.assertRaises(transport.ReviewDeadlineExceeded):
+            transport.model_call('s','u',pool=[{'key':'synthetic'}],requester=lambda *args:calls.append(args),clock=lambda:100,deadline=100)
+        self.assertEqual(calls,[])
+
+    def test_result_arriving_after_deadline_is_not_accepted(self):
+        now=[10]
+        def request(*args):now[0]=101;return 'late answer'
+        with self.assertRaises(transport.ReviewDeadlineExceeded):
+            transport.model_call('s','u',pool=[{'key':'synthetic'}],requester=request,clock=lambda:now[0],deadline=100)
+
+    def test_stream_checks_shared_deadline(self):
+        with self.assertRaises(transport.ReviewDeadlineExceeded):
+            transport.collect_sse(io.BytesIO(self.event({'content':'answer'},'stop')),clock=lambda:100,deadline=100)
+
     def test_connection_probe_has_small_output_and_no_failover(self):
         pool=[{'key':'synthetic-first'},{'key':'synthetic-reserve'}]
         with patch.object(transport,'routes',return_value=pool), patch.object(transport,'stream',return_value='READY') as call:

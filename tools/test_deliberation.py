@@ -1,6 +1,6 @@
 import json
 import unittest
-from agent_deliberation import deliberate, vote_response, unanimous, DeliberationContractError
+from agent_deliberation import object_response, deliberate, vote_response, unanimous, DeliberationContractError
 from agent_council_transport import safe_reason
 
 class DeliberationTests(unittest.TestCase):
@@ -64,6 +64,18 @@ class DeliberationTests(unittest.TestCase):
     def test_three_valid_votes_required(self):
         vote={'accept_shared_proposal':True,'blocking_objections':[]}
         self.assertFalse(unanimous([vote,vote]))
+
+    def test_one_valid_object_with_explanatory_wrapper_is_accepted(self):
+        vote={'proposal_id':'id','accept_shared_proposal':False,'blocking_objections':['evidence gap'],'revision':''}
+        text='Here is my vote:\n```json\n'+json.dumps(vote)+'\n```\nEnd.'
+        self.assertFalse(vote_response(text,'id')['accept_shared_proposal'])
+
+    def test_ambiguous_duplicate_truncated_and_plain_prose_are_rejected(self):
+        cases=['I agree.', '{"proposal":"one"} {"proposal":"two"}',
+               '{"proposal":"one","proposal":"two"}',
+               '{"outer":{"proposal":"nested"}', '{"proposal":"unfinished']
+        for text in cases:
+            with self.assertRaises(DeliberationContractError):object_response(text)
 
     def test_round_cap_cannot_be_bypassed(self):
         for cap in [0,4,True]:

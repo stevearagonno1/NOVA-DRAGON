@@ -24,6 +24,13 @@ REVIEW_OUTPUT_TOKENS = 16384
 lock = threading.Lock()
 cooldowns = {}
 
+class ReviewDeadlineExceeded(TimeoutError):
+    pass
+
+def check_deadline(deadline, clock=time.monotonic):
+    if deadline is not None and clock() >= deadline:
+        raise ReviewDeadlineExceeded()
+
 class StreamStartTimeout(TimeoutError):
     pass
 class StreamIdleTimeout(TimeoutError):
@@ -61,6 +68,7 @@ def safe_reason(exc):
     return {'code': known.get(str(exc), type(exc).__name__), 'slot': None}
 
 REASON_AR = {
+    'ReviewDeadlineExceeded': 'انتهت مهلة المراجعة المشتركة؛ لا توجد نتيجة جماعية معتمدة',
     'deliberation_invalid_response': 'لم يصل اقتراح أو تصويت صالح؛ لا يمكن اعتماد اتفاق جماعي',
     'endpoint_mismatch': 'عنوان اتصال المراجعين لا يطابق عنوان المزوّد المعتمد',
     'model_mismatch': 'اسم النموذج في اتصال المراجعين غير مطابق',
@@ -147,14 +155,16 @@ def validate_final(text, finish, had_reasoning=False, refused=False):
         raise FinalAnswerError('reasoning_without_final_answer' if had_reasoning or text.strip() else 'empty_final_answer')
     return cleaned
 
-def collect_sse(response, clock=time.monotonic):
+def collect_sse(response, clock=time.monotonic, deadline=None):
     start=clock(); total=0; pieces=[]; terminal=False; finish=None; saw_event=False; had_reasoning=False; refused=False
     while True:
+        check_deadline(deadline,clock)
         if clock()-start > TOTAL_SECONDS:
             raise StreamIdleTimeout('Stream exceeded its bounded duration')
         try:
             raw=response.readline(LIMIT+1)
         except (TimeoutError, OSError) as exc:
+            check_deadline(deadline,clock)
             raise (StreamIdleTimeout if saw_event else StreamStartTimeout)('Response stream stopped') from None
         total += len(raw)
         if total > LIMIT:
@@ -185,21 +195,24 @@ def collect_sse(response, clock=time.monotonic):
         if text:
             pieces.append(text)
         finish=choice.get('finish_reason') or finish
+    check_deadline(deadline,clock)
     if not terminal and finish not in ('stop','length'):
         raise StreamIncomplete('No completion marker; partial text is not a finished review')
     return validate_final(''.join(pieces),finish,had_reasoning,refused)
 
-def stream(route, system, user, opener=None, max_tokens=REVIEW_OUTPUT_TOKENS):
+def stream(route, system, user, opener=None, max_tokens=REVIEW_OUTPUT_TOKENS, deadline=None):
+    check_deadline(deadline)
     opener=opener or build_opener(NoRedirect)
     request=Request(route['base']+'/chat/completions', method='POST',
         headers={'Authorization':'Bearer '+route['key'],'Content-Type':'application/json','Accept':'text/event-stream'},
         data=json.dumps({'model':route['model'],'messages':[{'role':'system','content':system},{'role':'user','content':user}],
                          'max_tokens':max_tokens,'stream':True},ensure_ascii=False).encode())
     try:
-        response=opener.open(request,timeout=IDLE_SECONDS)
+        response=opener.open(request,timeout=IDLE_SECONDS if deadline is None else min(IDLE_SECONDS,max(0.001,deadline-time.monotonic())))
     except ValueError:
         raise TransportConfigurationError('invalid_http_header') from None
     except (TimeoutError, URLError) as exc:
+        check_deadline(deadline)
         if isinstance(exc, TimeoutError) or isinstance(getattr(exc,'reason',None),TimeoutError):
             raise StreamStartTimeout('No initial response') from None
         raise
@@ -208,6 +221,7 @@ def stream(route, system, user, opener=None, max_tokens=REVIEW_OUTPUT_TOKENS):
         if 'application/json' in content_type:
             # A compatible endpoint may return JSON despite stream=true.
             payload=response.read(LIMIT+1)
+            check_deadline(deadline)
             if len(payload)>LIMIT:
                 raise StreamIncomplete('JSON response exceeds limit')
             parsed=json.loads(payload); choice=parsed['choices'][0]
@@ -217,19 +231,22 @@ def stream(route, system, user, opener=None, max_tokens=REVIEW_OUTPUT_TOKENS):
             return validate_final(final_content(message.get('content')),finish,
                                   bool(message.get('reasoning_content') or message.get('reasoning') or message.get('thinking')),
                                   bool(message.get('refusal')))
-        return collect_sse(response)
+        return collect_sse(response,deadline=deadline)
 
-def model_call(system, user, slot=0, pool=None, requester=stream, clock=time.monotonic):
+def model_call(system, user, slot=0, pool=None, requester=stream, clock=time.monotonic, deadline=None):
     pool=routes() if pool is None else pool
     errors=[]
     for index in candidates(slot,len(pool)):
+        check_deadline(deadline,clock)
         with lock:
             if cooldowns.get(index,0)>clock():
                 continue
         if len(errors)>=3:
             break
         try:
-            return requester(pool[index],system,user)
+            result=requester(pool[index],system,user,deadline=deadline) if requester is stream else requester(pool[index],system,user)
+            check_deadline(deadline,clock)
+            return result
         except HTTPError as exc:
             if exc.code not in (401,403,408,429,500,502,503,504):
                 raise

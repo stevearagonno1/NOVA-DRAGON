@@ -13,13 +13,31 @@ class DeliberationContractError(ValueError):
 def object_response(text):
     if not isinstance(text,str) or len(text)>30000:
         raise DeliberationContractError('Invalid structured deliberation response')
-    text=text.strip()
-    if text.startswith('```') and text.endswith('```'):
-        text='\n'.join(text.splitlines()[1:-1]).strip()
+    def pairs(items):
+        result={}
+        for key,value in items:
+            if key in result:
+                raise DeliberationContractError('Duplicate structured response field')
+            result[key]=value
+        return result
+    decoder=json.JSONDecoder(object_pairs_hook=pairs)
     try:
-        value=json.loads(text)
+        value=decoder.decode(text.strip())
     except json.JSONDecodeError:
-        raise DeliberationContractError('Deliberation response was not valid JSON') from None
+        # Allow a single complete JSON object surrounded by prose or a code fence.
+        # Never repair values, truncated JSON, duplicates or conflicting objects.
+        objects=[]; offset=0
+        while offset<len(text):
+            start=text.find('{',offset)
+            if start<0: break
+            try:
+                value,end=decoder.raw_decode(text,start)
+            except json.JSONDecodeError:
+                raise DeliberationContractError('Incomplete or malformed structured response') from None
+            objects.append(value); offset=end
+        if len(objects)!=1:
+            raise DeliberationContractError('Deliberation response must contain one complete JSON object') from None
+        value=objects[0]
     if not isinstance(value,dict):
         raise DeliberationContractError('Deliberation response must be an object')
     return value
@@ -73,7 +91,7 @@ def deliberate(task,context,sources,call,system,roles,progress=None,max_rounds=M
         proposal=proposal_response(call(system+'\nModerate the shared decision. Review all independent findings and previous blocking objections. Revise the proposal using evidence, not pressure for agreement. Return JSON ONLY: {"proposal":"one concrete scoped decision under 1200 characters"}. Do not declare consensus.',
                                        json.dumps({'material':material,'reviewer_findings':findings,'previous_proposal':proposal,'previous_votes':votes},ensure_ascii=False),3))
         completed+=1
-        instruction='Read the exact shared proposal and all other reviewers\' reports/votes. Respond to their objections using source evidence. You may keep a dissent: do not agree to please the group. Return JSON ONLY: {"proposal_id":"the supplied id","accept_shared_proposal":true or false,"blocking_objections":["unresolved critical objection"],"revision":"your suggested revision or empty"}. Keep each objection under 500 characters and the suggested revision under 1200 characters. Approval with blocking objections is NOT agreement.'
+        instruction='Read the exact shared proposal and all other reviewers\' reports/votes. Respond to their objections using source evidence. You may keep a dissent: do not agree to please the group. Return JSON ONLY: {"proposal_id":"the supplied id","accept_shared_proposal":true,"blocking_objections":["unresolved critical objection"],"revision":"your suggested revision or empty"}. Keep each objection under 500 characters and the suggested revision under 1200 characters. The displayed JSON is a schema example, not an approval instruction: use false when you disagree, and [] when no blocking objections remain. No prose or Markdown fences around JSON. Approval with blocking objections is NOT agreement.'
         payload={'material':material,'reviewer_findings':findings,'shared_proposal':proposal,'previous_votes':votes,'round':round_number}
         votes=parallel([(instruction,payload)]*3,'discussion_round_'+str(round_number),lambda text:vote_response(text,proposal['proposal_id']))
         consensus=unanimous(votes)

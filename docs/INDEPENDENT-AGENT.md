@@ -312,3 +312,31 @@ Higher allowed generation may increase quota use and latency; no new paid servic
 
 Validation:58 local tests pass, including request cap16384 and separate probe cap512.
 Live verification remains pending after the automatic Render deployment.
+
+### Structured votes and shared review deadline
+
+Live job de7facffa382ad43 blocked in discussion_round_1 at object_response after
+six accepted logical calls. The location confirms JSON decoding failure; the raw
+response was not available and cannot establish whether a prose wrapper, malformed
+JSON or some other formatting error caused it. The previous vote example included
+`true or false`, which is not valid JSON; it is now a valid JSON example with explicit
+instructions to choose false for dissent and never interpret the example as approval.
+
+One complete JSON object may now be read inside a prose/code-fence wrapper. Multiple
+objects, duplicate fields, malformed/truncated objects, wrong proposal identifiers,
+string booleans and blocking objections still cannot create consensus. No model call
+is added to repair or reinterpret a vote. Provider response JSON-mode support is not
+assumed. This improves wrapper handling but does not guarantee model compliance.
+
+Production reviews now share one900-second monotonic deadline starting after source
+fetching. It is passed through all stages, streams and fallback attempts. Queued calls
+check it before sending; results arriving after it are rejected. Socket opening uses
+at most the remaining deadline or90seconds. An in-flight read can take its already-set
+socket timeout to finish, so900seconds is not a hard wall-clock guarantee. Source
+fetch, job queue time and final Telegram notification are separate. Probe unchanged.
+Failure is notified with a distinct Arabic deadline reason, never a invented decision.
+
+Validation:63 local tests pass, including wrapped structured dissent, malformed,
+truncated and duplicate/multiple objects, existing unanimity safeguards and shared
+deadline checks before send, during streaming and after a late response. No live
+provider trial has validated this change yet.
