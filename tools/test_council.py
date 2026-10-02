@@ -19,7 +19,7 @@ class CouncilTests(unittest.TestCase):
         if 'shared_proposal' in payload:
             return json.dumps({'proposal_id':payload['shared_proposal']['proposal_id'],
                                'accept_shared_proposal':True,'blocking_objections':[],'revision':''})
-        return 'تقرير مدعوم بالمصدر'
+        return 'تقرير مدعوم بالمصدر CONSTITUTION.md:L1-L1'
 
     def test_bounded_three_reviewers_discussion_and_synthesis(self):
         calls = []

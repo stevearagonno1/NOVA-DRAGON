@@ -421,3 +421,34 @@ Combined tool count10; standalone4. One active job and all existing safeguards r
 Validation:71 local tests pass. Added explicit missing-record behavior and verification
 that the diagnostic trial discards caller input, never fetches sources, and selects
 its short deadline. Provider/model compliance and source-free trial are not live tested.
+
+### Cited evidence in repeated rounds (2026-10-02)
+
+Live trial e8c4e5d014eba5c0 completed in178.85seconds,8requests,one round,
+unanimity3/3. Document review61b4ce6ac4ac1f11 hit the900-second shared deadline:
+independent phase critical path426.35seconds,proposal144.49seconds,leaving about329
+seconds for voting. All three voting attempts ended on the global deadline; these
+measurements do not establish a rejected key or isolate the cause of latency.
+
+All three independent reviewers still receive the complete pinned constitution and
+selected source files, now with line labels. They must cite path:Lstart-Lend and the
+commit for decisive findings. Proposal,voting and final synthesis receive task/context,
+the source manifest,findings,proposal/objections,and only the cited original lines with
+one context line on each side. Excerpts are copied locally from the pinned originals,
+never from a model-generated quotation. Full caller task/context is retained as the
+contract; no new network requests or model summarization step is added.
+
+Each citation is bounded to80lines; total excerpt content is bounded to16000characters.
+Invalid,out-of-range or over-budget citations are explicitly unavailable; no partial
+quotation is silently substituted. If sources exist but no usable citations exist,or
+any recognized citation is unavailable,the application denies validated unanimity and
+adds an evidence objection. Reviewers must also dissent if omitted context is needed.
+This guards availability of cited evidence,not the semantic accuracy/completeness of
+model findings. Broader reviews may need another scoped task when evidence exceeds
+the budget. The15-minute deadline,three reviewers,three-round cap,and reserve-key
+behavior remain. No speed improvement is claimed until the next live document test.
+
+Validation:74 local tests pass,including full independent input/compact later payloads,
+unchanged source provenance,explicit evidence budget failures,and rejection of
+unanimity based on uncited source claims. Existing repeated dissent and parallelism
+checks remain passing.
