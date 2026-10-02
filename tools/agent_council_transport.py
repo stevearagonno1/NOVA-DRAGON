@@ -27,6 +27,11 @@ class StreamIdleTimeout(TimeoutError):
     pass
 class StreamIncomplete(ValueError):
     pass
+class FinalAnswerError(StreamIncomplete):
+    def __init__(self, code, slot=None):
+        self.code, self.slot = code, slot
+        super().__init__(code)
+
 class PoolUnavailable(ValueError):
     pass
 class TransportConfigurationError(ValueError):
@@ -35,7 +40,7 @@ class TransportConfigurationError(ValueError):
         super().__init__(code)
 
 def safe_reason(exc):
-    if isinstance(exc, TransportConfigurationError):
+    if isinstance(exc, (TransportConfigurationError, FinalAnswerError)):
         return {'code': exc.code, 'slot': exc.slot}
     known = {
         'Model response is empty or exceeds its limit': 'model_answer_empty_or_oversized',
@@ -63,6 +68,12 @@ REASON_AR = {
     'model_answer_empty_or_oversized': 'رد النموذج فارغ أو أكبر من حد الرد الداخلي',
     'stream_incomplete': 'وصل رد مقطوع ولم تصل علامة اكتماله',
     'no_final_answer': 'لم يصل نص جواب نهائي',
+    'empty_final_answer': 'انتهى رد المزوّد دون نص جواب نهائي',
+    'reasoning_without_final_answer': 'وصل تفكير داخلي فقط دون جواب نهائي',
+    'output_limit_reached': 'بلغ رد المزوّد سقف الإخراج؛ لا يمكن اعتماد الرد المبتور',
+    'response_filtered': 'حجب المزوّد الرد',
+    'unsupported_tool_answer': 'أعاد المزوّد طلب أداة بدل جواب المراجع',
+    'response_refused': 'أعاد المزوّد رفضًا بدل جواب المراجع',
     'only_reasoning_no_answer': 'وصل تفكير داخلي دون جواب نهائي',
     'StreamStartTimeout': 'لم يبدأ المزوّد إرسال الرد ضمن المهلة',
     'StreamIdleTimeout': 'توقف وصول أجزاء الرد ضمن المهلة',
@@ -111,8 +122,30 @@ def clean_answer(text):
     text=re.sub(r'<(think|thinking|analysis|reasoning)>.*?</\1>', '', text, flags=re.S|re.I).strip()
     return re.sub(r'<(?:think|thinking|analysis|reasoning)>.*$', '', text, flags=re.S|re.I).strip()
 
+def final_content(value):
+    if isinstance(value,str):
+        return value
+    if isinstance(value,list):
+        return ''.join(part['text'] for part in value if isinstance(part,dict)
+                       and part.get('type')=='text' and isinstance(part.get('text'),str))
+    return ''
+
+def validate_final(text, finish, had_reasoning=False, refused=False):
+    if finish=='length':
+        raise FinalAnswerError('output_limit_reached')
+    if finish=='content_filter':
+        raise FinalAnswerError('response_filtered')
+    if finish in ('tool_calls','function_call'):
+        raise FinalAnswerError('unsupported_tool_answer')
+    if refused:
+        raise FinalAnswerError('response_refused')
+    cleaned=clean_answer(text)
+    if not cleaned:
+        raise FinalAnswerError('reasoning_without_final_answer' if had_reasoning or text.strip() else 'empty_final_answer')
+    return cleaned
+
 def collect_sse(response, clock=time.monotonic):
-    start=clock(); total=0; pieces=[]; terminal=False; finish=None; saw_event=False
+    start=clock(); total=0; pieces=[]; terminal=False; finish=None; saw_event=False; had_reasoning=False; refused=False
     while True:
         if clock()-start > TOTAL_SECONDS:
             raise StreamIdleTimeout('Stream exceeded its bounded duration')
@@ -143,19 +176,15 @@ def collect_sse(response, clock=time.monotonic):
         if delta.get('tool_calls'):
             raise StreamIncomplete('A reviewer attempted an unsupported tool call')
         # Do not emit reasoning_content/thinking/private deliberation.
-        text=delta.get('content')
-        if isinstance(text,str):
+        had_reasoning = had_reasoning or bool(delta.get('reasoning_content') or delta.get('reasoning') or delta.get('thinking'))
+        refused = refused or bool(delta.get('refusal'))
+        text=final_content(delta.get('content'))
+        if text:
             pieces.append(text)
         finish=choice.get('finish_reason') or finish
     if not terminal and finish not in ('stop','length'):
         raise StreamIncomplete('No completion marker; partial text is not a finished review')
-    text=''.join(pieces).strip()
-    text=clean_answer(text)
-    if not text or finish in ('content_filter','tool_calls'):
-        raise StreamIncomplete('No supported final answer')
-    if finish=='length':
-        text += '\n[الرد محدود بسقف الإخراج؛ يجب عدم اعتبار التفاصيل الناقصة محسومة.]'
-    return text
+    return validate_final(''.join(pieces),finish,had_reasoning,refused)
 
 def stream(route, system, user, opener=None, max_tokens=6144):
     opener=opener or build_opener(NoRedirect)
@@ -179,13 +208,12 @@ def stream(route, system, user, opener=None, max_tokens=6144):
             if len(payload)>LIMIT:
                 raise StreamIncomplete('JSON response exceeds limit')
             parsed=json.loads(payload); choice=parsed['choices'][0]
-            text=choice['message'].get('content')
-            if choice.get('finish_reason') not in ('stop','length') or not isinstance(text,str) or not text.strip():
+            message=choice['message']; finish=choice.get('finish_reason')
+            if finish not in ('stop','length','content_filter','tool_calls','function_call'):
                 raise StreamIncomplete('JSON response is incomplete')
-            text=clean_answer(text)
-            if not text:
-                raise StreamIncomplete('Only private reasoning was returned')
-            return text
+            return validate_final(final_content(message.get('content')),finish,
+                                  bool(message.get('reasoning_content') or message.get('reasoning') or message.get('thinking')),
+                                  bool(message.get('refusal')))
         return collect_sse(response)
 
 def model_call(system, user, slot=0, pool=None, requester=stream, clock=time.monotonic):
@@ -208,6 +236,14 @@ def model_call(system, user, slot=0, pool=None, requester=stream, clock=time.mon
                 delay=60
             with lock:
                 cooldowns[index]=clock()+max(60,delay)
+            errors.append(exc)
+        except FinalAnswerError as exc:
+            exc.slot=index+1
+            # Only empty/reasoning-only responses rotate; never evade a refusal or filter.
+            if exc.code not in ('empty_final_answer','reasoning_without_final_answer'):
+                raise
+            with lock:
+                cooldowns[index]=clock()+60
             errors.append(exc)
         except (StreamStartTimeout,StreamIdleTimeout,URLError) as exc:
             with lock:

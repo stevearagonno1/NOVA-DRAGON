@@ -272,3 +272,23 @@ this branch requires a later deployment after that review reaches a terminal sta
 Validation: 53 local tests pass, including early unanimity, second-round objection
 sharing, persistent dissent, invalid votes and maximum round bounds. This is local
 validation; repeated deliberation has not yet been tested with the live provider.
+
+### Empty final-answer handling after live deliberation trial
+
+The live review reported zero accepted completions and `no_final_answer` before any
+round began. This does not establish zero provider usage or invalid credentials;
+the old message cannot distinguish an empty response, reasoning-only response,
+output cap, filter or refusal. No raw provider transcript is available for this trial.
+
+Response validation now distinguishes those outcomes using fixed safe reason codes
+and the credential slot only, never raw reasoning, refusal text or credentials.
+Empty/reasoning-only completed responses try existing reserve candidates within the
+same maximum of three attempts. Filters, refusals and output-limit responses do not
+rotate. Truncated output is rejected for both SSE and JSON instead of being treated
+as a finished reviewer answer. Standard text content parts are supported, while
+reasoning parts remain excluded. Output token cap and round count remain unchanged.
+
+Validation: 58 local tests pass. Added tests cover empty versus reasoning-only outcomes,
+content parts, reserve fallback/three-attempt bound, no retry for refusal/filter/length,
+and identical truncated-output rejection in JSON. Root cause of the historical trial
+remains unconfirmed; live verification of the change is pending.

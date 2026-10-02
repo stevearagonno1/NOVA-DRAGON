@@ -88,4 +88,89 @@ class StreamTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             transport.configured_routes({'model_list':[bad]},env)
 
+    def test_diagnostics_reports_count_without_keys_or_api_calls(self):
+        with patch.object(transport,'routes',return_value=[{'key':'private-'+str(i)} for i in range(10)]), patch.object(transport,'stream') as request:
+            result=transport.diagnostics()
+        self.assertEqual(result['unique_credentials'],10)
+        self.assertEqual(result['api_requests_made'],0)
+        self.assertFalse(result['provider_acceptance_verified'])
+        self.assertNotIn('private',json.dumps(result))
+        request.assert_not_called()
+
+    def test_configuration_errors_report_slot_without_secret_value(self):
+        entry={'model_name':'opencrabs-model','litellm_params':{'model':'openai/Atria-Dawn-Preview','api_base':'https://api.atria-asi.ai/v1','api_key':'private\ninvalid'}}
+        with self.assertRaises(transport.TransportConfigurationError) as caught:
+            transport.configured_routes({'model_list':[entry]}, {})
+        reason=transport.safe_reason(caught.exception)
+        self.assertEqual(reason,{'code':'credential_invalid_format','slot':1})
+        with patch.object(transport,'routes',side_effect=caught.exception):
+            result=transport.diagnostics()
+        self.assertFalse(result['configuration_valid'])
+        self.assertNotIn('private',json.dumps(result))
+
+    def test_unexpected_error_message_cannot_disclose_header_token(self):
+        reason=transport.safe_reason(ValueError('Invalid header containing private-secret'))
+        self.assertEqual(reason['code'],'ValueError')
+        self.assertNotIn('private-secret',json.dumps(reason))
+
+    def test_empty_and_reasoning_only_answers_have_distinct_safe_reasons(self):
+        samples=[(self.event({},'stop'),'empty_final_answer'),
+                 (self.event({'reasoning_content':'private-secret'},'stop'),'reasoning_without_final_answer'),
+                 (self.event({'content':'partial'},'length'),'output_limit_reached'),
+                 (self.event({},'content_filter'),'response_filtered'),
+                 (self.event({'refusal':'private refusal'},'stop'),'response_refused')]
+        for data,code in samples:
+            with self.assertRaises(transport.FinalAnswerError) as caught:
+                transport.collect_sse(io.BytesIO(data+b'data: [DONE]\n'))
+            self.assertEqual(transport.safe_reason(caught.exception)['code'],code)
+            self.assertNotIn('private',str(transport.safe_reason(caught.exception)))
+
+    def test_content_parts_are_supported_without_reasoning_parts(self):
+        data=self.event({'content':[{'type':'reasoning','text':'hidden'}, {'type':'text','text':'answer'}]},'stop')
+        self.assertEqual(transport.collect_sse(io.BytesIO(data+b'data: [DONE]\n')),'answer')
+
+    def test_empty_response_rotates_to_reserve_with_existing_attempt_bound(self):
+        pool=[{'key':str(i)} for i in range(10)]; selected=[]
+        def request(route,*args):
+            selected.append(route)
+            if len(selected)==1: raise transport.FinalAnswerError('empty_final_answer')
+            return 'answer'
+        self.assertEqual(transport.model_call('s','u',0,pool,request),'answer')
+        self.assertEqual(selected,[pool[0],pool[5]])
+        transport.cooldowns.clear(); selected.clear()
+        def always_empty(route,*args):
+            selected.append(route); raise transport.FinalAnswerError('reasoning_without_final_answer')
+        with self.assertRaises(transport.FinalAnswerError) as caught:
+            transport.model_call('s','u',0,pool,always_empty)
+        self.assertEqual(len(selected),3)
+        self.assertEqual(transport.safe_reason(caught.exception)['slot'],7)
+
+    def test_refusal_filter_and_length_never_rotate(self):
+        pool=[{'key':str(i)} for i in range(10)]
+        for code in ['response_refused','response_filtered','output_limit_reached']:
+            selected=[]
+            def request(route,*args):
+                selected.append(route); raise transport.FinalAnswerError(code)
+            with self.assertRaises(transport.FinalAnswerError):
+                transport.model_call('s','u',0,pool,request)
+            self.assertEqual(len(selected),1)
+
+    def test_json_stream_fallback_has_same_output_validation(self):
+        class Response(io.BytesIO): headers={'Content-Type':'application/json'}
+        class Opener:
+            def open(self,*args,**kwargs):
+                return Response(json.dumps({'choices':[{'finish_reason':'length','message':{'content':'partial'}}]}).encode())
+        with self.assertRaises(transport.FinalAnswerError) as caught:
+            transport.stream({'base':'https://api.atria-asi.ai/v1','model':'Atria-Dawn-Preview','key':'synthetic'},'s','u',Opener())
+        self.assertEqual(caught.exception.code,'output_limit_reached')
+
+    def test_connection_probe_has_small_output_and_no_failover(self):
+        pool=[{'key':'synthetic-first'},{'key':'synthetic-reserve'}]
+        with patch.object(transport,'routes',return_value=pool), patch.object(transport,'stream',return_value='READY') as call:
+            result=transport.probe_connection()
+        call.assert_called_once()
+        self.assertEqual(call.call_args.args[0],pool[0])
+        self.assertEqual(call.call_args.kwargs['max_tokens'],512)
+        self.assertEqual(result['api_requests'],1)
+
 if __name__=='__main__': unittest.main()
