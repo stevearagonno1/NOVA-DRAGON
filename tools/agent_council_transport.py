@@ -29,6 +29,41 @@ class StreamIncomplete(ValueError):
     pass
 class PoolUnavailable(ValueError):
     pass
+class TransportConfigurationError(ValueError):
+    def __init__(self, code, slot=None):
+        self.code, self.slot = code, slot
+        super().__init__(code)
+
+def safe_reason(exc):
+    if isinstance(exc, TransportConfigurationError):
+        return {'code': exc.code, 'slot': exc.slot}
+    known = {
+        'Model response is empty or exceeds its limit': 'model_answer_empty_or_oversized',
+        'Direct review transport requires the configured Atria endpoint': 'endpoint_mismatch',
+        'Direct review transport requires the configured Atria model': 'model_mismatch',
+        'Review credential is unavailable': 'credential_missing',
+        'No configured review credentials': 'no_review_credentials',
+        'No completion marker; partial text is not a finished review': 'stream_incomplete',
+        'No supported final answer': 'no_final_answer',
+        'Stream exceeds its size limit': 'stream_size_limit',
+        'Only private reasoning was returned': 'only_reasoning_no_answer',
+    }
+    return {'code': known.get(str(exc), type(exc).__name__), 'slot': None}
+
+REASON_AR = {
+    'endpoint_mismatch': 'عنوان اتصال المراجعين لا يطابق عنوان المزوّد المعتمد',
+    'model_mismatch': 'اسم النموذج في اتصال المراجعين غير مطابق',
+    'credential_missing': 'مفتاح أحد المراجعين غير موجود',
+    'credential_invalid_format': 'صيغة مفتاح أحد المراجعين تحتوي أحرفًا غير صالحة؛ لا حاجة لعرض قيمته',
+    'no_review_credentials': 'لا توجد مفاتيح مهيأة للمراجعين',
+    'invalid_http_header': 'تعذر إرسال ترويسة الاتصال بسبب قيمة غير صالحة',
+    'model_answer_empty_or_oversized': 'رد النموذج فارغ أو أكبر من حد الرد الداخلي',
+    'stream_incomplete': 'وصل رد مقطوع ولم تصل علامة اكتماله',
+    'no_final_answer': 'لم يصل نص جواب نهائي',
+    'only_reasoning_no_answer': 'وصل تفكير داخلي دون جواب نهائي',
+    'StreamStartTimeout': 'لم يبدأ المزوّد إرسال الرد ضمن المهلة',
+    'StreamIdleTimeout': 'توقف وصول أجزاء الرد ضمن المهلة',
+}
 
 @lru_cache(maxsize=1)
 def routes():
@@ -39,22 +74,25 @@ def routes():
 def configured_routes(config, env):
     result=[]; seen=set()
     alias=env.get('AGENT_MODEL','opencrabs-model')
-    for item in config['model_list']:
+    for slot, item in enumerate(config['model_list'], 1):
         if item.get('model_name') != alias:
             continue
         p=item['litellm_params']; base=p.get('api_base','').rstrip('/')
         url=urlparse(base)
         # This direct transport is intentionally specific to the existing Atria service.
         if url.scheme!='https' or url.hostname!='api.atria-asi.ai' or url.path!='/v1' or url.username or url.password or url.query or url.fragment or url.port not in (None,443):
-            raise ValueError('Direct review transport requires the configured Atria endpoint')
+            raise TransportConfigurationError('endpoint_mismatch',slot)
         model=p.get('model','')
         if model!='openai/Atria-Dawn-Preview':
-            raise ValueError('Direct review transport requires the configured Atria model')
+            raise TransportConfigurationError('model_mismatch',slot)
         key=p.get('api_key','')
-        if key.startswith('os.environ/'):
+        if isinstance(key, str) and key.startswith('os.environ/'):
             key=env.get(key.removeprefix('os.environ/'),'')
-        if not key:
-            raise ValueError('Review credential is unavailable')
+        if not isinstance(key, str) or not key.strip():
+            raise TransportConfigurationError('credential_missing',slot)
+        key=key.strip()
+        if any(ch.isspace() or ord(ch)<33 or ord(ch)>126 for ch in key):
+            raise TransportConfigurationError('credential_invalid_format',slot)
         if key not in seen:
             seen.add(key); result.append({'base':base,'model':'Atria-Dawn-Preview','key':key})
     if not result:
@@ -124,6 +162,8 @@ def stream(route, system, user, opener=None):
                          'max_tokens':6144,'stream':True},ensure_ascii=False).encode())
     try:
         response=opener.open(request,timeout=IDLE_SECONDS)
+    except ValueError:
+        raise TransportConfigurationError('invalid_http_header') from None
     except (TimeoutError, URLError) as exc:
         if isinstance(exc, TimeoutError) or isinstance(getattr(exc,'reason',None),TimeoutError):
             raise StreamStartTimeout('No initial response') from None
@@ -173,3 +213,18 @@ def model_call(system, user, slot=0, pool=None, requester=stream, clock=time.mon
     if errors:
         raise errors[-1]
     raise PoolUnavailable('All configured review credentials are cooling down')
+
+
+def diagnostics():
+    """Local validation only: no API calls, credentials, fingerprints or quota claims."""
+    try:
+        pool=routes()
+        return {'configuration_valid':True, 'unique_credentials':len(pool),
+                'distinct_reviewer_preferences':len(pool)>=3,
+                'api_requests_made':0, 'provider_acceptance_verified':False,
+                'message':'الإعداد المحلي صالح. قبول المفاتيح من المزوّد لم يُختبر بهذا الفحص.'}
+    except Exception as exc:
+        reason=safe_reason(exc)
+        return {'configuration_valid':False, 'api_requests_made':0,
+                'provider_acceptance_verified':False, 'reason_code':reason['code'],
+                'slot':reason['slot'], 'message':REASON_AR.get(reason['code'],'تعذر فحص الإعداد المحلي؛ لم تُعرض أي مفاتيح.')}

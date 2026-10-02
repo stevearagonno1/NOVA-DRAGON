@@ -11,11 +11,12 @@ import re
 import secrets
 import sys
 import threading
+import traceback
 from urllib.error import HTTPError
 from urllib.parse import quote
 from urllib.request import Request, build_opener
 from agent_repo_read import NoRedirect, get, safe_path, redact, LIMIT
-from agent_council_transport import model_call as stream_model_call
+from agent_council_transport import model_call as stream_model_call, diagnostics, safe_reason, REASON_AR
 
 MAX_JOBS = 32
 MAX_CONTEXT = 32000
@@ -166,7 +167,15 @@ class Jobs:
             phase_labels = {'reading_sources': 'قراءة المصادر', 'independent_review': 'تحليل المراجعين', 'cross_review': 'المراجعة المتبادلة', 'synthesis': 'جمع التوصية'}
             stage = phase_labels.get(job.get('phase'), 'المراجعة')
             error = type(exc).__name__ + (' HTTP ' + str(exc.code) if isinstance(exc, HTTPError) else '')
-            job.update(state='blocked', error_type=error, result='لم تكتمل المراجعة. توقفت في مرحلة ' + stage + ' بسبب ' + error + '؛ اكتمل ' + str(job.get('completed_requests', 0)) + ' من 5 طلبات. لا توجد توصية جماعية معتمدة.')
+            reason = safe_reason(exc)
+            frame = traceback.extract_tb(exc.__traceback__)[-1] if exc.__traceback__ else None
+            location = (Path(frame.filename).name + ':' + str(frame.lineno) + ':' + frame.name) if frame else 'unavailable'
+            detail = REASON_AR.get(reason['code'], 'نوع الخطأ: ' + error)
+            if reason['slot'] is not None:
+                detail += ' (الخانة ' + str(reason['slot']) + ')'
+            print('NOVA council blocked job=' + job['id'] + ' phase=' + job.get('phase','unknown') + ' code=' + reason['code'] + ' location=' + location, flush=True)
+            job.update(reason_code=reason['code'], error_slot=reason['slot'], error_location=location)
+            job.update(state='blocked', error_type=error, result='لم تكتمل المراجعة. توقفت في مرحلة ' + stage + '؛ ' + detail + '؛ اكتمل ' + str(job.get('completed_requests', 0)) + ' من 5 طلبات. لا توجد توصية جماعية معتمدة.')
         with self.lock:
             self.save(job)
         try:
@@ -187,7 +196,7 @@ class Jobs:
                 if not isinstance(job_id, str) or not re.fullmatch('[0-9a-f]{16}', job_id):
                     raise ValueError('Invalid task id')
                 jobs = [j for j in jobs if j['id'] == job_id]
-            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type')} for j in jobs]
+            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location')} for j in jobs]
 
 class Handler(BaseHTTPRequestHandler):
     jobs = None
@@ -207,6 +216,8 @@ class Handler(BaseHTTPRequestHandler):
                 answer = self.jobs.submit(params)
             elif self.path == '/status':
                 answer = self.jobs.status(params)
+            elif self.path == '/diagnostics':
+                answer = diagnostics()
             else:
                 raise ValueError('Unsupported operation')
             code = 200
@@ -222,7 +233,7 @@ def main():
         ThreadingHTTPServer(('127.0.0.1', int(os.environ['NOVA_COUNCIL_PORT'])), Handler).serve_forever()
     else:
         operation = sys.argv[1]
-        if operation not in ('submit', 'status'):
+        if operation not in ('submit', 'status', 'diagnostics'):
             raise ValueError('Unsupported operation')
         with open(os.environ['OPENCRABS_PARAMS']) as handle:
             params = json.load(handle)

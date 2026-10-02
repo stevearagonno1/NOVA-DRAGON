@@ -218,3 +218,15 @@ References: https://api.atria-asi.ai/docs ·
 https://github.com/adolfousier/opencrabs/blob/v0.5.4/src/brain/provider/custom_openai_compatible.rs
 The preceding360-second non-stream transport description is historical and superseded
 for reviewer model calls. Other JSON control/Telegram calls retain their own timeouts.
+
+### Safe diagnostics after ValueError
+
+Use `nova_council_diagnostics` before another long review trial. This performs only
+local validation: fixed Atria endpoint/model, number of unique resolved credentials,
+and whether three reviewer preferences can be distinct. It makes zero model/API
+requests and explicitly does not verify provider acceptance. Error output contains
+only enumerated safe reasons and slot numbers; never credentials/fingerprints/raw
+exception bodies. Outer whitespace is trimmed; internal whitespace/control/non-ASCII
+characters in a credential are rejected with a safe credential_invalid_format code.
+Blocked jobs now expose reason_code, error_slot and source error_location; Render
+logs have only job id/phase/code/location. No traceback locals or error body is logged.
