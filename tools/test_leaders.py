@@ -163,4 +163,42 @@ class LeaderTests(unittest.TestCase):
             self.assertEqual(record['reason_code'],'leader_finish_action_missing')
             self.assertIn('final_report',record['error_location'])
 
+    def test_consultation_and_synthesis_explicitly_include_complete_findings_summaries(self):
+        originals={1:'analysis final summary README.md:L1-L2 @fixed',
+                   2:'audit final summary README.md:L1-L2 @fixed'}
+        def call(system,user,slot,deadline):
+            payload=json.loads(user)
+            if slot==0:
+                self.assertEqual(payload['report_inputs']['included_workers'],[1,2])
+                self.assertEqual({r['findings'] for r in payload['leaders']},set(originals.values()))
+                self.assertFalse(payload['unresolved_disagreement'])
+                return 'scope comparison completed'
+            if 'peer_report' in payload:
+                self.assertEqual(payload['report_inputs']['kind'],'complete_leader_final_findings_summaries')
+                self.assertEqual(payload['own_report']['findings'],originals[slot])
+                self.assertEqual(payload['peer_report']['findings'],originals[3-slot])
+                self.assertFalse(payload['report_inputs']['private_transcripts_included'])
+                self.assertIn('Do not widen scope',system)
+                value=json.loads(finish('audience-'+str(slot)))
+            else:
+                value=json.loads(finish('audience-'+str(slot)))
+            value['summary']=originals[slot]
+            return json.dumps(value)
+        _,counts=coordinate_leaders('Compare presentation templates,not external authored reports','',SOURCES,call,'rules')
+        self.assertEqual(counts['discussion_rounds'],1)
+        self.assertFalse(counts['unresolved_disagreement'])
+
+    def test_a_genuine_requested_input_gap_remains_blocking(self):
+        def call(system,user,slot,deadline):
+            payload=json.loads(user)
+            if slot==0:
+                self.assertTrue(payload['unresolved_disagreement'])
+                return 'cannot verify requested backtest'
+            self.assertIn('BACKTEST.csv',payload['task'])
+            return finish('cannot_verify',['BACKTEST.csv is missing; the requested numeric comparison cannot be checked'],relation='uncertain')
+        result,counts=coordinate_leaders('Verify the measured results in BACKTEST.csv','',SOURCES,call,'rules')
+        self.assertTrue(counts['unresolved_disagreement'])
+        self.assertEqual(counts['discussion_rounds'],2)
+        self.assertIn('لا يُدّعى اتفاق نهائي',result)
+
 if __name__=='__main__':unittest.main()

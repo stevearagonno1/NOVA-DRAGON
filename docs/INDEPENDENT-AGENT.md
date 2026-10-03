@@ -631,3 +631,38 @@ Validation:99 local tests pass. Added field-specific/location-safe failure check
 checkpointed consultation diagnostics,equivalent decisions with distinct labels,
 real blockers/missing evidence resisting equivalence,and explicit substantive
 disagreement despite equal labels. Live retry is still pending deployment.
+
+### Scope-grounded blockers and explicit findings availability (2026-10-03)
+
+Live trial920ec0bfe2811a93 completed both leaders,5tool steps,12requests,two successful
+consultation rounds,426.85seconds,no unavailable_workers. Both peer_relation values
+were equivalent,but analysis retained a blocker claiming the actual report texts
+were absent. The task concerned presentation templates,not external authored reports.
+The application correctly kept the blocker visible; semantic interpretation of scope
+needed improvement rather than deleting objections or forcing agreement.
+
+All leader/consultation/synthesis prompts now require blockers to name the missing
+input or contradiction and explain which requested decision cannot be made without
+it. Limited evidence is distinguished from a blocking gap: absent measurements limit
+empirical superiority claims but do not automatically block a qualitative comparison.
+Scope may not be widened to invented required artifacts. Genuine task-relevant source
+gaps and objections remain and no programmatic blocker filter/override is introduced.
+
+Consultation and synthesis payloads include report_inputs metadata naming included
+worker IDs and actual fields:own_report.findings/peer_report.findings or leaders[].findings.
+These contain the complete submitted final findings summaries,not external reports
+or private reasoning. The instructions explicitly distinguish full_sources_omitted
+from absence of these findings and do not require private transcripts for comparing
+recommendations. This does not imply unavailable source documents were read.
+
+The fixed synthetic trial task now explicitly compares decision-first/evidence-first
+presentation TEMPLATES and audience fit. No pair of authored reports is required.
+The fixture supports a limited qualitative comparison,never measured universal
+superiority. Existing read/search prerequisite,conditional consultation,key/time/step
+limits,evidence validation and source/write safeguards remain. These are model prompt
+and input-clarity improvements,not guarantees that a model cannot invent a blocker.
+
+Validation:101 local tests pass. Added evidence that complete leader findings and
+availability metadata reach consultation and synthesis,and that an explicitly
+requested missing numeric source remains unresolved through the round cap. New live
+trial remains pending; prior records/results are unchanged.

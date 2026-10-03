@@ -106,7 +106,7 @@ def run_background(task,context,sources,call=None,progress=None,observer=None,di
         return call(system,user,slot=slot,deadline=deadline,observer=timed_observer)
     system=SYSTEM
     if diagnostic:
-        system+='\nThis is a tiny workflow diagnostic. DIAGNOSTIC.md is a synthetic test fixture, NOT repository evidence. Each leader must read or search that fixture at least once before finishing. One full read of its four lines is sufficient: normally finish on the next step rather than repeat reads or publish redundant notes. Keep a genuine unresolved objection if one exists. Compare report orders; do not invent trading measurements.'
+        system+='\nThis is a tiny workflow diagnostic. DIAGNOSTIC.md is a synthetic test fixture, NOT repository evidence. The question compares two presentation templates (decision-first versus evidence-first), NOT two actual authored reports. No external finished reports are required. The fixture supports a limited qualitative comparison by audience,not a measured universal superiority claim. Treat absent measurements as that limitation rather than an automatic blocker to this scoped comparison. Each leader must read or search that fixture at least once before finishing. One full read of its four lines is sufficient: normally finish on the next step rather than repeat reads or publish redundant notes. Keep a genuine unresolved objection if one exists. Do not invent trading measurements.'
         sources=[{'path':'DIAGNOSTIC.md','commit':'synthetic-fixture-v1','blob_sha':'synthetic',
                   'content':'This is synthetic diagnostic material, not project evidence.\nDecision first helps quick executive reports.\nEvidence first helps readers inspect unfamiliar conclusions.\nThere is no measured universal best order.'}]
     return coordinate_leaders(task,context,sources,invoke,system,progress=managed_progress,
@@ -147,7 +147,7 @@ class Jobs:
         elif kind == "probe_reviewers":
             params = {"task":"Compare the first three credentials with three identical tiny requests; no sources or fallback."}
         elif kind == "trial":
-            params = {"task":"Diagnostic leader workflow: read/search the supplied synthetic fixture, compare decision-first and evidence-first reports, and consult only if disagreement needs it. No project files, trades, experiments or settings. Cite the fixture as synthetic, never as repository evidence. Keep findings short."}
+            params = {"task":"Diagnostic leader workflow: read/search the supplied synthetic fixture and qualitatively compare two presentation TEMPLATES: decision-first versus evidence-first. Explain when each template fits its audience. This is NOT a comparison of two authored report texts; no such reports are required or supplied. Do not claim empirical or universal superiority. Consult only for a decision-relevant disagreement. No project files, trades, experiments or settings. Cite the fixture as synthetic,never repository evidence. Keep findings short."}
         task = bounded_text(params.get('task'), MAX_TASK, 'Task paper')
         context = params.get('context', '')
         if not isinstance(context, str) or len(context) > MAX_CONTEXT:

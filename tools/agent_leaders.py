@@ -11,6 +11,18 @@ from agent_council_transport import safe_reason
 MAX_STEPS=8
 MAX_CONSULTATIONS=2
 MAX_REQUESTS=21
+SCOPE_CONTRACT='''Stay within the actual question and supplied acceptance conditions.
+A blocker must identify a missing input or contradiction AND explain which scoped
+decision cannot be made without it. Do not widen scope or invent required documents.
+Distinguish limited evidence from a blocking gap: absent empirical measurement limits
+claims of superiority,but is not automatically a blocker for a qualitative comparison.
+When present, own_report.findings,peer_report.findings and leaders[].findings contain
+the complete final findings summaries submitted by the leaders. Do not say those
+summaries were deleted or unavailable. These are not external customer reports or
+private reasoning transcripts. Omitted internal transcripts are not needed to compare
+the supplied final recommendations. Exact source excerpts may omit other source text;
+if a necessary source claim cannot be checked,keep that genuine evidence gap explicit.
+Never withdraw a real objection just to reach agreement.'''
 class LeaderContractError(ValueError):
     def __init__(self,code):
         self.code=code
@@ -155,7 +167,7 @@ def coordinate_leaders(task,context,sources,call,system,progress=None,checkpoint
                      'workspace':board.snapshot(),'recent_tool_results':observations[-4:]}
             if step==0:
                 payload['constitution']=numbered_sources([s for s in sources if s['path']=='CONSTITUTION.md'])
-            action=object_response(request(worker,payload,ROLES[worker-1]+'\n'+CONTRACT,'leaders'))
+            action=object_response(request(worker,payload,ROLES[worker-1]+'\n'+CONTRACT+'\n'+SCOPE_CONTRACT,'leaders'))
             if action.get('action')=='finish':
                 if require_tool and not successful_reads:raise ValueError('Diagnostic leader must use a read/search tool')
                 return final_report(action,worker)
@@ -196,8 +208,12 @@ def coordinate_leaders(task,context,sources,call,system,progress=None,checkpoint
         def consult(worker):
             payload={'task':task,'context':context,'own_report':previous[worker-1],
                      'peer_report':previous[2-worker],'workspace':board.snapshot(),'evidence':evidence,
-                     'round':consultations}
-            answer=request(worker,payload,ROLES[worker-1]+'\n'+CONSULTATION_CONTRACT,'consultation_'+str(consultations))
+                     'round':consultations,
+                     'report_inputs':{'kind':'complete_leader_final_findings_summaries',
+                                      'included_workers':[r['worker'] for r in previous],
+                                      'locations':['own_report.findings','peer_report.findings'],
+                                      'private_transcripts_included':False}}
+            answer=request(worker,payload,ROLES[worker-1]+'\n'+CONSULTATION_CONTRACT+'\n'+SCOPE_CONTRACT,'consultation_'+str(consultations))
             return final_report(object_response(answer),worker,consultation=True)
         revised=parallel(consult,phase)
         # A failed consultation never discards the previous successful findings.
@@ -209,8 +225,11 @@ def coordinate_leaders(task,context,sources,call,system,progress=None,checkpoint
     unresolved=disagreement(reports,equivalence_allowed);evidence=evidence_packet(sources,[reports,board.snapshot()])
     progress('lead_synthesis',completed)
     summary=request(0,{'task':task,'context':context,'leaders':reports,'unavailable_workers':failures,
-                       'consultation_rounds':consultations,'unresolved_disagreement':unresolved,'evidence':evidence},
-                    'You are the main coordinator. Return a concise Arabic conclusion,evidence,uncertainty and one next step. Resolve recommendations using evidence,not vote counts. Respect unresolved_disagreement: explicitly show any remaining disagreement or incomplete audit. Evidence_complete=false means source verification is incomplete. Do not claim experiments ran or show leader transcripts.','lead_synthesis')
+                       'consultation_rounds':consultations,'unresolved_disagreement':unresolved,'evidence':evidence,
+                       'report_inputs':{'kind':'complete_leader_final_findings_summaries',
+                                        'included_workers':[r['worker'] for r in reports],
+                                        'locations':['leaders[].findings'],'private_transcripts_included':False}},
+                    'You are the main coordinator. Return a concise Arabic conclusion,evidence,uncertainty and one next step. Resolve recommendations using evidence,not vote counts. Respect unresolved_disagreement: explicitly show any remaining disagreement or incomplete audit. Evidence_complete=false means source verification is incomplete. Do not claim experiments ran or show leader transcripts.\n'+SCOPE_CONTRACT,'lead_synthesis')
     counts={'mode':'independent_leaders','subagents':2,'completed_subagents':len(reports),
             'unavailable_subagents':failures,'partial':len(reports)<2 or bool(failures),
             'evidence_complete':evidence['evidence_complete'],'discussion_rounds':consultations,
