@@ -784,3 +784,35 @@ Checks cover explicit-request/proposal gates, simultaneous comments, silent advi
 retained objections, no repeat round, failed advisors, saved comments on synthesis
 failure, shared deadlines, controller counts and managed bootstrap policy.
 Live provider timing and answer quality after deployment are not measured here.
+
+
+## 2026-10-03 — Numeric provenance and local decimal arithmetic
+
+The lead now has `nova_repo_calculate`: a local bounded decimal arithmetic tool for
++,-,*,/,parentheses. It accepts at most160characters and40ASTnodes,uses50-digit
+Decimal precision,records rounding and rejects variables,calls,powers,division by
+zero or values above10^15. It never evaluates Python code,opens files,uses network
+or places trades. Calculation output explicitly says input provenance is not verified.
+The existing standalone tool set grows from4to5; combined definitions from10to11.
+No calculator-specific native shell approval is needed; commands remain fixed.
+
+Managed lead policy requires current source inputs and calculator checks for material
+costs/conversions/totals; copied measured figures retain source,units,period and sizing.
+A conflicting prior value without a verified source must be withdrawn and corrected,
+not described as externally documented. Background advisor/synthesis prompts share
+these evidence rules and flag missing calculations for the lead rather than claiming
+that no-tool advisors performed arithmetic. Advice remains optional and one-round.
+
+Documented current lab rule:0.13%per side,0.26%round trip,0.052dollars per20-dollar
+trade. Reproduction: `nova_repo_calculate` with expression `0.13 + 0.13` and
+`20 * (0.13 + 0.13) / 100`. Historical amendments require their actual source;
+current-cost examples do not silently restate or certify historical experiments.
+No source for the bot's earlier0.23%claim was supplied in the conversation; its
+origin has not been established by this code change. Existing task paper was not
+edited and Telegram messages were not sent by this change.
+
+Validation: `python -m unittest discover -s tools -p 'test*.py'` — 125 tests pass.
+Checks cover exact lab-cost results,decimal behavior,rounding,expression bounds,
+rejected code/operations,zero network calls and managed numeric instructions.
+These instructions reduce unsupported numeric claims; they cannot guarantee that
+all future prose uses correct inputs or that every source measurement is valid.

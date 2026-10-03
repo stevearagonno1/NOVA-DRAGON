@@ -305,9 +305,9 @@ class CouncilTests(unittest.TestCase):
     def test_dynamic_definitions_scoped_and_standalone_unchanged(self):
         plain=tomllib.loads(boot.readonly_tools_text())
         full=tomllib.loads(boot.readonly_tools_text(True))
-        self.assertEqual(len(plain['tools']),4)
-        self.assertEqual(len(full['tools']),10)
-        for tool in full['tools'][4:]:
+        self.assertEqual(len(plain['tools']),5)
+        self.assertEqual(len(full['tools']),11)
+        for tool in full['tools'][5:]:
             self.assertFalse(tool['requires_approval'])
             self.assertNotIn('{{',tool['command'])
 

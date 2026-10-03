@@ -1,6 +1,8 @@
 #!/usr/bin/env python3
 """Fixed-repository GET-only tools. No shell commands or caller-selected URLs."""
 import base64
+import ast
+from decimal import Decimal, localcontext, DecimalException, Inexact
 import json
 import os
 import re
@@ -43,9 +45,52 @@ def commit_info(item):
     return {'sha': item['sha'], 'date': item['commit']['committer']['date'],
             'subject': item['commit']['message'].splitlines()[0]}
 
+def calculate(expression):
+    """Small decimal arithmetic only: no eval, variables, calls, paths or IO."""
+    if not isinstance(expression,str) or not expression.strip() or len(expression)>160 or not re.fullmatch(r'[0-9. +*/()\t\r\n-]+',expression):
+        raise ValueError('Only a bounded arithmetic expression is allowed')
+    expression=expression.strip()
+    try:tree=ast.parse(expression,mode='eval')
+    except (SyntaxError,ValueError):raise ValueError('Invalid arithmetic expression') from None
+    if len(list(ast.walk(tree)))>40:raise ValueError('Arithmetic expression is too complex')
+    def number(node):
+        if isinstance(node,ast.Constant) and type(node.value) in (int,float):
+            token=ast.get_source_segment(expression,node)
+            if not re.fullmatch(r'(?:[0-9]+(?:\.[0-9]*)?|\.[0-9]+)',token):
+                raise ValueError('Only decimal literals are allowed')
+            value=Decimal(token)
+        elif isinstance(node,ast.UnaryOp) and isinstance(node.op,(ast.UAdd,ast.USub)):
+            value=number(node.operand)
+            if isinstance(node.op,ast.USub):value=-value
+        elif isinstance(node,ast.BinOp) and isinstance(node.op,(ast.Add,ast.Sub,ast.Mult,ast.Div)):
+            left,right=number(node.left),number(node.right)
+            if isinstance(node.op,ast.Add):value=left+right
+            elif isinstance(node.op,ast.Sub):value=left-right
+            elif isinstance(node.op,ast.Mult):value=left*right
+            else:
+                if right==0:raise ValueError('Division by zero is not allowed')
+                value=left/right
+        else:raise ValueError('Unsupported arithmetic operation')
+        if not value.is_finite() or abs(value)>Decimal('1e15'):
+            raise ValueError('Arithmetic value exceeds its limit')
+        return value
+    try:
+        with localcontext() as ctx:
+            ctx.prec=50
+            value=number(tree.body)
+            result=format(value,'f')
+            if '.' in result:result=result.rstrip('0').rstrip('.')
+            if value==0:result='0'
+            if len(result)>500:raise ValueError('Arithmetic result exceeds its limit')
+            return {'expression':expression,'result':result,'precision_digits':50,
+                    'rounded':bool(ctx.flags[Inexact]),'input_provenance_verified':False}
+    except DecimalException:raise ValueError('Invalid decimal arithmetic') from None
+
 def execute(operation, params):
     if not isinstance(params, dict):
         raise ValueError('Parameters must be an object')
+    if operation == 'calculate':
+        return calculate(params.get('expression'))
     if operation == 'status':
         item = get('/commits/main')
         return {'repository': 'stevearagonno1/NOVA-DRAGON', 'branch': 'main', **commit_info(item)}

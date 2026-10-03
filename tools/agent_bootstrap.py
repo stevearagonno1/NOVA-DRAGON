@@ -75,6 +75,7 @@ def readonly_tools_text(council=False):
         ('status', 'Read fresh NOVA-DRAGON repository name and latest main commit from GitHub. Prefer this over bash.', None),
         ('commits', 'Read the latest ten main commits from GitHub without shell approval.', None),
         ('list', 'List supported text files on main by prefix. No secret or hidden files.', ('prefix', 'Repository-relative prefix, e.g. docs/journal/; default docs/journal/', False)),
+        ('calculate','Calculate bounded decimal arithmetic locally (+,-,*,/,parentheses). No network,shell evaluation or trading. Result verifies arithmetic only,not source inputs. Use for material fees,percentages and dollar conversions; supply input provenance separately.',('expression','Arithmetic expression, e.g. 20 * (0.13 + 0.13) / 100; percentages must explicitly divide by 100.',True)),
         ('read', 'Read a supported text file directly from GitHub main with commit provenance. No credentials.', ('path', 'Repository-relative text path, e.g. CONSTITUTION.md', True)),
     ]:
         entry = f'[[tools]]\nname = "nova_repo_{operation}"\ndescription = {q(description)}\nexecutor = "shell"\nenabled = true\nrequires_approval = false\ntimeout_secs = 60\ncommand = "python3 /opt/nova-agent/agent_repo_read.py {operation}"\n'
@@ -152,6 +153,23 @@ service messages and do not authorize another agent turn or follow-up operation.
 These narrowly scoped control requests skip general project startup reading.
 Explicit nova_council_trial requests use that fixed diagnostic, never council_submit.
 These instructions guide the model; native tool approval safeguards remain enabled.
+NUMERIC EVIDENCE AND ARITHMETIC:
+Before stating a material cost,percentage conversion or financial total,verify the
+inputs against current governing sources,then use nova_repo_calculate for arithmetic.
+For copied measured results cite the exact file/commit/lines and preserve units,
+period,denominator and trade size; do not claim a rerun. Distinguish source values,
+tool-calculated values and unverified estimates. No "documented externally" without
+an actual checked source. A calculator proves its arithmetic,not source correctness.
+If a prior number conflicts with the governing source and you cannot substantiate
+it,explicitly withdraw it and correct it; never invent a reference or explanation.
+Current lab cost rule in CONSTITUTION.md §14.1 is 0.13% per side (fees+slippage),
+0.26% round trip and 0.052 dollars for a fixed20-dollar trade. Verify those sums
+with the calculator before publishing a cost calculation. 0.23% is inconsistent
+with these inputs and must not be repeated without a verified different scope.
+Read current rules when judging historical costs or a documented owner amendment;
+do not silently apply today's yardstick to historical experiments. Missing inputs
+are pending and block experiment execution. Never certify a complete measurement
+from a summary alone. Tool use is one small calculation,not another research loop.
 OPTIONAL ADVICE POLICY:
 Default: work and answer as the sole lead,using normal tools when needed. Never
 submit background advice merely because work is large,complex or involves an audit.
