@@ -592,3 +592,42 @@ board,citation provenance,conditional consultation,unresolved dissent at2rounds,
 consultation failure preserving findings,literal/scoped tool rejection,bounded endless
 publish loops,and full synthetic trial production integration. Live leader mode is
 not yet verified. No changes to main,trading strategy,data or paid hosting.
+
+### Explicit consultation schema and safe field diagnostics (2026-10-03)
+
+Live trial29b008249dd9a478 completed both initial leaders,12tool steps,17requests,
+365.81seconds. One consultation failed for both leaders with generic ValueError,
+retaining their findings. Old records did not capture validation code/location,so
+the exact rejected fields cannot be established retrospectively. Inspection found
+the consultation prompt referred to the prior schema without reproducing it; the
+new request is stateless and that instruction was insufficiently explicit.
+
+Consultation now carries a complete JSON example and bounds for action=finish,
+summary,decision,blockers,needs_consultation,and peer_relation. peer_relation is an
+explicit comparison of the proposed actions,scope,conditions and next step:
+equivalent/different/uncertain. Different labels may still trigger one verification
+consultation; they are not silently rewritten by a slug/synonym heuristic. Both
+leaders independently confirming equivalence can end label-only disagreement only
+when neither has blockers/requests and pinned evidence is available. Explicit
+difference/uncertainty remains unresolved even if labels are identical. This is
+model assessment of semantic equivalence,not empirical verification or proof.
+
+Final validation raises LeaderContractError with finite safe codes identifying
+missing/invalid finish action,summary,decision,blockers,consultation flag or peer
+relation. Failed leader/consultation records include reason_code,Arabic fixed
+description,error_type,error_slot and file:line:function location from the traceback.
+No raw response,traceback locals,provider error body,secret or private reasoning is
+recorded in these diagnostics. Malformed JSON retains its existing distinct code.
+Transport errors retain safe transport codes; no post-hoc repair of values is made.
+Previously successful findings are retained as before. Global time/key/step/tool
+limits and no-forced-consensus behavior remain unchanged.
+
+Synthetic trial guidance now says one full read of its4lines normally suffices,
+then finish instead of redundant reads/publishing,while allowing real objections.
+This is model guidance and does not guarantee fewer calls. No historical result is
+reclassified or treated as proof the new schema is live accepted.
+
+Validation:99 local tests pass. Added field-specific/location-safe failure checks,
+checkpointed consultation diagnostics,equivalent decisions with distinct labels,
+real blockers/missing evidence resisting equivalence,and explicit substantive
+disagreement despite equal labels. Live retry is still pending deployment.

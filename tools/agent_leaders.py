@@ -3,12 +3,51 @@ from concurrent.futures import ThreadPoolExecutor, wait, FIRST_COMPLETED
 import json
 import threading
 import time
+import traceback
+from pathlib import Path
 from agent_deliberation import object_response, evidence_packet, numbered_sources
 from agent_council_transport import safe_reason
 
 MAX_STEPS=8
 MAX_CONSULTATIONS=2
 MAX_REQUESTS=21
+class LeaderContractError(ValueError):
+    def __init__(self,code):
+        self.code=code
+        super().__init__(code)
+
+CONSULTATION_CONTRACT='''Review the specific difference against pinned excerpts.
+Different decision labels alone do not imply different actions. Explicitly compare
+the proposed actions,scope,conditions and next step. Keep dissent if evidence is
+insufficient. Return ONE complete JSON object with ALL fields shown here:
+{"action":"finish","summary":"concise Arabic evidence-based finding",
+ "decision":"your short decision label","blockers":[],
+ "needs_consultation":false,"peer_relation":"uncertain"}
+action MUST be "finish". summary must be nonempty and at most3000characters,
+decision nonempty and at most120characters,blockers a list of at most5nonempty
+strings each at most500characters,and needs_consultation a real JSON boolean.
+peer_relation MUST be "equivalent", "different" or "uncertain". Use equivalent
+only if actions and conditions match despite labels; use different for substantive
+conflicts,and uncertain if evidence/context is missing. The example is a schema,
+not an instruction to agree. No read/search/publish action in this consultation.
+No vote,forced unanimity,private reasoning or invented evidence.'''
+
+def failure_record(exc,worker,phase):
+    reason=safe_reason(exc)
+    frame=traceback.extract_tb(exc.__traceback__)[-1] if exc.__traceback__ else None
+    descriptions={'leader_finish_action_missing':'رد النهاية ينقصه حقل action الإلزامي',
+                  'leader_finish_action_invalid':'رد التشاور لم يحدد action بالقيمة finish',
+                  'leader_summary_invalid':'خلاصة القائد مفقودة أو نوعها أو طولها غير صالح',
+                  'leader_decision_invalid':'تسمية القرار مفقودة أو نوعها أو طولها غير صالح',
+                  'leader_blockers_invalid':'قائمة الاعتراضات غير صالحة أو تجاوزت حدودها',
+                  'leader_consultation_flag_invalid':'حقل طلب التشاور مفقود أو ليس قيمة منطقية صحيحة',
+                  'leader_peer_relation_invalid':'حقل مقارنة القرار مع القائد الآخر مفقود أو غير صالح',
+                  'deliberation_invalid_response':'الرد لا يحتوي كائن JSON واحدًا مكتملًا صالحًا'}
+    return {'worker':worker,'phase':phase,'reason_code':reason['code'],
+            'reason_description':descriptions.get(reason['code'],'تعذر إكمال الطلب؛ راجع رمز الخطأ وموقعه'),
+            'error_type':type(exc).__name__,
+            'error_slot':reason['slot'],
+            'error_location':Path(frame.filename).name+':'+str(frame.lineno)+':'+frame.name if frame else None}
 ROLES=('Analysis leader: investigate the question, compare alternatives and propose one decision.',
        'Audit leader: independently verify source alignment, challenge gaps and recommend a decision.')
 CONTRACT='''You are a scoped read-only leader. Use only the supplied sources and tools.
@@ -72,19 +111,27 @@ class Workspace:
             return {'hits':hits,'limit_reached':False}
         raise ValueError('Unsupported leader action')
 
-def final_report(action,worker):
-    if action.get('action')!='finish':raise ValueError('Leader must return a finish action')
+def final_report(action,worker,consultation=False):
+    if 'action' not in action:raise LeaderContractError('leader_finish_action_missing')
+    if action.get('action')!='finish':raise LeaderContractError('leader_finish_action_invalid')
     summary=action.get('summary');decision=action.get('decision');blockers=action.get('blockers')
-    if not isinstance(summary,str) or not summary.strip() or len(summary)>3000:raise ValueError('Invalid leader summary')
-    if not isinstance(decision,str) or not decision.strip() or len(decision)>120:raise ValueError('Invalid decision label')
+    if not isinstance(summary,str) or not summary.strip() or len(summary)>3000:raise LeaderContractError('leader_summary_invalid')
+    if not isinstance(decision,str) or not decision.strip() or len(decision)>120:raise LeaderContractError('leader_decision_invalid')
     if not isinstance(blockers,list) or len(blockers)>5 or any(not isinstance(x,str) or not x.strip() or len(x)>500 for x in blockers):
-        raise ValueError('Invalid leader blockers')
-    if type(action.get('needs_consultation')) is not bool:raise ValueError('Invalid consultation request')
+        raise LeaderContractError('leader_blockers_invalid')
+    if type(action.get('needs_consultation')) is not bool:raise LeaderContractError('leader_consultation_flag_invalid')
+    relation=action.get('peer_relation')
+    if consultation and relation not in ('equivalent','different','uncertain'):
+        raise LeaderContractError('leader_peer_relation_invalid')
     return {'worker':worker,'role':ROLES[worker-1],'findings':summary,'decision':decision,
-            'blockers':blockers,'needs_consultation':action['needs_consultation']}
+            'blockers':blockers,'needs_consultation':action['needs_consultation'],
+            'peer_relation':relation if consultation else None}
 
-def disagreement(reports):
-    return len(reports)!=2 or len({r['decision'].strip().casefold() for r in reports})>1 or any(r['blockers'] or r['needs_consultation'] for r in reports)
+def disagreement(reports,equivalence_allowed=True):
+    if len(reports)!=2 or any(r['blockers'] or r['needs_consultation'] for r in reports):return True
+    if any(r.get('peer_relation') in ('different','uncertain') for r in reports):return True
+    if len({r['decision'].strip().casefold() for r in reports})==1:return False
+    return not (equivalence_allowed and all(r.get('peer_relation')=='equivalent' for r in reports))
 
 def coordinate_leaders(task,context,sources,call,system,progress=None,checkpoint=None,total_seconds=5400,require_tool=False):
     progress=progress or (lambda phase,count:None)
@@ -131,7 +178,7 @@ def coordinate_leaders(task,context,sources,call,system,progress=None,checkpoint
                     worker=pending.pop(future)
                     with lock:
                         try:results.append(future.result())
-                        except Exception as exc:failures.append({'worker':worker,'phase':phase,'reason_code':safe_reason(exc)['code']})
+                        except Exception as exc:failures.append(failure_record(exc,worker,phase))
                         if phase=='leaders':reports=list(results)
                         save()
             with lock:
@@ -142,22 +189,24 @@ def coordinate_leaders(task,context,sources,call,system,progress=None,checkpoint
         return sorted(results,key=lambda r:r['worker'])
     progress('leaders',0);reports=parallel(run,'leaders')
     if not reports:raise TimeoutError('No leader completed the task')
-    while len(reports)==2 and disagreement(reports) and consultations<MAX_CONSULTATIONS:
+    equivalence_allowed=evidence_packet(sources,[reports,board.snapshot()])['evidence_complete']
+    while len(reports)==2 and disagreement(reports,equivalence_allowed) and consultations<MAX_CONSULTATIONS:
         consultations+=1;phase='consultation_'+str(consultations);progress(phase,completed)
         previous=json.loads(json.dumps(reports));evidence=evidence_packet(sources,[previous,board.snapshot()])
         def consult(worker):
             payload={'task':task,'context':context,'own_report':previous[worker-1],
                      'peer_report':previous[2-worker],'workspace':board.snapshot(),'evidence':evidence,
                      'round':consultations}
-            answer=request(worker,payload,ROLES[worker-1]+'\nReview this specific disagreement against the pinned excerpts. Respond to your peer objections; keep dissent if evidence is insufficient. Return a finish JSON object using the same summary/decision/blockers/needs_consultation schema. No votes, pressure for unanimity or invented evidence. No tool action in this bounded consultation turn.','consultation_'+str(consultations))
-            return final_report(object_response(answer),worker)
+            answer=request(worker,payload,ROLES[worker-1]+'\n'+CONSULTATION_CONTRACT,'consultation_'+str(consultations))
+            return final_report(object_response(answer),worker,consultation=True)
         revised=parallel(consult,phase)
         # A failed consultation never discards the previous successful findings.
         updates={r['worker']:r for r in revised}
         reports=[updates.get(r['worker'],r) for r in previous]
+        equivalence_allowed=evidence_packet(sources,[reports,board.snapshot()])['evidence_complete']
         with lock:save()
         if len(revised)<2:break
-    unresolved=disagreement(reports);evidence=evidence_packet(sources,[reports,board.snapshot()])
+    unresolved=disagreement(reports,equivalence_allowed);evidence=evidence_packet(sources,[reports,board.snapshot()])
     progress('lead_synthesis',completed)
     summary=request(0,{'task':task,'context':context,'leaders':reports,'unavailable_workers':failures,
                        'consultation_rounds':consultations,'unresolved_disagreement':unresolved,'evidence':evidence},

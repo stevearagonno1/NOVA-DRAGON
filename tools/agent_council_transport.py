@@ -51,6 +51,7 @@ class TransportConfigurationError(ValueError):
         super().__init__(code)
 
 def safe_reason(exc):
+    if type(exc).__name__=='LeaderContractError':return {'code':exc.code,'slot':None}
     if isinstance(exc, (TransportConfigurationError, FinalAnswerError)):
         return {'code': exc.code, 'slot': exc.slot}
     known = {

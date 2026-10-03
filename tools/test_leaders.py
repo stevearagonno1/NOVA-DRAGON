@@ -1,12 +1,12 @@
 import json
 import threading
 import unittest
-from agent_leaders import Workspace,coordinate_leaders,MAX_REQUESTS
+from agent_leaders import Workspace,coordinate_leaders,MAX_REQUESTS,final_report,failure_record,LeaderContractError
 
 SOURCES=[{'path':'README.md','commit':'fixed','blob_sha':'blob','content':'first evidence\nsecond fact\nthird detail'}]
-def finish(decision='approve',blockers=None):
+def finish(decision='approve',blockers=None,relation='equivalent'):
     return json.dumps({'action':'finish','summary':'finding README.md:L1-L2 @fixed',
-                       'decision':decision,'blockers':blockers or [],'needs_consultation':False})
+                       'decision':decision,'blockers':blockers or [],'needs_consultation':False,'peer_relation':relation})
 
 class LeaderTests(unittest.TestCase):
     def test_each_leader_uses_tools_and_shared_board_without_unneeded_consultation(self):
@@ -94,5 +94,73 @@ class LeaderTests(unittest.TestCase):
     def test_diagnostic_requires_actual_tool_use(self):
         with self.assertRaises(TimeoutError):
             coordinate_leaders('task','',SOURCES,lambda *args:finish(),'rules',require_tool=True)
+
+    def test_different_labels_can_be_equivalent_without_silent_alias_rewrite(self):
+        def call(system,user,slot,deadline):
+            payload=json.loads(user)
+            if slot==0:
+                self.assertFalse(payload['unresolved_disagreement'])
+                self.assertNotEqual(payload['leaders'][0]['decision'],payload['leaders'][1]['decision'])
+                return 'equivalent scoped decisions'
+            if 'peer_report' in payload:
+                self.assertIn('"action":"finish"',system)
+                self.assertIn('peer_relation',system)
+            return finish('conditional-report-order' if slot==1 else 'report-order-by-audience')
+        _,counts=coordinate_leaders('task','',SOURCES,call,'rules')
+        self.assertEqual(counts['discussion_rounds'],1)
+        self.assertFalse(counts['unresolved_disagreement'])
+        self.assertFalse(counts['partial'])
+
+    def test_equivalence_does_not_override_blockers_or_missing_evidence(self):
+        for uncited in (False,True):
+            def call(system,user,slot,deadline):
+                if slot==0:return 'unresolved'
+                value=json.loads(finish('label'+str(slot),[] if uncited else ['real blocker']))
+                if uncited:value['summary']='uncited claim'
+                return json.dumps(value)
+            _,counts=coordinate_leaders('task','',SOURCES,call,'rules')
+            self.assertTrue(counts['unresolved_disagreement'])
+            self.assertEqual(counts['discussion_rounds'],2)
+
+    def test_same_label_does_not_override_explicit_substantive_difference(self):
+        from agent_leaders import disagreement
+        reports=[final_report(json.loads(finish('same-label',relation=r)),i+1,consultation=True)
+                 for i,r in enumerate(('equivalent','different'))]
+        self.assertTrue(disagreement(reports))
+
+    def test_contract_rejection_records_specific_code_location_without_response_values(self):
+        cases=[('action',None,'leader_finish_action_missing'),
+               ('action','read','leader_finish_action_invalid'),
+               ('summary','x'*3001,'leader_summary_invalid'),
+               ('decision',None,'leader_decision_invalid'),
+               ('blockers','private invalid value','leader_blockers_invalid'),
+               ('needs_consultation','false','leader_consultation_flag_invalid'),
+               ('peer_relation','private invalid value','leader_peer_relation_invalid')]
+        for field,value,expected in cases:
+            action=json.loads(finish())
+            if value is None:action.pop(field)
+            else:action[field]=value
+            try:final_report(action,1,consultation=True)
+            except LeaderContractError as exc:
+                record=failure_record(exc,1,'consultation_1')
+            else:self.fail('Invalid report accepted')
+            self.assertEqual(record['reason_code'],expected)
+            self.assertIn('agent_leaders.py:',record['error_location'])
+            self.assertNotIn('private invalid',json.dumps(record))
+
+    def test_failed_consultation_checkpoint_contains_field_specific_diagnostics(self):
+        saved=[]
+        def call(system,user,slot,deadline):
+            payload=json.loads(user)
+            if slot==0:return 'partial'
+            if 'peer_report' in payload:
+                value=json.loads(finish());value.pop('action');return json.dumps(value)
+            return finish('label'+str(slot))
+        _,counts=coordinate_leaders('task','',SOURCES,call,'rules',checkpoint=lambda *args:saved.append(args))
+        self.assertTrue(counts['partial'])
+        self.assertEqual(len(counts['unavailable_subagents']),2)
+        for record in saved[-1][1]:
+            self.assertEqual(record['reason_code'],'leader_finish_action_missing')
+            self.assertIn('final_report',record['error_location'])
 
 if __name__=='__main__':unittest.main()
