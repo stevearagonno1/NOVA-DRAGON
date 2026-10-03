@@ -83,8 +83,8 @@ def readonly_tools_text(council=False):
             entry += f'[[tools.params]]\nname = {q(name)}\ntype = "string"\ndescription = {q(desc)}\nrequired = {str(required).lower()}\n'
         definitions.append(entry)
     for operation, description, params in ([
-        ('submit', 'Delegate a read-only task to two parallel subagents: analyst and independent auditor. The lead synthesizes available findings once, without discussion rounds or unanimity. Worker budget six minutes; lead synthesis budget four minutes. Partial completion is explicit. No shell, trades, repository writes or child tool calls. Owner-only final result. Legacy council name; this is lead-and-subagents mode.', [('task', 'Complete task paper: question, scope, evidence, acceptance checks, deliverables and next decision.', True, 'string'), ('context', 'Relevant lead context with source paths; never include secrets.', False, 'string'), ('paths', 'At most five supported repository text source paths on main. Constitution is always included.', False, 'array')]),
-        ('trial', 'Fixed tiny lead-and-two-subagents diagnostic about report order only. Two-minute worker budget and two-minute lead synthesis budget; no votes or discussion rounds. No constitution, repository sources, caller task or context, tools or file changes. Not a substantive project review. Submit once, acknowledge ID and finish the turn.', []),
+        ('submit', 'Delegate a read-only task to two parallel subagents: analyst and independent auditor. The lead synthesizes available findings once, without discussion rounds or unanimity. Active tasks may run up to a shared ninety-minute ceiling; five minutes without meaningful streamed progress triggers bounded reserve failover. Partial completion is explicit. No shell, trades, repository writes or child tool calls. Owner-only final result. Legacy council name; this is lead-and-subagents mode.', [('task', 'Complete task paper: question, scope, evidence, acceptance checks, deliverables and next decision.', True, 'string'), ('context', 'Relevant lead context with source paths; never include secrets.', False, 'string'), ('paths', 'At most five supported repository text source paths on main. Constitution is always included.', False, 'array')]),
+        ('trial', 'Fixed tiny lead-and-two-subagents diagnostic about report order only. Activity-aware waiting with a shared ninety-minute safety ceiling; no votes or discussion rounds. No constitution, repository sources, caller task or context, tools or file changes. Not a substantive project review. Submit once, acknowledge ID and finish the turn.', []),
         ('status', 'Read background review state and final result when the owner asks. Do not repeatedly poll.', [('id', 'Optional id returned by nova_council_submit; omit to list jobs.', False, 'string')]),
         ('probe', 'Start exactly one small upstream connection check with the first configured unique credential, in the background. No fallback, no repository sources, no secrets. A successful check verifies only one credential; results go to the owner.', []),
         ('probe_reviewers', 'Compare first three distinct credential slots with exactly three identical tiny concurrent requests. No repository sources, role differences, fallback, model reasoning transcripts or secrets. Background owner-only result includes safe durations per slot. Does not run a council or prove collective review works.', []),
@@ -203,9 +203,14 @@ Use one submission for the whole task, not one per paragraph. Supply selected ma
 text source paths and relevant local pending facts with provenance in context.
 The background service reads a pinned main snapshot and runs two workers in parallel:
 analysis and independent audit. The lead combines available results once; there are
-NO discussion rounds, votes, or unanimity requirement. Worker budget is six minutes,
-then the lead has four minutes. If one fails, the result is explicitly partial; if both
-fail, report the failure. Source reading, queueing and an in-flight network read can
+NO discussion rounds, votes, or unanimity requirement. Meaningful streamed content allows work to continue up to a shared ninety-minute
+safety ceiling, including lead synthesis. Five minutes without meaningful stream
+progress triggers bounded reserve failover; heartbeats do not count. Reasoning text
+is never exposed. If one fails, the result is explicitly partial; if both fail, report
+the failure. Completed worker findings are saved immediately in the temporary job
+record. If lead synthesis failed and the owner asks to finish the task, read its
+status once and use saved worker_reports for your concise answer without rerunning
+the workers. Do not certify evidence absent from the saved reports; note gaps. Source reading, queueing and an in-flight network read can
 add time, so do not promise an exact wall-clock finish. Distinct preferred keys and
 bounded reserve failover remain. This is read-only model analysis, not a shell or
 numeric experiment worker. It has NO trading, file mutation or experiment execution.

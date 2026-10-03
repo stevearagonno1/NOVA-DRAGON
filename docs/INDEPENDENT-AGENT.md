@@ -496,3 +496,41 @@ slots,one synthesis without voting,partial completion without waiting for pendin
 thread termination,both-worker failure without synthesis,explicit evidence gaps,and
 production job integration sending one final owner result. Live behavior and latency
 remain unverified until this deployment is running and a new trial completes.
+
+### Activity-aware long background tasks (2026-10-03)
+
+Owner requested time for work approaching one hour,with stopping based on inactivity.
+Live trial5229a958a9e49324 completed workers in35.26/71.20seconds but its lead hit
+the previous120-second deadline. Default submit AND fixed trial now share one5400-second
+(90-minute) ceiling across worker collection and lead synthesis; separate120/240/360
+phase deadlines no longer apply. This permits active work exceeding one hour without
+promising that any provider response or heavy numerical execution will succeed.
+Source fetching,queue and notification are outside this ceiling; an in-flight read may
+add at most its configured socket timeout. Main interactive gateway is unchanged;
+long tasks are delegated to the direct background transport.
+
+Direct SSE transport has a300-second inactivity/start timeout and5400-second absolute
+stream bound. Nonempty content/reasoning deltas or finish markers update activity;
+empty events,role-only deltas and SSE heartbeats do not. Reasoning text is neither
+stored nor emitted; only safe slot/phase/elapsed activity telemetry is saved at most
+every15seconds. These signals show transport progress,not usefulness of reasoning.
+Socket timeout handles absent bytes,while an explicit meaningful-progress clock
+handles endless heartbeat traffic. Non-stream JSON fallback remains opaque and uses
+the same socket timeout. Existing three-attempt failover and Retry-After cooldown
+apply to start/idle failures; a global ceiling does not restart another90-minute window.
+Output-token and byte limits remain; extended time does not bypass provider limits.
+
+Completed worker findings are checkpointed immediately,with progress count,in private
+mode600 temporary job files. Lead failure retains worker_reports,unavailable_workers
+and source manifest for owner status. Main instructions allow answering from saved
+findings upon an explicit request without rerunning workers; evidence gaps remain
+explicit. No new automatic job/retry endpoint is introduced. These are concise final
+worker findings,not internal reasoning transcripts. Render ephemeral reset/redeploy
+can still lose records. Status exposes last_activity without raw stream content.
+Background error wording now describes the failing stage and preserved findings,
+without legacy claims about collective consensus.
+
+Validation:86 local tests pass. Added simulated active streams beyond one hour,
+heartbeat-only inactivity,absolute ceiling despite activity,checkpoint-before-second
+worker completion,preserved findings when lead fails,one shared deadline for all
+phases,and private telemetry/status integration. No real hour-long live run was made.

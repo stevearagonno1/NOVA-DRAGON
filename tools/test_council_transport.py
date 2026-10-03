@@ -23,6 +23,36 @@ class StreamTests(unittest.TestCase):
         with self.assertRaises(transport.StreamIncomplete):
             transport.collect_sse(io.BytesIO(self.event({'content':'unfinished'})))
 
+    def test_meaningful_activity_can_continue_for_an_hour_without_private_text(self):
+        now=[0]; notices=[]
+        events=[self.event({'reasoning_content':'private thought'}) for _ in range(30)]
+        events+=[self.event({'content':'final answer'},'stop'),b'data: [DONE]\n']
+        class Response:
+            def readline(self,*args):
+                now[0]+=120
+                return events.pop(0) if events else b''
+        result=transport.collect_sse(Response(),clock=lambda:now[0],deadline=5400,activity=lambda:notices.append(now[0]))
+        self.assertEqual(result,'final answer')
+        self.assertGreater(now[0],3600)
+        self.assertEqual(len(notices),31)
+
+    def test_heartbeat_traffic_does_not_extend_inactivity_limit(self):
+        now=[0]
+        class Response:
+            def readline(self,*args):
+                now[0]+=100
+                return b': heartbeat\n'
+        with self.assertRaises(transport.StreamStartTimeout):
+            transport.collect_sse(Response(),clock=lambda:now[0],deadline=5400)
+        self.assertEqual(now[0],400)
+
+    def test_absolute_ceiling_still_stops_continuous_progress(self):
+        now=[0];event=self.event({'reasoning_content':'hidden'})
+        class Response:
+            def readline(self,*args):now[0]+=100;return event
+        with self.assertRaises(transport.ReviewDeadlineExceeded):
+            transport.collect_sse(Response(),clock=lambda:now[0],deadline=500)
+
     def test_stream_idle_timeout_is_distinct_from_start_timeout(self):
         class Response:
             def __init__(self, first=None): self.first=first

@@ -87,7 +87,7 @@ def run_review(task, context, sources, call=model_call, progress=None, observer=
     return deliberate(task, context, sources, invoke, system, roles, progress=progress)
 
 
-def run_background(task,context,sources,call=None,progress=None,observer=None,diagnostic=False):
+def run_background(task,context,sources,call=None,progress=None,observer=None,diagnostic=False,checkpoint=None):
     from agent_background import coordinate
     call=call or model_call
     if call is model_call:
@@ -103,7 +103,7 @@ def run_background(task,context,sources,call=None,progress=None,observer=None,di
     if diagnostic:
         system+='\nThis is a tiny source-free workflow diagnostic. Compare the two report orders only. Do not invent repository evidence or trading measurements.'
     return coordinate(task,context,sources,invoke,system,progress=progress,
-                      worker_seconds=120 if diagnostic else 360,synthesis_seconds=120 if diagnostic else 240)
+                      checkpoint=checkpoint)
 
 def notify(text):
     # Owner-only destination, never a model-selected recipient or URL.
@@ -171,15 +171,27 @@ class Jobs:
             with self.lock:
                 job['state'] = 'running'; job['phase'] = 'reading_sources'; self.save(job)
             sources = [] if job.get('kind') in ('probe','probe_reviewers','trial') else self.source_reader({'paths': job['paths']})
+            with self.lock:
+                job['sources']=[{k:s[k] for k in ('path','commit','blob_sha')} for s in sources]
+                self.save(job)
             def progress(phase, completed):
                 with self.lock:
                     job.update(phase=phase, completed_requests=completed)
                     self.save(job)
             def observer(event):
                 with self.lock:
+                    if event.get('kind')=='activity':
+                        job['last_activity']={**event,'phase':event.get('phase',job.get('phase')),'recorded_at':__import__('time').time()}
+                        self.save(job)
+                        return
                     entries=job.setdefault('request_timings',[])
                     if len(entries)<48:
                         entries.append(dict(event,phase=event.get('phase',job.get('phase'))))
+                    self.save(job)
+            def checkpoint(reports,failures):
+                with self.lock:
+                    job['worker_reports']=json.loads(json.dumps(reports,ensure_ascii=False))
+                    job['unavailable_workers']=json.loads(json.dumps(failures))
                     self.save(job)
             if job.get('kind')=='probe':
                 progress('connection_probe',0)
@@ -197,7 +209,7 @@ class Jobs:
                 result='\n'.join(lines)
                 counts={'model_requests':check['completed_requests'],'api_requests':3}
             elif self.runner is run_background:
-                result,counts=self.runner(job['task'],job['context'],sources,progress=progress,observer=observer,diagnostic=job.get('kind')=='trial')
+                result,counts=self.runner(job['task'],job['context'],sources,progress=progress,observer=observer,diagnostic=job.get('kind')=='trial',checkpoint=checkpoint)
             elif self.runner is run_review:
                 result, counts = self.runner(job['task'], job['context'], sources, progress=progress, observer=observer, deadline_seconds=300 if job.get('kind')=='trial' else 900, diagnostic=job.get('kind')=='trial')
             else:
@@ -220,7 +232,13 @@ class Jobs:
                 detail += ' (الخانة ' + str(reason['slot']) + ')'
             print('NOVA council blocked job=' + job['id'] + ' phase=' + job.get('phase','unknown') + ' code=' + reason['code'] + ' location=' + location, flush=True)
             job.update(reason_code=reason['code'], error_slot=reason['slot'], error_location=location)
-            job.update(state='blocked', error_type=error, result='لم تكتمل المراجعة. توقفت في مرحلة ' + stage + '؛ ' + detail + '؛ اكتمل ' + str(job.get('completed_requests', 0)) + ' من سقف ' + str(job.get('expected_requests',16)) + ' طلبات. لم ينتج الاختبار نتيجة معتمدة.')
+            if job.get('mode')=='lead_and_subagents':
+                message='تعذر إكمال العمل في مرحلة '+stage+'؛ '+detail+'؛ الطلبات المكتملة: '+str(job.get('completed_requests',0))+'/3.'
+                if job.get('worker_reports'):
+                    message+=' حُفظت نتائج '+str(len(job['worker_reports']))+' من الفرعيين، ويمكن قراءتها من حالة المهمة ما دام السجل موجودًا.'
+            else:
+                message='لم تكتمل المراجعة. توقفت في مرحلة '+stage+'؛ '+detail+'؛ اكتمل '+str(job.get('completed_requests',0))+' من سقف '+str(job.get('expected_requests',16))+' طلبات.'
+            job.update(state='blocked',error_type=error,result=message)
         job['runtime_seconds']=round(time.monotonic()-started,2)
         if job.get('counts',{}).get('mode')=='lead_and_subagents':
             job['result']+='\n\nالفرعيون المكتملون: '+str(job['counts']['completed_subagents'])+'/2؛ الطلبات المكتملة: '+str(job['completed_requests'])+'/3؛ مدة التشغيل: '+str(job['runtime_seconds'])+' ثانية.'
@@ -251,7 +269,7 @@ class Jobs:
                 if not jobs:
                     return [{'id':job_id,'state':'not_found','next_action':'finish_turn',
                              'message':'لا يوجد سجل لهذا المعرف في التخزين الحالي. قد تختفي سجلات قديمة بعد إعادة التشغيل أو النشر. لا تبحث في ملفات أخرى ولا تستنتج مشكلة مفاتيح أو مزوّد؛ أخبر المالك وأنهِ الرد.'}]
-            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location','kind','mode','expected_requests','counts','request_timings','runtime_seconds')} for j in jobs]
+            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location','kind','mode','expected_requests','counts','request_timings','runtime_seconds','last_activity','worker_reports','unavailable_workers','sources')} for j in jobs]
 
 class Handler(BaseHTTPRequestHandler):
     jobs = None

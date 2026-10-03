@@ -17,8 +17,8 @@ from urllib.request import Request, build_opener
 from agent_repo_read import NoRedirect
 
 LIMIT = 2 * 1024 * 1024
-TOTAL_SECONDS = 600
-IDLE_SECONDS = 90
+TOTAL_SECONDS = 5400
+IDLE_SECONDS = 300
 # Atria supports integer generation limits through 65,536; reserve enough room
 # for a complete answer while keeping generation explicitly bounded.
 REVIEW_OUTPUT_TOKENS = 16384
@@ -70,7 +70,7 @@ def safe_reason(exc):
 
 REASON_AR = {
     'three_probe_credentials_missing': 'لا توجد ثلاثة مفاتيح مختلفة لبدء الفحص المقارن',
-    'ReviewDeadlineExceeded': 'انتهت مهلة المراجعة المشتركة؛ لا توجد نتيجة جماعية معتمدة',
+    'ReviewDeadlineExceeded': 'بلغ الطلب الحد الأقصى للمدة المسموح بها',
     'deliberation_invalid_response': 'لم يصل اقتراح أو تصويت صالح؛ لا يمكن اعتماد اتفاق جماعي',
     'endpoint_mismatch': 'عنوان اتصال المراجعين لا يطابق عنوان المزوّد المعتمد',
     'model_mismatch': 'اسم النموذج في اتصال المراجعين غير مطابق',
@@ -157,12 +157,15 @@ def validate_final(text, finish, had_reasoning=False, refused=False):
         raise FinalAnswerError('reasoning_without_final_answer' if had_reasoning or text.strip() else 'empty_final_answer')
     return cleaned
 
-def collect_sse(response, clock=time.monotonic, deadline=None):
+def collect_sse(response, clock=time.monotonic, deadline=None, activity=None):
     start=clock(); total=0; pieces=[]; terminal=False; finish=None; saw_event=False; had_reasoning=False; refused=False
+    last_progress=start
     while True:
         check_deadline(deadline,clock)
         if clock()-start > TOTAL_SECONDS:
             raise StreamIdleTimeout('Stream exceeded its bounded duration')
+        if clock()-last_progress > IDLE_SECONDS:
+            raise (StreamIdleTimeout if saw_event else StreamStartTimeout)('No meaningful stream progress')
         try:
             raw=response.readline(LIMIT+1)
         except (TimeoutError, OSError) as exc:
@@ -173,6 +176,8 @@ def collect_sse(response, clock=time.monotonic, deadline=None):
             raise StreamIncomplete('Stream exceeds its size limit')
         if not raw:
             break
+        if clock()-last_progress > IDLE_SECONDS:
+            raise (StreamIdleTimeout if saw_event else StreamStartTimeout)('No meaningful stream progress')
         line=raw.decode('utf-8').strip()
         if not line.startswith('data:'):
             continue
@@ -194,6 +199,10 @@ def collect_sse(response, clock=time.monotonic, deadline=None):
         had_reasoning = had_reasoning or bool(delta.get('reasoning_content') or delta.get('reasoning') or delta.get('thinking'))
         refused = refused or bool(delta.get('refusal'))
         text=final_content(delta.get('content'))
+        # Reasoning deltas count as activity without retaining or emitting their text.
+        if text or delta.get('reasoning_content') or delta.get('reasoning') or delta.get('thinking') or choice.get('finish_reason'):
+            last_progress=clock()
+            if activity:activity()
         if text:
             pieces.append(text)
         finish=choice.get('finish_reason') or finish
@@ -202,7 +211,7 @@ def collect_sse(response, clock=time.monotonic, deadline=None):
         raise StreamIncomplete('No completion marker; partial text is not a finished review')
     return validate_final(''.join(pieces),finish,had_reasoning,refused)
 
-def stream(route, system, user, opener=None, max_tokens=REVIEW_OUTPUT_TOKENS, deadline=None):
+def stream(route, system, user, opener=None, max_tokens=REVIEW_OUTPUT_TOKENS, deadline=None, activity=None):
     check_deadline(deadline)
     opener=opener or build_opener(NoRedirect)
     request=Request(route['base']+'/chat/completions', method='POST',
@@ -233,7 +242,7 @@ def stream(route, system, user, opener=None, max_tokens=REVIEW_OUTPUT_TOKENS, de
             return validate_final(final_content(message.get('content')),finish,
                                   bool(message.get('reasoning_content') or message.get('reasoning') or message.get('thinking')),
                                   bool(message.get('refusal')))
-        return collect_sse(response,deadline=deadline)
+        return collect_sse(response,deadline=deadline,activity=activity)
 
 def model_call(system, user, slot=0, pool=None, requester=stream, clock=time.monotonic, deadline=None, observer=None):
     pool=routes() if pool is None else pool
@@ -247,8 +256,15 @@ def model_call(system, user, slot=0, pool=None, requester=stream, clock=time.mon
             break
         try:
             started=clock(); outcome='failed'; reason=None
+            last_notice=started-15
+            def activity():
+                nonlocal last_notice
+                if observer is not None and clock()-last_notice>=15:
+                    last_notice=clock()
+                    observer({'kind':'activity','credential_slot':index+1,
+                              'elapsed_seconds':round(max(0,clock()-started),2)})
             try:
-                result=requester(pool[index],system,user,deadline=deadline) if requester is stream else requester(pool[index],system,user)
+                result=requester(pool[index],system,user,deadline=deadline,activity=activity) if requester is stream else requester(pool[index],system,user)
                 check_deadline(deadline,clock)
                 outcome='completed'
                 return result

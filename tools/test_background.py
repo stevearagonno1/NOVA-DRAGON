@@ -65,4 +65,27 @@ class BackgroundTests(unittest.TestCase):
         self.assertFalse(counts['evidence_complete'])
         self.assertIn('التحقق من الأدلة المصدرية غير مكتمل',result)
 
+    def test_first_worker_is_checkpointed_before_other_finishes_and_lead_fails(self):
+        saved=threading.Event(); snapshots=[]
+        def checkpoint(reports,failures):
+            snapshots.append(json.loads(json.dumps(reports)))
+            if reports:saved.set()
+        def call(system,user,slot,deadline):
+            if slot==1:return 'analyst findings'
+            if slot==2:
+                self.assertTrue(saved.wait(timeout=1));return 'audit findings'
+            raise TimeoutError('lead failed')
+        with self.assertRaises(TimeoutError):
+            coordinate('task','',[],call,'rules',checkpoint=checkpoint)
+        self.assertEqual(len(snapshots[0]),1)
+        self.assertEqual(len(snapshots[-1]),2)
+
+    def test_workers_and_lead_share_one_ceiling_not_two_long_windows(self):
+        deadlines=[]
+        def call(system,user,slot,deadline):
+            deadlines.append(deadline);return 'findings'
+        coordinate('task','',[],call,'rules')
+        self.assertEqual(len(deadlines),3)
+        self.assertEqual(len(set(deadlines)),1)
+
 if __name__=='__main__':unittest.main()

@@ -219,5 +219,27 @@ class CouncilTests(unittest.TestCase):
             self.assertFalse(tool['requires_approval'])
             self.assertNotIn('{{',tool['command'])
 
+    def test_failed_lead_preserves_worker_reports_and_activity_in_status(self):
+        original=council.run_background
+        def fake(system,user,slot=0,deadline=None,observer=None):
+            if observer:observer({'kind':'activity','credential_slot':slot+1,'elapsed_seconds':1})
+            if slot==0:raise TimeoutError('private provider details')
+            return 'saved finding CONSTITUTION.md:L1-L1'
+        def run(task,context,sources,**kwargs):return original(task,context,sources,call=fake,**kwargs)
+        with tempfile.TemporaryDirectory() as d,patch.object(council,'run_background',side_effect=run) as runner:
+            jobs=council.Jobs(d,runner=runner,sender=lambda _:None,source_reader=lambda _:SOURCES)
+            q=jobs.submit({'task':'audit'})
+            jobs.pool.shutdown(wait=True)
+            answer=jobs.status({'id':q['id']})[0]
+        self.assertEqual(answer['state'],'blocked')
+        self.assertEqual(answer['completed_requests'],2)
+        self.assertEqual(len(answer['worker_reports']),2)
+        self.assertEqual(answer['last_activity']['phase'],'lead_synthesis')
+        self.assertEqual(answer['sources'][0]['commit'],'a'*40)
+        self.assertEqual(answer.get('request_timings'),None)
+        self.assertIn('حُفظت نتائج',answer['result'])
+        self.assertNotIn('جماعية معتمدة',answer['result'])
+        self.assertNotIn('private provider',json.dumps(answer))
+
 if __name__=='__main__':
     unittest.main()
