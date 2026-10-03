@@ -95,6 +95,65 @@ class CouncilTests(unittest.TestCase):
         with self.assertRaises(ValueError):
             council.snapshot({'paths':['keys.toml']})
 
+    def test_snapshot_accepts_large_combined_sources_without_truncation(self):
+        import base64
+        texts={'CONSTITUTION.md':'rules', 'README.md':'a'*30000,
+               'docs/HANDOFF.md':'b'*30000,'docs/DECISIONS.md':'c'*30000}
+        def get(endpoint):
+            if endpoint=='/commits/main':return {'sha':'fixed'}
+            path=endpoint.split('/contents/')[1].split('?')[0]
+            raw=texts[path].encode()
+            return {'type':'file','encoding':'base64','size':len(raw),'sha':'blob',
+                    'content':base64.b64encode(raw).decode()}
+        with patch.object(council,'get',side_effect=get):
+            sources=council.snapshot({'paths':list(texts)[1:]})
+        self.assertGreater(sum(len(x['content']) for x in sources),85000)
+        self.assertEqual({x['path']:x['content'] for x in sources},texts)
+        self.assertTrue(all(x['commit']=='fixed' for x in sources))
+        self.assertEqual(sources[1]['size_bytes'],30000)
+
+    def test_oversized_source_records_path_size_and_already_loaded_manifest(self):
+        import base64
+        def get(endpoint):
+            if endpoint=='/commits/main':return {'sha':'fixed'}
+            if 'CONSTITUTION.md' in endpoint:
+                return {'type':'file','encoding':'base64','size':5,'sha':'blob',
+                        'content':base64.b64encode(b'rules').decode()}
+            return {'type':'file','encoding':'base64','size':council.LIMIT+1,'sha':'blob','content':''}
+        with patch.object(council,'get',side_effect=get):
+            with self.assertRaises(council.SourceSnapshotError) as caught:
+                council.snapshot({'paths':['README.md']})
+        exc=caught.exception
+        self.assertEqual(exc.code,'source_file_too_large')
+        self.assertEqual(exc.details['path'],'README.md')
+        self.assertEqual(exc.details['observed_bytes'],council.LIMIT+1)
+        self.assertEqual(exc.loaded_sources[0]['commit'],'fixed')
+
+    def test_source_failure_persists_safe_diagnostics_and_does_not_run_workers(self):
+        def fail(params):
+            exc=council.SourceSnapshotError('source_file_too_large','docs/DECISIONS.md',70000)
+            exc.loaded_sources=[{'path':'CONSTITUTION.md','commit':'fixed','blob_sha':'blob'}]
+            raise exc
+        with tempfile.TemporaryDirectory() as d:
+            runner=unittest.mock.Mock()
+            jobs=council.Jobs(d,runner=runner,sender=lambda _:None,source_reader=fail)
+            q=jobs.submit({'task':'review real files'})
+            jobs.pool.shutdown(wait=True)
+            job=jobs.status({'id':q['id']})[0]
+        runner.assert_not_called()
+        self.assertEqual(job['reason_code'],'source_file_too_large')
+        self.assertEqual(job['source_error']['path'],'docs/DECISIONS.md')
+        self.assertEqual(job['sources'][0]['commit'],'fixed')
+        self.assertIn('70000',job['result'])
+        self.assertEqual(job['completed_requests'],0)
+
+    def test_source_network_error_does_not_disclose_exception_body(self):
+        with patch.object(council,'get',side_effect=RuntimeError('private credential response')):
+            with self.assertRaises(council.SourceSnapshotError) as caught:
+                council.fetch_file('README.md','fixed')
+        self.assertEqual(caught.exception.code,'source_fetch_failed')
+        self.assertNotIn('private credential',str(caught.exception.details))
+
     def test_review_uses_stream_transport_and_fixed_slot(self):
         with patch.object(council, 'stream_model_call', return_value='result') as stream:
             self.assertEqual(council.model_call('rules','task',slot=2), 'result')

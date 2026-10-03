@@ -37,14 +37,42 @@ def bounded_text(value, limit, label):
         raise ValueError(label + ' is empty or exceeds its limit')
     return redact(value)
 
+class SourceSnapshotError(ValueError):
+    DESCRIPTIONS={
+        'source_file_too_large':'ملف المصدر تجاوز حد القراءة المسموح',
+        'source_file_unsupported':'المصدر ليس ملف نص عاديًا مدعومًا',
+        'source_text_invalid':'محتوى المصدر ليس نصًا صالحًا للقراءة',
+        'source_fetch_failed':'تعذر جلب المصدر من المستودع'}
+    def __init__(self,code,path,observed_bytes=None):
+        self.code=code
+        self.details={'path':path,'limit_bytes':LIMIT,'observed_bytes':observed_bytes,
+                      'description':self.DESCRIPTIONS[code]}
+        self.loaded_sources=[]
+        super().__init__(code)
+
+def source_manifest(sources):
+    return [{k:s[k] for k in ('path','commit','blob_sha','size_bytes','line_count') if k in s} for s in sources]
+
 def fetch_file(path, commit):
-    item = get('/contents/' + quote(safe_path(path), safe='/') + '?ref=' + commit)
-    if not isinstance(item, dict) or item.get('type') != 'file' or item.get('encoding') != 'base64' or item.get('size', LIMIT + 1) > LIMIT:
-        raise ValueError('Unsupported or oversized source file')
-    data = base64.b64decode(item['content'])
-    if len(data) > LIMIT or b'\0' in data:
-        raise ValueError('Invalid source text')
-    return {'path': path, 'commit': commit, 'blob_sha': item['sha'], 'content': redact(data.decode('utf-8'))}
+    path=safe_path(path)
+    try:item = get('/contents/' + quote(path, safe='/') + '?ref=' + commit)
+    except Exception:
+        raise SourceSnapshotError('source_fetch_failed',path) from None
+    if not isinstance(item, dict) or item.get('type') != 'file' or item.get('encoding') != 'base64':
+        raise SourceSnapshotError('source_file_unsupported',path)
+    size=item.get('size')
+    if type(size) is not int or size<0:
+        raise SourceSnapshotError('source_file_unsupported',path)
+    if size>LIMIT:raise SourceSnapshotError('source_file_too_large',path,size)
+    try:
+        data=base64.b64decode(item['content'],validate=False)
+        text=data.decode('utf-8')
+    except (ValueError,KeyError,TypeError):
+        raise SourceSnapshotError('source_text_invalid',path) from None
+    if len(data)>LIMIT:raise SourceSnapshotError('source_file_too_large',path,len(data))
+    if b'\0' in data:raise SourceSnapshotError('source_text_invalid',path,len(data))
+    return {'path': path, 'commit': commit, 'blob_sha': item['sha'], 'content': redact(text),
+            'size_bytes':len(data),'line_count':len(text.splitlines())}
 
 def snapshot(params):
     paths = params.get('paths', [])
@@ -52,9 +80,14 @@ def snapshot(params):
         raise ValueError('At most five text source paths are allowed')
     paths = list(dict.fromkeys(['CONSTITUTION.md'] + [safe_path(p) for p in paths]))
     commit = get('/commits/main')['sha']
-    sources = [fetch_file(path, commit) for path in paths]
-    if sum(len(s['content']) for s in sources) > 85000:
-        raise ValueError('Sources exceed the bounded review size')
+    sources=[]
+    for path in paths:
+        try:sources.append(fetch_file(path,commit))
+        except SourceSnapshotError as exc:
+            exc.loaded_sources=source_manifest(sources)
+            raise
+    # At most six bounded files stay in memory. Leaders receive the manifest and
+    # request bounded excerpts; their combined source text is not a model prompt.
     return sources
 
 def post_json(url, body, token, timeout=120):
@@ -179,7 +212,7 @@ class Jobs:
                 job['state'] = 'running'; job['phase'] = 'reading_sources'; self.save(job)
             sources = [] if job.get('kind') in ('probe','probe_reviewers','trial') else self.source_reader({'paths': job['paths']})
             with self.lock:
-                job['sources']=[{k:s[k] for k in ('path','commit','blob_sha')} for s in sources]
+                job['sources']=source_manifest(sources)
                 self.save(job)
             def progress(phase, completed):
                 with self.lock:
@@ -223,7 +256,7 @@ class Jobs:
             else:
                 progress('independent_review', 0)
                 result, counts = self.runner(job['task'], job['context'], sources)
-            job.update(state='completed', phase='completed', completed_requests=counts.get('model_requests',job.get('expected_requests',16)), result=redact(result), sources=[{k:s[k] for k in ('path','commit','blob_sha')} for s in sources], counts=counts)
+            job.update(state='completed', phase='completed', completed_requests=counts.get('model_requests',job.get('expected_requests',16)), result=redact(result), sources=source_manifest(sources), counts=counts)
         except Exception as exc:
             phase_labels = {'reading_sources': 'قراءة المصادر', 'leaders':'عمل القادة', 'subagents':'عمل الفرعيين', 'lead_synthesis':'جمع العقل الرئيسي للنتائج', 'independent_review': 'تحليل المراجعين', 'cross_review': 'المراجعة المتبادلة', 'synthesis': 'جمع التوصية', 'connection_probe':'اختبار الاتصال الأول', 'connection_probe_reviewers':'اختبار الاتصال المقارن'}
             stage = phase_labels.get(job.get('phase'), 'المراجعة')
@@ -238,6 +271,13 @@ class Jobs:
             frame = traceback.extract_tb(exc.__traceback__)[-1] if exc.__traceback__ else None
             location = (Path(frame.filename).name + ':' + str(frame.lineno) + ':' + frame.name) if frame else 'unavailable'
             detail = REASON_AR.get(reason['code'], 'نوع الخطأ: ' + error)
+            if isinstance(exc,SourceSnapshotError):
+                reason={'code':exc.code,'slot':None}
+                job['source_error']=dict(exc.details)
+                job['sources']=exc.loaded_sources
+                detail=exc.details['description']+'؛ الملف: '+exc.details['path']
+                if exc.details['observed_bytes'] is not None:
+                    detail+='؛ الحجم: '+str(exc.details['observed_bytes'])+' بايت؛ الحد: '+str(LIMIT)+' بايت'
             if reason['slot'] is not None:
                 detail += ' (الخانة ' + str(reason['slot']) + ')'
             print('NOVA council blocked job=' + job['id'] + ' phase=' + job.get('phase','unknown') + ' code=' + reason['code'] + ' location=' + location, flush=True)
@@ -279,7 +319,7 @@ class Jobs:
                 if not jobs:
                     return [{'id':job_id,'state':'not_found','next_action':'finish_turn',
                              'message':'لا يوجد سجل لهذا المعرف في التخزين الحالي. قد تختفي سجلات قديمة بعد إعادة التشغيل أو النشر. لا تبحث في ملفات أخرى ولا تستنتج مشكلة مفاتيح أو مزوّد؛ أخبر المالك وأنهِ الرد.'}]
-            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location','kind','mode','expected_requests','counts','request_timings','runtime_seconds','last_activity','worker_reports','unavailable_workers','sources','workspace')} for j in jobs]
+            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location','kind','mode','expected_requests','counts','request_timings','runtime_seconds','last_activity','worker_reports','unavailable_workers','sources','source_error','workspace')} for j in jobs]
 
 class Handler(BaseHTTPRequestHandler):
     jobs = None

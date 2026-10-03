@@ -85,7 +85,8 @@ class Workspace:
     def snapshot(self):
         with self.lock:
             return {'notes':dict(self.notes),'evidence':list(self.evidence),
-                    'manifest':[{k:s[k] for k in ('path','commit','blob_sha') if k in s} for s in self.sources.values()]}
+                    'manifest':[{k:s[k] for k in ('path','commit','blob_sha') if k in s} |
+                                {'line_count':s.get('line_count',len(s['content'].splitlines()))} for s in self.sources.values()]}
 
     def execute(self,worker,action):
         kind=action.get('action')

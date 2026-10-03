@@ -310,6 +310,22 @@ class LeaderTests(unittest.TestCase):
         self.assertEqual(counts['model_requests'],6)
         self.assertEqual(counts['format_repairs'][0]['phase'],'consultation_1')
 
+    def test_large_sources_are_read_in_excerpts_and_manifest_exposes_line_count(self):
+        sources=[dict(SOURCES[0],content=('long source marker '+('x'*200)+'\n')*450)]
+        def call(system,user,slot,deadline):
+            payload=json.loads(user)
+            if slot==0:return 'scoped result'
+            self.assertLess(len(user),10000)
+            self.assertEqual(payload['workspace']['manifest'][0]['line_count'],450)
+            if payload['step']==1:
+                self.assertNotIn('long source marker',user)
+                return json.dumps({'action':'read','path':'README.md','start':449,'end':450})
+            self.assertIn('L450:',payload['recent_tool_results'][0]['result']['content'])
+            return finish()
+        _,counts=coordinate_leaders('check last lines','',sources,call,'rules',require_tool=True)
+        self.assertEqual(counts['completed_subagents'],2)
+        self.assertEqual(counts['tool_action_counts']['read'],2)
+
     def test_transport_failure_does_not_trigger_format_correction(self):
         calls=[]
         def call(system,user,slot,deadline):

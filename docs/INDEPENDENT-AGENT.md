@@ -721,3 +721,29 @@ Validation: `python -m unittest discover -s tools -p 'test*.py'` — 108 tests p
 Tests cover preserved evidence, invalid fields, consultation repair, one allowance
 shared across phases, failed correction, unchanged deadlines and transport errors.
 Live provider behavior after deployment is not measured by these local tests.
+
+
+## 2026-10-03 — Source snapshots sized for excerpt-based leaders
+
+The former 85,000-character combined snapshot check prevented legitimate multi-file
+reviews before model work began. Removed that prompt-oriented aggregate check:
+selected sources remain pinned to one main commit in memory, with at most five
+requested paths plus the constitution, each still limited to 65,536 bytes. Leaders
+receive a path/commit/blob/line-count manifest, then read up to 60 lines and 8,000
+characters per scoped read action. The initial full constitution remains supplied;
+other entire files are not inserted into the initial model prompt. This change does
+not add source paths, raise tool-step budgets, truncate files or fetch arbitrary URLs.
+
+Safe source errors now record a finite code, file path, byte limit and observed size
+where known, with an Arabic description. Already loaded provenance remains available
+if a later file fails. `source_error` is exposed by status and the owner notification
+identifies the rejected file. Network exception bodies and source contents are not
+included in error records. Successful manifests include file size and line count.
+
+Validation: `python -m unittest discover -s tools -p 'test*.py'` — 113 tests pass.
+Regression checks cover combined sources above the former cap, unchanged file limit,
+pinned commit, bounded excerpt reading, persisted diagnostics and safe network errors.
+Current requested README, constitution, handoff and decisions texts total 99,760
+characters; each is below the unchanged file byte limit. Reproduction: fetch these
+four raw main files and sum Python `len(text)` (main can change after this check).
+The live background model review has not been rerun by this change.
