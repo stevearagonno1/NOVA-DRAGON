@@ -88,22 +88,29 @@ def run_review(task, context, sources, call=model_call, progress=None, observer=
 
 
 def run_background(task,context,sources,call=None,progress=None,observer=None,diagnostic=False,checkpoint=None):
-    from agent_background import coordinate
+    from agent_leaders import coordinate_leaders
     call=call or model_call
     if call is model_call:
         from agent_council_transport import routes
         if len(routes())<3:raise ValueError('Three distinct credentials required for lead and subagents')
+    current_phase='leaders'
+    def managed_progress(phase,count):
+        nonlocal current_phase
+        current_phase=phase
+        if progress:progress(phase,count)
     def invoke(system,user,slot,deadline):
         import time
         def timed_observer(event):
             if observer and (slot==0 or time.monotonic()<=deadline):
-                observer(dict(event,phase='lead_synthesis' if slot==0 else 'subagents'))
+                observer(dict(event,phase='lead_synthesis' if slot==0 else current_phase))
         return call(system,user,slot=slot,deadline=deadline,observer=timed_observer)
     system=SYSTEM
     if diagnostic:
-        system+='\nThis is a tiny source-free workflow diagnostic. Compare the two report orders only. Do not invent repository evidence or trading measurements.'
-    return coordinate(task,context,sources,invoke,system,progress=progress,
-                      checkpoint=checkpoint)
+        system+='\nThis is a tiny workflow diagnostic. DIAGNOSTIC.md is a synthetic test fixture, NOT repository evidence. Each leader must read or search that fixture at least once before finishing. Compare report orders; do not invent trading measurements.'
+        sources=[{'path':'DIAGNOSTIC.md','commit':'synthetic-fixture-v1','blob_sha':'synthetic',
+                  'content':'This is synthetic diagnostic material, not project evidence.\nDecision first helps quick executive reports.\nEvidence first helps readers inspect unfamiliar conclusions.\nThere is no measured universal best order.'}]
+    return coordinate_leaders(task,context,sources,invoke,system,progress=managed_progress,
+                              checkpoint=checkpoint,require_tool=diagnostic)
 
 def notify(text):
     # Owner-only destination, never a model-selected recipient or URL.
@@ -140,7 +147,7 @@ class Jobs:
         elif kind == "probe_reviewers":
             params = {"task":"Compare the first three credentials with three identical tiny requests; no sources or fallback."}
         elif kind == "trial":
-            params = {"task":"Diagnostic delegation only: compare two general report orders: decision then evidence then next step, or evidence then decision then next step. No consensus loop. No project files, trading analysis, measurements, settings or actions. Cite no repository evidence because none is supplied. Keep all replies short."}
+            params = {"task":"Diagnostic leader workflow: read/search the supplied synthetic fixture, compare decision-first and evidence-first reports, and consult only if disagreement needs it. No project files, trades, experiments or settings. Cite the fixture as synthetic, never as repository evidence. Keep findings short."}
         task = bounded_text(params.get('task'), MAX_TASK, 'Task paper')
         context = params.get('context', '')
         if not isinstance(context, str) or len(context) > MAX_CONTEXT:
@@ -159,7 +166,7 @@ class Jobs:
             if len(jobs) >= MAX_JOBS or sum(j['state'] in ('queued', 'running') for j in jobs) >= 2:
                 raise ValueError('Review queue is full; do not launch more jobs')
             job = {'id': secrets.token_hex(8), 'fingerprint': fingerprint, 'state': 'queued',
-                   'kind':kind, 'mode':'lead_and_subagents' if kind in ('review','trial') else kind, 'expected_requests':1 if kind=='probe' else 3, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
+                   'kind':kind, 'mode':'independent_leaders' if kind in ('review','trial') else kind, 'expected_requests':1 if kind=='probe' else 3 if kind=='probe_reviewers' else 21, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
             self.save(job)
             self.pool.submit(self.work, job)
             return {'id': job['id'], 'state': 'queued', 'next_action':'finish_turn', 'message': 'سُجل الطلب في الخلفية؛ أرسل المعرف وأنهِ ردك الآن. لا تقرأ الإعدادات ولا تستعلم الحالة تلقائيًا. ستصل النتيجة للمالك عند الانتهاء.'}
@@ -188,10 +195,11 @@ class Jobs:
                     if len(entries)<48:
                         entries.append(dict(event,phase=event.get('phase',job.get('phase'))))
                     self.save(job)
-            def checkpoint(reports,failures):
+            def checkpoint(reports,failures,workspace=None):
                 with self.lock:
                     job['worker_reports']=json.loads(json.dumps(reports,ensure_ascii=False))
                     job['unavailable_workers']=json.loads(json.dumps(failures))
+                    if workspace is not None:job['workspace']=json.loads(json.dumps(workspace,ensure_ascii=False))
                     self.save(job)
             if job.get('kind')=='probe':
                 progress('connection_probe',0)
@@ -217,10 +225,12 @@ class Jobs:
                 result, counts = self.runner(job['task'], job['context'], sources)
             job.update(state='completed', phase='completed', completed_requests=counts.get('model_requests',job.get('expected_requests',16)), result=redact(result), sources=[{k:s[k] for k in ('path','commit','blob_sha')} for s in sources], counts=counts)
         except Exception as exc:
-            phase_labels = {'reading_sources': 'قراءة المصادر', 'subagents':'عمل الفرعيين', 'lead_synthesis':'جمع العقل الرئيسي للنتائج', 'independent_review': 'تحليل المراجعين', 'cross_review': 'المراجعة المتبادلة', 'synthesis': 'جمع التوصية', 'connection_probe':'اختبار الاتصال الأول', 'connection_probe_reviewers':'اختبار الاتصال المقارن'}
+            phase_labels = {'reading_sources': 'قراءة المصادر', 'leaders':'عمل القادة', 'subagents':'عمل الفرعيين', 'lead_synthesis':'جمع العقل الرئيسي للنتائج', 'independent_review': 'تحليل المراجعين', 'cross_review': 'المراجعة المتبادلة', 'synthesis': 'جمع التوصية', 'connection_probe':'اختبار الاتصال الأول', 'connection_probe_reviewers':'اختبار الاتصال المقارن'}
             stage = phase_labels.get(job.get('phase'), 'المراجعة')
             if job.get('phase','').startswith('discussion_round_'):
                 stage = 'جولة التشاور ' + job['phase'].rsplit('_',1)[-1]
+            elif job.get('phase','').startswith('consultation_'):
+                stage='تشاور القادة '+job['phase'].rsplit('_',1)[-1]
             elif job.get('phase','').startswith('proposal_round_'):
                 stage = 'صياغة الاقتراح المشترك ' + job['phase'].rsplit('_',1)[-1]
             error = type(exc).__name__ + (' HTTP ' + str(exc.code) if isinstance(exc, HTTPError) else '')
@@ -232,16 +242,16 @@ class Jobs:
                 detail += ' (الخانة ' + str(reason['slot']) + ')'
             print('NOVA council blocked job=' + job['id'] + ' phase=' + job.get('phase','unknown') + ' code=' + reason['code'] + ' location=' + location, flush=True)
             job.update(reason_code=reason['code'], error_slot=reason['slot'], error_location=location)
-            if job.get('mode')=='lead_and_subagents':
-                message='تعذر إكمال العمل في مرحلة '+stage+'؛ '+detail+'؛ الطلبات المكتملة: '+str(job.get('completed_requests',0))+'/3.'
+            if job.get('mode') in ('lead_and_subagents','independent_leaders'):
+                message='تعذر إكمال العمل في مرحلة '+stage+'؛ '+detail+'؛ الطلبات المكتملة: '+str(job.get('completed_requests',0))+' من سقف '+str(job['expected_requests'])+'.'
                 if job.get('worker_reports'):
                     message+=' حُفظت نتائج '+str(len(job['worker_reports']))+' من الفرعيين، ويمكن قراءتها من حالة المهمة ما دام السجل موجودًا.'
             else:
                 message='لم تكتمل المراجعة. توقفت في مرحلة '+stage+'؛ '+detail+'؛ اكتمل '+str(job.get('completed_requests',0))+' من سقف '+str(job.get('expected_requests',16))+' طلبات.'
             job.update(state='blocked',error_type=error,result=message)
         job['runtime_seconds']=round(time.monotonic()-started,2)
-        if job.get('counts',{}).get('mode')=='lead_and_subagents':
-            job['result']+='\n\nالفرعيون المكتملون: '+str(job['counts']['completed_subagents'])+'/2؛ الطلبات المكتملة: '+str(job['completed_requests'])+'/3؛ مدة التشغيل: '+str(job['runtime_seconds'])+' ثانية.'
+        if job.get('counts',{}).get('mode') in ('lead_and_subagents','independent_leaders'):
+            job['result']+='\n\nالقادة المكتملون: '+str(job['counts']['completed_subagents'])+'/2؛ جولات التشاور: '+str(job['counts']['discussion_rounds'])+'؛ خطوات الأدوات: '+str(job['counts'].get('tool_steps',0))+'؛ الطلبات المكتملة: '+str(job['completed_requests'])+'؛ مدة التشغيل: '+str(job['runtime_seconds'])+' ثانية.'
         with self.lock:
             self.save(job)
         try:
@@ -269,7 +279,7 @@ class Jobs:
                 if not jobs:
                     return [{'id':job_id,'state':'not_found','next_action':'finish_turn',
                              'message':'لا يوجد سجل لهذا المعرف في التخزين الحالي. قد تختفي سجلات قديمة بعد إعادة التشغيل أو النشر. لا تبحث في ملفات أخرى ولا تستنتج مشكلة مفاتيح أو مزوّد؛ أخبر المالك وأنهِ الرد.'}]
-            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location','kind','mode','expected_requests','counts','request_timings','runtime_seconds','last_activity','worker_reports','unavailable_workers','sources')} for j in jobs]
+            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location','kind','mode','expected_requests','counts','request_timings','runtime_seconds','last_activity','worker_reports','unavailable_workers','sources','workspace')} for j in jobs]
 
 class Handler(BaseHTTPRequestHandler):
     jobs = None

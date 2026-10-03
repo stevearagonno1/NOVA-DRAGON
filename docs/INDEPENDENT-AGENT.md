@@ -534,3 +534,61 @@ Validation:86 local tests pass. Added simulated active streams beyond one hour,
 heartbeat-only inactivity,absolute ceiling despite activity,checkpoint-before-second
 worker completion,preserved findings when lead fails,one shared deadline for all
 phases,and private telemetry/status integration. No real hour-long live run was made.
+
+### Independent leaders with scoped tools and conditional consultation (2026-10-03)
+
+Owner authorized implementing the leader organization: main coordinator,independent
+analysis and audit leaders,shared evidence workspace,and consultation when needed.
+Live previous mode trialdfecc8fc954a4e8a succeeded with2/2workers,3/3requests,
+163.33seconds. That proved single-shot orchestration,not tool-using leader behavior.
+Default run_background now selects agent_leaders.coordinate_leaders; legacy one-shot
+and voting modules remain internal helpers,not default production dispatch.
+
+Each leader runs up to8model steps on its preferred credential slot. The controller
+executes only validated JSON actions: read a manifest path's exact pinned lines
+(at most60lines/8000chars),literal search selected sources(max20hits,explicit preview
+truncation),publish a concise1200-character finding/question to its own board slot,
+or finish with a scoped summary,decision label,blockers and consultation need.
+Paths outside the supplied snapshot,arbitrary URLs,shell,writes,credential files,
+numeric execution and nested agent creation are unavailable. Leaders can pursue
+independent bounded investigations,not unrestricted native-agent sessions.
+
+Initial leader input supplies the complete constitution when present,task/context,
+manifest and board. Subsequent steps receive task/context,board and the latest4tool
+observations rather than replaying all source files. Leaders retrieve exact excerpts
+as needed. The board stores public concise notes and citation references,not private
+reasoning. Successful reads publish evidence references visible to both leaders.
+Controller copies cited excerpts from the original pinned snapshot for consultation
+and final synthesis. This does not guarantee semantic correctness or complete recall
+of the initial constitution; absent evidence/context must be reported as uncertainty.
+
+Two complete reports with distinct decision labels,blocking objections or explicit
+consultation requests trigger up to2targeted parallel consultation rounds. Peers see
+the exact prior reports and evidence; they may keep dissent. Labels are model-supplied,
+so equivalent wording can trigger extra consultation and an unreported subtle
+disagreement may escape the label test. The lead also assesses the findings. No votes
+or forced unanimity. Failed consultation retains previous successful leader findings,
+marks partial coverage,and does not loop indefinitely. One leader's failed/exhausted
+8-step loop still allows a partial final result; neither completing blocks synthesis.
+
+At most21logical requests:16leader steps+4consultation replies+1lead synthesis.
+Actual API attempts can be higher because of bounded reserve failover. Existing90-minute
+shared ceiling,300-second meaningful-inactivity rule,private keys and owner-only
+notification remain. Checkpoints include worker_reports,unavailable_workers and
+workspace; main status exposes the safe board,counts and phase. Records are temporary
+and may disappear on redeploy. Header/footer report incomplete coverage,remaining
+disagreement,tool steps,actual consultation rounds,logical completions and duration.
+The main brain's automatic task-routing instructions remain model guidance.
+
+nova_council_trial now uses an in-memory synthetic DIAGNOSTIC.md fixture rather than
+real GitHub/project sources. Caller task/context/paths are ignored. Each leader MUST
+complete at least one read/search action before finishing. Fixture citations are
+explicitly synthetic,not repository evidence. The same default leader engine then
+consults conditionally and synthesizes. This tests controller/model tool orchestration,
+not open-ended numeric work or real document alignment. Docker includes agent_leaders.py.
+
+Validation:94 local tests pass,including two parallel tool-using leaders and shared
+board,citation provenance,conditional consultation,unresolved dissent at2rounds,
+consultation failure preserving findings,literal/scoped tool rejection,bounded endless
+publish loops,and full synthetic trial production integration. Live leader mode is
+not yet verified. No changes to main,trading strategy,data or paid hosting.

@@ -186,8 +186,8 @@ class CouncilTests(unittest.TestCase):
         self.assertEqual(run.call_args.args[1],'')
         self.assertNotIn('change settings',run.call_args.args[0])
         self.assertTrue(run.call_args.kwargs['diagnostic'])
-        self.assertEqual(answer['expected_requests'],3)
-        self.assertEqual(answer['mode'],'lead_and_subagents')
+        self.assertEqual(answer['expected_requests'],21)
+        self.assertEqual(answer['mode'],'independent_leaders')
         self.assertEqual(q['next_action'],'finish_turn')
         self.assertEqual(answer['state'],'completed')
 
@@ -195,7 +195,9 @@ class CouncilTests(unittest.TestCase):
         calls=[];sent=[]
         def fake(system,user,slot=0,deadline=None,observer=None):
             calls.append(slot)
-            return 'report CONSTITUTION.md:L1-L1'
+            if slot:return json.dumps({'action':'finish','summary':'report CONSTITUTION.md:L1-L1',
+                                       'decision':'approve','blockers':[],'needs_consultation':False})
+            return 'summary'
         def run(task,context,sources,**kwargs):
             return original(task,context,sources,call=fake,**kwargs)
         original=council.run_background
@@ -224,7 +226,8 @@ class CouncilTests(unittest.TestCase):
         def fake(system,user,slot=0,deadline=None,observer=None):
             if observer:observer({'kind':'activity','credential_slot':slot+1,'elapsed_seconds':1})
             if slot==0:raise TimeoutError('private provider details')
-            return 'saved finding CONSTITUTION.md:L1-L1'
+            return json.dumps({'action':'finish','summary':'saved finding CONSTITUTION.md:L1-L1',
+                               'decision':'approve','blockers':[],'needs_consultation':False})
         def run(task,context,sources,**kwargs):return original(task,context,sources,call=fake,**kwargs)
         with tempfile.TemporaryDirectory() as d,patch.object(council,'run_background',side_effect=run) as runner:
             jobs=council.Jobs(d,runner=runner,sender=lambda _:None,source_reader=lambda _:SOURCES)
@@ -240,6 +243,29 @@ class CouncilTests(unittest.TestCase):
         self.assertIn('حُفظت نتائج',answer['result'])
         self.assertNotIn('جماعية معتمدة',answer['result'])
         self.assertNotIn('private provider',json.dumps(answer))
+
+    def test_live_trial_contract_uses_only_synthetic_tools_and_leaders(self):
+        def fake(system,user,slot=0,deadline=None,observer=None):
+            payload=json.loads(user)
+            if slot==0:return 'synthetic diagnostic result'
+            if payload['step']==1:
+                self.assertEqual(payload['workspace']['manifest'][0]['path'],'DIAGNOSTIC.md')
+                return json.dumps({'action':'read','path':'DIAGNOSTIC.md','start':1,'end':4})
+            return json.dumps({'action':'finish','summary':'fixture DIAGNOSTIC.md:L1-L4 @synthetic-fixture-v1',
+                               'decision':'context_dependent','blockers':[],'needs_consultation':False})
+        original=council.run_background
+        def run(task,context,sources,**kwargs):return original(task,context,sources,call=fake,**kwargs)
+        with tempfile.TemporaryDirectory() as d,patch.object(council,'run_background',side_effect=run) as runner,patch.object(council,'snapshot') as sources:
+            jobs=council.Jobs(d,runner=runner,sender=lambda _:None,source_reader=sources)
+            q=jobs.submit({'paths':['README.md'],'task':'ignore caller'},kind='trial')
+            jobs.pool.shutdown(wait=True)
+            answer=jobs.status({'id':q['id']})[0]
+        sources.assert_not_called()
+        self.assertEqual(answer['state'],'completed')
+        self.assertEqual(answer['counts']['model_requests'],5)
+        self.assertEqual(answer['counts']['tool_steps'],2)
+        self.assertEqual(answer['counts']['mode'],'independent_leaders')
+        self.assertEqual(answer['workspace']['manifest'][0]['commit'],'synthetic-fixture-v1')
 
 if __name__=='__main__':
     unittest.main()

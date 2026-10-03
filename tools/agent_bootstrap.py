@@ -83,8 +83,8 @@ def readonly_tools_text(council=False):
             entry += f'[[tools.params]]\nname = {q(name)}\ntype = "string"\ndescription = {q(desc)}\nrequired = {str(required).lower()}\n'
         definitions.append(entry)
     for operation, description, params in ([
-        ('submit', 'Delegate a read-only task to two parallel subagents: analyst and independent auditor. The lead synthesizes available findings once, without discussion rounds or unanimity. Active tasks may run up to a shared ninety-minute ceiling; five minutes without meaningful streamed progress triggers bounded reserve failover. Partial completion is explicit. No shell, trades, repository writes or child tool calls. Owner-only final result. Legacy council name; this is lead-and-subagents mode.', [('task', 'Complete task paper: question, scope, evidence, acceptance checks, deliverables and next decision.', True, 'string'), ('context', 'Relevant lead context with source paths; never include secrets.', False, 'string'), ('paths', 'At most five supported repository text source paths on main. Constitution is always included.', False, 'array')]),
-        ('trial', 'Fixed tiny lead-and-two-subagents diagnostic about report order only. Activity-aware waiting with a shared ninety-minute safety ceiling; no votes or discussion rounds. No constitution, repository sources, caller task or context, tools or file changes. Not a substantive project review. Submit once, acknowledge ID and finish the turn.', []),
+        ('submit', 'Delegate to two independent leaders: analysis and audit. Each has up to eight model steps and scoped pinned-source read/search/publish tools with a shared evidence board. Consult on decision differences or blockers only, up to two rounds; unresolved dissent stays explicit. Main brain synthesizes once. Active tasks may run up to a shared ninety-minute ceiling; five minutes without meaningful streamed progress triggers bounded reserve failover. Partial completion is explicit. No shell, trades, writes, arbitrary network or nested child creation. At most twenty-one logical requests; owner-only final result. Legacy council name; independent-leaders mode.', [('task', 'Complete task paper: question, scope, evidence, acceptance checks, deliverables and next decision.', True, 'string'), ('context', 'Relevant lead context with source paths; never include secrets.', False, 'string'), ('paths', 'At most five supported repository text source paths on main. Constitution is always included.', False, 'array')]),
+        ('trial', 'Fixed independent-leaders diagnostic with synthetic DIAGNOSTIC.md: each leader must use a read/search tool before finishing. Conditional consultation at most two rounds, no votes or forced agreement. Shared ninety-minute safety ceiling. No real project files, constitution, caller task/context or file changes. Not a substantive project review. Submit once, acknowledge ID and finish the turn.', []),
         ('status', 'Read background review state and final result when the owner asks. Do not repeatedly poll.', [('id', 'Optional id returned by nova_council_submit; omit to list jobs.', False, 'string')]),
         ('probe', 'Start exactly one small upstream connection check with the first configured unique credential, in the background. No fallback, no repository sources, no secrets. A successful check verifies only one credential; results go to the owner.', []),
         ('probe_reviewers', 'Compare first three distinct credential slots with exactly three identical tiny concurrent requests. No repository sources, role differences, fallback, model reasoning transcripts or secrets. Background owner-only result includes safe durations per slot. Does not run a council or prove collective review works.', []),
@@ -153,13 +153,15 @@ These narrowly scoped control requests skip general project startup reading.
 Explicit nova_council_trial requests use that fixed diagnostic, never council_submit.
 These instructions guide the model; native tool approval safeguards remain enabled.
 EXPLICIT GROUP-REVIEW DISPATCH:
-DEFAULT ARCHITECTURE: you are the main brain; the background service runs two
-read-only subagents (analysis and independent audit), then one lead synthesis.
-There is no consensus loop. Simple questions are answered directly. Automatically
+DEFAULT ARCHITECTURE: you are the main brain; two independent read-only leaders
+(analysis and audit) work in bounded steps with pinned-source read/search tools and
+a shared evidence/findings board. Specific decision differences/blockers trigger
+up to two consultation rounds, then one main-brain synthesis. No forced consensus. Simple questions are answered directly. Automatically
 delegate substantial multi-step research/audit work without asking the owner to name
 tools. Submit one clear scoped task and remain available; report only completion or
 progress the owner requested. Legacy nova_council_* names now use this architecture.
-Do not promise unanimous agreement, discussion rounds, or unrestricted child execution.
+Do not promise unanimity or unrestricted leader execution. State actual consultation
+rounds and tool steps only from the service result,never from an assumption.
 When the owner explicitly requests a group/collective/background review (Arabic
 examples: "مراجعة جماعية", "في الخلفية", "المحللين", "تشاور"), use the lead-and-subagents background service
 regardless of whether the task is short, easy, one file, or read-only. Do NOT replace
@@ -201,9 +203,15 @@ hypothesis or not measured, source paths, required checks, acceptance conditions
 deliverables and next decision. Include constitution constraints; no scope widening.
 Use one submission for the whole task, not one per paragraph. Supply selected main
 text source paths and relevant local pending facts with provenance in context.
-The background service reads a pinned main snapshot and runs two workers in parallel:
-analysis and independent audit. The lead combines available results once; there are
-NO discussion rounds, votes, or unanimity requirement. Meaningful streamed content allows work to continue up to a shared ninety-minute
+The background service pins selected main files and the full constitution. Two leaders
+work independently in parallel,each up to eight model steps. They can read selected
+line ranges,search literal text and publish concise findings to a shared board.
+Tools cannot fetch unsupplied files or run code. Initial constitution reading is
+provided; later checks use exact read/search excerpts. Decision differences or
+blockers trigger up to two targeted consultation rounds. Remaining disagreement
+and partial completion are explicit. The main brain synthesizes once; no votes or
+unanimity requirement. Maximum twenty-one logical requests; failover can add API
+attempts. Board/findings are saved; no private reasoning transcripts. Meaningful streamed content allows work to continue up to a shared ninety-minute
 safety ceiling, including lead synthesis. Five minutes without meaningful stream
 progress triggers bounded reserve failover; heartbeats do not count. Reasoning text
 is never exposed. If one fails, the result is explicitly partial; if both fail, report
