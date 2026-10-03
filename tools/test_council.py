@@ -186,7 +186,7 @@ class CouncilTests(unittest.TestCase):
         self.assertEqual(run.call_args.args[1],'')
         self.assertNotIn('change settings',run.call_args.args[0])
         self.assertTrue(run.call_args.kwargs['diagnostic'])
-        self.assertEqual(answer['expected_requests'],21)
+        self.assertEqual(answer['expected_requests'],23)
         self.assertEqual(answer['mode'],'independent_leaders')
         self.assertEqual(q['next_action'],'finish_turn')
         self.assertEqual(answer['state'],'completed')

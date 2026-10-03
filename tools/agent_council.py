@@ -166,7 +166,7 @@ class Jobs:
             if len(jobs) >= MAX_JOBS or sum(j['state'] in ('queued', 'running') for j in jobs) >= 2:
                 raise ValueError('Review queue is full; do not launch more jobs')
             job = {'id': secrets.token_hex(8), 'fingerprint': fingerprint, 'state': 'queued',
-                   'kind':kind, 'mode':'independent_leaders' if kind in ('review','trial') else kind, 'expected_requests':1 if kind=='probe' else 3 if kind=='probe_reviewers' else 21, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
+                   'kind':kind, 'mode':'independent_leaders' if kind in ('review','trial') else kind, 'expected_requests':1 if kind=='probe' else 3 if kind=='probe_reviewers' else 23, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
             self.save(job)
             self.pool.submit(self.work, job)
             return {'id': job['id'], 'state': 'queued', 'next_action':'finish_turn', 'message': 'سُجل الطلب في الخلفية؛ أرسل المعرف وأنهِ ردك الآن. لا تقرأ الإعدادات ولا تستعلم الحالة تلقائيًا. ستصل النتيجة للمالك عند الانتهاء.'}

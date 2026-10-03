@@ -223,4 +223,103 @@ class LeaderTests(unittest.TestCase):
         self.assertEqual(counts['model_requests'],7)
         self.assertEqual(sum(counts['tool_action_counts'].values()),counts['tool_steps'])
 
+    def test_malformed_reply_is_corrected_without_losing_prior_evidence(self):
+        saved=[]
+        def call(system,user,slot,deadline):
+            payload=json.loads(user)
+            if slot==0:return 'final'
+            if slot==2:return finish()
+            if payload['step']==1:return json.dumps({'action':'read','path':'README.md','start':1,'end':2})
+            if 'format_repair' not in payload:return 'invalid response marker'
+            self.assertEqual(payload['format_repair']['reason_code'],'deliberation_invalid_response')
+            self.assertIn('README.md:L1-L2',payload['workspace']['evidence'])
+            self.assertEqual(payload['recent_tool_results'][0]['result']['commit'],'fixed')
+            self.assertIn('Keep genuine blockers and dissent',system)
+            return finish()
+        _,counts=coordinate_leaders('task','',SOURCES,call,'rules',checkpoint=lambda *args:saved.append(args))
+        self.assertEqual(counts['completed_subagents'],2)
+        self.assertFalse(counts['partial'])
+        self.assertEqual(counts['model_requests'],5)
+        self.assertEqual(counts['tool_steps'],1)
+        self.assertEqual(counts['format_repairs'][0]['outcome'],'corrected')
+        self.assertNotIn('invalid response marker',json.dumps(saved))
+        self.assertNotIn('invalid response marker',json.dumps(counts))
+
+    def test_invalid_finish_field_has_one_correction_and_preserves_blocker(self):
+        def call(system,user,slot,deadline):
+            payload=json.loads(user)
+            if slot==0:return 'real gap remains'
+            value=json.loads(finish('unverified',['required source missing']))
+            if slot==1 and 'format_repair' not in payload and 'peer_report' not in payload:
+                value['needs_consultation']='false'
+            if 'format_repair' in payload:
+                self.assertEqual(payload['format_repair']['reason_code'],'leader_consultation_flag_invalid')
+            return json.dumps(value)
+        _,counts=coordinate_leaders('task','',SOURCES,call,'rules')
+        self.assertEqual(len(counts['format_repairs']),1)
+        self.assertTrue(counts['unresolved_disagreement'])
+        self.assertFalse(counts['partial'])
+
+    def test_failed_correction_stays_partial_without_unbounded_retry(self):
+        calls=[]
+        def call(system,user,slot,deadline):
+            calls.append(slot)
+            if slot==0:return 'partial'
+            if slot==1:return 'invalid response marker'
+            return finish()
+        _,counts=coordinate_leaders('task','',SOURCES,call,'rules')
+        self.assertEqual(calls.count(1),2)
+        self.assertEqual(counts['completed_subagents'],1)
+        self.assertTrue(counts['partial'])
+        self.assertEqual(counts['format_repairs'][0]['outcome'],'failed')
+        self.assertEqual(counts['unavailable_subagents'][0]['reason_code'],'deliberation_invalid_response')
+        self.assertNotIn('invalid response marker',json.dumps(counts))
+
+    def test_repair_allowance_is_shared_between_steps_and_consultations(self):
+        repairs=[]
+        def call(system,user,slot,deadline):
+            payload=json.loads(user)
+            if slot==0:return 'partial audit'
+            if 'format_repair' in payload:
+                repairs.append(slot)
+                return finish('decision-'+str(slot))
+            if slot==1:return 'broken JSON'
+            return finish('decision-'+str(slot))
+        _,counts=coordinate_leaders('task','',SOURCES,call,'rules')
+        self.assertEqual(repairs,[1])
+        self.assertEqual(counts['discussion_rounds'],1)
+        self.assertTrue(counts['partial'])
+        self.assertEqual(counts['completed_subagents'],2)
+
+    def test_consultation_format_repair_uses_original_reports_and_same_deadline(self):
+        deadlines={}
+        def call(system,user,slot,deadline):
+            payload=json.loads(user)
+            if slot==0:return 'complete'
+            deadlines.setdefault(slot,deadline)
+            self.assertEqual(deadlines[slot],deadline)
+            if 'peer_report' in payload:
+                if slot==1 and 'format_repair' not in payload:return '{unfinished'
+                self.assertEqual(payload['own_report']['decision'],'decision-'+str(slot))
+                return finish('agreed')
+            return finish('decision-'+str(slot))
+        _,counts=coordinate_leaders('task','',SOURCES,call,'rules')
+        self.assertEqual(counts['discussion_rounds'],1)
+        self.assertFalse(counts['partial'])
+        self.assertFalse(counts['unresolved_disagreement'])
+        self.assertEqual(counts['model_requests'],6)
+        self.assertEqual(counts['format_repairs'][0]['phase'],'consultation_1')
+
+    def test_transport_failure_does_not_trigger_format_correction(self):
+        calls=[]
+        def call(system,user,slot,deadline):
+            calls.append(slot)
+            if slot==0:return 'partial'
+            if slot==1:raise TimeoutError('provider timeout')
+            return finish()
+        _,counts=coordinate_leaders('task','',SOURCES,call,'rules')
+        self.assertEqual(calls.count(1),1)
+        self.assertEqual(counts['format_repairs'],[])
+        self.assertTrue(counts['partial'])
+
 if __name__=='__main__':unittest.main()

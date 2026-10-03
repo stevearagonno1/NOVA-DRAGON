@@ -698,3 +698,26 @@ do not replace actual controller counts,with separate read/publish totals and a 
 runtime availability flag. README was directly checked for nine numbered items,eight
 state fields and unchanged content after the resume section. Live report behavior
 after this change is not yet verified.
+
+
+## 2026-10-03 — One bounded format correction per leader
+
+A malformed JSON reply or invalid final-report field now receives one model-driven
+format correction per leader for the entire task, shared across leader steps and
+consultations. The correction retains the same task, pinned workspace, recent tool
+results, peer findings and shared deadline. It must preserve real blockers/dissent;
+strict parsing and report validation remain mandatory. Invalid response text is
+transient untrusted correction input and is not saved in checkpoints or diagnostics.
+A second formatting rejection ends that leader's path with a partial result and
+safe failure details. Transport/time failures do not consume this correction path.
+
+The logical request ceiling is now 23: 16 leader steps + 4 consultation replies +
+1 synthesis + at most 2 formatting corrections. The existing step/tool budgets,
+90-minute shared ceiling and provider failover rules remain. `format_repairs` in
+final counts records worker, phase, safe reason code and corrected/failed outcome.
+The previous 21-request ceiling above describes the earlier implementation.
+
+Validation: `python -m unittest discover -s tools -p 'test*.py'` — 108 tests pass.
+Tests cover preserved evidence, invalid fields, consultation repair, one allowance
+shared across phases, failed correction, unchanged deadlines and transport errors.
+Live provider behavior after deployment is not measured by these local tests.
