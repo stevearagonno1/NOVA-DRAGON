@@ -149,6 +149,7 @@ def coordinate_leaders(task,context,sources,call,system,progress=None,checkpoint
     progress=progress or (lambda phase,count:None)
     deadline=time.monotonic()+total_seconds;board=Workspace(sources)
     lock=threading.RLock();reports=[];failures=[];completed=0;tools=0;consultations=0
+    tool_counts={'read':0,'search':0,'publish':0,'rejected':0}
     def save():
         if checkpoint:checkpoint(json.loads(json.dumps(reports)),list(failures),board.snapshot())
     def request(worker,payload,instruction,phase):
@@ -177,7 +178,9 @@ def coordinate_leaders(task,context,sources,call,system,progress=None,checkpoint
             if action.get('action') in ('read','search') and 'tool_error' not in result:successful_reads+=1
             observations.append({'action':action,'result':result})
             with lock:
-                tools+=1;save()
+                tools+=1
+                tool_counts['rejected' if 'tool_error' in result else action['action']]+=1
+                save()
         raise ValueError('Leader exhausted bounded steps without a final report')
     def parallel(work,phase):
         nonlocal reports
@@ -226,14 +229,20 @@ def coordinate_leaders(task,context,sources,call,system,progress=None,checkpoint
     progress('lead_synthesis',completed)
     summary=request(0,{'task':task,'context':context,'leaders':reports,'unavailable_workers':failures,
                        'consultation_rounds':consultations,'unresolved_disagreement':unresolved,'evidence':evidence,
+                       'execution_metrics':{'origin':'controller_measured','leaders_completed':len(reports),
+                                            'tool_steps':tools,'tool_action_counts':dict(tool_counts),
+                                            'consultation_rounds':consultations,
+                                            'completed_model_requests_before_synthesis':completed,
+                                            'final_runtime_available':False,'measured_footer_added_by_service':True},
                        'report_inputs':{'kind':'complete_leader_final_findings_summaries',
                                         'included_workers':[r['worker'] for r in reports],
                                         'locations':['leaders[].findings'],'private_transcripts_included':False}},
-                    'You are the main coordinator. Return a concise Arabic conclusion,evidence,uncertainty and one next step. Resolve recommendations using evidence,not vote counts. Respect unresolved_disagreement: explicitly show any remaining disagreement or incomplete audit. Evidence_complete=false means source verification is incomplete. Do not claim experiments ran or show leader transcripts.\n'+SCOPE_CONTRACT,'lead_synthesis')
+                    'You are the main coordinator. Return a concise Arabic conclusion,evidence,uncertainty and one next step. Resolve recommendations using evidence,not vote counts. Respect unresolved_disagreement: explicitly show any remaining disagreement or incomplete audit. Evidence_complete=false means source verification is incomplete. Do not claim experiments ran or show leader transcripts. Operational counts come only from execution_metrics,not leader estimates. Omit operational counts and durations from your generated prose: the service adds the final measured footer after you finish. Do not call runtime unmeasured because no financial experiment ran. Source-reading actions,all tool steps,and model requests are distinct counters. Missing financial/project measurements concern project claims,not observed execution metrics.\n'+SCOPE_CONTRACT,'lead_synthesis')
     counts={'mode':'independent_leaders','subagents':2,'completed_subagents':len(reports),
             'unavailable_subagents':failures,'partial':len(reports)<2 or bool(failures),
             'evidence_complete':evidence['evidence_complete'],'discussion_rounds':consultations,
-            'unresolved_disagreement':unresolved,'tool_steps':tools,'model_requests':completed,'max_model_requests':MAX_REQUESTS}
+            'unresolved_disagreement':unresolved,'tool_steps':tools,'tool_action_counts':dict(tool_counts),
+            'model_requests':completed,'max_model_requests':MAX_REQUESTS}
     label='أكمل العقل تنسيق القادة؛ جولات التشاور عند الحاجة: '+str(consultations)+'.'
     if unresolved:label+=' يوجد خلاف أو نقص لم يُحسم؛ لا يُدّعى اتفاق نهائي.'
     if not evidence['evidence_complete']:label+=' التحقق من الأدلة المصدرية غير مكتمل.'

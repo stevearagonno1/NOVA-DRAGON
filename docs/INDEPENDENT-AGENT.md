@@ -666,3 +666,35 @@ Validation:101 local tests pass. Added evidence that complete leader findings an
 availability metadata reach consultation and synthesis,and that an explicitly
 requested missing numeric source remains unresolved through the round cap. New live
 trial remains pending; prior records/results are unchanged.
+
+### Controller metrics and verified documentation follow-up (2026-10-03)
+
+Live real-source review04ce876a4c6387ce completed both leaders,one consultation,
+5tool steps,10requests,382.42seconds against mainf418c95a. Its generated narrative
+said runtime was unmeasured despite the service's measured footer. A claimed pair
+of source reads can be distinct from5total tool steps; counters need explicit scope.
+
+The lead now receives execution_metrics marked controller_measured,including total
+tool steps,successful read/search/publish actions,rejected tool actions,consultation
+rounds,and completed model requests before synthesis. Final runtime is explicitly
+unavailable until the service adds its measured footer. Instructions require the
+generated prose to omit operational counts/durations,leave those to the service,
+and distinguish unmeasured financial/project claims from measured service execution.
+Leader-supplied estimates are not authoritative counters. Safe action counts are
+also exposed in counts. This is prompt guidance,not a guarantee against incorrect
+generated prose; the application footer remains definitive.
+
+Direct reading of current main constitution confirmed §8.4 has nine ordered sources
+followed by the internal eight-field state card printed only on request. §19 lists
+the amendment register but does not add it to the ordered resume list. README work
+is prepared separately on agent/readme-state-card-2026-10-03,based on main,with only
+README and one journal tick: keep nine items,add the state card,and preserve the
+amendment register as an additional reference when needed. No constitution/register
+file deletion or modification. This deployment branch does not merge that doc branch.
+Owner alone may merge it from Termux under §16; no PR/main push is created by agent.
+
+Validation:102 local tests pass. Added a scenario where fabricated leader estimates
+do not replace actual controller counts,with separate read/publish totals and a final
+runtime availability flag. README was directly checked for nine numbered items,eight
+state fields and unchanged content after the resume section. Live report behavior
+after this change is not yet verified.

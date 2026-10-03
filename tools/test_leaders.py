@@ -201,4 +201,26 @@ class LeaderTests(unittest.TestCase):
         self.assertEqual(counts['discussion_rounds'],2)
         self.assertIn('لا يُدّعى اتفاق نهائي',result)
 
+    def test_operational_metrics_are_controller_counts_not_leader_estimates(self):
+        def call(system,user,slot,deadline):
+            payload=json.loads(user)
+            if slot==0:
+                metrics=payload['execution_metrics']
+                self.assertEqual(metrics['origin'],'controller_measured')
+                self.assertEqual(metrics['tool_steps'],4)
+                self.assertEqual(metrics['tool_action_counts'],{'read':2,'search':0,'publish':2,'rejected':0})
+                self.assertEqual(metrics['consultation_rounds'],0)
+                self.assertEqual(metrics['completed_model_requests_before_synthesis'],6)
+                self.assertFalse(metrics['final_runtime_available'])
+                self.assertTrue(metrics['measured_footer_added_by_service'])
+                self.assertIn('Omit operational counts and durations',system)
+                return 'source-based conclusion'
+            if payload['step']==1:return json.dumps({'action':'read','path':'README.md','start':1,'end':2})
+            if payload['step']==2:return json.dumps({'action':'publish','note':'finding,not an operational count'})
+            value=json.loads(finish());value['summary']+=' leader estimate: 99 calls'
+            return json.dumps(value)
+        _,counts=coordinate_leaders('source audit','',SOURCES,call,'rules')
+        self.assertEqual(counts['model_requests'],7)
+        self.assertEqual(sum(counts['tool_action_counts'].values()),counts['tool_steps'])
+
 if __name__=='__main__':unittest.main()
