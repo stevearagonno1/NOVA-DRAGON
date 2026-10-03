@@ -1,5 +1,7 @@
 # الوكيل المستقل — تشغيل داخل خدمة Render الحالية
 
+**سياسة المشورة الحالية (2026-10-03):** القائد يعمل وحده افتراضيًا. المشورة بطلب صريح من المالك فقط: اقتراح القائد، ثم تعليق واحد من كل مستشار أو لا إضافة، ثم جواب القائد النهائي. أقسام التشاور المتكرر والتفويض التلقائي أدناه تاريخية، وقد استُبدلت بهذه السياسة.
+
 ## القرار الأحدث: خدمة واحدة مجانية
 
 المالك اشترط المجانية ثم طلب تعديل الخدمة الحالية بدل إنشاء خدمة ثانية. هذا هو المسار المعتمد الآن؛ أقسام الخدمة المنفصلة أدناه مرجع قديم فقط، ولا تُطبّق في هذا المسار.
@@ -747,3 +749,38 @@ Current requested README, constitution, handoff and decisions texts total 99,760
 characters; each is below the unchanged file byte limit. Reproduction: fetch these
 four raw main files and sum Python `len(text)` (main can change after this check).
 The live background model review has not been rerun by this change.
+
+
+## 2026-10-03 — Optional one-round advice replaces automatic leader loops
+
+Owner decision: ordinary work belongs to the sole lead. Only an explicit request to
+seek advice starts the background service. A complex audit or a background-work
+request alone no longer triggers advisors. `nova_council_submit` now requires an
+existing lead `proposal` and `consultation_requested=true`; missing/false flags or
+missing proposals are rejected before queueing/source reads. Managed startup guidance
+removes all automatic-delegation instructions. This intent flag is supplied by the
+interactive model; the server cannot independently inspect the owner's chat intent.
+
+New default mode `simple_advice`: two parallel advisors see the proposal and exact
+cited pinned excerpts. Each returns one short plain-text improvement/objection, or
+exact `NO_ADDITION` if nothing useful remains. No JSON response contract, source-tool
+loops, peer discussions, vote or automatic second round. The lead receives useful
+comments and explicit unavailable/silent slots and synthesizes once. Silence is not
+approval, agreement or independent verification. Genuine limitations stay visible.
+A subsequent round needs a new explicit owner request. Main work outside advice still
+uses its ordinary tools; selected-excerpt advice is not a full independent file audit.
+
+Healthy background run: 3 logical model requests (2 advisors + 1 synthesis), excluding
+the interactive lead's work to formulate its proposal. Provider reserve attempts can
+add actual API requests. Existing 90-minute shared ceiling, stream inactivity checks,
+credential separation, source limits, owner-only final notification and saved public
+comments remain. One advisor failure does not discard the other's comment or stop
+lead synthesis. Final text does not dump silent advisor comments or claim unanimity.
+Historical leader-loop helpers/tests remain internal; default dispatch no longer uses
+them. The combined Docker image includes `agent_advice.py`.
+
+Validation: `python -m unittest discover -s tools -p 'test*.py'` — 121 tests pass.
+Checks cover explicit-request/proposal gates, simultaneous comments, silent advisors,
+retained objections, no repeat round, failed advisors, saved comments on synthesis
+failure, shared deadlines, controller counts and managed bootstrap policy.
+Live provider timing and answer quality after deployment are not measured here.

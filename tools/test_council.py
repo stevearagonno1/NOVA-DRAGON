@@ -43,7 +43,7 @@ class CouncilTests(unittest.TestCase):
             sent.append(text); finished.set()
         with tempfile.TemporaryDirectory() as d:
             jobs = council.Jobs(d, runner=lambda *args: ('نتيجة واحدة', {'model_requests':5}), sender=sender, source_reader=lambda p:SOURCES)
-            queued = jobs.submit({'task':'Question, scope, evidence and acceptance'})
+            queued = jobs.submit({'consultation_requested':True,'proposal':'Lead proposal','task':'Question, scope, evidence and acceptance'})
             self.assertTrue(finished.wait(3))
             jobs.pool.shutdown(wait=True)
             answer = jobs.status({'id':queued['id']})[0]
@@ -59,13 +59,13 @@ class CouncilTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             jobs = council.Jobs(d, runner=run, sender=lambda text:None, source_reader=lambda p:SOURCES)
             try:
-                first = jobs.submit({'task':'first task'})
-                duplicate = jobs.submit({'task':'first task'})
+                first = jobs.submit({'consultation_requested':True,'proposal':'Lead proposal','task':'first task'})
+                duplicate = jobs.submit({'consultation_requested':True,'proposal':'Lead proposal','task':'first task'})
                 self.assertEqual(first['id'], duplicate['id'])
                 self.assertTrue(duplicate['duplicate'])
-                jobs.submit({'task':'second task'})
+                jobs.submit({'consultation_requested':True,'proposal':'Lead proposal','task':'second task'})
                 with self.assertRaises(ValueError):
-                    jobs.submit({'task':'third task'})
+                    jobs.submit({'consultation_requested':True,'proposal':'Lead proposal','task':'third task'})
             finally:
                 release.set(); jobs.pool.shutdown(wait=True)
 
@@ -80,7 +80,7 @@ class CouncilTests(unittest.TestCase):
         sent=[]
         with tempfile.TemporaryDirectory() as d:
             jobs=council.Jobs(d, runner=lambda *args:(_ for _ in ()).throw(RuntimeError('secret')), sender=sent.append, source_reader=lambda p:SOURCES)
-            q=jobs.submit({'task':'task'})
+            q=jobs.submit({'consultation_requested':True,'proposal':'Lead proposal','task':'task'})
             jobs.pool.shutdown(wait=True)
             answer=jobs.status({'id':q['id']})[0]
             self.assertEqual(answer['state'],'blocked')
@@ -137,7 +137,7 @@ class CouncilTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as d:
             runner=unittest.mock.Mock()
             jobs=council.Jobs(d,runner=runner,sender=lambda _:None,source_reader=fail)
-            q=jobs.submit({'task':'review real files'})
+            q=jobs.submit({'consultation_requested':True,'proposal':'Lead proposal','task':'review real files'})
             jobs.pool.shutdown(wait=True)
             job=jobs.status({'id':q['id']})[0]
         runner.assert_not_called()
@@ -175,7 +175,7 @@ class CouncilTests(unittest.TestCase):
                 def failing(task,context,sources):
                     raise TimeoutError()
                 jobs.runner=failing
-                q=jobs.submit({'task':'task'})
+                q=jobs.submit({'consultation_requested':True,'proposal':'Lead proposal','task':'task'})
                 jobs.pool.shutdown(wait=True)
             answer=jobs.status({'id':q['id']})[0]
             self.assertEqual(answer['state'],'blocked')
@@ -184,23 +184,26 @@ class CouncilTests(unittest.TestCase):
             self.assertEqual(answer['error_type'],'TimeoutError')
             self.assertIn('تحليل المراجعين',answer['result'])
 
-    def test_bootstrap_explicit_group_request_overrides_solo_short_task_rule(self):
+    def test_bootstrap_advice_is_optional_and_never_automatically_delegates(self):
         env={'TELEGRAM_BOT_TOKEN':'synthetic-test-token','TELEGRAM_OWNER_ID':'12345','GITHUB_TOKEN':'synthetic-gh-token','LITELLM_API_KEY':'synthetic-key','NOVA_COUNCIL_PORT':'8090'}
         with tempfile.TemporaryDirectory() as d, patch.object(boot,'run'), patch.dict(boot.os.environ):
             state=Path(d); (state/'repo/.git/hooks').mkdir(parents=True)
             boot.prepare(state,env)
             policy=(state/'opencrabs/AGENTS.md').read_text()
             tools=tomllib.loads((state/'opencrabs/tools.toml').read_text())
-        self.assertLess(policy.index('EXPLICIT GROUP-REVIEW DISPATCH'), policy.index('At the start of a new conversation'))
-        self.assertIn('regardless of whether the task is short',policy)
-        self.assertIn('Do not inspect providers',policy)
+        self.assertLess(policy.index('OPTIONAL ADVICE POLICY'), policy.index('At the start of a new conversation'))
+        self.assertIn('Default: work and answer as the sole lead',policy)
+        self.assertIn('Consult ONLY when the owner explicitly asks',policy)
+        self.assertNotIn('automatically discover and use',policy)
+        self.assertIn('No automatic second round',policy)
+        self.assertIn('Do not read config_manager',policy)
         self.assertIn('nova_council_submit',[t['name'] for t in tools['tools']])
 
     def test_connection_probe_uses_one_request_and_never_loads_repository_sources(self):
         with tempfile.TemporaryDirectory() as d, patch.object(council,'probe_connection',return_value={'credential_slot':1,'api_requests':1}) as probe:
             with patch.object(council,'snapshot') as snapshot:
                 jobs=council.Jobs(d,sender=lambda text:None,source_reader=snapshot)
-                q=jobs.submit({},kind='probe')
+                q=jobs.submit({'consultation_requested':True,'proposal':'Lead proposal',},kind='probe')
                 jobs.pool.shutdown(wait=True)
                 answer=jobs.status({'id':q['id']})[0]
         probe.assert_called_once(); snapshot.assert_not_called()
@@ -216,7 +219,7 @@ class CouncilTests(unittest.TestCase):
             {'credential_slot':3,'elapsed_seconds':90,'outcome':'failed','reason_code':'StreamStartTimeout'}]}
         with tempfile.TemporaryDirectory() as d, patch.object(council,'probe_reviewers',return_value=result) as probe, patch.object(council,'snapshot') as sources:
             jobs=council.Jobs(d,sender=lambda text:None,source_reader=sources)
-            q=jobs.submit({'task':'ignore this user task','paths':['README.md']},kind='probe_reviewers')
+            q=jobs.submit({'consultation_requested':True,'proposal':'Lead proposal','task':'ignore this user task','paths':['README.md']},kind='probe_reviewers')
             jobs.pool.shutdown(wait=True)
             answer=jobs.status({'id':q['id']})[0]
         sources.assert_not_called();probe.assert_called_once()
@@ -237,7 +240,7 @@ class CouncilTests(unittest.TestCase):
     def test_trial_has_no_sources_fixed_task_and_short_deadline(self):
         with tempfile.TemporaryDirectory() as d, patch.object(council,'run_background',return_value=('summary',{'model_requests':3})) as run, patch.object(council,'snapshot') as sources:
             jobs=council.Jobs(d,runner=run,sender=lambda text:None,source_reader=sources)
-            q=jobs.submit({'task':'change settings','context':'private input','paths':['README.md']},kind='trial')
+            q=jobs.submit({'consultation_requested':True,'proposal':'Lead proposal','task':'change settings','context':'private input','paths':['README.md']},kind='trial')
             jobs.pool.shutdown(wait=True)
             answer=jobs.status({'id':q['id']})[0]
         sources.assert_not_called()
@@ -245,8 +248,8 @@ class CouncilTests(unittest.TestCase):
         self.assertEqual(run.call_args.args[1],'')
         self.assertNotIn('change settings',run.call_args.args[0])
         self.assertTrue(run.call_args.kwargs['diagnostic'])
-        self.assertEqual(answer['expected_requests'],23)
-        self.assertEqual(answer['mode'],'independent_leaders')
+        self.assertEqual(answer['expected_requests'],3)
+        self.assertEqual(answer['mode'],'simple_advice')
         self.assertEqual(q['next_action'],'finish_turn')
         self.assertEqual(answer['state'],'completed')
 
@@ -262,14 +265,42 @@ class CouncilTests(unittest.TestCase):
         original=council.run_background
         with tempfile.TemporaryDirectory() as d,patch.object(council,'run_background',side_effect=run) as runner:
             jobs=council.Jobs(d,runner=runner,sender=sent.append,source_reader=lambda _:SOURCES)
-            q=jobs.submit({'task':'audit question'})
+            q=jobs.submit({'consultation_requested':True,'proposal':'Lead proposal','task':'audit question'})
             jobs.pool.shutdown(wait=True)
             answer=jobs.status({'id':q['id']})[0]
         self.assertEqual(sorted(calls),[0,1,2])
-        self.assertEqual(answer['counts']['discussion_rounds'],0)
+        self.assertEqual(answer['counts']['discussion_rounds'],1)
         self.assertEqual(answer['completed_requests'],3)
         self.assertEqual(len(sent),1)
         self.assertEqual(answer['state'],'completed')
+
+    def test_advice_requires_explicit_request_before_queue_or_source_reads(self):
+        with tempfile.TemporaryDirectory() as d:
+            source_reader=unittest.mock.Mock()
+            jobs=council.Jobs(d,source_reader=source_reader)
+            try:
+                for params in ({'task':'ordinary audit','proposal':'draft'},
+                               {'task':'ordinary audit','proposal':'draft','consultation_requested':False},
+                               {'task':'ordinary audit','proposal':'draft','consultation_requested':1}):
+                    with self.assertRaises(ValueError):jobs.submit(params)
+                self.assertEqual(jobs.all(),[])
+                source_reader.assert_not_called()
+            finally:jobs.pool.shutdown()
+
+    def test_advice_requires_existing_lead_proposal_and_tool_exposes_authorization(self):
+        with tempfile.TemporaryDirectory() as d:
+            jobs=council.Jobs(d)
+            try:
+                with self.assertRaises(ValueError):
+                    jobs.submit({'task':'seek advice','consultation_requested':True})
+                self.assertEqual(jobs.all(),[])
+            finally:jobs.pool.shutdown()
+        tools=tomllib.loads(boot.readonly_tools_text(True))['tools']
+        submit=next(t for t in tools if t['name']=='nova_council_submit')
+        params={p['name']:p for p in submit['params']}
+        self.assertTrue(params['proposal']['required'])
+        self.assertTrue(params['consultation_requested']['required'])
+        self.assertEqual(params['consultation_requested']['type'],'boolean')
 
     def test_dynamic_definitions_scoped_and_standalone_unchanged(self):
         plain=tomllib.loads(boot.readonly_tools_text())
@@ -290,7 +321,7 @@ class CouncilTests(unittest.TestCase):
         def run(task,context,sources,**kwargs):return original(task,context,sources,call=fake,**kwargs)
         with tempfile.TemporaryDirectory() as d,patch.object(council,'run_background',side_effect=run) as runner:
             jobs=council.Jobs(d,runner=runner,sender=lambda _:None,source_reader=lambda _:SOURCES)
-            q=jobs.submit({'task':'audit'})
+            q=jobs.submit({'consultation_requested':True,'proposal':'Lead proposal','task':'audit'})
             jobs.pool.shutdown(wait=True)
             answer=jobs.status({'id':q['id']})[0]
         self.assertEqual(answer['state'],'blocked')
@@ -303,15 +334,14 @@ class CouncilTests(unittest.TestCase):
         self.assertNotIn('جماعية معتمدة',answer['result'])
         self.assertNotIn('private provider',json.dumps(answer))
 
-    def test_live_trial_contract_uses_only_synthetic_tools_and_leaders(self):
+    def test_live_trial_is_one_plain_text_advice_round(self):
         def fake(system,user,slot=0,deadline=None,observer=None):
             payload=json.loads(user)
             if slot==0:return 'synthetic diagnostic result'
-            if payload['step']==1:
-                self.assertEqual(payload['workspace']['manifest'][0]['path'],'DIAGNOSTIC.md')
-                return json.dumps({'action':'read','path':'DIAGNOSTIC.md','start':1,'end':4})
-            return json.dumps({'action':'finish','summary':'fixture DIAGNOSTIC.md:L1-L4 @synthetic-fixture-v1',
-                               'decision':'context_dependent','blockers':[],'needs_consultation':False})
+            self.assertIn('lead_proposal',payload)
+            self.assertIn('DIAGNOSTIC.md',str(payload['evidence']))
+            self.assertNotIn('step',payload)
+            return 'NO_ADDITION'
         original=council.run_background
         def run(task,context,sources,**kwargs):return original(task,context,sources,call=fake,**kwargs)
         with tempfile.TemporaryDirectory() as d,patch.object(council,'run_background',side_effect=run) as runner,patch.object(council,'snapshot') as sources:
@@ -321,10 +351,7 @@ class CouncilTests(unittest.TestCase):
             answer=jobs.status({'id':q['id']})[0]
         sources.assert_not_called()
         self.assertEqual(answer['state'],'completed')
-        self.assertEqual(answer['counts']['model_requests'],5)
-        self.assertEqual(answer['counts']['tool_steps'],2)
-        self.assertEqual(answer['counts']['mode'],'independent_leaders')
-        self.assertEqual(answer['workspace']['manifest'][0]['commit'],'synthetic-fixture-v1')
-
-if __name__=='__main__':
-    unittest.main()
+        self.assertEqual(answer['counts']['model_requests'],3)
+        self.assertEqual(answer['counts']['tool_steps'],0)
+        self.assertEqual(answer['counts']['mode'],'simple_advice')
+        self.assertEqual(answer['counts']['silent_advisors'],2)

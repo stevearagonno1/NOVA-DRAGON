@@ -120,13 +120,13 @@ def run_review(task, context, sources, call=model_call, progress=None, observer=
     return deliberate(task, context, sources, invoke, system, roles, progress=progress)
 
 
-def run_background(task,context,sources,call=None,progress=None,observer=None,diagnostic=False,checkpoint=None):
-    from agent_leaders import coordinate_leaders
+def run_background(task,context,sources,call=None,progress=None,observer=None,diagnostic=False,checkpoint=None,proposal=None):
+    from agent_advice import consult_once
     call=call or model_call
     if call is model_call:
         from agent_council_transport import routes
-        if len(routes())<3:raise ValueError('Three distinct credentials required for lead and subagents')
-    current_phase='leaders'
+        if len(routes())<3:raise ValueError('Three distinct credentials required for lead and advisors')
+    current_phase='advice'
     def managed_progress(phase,count):
         nonlocal current_phase
         current_phase=phase
@@ -137,13 +137,11 @@ def run_background(task,context,sources,call=None,progress=None,observer=None,di
             if observer and (slot==0 or time.monotonic()<=deadline):
                 observer(dict(event,phase='lead_synthesis' if slot==0 else current_phase))
         return call(system,user,slot=slot,deadline=deadline,observer=timed_observer)
-    system=SYSTEM
     if diagnostic:
-        system+='\nThis is a tiny workflow diagnostic. DIAGNOSTIC.md is a synthetic test fixture, NOT repository evidence. The question compares two presentation templates (decision-first versus evidence-first), NOT two actual authored reports. No external finished reports are required. The fixture supports a limited qualitative comparison by audience,not a measured universal superiority claim. Treat absent measurements as that limitation rather than an automatic blocker to this scoped comparison. Each leader must read or search that fixture at least once before finishing. One full read of its four lines is sufficient: normally finish on the next step rather than repeat reads or publish redundant notes. Keep a genuine unresolved objection if one exists. Do not invent trading measurements.'
         sources=[{'path':'DIAGNOSTIC.md','commit':'synthetic-fixture-v1','blob_sha':'synthetic',
-                  'content':'This is synthetic diagnostic material, not project evidence.\nDecision first helps quick executive reports.\nEvidence first helps readers inspect unfamiliar conclusions.\nThere is no measured universal best order.'}]
-    return coordinate_leaders(task,context,sources,invoke,system,progress=managed_progress,
-                              checkpoint=checkpoint,require_tool=diagnostic)
+                  'content':'Synthetic material, not project evidence.\nDecision first helps executive summaries.\nEvidence first helps inspect unfamiliar conclusions.\nNo measured universal best order.'}]
+        proposal='Use decision first for executive summaries and evidence first for unfamiliar conclusions. DIAGNOSTIC.md:L1-L4 @synthetic-fixture-v1'
+    return consult_once(task,context,proposal,sources,invoke,SYSTEM,progress=managed_progress,checkpoint=checkpoint)
 
 def notify(text):
     # Owner-only destination, never a model-selected recipient or URL.
@@ -180,7 +178,12 @@ class Jobs:
         elif kind == "probe_reviewers":
             params = {"task":"Compare the first three credentials with three identical tiny requests; no sources or fallback."}
         elif kind == "trial":
-            params = {"task":"Diagnostic leader workflow: read/search the supplied synthetic fixture and qualitatively compare two presentation TEMPLATES: decision-first versus evidence-first. Explain when each template fits its audience. This is NOT a comparison of two authored report texts; no such reports are required or supplied. Do not claim empirical or universal superiority. Consult only for a decision-relevant disagreement. No project files, trades, experiments or settings. Cite the fixture as synthetic,never repository evidence. Keep findings short."}
+            params = {"task":"One requested advice round on a fixed report-order proposal using synthetic evidence only. No project files,tools,trades or settings. Keep additions short or return NO_ADDITION."}
+        if kind=='review':
+            if params.get('consultation_requested') is not True:
+                raise ValueError('Consultation requires an explicit owner request')
+            proposal=bounded_text(params.get('proposal'),6000,'Lead proposal')
+        else:proposal=''
         task = bounded_text(params.get('task'), MAX_TASK, 'Task paper')
         context = params.get('context', '')
         if not isinstance(context, str) or len(context) > MAX_CONTEXT:
@@ -190,7 +193,7 @@ class Jobs:
         if not isinstance(paths, list) or len(paths) > 5:
             raise ValueError('At most five source paths')
         paths = [safe_path(p) for p in paths]
-        fingerprint = hashlib.sha256(json.dumps([kind, task, context, paths], ensure_ascii=False).encode()).hexdigest()
+        fingerprint = hashlib.sha256(json.dumps([kind, task, context, paths, proposal], ensure_ascii=False).encode()).hexdigest()
         with self.lock:
             jobs = self.all()
             for job in jobs:
@@ -199,7 +202,7 @@ class Jobs:
             if len(jobs) >= MAX_JOBS or sum(j['state'] in ('queued', 'running') for j in jobs) >= 2:
                 raise ValueError('Review queue is full; do not launch more jobs')
             job = {'id': secrets.token_hex(8), 'fingerprint': fingerprint, 'state': 'queued',
-                   'kind':kind, 'mode':'independent_leaders' if kind in ('review','trial') else kind, 'expected_requests':1 if kind=='probe' else 3 if kind=='probe_reviewers' else 23, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
+                   'kind':kind, 'mode':'simple_advice' if kind in ('review','trial') else kind, 'expected_requests':1 if kind=='probe' else 3 if kind=='probe_reviewers' else 3, 'proposal':proposal, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
             self.save(job)
             self.pool.submit(self.work, job)
             return {'id': job['id'], 'state': 'queued', 'next_action':'finish_turn', 'message': 'سُجل الطلب في الخلفية؛ أرسل المعرف وأنهِ ردك الآن. لا تقرأ الإعدادات ولا تستعلم الحالة تلقائيًا. ستصل النتيجة للمالك عند الانتهاء.'}
@@ -250,7 +253,7 @@ class Jobs:
                 result='\n'.join(lines)
                 counts={'model_requests':check['completed_requests'],'api_requests':3}
             elif self.runner is run_background:
-                result,counts=self.runner(job['task'],job['context'],sources,progress=progress,observer=observer,diagnostic=job.get('kind')=='trial',checkpoint=checkpoint)
+                result,counts=self.runner(job['task'],job['context'],sources,progress=progress,observer=observer,diagnostic=job.get('kind')=='trial',checkpoint=checkpoint,proposal=job.get('proposal'))
             elif self.runner is run_review:
                 result, counts = self.runner(job['task'], job['context'], sources, progress=progress, observer=observer, deadline_seconds=300 if job.get('kind')=='trial' else 900, diagnostic=job.get('kind')=='trial')
             else:
@@ -258,7 +261,7 @@ class Jobs:
                 result, counts = self.runner(job['task'], job['context'], sources)
             job.update(state='completed', phase='completed', completed_requests=counts.get('model_requests',job.get('expected_requests',16)), result=redact(result), sources=source_manifest(sources), counts=counts)
         except Exception as exc:
-            phase_labels = {'reading_sources': 'قراءة المصادر', 'leaders':'عمل القادة', 'subagents':'عمل الفرعيين', 'lead_synthesis':'جمع العقل الرئيسي للنتائج', 'independent_review': 'تحليل المراجعين', 'cross_review': 'المراجعة المتبادلة', 'synthesis': 'جمع التوصية', 'connection_probe':'اختبار الاتصال الأول', 'connection_probe_reviewers':'اختبار الاتصال المقارن'}
+            phase_labels = {'reading_sources': 'قراءة المصادر', 'advice':'مشورة المستشارين', 'leaders':'عمل القادة', 'subagents':'عمل الفرعيين', 'lead_synthesis':'جمع العقل الرئيسي للنتائج', 'independent_review': 'تحليل المراجعين', 'cross_review': 'المراجعة المتبادلة', 'synthesis': 'جمع التوصية', 'connection_probe':'اختبار الاتصال الأول', 'connection_probe_reviewers':'اختبار الاتصال المقارن'}
             stage = phase_labels.get(job.get('phase'), 'المراجعة')
             if job.get('phase','').startswith('discussion_round_'):
                 stage = 'جولة التشاور ' + job['phase'].rsplit('_',1)[-1]
@@ -282,7 +285,7 @@ class Jobs:
                 detail += ' (الخانة ' + str(reason['slot']) + ')'
             print('NOVA council blocked job=' + job['id'] + ' phase=' + job.get('phase','unknown') + ' code=' + reason['code'] + ' location=' + location, flush=True)
             job.update(reason_code=reason['code'], error_slot=reason['slot'], error_location=location)
-            if job.get('mode') in ('lead_and_subagents','independent_leaders'):
+            if job.get('mode') in ('lead_and_subagents','independent_leaders','simple_advice'):
                 message='تعذر إكمال العمل في مرحلة '+stage+'؛ '+detail+'؛ الطلبات المكتملة: '+str(job.get('completed_requests',0))+' من سقف '+str(job['expected_requests'])+'.'
                 if job.get('worker_reports'):
                     message+=' حُفظت نتائج '+str(len(job['worker_reports']))+' من الفرعيين، ويمكن قراءتها من حالة المهمة ما دام السجل موجودًا.'
@@ -290,7 +293,9 @@ class Jobs:
                 message='لم تكتمل المراجعة. توقفت في مرحلة '+stage+'؛ '+detail+'؛ اكتمل '+str(job.get('completed_requests',0))+' من سقف '+str(job.get('expected_requests',16))+' طلبات.'
             job.update(state='blocked',error_type=error,result=message)
         job['runtime_seconds']=round(time.monotonic()-started,2)
-        if job.get('counts',{}).get('mode') in ('lead_and_subagents','independent_leaders'):
+        if job.get('counts',{}).get('mode')=='simple_advice':
+            job['result']+='\n\nالمستشارون المكتملون: '+str(job['counts']['completed_subagents'])+'/2؛ مشورة واحدة؛ مدة التشغيل: '+str(job['runtime_seconds'])+' ثانية.'
+        elif job.get('counts',{}).get('mode') in ('lead_and_subagents','independent_leaders'):
             job['result']+='\n\nالقادة المكتملون: '+str(job['counts']['completed_subagents'])+'/2؛ جولات التشاور: '+str(job['counts']['discussion_rounds'])+'؛ خطوات الأدوات: '+str(job['counts'].get('tool_steps',0))+'؛ الطلبات المكتملة: '+str(job['completed_requests'])+'؛ مدة التشغيل: '+str(job['runtime_seconds'])+' ثانية.'
         with self.lock:
             self.save(job)
@@ -299,7 +304,7 @@ class Jobs:
             if job.get('kind') in ('probe','probe_reviewers'):
                 prefix = 'نتيجة اختبار الاتصال\n\n'
             else:
-                caution=job.get('counts',{}).get('partial') or job.get('counts',{}).get('evidence_complete') is False
+                caution=job.get('counts',{}).get('partial') or (job.get('counts',{}).get('mode')!='simple_advice' and job.get('counts',{}).get('evidence_complete') is False)
                 prefix = ('اكتمل العمل الخلفي مع نقص موضح ⚠️\n\n' if caution else 'اكتمل العمل الخلفي ✅\n\n') if job['state'] == 'completed' else 'توقف العمل الخلفي ⚠️\n\n'
             self.sender(prefix + job['result'])
             job['notification'] = 'sent'
