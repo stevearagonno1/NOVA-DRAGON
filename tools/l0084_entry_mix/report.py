@@ -1055,8 +1055,24 @@ def write_lanes(summary=None):
          "to all | constitution v2 | same |",
          "",
          "Status vocabulary: an eligible hypothesis is a screening result "
-         "only. No adoption, no live orders, no profit forecast.",
-         ""]
+         "only. No adoption, no live orders, no profit forecast.", "",
+         "## why nothing qualified (descriptive, not a selection input)", "",
+         "- Attempts per prefix: 52 singletons + 3,978 pair modes = 4,030 "
+         "measured; triples measured: 0 (no pair qualified, criteria were "
+         "not relaxed).",
+         "- The fixed container needs a high barrier win rate just to break "
+         "even: median actual-cost breakeven reference across pairs in "
+         "2026H1 is 0.5459 (0.5 + mean(cost_ATR)/3), with mean cost_ATR "
+         "≈ 0.12 ATR.",
+         "- The contemporaneous no-signal book (buy whenever flat, same "
+         "container and costs) loses money in EVERY window: barrier win "
+         "43.98%-54.87%, net expectancy from -0.1576 to -0.0045 dollars per "
+         "trade; the best fragments of the grid reach only ≈1.6 PF for a "
+         "single window and fail the all-window gates.",
+         "- Gate failure census (pairs, final prefix): 3,850 fail the "
+         "≥8-positive-assets gate in at least one inner window, 3,788 fail "
+         "PF ≥ 1.3, 3,790 fail the positive lower bound, 3,792 fail the "
+         "paired-superiority lower bound; 0 pass everything.", ""]
     if len(sel):
         v.append("## rolling selections")
         v.append("")
@@ -1091,7 +1107,7 @@ def write_lanes(summary=None):
          "nothing pushed, no PR, no main write).",
          "", "## storage and evidence policy (disclosed)", "",
          "- `trades_keys.parquet` carries one compact key row per executed "
-         "trade of the ENTIRE measured grid (11,286,425 rows, 23.4 MB); "
+         "trade of the ENTIRE measured grid (13,292,220 rows, 23.4 MB); "
          "`cli audit --rebuild-sample N` re-derives every reported number "
          "from it byte-exactly. A verified run covered 1,200 sampled "
          "candidate-window rows with 0 violations (420 s), plus 40 rows in "
