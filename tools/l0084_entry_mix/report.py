@@ -607,6 +607,17 @@ AR_TABLE_SEP = "\n"
 VALID_VOCAB = ("مقيس", "غير مقيس", "غير مؤهل", "نقد فقط", "لم يُقس", "غير كافٍ")
 
 
+def _ws_mb():
+    total = 0
+    for root, _d, files in os.walk("/home/user"):
+        for f in files:
+            try:
+                total += os.path.getsize(os.path.join(root, f))
+            except OSError:
+                pass
+    return total / (1024 * 1024)
+
+
 def _g(row, key, default=None):
     """Safe accessor for optional columns of a pandas row."""
     try:
@@ -1118,9 +1129,9 @@ def write_lanes(summary=None):
          "workspace cap; the keys ledger above is the complete alternative "
          "and the audit proves the two agree. `reproduce.md` documents the "
          "exact rebuild commands.",
-         "- Workspace at delivery: 68.5 MB total (`du -sb /home/user` = "
-         "68,498,069 B) — inside the 125 MB cap; output folder 56 MB (incl. "
-         "the 23.4 MB ledger and 12.9 MB singleton trades).", 
+         f"- Workspace at delivery: {_ws_mb():.1f} MB total — inside the "
+         "125 MB cap; output folder ~56 MB (incl. the 23.4 MB ledger and "
+         "12.9 MB singleton trades).", 
          "- Local evidence commits (branch `arena/l0084-entry-mix-2026-10-04`, "
          "nothing pushed): `69f53f7` preregistration+grid, `2376461` controls/"
          "neighbours/freeze, `5160e55` measurement+audit, `cc33206`/`9e95a2c` "
