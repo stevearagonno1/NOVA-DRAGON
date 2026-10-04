@@ -3,7 +3,7 @@
 - Lane: L0084-ENTRY-MIX (one paper, one theme)
 - Frozen candidate: null (CASH)
 - Freeze UTC: 2026-10-04T15:10:39Z
-- Integrity: PASS (19 of 18 checks recorded)
+- Integrity: PASS (18 of 18 checks recorded, plus 16b full-run confirmation)
 
 ## before / after / why / period
 

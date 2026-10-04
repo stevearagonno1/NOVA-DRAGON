@@ -689,6 +689,10 @@ def build_report():
         if os.path.exists(os.path.join(O, "neighbors.csv")) else pd.DataFrame()
     sel_rows = _sel_table(sel)
     fz = frozen.get("frozen")
+    _ck = checks.get("checks", {})
+    n_checks = len([k for k in _ck
+                    if k.startswith("check_") and len(k) == 8
+                    and k[6:].isdigit()])
     card = [
         f"L0084-ENTRY-MIX — {len(sel_rows)} prefixes rolled; frozen: "
         f"{(' + '.join(fz['definition']) + ' | ' + fz['mode']) if fz else 'null (CASH)'}",
@@ -700,9 +704,7 @@ def build_report():
         f"Holm family 70,330; bootstrap 2000×7-day blocks, seed 84, "
         f"synchronised across assets",
         f"Integrity: {'PASS' if checks.get('all_pass') else 'FAIL'} "
-        f"({len([k for k in checks.get('checks', {}) "
-        f"if k.startswith('check_') and k[6:8].isdigit()])} of 18 checks "
-        f"recorded, plus 16b full-run confirmation)",
+        f"({n_checks} of 18 checks recorded, plus 16b full-run confirmation)",
         "Verdict scope: eligible hypothesis only; no adoption, no live orders, "
         "no profit forecast",
         "Future validation: NOT MEASURED until BOTH 100 trades and 90 days "
@@ -1023,6 +1025,10 @@ def write_lanes(summary=None):
     outer = pd.read_csv(os.path.join(O, "outer_windows.csv")) \
         if os.path.exists(os.path.join(O, "outer_windows.csv")) else pd.DataFrame()
     fz = frozen.get("frozen")
+    _ck = checks.get("checks", {})
+    n_checks = len([k for k in _ck
+                    if k.startswith("check_") and len(k) == 8
+                    and k[6:].isdigit()])
     def w(name, txt):
         p = os.path.join(DOCS, name)
         with open(p, "w", encoding="utf-8") as fh:
@@ -1036,8 +1042,7 @@ def write_lanes(summary=None):
          f"{(' + '.join(fz['definition']) + ' | mode ' + fz['mode']) if fz else 'null (CASH)'}",
          f"- Freeze UTC: {frozen.get('freeze_utc')}",
          f"- Integrity: {'PASS' if checks.get('all_pass') else 'FAIL'} "
-         f"({len([k for k in checks.get('checks', {}) if k.startswith('check_') and k[6:8].isdigit()])}"
-         f" of 18 checks recorded, plus 16b full-run confirmation)",
+         f"({n_checks} of 18 checks recorded, plus 16b full-run confirmation)",
          "",
          "## before / after / why / period", "",
          "| item | before | after | why | period |", "|---|---|---|---|---|",

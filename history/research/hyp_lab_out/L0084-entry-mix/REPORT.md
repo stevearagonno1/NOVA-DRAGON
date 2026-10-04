@@ -8,7 +8,7 @@
 - Universe: 12 assets 4h UTC 2021-01-01..2026-09-27; container fixed $20, ±1.5 ATR, horizon 18 bars, cost $0.052 round trip
 - Attempts: 52 singletons + 3978 pair-modes + 0 registered triples (cap 1500/prefix)
 - Holm family 70,330; bootstrap 2000×7-day blocks, seed 84, synchronised across assets
-- Integrity: PASS (19 of 18 checks recorded, incl. 16b full-run confirmation)
+- Integrity: PASS (18 of 18 checks recorded, plus 16b full-run confirmation)
 - Verdict scope: eligible hypothesis only; no adoption, no live orders, no profit forecast
 - Future validation: NOT MEASURED until BOTH 100 trades and 90 days after the freeze commit
 - Dollars first; ATR-R and barrier-R reported separately; legacy headlines documented, never re-based
