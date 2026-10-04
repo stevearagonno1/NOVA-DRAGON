@@ -306,7 +306,7 @@ class CouncilTests(unittest.TestCase):
         plain=tomllib.loads(boot.readonly_tools_text())
         full=tomllib.loads(boot.readonly_tools_text(True))
         self.assertEqual(len(plain['tools']),5)
-        self.assertEqual(len(full['tools']),11)
+        self.assertEqual(len(full['tools']),12)
         for tool in full['tools'][5:]:
             self.assertFalse(tool['requires_approval'])
             self.assertNotIn('{{',tool['command'])

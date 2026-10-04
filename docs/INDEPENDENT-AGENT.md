@@ -816,3 +816,35 @@ Checks cover exact lab-cost results,decimal behavior,rounding,expression bounds,
 rejected code/operations,zero network calls and managed numeric instructions.
 These instructions reduce unsupported numeric claims; they cannot guarantee that
 all future prose uses correct inputs or that every source measurement is valid.
+
+
+## 2026-10-04 — Owner-requested fixed ATLAS-4 key benchmark
+
+New dedicated `nova_council_atlas` operation runs the owner's uploaded exam byte-for-
+byte (SHA256233edeb10ade42121c704297f42ef8d5c54296ece060fce925ae9e7c889b9db3).
+Each of exactly10unique configured routes receives one fresh system/user request,
+no tools,calculator,files,chat history,grading key,retry or credential fallback.
+The existing routes currently request Atria-Dawn-Preview. Capture the provider's
+reported model label when present; it is not proof of underlying weights/identity.
+Slot4 is scheduled in the first pair. Two concurrent requests limit provider load.
+All requests use identical prompts and16,384output-token caps with provider-default
+sampling. Shared90-minute ceiling and existing meaningful-stream inactivity rules
+remain. The stream parser discards private reasoning; only final answer text and
+safe model/usage/finish metadata are retained. No settings or default routing change.
+
+Partial raw results are saved on each completion. Final owner-only notification
+sends an ATLAS-4-results.json document containing final responses,slots,latency,
+first visible answer time,and usage if returned. The grader/answer key is not in the
+Docker image or requests. No score is claimed by the runtime: external grading uses
+the owner's separate supplied corrector,including strict output compliance. Exactly
+one trial per slot is a first comparison,not a stable estimate of model intelligence.
+Latency is observed under two concurrent requests and changing provider conditions.
+
+Validation: `python -m unittest discover -s tools -p 'test*.py'` — 131 tests pass.
+Checks cover ten fixed distinct slots,slot4 scheduling,no grading-key leakage,no
+fallback/retry,metadata excluding private reasoning,raw answer checkpoints and
+fixed job dispatch that skips repository sources/advice. The supplied corrector's
+numeric reference self-check yields200/200numeric points; language is scored separately.
+Live provider calls have not been started from this workspace: credentials exist
+only inside Render. Owner starts the dedicated operation through the Telegram bot,
+then provides the generated result document for independent grading.

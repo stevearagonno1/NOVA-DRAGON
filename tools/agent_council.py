@@ -160,6 +160,19 @@ def notify(text):
     if not result.get('ok'):
         raise ValueError('Notification was not accepted')
 
+def notify_atlas(record):
+    boundary='nova-'+secrets.token_hex(12)
+    owner=str(int(os.environ['TELEGRAM_OWNER_ID']))
+    payload=redact(json.dumps(record,ensure_ascii=False,indent=2)).encode('utf-8')
+    body=(('--'+boundary+'\r\nContent-Disposition: form-data; name="chat_id"\r\n\r\n'+owner+'\r\n').encode()+
+          ('--'+boundary+'\r\nContent-Disposition: form-data; name="document"; filename="ATLAS-4-results.json"\r\nContent-Type: application/json\r\n\r\n').encode()+payload+
+          ('\r\n--'+boundary+'--\r\n').encode())
+    request=Request('https://api.telegram.org/bot'+os.environ['TELEGRAM_BOT_TOKEN']+'/sendDocument',
+                    data=body,method='POST',headers={'Content-Type':'multipart/form-data; boundary='+boundary})
+    with build_opener(NoRedirect).open(request,timeout=30) as response:
+        result=json.loads(response.read(100000))
+    if not result.get('ok'):raise ValueError('Benchmark document was not accepted')
+
 class Jobs:
     def __init__(self, directory, runner=run_background, sender=notify, source_reader=snapshot):
         self.directory = Path(directory); self.directory.mkdir(parents=True, exist_ok=True, mode=0o700)
@@ -182,7 +195,9 @@ class Jobs:
         return [json.loads(p.read_text()) for p in self.directory.glob('*.json')]
 
     def submit(self, params, kind="review"):
-        if kind == "probe":
+        if kind == "atlas":
+            params={"task":"Run fixed ATLAS-4 once on each of ten credential slots,without tools,grading key,fallback or retries."}
+        elif kind == "probe":
             params = {"task": "Check the first configured credential with one small request; no repository sources."}
         elif kind == "probe_reviewers":
             params = {"task":"Compare the first three credentials with three identical tiny requests; no sources or fallback."}
@@ -211,7 +226,7 @@ class Jobs:
             if len(jobs) >= MAX_JOBS or sum(j['state'] in ('queued', 'running') for j in jobs) >= 2:
                 raise ValueError('Review queue is full; do not launch more jobs')
             job = {'id': secrets.token_hex(8), 'fingerprint': fingerprint, 'state': 'queued',
-                   'kind':kind, 'mode':'simple_advice' if kind in ('review','trial') else kind, 'expected_requests':1 if kind=='probe' else 3 if kind=='probe_reviewers' else 3, 'proposal':proposal, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
+                   'kind':kind, 'mode':'simple_advice' if kind in ('review','trial') else kind, 'expected_requests':10 if kind=='atlas' else 1 if kind=='probe' else 3 if kind=='probe_reviewers' else 3, 'proposal':proposal, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
             self.save(job)
             self.pool.submit(self.work, job)
             return {'id': job['id'], 'state': 'queued', 'next_action':'finish_turn', 'message': 'سُجل الطلب في الخلفية؛ أرسل المعرف وأنهِ ردك الآن. لا تقرأ الإعدادات ولا تستعلم الحالة تلقائيًا. ستصل النتيجة للمالك عند الانتهاء.'}
@@ -222,7 +237,7 @@ class Jobs:
         try:
             with self.lock:
                 job['state'] = 'running'; job['phase'] = 'reading_sources'; self.save(job)
-            sources = [] if job.get('kind') in ('probe','probe_reviewers','trial') else self.source_reader({'paths': job['paths']})
+            sources = [] if job.get('kind') in ('probe','probe_reviewers','trial','atlas') else self.source_reader({'paths': job['paths']})
             with self.lock:
                 job['sources']=source_manifest(sources)
                 self.save(job)
@@ -246,7 +261,18 @@ class Jobs:
                     job['unavailable_workers']=json.loads(json.dumps(failures))
                     if workspace is not None:job['workspace']=json.loads(json.dumps(workspace,ensure_ascii=False))
                     self.save(job)
-            if job.get('kind')=='probe':
+            if job.get('kind')=='atlas':
+                from agent_atlas import benchmark
+                def atlas_checkpoint(records):
+                    with self.lock:
+                        job['benchmark_results']=records
+                        self.save(job)
+                record=benchmark(progress=progress,checkpoint=atlas_checkpoint)
+                job['atlas_record']=record
+                successes=sum(x['outcome']=='completed' for x in record['results'])
+                counts={'model_requests':sum(x['attempted'] for x in record['results']),'partial':successes<10}
+                result='اكتمل اختبار ATLAS-4؛ وصلت إجابات مكتملة من '+str(successes)+'/10 مفاتيح. جلسة فارغة لكل مفتاح، دون أدوات أو مصحح أو تبديل احتياطي. ملف الإجابات الخام والأزمنة جاهز للتصحيح؛ لم تُمنح درجات بعد.'
+            elif job.get('kind')=='probe':
                 progress('connection_probe',0)
                 connection = probe_connection()
                 result = 'نجح اختبار اتصال المزوّد بالمفتاح الأول ✅ ووصل رد مكتمل. أُرسل طلب واحد صغير فقط، دون ملفات المشروع. هذا لا يثبت قبول المفاتيح التسعة الأخرى ولا نجاح المراجعة الجماعية الكاملة.'
@@ -316,6 +342,11 @@ class Jobs:
                 caution=job.get('counts',{}).get('partial') or (job.get('counts',{}).get('mode')!='simple_advice' and job.get('counts',{}).get('evidence_complete') is False)
                 prefix = ('اكتمل العمل الخلفي مع نقص موضح ⚠️\n\n' if caution else 'اكتمل العمل الخلفي ✅\n\n') if job['state'] == 'completed' else 'توقف العمل الخلفي ⚠️\n\n'
             self.sender(prefix + job['result'])
+            if job.get('kind')=='atlas' and job.get('atlas_record') and self.sender is notify:
+                try:
+                    notify_atlas(job['atlas_record'])
+                    job['document_notification']='sent'
+                except Exception:job['document_notification']='not_sent'
             job['notification'] = 'sent'
         except Exception:
             job['notification'] = 'not_sent'
@@ -333,7 +364,7 @@ class Jobs:
                 if not jobs:
                     return [{'id':job_id,'state':'not_found','next_action':'finish_turn',
                              'message':'لا يوجد سجل لهذا المعرف في التخزين الحالي. قد تختفي سجلات قديمة بعد إعادة التشغيل أو النشر. لا تبحث في ملفات أخرى ولا تستنتج مشكلة مفاتيح أو مزوّد؛ أخبر المالك وأنهِ الرد.'}]
-            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location','kind','mode','expected_requests','counts','request_timings','runtime_seconds','last_activity','worker_reports','unavailable_workers','sources','source_error','workspace')} for j in jobs]
+            return [{k:j.get(k) for k in ('id','state','phase','completed_requests','result','notification','error_type','reason_code','error_slot','error_location','kind','mode','expected_requests','counts','request_timings','runtime_seconds','last_activity','worker_reports','unavailable_workers','sources','source_error','workspace','benchmark_results','atlas_record','document_notification')} for j in jobs]
 
 class Handler(BaseHTTPRequestHandler):
     jobs = None
@@ -349,7 +380,9 @@ class Handler(BaseHTTPRequestHandler):
             params = json.loads(self.rfile.read(size))
             if not isinstance(params, dict):
                 raise ValueError('Expected an object')
-            if self.path == '/submit':
+            if self.path == '/atlas':
+                answer=self.jobs.submit(params,kind='atlas')
+            elif self.path == '/submit':
                 answer = self.jobs.submit(params)
             elif self.path == '/status':
                 answer = self.jobs.status(params)
@@ -376,7 +409,7 @@ def main():
         ThreadingHTTPServer(('127.0.0.1', int(os.environ['NOVA_COUNCIL_PORT'])), Handler).serve_forever()
     else:
         operation = sys.argv[1]
-        if operation not in ('submit', 'status', 'diagnostics', 'probe', 'probe_reviewers', 'trial'):
+        if operation not in ('submit', 'status', 'diagnostics', 'probe', 'probe_reviewers', 'trial', 'atlas'):
             raise ValueError('Unsupported operation')
         with open(os.environ['OPENCRABS_PARAMS']) as handle:
             params = json.load(handle)

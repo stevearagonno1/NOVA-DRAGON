@@ -85,6 +85,7 @@ def readonly_tools_text(council=False):
         definitions.append(entry)
     for operation, description, params in ([
         ('submit', 'Ask two advisors for ONE round on your existing lead proposal, ONLY when the owner explicitly requests consultation. Advisors add useful improvements/objections or silently return NO_ADDITION. Plain concise text, no JSON plan,peer loops,votes or agreement requirement. Lead synthesizes once. Three logical requests; existing activity/deadline and reserve failover limits remain. Read-only selected evidence; this is not a complete file audit. Submit once and finish the turn.', [('task','Owner question and requested scope.',True,'string'),('proposal','Your existing lead proposal,including verified citations where relevant. A draft hypothesis must be labelled as such.',True,'string'),('consultation_requested','True ONLY when the owner explicitly asked for consultation; never set for ordinary work.',True,'boolean'),('context','Relevant verified evidence and limitations; no secrets.',False,'string'),('paths','At most five selected main text paths for checking cited excerpts.',False,'array')]),
+        ('atlas','Run the fixed uploaded ATLAS-4 test once on EACH of ten configured credential slots. Fresh empty context,no tools,no answer key,no fallback or retry;slot4 is scheduled in the first pair. Exactly ten requested slots,at most two concurrent. Record raw final answers,latency,requested/reported model and usage when supplied. Owner-only JSON document for independent grading. Call only when owner explicitly requests this benchmark; ignore caller files/settings. Submit once,acknowledge ID and end the turn.',[]),
         ('trial', 'Explicitly requested fixed one-round advice diagnostic: two advisors comment on a fixed lead proposal using a synthetic fixture, then the lead synthesizes. No repository reads,JSON plan,peer dialogue,votes,settings or caller files. Three logical requests. Submit once,acknowledge ID and finish.', []),
         ('status', 'Read background review state and final result when the owner asks. Do not repeatedly poll.', [('id', 'Optional id returned by nova_council_submit; omit to list jobs.', False, 'string')]),
         ('probe', 'Start exactly one small upstream connection check with the first configured unique credential, in the background. No fallback, no repository sources, no secrets. A successful check verifies only one credential; results go to the owner.', []),
@@ -139,7 +140,7 @@ You are the owner's independent project coordinator. Reply in concise Arabic tra
 Never show technical chatter unless asked. Before any approval explain briefly in
 Arabic what will change, why, and whether it writes, deletes or pushes.
 TERMINAL CONTROL RULES (before any general startup reading):
-For council submit, trial, probe or probe_reviewers requests, run the requested dedicated
+For council submit, trial, atlas, probe or probe_reviewers requests, run the requested dedicated
 operation once; acknowledge only the ID and returned state, then END your turn.
 Do not call config_manager, bash, provider tools, session/cron search or suggest_options
 before or after these operations. Do not inspect settings after a successful probe.
@@ -152,6 +153,10 @@ new provider configuration or begin another task. Background notifications are f
 service messages and do not authorize another agent turn or follow-up operation.
 These narrowly scoped control requests skip general project startup reading.
 Explicit nova_council_trial requests use that fixed diagnostic, never council_submit.
+Explicit ATLAS-4 key benchmark requests use nova_council_atlas once, never advice
+or config_manager. No calculator,source reads or reasoning-model run in the main turn.
+The benchmark answers are ungraded until checked with the owner-provided corrector.
+Reported model identifiers do not prove the underlying model weights or identity.
 These instructions guide the model; native tool approval safeguards remain enabled.
 NUMERIC EVIDENCE AND ARITHMETIC:
 Before stating a material cost,percentage conversion or financial total,verify the
