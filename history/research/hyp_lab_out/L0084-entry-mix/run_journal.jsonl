@@ -26,3 +26,11 @@
 {"event": "triples_measured", "ts_utc": "2026-10-04T15:10:19Z", "prefix": "2026H1", "n": 0, "eligible": 0}
 {"event": "triples_registered", "ts_utc": "2026-10-04T15:10:19Z", "prefix": "2026H2p", "n": 0, "retained": {"AND0": [], "AND2": [], "OR0": []}}
 {"event": "triples_measured", "ts_utc": "2026-10-04T15:10:19Z", "prefix": "2026H2p", "n": 0, "eligible": 0}
+{"event": "selection", "ts_utc": "2026-10-04T15:10:21Z", "prefix": "2023H1", "chosen": "CASH", "eligible": 0, "inner_windows": ["2022H1", "2022H2"]}
+{"event": "selection", "ts_utc": "2026-10-04T15:10:23Z", "prefix": "2023H2", "chosen": "CASH", "eligible": 0, "inner_windows": ["2022H1", "2022H2", "2023H1"]}
+{"event": "selection", "ts_utc": "2026-10-04T15:10:25Z", "prefix": "2024H1", "chosen": "CASH", "eligible": 0, "inner_windows": ["2022H1", "2022H2", "2023H1", "2023H2"]}
+{"event": "selection", "ts_utc": "2026-10-04T15:10:27Z", "prefix": "2024H2", "chosen": "CASH", "eligible": 0, "inner_windows": ["2022H1", "2022H2", "2023H1", "2023H2", "2024H1"]}
+{"event": "selection", "ts_utc": "2026-10-04T15:10:29Z", "prefix": "2025H1", "chosen": "CASH", "eligible": 0, "inner_windows": ["2022H1", "2022H2", "2023H1", "2023H2", "2024H1", "2024H2"]}
+{"event": "selection", "ts_utc": "2026-10-04T15:10:32Z", "prefix": "2025H2", "chosen": "CASH", "eligible": 0, "inner_windows": ["2022H1", "2022H2", "2023H1", "2023H2", "2024H1", "2024H2", "2025H1"]}
+{"event": "selection", "ts_utc": "2026-10-04T15:10:35Z", "prefix": "2026H1", "chosen": "CASH", "eligible": 0, "inner_windows": ["2022H1", "2022H2", "2023H1", "2023H2", "2024H1", "2024H2", "2025H1", "2025H2"]}
+{"event": "selection", "ts_utc": "2026-10-04T15:10:38Z", "prefix": "2026H2p", "chosen": "CASH", "eligible": 0, "inner_windows": ["2022H1", "2022H2", "2023H1", "2023H2", "2024H1", "2024H2", "2025H1", "2025H2", "2026H1"]}
