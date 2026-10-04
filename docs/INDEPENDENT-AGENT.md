@@ -848,3 +848,23 @@ numeric reference self-check yields200/200numeric points; language is scored sep
 Live provider calls have not been started from this workspace: credentials exist
 only inside Render. Owner starts the dedicated operation through the Telegram bot,
 then provides the generated result document for independent grading.
+
+## 2026-10-04 — Free-service memory diagnostics
+
+Owner reported Render's memory-limit restart and requires no paid upgrade. Add
+stdlib-only numeric memory logging to the combined supervisor: at startup, when
+components start, and every 30 seconds including readiness waits. `NOVA memory`
+lines contain cgroup memory usage/limit and RSS for the supervisor, gateway,
+council and Telegram agent. Support cgroup v2 and v1; unavailable counters and
+exited processes produce null instead of failing the service. No process argv,
+environment, credentials, prompts or conversations are read or logged.
+
+The cgroup usage is the service-wide measurement, including descendants. Per-PID
+RSS does not include descendants and shared pages can appear in multiple RSS
+counters; do not sum those counters as service usage. Thirty-second samples may
+miss a short spike. This instrumentation diagnoses usage, not a proven leak fix.
+No account, plan, memory allocation, routing or benchmark setting is changed.
+Live ATLAS provider requests have not been started by this workspace.
+
+Validation: 134 unit tests pass, including cgroup versions, unlimited/missing
+counters, malformed process stats, static role filtering and secret isolation.

@@ -1,6 +1,7 @@
 #!/usr/bin/env python3
 """Supervise the existing LiteLLM gateway and Telegram agent in one Render service."""
 import os
+import json
 import secrets
 import signal
 import socket
@@ -10,6 +11,37 @@ import time
 from pathlib import Path
 from agent_bootstrap import prepare, storage_mode, private_write
 from agent_router import build_router_config
+
+def memory_snapshot(processes, proc=Path('/proc'), cgroup=Path('/sys/fs/cgroup'), page_size=None):
+    """Only numeric memory counters; never read argv, environment or conversations."""
+    def counter(path):
+        try:
+            value = int(path.read_text().strip())
+            return value if 0 <= value < 2**60 else None
+        except (OSError, ValueError):
+            return None
+    used = counter(cgroup / 'memory.current')
+    limit = counter(cgroup / 'memory.max')
+    if used is None:
+        used = counter(cgroup / 'memory/memory.usage_in_bytes')
+        limit = counter(cgroup / 'memory/memory.limit_in_bytes')
+    size = page_size if page_size is not None else os.sysconf('SC_PAGE_SIZE')
+    rss = {}
+    for role in ('supervisor', 'gateway', 'council', 'agent'):
+        pid = processes.get(role)
+        if pid is None:
+            continue
+        try:
+            pages = int((proc / str(pid) / 'statm').read_text().split()[1])
+            rss[role] = round(pages * size / 1048576, 2) if pages >= 0 else None
+        except (OSError, ValueError, IndexError):
+            rss[role] = None
+    return {'cgroup_mb': None if used is None else round(used / 1048576, 2),
+            'limit_mb': None if limit is None else round(limit / 1048576, 2),
+            'rss_mb': rss}
+
+def log_memory(processes):
+    print('NOVA memory ' + json.dumps(memory_snapshot(processes), sort_keys=True), flush=True)
 
 def gateway_key(config, env):
     key = env.get('LITELLM_API_KEY') or config.get('general_settings', {}).get('master_key')
@@ -43,6 +75,14 @@ def main():
     private_write(runtime_path, yaml.safe_dump(build_router_config(config, env), sort_keys=False))
     env['NOVA_COUNCIL_ROUTE_FILE'] = str(runtime_path)
     children = []
+    processes = {'supervisor': os.getpid()}
+    next_memory = 0
+    def monitor(force=False):
+        nonlocal next_memory
+        now = time.monotonic()
+        if force or now >= next_memory:
+            log_memory(processes)
+            next_memory = now + 30
     def stop(_signum=None, _frame=None):
         for child in children:
             if child.poll() is None:
@@ -50,10 +90,13 @@ def main():
     signal.signal(signal.SIGTERM, stop)
     signal.signal(signal.SIGINT, stop)
     try:
+        monitor(True)
         gateway = subprocess.Popen(['litellm', '--config', str(runtime_path), '--host', '0.0.0.0', '--port', str(port)], env=env)
         children.append(gateway)
+        processes['gateway'] = gateway.pid
         deadline = time.monotonic() + 120
         while True:
+            monitor()
             if gateway.poll() is not None:
                 raise ValueError('LiteLLM stopped during startup')
             try:
@@ -66,8 +109,11 @@ def main():
         # The bootstrap already wrote private config/keys; the agent uses them.
         council = subprocess.Popen(['python3', '/opt/nova-agent/agent_council.py', 'serve'], cwd=workspace, env=env)
         children.append(council)
+        processes['council'] = council.pid
+        monitor(True)
         council_deadline = time.monotonic() + 15
         while True:
+            monitor()
             if council.poll() is not None:
                 raise ValueError('Background review service stopped during startup')
             try:
@@ -79,8 +125,11 @@ def main():
                 time.sleep(0.2)
         agent = subprocess.Popen(['opencrabs', 'daemon'], cwd=workspace, env=env)
         children.append(agent)
+        processes['agent'] = agent.pid
+        monitor(True)
         print('NOVA combined: gateway + Telegram agent; storage=' + mode + '; /v1 retained.', flush=True)
         while all(child.poll() is None for child in children):
+            monitor()
             time.sleep(1)
         raise ValueError('A service process stopped; stopping its peer so Render can restart the pair')
     finally:
