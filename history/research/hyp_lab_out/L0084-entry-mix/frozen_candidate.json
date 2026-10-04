@@ -1,0 +1,19 @@
+{
+ "lane": "L0084-ENTRY-MIX",
+ "freeze_utc": "2026-10-04T15:10:39Z",
+ "selection_prefix": "2026H2p",
+ "frozen": null,
+ "hash_of_definition": null,
+ "future_start_rule": "first eligible complete bar AFTER this freeze commit's UTC timestamp (not merely after 2026-09-27)",
+ "acceptance": {
+  "min_executed_trades": 100,
+  "min_calendar_days": 90,
+  "end": "BOTH conditions, then report"
+ },
+ "status_until_then": "NOT MEASURED",
+ "no_candidate_switch_after_losses": true,
+ "honest_notes": [
+  "historical splits are exploration, not blind proof",
+  "no adoption, no live orders, no profit forecast"
+ ]
+}
