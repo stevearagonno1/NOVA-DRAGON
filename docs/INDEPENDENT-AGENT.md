@@ -868,3 +868,35 @@ Live ATLAS provider requests have not been started by this workspace.
 
 Validation: 134 unit tests pass, including cgroup versions, unlimited/missing
 counters, malformed process stats, static role filtering and secret isolation.
+
+## 2026-10-04 — ATLAS pilot after ten truncated attempts
+
+The owner's returned first benchmark has ten length finishes at exactly16,384
+completion tokens, no visible answer and no scoreable response. Do not use these
+failures as intelligence rankings; elapsed time is time to consume the generation
+budget, not time to solve the exam. The official provider docs at
+https://api.atria-asi.ai/docs allow output limits through65,536tokens. Public docs
+do not establish a precise hosted reasoning budget; preserve provider-default
+reasoning and sampling, recording reasoning token counts only if usage supplies them.
+
+`nova_council_atlas` now defaults to scope=pilot: exactly one request, credential
+slot4, original full exam and unchanged neutral system prompt. Scope=all is an
+explicit ten-key run after reviewing the pilot; no automatic promotion/retry. Both
+scopes use65,536generation tokens. Exam SHA256 remains
+233edeb10ade42121c704297f42ef8d5c54296ece060fce925ae9e7c889b9db3.
+No grader/answers/tools/context are added. Cap raw SSE bytes at16MiB only for ATLAS
+(the parser reads incrementally, not a16MiB accumulated buffer); other calls keep
+their previous2MiB limit. Final response validation still rejects length finishes.
+
+Capture only visible answer deltas with a1MiB retention bound; failed requests
+store separately labelled partial_answer, never a completed answer/score. Hidden
+reasoning fields are not retained. Capture first visible answer time, terminal
+reason, numeric usage and optional reasoning_tokens. Throttled activity metadata
+records slot/elapsed time every30seconds of meaningful progress, including reasoning
+activity without its text. Final checkpoint/document delivery remain owner-only.
+
+Validation:137 tests pass, including pilot-only routing, explicit all-key routing,
+actual SSE length termination preserving partial visible text without private
+reasoning, unchanged prompt, generation ceiling and pilot job counts. Live pilot
+has not run in this workspace: credentials and Telegram trigger reside in Render.
+No new account, paid resource, main merge or role assignment.

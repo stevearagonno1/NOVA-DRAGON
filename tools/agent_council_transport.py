@@ -158,7 +158,7 @@ def validate_final(text, finish, had_reasoning=False, refused=False):
         raise FinalAnswerError('reasoning_without_final_answer' if had_reasoning or text.strip() else 'empty_final_answer')
     return cleaned
 
-def collect_sse(response, clock=time.monotonic, deadline=None, activity=None):
+def collect_sse(response, clock=time.monotonic, deadline=None, activity=None, max_stream_bytes=LIMIT):
     start=clock(); total=0; pieces=[]; terminal=False; finish=None; saw_event=False; had_reasoning=False; refused=False
     last_progress=start
     while True:
@@ -168,12 +168,12 @@ def collect_sse(response, clock=time.monotonic, deadline=None, activity=None):
         if clock()-last_progress > IDLE_SECONDS:
             raise (StreamIdleTimeout if saw_event else StreamStartTimeout)('No meaningful stream progress')
         try:
-            raw=response.readline(LIMIT+1)
+            raw=response.readline(max_stream_bytes+1)
         except (TimeoutError, OSError) as exc:
             check_deadline(deadline,clock)
             raise (StreamIdleTimeout if saw_event else StreamStartTimeout)('Response stream stopped') from None
         total += len(raw)
-        if total > LIMIT:
+        if total > max_stream_bytes:
             raise StreamIncomplete('Stream exceeds its size limit')
         if not raw:
             break
@@ -212,7 +212,9 @@ def collect_sse(response, clock=time.monotonic, deadline=None, activity=None):
         raise StreamIncomplete('No completion marker; partial text is not a finished review')
     return validate_final(''.join(pieces),finish,had_reasoning,refused)
 
-def stream(route, system, user, opener=None, max_tokens=REVIEW_OUTPUT_TOKENS, deadline=None, activity=None):
+def stream(route, system, user, opener=None, max_tokens=REVIEW_OUTPUT_TOKENS, deadline=None, activity=None, max_stream_bytes=LIMIT):
+    if type(max_stream_bytes) is not int or not LIMIT <= max_stream_bytes <= 16*1024*1024:
+        raise ValueError("Invalid stream byte limit")
     check_deadline(deadline)
     opener=opener or build_opener(NoRedirect)
     request=Request(route['base']+'/chat/completions', method='POST',
@@ -232,9 +234,9 @@ def stream(route, system, user, opener=None, max_tokens=REVIEW_OUTPUT_TOKENS, de
         content_type=response.headers.get('Content-Type','').lower()
         if 'application/json' in content_type:
             # A compatible endpoint may return JSON despite stream=true.
-            payload=response.read(LIMIT+1)
+            payload=response.read(max_stream_bytes+1)
             check_deadline(deadline)
-            if len(payload)>LIMIT:
+            if len(payload)>max_stream_bytes:
                 raise StreamIncomplete('JSON response exceeds limit')
             parsed=json.loads(payload); choice=parsed['choices'][0]
             message=choice['message']; finish=choice.get('finish_reason')
@@ -243,7 +245,7 @@ def stream(route, system, user, opener=None, max_tokens=REVIEW_OUTPUT_TOKENS, de
             return validate_final(final_content(message.get('content')),finish,
                                   bool(message.get('reasoning_content') or message.get('reasoning') or message.get('thinking')),
                                   bool(message.get('refusal')))
-        return collect_sse(response,deadline=deadline,activity=activity)
+        return collect_sse(response,deadline=deadline,activity=activity,max_stream_bytes=max_stream_bytes)
 
 def model_call(system, user, slot=0, pool=None, requester=stream, clock=time.monotonic, deadline=None, observer=None):
     pool=routes() if pool is None else pool
