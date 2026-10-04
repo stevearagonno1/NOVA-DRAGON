@@ -1,0 +1,7 @@
+work/
+_meta/raw/
+__pycache__/
+*.pyc
+history/research/hyp_lab_out/L0084-entry-mix/*.parquet
+history/research/hyp_lab_out/L0084-entry-mix/_cache/
+history/research/hyp_lab_out/L0084-entry-mix/trades_keys/

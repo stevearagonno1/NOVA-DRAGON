@@ -1,0 +1,10 @@
+{
+ "n_candidates": 3978,
+ "order": "(pair_id, mode) enumeration of pairs_registry then registered triples in registration order",
+ "schema": [
+  "candidate_idx uint16",
+  "asset_idx uint8 (index into data_coverage.assets order)",
+  "signal_bar uint16 (bar index in the asset series)"
+ ],
+ "note": "fill_bar=signal_bar+1; outcome/exit/flags and every other trade field are re-derived exactly from retained market data + the locked engine by `cli audit --rebuild`"
+}

@@ -1,0 +1,14 @@
+{"event": "preregister", "ts_utc": "2026-10-04T14:20:18Z", "preregistration_sha256": "ff72b8d4c21dbe1ee7db7c0ec7daea64305019eb473f762070f06b6cc85e1554", "pairs": 3978, "catalogue": 52}
+{"event": "preregister", "ts_utc": "2026-10-04T14:21:59Z", "preregistration_sha256": "f9dc3a78aa03bcaa1bbad2ffe7c9dc7a547956daef8344722989b9d39a1f883a", "pairs": 3978, "catalogue": 52, "commit": "HEAD"}
+{"event": "singles_done", "ts_utc": "2026-10-04T14:23:25Z", "n": 52, "elapsed_s": 22.9}
+{"event": "pairs_progress", "ts_utc": "2026-10-04T14:27:47Z", "pairs_done": 150, "candidates": 450, "elapsed_s": 262.7, "step_s": 262.7}
+{"event": "pairs_progress", "ts_utc": "2026-10-04T14:31:55Z", "pairs_done": 300, "candidates": 900, "elapsed_s": 510.3, "step_s": 247.6}
+{"event": "pairs_progress", "ts_utc": "2026-10-04T14:36:41Z", "pairs_done": 450, "candidates": 1350, "elapsed_s": 796.4, "step_s": 286.1}
+{"event": "pairs_progress", "ts_utc": "2026-10-04T14:40:35Z", "pairs_done": 600, "candidates": 1800, "elapsed_s": 1030.8, "step_s": 234.4}
+{"event": "pairs_progress", "ts_utc": "2026-10-04T14:44:54Z", "pairs_done": 750, "candidates": 2250, "elapsed_s": 1289.0, "step_s": 258.2}
+{"event": "pairs_progress", "ts_utc": "2026-10-04T14:49:12Z", "pairs_done": 900, "candidates": 2700, "elapsed_s": 1547.6, "step_s": 258.5}
+{"event": "pairs_progress", "ts_utc": "2026-10-04T14:53:17Z", "pairs_done": 1050, "candidates": 3150, "elapsed_s": 1792.6, "step_s": 245.1}
+{"event": "pairs_progress", "ts_utc": "2026-10-04T14:57:59Z", "pairs_done": 1200, "candidates": 3600, "elapsed_s": 2074.5, "step_s": 281.8}
+{"event": "pairs_done", "ts_utc": "2026-10-04T15:02:19Z", "candidates": 3978, "elapsed_s": 2334.4}
+{"event": "triples_registered", "ts_utc": "2026-10-04T15:02:20Z", "prefix": "2023H1", "n": 0, "retained": {"AND0": [], "AND2": [], "OR0": []}}
+{"event": "triples_measured", "ts_utc": "2026-10-04T15:02:20Z", "prefix": "2023H1", "n": 0, "eligible": 0}

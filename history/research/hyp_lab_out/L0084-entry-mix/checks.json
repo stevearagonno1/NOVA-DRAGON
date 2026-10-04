@@ -1,0 +1,128 @@
+{
+ "phase": "pre",
+ "ran_utc": "2026-10-04T14:22:05Z",
+ "elapsed_s": 5.8,
+ "checks": {
+  "check_01": {
+   "check": 1,
+   "name": "source pins and hashes",
+   "ok": true,
+   "critical": true,
+   "evidence": "17 fetches; mismatches=[]; commits outside pins=[]"
+  },
+  "check_02": {
+   "check": 2,
+   "name": "exactly 52 setting names",
+   "ok": true,
+   "critical": true,
+   "evidence": "unique=52; catalogue_rows=52"
+  },
+  "check_03": {
+   "check": 3,
+   "name": "1,326 pairs / 3,978 pair modes",
+   "ok": true,
+   "critical": true,
+   "evidence": "pairs=1326 pair_modes=3978 registry_rows=3978"
+  },
+  "check_04": {
+   "check": 4,
+   "name": "timestamp units, OHLC and volume integrity",
+   "ok": true,
+   "critical": true,
+   "evidence": "12 assets checked; problems=[]"
+  },
+  "check_05": {
+   "check": 5,
+   "name": "contiguous bars and gap resets",
+   "ok": true,
+   "critical": true,
+   "evidence": "intra-segment holes/edge masks: none; synthetic boundary test: no crossing, pre-gap signal rejected as incomplete (n=1)"
+  },
+  "check_06": {
+   "check": 6,
+   "name": "prefix-truncation tests (all masks/modes)",
+   "ok": true,
+   "critical": true,
+   "evidence": "3 truncation points x 52 settings x 12 assets + 3 modes; mismatches=none"
+  },
+  "check_07": {
+   "check": 7,
+   "name": "independent RSI/ATR/stochastic references",
+   "ok": true,
+   "critical": true,
+   "evidence": "max abs err: RSI 3.55e-14, ATR 4.26e-09, %K 0.00e+00"
+  },
+  "check_08": {
+   "check": 8,
+   "name": "pivot signal emitted only after confirmation",
+   "ok": true,
+   "critical": true,
+   "evidence": "pivot fires=[11] (>= 11); tail-safe=True"
+  },
+  "check_09": {
+   "check": 9,
+   "name": "centered labels excluded from features",
+   "ok": true,
+   "critical": true,
+   "evidence": "masks changed by truncation=none; labels changed on 1 bars; feature modules importing labels=none (label is evaluation-only)"
+  },
+  "check_10": {
+   "check": 10,
+   "name": "synthetic container cases",
+   "ok": true,
+   "critical": true,
+   "evidence": "{\"fill_at_next_open\": true, \"timeout_at_18th_close\": true, \"adverse_gap_exit_at_open\": true, \"favourable_gap_withheld\": true, \"double_touch_stop_first\": true, \"incomplete_excluded\": true, \"nonpositive_stop_rejected\": true}"
+  },
+  "check_11": {
+   "check": 11,
+   "name": "$20 sizing and $0.052 charged exactly once",
+   "ok": true,
+   "critical": true,
+   "evidence": "439 trades sampled (439); violations=none"
+  },
+  "check_12": {
+   "check": 12,
+   "name": "cash and position constraints",
+   "ok": true,
+   "critical": true,
+   "evidence": "one-position-per-asset and cash book >= 0 verified on 6 settings; violations=none"
+  },
+  "check_13": {
+   "check": 13,
+   "name": "purge, embargo and temporal isolation",
+   "ok": true,
+   "critical": true,
+   "evidence": "15 kept of 159; embargo=18 bars; boundary leakage=0; candidate straddlers rejected=0"
+  },
+  "check_14": {
+   "check": 14,
+   "name": "parent selection precedes triple/target outcomes",
+   "ok": true,
+   "critical": true,
+   "evidence": "{\"order\": [\"triples_measured\", \"selection_written\", \"outer_measured\"], \"registry_content_frozen_before_measure\": true, \"selection_sha_before_target\": true, \"registered_triples\": 11, \"triples_measured\": 11}"
+  },
+  "check_15": {
+   "check": 15,
+   "name": "confidence bounds/tests vs scipy references",
+   "ok": true,
+   "critical": true,
+   "evidence": "{\"wilson\": \"ok\", \"z\": \"ok\", \"holm\": \"ok\", \"bootstrap\": \"reproducible\", \"power\": 396}"
+  },
+  "check_16": {
+   "check": 16,
+   "name": "synthetic end-to-end deterministic rerun",
+   "ok": true,
+   "critical": true,
+   "evidence": "{\"mismatches\": \"none\", \"compared_trades\": 599}"
+  },
+  "check_18": {
+   "check": 18,
+   "name": "workspace <=125MB, no secrets/pushes",
+   "ok": true,
+   "critical": true,
+   "evidence": "{\"workspace_mb\": 9.56, \"secrets\": [], \"branch\": \"HEAD\", \"remotes\": \"none\"}"
+  }
+ },
+ "all_pass": true,
+ "failures": []
+}
