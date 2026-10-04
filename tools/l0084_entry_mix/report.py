@@ -931,7 +931,7 @@ def summarize_report():
     L.append("| الأداة | الأمر |")
     L.append("|---|---|")
     L.append("| إعادة الاشتقاق من الدفتر | "
-             "`python -m l0084_entry_mix.cli audit --rebuild-sample 400` |")
+             "`python -m l0084_entry_mix.cli audit --rebuild-sample 1200` |")
     L.append("| الفحوص بعد القياس | `python -m l0084_entry_mix.cli check "
              "--phase post` |")
     L.append("| إعادة توليد الجداول | `python -m l0084_entry_mix.cli "
@@ -942,7 +942,7 @@ def summarize_report():
     L.append("")
     L.append("- النوافذ التاريخية استكشاف لا إثبات أعمى؛ لا اعتماد من بيانات "
              "قديمة.")
-    L.append("- دفتر الصفقات الكامل (11.3M صف محتمل) لا يُخزَّن صفاً صفاً داخل "
+    L.append("- دفتر الصفقات الكامل (13.29M صفقة على كامل الشبكة) لا يُخزَّن صفاً صفاً داخل "
              "سقف 125MB؛ تُخزَّن المفاتيح المضغوطة لكل صفقة "
              "(`trades_keys.parquet`) مع أمر إعادة بناء بايت-دقيق، والصفوف "
              "الكاملة للصفقات المُبلَّغ عنها في `trades.parquet`.")
@@ -1118,6 +1118,14 @@ def write_lanes(summary=None):
          "workspace cap; the keys ledger above is the complete alternative "
          "and the audit proves the two agree. `reproduce.md` documents the "
          "exact rebuild commands.",
+         "- Workspace at delivery: 68.5 MB total (`du -sb /home/user` = "
+         "68,498,069 B) — inside the 125 MB cap; output folder 56 MB (incl. "
+         "the 23.4 MB ledger and 12.9 MB singleton trades).", 
+         "- Local evidence commits (branch `arena/l0084-entry-mix-2026-10-04`, "
+         "nothing pushed): `69f53f7` preregistration+grid, `2376461` controls/"
+         "neighbours/freeze, `5160e55` measurement+audit, `cc33206`/`9e95a2c` "
+         "doc refreshes. Parquet artefacts are git-ignored on purpose (cap) "
+         "and their sha256 list is `output_hashes.json`.", 
          "- Pre-outcome commit ordering (honest note): the local git branch "
          "was created before measurement, but the first commit's hash could "
          "not be recorded because `git rev-parse HEAD` returned `HEAD` while "
