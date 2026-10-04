@@ -1,126 +1,223 @@
 {
- "phase": "pre",
- "ran_utc": "2026-10-04T14:22:05Z",
- "elapsed_s": 5.8,
+ "phase": "post",
+ "ran_utc": "2026-10-04T15:35:10Z",
+ "elapsed_s": 26.6,
  "checks": {
   "check_01": {
    "check": 1,
    "name": "source pins and hashes",
    "ok": true,
    "critical": true,
-   "evidence": "17 fetches; mismatches=[]; commits outside pins=[]"
+   "evidence": "17 fetches; mismatches=[]; commits outside pins=[]",
+   "evidence_path": "_meta/fetch_manifest.txt",
+   "command": "python -m l0084_entry_mix.cli check --phase pre",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_02": {
    "check": 2,
    "name": "exactly 52 setting names",
    "ok": true,
    "critical": true,
-   "evidence": "unique=52; catalogue_rows=52"
+   "evidence": "unique=52; catalogue_rows=52",
+   "evidence_path": "catalogue.csv",
+   "command": "python -m l0084_entry_mix.cli check --phase pre",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_03": {
    "check": 3,
    "name": "1,326 pairs / 3,978 pair modes",
    "ok": true,
    "critical": true,
-   "evidence": "pairs=1326 pair_modes=3978 registry_rows=3978"
+   "evidence": "pairs=1326 pair_modes=3978 registry_rows=3978",
+   "evidence_path": "pairs_registry.csv",
+   "command": "python -m l0084_entry_mix.cli check --phase pre",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_04": {
    "check": 4,
    "name": "timestamp units, OHLC and volume integrity",
    "ok": true,
    "critical": true,
-   "evidence": "12 assets checked; problems=[]"
+   "evidence": "12 assets checked; problems=[]",
+   "evidence_path": "data_coverage.csv",
+   "command": "python -m l0084_entry_mix.cli check --phase pre",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_05": {
    "check": 5,
    "name": "contiguous bars and gap resets",
    "ok": true,
    "critical": true,
-   "evidence": "intra-segment holes/edge masks: none; synthetic boundary test: no crossing, pre-gap signal rejected as incomplete (n=1)"
+   "evidence": "intra-segment holes/edge masks: none; synthetic boundary test: no crossing, pre-gap signal rejected as incomplete (n=1)",
+   "evidence_path": "data_coverage.csv",
+   "command": "python -m l0084_entry_mix.cli check --phase pre",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_06": {
    "check": 6,
    "name": "prefix-truncation tests (all masks/modes)",
    "ok": true,
    "critical": true,
-   "evidence": "3 truncation points x 52 settings x 12 assets + 3 modes; mismatches=none"
+   "evidence": "3 truncation points x 52 settings x 12 assets + 3 modes; mismatches=none",
+   "evidence_path": "checks.json",
+   "command": "python -m l0084_entry_mix.cli check --phase pre",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_07": {
    "check": 7,
    "name": "independent RSI/ATR/stochastic references",
    "ok": true,
    "critical": true,
-   "evidence": "max abs err: RSI 3.55e-14, ATR 4.26e-09, %K 0.00e+00"
+   "evidence": "max abs err: RSI 3.55e-14, ATR 4.26e-09, %K 0.00e+00",
+   "evidence_path": "checks.json",
+   "command": "python -m l0084_entry_mix.cli check --phase pre",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_08": {
    "check": 8,
    "name": "pivot signal emitted only after confirmation",
    "ok": true,
    "critical": true,
-   "evidence": "pivot fires=[11] (>= 11); tail-safe=True"
+   "evidence": "pivot fires=[11] (>= 11); tail-safe=True",
+   "evidence_path": "checks.json",
+   "command": "python -m l0084_entry_mix.cli check --phase pre",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_09": {
    "check": 9,
    "name": "centered labels excluded from features",
    "ok": true,
    "critical": true,
-   "evidence": "masks changed by truncation=none; labels changed on 1 bars; feature modules importing labels=none (label is evaluation-only)"
+   "evidence": "masks changed by truncation=none; labels changed on 1 bars; feature modules importing labels=none (label is evaluation-only)",
+   "evidence_path": "checks.json",
+   "command": "python -m l0084_entry_mix.cli check --phase pre",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_10": {
    "check": 10,
    "name": "synthetic container cases",
    "ok": true,
    "critical": true,
-   "evidence": "{\"fill_at_next_open\": true, \"timeout_at_18th_close\": true, \"adverse_gap_exit_at_open\": true, \"favourable_gap_withheld\": true, \"double_touch_stop_first\": true, \"incomplete_excluded\": true, \"nonpositive_stop_rejected\": true}"
+   "evidence": "{\"fill_at_next_open\": true, \"timeout_at_18th_close\": true, \"adverse_gap_exit_at_open\": true, \"favourable_gap_withheld\": true, \"double_touch_stop_first\": true, \"incomplete_excluded\": true, \"nonpositive_stop_rejected\": true}",
+   "evidence_path": "checks.json",
+   "command": "python -m l0084_entry_mix.cli check --phase pre",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_11": {
    "check": 11,
    "name": "$20 sizing and $0.052 charged exactly once",
    "ok": true,
    "critical": true,
-   "evidence": "439 trades sampled (439); violations=none"
+   "evidence": "439 trades sampled (439); violations=none",
+   "evidence_path": "trades.parquet",
+   "command": "python -m l0084_entry_mix.cli check --phase pre",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_12": {
    "check": 12,
    "name": "cash and position constraints",
    "ok": true,
    "critical": true,
-   "evidence": "one-position-per-asset and cash book >= 0 verified on 6 settings; violations=none"
+   "evidence": "one-position-per-asset and cash book >= 0 verified on 6 settings; violations=none",
+   "evidence_path": "trades.parquet",
+   "command": "python -m l0084_entry_mix.cli check --phase pre",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_13": {
    "check": 13,
    "name": "purge, embargo and temporal isolation",
    "ok": true,
    "critical": true,
-   "evidence": "15 kept of 159; embargo=18 bars; boundary leakage=0; candidate straddlers rejected=0"
+   "evidence": "15 kept of 159; embargo=18 bars; boundary leakage=0; candidate straddlers rejected=0",
+   "evidence_path": "metrics.parquet",
+   "command": "python -m l0084_entry_mix.cli check --phase pre",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_14": {
    "check": 14,
    "name": "parent selection precedes triple/target outcomes",
    "ok": true,
    "critical": true,
-   "evidence": "{\"order\": [\"triples_measured\", \"selection_written\", \"outer_measured\"], \"registry_content_frozen_before_measure\": true, \"selection_sha_before_target\": true, \"registered_triples\": 11, \"triples_measured\": 11}"
+   "evidence": "{\"order\": [\"triples_measured\", \"selection_written\", \"outer_measured\"], \"registry_content_frozen_before_measure\": true, \"selection_sha_before_target\": true, \"registered_triples\": 11, \"triples_measured\": 11}",
+   "evidence_path": "triples_registry.csv",
+   "command": "python -m l0084_entry_mix.cli check --phase pre",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_15": {
-   "check": 15,
+   "check": "15",
    "name": "confidence bounds/tests vs scipy references",
    "ok": true,
    "critical": true,
-   "evidence": "{\"wilson\": \"ok\", \"z\": \"ok\", \"holm\": \"ok\", \"bootstrap\": \"reproducible\", \"power\": 396}"
+   "evidence": "{\"wilson\": \"ok\", \"z\": \"ok\", \"holm\": \"ok\", \"bootstrap\": \"reproducible\", \"power\": 396}",
+   "evidence_path": "checks.json",
+   "command": "python -m l0084_entry_mix.cli check --phase post",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_16": {
    "check": 16,
    "name": "synthetic end-to-end deterministic rerun",
    "ok": true,
    "critical": true,
-   "evidence": "{\"mismatches\": \"none\", \"compared_trades\": 599}"
+   "evidence": "{\"mismatches\": \"none\", \"compared_trades\": 599}",
+   "evidence_path": "checks.json",
+   "command": "python -m l0084_entry_mix.cli check --phase pre",
+   "measured_error": "none",
+   "status": "PASS"
   },
   "check_18": {
-   "check": 18,
+   "check": "18",
    "name": "workspace <=125MB, no secrets/pushes",
    "ok": true,
    "critical": true,
-   "evidence": "{\"workspace_mb\": 9.56, \"secrets\": [], \"branch\": \"HEAD\", \"remotes\": \"none\"}"
+   "evidence": "{\"workspace_mb\": 65.16, \"secrets\": [], \"branch\": \"arena/l0084-entry-mix-2026-10-04\", \"remotes\": \"none\"}",
+   "evidence_path": "output_hashes.json",
+   "command": "python -m l0084_entry_mix.cli check --phase post",
+   "measured_error": "none",
+   "status": "PASS"
+  },
+  "check_16b": {
+   "check": "16b",
+   "name": "full-run deterministic rerun",
+   "ok": true,
+   "critical": true,
+   "evidence": "{\"checked\": 25, \"violations\": \"none\"}",
+   "evidence_path": "metrics.parquet",
+   "command": "python -m l0084_entry_mix.cli check --phase post",
+   "measured_error": "none",
+   "status": "PASS"
+  },
+  "check_17": {
+   "check": "17",
+   "name": "raw-ledger/table reconciliation",
+   "ok": true,
+   "critical": true,
+   "evidence": "{\"sample\": 40, \"violations\": [], \"hashes\": {\"trades.parquet\": \"ef0dc3804f553b829776595e2217aaee4aeeeda1fca35f216fa5e001761911f9\", \"metrics.parquet\": \"134823e433ac6ddaa8ead91062805fdb1fd0a381556a8766e476cac468c2aa2d\", \"trades_keys.parquet\": \"56083b62cce3fdf59fbeade794f63cb876ab9c899be7d87da491f1f09e5bd1a2\"}}",
+   "extra": {
+    "hashes": {
+     "trades.parquet": "ef0dc3804f553b829776595e2217aaee4aeeeda1fca35f216fa5e001761911f9",
+     "metrics.parquet": "134823e433ac6ddaa8ead91062805fdb1fd0a381556a8766e476cac468c2aa2d",
+     "trades_keys.parquet": "56083b62cce3fdf59fbeade794f63cb876ab9c899be7d87da491f1f09e5bd1a2"
+    }
+   },
+   "evidence_path": "trades_keys.parquet",
+   "command": "python -m l0084_entry_mix.cli check --phase post",
+   "measured_error": "none",
+   "status": "PASS"
   }
  },
  "all_pass": true,

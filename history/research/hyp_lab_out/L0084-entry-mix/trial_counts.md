@@ -1,0 +1,13 @@
+# L0084 — attempt and multiplicity counts
+
+- singletons_measured: 52
+- pair_modes_measured: 3978
+- pair_sets: 1326
+- triple_space_potential: 66300
+- holm_family: 70330
+- triples_registered_per_prefix: {'2023H1': 0, '2023H2': 0, '2024H1': 0, '2024H2': 0, '2025H1': 0, '2025H2': 0, '2026H1': 0, '2026H2p': 0}
+- triples_eligible_per_prefix: {'2023H1': 0, '2023H2': 0, '2024H1': 0, '2024H2': 0, '2025H1': 0, '2025H2': 0, '2026H1': 0, '2026H2p': 0}
+- triples_measured_total: 0
+- duplicate_behaviour_rows: 0
+- unique_behaviour_rows: 0
+- notes: duplicate-mask/behaviour counts are computed on the measured window-profile (n_exec, net per window); the registry keeps every row and parent link visible

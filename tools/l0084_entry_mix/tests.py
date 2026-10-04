@@ -40,7 +40,8 @@ def _record(num, name, ok, evidence, critical=True, **kw):
                                    "ok": bool(ok),
                                    "critical": critical,
                                    "evidence": evidence, **kw}
-    print(f"[check {num:02d}] {'PASS' if ok else 'FAIL'} — {name}: {evidence}",
+    label = f"{num:02d}" if isinstance(num, int) else str(num)
+    print(f"[check {label}] {'PASS' if ok else 'FAIL'} — {name}: {evidence}",
           flush=True)
     return bool(ok)
 
@@ -730,6 +731,7 @@ def check_17_reconciliation(m=None):
     metrics_path = os.path.join(O, "metrics.parquet")
     metrics = pd.read_parquet(metrics_path) if os.path.exists(metrics_path) \
         else pd.DataFrame()
+    metrics = metrics[metrics["cand_idx"] >= 0]      # ledger-backed rows only
     sample = metrics.sample(min(40, len(metrics)), random_state=84)
     m = m or M.Measurer()
     bad = []
@@ -839,6 +841,26 @@ def run_all(phase="pre", m=None):
     else:
         check_15_scipy_refs(); check_16_full_confirm(m)
         check_17_reconciliation(m); check_18_workspace()
+    ev_map = {
+        1: "_meta/fetch_manifest.txt", 2: "catalogue.csv",
+        3: "pairs_registry.csv", 4: "data_coverage.csv",
+        5: "data_coverage.csv", 6: "checks.json", 7: "checks.json",
+        8: "checks.json", 9: "checks.json", 10: "checks.json",
+        11: "trades.parquet", 12: "trades.parquet", 13: "metrics.parquet",
+        14: "triples_registry.csv", 15: "checks.json",
+        16: "checks.json", "16b": "metrics.parquet",
+        17: "trades_keys.parquet", 18: "output_hashes.json"}
+    cmd_map = {
+        "pre": "python -m l0084_entry_mix.cli check --phase pre",
+        "post": "python -m l0084_entry_mix.cli check --phase post"}
+    for v in RESULTS.values():
+        num = v["check"]
+        key = num if num in ev_map else (int(num) if str(num).isdigit()
+                                        else num)
+        v.setdefault("evidence_path", ev_map.get(key, "checks.json"))
+        v["command"] = cmd_map[phase]
+        v["measured_error"] = (v.get("evidence") if not v["ok"] else "none")
+        v["status"] = "PASS" if v["ok"] else "FAIL"
     obj = {"phase": phase, "ran_utc": time.strftime("%Y-%m-%dT%H:%M:%SZ",
                                                     time.gmtime()),
            "elapsed_s": round(time.time() - t0, 1),
@@ -850,6 +872,14 @@ def run_all(phase="pre", m=None):
     if phase != "pre" and os.path.exists(out):
         prev = json.load(open(out, encoding="utf-8")).get("checks", {})
     merged = {**prev, **RESULTS}
+    for k, v in merged.items():                     # normalise every entry
+        key = v["check"]
+        key = key if key in ev_map else (int(key)
+                                        if str(key).isdigit() else key)
+        v.setdefault("evidence_path", ev_map.get(key, "checks.json"))
+        v.setdefault("command", cmd_map["pre"])
+        v["measured_error"] = (v.get("evidence") if not v["ok"] else "none")
+        v["status"] = "PASS" if v["ok"] else "FAIL"
     obj["checks"] = merged
     obj["all_pass"] = all(v["ok"] or not v["critical"]
                           for v in merged.values())

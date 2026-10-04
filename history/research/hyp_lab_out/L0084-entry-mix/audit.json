@@ -1,0 +1,14 @@
+{
+ "rebuild": {
+  "rows_checked": 1200,
+  "violations": [],
+  "violations_n": 0,
+  "elapsed_s": 420.0
+ },
+ "checks": {
+  "all_pass": false,
+  "failures": [
+   "check_17"
+  ]
+ }
+}

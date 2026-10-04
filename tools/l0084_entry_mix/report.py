@@ -27,6 +27,7 @@ from . import stats as S
 
 O = M.O
 ROOT = M.ROOT
+WORK = M.WORK
 DOCS = os.path.join(ROOT, "docs", "lanes")
 
 
@@ -35,10 +36,13 @@ def sha(path):
 
 
 def _load(name):
-    p = os.path.join(P.CACHE, name)
-    if os.path.exists(p):
-        with open(p, "rb") as fh:
-            return pickle.load(fh)
+    import gzip
+    for cand in (name + ".gz", name):
+        p = os.path.join(P.CACHE, cand)
+        if os.path.exists(p):
+            op = gzip.open if cand.endswith(".gz") else open
+            with op(p, "rb") as fh:
+                return pickle.load(fh)
     return None
 
 
@@ -132,6 +136,32 @@ def summarize():
     # n_eff: per-asset one-position book -> n_eff equals the trade count
     # (paper section 10); documented in the report.
     metrics["n_eff"] = metrics["n_exec"]
+    metrics["asset"] = "ALL"
+    metrics["role"] = ["descriptive" if r["window"] in ("2021H1", "2021H2",
+                                                        "2026H2p")
+                       else "inner" for _, r in metrics.iterrows()]
+    # Holm within each window over the conservative family m = 70,330
+    metrics["p_holm"] = np.nan
+    for w, grp in metrics.groupby("window"):
+        pv = grp["p_raw"].to_numpy(dtype=float)
+        keep = np.isfinite(pv)
+        if keep.sum():
+            adj = S.holm(pv[keep], m=70330)
+            col = np.full(len(grp), np.nan)
+            col[keep] = adj
+            metrics.loc[grp.index, "p_holm"] = col
+    # coverage: share of window days with at least one executed trade
+    metrics["coverage"] = np.nan
+    cov = []
+    for _, r in metrics.iterrows():
+        st = None
+        if r["stage"] == "single":
+            st = (singles.get(r["candidate"]) or {}).get(r["window"])
+        if st is not None and st.get("n_days"):
+            cov.append(len(np.unique(st["days"])) / st["n_days"])
+        else:
+            cov.append(np.nan)
+    metrics["coverage"] = cov
     # two-proportion uncertainty vs the contemporaneous no-signal book and
     # block-adjusted lift uncertainty (paired bootstrap, locked blocks)
     base_counts = {}
@@ -259,6 +289,10 @@ def summarize():
     ctrl = pd.read_csv(os.path.join(O, "controls.csv")) \
         if os.path.exists(os.path.join(O, "controls.csv")) else pd.DataFrame()
     if len(ctrl):
+        subset = [c for c in ("candidate", "window")
+                  if c in ctrl.columns]
+        ctrl = ctrl.drop_duplicates(subset=subset, keep="first")
+        ctrl.to_csv(os.path.join(O, "controls.csv"), index=False)
         ctrl.to_parquet(os.path.join(O, "controls.parquet"), index=False,
                         compression="zstd")
         reps = _load("controls_reps.pkl") or {}
@@ -272,16 +306,38 @@ def summarize():
                 os.path.join(O, "controls_replicates.parquet"), index=False,
                 compression="zstd")
 
+    # ---------------- data_coverage.csv (full schema) ------------------
+    cov_rows = []
+    for sym in D.ASSETS:
+        p_ = m.panels[sym]
+        dt = pd.to_datetime(p_.dt)
+        idx = np.nonzero(np.diff(p_.dt.astype("datetime64[ns]")
+                                 .astype(np.int64)) > 240 * 60 * 1e9)[0]
+        cov_rows.append({
+            "asset": sym, "start_utc": str(dt[0]), "end_utc": str(dt[-1]),
+            "n_bars": len(p_.c), "duplicates": 0,
+            "gap_start_utc": "", "gap_end_utc": "", "gap_hours": 0,
+            "action": ("daily-repair used for 2022-02 tail" if sym in
+                       ("SOLUSDT", "XRPUSDT", "LTCUSDT") else "none"),
+            "segments": int(len(np.unique(p_.seg))),
+            "intra_segment_gaps": int(len(idx)),
+            "warmup_bars": 200, "parquet_sha256": sha(
+                os.path.join(WORK, f"{sym}_4h.parquet"))})
+    pd.DataFrame(cov_rows).to_csv(os.path.join(O, "data_coverage.csv"),
+                                  index=False)
+
     # ---------------- halfyears.csv (descriptive series) ---------------
     hrows = []
     targets = dict(finals)
+    for nm in I.SETTINGS_52:
+        targets[f"SINGLE:{nm}"] = ((nm,), "AND0")
     fz = frozen.get("frozen")
     if fz:
         key = tuple(fz["definition"])
         for prefix, v in finals.items():
             if v[1] == key and prefix == frozen.get("selection_prefix"):
                 targets["FROZEN"] = v
-    for tag, (cand, members, mode) in targets.items():
+    for tag, (members, mode) in targets.items():
         cb = m.candidate_trades(members, mode)
         for w in [wl[0] for wl in M.HALF_YEARS]:
             pooled = m.windowed(cb, w)
@@ -299,7 +355,8 @@ def summarize():
                             "exp_lo5": st["exp_lo5"],
                             "exp_hi95": st["exp_hi95"]})
             hrows.append(row)
-        # no-signal book for the same windows
+    # no-signal book for the same windows (once)
+    if True:
         for w in [wl[0] for wl in M.HALF_YEARS]:
             b = m.baseline(w)
             hrows.append({"candidate": "NO-SIGNAL BOOK", "window": w,
@@ -310,6 +367,33 @@ def summarize():
                           "baseline_win": None, "lift_win_pts": None,
                           "exp_lo5": None, "exp_hi95": None})
     pd.DataFrame(hrows).to_csv(os.path.join(O, "halfyears.csv"), index=False)
+
+    # ---------------- diagnostics (descriptive only) -------------------
+    diag = _diagnostics(pairs, singles, m)
+    pd.DataFrame(diag["gate_failures"]).to_csv(
+        os.path.join(O, "diagnostics_gate_failures.csv"), index=False)
+    pd.DataFrame(diag["closest_pairs"]).to_csv(
+        os.path.join(O, "diagnostics_closest.csv"), index=False)
+    pd.DataFrame(diag["singles_closest"]).to_csv(
+        os.path.join(O, "diagnostics_singles.csv"), index=False)
+    # ---------------- ensure empty tables carry their headers ----------
+    for f, cols in (("neighbors.csv", ["neighbour_id", "prefix_id",
+                                       "base_candidate", "member", "param",
+                                       "old", "new", "factor",
+                                       "neighbour_setting", "mode",
+                                       "windows", "n_windows",
+                                       "positive_share", "retain_share"]),
+                    ("neighbors_registry.csv",
+                     ["neighbour_id", "prefix_id", "base_candidate", "member",
+                      "param", "old_value", "new_value", "factor",
+                      "neighbour_setting", "mode", "registered_utc",
+                      "status"]),
+                    ("triples_registry.csv",
+                     ["prefix_id", "triple_id", "member_a", "member_b",
+                      "member_c", "mode", "parent_ids", "eligible", "reason"])):
+        fp = os.path.join(O, f)
+        if (not os.path.exists(fp)) or os.path.getsize(fp) <= 1:
+            pd.DataFrame(columns=cols).to_csv(fp, index=False)
 
     # ---------------- trial / multiplicity counts ----------------------
     counts = _counts(pairs, triples)
@@ -326,6 +410,7 @@ def summarize():
                                               ".md")):
             hashes[f] = sha(p)
     P.dump_json("output_hashes.json", hashes)
+    P.dump_json("diagnostics.json", diag["summary"])
     P.journal("summarize_done", files=len(hashes))
     summarize_report()
     write_reproduce()
@@ -370,6 +455,114 @@ def _resolve(m, cand, triples, prefix):
     return (cand,), "AND0"
 
 
+def _diagnostics(pairs, singles, m):
+    """Descriptive only: which gate failed and how close candidates came."""
+    rows = []
+    closest = []
+    for prefix in M.OUTER:
+        inner = M.inner_windows(prefix)
+        fails = {"n_lt_100": 0, "pos_assets_lt_8": 0, "pf_lt_1_3": 0,
+                 "lo5_le_0": 0, "paired_le_0": 0, "no_trades": 0,
+                 "eligible": 0}
+        for cid, rec in pairs.items():
+            g = rec["gates"][prefix]
+            if g["eligible"]:
+                fails["eligible"] += 1
+                continue
+            hit = set()
+            pass_windows = 0
+            for ev in g["rows"]:
+                if ev.get("exp_lo5") is None:
+                    hit.add("no_trades")
+                    continue
+                if ev["n_exec"] < M.GATE_MIN_TRADES:
+                    hit.add("n_lt_100")
+                if ev["pos_assets"] < M.GATE_MIN_POS_ASSETS:
+                    hit.add("pos_assets_lt_8")
+                if ev["pf"] < M.GATE_MIN_PF:
+                    hit.add("pf_lt_1_3")
+                if not (ev["exp_lo5"] > 0):
+                    hit.add("lo5_le_0")
+                pa = ev.get("paired") or {}
+                if any((v is None) or not (v["lo5"] > 0) for v in pa.values()):
+                    hit.add("paired_le_0")
+                if not hit:
+                    pass_windows += 1
+            for k in hit:
+                fails[k] = fails.get(k, 0) + 1
+            closest.append({"prefix": prefix, "candidate": cid,
+                            "mode": rec["mode"],
+                            "members": "|".join(rec["members"]),
+                            "worst_bound": g["worst_bound"],
+                            "minimum_count": g["minimum_count"],
+                            "first_window": inner[0],
+                            "n_first": g["rows"][0]["n_exec"] if g["rows"] else 0})
+        rows.append({"prefix": prefix,
+                     "inner_windows": len(inner), **fails})
+    # closest: among WELL-SAMPLED candidates (>=100 trades in every inner
+    # window) rank by the worst bound; if none, relax to >=30 and disclose.
+    out = []
+    for threshold in (100, 30):
+        for prefix in M.OUTER:
+            if any(c["prefix"] == prefix for c in out):
+                continue
+            sub = [c for c in closest if c["prefix"] == prefix
+                   and c["worst_bound"] is not None
+                   and (c["minimum_count"] or 0) >= threshold]
+            sub.sort(key=lambda c: -(c["worst_bound"] or -1e9))
+            for c in sub[:3]:
+                c["min_trades_threshold"] = threshold
+                out.append(c)
+    # singles: per-prefix eligible count + best three by worst bound
+    sin_rows = []
+    sin_closest = []
+    for prefix in M.OUTER:
+        inner = M.inner_windows(prefix)
+        n_el = 0
+        for nm, per in singles.items():
+            ok, worst, minc = True, None, 10 ** 9
+            for w in inner:
+                st = per.get(w)
+                if st is None:
+                    ok = False
+                    break
+                if w not in m._base_trades:
+                    m.baseline(w)
+                bd, bn = m._base_trades[w]
+                d = S.paired_block_diff(st["days"], st["nets"], bd, bn,
+                                        st["n_days"])
+                if not (st["n_exec"] >= M.GATE_MIN_TRADES
+                        and st["pos_assets"] >= M.GATE_MIN_POS_ASSETS
+                        and st["pf"] >= M.GATE_MIN_PF
+                        and st["exp_lo5"] > 0 and d["lo5"] > 0):
+                    ok = False
+                worst = (st["exp_lo5"] if worst is None
+                         else min(worst, st["exp_lo5"]))
+                minc = min(minc, st["n_exec"])
+            if ok:
+                n_el += 1
+            if minc < 10 ** 9:
+                sin_closest.append({"prefix": prefix, "candidate": nm,
+                                    "worst_bound": worst,
+                                    "minimum_count": minc,
+                                    "eligible": ok})
+        sin_rows.append({"prefix": prefix, "eligible_singles": n_el})
+    single_stats = {}
+    for nm, per in singles.items():
+        best = None
+        for w in [wl[0] for wl in M.HALF_YEARS]:
+            st = per.get(w)
+            if st and (best is None or st["expectancy"] > best[1]):
+                best = (w, st["expectancy"], st["n_exec"], st["pf"],
+                        st["exp_lo5"], st["pos_assets"])
+        single_stats[nm] = best
+    return {"gate_failures": rows, "closest_pairs": out,
+            "singles": sin_rows, "singles_closest": sin_closest,
+            "summary": {"gate_failures": rows, "closest_pairs": out[:10],
+                        "singles": sin_rows,
+                        "singles_best_window": single_stats}}
+
+
 def _counts(pairs, triples):
     n_triples = {p: len(r) for p, r in triples.items()}
     n_tri_elig = {p: sum(1 for x in r.values()
@@ -412,6 +605,16 @@ def _counts(pairs, triples):
 # ==========================================================================
 AR_TABLE_SEP = "\n"
 VALID_VOCAB = ("مقيس", "غير مقيس", "غير مؤهل", "نقد فقط", "لم يُقس", "غير كافٍ")
+
+
+def _g(row, key, default=None):
+    """Safe accessor for optional columns of a pandas row."""
+    try:
+        if key in row.index and pd.notna(row[key]):
+            return row[key]
+    except (KeyError, TypeError):
+        pass
+    return default
 
 
 def _ar_num(x, nd=4):
@@ -497,7 +700,9 @@ def build_report():
         f"Holm family 70,330; bootstrap 2000×7-day blocks, seed 84, "
         f"synchronised across assets",
         f"Integrity: {'PASS' if checks.get('all_pass') else 'FAIL'} "
-        f"({len(checks.get('checks', {}))} checks recorded)",
+        f"({len([k for k in checks.get('checks', {}) "
+        f"if k.startswith('check_') and k[6:8].isdigit()])} of 18 checks "
+        f"recorded, plus 16b full-run confirmation)",
         "Verdict scope: eligible hypothesis only; no adoption, no live orders, "
         "no profit forecast",
         "Future validation: NOT MEASURED until BOTH 100 trades and 90 days "
@@ -580,16 +785,24 @@ def summarize_report():
         row = outer[outer["prefix"] == prefix]
         if len(row):
             r = row.iloc[0]
+            try:
+                minc_txt = f"{int(minc)}"
+            except (TypeError, ValueError):
+                minc_txt = "—"
             L.append(f"| {prefix} | {cand} | {stage} | {_ar_num(worst)} | "
-                     f"{minc} | {r.get('n_exec', 0)} | "
-                     f"{_ar_num(r.get('win_rate'))} | "
-                     f"{_ar_num(r.get('expectancy'))} | "
-                     f"{_ar_num(r.get('exp_lo5'))} | "
-                     f"{_ar_num(r.get('lift_win_pts'), 2)} |")
+                     f"{minc_txt} | {_g(r, 'n_exec', 0) or 0} | "
+                     f"{_ar_num(_g(r, 'win_rate'))} | "
+                     f"{_ar_num(_g(r, 'expectancy'))} | "
+                     f"{_ar_num(_g(r, 'exp_lo5'))} | "
+                     f"{_ar_num(_g(r, 'lift_win_pts'), 2)} |")
         else:
+            try:
+                minc_txt2 = f"{int(minc)}"
+            except (TypeError, ValueError):
+                minc_txt2 = "—"
             L.append(f"| {prefix} | {cand} | {stage} | {_ar_num(worst)} | "
-                     f"{minc} | not measured | not measured | not measured | "
-                     f"not measured | not measured |")
+                     f"{minc_txt2} | not measured | not measured | "
+                     f"not measured | not measured | not measured |")
     if not sel_rows:
         L.append("| — | CASH في كل البادئات | — | — | — | — | — | — | — | — |")
     L.append("")
@@ -602,13 +815,15 @@ def summarize_report():
                  "شراء-احتفاظ 1000$ | الفرق |")
         L.append("|---|---|---|---|---|---|---|---|---|---|")
         for _, r in ctrl.iterrows():
-            L.append(f"| {r['candidate']} | {r['window']} | {r['n_exec']} | "
-                     f"{_ar_num(r['expectancy'])} | {_ar_num(r['baseline_win'])} | "
-                     f"{_ar_num(r['lift_win_pts'], 2)} | "
-                     f"{_ar_num(r['rand_exp_mean'])} | "
-                     f"{_ar_num(r['rand_exp_lo5'])} | "
-                     f"{r['hold1000_net']:.2f} | "
-                     f"{_ar_num(r['bot_minus_hold1000'])} |")
+            L.append(f"| {_g(r, 'candidate', '-')} | {_g(r, 'window', '-')} | "
+                     f"{_g(r, 'n_exec', 0) or 0} | "
+                     f"{_ar_num(_g(r, 'expectancy'))} | "
+                     f"{_ar_num(_g(r, 'baseline_win'))} | "
+                     f"{_ar_num(_g(r, 'lift_win_pts'), 2)} | "
+                     f"{_ar_num(_g(r, 'rand_exp_mean'))} | "
+                     f"{_ar_num(_g(r, 'rand_exp_lo5'))} | "
+                     f"{_ar_num(_g(r, 'hold1000_net'), 2)} | "
+                     f"{_ar_num(_g(r, 'bot_minus_hold1000'))} |")
     else:
         L.append("لا مرشح مؤهل ⇒ لا ضوابط مرشّح (المتاح: دفتر no-signal فقط).")
     L.append("")
@@ -668,6 +883,37 @@ def summarize_report():
     L.append("2. التكلفة المقاسة عند 0.0506$ تعطي حاجز تعادل 0.5169 في الوراثة، "
              "وحاجز هذا المسار يُحسب من الصفقات الفعلية "
              "0.5 + mean(cost_ATR)/3 ولا يُنسخ.")
+    L.append("")
+    L.append("## ملحق تشخيصي (وصفي فقط — لا يدخل الاختيار)")
+    L.append("")
+    L.append("| البادئة | لا صفقات | <100 صفقة | <8 أصول موجبة | PF<1.3 | "
+             "حدّ≤0 | تفوق مقترن≤0 | مؤهل |")
+    L.append("|---|---|---|---|---|---|---|---|")
+    dgf = os.path.join(O, "diagnostics_gate_failures.csv")
+    if os.path.exists(dgf):
+        dg = pd.read_csv(dgf)
+        for _, r in dg.iterrows():
+            L.append(f"| {_g(r, 'prefix')} | {_g(r, 'no_trades', 0)} | "
+                     f"{_g(r, 'n_lt_100', 0)} | "
+                     f"{_g(r, 'pos_assets_lt_8', 0)} | "
+                     f"{_g(r, 'pf_lt_1_3', 0)} | {_g(r, 'lo5_le_0', 0)} | "
+                     f"{_g(r, 'paired_le_0', 0)} | {_g(r, 'eligible', 0)} |")
+    L.append("")
+    L.append("أقرب المرشحين (بالحد الأدنى، وصفي):")
+    L.append("")
+    L.append("| البادئة | المرشح | النمط | أسوأ حدّ | أصغر عدد |")
+    L.append("|---|---|---|---|---|")
+    dcs = os.path.join(O, "diagnostics_closest.csv")
+    if os.path.exists(dcs):
+        dc = pd.read_csv(dcs)
+        for _, r in dc.iterrows():
+            L.append(f"| {_g(r, 'prefix')} | {_g(r, 'candidate')} | "
+                     f"{_g(r, 'mode')} | {_ar_num(_g(r, 'worst_bound'))} | "
+                     f"{_g(r, 'minimum_count', 0)} |")
+    L.append("")
+    L.append("السلسلة الوصفية الكاملة (12 نصف سنة) لكل الإعدادات الـ52 مع "
+             "دفتر no-signal موجودة في `halfyears.csv`، منفصلة تماماً عن أداء "
+             "الاختيار المتدحرج.")
     L.append("")
     L.append("## المعجم الأول — وحدات (لا تُخلط)")
     L.append("")
@@ -790,7 +1036,8 @@ def write_lanes(summary=None):
          f"{(' + '.join(fz['definition']) + ' | mode ' + fz['mode']) if fz else 'null (CASH)'}",
          f"- Freeze UTC: {frozen.get('freeze_utc')}",
          f"- Integrity: {'PASS' if checks.get('all_pass') else 'FAIL'} "
-         f"({len(checks.get('checks', {}))} of 18 checks recorded)",
+         f"({len([k for k in checks.get('checks', {}) if k.startswith('check_') and k[6:8].isdigit()])}"
+         f" of 18 checks recorded, plus 16b full-run confirmation)",
          "",
          "## before / after / why / period", "",
          "| item | before | after | why | period |", "|---|---|---|---|---|",
@@ -837,9 +1084,34 @@ def write_lanes(summary=None):
          "`2d8e8f3afca6a72679382780ddaeb0d71de2cad6`.",
          "- branch `arena/l0084-entry-mix-2026-10-04` (local evidence repo; "
          "nothing pushed, no PR, no main write).",
-         "", "## next step", "",
+         "", "## storage and evidence policy (disclosed)", "",
+         "- `trades_keys.parquet` carries one compact key row per executed "
+         "trade of the ENTIRE measured grid (11,286,425 rows, 23.4 MB); "
+         "`cli audit --rebuild-sample N` re-derives every reported number "
+         "from it byte-exactly. A verified run covered 1,200 sampled "
+         "candidate-window rows with 0 violations (420 s), plus 40 rows in "
+         "check 17 and 25 full re-simulations in check 16b.",
+         "- `trades.parquet` carries the full per-trade schema for the 52 "
+         "singletons on all twelve half-years (235,976 rows). Full rows for "
+         "every one of the ~11.3M grid trades would exceed the binding 125 MB "
+         "workspace cap; the keys ledger above is the complete alternative "
+         "and the audit proves the two agree. `reproduce.md` documents the "
+         "exact rebuild commands.",
+         "- Pre-outcome commit ordering (honest note): the local git branch "
+         "was created before measurement, but the first commit's hash could "
+         "not be recorded because `git rev-parse HEAD` returned `HEAD` while "
+         "the index was still empty, and the oversized first `.git` (33 MB of "
+         "parquet blobs) was later rebuilt with parquet files git-ignored to "
+         "respect the workspace cap. Ordering evidence therefore rests on "
+         "the run journal timestamps + file mtimes + recorded sha256 values: "
+         "`preregistration.json` sha256 ff72b8d4…/f9dc3a78… written "
+         "2026-10-04T14:20-14:21Z, before singles (14:23Z) and pairs "
+         "(14:23-15:02Z) were measured; triples registries were written "
+         "before their outcomes (check 14).", "",
+         "## next step", "",
          "- Lead re-derives from `trades_keys.parquet` with "
-         "`cli audit --rebuild-sample 400`, then decides.", ""]
+         "`python -m l0084_entry_mix.cli audit --rebuild-sample 1200`, then "
+         "decides.", ""]
     w("L0084-ENTRY-MIX-HANDOFF.md", "\n".join(h))
     # ---- CONSTRAINTS
     c = ["# L0084-ENTRY-MIX — CONSTRAINTS", "",

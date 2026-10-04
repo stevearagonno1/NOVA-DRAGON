@@ -38,3 +38,11 @@
 {"event": "neighbours_registered", "ts_utc": "2026-10-04T15:10:39Z", "n": 0}
 {"event": "neighbours_measured", "ts_utc": "2026-10-04T15:10:39Z", "n": 0}
 {"event": "freeze", "ts_utc": "2026-10-04T15:10:39Z", "frozen": null}
+{"event": "measure_done", "ts_utc": "2026-10-04T15:10:39Z", "elapsed_s": 24.3, "frozen": null}
+{"event": "summarize_done", "ts_utc": "2026-10-04T15:12:04Z", "files": 27}
+{"event": "summarize_done", "ts_utc": "2026-10-04T15:13:01Z", "files": 29}
+{"event": "summarize_done", "ts_utc": "2026-10-04T15:16:01Z", "files": 31}
+{"event": "audit_rebuild", "ts_utc": "2026-10-04T15:18:00Z", "rows_checked": 400, "violations": [], "violations_n": 0, "elapsed_s": 111.0}
+{"event": "summarize_done", "ts_utc": "2026-10-04T15:24:47Z", "files": 31}
+{"event": "summarize_done", "ts_utc": "2026-10-04T15:26:03Z", "files": 31}
+{"event": "audit_rebuild", "ts_utc": "2026-10-04T15:33:15Z", "rows_checked": 1200, "violations": [], "violations_n": 0, "elapsed_s": 420.0}

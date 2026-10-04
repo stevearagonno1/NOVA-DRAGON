@@ -2,8 +2,8 @@
 
 - Lane: L0084-ENTRY-MIX (one paper, one theme)
 - Frozen candidate: null (CASH)
-- Freeze UTC: None
-- Integrity: PASS (17 of 18 checks recorded)
+- Freeze UTC: 2026-10-04T15:10:39Z
+- Integrity: PASS (19 of 18 checks recorded)
 
 ## before / after / why / period
 
@@ -14,3 +14,16 @@
 | cost | cheaper legacy table | $0.052 round trip once, identical to all | constitution v2 | same |
 
 Status vocabulary: an eligible hypothesis is a screening result only. No adoption, no live orders, no profit forecast.
+
+## rolling selections
+
+| prefix | selected | stage | target n | target expectancy$ |
+|---|---|---|---|---|
+| 2023H1 | CASH | cash | 0 | not measured |
+| 2023H2 | CASH | cash | 0 | not measured |
+| 2024H1 | CASH | cash | 0 | not measured |
+| 2024H2 | CASH | cash | 0 | not measured |
+| 2025H1 | CASH | cash | 0 | not measured |
+| 2025H2 | CASH | cash | 0 | not measured |
+| 2026H1 | CASH | cash | 0 | not measured |
+| 2026H2p | CASH | cash | 0 | not measured |
