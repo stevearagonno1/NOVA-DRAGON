@@ -162,6 +162,7 @@ def _read_csv(client,head,name,base=BASE):
 
 def _resolve_candidate(cid,prefix,role,pair_map,triple_map,selected,neighbor_map):
     if role=="baseline":return None,None
+    if role=="descriptive":return _resolve_candidate(cid,prefix,_role_for_id(cid),pair_map,triple_map,selected,neighbor_map)
     if role=="single":return (cid,),"AND0"
     if role=="pair":
         pid,mode=cid.split("|",1);return pair_map[pid],mode
@@ -681,11 +682,9 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
             if stored_has_asset_stats:
                 asset_stats=_independent_asset_stats(asset_trades,window,panel)
                 expected_asset.update({k:asset_stats[k] for k in ("breakeven_rate","p_raw","ci_lo","ci_hi")})
-                if asset_registered:
-                    expected_asset.update({k:asset_stats[k] for k in ("baseline_win_rate","lift_win_points")})
-                    if asset_trades:expected_asset["metric_status"]="REGISTERED_BLOCK_STATS; Holm_and_power_pending"
-                else:
-                    expected_asset["baseline_win_rate"]=None;expected_asset["lift_win_points"]=None
+                expected_asset["baseline_win_rate"]=None if role=="baseline" else asset_stats["baseline_win_rate"]
+                expected_asset["lift_win_points"]=asset_stats["lift_win_points"] if asset_registered and role!="baseline" else None
+                if asset_registered and asset_trades:expected_asset["metric_status"]="REGISTERED_BLOCK_STATS; Holm_and_power_pending"
             else:expected_asset.update({field:None for field in asset_infer_fields})
             _compare_metric(stored_asset,expected_asset,(key,sym));checked_asset_metrics+=1
             if len(window) in (6,7) and window[:4].isdigit() and window[4:] in ("H1","H2","H2p"):

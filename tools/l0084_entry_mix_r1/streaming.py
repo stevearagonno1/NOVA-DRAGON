@@ -268,8 +268,11 @@ class RemoteTradeWriter:
                 previous.get("partition_paths",[])!=partition_paths or
                 previous.get("schema_version")!=SCHEMA_VERSION):
                 raise TransportError("resumed candidate-window output differs from committed index")
+            self._resource_snapshot()
+            return row_count
         else:
             self.index_rows.append(current)
+            self.completed_windows[key]=current
             self.row_count += row_count
         if len(self.index_rows) >= self._index_flush_limit:
             self.flush()

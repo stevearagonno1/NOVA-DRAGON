@@ -206,7 +206,7 @@ class StreamingTests(unittest.TestCase):
             def __init__(self,sym,price):
                 self.sym=sym;self.dt=pd.date_range('2023-01-01',periods=60,freq='4h',tz='UTC').to_numpy()
                 self.o=np.full(60,price);self.h=self.o+.2;self.l=self.o-.2;self.c=self.o.copy()
-                self.atr=np.ones(60);self.seg=np.zeros(60,dtype=int);self.ranges={'2023H1':(0,59),'2023H2':(0,19)}
+                self.atr=np.ones(60);self.seg=np.zeros(60,dtype=int);self.ranges={'2021H1':(0,19),'2023H1':(0,59),'2023H2':(0,19)}
                 self.mask=np.zeros(60,dtype=bool);self.mask[20]=True;self.h[21]=price+2.0
             def mask_of(self,name):return self.mask
         class Measurer:
@@ -232,6 +232,7 @@ class StreamingTests(unittest.TestCase):
         w.add_window('NO-SIGNAL','baseline','2023H1',base_by_asset,m.panels)
         w.add_window('2023H1:P0001|AND0','outer','2023H1',trades_by_asset,m.panels,stats=runner_stats('2023H1:P0001|AND0','outer'),baseline_by_asset=base_by_asset,members=('C0','C1'),mode='AND0')
         w.add_window('C0','single','2023H2',{'X':[],'Y':[]},m.panels,baseline_by_asset={'X':[],'Y':[]},members=('C0',),mode='AND0')
+        w.add_window('C0','descriptive','2021H1',{'X':[],'Y':[]},m.panels,baseline_by_asset={'X':[],'Y':[]},members=('C0',),mode='AND0')
         w.add_window('C1','single','2023H1',trades_by_asset,m.panels,stats=runner_stats('C1'),baseline_by_asset=base_by_asset,members=('C1',),mode='AND0')
         random_by_asset={sym:_random_reference(p,'2023H1',matched_counts[sym],'P0001|AND0',0) for sym,p in panels.items()}
         seeds={sym:__import__('l0084_entry_mix_r1.measure',fromlist=['sha_seed']).sha_seed(f'84|{sym}|2023H1|P0001|AND0|0') for sym in panels}
@@ -270,13 +271,13 @@ class StreamingTests(unittest.TestCase):
         self.assertEqual(result['independent_inference_rows_reconciled'],2)
         self.assertEqual(result['metrics_reconciliation'],'PASS_CANONICAL_METRIC_TABLE; raw trades and adjustment join independently reconciled')
         self.assertEqual(result['adjustment_reconciliation'],'PASS_HOLM_POWER_OVERLAY_AND_CANONICAL_JOIN')
-        self.assertEqual(result['groups_rebuilt'],5)
-        self.assertEqual(result['zero_trade_candidate_windows'],1)
+        self.assertEqual(result['groups_rebuilt'],6)
+        self.assertEqual(result['zero_trade_candidate_windows'],2)
         self.assertEqual(result['controls_reconciliation'],'PASS_INDEPENDENT_CONTROL_REBUILD; families=constituent_singleton,equal_book_1000,equal_book_20,no_signal,random_entry')
-        self.assertEqual(result['halfyear_rows'],10)
+        self.assertEqual(result['halfyear_rows'],12)
         self.assertEqual(result['adjustment_rows'],2)
         self.assertEqual(result['control_result_rows'],12)
-        self.assertEqual(result['final_metric_rows'],15)
+        self.assertEqual(result['final_metric_rows'],18)
         self.assertEqual(result['trades_rebuilt'],sum(map(len,base_by_asset.values()))+sum(map(len,trades_by_asset.values()))*2+sum(map(len,random_by_asset.values())))
         metric_path=next(x for x in t.trees[t.head] if '/metrics_raw/run=full-audit/' in x and x.endswith('.parquet'))
         original_metric=t.blob_from_commit(t.head,metric_path)

@@ -1007,7 +1007,8 @@ def stage_descriptive(m,singles,pair_records,writer=None):
             rows.append({"candidate":cid,"candidate_id":cid,"stage":"pair","mode":rec["mode"],"window":w,**({k:v for k,v in (st or {}).items() if k not in ("days","nets")} if st else {"n_exec":0,"net":None,"pf":None,"expectancy":None})})
     for w in windows:
         b=m.baseline(w)
-        if b and writer is not None:writer.add_window("NO-SIGNAL","baseline",w,b["per_asset"],m.panels)
+        if b and writer is not None and ("NO-SIGNAL","baseline",w) not in getattr(writer,"completed_windows",{}):
+            writer.add_window("NO-SIGNAL","baseline",w,b["per_asset"],m.panels)
     pd.DataFrame(rows).to_csv(os.path.join(O,"halfyears.csv"),index=False)
     journal("descriptive_windows_done",windows=windows,rows=len(rows),selection_frozen=True)
     return rows

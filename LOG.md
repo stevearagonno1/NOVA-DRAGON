@@ -845,3 +845,10 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - نُشر fixture التدقيق المستقل لزوج مسجل وضوابط مكوناته وequal-book/no-signal/random مع شرط exit 0 الكامل في audit CLI.
 - فحوص ما قبل النشر: py_compile PASS؛ pytest 24/24؛ module tests 10/10. قياس السوق NOT RUN؛ readiness CLI لا يزال pending والحارس CLOSED.
 - التالي: synthetic measure/audit actual path مع persistence/readback وبقية اختبارات v7.
+
+
+## 2026-10-05 17:01 Asia/Aden — نشر تنفيذ synthetic CLI DRAFT
+- نُشر المسار synthetic CLI والـpipeline/audit writers على R1 بعد قراءة الرأس `7cfd480a958a098b25363f9b4f29282b22d62f49` والتحقق من المحتوى.
+- فحوص ما قبل الرفع على الشجرة المنشورة: py_compile PASS؛ pytest 24/24؛ module tests 10/10. يوجد synthetic CLI smoke ناجح على نسخة محلية؛ يلزم إعادة تشغيله على SHA هذا.
+- القياس السوقي NOT RUN؛ gate CLOSED؛ اختبار network artifact الحقيقي وبقية شروط readiness معلقة.
+- التالي: إعادة تشغيل CLI readiness بعد النشر قبل أي تغيير للحارس أو وصول لنتائج السوق.

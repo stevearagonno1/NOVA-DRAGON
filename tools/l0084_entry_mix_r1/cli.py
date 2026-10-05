@@ -156,6 +156,11 @@ def _publish_local_file(name, label):
 
 
 def cmd_measure(args):
+    if getattr(args,"synthetic",False):
+        from .synthetic import measure_synthetic
+        result=measure_synthetic()
+        print(json.dumps(result,indent=2))
+        return 0
     if not MEASUREMENT_GATE_READY:
         raise RuntimeError("measurement gate is intentionally closed: full metrics/report writers and independent raw-to-metrics audit remain incomplete")
     from datetime import datetime, timezone
@@ -303,6 +308,11 @@ def cmd_summarize(args):
 
 
 def cmd_audit(args):
+    if getattr(args,"synthetic",False):
+        from .synthetic import audit_synthetic
+        result=audit_synthetic()
+        print(json.dumps(result,indent=2))
+        return 0
     from .transport import GitHubTransport,TransportError
     from .audit import rebuild_all
     from .evidence import commit_evidence
@@ -334,6 +344,17 @@ def cmd_audit(args):
     return code
 
 
+def cmd_synthetic_readiness(args):
+    from types import SimpleNamespace
+    measure_code=cmd_measure(SimpleNamespace(synthetic=True))
+    audit_code=cmd_audit(SimpleNamespace(synthetic=True,rebuild_all=True)) if measure_code==0 else 2
+    result={"synthetic_readiness":"PASS" if measure_code==0 and audit_code==0 else "FAIL",
+            "measure_exit_code":measure_code,"audit_exit_code":audit_code,
+            "market_outcomes_read":False,"measurement_gate_opened":False}
+    print(json.dumps(result,indent=2))
+    return 0 if measure_code==0 and audit_code==0 else 2
+
+
 def cmd_future_plan(args):
     from . import report
     report.future_plan()
@@ -350,11 +371,15 @@ def main(argv=None):
     c = sub.add_parser("check")
     c.add_argument("--phase", choices=["pre", "post"], default="pre")
 
-    sub.add_parser("measure")
+    me=sub.add_parser("measure")
+    me.add_argument("--synthetic",action="store_true",help="run the injected in-memory synthetic pipeline; never reads market outcomes")
 
     sub.add_parser("summarize")
 
+    sub.add_parser("synthetic-readiness")
+
     au = sub.add_parser("audit")
+    au.add_argument("--synthetic",action="store_true",help="audit the synthetic in-memory run created in this process")
     au.add_argument("--rebuild-sample", type=int, default=400)
     au.add_argument("--rebuild-all", action="store_true")
 
@@ -363,7 +388,8 @@ def main(argv=None):
     args = ap.parse_args(argv)
     fn = {"preregister": cmd_preregister, "amend-prereg":cmd_amend_prereg,
           "check": cmd_check, "measure": cmd_measure, "summarize": cmd_summarize,
-          "audit": cmd_audit, "future-plan": cmd_future_plan}[args.cmd]
+          "audit": cmd_audit, "future-plan": cmd_future_plan,
+          "synthetic-readiness":cmd_synthetic_readiness}[args.cmd]
     return fn(args) or 0
 
 
