@@ -795,3 +795,7 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - Recorded DRAFT runner commit `db8c43289652c160b622791ec2940fd357c018ec`, the one-row synthetic remote partition and raw-only rebuild result (two groups, one trade, one zero group). The caller timed out after output; exit code unknown.
 - Measurement remains NOT RUN; CLI gate stays closed; metrics and full audit are incomplete. Workspace 69,783,342 bytes.
 - Next: implement the shared synthetic/real runner and full metric/control reconciliation before measurement.
+## L0084-R1 DRAFT code publication
+- Work: published current R1 implementation, tests, environment lock, DRAFT status, and activity tick to the authorized R1 branch via the existing GitHub API publisher.
+- Result: DRAFT only; measurement gate remains closed; experiment NOT RUN. Local validation: pytest 22/22 and module self-test 10/10; synthetic end-to-end CLI readiness not established.
+- Next: complete inferential/control/half-year artifacts and audit, then full synthetic CLI readiness before any market measurement.

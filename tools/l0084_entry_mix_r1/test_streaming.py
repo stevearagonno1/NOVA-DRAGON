@@ -84,14 +84,14 @@ class StreamingTests(unittest.TestCase):
     def setUp(self):
         trade,dt=synthetic_trade()
         self.trade=trade
-        self.panels={'X':SimpleNamespace(dt=dt)}
+        self.panels={'X':SimpleNamespace(dt=dt,ranges={'2023H1':(0,len(dt)-1),'2023H2':(0,19)})}
 
     def test_roundtrip_schema_values_and_empty_window(self):
         t=MemoryTransport();w=RemoteTradeWriter(t,run_id='synthetic',max_rows=1,batch_bytes=100000)
         w.add_window('C0','pair','2023H1',{'X':[self.trade]},self.panels)
         w.add_window('C0','pair','2023H2',{'X':[]},self.panels)
         result=w.close()
-        paths=[p for p in t.trees[t.head] if p.endswith('.parquet')]
+        paths=[p for p in t.trees[t.head] if '/trades/' in p and p.endswith('.parquet')]
         self.assertEqual(len(paths),1)
         tab=pq.read_table(pa.BufferReader(t.blob_from_commit(t.head,paths[0])))
         self.assertTrue(tab.schema.equals(TRADE_SCHEMA,check_metadata=False))
@@ -103,6 +103,16 @@ class StreamingTests(unittest.TestCase):
         self.assertEqual([r['trade_rows'] for r in rows],[1,0])
         self.assertEqual(result['rows'],1)
         self.assertLessEqual(result['peak_pending_bytes'],5_000_000)
+        self.assertEqual(result['metrics']['groups'],2)
+        mp=[x for x in t.trees[t.head] if '/metrics/run=synthetic/' in x and x.endswith('.parquet')]
+        ap=[x for x in t.trees[t.head] if '/metrics_by_asset/run=synthetic/' in x and x.endswith('.parquet')]
+        self.assertEqual(len(mp),1);self.assertEqual(len(ap),1)
+        mt=pq.read_table(pa.BufferReader(t.blob_from_commit(t.head,mp[0]))).to_pylist()
+        at=pq.read_table(pa.BufferReader(t.blob_from_commit(t.head,ap[0]))).to_pylist()
+        self.assertEqual([x['n_exec'] for x in mt],[1,0])
+        self.assertEqual([x['n_exec'] for x in at],[1,0])
+        self.assertEqual(mt[1]['win_rate'],None)
+        self.assertEqual(mt[1]['metric_status'],'ZERO_TRADES; inference_not_computed')
 
     def test_readback_mismatch_fails_closed(self):
         t=MemoryTransport();w=RemoteTradeWriter(t,run_id='mismatch');t.fail='bad_readback'
@@ -136,18 +146,18 @@ class StreamingTests(unittest.TestCase):
         w2.add_window('C0','pair','2023H1',{'X':[self.trade]},self.panels);second=w2.close()
         self.assertEqual(second['rows'],1);self.assertEqual(second['partitions'],1)
         self.assertEqual(t.head,head)
-        self.assertEqual(sum(1 for p in t.trees[t.head] if p.endswith('.parquet')),1)
+        self.assertEqual(sum(1 for p in t.trees[t.head] if '/trades/' in p and p.endswith('.parquet')),1)
 
     def test_restart_recovers_partition_committed_before_index(self):
         t=MemoryTransport();w=RemoteTradeWriter(t,run_id='orphan')
         w.add_window('C0','pair','2023H1',{'X':[self.trade]},self.panels)
         w.flush()  # simulated interruption before coverage index is committed
-        partitions=sum(1 for p in t.trees[t.head] if p.endswith('.parquet'))
+        partitions=sum(1 for p in t.trees[t.head] if '/trades/' in p and p.endswith('.parquet'))
         w2=RemoteTradeWriter(t,run_id='orphan')
         w2.add_window('C0','pair','2023H1',{'X':[self.trade]},self.panels)
         result=w2.close()
         self.assertEqual(result['rows'],1);self.assertEqual(result['partitions'],1)
-        self.assertEqual(sum(1 for p in t.trees[t.head] if p.endswith('.parquet')),partitions)
+        self.assertEqual(sum(1 for p in t.trees[t.head] if '/trades/' in p and p.endswith('.parquet')),partitions)
         reconciled=verify_remote_partitions(t,t.head,'orphan')
         self.assertEqual(reconciled['trade_rows'],1)
 
@@ -158,7 +168,7 @@ class StreamingTests(unittest.TestCase):
         result=verify_remote_partitions(t,t.head,'audit')
         self.assertEqual(result['partitions'],1);self.assertEqual(result['trade_rows'],1)
         self.assertEqual(result['coverage_rows'],2);self.assertEqual(result['zero_trade_candidate_windows'],1)
-        path=next(p for p in t.trees[t.head] if p.endswith('.parquet'))
+        path=next(p for p in t.trees[t.head] if '/trades/' in p and p.endswith('.parquet'))
         del t.trees[t.head][path]
         with self.assertRaises(Exception):verify_remote_partitions(t,t.head,'audit')
 
@@ -188,9 +198,18 @@ class StreamingTests(unittest.TestCase):
         w.add_window('C1','single','2023H1',{'X':trades},m.panels);w.close()
         result=rebuild_all(t,t.head,'full-audit',m,metadata_base=meta_base)
         self.assertEqual(result['independent_execution_rebuild'],'PASS')
+        self.assertEqual(result['raw_metric_reconciliation'],'PASS')
+        self.assertEqual(result['metrics_reconciliation'],'DESCRIPTIVE_RAW_METRICS_ONLY; inference_and_controls_pending')
         self.assertEqual(result['groups_rebuilt'],3)
         self.assertEqual(result['zero_trade_candidate_windows'],1)
         self.assertEqual(result['trades_rebuilt'],len(trades)*2)
+        metric_path=next(x for x in t.trees[t.head] if '/metrics/run=full-audit/' in x and x.endswith('.parquet'))
+        metric=pq.read_table(pa.BufferReader(t.blob_from_commit(t.head,metric_path)))
+        altered=metric.to_pylist();altered[0]['net_dollars']+=1.0
+        sink=pa.BufferOutputStream();pq.write_table(pa.Table.from_pylist(altered,schema=metric.schema),sink,compression='zstd')
+        payload=sink.getvalue().to_pybytes();badhead=t.branch_head();t.commit_files({metric_path:payload},badhead,'synthetic changed-metric failure')
+        with self.assertRaisesRegex(Exception,'metric value mismatch'):
+            rebuild_all(t,t.head,'full-audit',m,metadata_base=meta_base)
 
 
 if __name__=='__main__':

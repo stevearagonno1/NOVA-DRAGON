@@ -120,6 +120,8 @@ class RemoteTradeWriter:
         self.batch_parts = int(batch_parts)
         if self.max_rows < 1 or self.batch_bytes > MAX_PART_BYTES or self.batch_bytes < 1:
             raise ValueError("invalid streaming limits")
+        from .metrics import RawMetricWriter
+        self.metric_writer=RawMetricWriter(self.transport,self.run_id)
         self.pending = []
         self.pending_bytes = 0
         self.index_rows = []
@@ -274,6 +276,8 @@ class RemoteTradeWriter:
             self.flush_index()
         if self.pending_bytes >= self.batch_bytes or len(self.pending) >= self.batch_parts:
             self.flush()
+        self.metric_writer.add_window(candidate,role,window,trades_by_asset,panels)
+        self._resource_snapshot()
         return row_count
 
     def _add_chunk(self, candidate, role, window, rows, panels):
@@ -431,12 +435,14 @@ class RemoteTradeWriter:
     def close(self):
         self.flush()
         self.flush_index()
+        metric_summary=self.metric_writer.close()
         self._resource_snapshot()
         return {"rows": self.row_count, "partitions": self.partition_count,
                 "peak_pending_bytes": self.peak_pending_bytes,
                 "peak_pending_rows": self.peak_pending_rows,
                 "index_parts": list(self.index_paths),
                 "journal_parts": list(self.journal_paths),
+                "metrics":metric_summary,
                 "peak_workspace_bytes":self.peak_workspace_bytes,
                 "peak_rss_bytes":self.peak_rss_bytes,
                 "memory_limit_bytes":self.memory_limit_bytes,

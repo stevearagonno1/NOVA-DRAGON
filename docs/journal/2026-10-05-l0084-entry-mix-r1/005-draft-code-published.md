@@ -1,0 +1,1 @@
+DRAFT code/tests and status published for review. R1 gate remains closed; market experiment not run. Partial validation: pytest 22/22, module self-test 10/10. End-to-end synthetic CLI, inferential/control outputs, and full audit remain incomplete.

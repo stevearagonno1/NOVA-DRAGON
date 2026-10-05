@@ -12,12 +12,14 @@ import pyarrow.parquet as pq
 
 try:
     from .streaming import BASE, TRADE_SCHEMA, _row as trade_row
+    from .metrics import METRIC_SCHEMA
     from .transport import GitHubTransport, TransportError
     from . import engine as E
     from . import measure as M
     from . import indicators as I
 except ImportError:
     from streaming import BASE, TRADE_SCHEMA, _row as trade_row
+    from metrics import METRIC_SCHEMA
     from transport import GitHubTransport, TransportError
     import engine as E
     import measure as M
@@ -219,6 +221,79 @@ def _actual_rows(client,head,paths):
     return rows
 
 
+def _audit_metric_row(candidate,role,window,asset,scope,trades,panel):
+    """Independent descriptive-statistic implementation over rebuilt trades."""
+    rows=sorted(trades,key=lambda x:(int(x["fill_bar"]),int(x["signal_bar"])))
+    n=len(rows);wins=sum(x["outcome"]=="target" for x in rows);stops=sum(x["outcome"]=="stop" for x in rows)
+    timeouts=sum(x["outcome"]=="timeout" for x in rows);resolved=wins+stops
+    winrate=wins/resolved if resolved else None
+    if resolved:
+        z=1.959963984540054;ph=wins/resolved;den=1+z*z/resolved
+        center=(ph+z*z/(2*resolved))/den
+        half=z*math.sqrt(ph*(1-ph)/resolved+z*z/(4*resolved*resolved))/den
+        wlo,whi=center-half,center+half
+    else:wlo=whi=None
+    net=np.asarray([x["net_dollars"] for x in rows],dtype=float)
+    pos=float(net[net>0].sum());neg=-float(net[net<0].sum())
+    pfv=(pos/neg if neg else (float("inf") if pos else float("nan"))) if n else None
+    def mean(field):return float(np.mean([x[field] for x in rows])) if rows else None
+    if rows:
+        equity=1000.0;peak=1000.0;mdd=0.0;run_dd=max_dd=0
+        daily={};losing=max_losing=0
+        for x in rows:
+            equity+=float(x["net_dollars"]);peak=max(peak,equity);drawdown=equity-peak
+            mdd=min(mdd,drawdown);run_dd=run_dd+1 if drawdown<0 else 0;max_dd=max(max_dd,run_dd)
+            losing=losing+1 if float(x["net_dollars"])<0 else 0;max_losing=max(max_losing,losing)
+            day=str(pd.Timestamp(panel.dt[int(x["fill_bar"])]).date());daily[day]=daily.get(day,0.0)+float(x["net_dollars"])
+        lo,hi=panel.ranges[window];ndays=max(1,(pd.Timestamp(panel.dt[int(hi)]).date()-pd.Timestamp(panel.dt[int(lo)]).date()).days+1)
+        active=len(daily);coverage=active/ndays;worst=min(daily.values()) if daily else None
+    else:mdd=0.0;max_dd=0;max_losing=0;active=0;coverage=0.0;worst=None
+    gp=float(sum(x["gross_dollars"] for x in rows));cost=float(sum(x["cost_dollars"] for x in rows))
+    hit=[x for x in rows if x["outcome"] in ("target","stop")]
+    return {"candidate_id":str(candidate),"role":str(role),"window":str(window),"asset":str(asset),"scope":str(scope),
+      "n_exec":n,"n_win":wins,"n_stop":stops,"n_timeout":timeouts,"n_resolved":resolved,"n_eff":n,
+      "n_signals":None,"n_incomplete":None,"win_rate":winrate,"wilson_lo":wlo,"wilson_hi":whi,
+      "gross_dollars":gp,"cost_dollars":cost,"net_dollars":float(net.sum()) if n else 0.0,
+      "expectancy_dollars":float(net.mean()) if n else None,"profit_factor":pfv,
+      "gross_atr_r":mean("gross_atr_r"),"cost_atr":mean("cost_atr"),"net_atr_r":mean("net_atr_r"),
+      "barrier_r":mean("barrier_r"),"mae_atr_r":mean("mae_atr_r"),"mfe_atr_r":mean("mfe_atr_r"),
+      "mean_holding_bars":mean("holding_bars"),"mean_time_to_hit_bars":float(np.mean([x["holding_bars"] for x in hit])) if hit else None,
+      "gap_count":sum(bool(x["gap_flag"]) for x in rows),"double_touch_count":sum(bool(x["double_touch"]) for x in rows),
+      "n_active_days":active,"coverage":coverage,"mdd_dollars":mdd,"mdd_pct_book":mdd/1000*100,
+      "drawdown_duration_trades":max_dd,"worst_day_dollars":worst,"longest_losing_streak":max_losing,
+      "exposure_bars":sum(int(x["holding_bars"]) for x in rows),"baseline_win_rate":None,"breakeven_rate":None,
+      "lift_win_points":None,"p_raw":None,"p_adjusted":None,"ci_lo":None,"ci_hi":None,"power80":None,
+      "metric_status":"ZERO_TRADES; inference_not_computed" if not n else "RAW_DESCRIPTIVE; inference_not_computed"}
+
+
+def _metric_rows(client,head,kind,run_id):
+    directory=f"{BASE}/{kind}/run={run_id}"
+    names=client.list_directory(head,directory)
+    count=0;part_meta=[]
+    for name in sorted(names):
+        if not name.endswith(".parquet"):continue
+        path=directory+"/"+name;raw=client.blob_from_commit(head,path)
+        if len(raw)>8_000_000:raise TransportError("metric partition exceeds 8,000,000 bytes: "+path)
+        table=pq.read_table(pa.BufferReader(raw))
+        if not table.schema.equals(METRIC_SCHEMA,check_metadata=False):raise TransportError("metric schema mismatch: "+path)
+        rows=table.to_pylist();count+=len(rows)
+        part_meta.append({"path":path,"rows":len(rows),"bytes":len(raw),"sha256":hashlib.sha256(raw).hexdigest(),"git_blob_sha":_git_blob_sha(raw)})
+        for row in rows:yield row
+    _metric_rows.last_meta=(count,part_meta)
+
+
+def _compare_metric(got,want,key):
+    for field in METRIC_SCHEMA.names:
+        a=got.get(field);b=want.get(field)
+        if a is None or b is None:
+            if a is not None or b is not None:raise TransportError(f"metric null mismatch {key} {field}: {a} vs {b}")
+        elif isinstance(b,float):
+            if math.isnan(b):
+                if not isinstance(a,float) or not math.isnan(a):raise TransportError(f"metric NaN mismatch {key} {field}")
+            elif not math.isclose(float(a),b,rel_tol=0,abs_tol=1e-9):raise TransportError(f"metric value mismatch {key} {field}: {a} vs {b}")
+        elif a!=b:raise TransportError(f"metric value mismatch {key} {field}: {a} vs {b}")
+
+
 def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
                 metadata_base=BASE) -> dict:
     """Independently regenerate every indexed trade group at one fixed head.
@@ -242,6 +317,9 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
     receipts_by_key={}
     for r in receipts:receipts_by_key.setdefault((r["candidate_id"],r["role"],r["window"]),[]).append(r["path"])
     checked_groups=checked_trades=0;violations=[]
+    summary_metrics=iter(_metric_rows(client,head,"metrics",run_id))
+    asset_metrics=iter(_metric_rows(client,head,"metrics_by_asset",run_id))
+    checked_summary_metrics=checked_asset_metrics=0
     for entry in coverage:
         cid,role,window=entry["candidate_id"],entry["role"],entry["window"]
         key=(cid,role,window);paths=entry.get("partition_paths",[])
@@ -275,6 +353,16 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
                 lo,hi=p.ranges[window]
                 expected.extend(independent_simulate_window(p.o,p.h,p.l,p.c,p.atr,p.seg,mask,sym,cid,lo,hi))
         exp_rows=[trade_row(t,cid,role,window,measurer.panels) for t in expected]
+        try:stored_metric=next(summary_metrics)
+        except StopIteration:raise TransportError("missing raw-derived summary metric row: "+str(key))
+        expected_metric=_audit_metric_row(cid,role,window,"ALL","summary",exp_rows,next(iter(measurer.panels.values())))
+        _compare_metric(stored_metric,expected_metric,key);checked_summary_metrics+=1
+        for sym,panel in measurer.panels.items():
+            asset_trades=[x for x in exp_rows if x["asset"]==sym]
+            try:stored_asset=next(asset_metrics)
+            except StopIteration:raise TransportError("missing raw-derived per-asset metric row: "+str((key,sym)))
+            expected_asset=_audit_metric_row(cid,role,window,sym,"asset",asset_trades,panel)
+            _compare_metric(stored_asset,expected_asset,(key,sym));checked_asset_metrics+=1
         keyfn=lambda x:(x["asset"],int(x["signal_bar"]))
         actual.sort(key=keyfn);exp_rows.sort(key=keyfn)
         if len(actual)!=len(exp_rows):raise TransportError(f"independent rebuild count mismatch {key}: stored={len(actual)} rebuilt={len(exp_rows)}")
@@ -287,6 +375,18 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
                 elif av!=bv:
                     raise TransportError(f"independent rebuild mismatch {key} row {ai} field {field}: {av} vs {bv}")
         checked_groups+=1;checked_trades+=len(exp_rows)
+    try:next(summary_metrics);raise TransportError("extra summary metric rows after coverage exhausted")
+    except StopIteration:pass
+    summary_rows,summary_parts=_metric_rows.last_meta
+    try:next(asset_metrics);raise TransportError("extra per-asset metric rows after coverage exhausted")
+    except StopIteration:pass
+    asset_rows,asset_parts=_metric_rows.last_meta
     if checked_trades!=base_check["trade_rows"]:raise TransportError("full rebuild trade total differs from verified raw total")
+    if checked_summary_metrics!=len(coverage) or summary_rows!=len(coverage):raise TransportError("summary metric coverage does not match trade coverage")
+    if checked_asset_metrics!=len(coverage)*len(measurer.panels) or asset_rows!=checked_asset_metrics:raise TransportError("per-asset metric coverage does not match trade coverage")
     return {**base_check,"groups_rebuilt":checked_groups,"trades_rebuilt":checked_trades,
-            "independent_execution_rebuild":"PASS","violations":0}
+            "independent_execution_rebuild":"PASS","raw_metric_reconciliation":"PASS",
+            "metrics_reconciliation":"DESCRIPTIVE_RAW_METRICS_ONLY; inference_and_controls_pending",
+            "summary_metric_rows":summary_rows,"asset_metric_rows":asset_rows,
+            "metric_partitions":summary_parts+asset_parts,"metric_partition_receipts":summary_parts+asset_parts,
+            "violations":0}

@@ -247,6 +247,8 @@ def cmd_measure(args):
         "head_after_partitions":writer_summary["head"],
         "measurement_index_parts":writer_summary["index_parts"],
         "storage_journal_parts":writer_summary["journal_parts"],
+        "raw_derived_metric_parts":writer_summary["metrics"]["parts"],
+        "raw_derived_metric_groups":writer_summary["metrics"]["groups"],
         "triple_registry_commit":reg_receipt["commit"],
         "selection_commit":sel_receipt["commit"],
         "outer_windows":len(outer),"controls_rows":len(controls),
