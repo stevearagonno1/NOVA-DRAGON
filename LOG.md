@@ -690,3 +690,13 @@ merge : by user hand only via tools/merge_main.sh
 
 branch : main (بأمر المالك المباشر بعد فشل أمر تيرمكس عنده — خلاف §16 ومعلن)
 ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
+
+
+## L0084-R1 — v3 bootstrap (2026-10-05T06:25:16Z)
+
+- Received R1 v3 execution sheet; main remains `71f52f0741cdaceb71797b1fe07de07db31fcced` and previous delivery is `d310df96901fa062022db41a35a24c5f229e0459`.
+- Created the authorized R1 branch from pinned main; preserved the earlier local BLOCKED memo as historical R1 evidence.
+- Added memory-only GitHub transport, environment lock, and mock tests. Seven tests passed before live smoke.
+- Live synthetic Parquet smoke: details in `history/research/hyp_lab_out/L0084-entry-mix-r1/transport_check.json`; no measurement has run.
+- Reproduce mock tests: `python3 -m unittest discover -s tools/l0084_entry_mix_r1 -p test_transport.py`.
+- Not measured: corrected engine, candidate trades/metrics, selection, full-ledger audit. Next: implement and independently test corrected fills.
