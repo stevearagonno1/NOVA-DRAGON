@@ -920,3 +920,8 @@ Executor reported ModuleNotFoundError for PyArrow before synthetic acceptance; m
 ## 2026-10-05 - Lead checked stage1 revision v3
 
 Prepared the owner-requested single-stage paper. Reproduced and fixed lost derived metrics after interrupted commits; tested nine resume boundaries and missing-evidence rejection. 39 tests, four launcher gate checks, native fresh dependency recovery on Python 3.12.14 and 3.13.14, and full 636-group synthetic raw/metric-coverage audit passed. New work branch isolates this revision from prior partial runs. Market stage NOT RUN; no performance/adoption conclusion. No main write or PR.
+
+
+### stage1 checked upload rehearsal (2026-10-05T17:25:27Z)
+
+Lead non-financial upload and immutable readback; no market run.

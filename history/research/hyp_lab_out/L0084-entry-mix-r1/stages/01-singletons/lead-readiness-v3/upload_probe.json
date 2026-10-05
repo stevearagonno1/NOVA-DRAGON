@@ -1,0 +1,6 @@
+{
+  "status": "NON_FINANCIAL_UPLOAD_ROUTE_CHECK",
+  "source_commit": "74bc4cba32c083f34b6588b685f93216aaa580c9",
+  "market_measurement": "NOT RUN",
+  "route": "same prepared launcher record -> PacedTransport -> commit_evidence -> immutable readback"
+}
