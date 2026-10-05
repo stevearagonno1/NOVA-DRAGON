@@ -821,3 +821,9 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - Published implementation and tests for a canonical full-field metrics table: raw summary/per-asset tables remain separate; adjustment partitions are joined into bounded final `metrics` partitions. Independent audit reconstructs expected final rows from verified raw metrics and recalculated adjustments.
 - Validation before publication: py_compile PASS; pytest 23/23 PASS. Synthetic fixture final rows reconciled, but no actual synthetic measure/audit CLI readiness or complete control-family readiness was established. Gate remains CLOSED; no market experiment run.
 - Next: complete control families and actual synthetic CLI readiness; only then consider preregistration amendment and measurement.
+
+
+## 2026-10-05 16:31 Asia/Aden — نشر الحالة المرحلية للتذكرة 008
+- سُجل الرأس المنشور `c5bd96d01a2cf11c84fc558b11ab86efb44da9c2` ومسار التكة 008 بعد التحقق من القراءة الثابتة للفرع.
+- الحالة IN PROGRESS: الحارس مغلق؛ اكتمال controls وsynthetic CLI readiness لم يتحقق. لا قياس سوق.
+- الخطوة التالية: استكمال readiness قبل أي وصول لنتائج السوق.
