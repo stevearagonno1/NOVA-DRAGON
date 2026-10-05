@@ -66,18 +66,28 @@ def check_01_pins(m):
                     "prior_delivery": "d310df96901fa062022db41a35a24c5f229e0459"}
         if source.get("pins") != expected:
             bad.append(("pins", source.get("pins")))
+        amendment_name=os.environ.get("L0084_R1_AMENDMENT_PATH","preregistration_amendment.json")
+        amendment_path=os.path.join(O,os.path.basename(amendment_name))
+        amendment_seed={}
+        if os.path.isfile(amendment_path):
+            try:amendment_seed=json.load(open(amendment_path,encoding="utf-8")).get("code_files_sha256",{})
+            except Exception:amendment_seed={}
         for item in source.get("local_source_files", []):
-            f = os.path.join(ROOT, item["path"])
+            rel=item.get("path")
+            # Historical source.json predates the implementation amendment.
+            # R1 implementation files are instead checked against the exact
+            # current amendment map below; owner inputs remain checked here.
+            if rel in amendment_seed:continue
+            f = os.path.join(ROOT, rel)
             if not os.path.isfile(f) or _sha(f) != item["sha256"]:
-                bad.append((item.get("path"), "local SHA mismatch/missing"))
-        if not source.get("sources"):
+                bad.append((rel, "local SHA mismatch/missing"))
+        if not source.get("sources"): 
             bad.append(("sources", "empty"))
         for item in source.get("sources", []):
             if item.get("commit") == "owner-attachment":
                 continue
             if item.get("http_status") != 200 or item.get("errors"):
                 bad.append((item.get("commit"), item.get("path"), item.get("http_status"), item.get("errors")))
-        amendment_path=os.path.join(O,"preregistration_amendment.json")
         if not os.path.isfile(amendment_path):
             bad.append(("preregistration_amendment.json","missing"))
         else:
@@ -740,7 +750,7 @@ def check_18_workspace():
                 pass
     mb = total / (1024 * 1024)
     secrets = []
-    pats = re.compile(r"(ghp_[A-Za-z0-9]{20,}|github_pat_|AKIA[0-9A-Z]{16}|"
+    pats = re.compile(r"(ghp_[A-Za-z0-9]{20,}|github_pat_[A-Za-z0-9_]{20,}|AKIA[0-9A-Z]{16}|"
                       r"-----BEGIN [A-Z ]*PRIVATE KEY-----|"
                       r"sk-[A-Za-z0-9]{20,})")
     self_path = os.path.abspath(__file__)

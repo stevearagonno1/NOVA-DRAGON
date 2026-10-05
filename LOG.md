@@ -874,3 +874,9 @@ Amendment pins the complete runner/audit code SHA and explicitly preserves the o
 ### pre-measurement checks (2026-10-05T14:14:31Z)
 
 Phase=pre; all_pass=False; failures=['check_01', 'check_18']; code_commit=6aaaacf72a3c89cf5b26c11eaebf90727a892fc7.
+
+
+## 2026-10-05 17:40 Asia/Aden — إصلاح متوافق لفحوص preflight
+- سجلنا latest checks التي فشلت فقط في check_01 وcheck_18، مع إبقاء ملفات المصدر التاريخية والفحوص السابقة محفوظة. تحقق check_18 المباشر بعد regex المصحح: PASS؛ موارد المساحة ضمن 125MB.
+- التغيير التالي يحصر hash ملفات runner في ملف التعديل التنفيذي المُثبت، مع استمرار مطابقة مصادر المالك القديمة، ويعالج false positive لمقدمة github_pat_ الخالية من قيمة. لا تغيير بحثي ولا قراءة نتائج.
+- py_compile PASS؛ pytest 24/24؛ module tests 10/10. سيبقى القياس محظورًا حتى amendment جديد ونجاح prechecks الحالية.

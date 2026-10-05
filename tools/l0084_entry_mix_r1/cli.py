@@ -62,6 +62,15 @@ def cmd_preregister(args):
     return 0
 
 
+def _latest_amendment_name(names):
+    import re
+    candidates=[]
+    for name in names:
+        m=re.fullmatch(r"preregistration_amendment(?:_(\d+))?\.json",name)
+        if m:candidates.append((int(m.group(1) or 1),name))
+    return max(candidates,default=(0,"preregistration_amendment.json"))[1]
+
+
 def cmd_amend_prereg(args):
     from .transport import GitHubTransport
     from .evidence import commit_evidence
@@ -70,6 +79,12 @@ def cmd_amend_prereg(args):
     if not code_sha:raise RuntimeError("L0084_R1_CODE_COMMIT is required for a preregistration amendment")
     client=GitHubTransport();head=client.branch_head()
     base="history/research/hyp_lab_out/L0084-entry-mix-r1/"
+    amendment_name=_latest_amendment_name(client.list_directory(head,base.rstrip('/')))
+    if amendment_name=="preregistration_amendment.json":amendment_name="preregistration_amendment_02.json"
+    else:
+        import re
+        match=re.fullmatch(r"preregistration_amendment_(\d+)\.json",amendment_name)
+        amendment_name=f"preregistration_amendment_{int(match.group(1))+1:02d}.json"
     old=client.blob_from_commit(head,base+"preregistration.json")
     previous=json.loads(old.decode("utf-8"))
     if len(previous.get("settings_52",[]))!=52 or previous.get("pair_sets")!=1326 or previous.get("pair_modes")!=3978:
@@ -93,19 +108,22 @@ def cmd_amend_prereg(args):
       "reason":"implementation correction only: bounded remote full-trade Parquet streaming, exact readback, resumable index, and full independent rebuild audit; no methods, universe, gates, candidate network, inputs, or outcomes changed.",
       "written_before_any_R1_measurement":True,"results_read":False}
     data=json.dumps(amendment,indent=2,ensure_ascii=False).encode()+b"\n"
-    local_out=pathlib.Path(M.O)/"preregistration_amendment.json";local_out.parent.mkdir(parents=True,exist_ok=True);local_out.write_bytes(data)
-    receipt=commit_evidence({base+"preregistration_amendment.json":data},
+    local_out=pathlib.Path(M.O)/amendment_name;local_out.parent.mkdir(parents=True,exist_ok=True);local_out.write_bytes(data)
+    os.environ["L0084_R1_AMENDMENT_PATH"]=amendment_name
+    receipt=commit_evidence({base+amendment_name:data}, 
       "L0084-R1: add implementation-only preregistration amendment before outcomes",
       "Amendment pins the complete runner/audit code SHA and explicitly preserves the original methods, parameters, source panels, 52 settings, 3,978 pair modes, and gates. No outcome read.",
       "implementation-only preregistration amendment frozen",
       f"- Original preregistration preserved at `{base}preregistration.json`; SHA256 `{amendment['previous_preregistration_sha256']}`.\n- Runner code commit `{code_sha}`.\n- Measurement remains NOT RUN.\n")
-    print(json.dumps({"amendment":"PASS","code_commit":code_sha,"commit":receipt["commit"],"files":len(source_hashes)}))
+    print(json.dumps({"amendment":"PASS","path":amendment_name,"code_commit":code_sha,"commit":receipt["commit"],"files":len(source_hashes)}))
     return 0
 
 
 def cmd_check(args):
     from .evidence import commit_evidence
     code_sha=os.environ.get("L0084_R1_CODE_COMMIT","UNSET")
+    amendment_files=os.listdir(M.O) if os.path.isdir(M.O) else []
+    os.environ["L0084_R1_AMENDMENT_PATH"]=_latest_amendment_name(amendment_files)
     m=M.Measurer();res=T.run_all(args.phase,m=m);res["code_commit"]=code_sha
     rel="history/research/hyp_lab_out/L0084-entry-mix-r1/checks.json"
     local=os.path.join(M.O,"checks.json")
@@ -172,7 +190,9 @@ def cmd_measure(args):
     if not code_sha:
         raise RuntimeError("L0084_R1_CODE_COMMIT is required; refusing measurement without pinned code")
     client = GitHubTransport(); head = client.branch_head()
-    amendment = _read_remote_json(client, head, "history/research/hyp_lab_out/L0084-entry-mix-r1/preregistration_amendment.json")
+    output_base="history/research/hyp_lab_out/L0084-entry-mix-r1"
+    amendment_name=_latest_amendment_name(client.list_directory(head,output_base))
+    amendment = _read_remote_json(client, head, output_base+"/"+amendment_name)
     if amendment.get("code_commit_before_measurement") != code_sha:
         raise RuntimeError("preregistration amendment does not pin this runner commit")
     checks = _read_remote_json(client, head, "history/research/hyp_lab_out/L0084-entry-mix-r1/checks.json")
