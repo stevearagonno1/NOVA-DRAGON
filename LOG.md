@@ -733,3 +733,9 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - Four bounded batches; no panel payload written to local workspace.
 - These are exact copies of the panels whose hashes match the preregistered prior coverage; no new data source or transformation.
 - No financial measurement has run.
+
+
+### L0084-R1 journal sequence correction (2026-10-05T06:42:34Z)
+
+- The engine-code commit and the preregistration commits both used `004` as the numeric prefix, and the pre-check used `005`; this duplicate is a journal-numbering defect. Historical committed records are preserved, not edited. Future journal entries will use unique increasing numbers beginning at 008. This is a documentation defect only; checks, preregistration content and panel bytes were not changed.
+- No R1 financial measurement has run.
