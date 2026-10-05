@@ -869,3 +869,8 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 ### implementation-only preregistration amendment frozen (2026-10-05T14:12:45Z)
 
 Amendment pins the complete runner/audit code SHA and explicitly preserves the original methods, parameters, source panels, 52 settings, 3,978 pair modes, and gates. No outcome read.
+
+
+### pre-measurement checks (2026-10-05T14:14:31Z)
+
+Phase=pre; all_pass=False; failures=['check_01', 'check_18']; code_commit=6aaaacf72a3c89cf5b26c11eaebf90727a892fc7.
