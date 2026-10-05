@@ -1,0 +1,34 @@
+START synthetic 2026-10-05T20:29:27.906639+00:00
+{
+  "status": "PASS",
+  "measurement_and_independent_raw_audit": {
+    "status": "PASS",
+    "groups": 636,
+    "trade_rows": 720,
+    "raw_partition_reconciliation": {
+      "head": "head-29",
+      "run_id": "stage1-synthetic",
+      "partitions": 36,
+      "trade_rows": 720,
+      "coverage_rows": 636,
+      "zero_trade_candidate_windows": 600,
+      "storage_journal_shards": 2,
+      "sha_size_schema_reconciliation": "PASS"
+    },
+    "scope": "singletons_and_no_signal_only",
+    "metric_coverage": {
+      "metrics_raw": 636,
+      "metrics_by_asset": 7632,
+      "metrics": 8268
+    },
+    "strategy_adoption": "NOT EVALUATED",
+    "metrics_and_inference_final_audit": "Lead review pending"
+  },
+  "completed_resume": "PASS",
+  "interrupted_resume": "PASS",
+  "tampering": "REJECTED",
+  "pairs_and_triples": "NOT RUN",
+  "market_outcomes_read": false
+}
+EXIT synthetic 0
+PREFLIGHT_PASS_MARKET_NOT_RUN

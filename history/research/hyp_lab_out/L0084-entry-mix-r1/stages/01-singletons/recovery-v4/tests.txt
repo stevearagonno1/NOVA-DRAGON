@@ -1,0 +1,23 @@
+START measure 2026-10-05T20:27:58.800046+00:00
+actual failure
+EXIT measure 7
+.START measure 2026-10-05T20:27:58.812819+00:00
+HEARTBEAT measure child_alive=True; completion not established
+HEARTBEAT measure child_alive=True; completion not established
+HEARTBEAT measure child_alive=True; completion not established
+[REDACTED]
+finished
+EXIT measure 0
+.START measure 2026-10-05T20:27:59.017728+00:00
+RESUMED
+EXIT measure 0
+.START synthetic 2026-10-05T20:27:59.031142+00:00
+PASS
+EXIT synthetic 0
+REUSE synthetic: verified local admission under identical scope/environment
+START synthetic 2026-10-05T20:27:59.042458+00:00
+.
+----------------------------------------------------------------------
+Ran 4 tests in 0.245s
+
+OK

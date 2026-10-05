@@ -1,0 +1,10 @@
+{
+  "head": "4db5769519147f67a50f942ffef1a8590b29ba04",
+  "source_code_git_blobs": "UNCHANGED_VERIFIED",
+  "input_panels_git_blobs": "12_MATCH_PINNED_MANIFEST",
+  "raw_parts": 168,
+  "receipt_shards": 7,
+  "raw_values_audited": false,
+  "completion": "NOT ESTABLISHED",
+  "restart_rule": "existing writer verifies bytes SHA256 schema and deterministic contents before reuse"
+}
