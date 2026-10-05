@@ -1,0 +1,37 @@
+{
+  "status": "LEAD_SHORT_READINESS_PASS_MARKET_NOT_RUN",
+  "main": "8e966404e77a97cd32cd19b7b574b55809e743ab",
+  "base": "5e0e9121c5a382638072f7cec83f3b002a701f87",
+  "branch": "agent/l0084-stage1-checked-2026-10-05",
+  "unit_tests": 39,
+  "launcher_tests": 4,
+  "synthetic_groups": 636,
+  "synthetic_assets": 12,
+  "synthetic_windows": 12,
+  "interruption_boundaries_tested": 9,
+  "fresh_native_python": [
+    "3.12.14",
+    "3.13.14"
+  ],
+  "changes": [
+    "deterministic metric replay on resume",
+    "reject transport failures as missing evidence",
+    "audit metric coverage as well as raw",
+    "stdlib external dependency recovery and gated launcher",
+    "actual workspace resource guard"
+  ],
+  "unchanged_sources": [
+    "engine.py",
+    "indicators.py",
+    "data.py",
+    "measure.py",
+    "stats.py"
+  ],
+  "remaining_limits": [
+    "No market measurement by Lead",
+    "No financial inference/adoption verdict",
+    "Scope endpoints unchanged",
+    "Live network/platform availability cannot be guaranteed",
+    "Per-asset raw evidence is authoritative; pooled financial interpretation awaits Lead audit"
+  ]
+}

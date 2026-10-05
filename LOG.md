@@ -915,3 +915,8 @@ Lead tested the stage-1 paced GitHub route with a small non-financial artifact a
 ## 2026-10-05 - Stage-1 external runtime correction
 
 Executor reported ModuleNotFoundError for PyArrow before synthetic acceptance; market measurement did not start. Lead corrected the paper restriction and provided prepared external dependency setup and standard-library-only status recording. Native Parquet/full-grid synthetic PASS; real CPython 3.13 pip resolution PASS (dry-run); missing-install path simulated. No research-code or scope change.
+
+
+## 2026-10-05 - Lead checked stage1 revision v3
+
+Prepared the owner-requested single-stage paper. Reproduced and fixed lost derived metrics after interrupted commits; tested nine resume boundaries and missing-evidence rejection. 39 tests, four launcher gate checks, native fresh dependency recovery on Python 3.12.14 and 3.13.14, and full 636-group synthetic raw/metric-coverage audit passed. New work branch isolates this revision from prior partial runs. Market stage NOT RUN; no performance/adoption conclusion. No main write or PR.

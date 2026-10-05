@@ -152,7 +152,9 @@ class RawMetricWriter:
         if hasattr(self.transport,"list_directory"):
             for kind,attr in (("metrics_raw","expected_summary_parts"),("metrics_by_asset","expected_asset_parts"),("controls","expected_control_parts"),("metric_adjustments","expected_adjustment_parts")):  
                 try:names=self.transport.list_directory(self.transport.branch_head(),f"{BASE}/{kind}/run={urllib.parse.quote(self.run_id,safe='-_=.')}")
-                except TransportError:names=[]
+                except TransportError as exc:
+                    if "directory resolution failed" not in str(exc):raise
+                    names=[]
                 ids=[]
                 for name in names:
                     if name.startswith("part-") and name.endswith(".parquet"):
@@ -160,7 +162,9 @@ class RawMetricWriter:
                         except ValueError:raise TransportError("invalid metric partition name")
                 setattr(self,attr,max(ids,default=-1)+1)
             try:names=self.transport.list_directory(self.transport.branch_head(),f"{BASE}/metrics/run={urllib.parse.quote(self.run_id,safe='-_=.')}")
-            except TransportError:names=[]
+            except TransportError as exc:
+                if "directory resolution failed" not in str(exc):raise
+                names=[]
             ids=[]
             for name in names:
                 if name.startswith("part-") and name.endswith(".parquet"):
@@ -168,26 +172,32 @@ class RawMetricWriter:
                     except ValueError:raise TransportError("invalid final metric partition name")
             self.expected_final_parts=max(ids,default=-1)+1
             try:names=self.transport.list_directory(self.transport.branch_head(),f"{BASE}/halfyears.csv/run={urllib.parse.quote(self.run_id,safe='-_=.')}")
-            except TransportError:names=[]
+            except TransportError as exc:
+                if "directory resolution failed" not in str(exc):raise
+                names=[]
             ids=[]
             for name in names:
                 if name.startswith("part-") and name.endswith(".csv"):
                     try:ids.append(int(name[5:-4]))
                     except ValueError:raise TransportError("invalid halfyear partition name")
             self.expected_halfyear_parts=max(ids,default=-1)+1
-            self.summary_part=self.expected_summary_parts;self.asset_part=self.expected_asset_parts
-            self.control_part=self.expected_control_parts;self.halfyear_part=self.expected_halfyear_parts
+            # Replay all groups deterministically from partition zero. Existing bytes
+            # are checked by _commit_table rather than appended a second time.
+            self.summary_part=self.asset_part=self.control_part=self.halfyear_part=0
             try:
                 adj_dir=f"{BASE}/metric_adjustments/run={urllib.parse.quote(self.run_id,safe='-_=.')}"
                 adj_names=self.transport.list_directory(self.transport.branch_head(),adj_dir)
-            except TransportError:adj_names=[]
+            except TransportError as exc:
+                if "directory resolution failed" not in str(exc):raise
+                adj_names=[]
             for name in sorted(x for x in adj_names if x.endswith('.parquet')):
                 raw=self.transport.blob_from_commit(self.transport.branch_head(),adj_dir+'/'+name)
                 tab=pq.read_table(pa.BufferReader(raw))
                 if not tab.schema.equals(ADJUSTMENT_SCHEMA,check_metadata=False):raise TransportError("adjustment schema mismatch on resume")
                 for row in tab.to_pylist():self.adjustment_map[(row['candidate_id'],row['role'],row['window'])]=row
                 self.adjustment_rows+=tab.num_rows
-            self.adjustment_part=self.expected_adjustment_parts
+            self.adjustment_part=0
+            self.adjustment_map={};self.adjustment_rows=0
     def add_window(self,candidate,role,window,trades_by_asset,panels,stats=None,baseline_by_asset=None,control_info=None,members=None,mode=None):
         asset_rows=[];all_trades=[]
         for asset,panel in panels.items():

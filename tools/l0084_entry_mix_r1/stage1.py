@@ -18,7 +18,7 @@ import pyarrow.parquet as pq
 from . import measure as M, indicators as I, streaming as W, audit as A
 from . import transport as T
 
-BRANCH = 'agent/l0084-r1-stage1-2026-10-05'
+BRANCH = 'agent/l0084-stage1-checked-2026-10-05'
 RUN = 'stage1-singletons-v1'
 BASE = W.BASE + '/stages/01-singletons'
 
@@ -117,8 +117,24 @@ def audit_stage(client, head, run, m, settings):
                 else: ok = a == b
                 if not ok: raise T.TransportError('independent raw-field mismatch: ' + field)
         count += len(actual)
+    # Raw evidence is insufficient if interruption left derived tables missing
+    # or duplicated. Financial/inferential values remain subject to Lead audit.
+    metric_counts = {}
+    for kind, assets in [('metrics_raw',['ALL']),('metrics_by_asset',list(m.panels)),
+                         ('metrics',['ALL',*m.panels])]:
+        directory=f'{W.BASE}/{kind}/run={run}'
+        keys=[]
+        for name in client.list_directory(head,directory):
+            if not name.endswith('.parquet'): continue
+            rows=pq.read_table(pa.BufferReader(client.blob_from_commit(head,directory+'/'+name))).to_pylist()
+            keys.extend((r['candidate_id'],r['role'],r['window'],r['asset']) for r in rows)
+        expected_keys={(*key,asset) for key in wanted for asset in assets}
+        if set(keys)!=expected_keys or len(keys)!=len(expected_keys):
+            raise T.TransportError('missing, duplicate or unexpected stage1 metric coverage: '+kind)
+        metric_counts[kind]=len(keys)
     return {'status': 'PASS', 'groups': len(coverage), 'trade_rows': count,
             'raw_partition_reconciliation': result, 'scope': 'singletons_and_no_signal_only',
+            'metric_coverage':metric_counts,
             'strategy_adoption': 'NOT EVALUATED', 'metrics_and_inference_final_audit': 'Lead review pending'}
 
 

@@ -148,17 +148,20 @@ class RemoteTradeWriter:
             try:
                 names=self.transport.list_directory(head,f"{BASE}/trades/run={_quote(self.run_id)}")
                 self.run_has_remote_data=bool(names)
-            except TransportError:pass
+            except TransportError as exc:
+                if "directory resolution failed" not in str(exc):raise
             try:
                 names=self.transport.list_directory(head,f"{BASE}/measurement_index/run={_quote(self.run_id)}")
                 parts=[int(x.split("part-")[1].split(".")[0]) for x in names if x.startswith("part-")]
                 self.index_part=max(parts,default=-1)+1
-            except TransportError:pass
+            except TransportError as exc:
+                if "directory resolution failed" not in str(exc):raise
             try:
                 names=self.transport.list_directory(head,f"{BASE}/storage_journal/run={_quote(self.run_id)}")
                 parts=[int(x.split("part-")[1].split(".")[0]) for x in names if x.startswith("part-")]
                 self.journal_part=max(parts,default=-1)+1
-            except TransportError:pass
+            except TransportError as exc:
+                if "directory resolution failed" not in str(exc):raise
 
     @staticmethod
     def _detect_memory_limit():
@@ -201,7 +204,10 @@ class RemoteTradeWriter:
 
     def _resource_snapshot(self):
         total=0
-        for root,dirs,files in os.walk("/home/user"):
+        workspace=os.environ.get("NOVA_STAGE1_WORKSPACE", "/home/user")
+        if "NOVA_STAGE1_WORKSPACE" in os.environ and not os.path.isdir(workspace):
+            raise TransportError("configured workspace does not exist: "+workspace)
+        for root,dirs,files in os.walk(workspace):
             for name in files:
                 try:total+=os.path.getsize(os.path.join(root,name))
                 except OSError:pass
@@ -217,7 +223,8 @@ class RemoteTradeWriter:
         head=self.transport.branch_head()
         directory=f"{BASE}/measurement_index/run={_quote(self.run_id)}"
         try:names=self.transport.list_directory(head,directory)
-        except TransportError:
+        except TransportError as exc:
+            if "directory resolution failed" not in str(exc):raise
             return
         for name in sorted(names):
             if not name.endswith(".jsonl"):continue
@@ -268,6 +275,9 @@ class RemoteTradeWriter:
                 previous.get("partition_paths",[])!=partition_paths or
                 previous.get("schema_version")!=SCHEMA_VERSION):
                 raise TransportError("resumed candidate-window output differs from committed index")
+            # A committed raw index may precede metric flush/close. Replay
+            # metrics for indexed groups too, verifying any existing parts.
+            self.metric_writer.add_window(candidate,role,window,trades_by_asset,panels,stats=stats,baseline_by_asset=baseline_by_asset,control_info=control_info,members=members,mode=mode)
             self._resource_snapshot()
             return row_count
         else:
