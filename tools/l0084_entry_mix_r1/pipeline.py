@@ -250,14 +250,14 @@ def git_commit(message, first=False):
 # ==========================================================================
 # stage 3a — singletons (all twelve half-years; day arrays for pairing)
 # ==========================================================================
-def stage_singles(m):
-    """Measure each singleton in isolated half-year books, resetting cash and
-    position state at every window. No prior-window trade can alter a later one."""
+def stage_singles(m, writer=None):
+    """Measure development-window singleton books with fresh state."""
     t0=time.time();out={}
     for name in SETTINGS_SINGLES:
         per={}
-        for w in _all_windows():
+        for w in _inner_all():
             trades=m.candidate_trades((name,),"AND0",window=w)
+            if writer is not None:writer.add_window(name,"single",w,trades,m.panels)
             pooled=m.windowed(trades,w)
             per[w]=m.stat_window(pooled,w) if pooled else None
         out[name]=per
@@ -268,23 +268,16 @@ def stage_singles(m):
 # ==========================================================================
 # stage 3b — the full 52x51x3 pair grid
 # ==========================================================================
-def stage_pairs(m, singles, batch=150):
+def stage_pairs(m, singles, batch=150, writer=None):
     t0 = time.time()
-    os.makedirs(KEYS, exist_ok=True)
-    pairs = M.canonical_pairs()
-    records = {}
-    buf = {k: [] for k in ("meta", "asset", "sig", "exit", "code", "flag")}
-    cand_idx = 0
-    part = 0
-    t_last = time.time()
+    pairs=M.canonical_pairs();records={};t_last=time.time()
     for n, (a, b) in enumerate(pairs, start=1):
         for mode in ("AND0", "AND2", "OR0"):
             cid = f"P{n:04d}|{mode}"
-            cb_all={sym:[] for sym in m.panels}
             wstats={};wdays={}
-            for w in _all_windows():
+            for w in _inner_all():
                 cb=m.candidate_trades((a,b),mode,window=w)
-                for sym in cb_all:cb_all[sym].extend(cb[sym])
+                if writer is not None:writer.add_window(cid,"pair",w,cb,m.panels)
                 pooled=m.windowed(cb,w)
                 st=m.stat_window(pooled,w) if pooled else None
                 if st is not None:wdays[w]=(st["days"],st["nets"])
@@ -338,71 +331,14 @@ def stage_pairs(m, singles, batch=150):
                                 "minimum_count": minc if minc < 10 ** 9 else 0}
             records[cid] = {"cid": cid, "members": [a, b], "mode": mode,
                             "windows": wstats, "gates": gates}
-            for sym_i, sym in enumerate(list(m.panels.keys())):
-                for t in cb_all[sym]:
-                    buf["meta"].append(cand_idx)
-                    buf["asset"].append(sym_i)
-                    buf["sig"].append(t["signal_bar"])
-                    buf["exit"].append(t["exit_bar"])
-                    buf["code"].append(OUTCOME_CODE[t["outcome"]])
-                    buf["flag"].append((1 if t["gap_flag"] else 0)
-                                       | (2 if t["double_touch"] else 0))
-            cand_idx += 1
-            del cb_all
         if n % batch == 0:
-            _flush_keys(part, buf)
-            part += 1
-            buf = {k: [] for k in buf}
-            journal("pairs_progress", pairs_done=n, candidates=cand_idx,
-                    elapsed_s=round(time.time() - t0, 1),
-                    step_s=round(time.time() - t_last, 1))
-            t_last = time.time()
-    if buf["meta"]:
-        _flush_keys(part, buf)
-    _merge_keys(part + 1)
-    with gzip.open(os.path.join(CACHE, "pairs.pkl.gz"), "wb") as fh:
-        pickle.dump(records, fh, protocol=4)
-    journal("pairs_done", candidates=cand_idx, elapsed_s=round(time.time() - t0, 1))
+            if writer is not None:writer.flush()
+            journal("pairs_progress",pairs_done=n,candidates=n*3,
+                    elapsed_s=round(time.time()-t0,1),step_s=round(time.time()-t_last,1))
+            t_last=time.time()
+    if writer is not None:writer.flush()
+    journal("pairs_done",candidates=len(records),elapsed_s=round(time.time()-t0,1))
     return records
-
-
-OUTCOME_CODE = {"stop": 0, "target": 1, "timeout": 2}
-
-
-def _flush_keys(part, buf):
-    df = pd.DataFrame({"candidate_idx": np.asarray(buf["meta"], dtype="uint16"),
-                       "asset_idx": np.asarray(buf["asset"], dtype="uint8"),
-                       "signal_bar": np.asarray(buf["sig"], dtype="uint16")})
-    df.sort_values(["candidate_idx", "asset_idx", "signal_bar"],
-                   inplace=True, ignore_index=True)
-    df.to_parquet(os.path.join(KEYS, f"parts-{part:03d}.parquet"),
-                  index=False, compression="zstd")
-
-
-def _merge_keys(n_parts):
-    frames = []
-    names = sorted(f for f in os.listdir(KEYS) if f.startswith("parts-"))
-    for f in names:
-        frames.append(pd.read_parquet(os.path.join(KEYS, f)))
-    df = pd.concat(frames, ignore_index=True) if frames else \
-        pd.DataFrame(columns=["candidate_idx", "asset_idx", "signal_bar"])
-    if frames:
-        df.sort_values(["candidate_idx", "asset_idx", "signal_bar"],
-                       inplace=True, ignore_index=True)
-        out = os.path.join(O, "trades_keys.parquet")
-        df.to_parquet(out, index=False, compression="zstd")
-        for f in names:
-            os.remove(os.path.join(KEYS, f))
-    index = {"n_candidates": (int(df["candidate_idx"].max()) + 1) if frames else 0,
-             "order": "(pair_id, mode) enumeration of pairs_registry then "
-                      "registered triples in registration order",
-             "schema": ["candidate_idx uint16", "asset_idx uint8 "
-                        "(index into data_coverage.assets order)",
-                        "signal_bar uint16 (bar index in the asset series)"],
-             "note": "fill_bar=signal_bar+1; outcome/exit/flags and every "
-                     "other trade field are re-derived exactly from retained "
-                     "market data + the locked engine by `cli audit --rebuild`"}
-    dump_json("trades_keys.index.json", index)
 
 
 # ==========================================================================
@@ -461,7 +397,7 @@ def register_triples(prefix, retained):
     return rows
 
 
-def stage_triples(m, singles, pairs, prefix, reg_rows):
+def stage_triples(m, singles, pairs, prefix, reg_rows, writer=None):
     """Measure registered triples on the prefix's inner windows only, with
     paired superiority vs its 3 singleton members and vs every constituent
     pair (same mode) taken from the already-measured pair grid."""
@@ -471,11 +407,10 @@ def stage_triples(m, singles, pairs, prefix, reg_rows):
     for row in reg_rows:
         members = (row["member_a"], row["member_b"], row["member_c"])
         mode = row["mode"]
-        cb_all={sym:[] for sym in m.panels}
         wstats,wdays={},{}
         for w in inner:
             cb=m.candidate_trades(members,mode,window=w)
-            for sym in cb_all:cb_all[sym].extend(cb[sym])
+            if writer is not None:writer.add_window(f"{prefix}:{row['triple_id']}","triple",w,cb,m.panels)
             pooled=m.windowed(cb,w)
             st=m.stat_window(pooled,w) if pooled else None
             if st is not None:
@@ -491,7 +426,6 @@ def stage_triples(m, singles, pairs, prefix, reg_rows):
         if prof in seen:
             rec["duplicate_of"] = seen[prof]
             out[row["triple_id"]] = rec
-            del cb_all
             continue
         seen[prof] = row["triple_id"]
         el, worst, minc, rows = True, None, 10 ** 9, []
@@ -562,7 +496,6 @@ def stage_triples(m, singles, pairs, prefix, reg_rows):
                         "worst_bound": worst,
                         "minimum_count": minc if minc < 10 ** 9 else 0}
         out[row["triple_id"]] = rec
-        del cb_all
     return out
 PairsIndex = {}
 
@@ -720,7 +653,7 @@ def candidate_trades_names(m, member_names, mode, window=None):
     return out
 
 
-def stage_outer(m, finalists):
+def stage_outer(m, finalists, writer=None):
     """Measure each prefix finalist ON its target window (post-selection)."""
     rows = []
     for prefix, info in finalists.items():
@@ -745,6 +678,7 @@ def stage_outer(m, finalists):
             rows.append(r)
             continue
         cb = m.candidate_trades(members, mode, window=prefix)
+        if writer is not None:writer.add_window(f"{prefix}:{chosen}","outer",prefix,cb,m.panels)
         pooled = m.windowed(cb, prefix)
         st = m.stat_window(pooled, prefix) if pooled else None
         if st is None:
@@ -782,36 +716,35 @@ def random_entries_for_asset(m, p, window, count, cand_label, replicate):
         return []
     rng = np.random.default_rng(M.sha_seed(
         f"84|{p.sym}|{window}|{cand_label}|{replicate}"))
-    order = rng.permutation(elig)              # uniform without replacement
-    chosen = []
-    busy = -1
-    for i in order:
-        i = int(i)
-        if i < busy:
-            continue
-        chosen.append(i)
-        busy = i + E.HORIZON                   # signal at exit close, fill next open
-        if len(chosen) >= count:
-            break
-    chosen.sort()
-    recs, _bad = E.execute_many(p.o, p.h, p.l, p.c, p.atr, p.seg,
-                                np.asarray(chosen), p.sym, cand_label)
-    return recs
+    pool=[int(i) for i in elig];chosen=[];cash=E.BOOK0;earliest=first
+    while len(chosen)<count:
+        choices=[i for i in pool if i>=earliest]
+        if not choices:break
+        i=int(rng.choice(choices));pool.remove(i)
+        recs,_bad=E.execute_many(p.o,p.h,p.l,p.c,p.atr,p.seg,[i],p.sym,cand_label)
+        if not recs:continue
+        trade=recs[0]
+        if cash<E.NOTIONAL+E.COST_RT:break
+        chosen.append(trade);cash+=trade["net_dollars"]
+        earliest=trade["exit_bar"]
+    return chosen
 
 
-def stage_controls(m, finalists, singles):
+def stage_controls(m, finalists, singles, writer=None):
     """Per finalist per window: baseline book, 200 random-entry replicates,
     equal-capital buy-and-hold and $20 hold.  Summaries only (compact)."""
     rows = []
-    per = {}
     targets = {pfx: info for pfx, info in finalists.items()}
     # no-signal book rows for every prefix/window (available regardless of
     # whether any candidate qualified)
+    base_written=set()
     for prefix in M.OUTER:
         for w in M.inner_windows(prefix) + [prefix]:
             b = m.baseline(w)
             if b is None:
                 continue
+            if writer is not None and w not in base_written:
+                writer.add_window("NO-SIGNAL","baseline",w,b["per_asset"],m.panels);base_written.add(w)
             rows.append({"candidate": "NO-SIGNAL", "prefix": prefix,
                          "window": w, "n_exec": b["n"],
                          "expectancy": b["expectancy"],
@@ -838,13 +771,17 @@ def stage_controls(m, finalists, singles):
             unmatched = 0
             for rep in range(200):
                 tr_all = []
+                tr_by_asset={}
                 for sym, p in m.panels.items():
                     need = counts.get(sym, 0)
                     recs = random_entries_for_asset(m, p, w, need,
                                                     info["chosen"], rep)
                     if len(recs) < need:
                         unmatched += 1
+                    tr_by_asset[sym]=recs
                     tr_all.extend(recs)
+                if writer is not None:
+                    writer.add_window(f"RAND:{prefix}:{info['chosen']}:rep{rep:03d}","random_control",w,tr_by_asset,m.panels)
                 if not tr_all:
                     rep_rows.append({"replicate": rep, "n": 0,
                                      "expectancy": None, "net": None,
@@ -901,19 +838,15 @@ def stage_controls(m, finalists, singles):
                 "bot_minus_hold1000": (st["net"] - float(np.sum(hold_1000))
                                        if st else None),
             })
-            per[f"{info['chosen']}|{w}"] = {"reps": rep_rows,
-                                            "summary": rand_summary}
     df = pd.DataFrame(rows)
     df.to_csv(os.path.join(O, "controls.csv"), index=False)
-    with open(os.path.join(CACHE, "controls_reps.pkl"), "wb") as fh:
-        pickle.dump(per, fh, protocol=4)
     return rows
 
 
 # ==========================================================================
 # stage 6 — neighbours (+-20%, registered first, separate Holm)
 # ==========================================================================
-def stage_neighbours(m, finalists, singles, pair_records):
+def stage_neighbours(m, finalists, singles, pair_records, writer=None, register_hook=None):
     """Register numeric +-20% neighbours of each prefix finalist, then
     measure them on that prefix's inner windows."""
     from . import neighbours as NB
@@ -931,11 +864,12 @@ def stage_neighbours(m, finalists, singles, pair_records):
                    "old_value": spec["old"], "new_value": spec["new"],
                    "factor": spec["factor"], "neighbour_setting":
                    spec["new_name"], "mode": det["mode"],
-                   "registered_utc": utc(), "status": "registered"}
+                   "registered_utc": os.environ.get("L0084_R1_RUN_STARTED_UTC",utc()), "status": "registered"}
             regs.append(row)
     pd.DataFrame(regs).to_csv(os.path.join(O, "neighbors_registry.csv"),
                               index=False)
     journal("neighbours_registered", n=len(regs))
+    if register_hook is not None:register_hook(os.path.join(O,"neighbors_registry.csv"),"neighbour registry committed before outcomes")
     out_rows = []
     fam_p = []
     fam_map = []
@@ -955,6 +889,7 @@ def stage_neighbours(m, finalists, singles, pair_records):
         windows=[]
         for w in M.inner_windows(prefix):
             nb=candidate_trades_names(m,tuple(new_members),mode,window=w)
+            if writer is not None:writer.add_window(row["neighbour_id"],"neighbour",w,nb,m.panels)
             pooled=m.windowed(nb,w)
             st = m.stat_window(pooled, w) if pooled else None
             bs = base_stats.get(w)
@@ -998,10 +933,33 @@ def stage_neighbours(m, finalists, singles, pair_records):
                             ww["holm_reject"] = bool(rej)
     df = pd.DataFrame(out_rows)
     df.to_csv(os.path.join(O, "neighbors.csv"), index=False)
-    with open(os.path.join(CACHE, "neighbours.pkl"), "wb") as fh:
-        pickle.dump(out_rows, fh, protocol=4)
     journal("neighbours_measured", n=len(out_rows))
     return out_rows
+
+
+# ==========================================================================
+# post-selection descriptive extensions (never feed historical gates)
+# ==========================================================================
+def stage_descriptive(m,singles,pair_records,writer=None):
+    windows=("2021H1","2021H2","2026H2p");rows=[]
+    for name in SETTINGS_SINGLES:
+        for w in windows:
+            cb=m.candidate_trades((name,),"AND0",window=w)
+            if writer is not None:writer.add_window(name,"descriptive",w,cb,m.panels)
+            pooled=m.windowed(cb,w);st=m.stat_window(pooled,w) if pooled else None
+            rows.append({"candidate":name,"candidate_id":name,"stage":"single","mode":"AND0","window":w,**({k:v for k,v in (st or {}).items() if k not in ("days","nets")} if st else {"n_exec":0,"net":None,"pf":None,"expectancy":None})})
+    for cid,rec in pair_records.items():
+        for w in windows:
+            cb=m.candidate_trades(tuple(rec["members"]),rec["mode"],window=w)
+            if writer is not None:writer.add_window(cid,"descriptive",w,cb,m.panels)
+            pooled=m.windowed(cb,w);st=m.stat_window(pooled,w) if pooled else None
+            rows.append({"candidate":cid,"candidate_id":cid,"stage":"pair","mode":rec["mode"],"window":w,**({k:v for k,v in (st or {}).items() if k not in ("days","nets")} if st else {"n_exec":0,"net":None,"pf":None,"expectancy":None})})
+    for w in windows:
+        b=m.baseline(w)
+        if b and writer is not None:writer.add_window("NO-SIGNAL","baseline",w,b["per_asset"],m.panels)
+    pd.DataFrame(rows).to_csv(os.path.join(O,"halfyears.csv"),index=False)
+    journal("descriptive_windows_done",windows=windows,rows=len(rows),selection_frozen=True)
+    return rows
 
 
 # ==========================================================================

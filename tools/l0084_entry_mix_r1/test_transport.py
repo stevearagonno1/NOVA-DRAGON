@@ -1,7 +1,11 @@
 import base64
 import hashlib
 import json
+import io
+import urllib.error
 import unittest
+from email.message import Message
+from unittest.mock import patch
 try:
     from .transport import GitHubTransport, HeadConflict, TransportError, verify_bytes
 except ImportError:
@@ -87,6 +91,29 @@ class TransportTests(unittest.TestCase):
         with self.assertRaisesRegex(TransportError, "interrupted after blob"):
             t.commit_files({"x": b"x"}, "a" * 40, "x")
         self.assertEqual(t.head, "a" * 40)
+    def test_retry_after_is_respected_once(self):
+        calls=[];headers=Message();headers['Retry-After']='1'
+        def opener(req,timeout=30):
+            calls.append(1)
+            if len(calls)==1:
+                raise urllib.error.HTTPError(req.full_url,429,'rate limit',headers,io.BytesIO(b'{"message":"slow down"}'))
+            return FakeResponse(200,{"ok":True})
+        from l0084_entry_mix_r1.transport import GitHubTransport as GT
+        t=GT(token='mock-only',opener=opener)
+        with patch('l0084_entry_mix_r1.transport.time.sleep') as sleep:
+            status,obj=t._request('/user')
+        self.assertEqual((status,obj['ok']),(200,True));self.assertEqual(len(calls),2)
+        sleep.assert_called_once_with(1.0)
+    def test_long_retry_after_stops_without_sleep(self):
+        headers=Message();headers['Retry-After']='900'
+        def opener(req,timeout=30):
+            raise urllib.error.HTTPError(req.full_url,429,'rate limit',headers,io.BytesIO(b'{"message":"limited"}'))
+        from l0084_entry_mix_r1.transport import GitHubTransport as GT
+        t=GT(token='mock-only',opener=opener)
+        with patch('l0084_entry_mix_r1.transport.time.sleep') as sleep:
+            with self.assertRaisesRegex(Exception,'HTTP 429'):
+                t._request('/user')
+        sleep.assert_not_called()
 
 if __name__ == "__main__":
     unittest.main()

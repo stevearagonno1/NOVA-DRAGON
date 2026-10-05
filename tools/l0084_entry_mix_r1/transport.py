@@ -12,6 +12,7 @@ import os
 import urllib.error
 import urllib.parse
 import urllib.request
+import time
 from dataclasses import dataclass
 from typing import Any, Callable
 
@@ -66,22 +67,41 @@ class GitHubTransport:
                 "User-Agent": "L0084-R1-evidence-transport",
             },
         )
-        try:
-            with self._open(req, timeout=30) as response:
-                raw = response.read()
-                status = response.status
-        except urllib.error.HTTPError as exc:
-            raw, status = exc.read(), exc.code
-        except Exception as exc:
-            raise TransportError(f"network failure: {type(exc).__name__}") from None
+        attempt = 0
+        while True:
+            retry_seconds = None
+            try:
+                with self._open(req, timeout=30) as response:
+                    raw = response.read()
+                    status = response.status
+            except urllib.error.HTTPError as exc:
+                raw, status = exc.read(), exc.code
+                if status in (403, 429):
+                    hdr = exc.headers or {}
+                    value = hdr.get("Retry-After")
+                    if value is not None:
+                        try: retry_seconds = max(0.0, float(value))
+                        except (TypeError, ValueError): retry_seconds = None
+                    if retry_seconds is None and hdr.get("X-RateLimit-Reset"):
+                        try: retry_seconds = max(0.0, float(hdr["X-RateLimit-Reset"]) - time.time())
+                        except (TypeError, ValueError): retry_seconds = None
+            except Exception as exc:
+                raise TransportError(f"network failure: {type(exc).__name__}") from None
+            if 200 <= status < 300:
+                break
+            if attempt == 0 and retry_seconds is not None and 0 < retry_seconds <= 120:
+                time.sleep(retry_seconds)
+                attempt += 1
+                continue
+            try: obj = json.loads(raw.decode()) if raw else {}
+            except (UnicodeDecodeError, json.JSONDecodeError): obj = {}
+            msg = obj.get("message", "HTTP error") if isinstance(obj, dict) else "HTTP error"
+            suffix = f"; Retry-After={retry_seconds:g}s not retried (bounded to 120s)" if retry_seconds and retry_seconds > 120 else ""
+            raise TransportError(f"GitHub API HTTP {status}: {msg}{suffix}")
         try:
             obj = json.loads(raw.decode()) if raw else {}
         except (UnicodeDecodeError, json.JSONDecodeError):
             obj = {}
-        if status < 200 or status >= 300:
-            # Avoid echoing request headers, payloads, or credentials.
-            msg = obj.get("message", "HTTP error") if isinstance(obj, dict) else "HTTP error"
-            raise TransportError(f"GitHub API HTTP {status}: {msg}")
         return status, obj
 
     def branch_head(self) -> str:
@@ -127,6 +147,22 @@ class GitHubTransport:
                                 len(buf), new_sha)
                     for p, buf, bsha in pending]
         return new_sha, receipts
+
+    def list_directory(self, commit_sha: str, path: str) -> list[str]:
+        """List one directory from a fixed commit without recursive traversal."""
+        _, commit = self._request("/git/commits/" + commit_sha)
+        tree_sha = commit["tree"]["sha"]
+        parts = [p for p in path.split("/") if p]
+        for part in parts:
+            _, tree = self._request("/git/trees/" + tree_sha)
+            matches = [x for x in tree.get("tree", []) if x.get("path") == part]
+            if len(matches) != 1 or matches[0].get("type") != "tree":
+                raise TransportError("directory resolution failed at " + part)
+            tree_sha = matches[0]["sha"]
+        _, tree = self._request("/git/trees/" + tree_sha)
+        if tree.get("truncated"):
+            raise TransportError("directory tree truncated")
+        return [x["path"] for x in tree.get("tree", [])]
 
     def blob_from_commit(self, commit_sha: str, path: str) -> bytes:
         """Resolve a path from the commit tree and read its Git blob in memory."""

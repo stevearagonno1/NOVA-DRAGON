@@ -77,6 +77,23 @@ def check_01_pins(m):
                 continue
             if item.get("http_status") != 200 or item.get("errors"):
                 bad.append((item.get("commit"), item.get("path"), item.get("http_status"), item.get("errors")))
+        amendment_path=os.path.join(O,"preregistration_amendment.json")
+        if not os.path.isfile(amendment_path):
+            bad.append(("preregistration_amendment.json","missing"))
+        else:
+            amendment=json.load(open(amendment_path,encoding="utf-8"))
+            expected_code=os.environ.get("L0084_R1_CODE_COMMIT")
+            if amendment.get("code_commit_before_measurement")!=expected_code:
+                bad.append(("runner commit",amendment.get("code_commit_before_measurement"),expected_code))
+            source_map=amendment.get("code_files_sha256",{})
+            local_dir=os.path.join(ROOT,"tools","l0084_entry_mix_r1")
+            local_paths={"tools/l0084_entry_mix_r1/"+f for f in os.listdir(local_dir)
+                         if f.endswith(".py") or f=="environment.lock"}
+            if set(source_map)!=local_paths:
+                bad.append(("code file set",len(source_map),len(local_paths)))
+            for rel,want in source_map.items():
+                fp=os.path.join(ROOT,rel)
+                if not os.path.isfile(fp) or _sha(fp)!=want:bad.append((rel,"amendment SHA mismatch"))
         n = len(source.get("sources", []))
     except Exception as exc:
         n = 0; bad.append(("sources.json", type(exc).__name__))
@@ -179,36 +196,28 @@ def check_05_contiguity(m):
 
 
 def check_06_truncation(m):
-    """Causality: masks on a truncated history equal the full-history masks
-    restricted to that prefix (no look-ahead), for all 52 settings and all
-    three combination modes."""
-    sym = "BTCUSDT"
-    p = m.panels[sym]
-    n = len(p.c)
-    cuts = [n - 1, n - 500, n - 2000]
-    mism = []
-    for cut in cuts:
-        dd = {k: v[:cut] for k, v in p._raw.items()}
-        trunc = I.build_masks(dd)
-        for name in I.SETTINGS_52:
-            a = trunc[name]
-            b = p.masks[name][:cut]
-            if not np.array_equal(a, b):
-                mism.append((sym, cut, name, int((a != b).sum())))
-    # combination modes on a truncated prefix
-    for cut in (n - 1, n - 1500):
-        dd = {k: v[:cut] for k, v in p._raw.items()}
-        t2 = I.build_masks(dd)
-        for mode in ("AND0", "AND2", "OR0"):
-            a = E.combine({k: t2[k] for k in list(I.SETTINGS_52)[:3]}, mode,
-                          p.seg[:cut])
-            b = E.combine({k: p.masks[k] for k in list(I.SETTINGS_52)[:3]},
-                          mode, p.seg)[:cut]
-            if not np.array_equal(a, b):
-                mism.append((sym, cut, mode))
-    return _record(6, "prefix-truncation tests (all masks/modes)", not mism,
-                   f"3 truncation points x 52 settings x 12 assets + 3 modes; "
-                   f"mismatches={mism or 'none'}")
+    """Verify prefix causality for all settings and modes on all 12 assets."""
+    mism=[];assets_tested=0;mask_comparisons=0;mode_comparisons=0
+    for sym in D.ASSETS:
+        p=m.panels[sym];n=len(p.c);assets_tested+=1
+        cuts=sorted(set(max(1,n-x) for x in (1,500,2000)))
+        for cut in cuts:
+            truncated_raw={k:v[:cut] for k,v in p._raw.items()}
+            truncated_masks=I.build_masks(truncated_raw)
+            for name in I.SETTINGS_52:
+                a=truncated_masks[name];b=p.masks[name][:cut];mask_comparisons+=1
+                if not np.array_equal(a,b):mism.append((sym,cut,name,int((a!=b).sum())))
+        for cut in sorted(set(max(1,n-x) for x in (1,1500))):
+            truncated_raw={k:v[:cut] for k,v in p._raw.items()}
+            truncated_masks=I.build_masks(truncated_raw)
+            for mode in ("AND0","AND2","OR0"):
+                names=list(I.SETTINGS_52)[:3]
+                a=E.combine({k:truncated_masks[k] for k in names},mode,p.seg[:cut])
+                b=E.combine({k:p.masks[k] for k in names},mode,p.seg)[:cut]
+                mode_comparisons+=1
+                if not np.array_equal(a,b):mism.append((sym,cut,mode))
+    return _record(6,"prefix-truncation tests (12 assets; all 52 masks and 3 modes)",not mism,
+        f"assets={assets_tested}; mask comparisons={mask_comparisons}; combination comparisons={mode_comparisons}; mismatches={mism or 'none'}")
 
 
 def check_07_references(m):
@@ -685,108 +694,41 @@ def check_15_scipy_refs():
                                       "power": pw.get("n80")}))
 
 
-def check_16_full_confirm(m, sample=25):
-    """Confirm check 16 on the real full run: re-measure a random sample of
-    candidates from the masks and compare with metrics.parquet exactly."""
-    mp = os.path.join(O, "metrics.parquet")
-    if not os.path.exists(mp):
-        return _record("16b", "full-run deterministic rerun", False,
-                       "metrics.parquet missing")
-    metrics = pd.read_parquet(mp)
-    pool = metrics[metrics["stage"] == "pair"]
-    if len(pool) == 0:
-        return _record("16b", "full-run deterministic rerun", False,
-                       "no pair rows to verify")
-    rows = pool.sample(min(sample, len(pool)), random_state=84)
-    bad, checked = [], 0
-    for _, r in rows.iterrows():
-        pid, mode = str(r["candidate"]).split("|")
-        members = tuple(M.canonical_pairs()[int(pid[1:]) - 1])
-        cb = m.candidate_trades(members, mode)
-        pooled = m.windowed(cb, r["window"])
-        st = m.stat_window(pooled, r["window"]) if pooled else None
-        checked += 1
-        if st is None:
-            bad.append((r["candidate"], r["window"], "no trades"))
-            continue
-        if st["n_exec"] != int(r["n_exec"]):
-            bad.append((r["candidate"], r["window"], "n", st["n_exec"],
-                        int(r["n_exec"])))
-        if abs(st["net"] - float(r["net"])) > 1e-9:
-            bad.append((r["candidate"], r["window"], "net", st["net"],
-                        float(r["net"])))
-        if abs(st["expectancy"] - float(r["expectancy"])) > 1e-12:
-            bad.append((r["candidate"], r["window"], "exp"))
-    return _record("16b", "full-run deterministic rerun", not bad,
-                   json.dumps({"checked": checked,
-                               "violations": bad[:3] or "none"}))
+def check_16_full_confirm(m):
+    """The real-run confirmation must cite a complete independent audit."""
+    path=os.path.join(O,"audit.json")
+    try:
+        audit=json.load(open(path,encoding="utf-8"))
+        ok=(audit.get("status")=="PASS"
+            and audit.get("independent_execution_rebuild")=="PASS"
+            and int(audit.get("groups_rebuilt",-1))==int(audit.get("coverage_rows",-2))
+            and int(audit.get("trades_rebuilt",-1))==int(audit.get("trade_rows",-2))
+            and int(audit.get("violations",-1))==0)
+        evidence={k:audit.get(k) for k in ("fixed_head","run_id","groups_rebuilt","coverage_rows","trades_rebuilt","trade_rows","violations")}
+    except Exception as exc:ok=False;evidence={"error":type(exc).__name__}
+    return _record("16b","full-run independent deterministic rebuild",ok,json.dumps(evidence))
 
 
 def check_17_reconciliation(m=None):
-    """Raw-ledger/table reconciliation: rebuild every grid number from the
-    keys ledger and compare with the metrics/trades tables."""
-    import pyarrow  # noqa: F401
-    keys_path = os.path.join(O, "trades_keys.parquet")
-    if not os.path.exists(keys_path):
-        return _record(17, "raw-ledger/table reconciliation", False,
-                       "trades_keys.parquet missing", critical=True)
-    keys = pd.read_parquet(keys_path)
-    metrics_path = os.path.join(O, "metrics.parquet")
-    metrics = pd.read_parquet(metrics_path) if os.path.exists(metrics_path) \
-        else pd.DataFrame()
-    metrics = metrics[metrics["cand_idx"] >= 0]      # ledger-backed rows only
-    sample = metrics.sample(min(40, len(metrics)), random_state=84)
-    m = m or M.Measurer()
-    bad = []
-    for _, row in sample.iterrows():
-        cand = row["candidate"]
-        nmembers = int(row["n_members"])
-        mode = row["mode"]
-        window = row["window"]
-        if cand.startswith("P"):
-            pid, _mode = cand.split("|")
-            members = tuple(M.canonical_pairs()[int(pid[1:]) - 1])
-        elif cand.startswith("T"):
-            members = tuple(row["members"].split("|"))
-        else:
-            members = (cand,)
-        # rebuild from keys ledger
-        idx = keys
-        cb_rebuilt = {}
-        wanted = None
-        n = 0
-        for sym_i, sym in enumerate(D.ASSETS):
-            sub = idx[(idx["candidate_idx"] == int(row["cand_idx"]))
-                      & (idx["asset_idx"] == sym_i)]
-            if len(sub) == 0:
-                cb_rebuilt[sym] = []
-                continue
-            p = m.panels[sym]
-            lo, hi = p.ranges[window]
-            recs, _b = E.execute_many(p.o, p.h, p.l, p.c, p.atr, p.seg,
-                                      sub["signal_bar"].to_numpy(), sym, cand)
-            kept = E.window_trades(recs, lo, hi)
-            cb_rebuilt[sym] = kept
-            n += len(kept)
-        if n != int(row["n_exec"]):
-            bad.append((cand, window, "n_exec", n, int(row["n_exec"])))
-            continue
-        nets = np.array([t["net_dollars"] for sy in cb_rebuilt
-                         for t in cb_rebuilt[sy]])
-        if abs(nets.sum() - float(row["net"])) > 1e-9:
-            bad.append((cand, window, "net", nets.sum(), row["net"]))
-        if abs(nets.mean() - float(row["expectancy"])) > 1e-12:
-            bad.append((cand, window, "exp", nets.mean(), row["expectancy"]))
-    # hashes of the delivered artefacts
-    hashes = {}
-    for f in ("trades.parquet", "metrics.parquet", "trades_keys.parquet"):
-        p = os.path.join(O, f)
-        if os.path.exists(p):
-            hashes[f] = _sha(p)
-    return _record(17, "raw-ledger/table reconciliation", not bad,
-                   json.dumps({"sample": len(sample), "violations": bad[:3],
-                               "hashes": hashes}), extra={"hashes": hashes})
-
+    """Require a full remote raw-to-metric reconciliation, never a sample."""
+    ap=os.path.join(O,"audit.json")
+    mp=os.path.join(O,"evidence_manifest.json")
+    try:
+        audit=json.load(open(ap,encoding="utf-8"))
+        manifest=json.load(open(mp,encoding="utf-8"))
+        ok=(audit.get("status")=="PASS"
+            and audit.get("sha_size_schema_reconciliation")=="PASS"
+            and audit.get("independent_execution_rebuild")=="PASS"
+            and audit.get("metrics_reconciliation")=="PASS"
+            and manifest.get("run_id")==audit.get("run_id")
+            and manifest.get("audit_status")=="PASS")
+        evidence={"run_id":audit.get("run_id"),"fixed_head":audit.get("fixed_head"),
+                  "metrics_reconciliation":audit.get("metrics_reconciliation"),
+                  "trade_rows":audit.get("trade_rows"),"metric_rows":audit.get("metric_rows"),
+                  "manifest_status":manifest.get("audit_status")}
+    except Exception as exc:
+        ok=False;evidence={"error":type(exc).__name__}
+    return _record(17,"full raw-ledger/metrics/hash reconciliation",ok,json.dumps(evidence),critical=True)
 
 def check_18_workspace():
     total = 0
