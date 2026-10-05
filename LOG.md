@@ -890,3 +890,8 @@ Amendment pins the complete runner/audit code SHA and explicitly preserves the o
 ### pre-measurement checks (2026-10-05T14:43:34Z)
 
 Phase=pre; all_pass=True; failures=[]; code_commit=8a7c81fd91f1984d799c13f7484f89a43712c22d.
+
+
+### exact-code synthetic readiness PASS; market gate remains controlled (2026-10-05T14:50:15Z)
+
+Published readiness is generated from observed exact-code prechecks, 24 pytest and 10 module tests, and the actual `synthetic-readiness` command with measure/audit exit 0. It records 765 groups, 1,442 trades, 2,295 final metrics, 1,248 control rows, 68 zero-trade groups, immutable path hashes and resource readings. Prior IN_PROGRESS readiness is preserved under an explicit historical filename. No market outcome was read.
