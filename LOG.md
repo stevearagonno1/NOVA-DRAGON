@@ -764,3 +764,10 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - No market measurement or outcomes read; code remains uncommitted. Metrics/report generation and independent raw-to-metrics audit remain incomplete; audit is gated to fail closed until implemented.
 - Workspace: 69,174,215 bytes of 125,000,000. Next: complete and test all metrics/reconciliation before code publication or measurement.
 
+### L0084-R1 metrics gate and CLI safety (2026-10-05T08:42:27Z)
+
+- Removed legacy measurement override flags. Measure and summarize now fail closed until full metrics/report generation and raw-to-metrics reconciliation are implemented; audit requires `--rebuild-all` and cannot claim PASS on raw rebuild alone.
+- Synthetic suite: 32/32 PASS; checks 14 and 16 PASS (599 synthetic trades). No market outcomes read or measured.
+- Complete metric/control/report partitions and reconciliation remain unfinished; code is not published.
+- Executor-created pip download cache removed; owner inputs/evidence untouched. Workspace 69,889,857 bytes of 125,000,000. Next: implement and test metric/control partitions and full audit before measurement.
+
