@@ -1,0 +1,46 @@
+{
+  "round_id": "L0084-R1",
+  "paper_version": 7,
+  "status": "IN_PROGRESS",
+  "measurement_status": "NOT RUN",
+  "validity": "NO MARKET VALIDITY CLAIM",
+  "source_main_sha": "71f52f0741cdaceb71797b1fe07de07db31fcced",
+  "prior_source_sha": "d310df96901fa062022db41a35a24c5f229e0459",
+  "readiness_code_commit": "db8c43289652c160b622791ec2940fd357c018ec",
+  "experiment_commit_sha": null,
+  "branch": "arena/l0084-entry-mix-r1-2026-10-05",
+  "as_of_utc": "2026-10-05T10:31:37Z",
+  "data_span": "Market data not measured; registered span remains 2021-01-01 through 2026-09-27",
+  "report_path": null,
+  "readiness_path": "history/research/hyp_lab_out/L0084-entry-mix-r1/readiness.json",
+  "checks_path": "history/research/hyp_lab_out/L0084-entry-mix-r1/checks.json",
+  "audit_path": "history/research/hyp_lab_out/L0084-entry-mix-r1/synthetic_network_smoke.json (synthetic raw-only; not full audit)",
+  "manifest_path": "history/research/hyp_lab_out/L0084-entry-mix-r1/evidence_manifest.json (synthetic only)",
+  "partition_index_paths": [
+    "history/research/hyp_lab_out/L0084-entry-mix-r1/measurement_index/run=readiness-synth-20261005T102326Z/part-00000.jsonl"
+  ],
+  "raw_partition_paths": [
+    "history/research/hyp_lab_out/L0084-entry-mix-r1/trades/run=readiness-synth-20261005T102326Z/role=single/candidate=SYNTH-R1-RAW-AUDIT-001/window=SYNTH_A/part-00000.parquet"
+  ],
+  "handoff_paths": [
+    "docs/lanes/L0084-R1-VERDICT.md",
+    "docs/lanes/L0084-R1-HANDOFF.md",
+    "docs/lanes/L0084-R1-CONSTRAINTS.md"
+  ],
+  "journal_paths": [
+    "history/research/hyp_lab_out/L0084-entry-mix-r1/storage_journal/run=readiness-synth-20261005T102326Z/part-00000.jsonl",
+    "history/research/hyp_lab_out/L0084-entry-mix-r1/storage_journal.jsonl"
+  ],
+  "workspace_peak_bytes": 69782856,
+  "peak_memory_bytes": 191574016,
+  "remote_evidence_bytes": null,
+  "unresolved_items": [
+    "shared synthetic CLI measure/audit mode",
+    "multi-asset and pair-mode end-to-end runner",
+    "candidate/per-asset/control/halfyear metrics writers",
+    "independent raw-to-metrics reconciliation",
+    "bounded complete report/delivery integration",
+    "final synthetic command exit status verification"
+  ],
+  "future_status": "NOT MEASURED"
+}

@@ -1,0 +1,38 @@
+{
+  "status": "DRAFT_SYNTHETIC_ONLY",
+  "measurement_status": "NOT RUN",
+  "source_commit": "db8c43289652c160b622791ec2940fd357c018ec",
+  "readiness_path": "history/research/hyp_lab_out/L0084-entry-mix-r1/readiness.json",
+  "synthetic_run_id": "readiness-synth-20261005T102326Z",
+  "remote_fixed_head": "85f209bc1faefbc8f1fc94cf714dd4c77082063e",
+  "partitions": [
+    {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/trades/run=readiness-synth-20261005T102326Z/role=single/candidate=SYNTH-R1-RAW-AUDIT-001/window=SYNTH_A/part-00000.parquet",
+      "rows": 1,
+      "bytes": 8955,
+      "schema_version": "l0084-r1-trade-v1",
+      "sha256": "edbd2e721cd81b9ec4cdf517a3d4ede2734d798b8e9bf291d3df8ef59bdd517c",
+      "git_blob_sha": "cbc7676ff453532c4f0fb157d214cef1e0ff43e4",
+      "commit_sha": "51ba5589c09b0305286a41dc1d7a63bf5b2bca9c",
+      "readback": "PASS"
+    }
+  ],
+  "coverage_index": [
+    "history/research/hyp_lab_out/L0084-entry-mix-r1/measurement_index/run=readiness-synth-20261005T102326Z/part-00000.jsonl"
+  ],
+  "storage_journal": [
+    "history/research/hyp_lab_out/L0084-entry-mix-r1/storage_journal/run=readiness-synth-20261005T102326Z/part-00000.jsonl"
+  ],
+  "metadata_base": "history/research/hyp_lab_out/L0084-entry-mix-r1/synthetic_readiness/readiness-synth-20261005T102326Z",
+  "metrics_paths": [],
+  "market_raw_paths": [],
+  "raw_only_audit": {
+    "status": "PASS_RESULT_EMITTED",
+    "groups": 2,
+    "trade_rows": 1,
+    "zero_trade_groups": 1,
+    "violations": 0,
+    "exit_code": "unknown; caller timed out"
+  },
+  "full_metrics_audit": "NOT IMPLEMENTED"
+}

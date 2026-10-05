@@ -787,3 +787,11 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - Tool emitted the full result but timed out at 180 seconds; final shell exit code unknown. No claim of CLI readiness.
 - 32/32 local tests and checks 06/14/16 pass. No market outcome read or measurement. Metrics/control tables and raw-to-metrics audit are absent; gate stays closed.
 - Workspace 69,783,342 bytes; writer peak 69,782,856; RSS 191,574,016; hard disk cap 125,000,000. Next: implement full shared CLI metrics/audit integration.
+
+
+### L0084-R1 DRAFT handoff and delivery metadata (2026-10-05T10:31:37Z)
+
+- Added provisional VERDICT, HANDOFF and CONSTRAINTS, plus `delivery.json` and a manifest explicitly limited to synthetic evidence. They do not assert a market result or complete delivery.
+- Recorded DRAFT runner commit `db8c43289652c160b622791ec2940fd357c018ec`, the one-row synthetic remote partition and raw-only rebuild result (two groups, one trade, one zero group). The caller timed out after output; exit code unknown.
+- Measurement remains NOT RUN; CLI gate stays closed; metrics and full audit are incomplete. Workspace 69,783,342 bytes.
+- Next: implement the shared synthetic/real runner and full metric/control reconciliation before measurement.
