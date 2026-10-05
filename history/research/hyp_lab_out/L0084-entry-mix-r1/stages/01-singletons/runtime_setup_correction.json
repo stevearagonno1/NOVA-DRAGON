@@ -1,0 +1,14 @@
+{
+  "status": "OWNER_REPORTED_BLOCKED_BEFORE_MARKET",
+  "error": "ModuleNotFoundError: No module named 'pyarrow'",
+  "synthetic_exit_code": 1,
+  "stage1_market_started": false,
+  "workspace_bytes_reported": 71379799,
+  "executor_head_reported": "e565954e1e7086a994acbf738c09b38d98c37a2d",
+  "resolution": "Prepared external dependency setup explicitly authorised; numerical research sources and scope unchanged",
+  "fresh_native_cp313_install_by_lead": "NOT RUN",
+  "native_cp312_parquet_roundtrip": "PASS",
+  "full_grid_synthetic": "PASS: 636 groups",
+  "cp313_pip_resolution": "PASS dry-run only",
+  "missing_dependency_setup_control_flow": "PASS simulated; not a fresh native installation"
+}

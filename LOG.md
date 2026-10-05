@@ -910,3 +910,8 @@ Lead prepared a singleton-only entry point and scoped registration after GitHub 
 ### stage1 transport rehearsal pass (2026-10-05T16:16:45Z)
 
 Lead tested the stage-1 paced GitHub route with a small non-financial artifact and immutable readback. No market outcome or long experiment was measured.
+
+
+## 2026-10-05 - Stage-1 external runtime correction
+
+Executor reported ModuleNotFoundError for PyArrow before synthetic acceptance; market measurement did not start. Lead corrected the paper restriction and provided prepared external dependency setup and standard-library-only status recording. Native Parquet/full-grid synthetic PASS; real CPython 3.13 pip resolution PASS (dry-run); missing-install path simulated. No research-code or scope change.

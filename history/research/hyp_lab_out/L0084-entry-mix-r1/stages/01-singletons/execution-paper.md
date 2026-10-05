@@ -1,4 +1,6 @@
-# L0084-R1 — المرحلة الأولى فقط: إشارات المؤشرات منفردة
+# L0084-R1 — المرحلة الأولى فقط: إشارات المؤشرات منفردة — الإصدار 2
+
+**تصحيح تجهيز البيئة:** أبلغ الوكيل عن `ModuleNotFoundError: No module named 'pyarrow'` قبل قياس السوق. كان منع إعادة التثبيت خطأ في الورقة. هذا الإصدار يجيز ويعدّ تثبيت الاعتماديات المفقودة خارج مساحة العمل، ويعيد التحقق منها في كل جلسة جديدة. كود البحث ونطاق المرحلة والفرع ومعرّف التشغيل لم تتغير.
 
 هذه ورقة واحدة لمرحلة واحدة. تقيس الإعدادات الـ52 الحالية كلًّا على حدة، مقابل الدخول دون إشارة، ثم تنتهي. لا تجمع مؤشرين ولا تبدأ ثلاثيات. أنا أراجع الأدلة وأكتب التقرير وأحدد المرحلة التالية.
 
@@ -11,7 +13,7 @@ Execute the prepared long stage only. Do not develop, repair, redesign or modify
 Question: what is the measured historical behaviour of each locked singleton signal, separately, after costs against its contemporaneous no-signal book?
 Why now: the owner requested separate stages after the all-stage run encountered GitHub API limits. No hypothesis of a profitable singleton is asserted. Historical results are descriptive, not new blind evidence.
 
-Before starting, cancel your previously scheduled retry `r1-measurement-retry-after-rate--74824206` using the scheduling capability that created it, verify cancellation, and verify that its old measurement process is no longer writing. Preserve its run `r1-20261005T145115Z` and all remote/local evidence; no deletion or main write. If you cannot verify quiescence, report the actual obstacle and do not run competing publishers. No separate paper is needed for routine progress within this stage.
+The executor already reported cancellation returned `not_found` and confirmed no R1/Stage1 process was active. Treat that combination as quiescent, not a new blocker; recheck only if a new process has started. Before starting, cancel your previously scheduled retry `r1-measurement-retry-after-rate--74824206` using the scheduling capability that created it, verify cancellation, and verify that its old measurement process is no longer writing. Preserve its run `r1-20261005T145115Z` and all remote/local evidence; no deletion or main write. If you cannot verify quiescence, report the actual obstacle and do not run competing publishers. No separate paper is needed for routine progress within this stage.
 
 ## 2. Pinned sources and destination
 
@@ -36,7 +38,7 @@ Lead executed the stage's actual synthetic CLI: **636 candidate-window groups**,
 
 Lead also ran the actual paced GitHub publication route on the named branch with a non-financial artifact, LOG/tick recording and immutable readback. This is an actual upload check, not a market result or an assurance against all future platform failures.
 
-Lead test runtime: Python 3.12.14, NumPy 2.3.5, Pandas 2.2.3, SciPy 1.17.0, PyArrow 25.0.1. The previous executor readiness reported Python 3.13.14/SciPy 1.17.1 and the same NumPy/Pandas/PyArrow; this report is not a fresh runtime measurement. Run the prepared short synthetic command below once in the existing executor runtime before the long stage; do not reinstall dependencies or repair code.
+Lead test runtime: Python 3.12.14, NumPy 2.3.5, Pandas 2.2.3, SciPy 1.17.0, PyArrow 25.0.1. The previous executor readiness reported Python 3.13.14/SciPy 1.17.1 and the same NumPy/Pandas/PyArrow; this report is not a fresh runtime measurement. Run the prepared short synthetic command below once in the existing executor runtime before the long stage; dependency installation through the exact prepared bootstrap in §8 is now explicitly authorised outside `/home/user`; do not repair research code or install packages inside the workspace.
 
 Market stage-1 outcomes: **NOT RUN by Lead**. Wall-clock duration and full-run peak storage/memory: **not measured**. Current executor free space is checked at admission; its earlier 121,423,124-byte peak is historical evidence only.
 
@@ -66,7 +68,7 @@ The existing draft metric writer emits per-asset and summary partitions. **Only 
 
 Use the prepared stage entry point, which bounds raw Parquet parts to 8,000,000 bytes and batches to 5,000,000 bytes; 5,000 rows is a chunk ceiling, not a guarantee of file size. Full raw fields are retained; no sampling, deletion or compressed summary substitutes for the full ledger. Parquet is written from bounded memory directly to the registered work branch. No giant local ledger.
 
-Source setup reserves 750,000 local bytes; total workspace cap remains 125,000,000 bytes. Dependencies already available outside the workspace are reused. No full clone/fetch, dependency cache, market archive download or deletion. Existing runtime memory guard remains active. Larger-run duration/storage estimates are not acceptance results.
+Source setup reserves 750,000 local bytes; total workspace cap remains 125,000,000 bytes. Dependencies already importable and matching the accepted versions are reused. Missing dependencies are installed by the prepared bootstrap outside the workspace, with installer temporary files outside it and no pip download cache. Do not presume a previous `/tmp` installation survived a new session. No full clone/fetch, dependency cache inside the workspace, market archive download or deletion. The bootstrap may install/replace generated packages inside its own external runtime directory; this grants no authority over research code, datasets or main. Existing runtime memory guard remains active. Larger-run duration/storage estimates are not acceptance results.
 
 Publication is serial. The prepared client spaces total requests by at least 2 seconds and writes by at least 15 seconds; branch reads and immutable tree/blob reads are cached/bounded. Parent transport's bounded retry can add one request; these pacing values are not claims about shared-account usage or GitHub's unpublished secondary limits. Respect any actual Retry-After. Do not change the token, thresholds or code to bypass a rate limit.
 
@@ -81,7 +83,103 @@ set +x
 export GH_TOKEN='[OWNER_TOKEN_REDACTED]'
 ```
 
-## 8. Exact execution commands
+## 8. Exact execution commands — dependency admission before synthetic readiness
+
+### Prepared dependency bootstrap: allowed setup, not executor development
+
+On every fresh session/resume, execute the following prepared code using the same Python that will run the stage. It probes NumPy/Pandas/SciPy/PyArrow imports and accepted versions, tests Parquet with Zstandard, installs a missing PyArrow wheel (or a missing numeric environment) into its versioned external runtime, then repeats the probe. Pip uses the official PyPI index, binary wheels, no cache and an external temporary directory. GH_TOKEN is removed from the installer environment. Dependency installation is explicitly authorised by this correction; no new paper/owner confirmation is needed.
+
+Do not remove existing files or reinstall the research engine. No full clone or original market download. Only the prepared package installer may maintain its generated external runtime. Preserve the previously prepared stage sources and partial R1 evidence.
+
+Lead checks actually executed: native PyArrow 25.0.1 import and Parquet/Zstandard round-trip on Python 3.12.14; the complete 636-group synthetic stage; standard-library-only transport import with Python `-S`; real pip resolution (`--dry-run`) of the CPython 3.13 x86_64 wheel from PyPI. The missing-dependency/installation control flow and forbidden workspace-path case were simulated. **A fresh native Python 3.13 installation was not executed by Lead**, and the executor runtime has not been remeasured yet. Final environment PASS must come from this probe in the executor runtime; dry-run is not installation.
+
+Run this prepared bootstrap before the previous source/synthetic steps. Its code needs only the Python standard library and invokes the existing `python -m pip` only when a dependency is missing or mismatched:
+
+```sh
+python - <<'PY'
+"""Prepared dependency setup; no research-code or market-data modification."""
+from __future__ import annotations
+import argparse
+import json
+import os
+from pathlib import Path
+import subprocess
+import sys
+
+VERSIONS = {'numpy': ['2.3.5'], 'pandas': ['2.2.3'],
+            'scipy': ['1.17.0', '1.17.1'], 'pyarrow': ['25.0.1']}
+PROBE = r'''
+import json, importlib
+allowed = %s
+versions = {}; issues = {}
+for name, accepted in allowed.items():
+    try:
+        m = importlib.import_module(name); versions[name] = m.__version__
+        if m.__version__ not in accepted: issues[name] = 'version: '+m.__version__
+    except Exception as e: issues[name] = type(e).__name__+': '+str(e)
+if not issues:
+    try:
+        import pyarrow as pa, pyarrow.parquet as pq
+        table = pa.table({'asset':['fixture','fixture'], 'gross':[1.0,-0.3], 'cost':[0.052,0.052]})
+        sink = pa.BufferOutputStream(); pq.write_table(table,sink,compression='zstd',version='2.6')
+        if not pq.read_table(pa.BufferReader(sink.getvalue())).equals(table):
+            raise RuntimeError('Parquet round-trip mismatch')
+    except Exception as e: issues['pyarrow'] = type(e).__name__+': '+str(e)
+print(json.dumps({'versions':versions,'issues':issues,'parquet_roundtrip':'PASS' if not issues else 'NOT RUN'}))
+''' % repr(VERSIONS)
+
+
+def prepare(target, workspace, runner=subprocess.run):
+    target=Path(target).resolve(); workspace=Path(workspace).resolve()
+    if target == workspace or workspace in target.parents:
+        raise RuntimeError('dependency directory must be outside the experiment workspace')
+    target.mkdir(parents=True,exist_ok=True)
+    env=dict(os.environ); env.pop('GH_TOKEN',None)
+    env['PYTHONPATH']=str(target)+os.pathsep+env.get('PYTHONPATH','')
+    env['PYTHONDONTWRITEBYTECODE']='1'
+    temporary=target/'installer-temporary';temporary.mkdir(exist_ok=True)
+    env['TMPDIR']=str(temporary)
+    def probe():
+        result=runner([sys.executable,'-c',PROBE],env=env,text=True,capture_output=True)
+        if result.returncode:
+            raise RuntimeError('dependency probe exit '+str(result.returncode)+': '+result.stderr)
+        return json.loads(result.stdout.strip().splitlines()[-1])
+    before=probe()
+    if before['issues']:
+        requirements=(['pyarrow==25.0.1'] if set(before['issues'])=={'pyarrow'}
+                      else ['numpy==2.3.5','pandas==2.2.3','scipy==1.17.1','pyarrow==25.0.1'])
+        command=[sys.executable,'-m','pip','install','--index-url','https://pypi.org/simple',
+                 '--target',str(target),'--upgrade','--only-binary=:all:',
+                 '--no-cache-dir','--disable-pip-version-check']
+        if requirements==['pyarrow==25.0.1']:command.append('--no-deps')
+        result=runner(command+requirements,env=env,text=True,capture_output=True)
+        if result.returncode:
+            raise RuntimeError('prepared dependency install exit '+str(result.returncode)+': '+result.stdout+'\n'+result.stderr)
+    after=probe()
+    if after['issues']:raise RuntimeError('dependency setup incomplete: '+json.dumps(after['issues']))
+    return {'status':'PASS','external_runtime':str(target),'python':sys.version.split()[0],
+            **after,'initial_issues':before['issues'],'market_outcomes_read':False}
+
+
+def main():
+    parser=argparse.ArgumentParser()
+    parser.add_argument('--target',default='/tmp/nova-stage1-runtime-'+sys.implementation.cache_tag)
+    parser.add_argument('--workspace',default='/home/user')
+    args=parser.parse_args();print(json.dumps(prepare(args.target,args.workspace),indent=2))
+
+
+if __name__=='__main__':main()
+
+PY
+export NOVA_STAGE1_RUNTIME="$(python -c 'import sys; print("/tmp/nova-stage1-runtime-"+sys.implementation.cache_tag)')"
+export PYTHONDONTWRITEBYTECODE=1
+export PYTHONPATH="${NOVA_STAGE1_RUNTIME}:${PYTHONPATH:-}"
+```
+
+Continue only if this code exits 0 and prints `status: PASS`. Keep its exact version/probe output as environment evidence in final delivery. Never substitute a pip exit alone for the fresh native probe. If the session is reset later, repeat this bootstrap before synthetic/measure/audit, not the entire experiment under a new run ID.
+
+### Stage source and synthetic admission
+
 
 Run in the existing executor workspace `/home/user`, using its existing working Python/dependencies. Cancel and verify the old scheduled/process execution first (§1). Then materialise the fixed prepared source (this is setup, not implementation):
 
@@ -126,7 +224,7 @@ print('STAGE1_PREPARED_SOURCE_VERIFIED',len(scope['settings']),len(scope['assets
 PY
 export L0084_R1_ROOT=/home/user/nova-stage1-20261005
 export L0084_R1_OUTPUT=/home/user/nova-stage1-20261005/local-record
-export PYTHONPATH="/home/user/nova-stage1-20261005/tools:/tmp/l0084-r1-deps:${PYTHONPATH:-}"
+export PYTHONPATH="/home/user/nova-stage1-20261005/tools:${NOVA_STAGE1_RUNTIME}:${PYTHONPATH:-}"
 python -m l0084_entry_mix_r1.stage1 --synthetic
 ```
 
@@ -175,6 +273,33 @@ receipt=commit_evidence({BASE+'/delivery.json':json.dumps(delivery,indent=2).enc
 print(json.dumps({'status':delivery['status'],'verified_remote_commit':receipt['head'],'branch':BRANCH},indent=2))
 PY
 ```
+
+### Recording an environment obstruction without PyArrow
+
+The package `__init__`, `transport` and `evidence` modules use only the standard library. The absent PyArrow prevents importing `stage1`, **not** this status transport. With the prepared source directory on PYTHONPATH and GH_TOKEN initialised, this prepared command records the current known dependency recovery, append-only LOG and a new numbered tick without importing the market runner. It may be run before the bootstrap if required. Do not claim a future different error matches this old message; preserve and report the full actual future error.
+
+```sh
+export PYTHONPATH="/home/user/nova-stage1-20261005/tools:${PYTHONPATH:-}"
+python - <<'PY'
+import sys,json
+from l0084_entry_mix_r1 import transport as T
+from l0084_entry_mix_r1.evidence import commit_evidence
+T.BRANCH='agent/l0084-r1-stage1-2026-10-05'
+path='history/research/hyp_lab_out/L0084-entry-mix-r1/stages/01-singletons/runtime-recovery-status.json'
+obj={'status':'ENVIRONMENT_RECOVERY_IN_PROGRESS_MARKET_NOT_STARTED',
+     'previous_error':"ModuleNotFoundError: No module named 'pyarrow'",
+     'action':'Prepared external runtime setup authorised; synthetic acceptance remains mandatory',
+     'scope_unchanged':True,'run_id':'stage1-singletons-v1'}
+r=commit_evidence({path:json.dumps(obj,indent=2).encode()},
+    'L0084 stage 1: record dependency recovery before market measurement',
+    'Executor reported PyArrow absent before synthetic acceptance; no stage market measurement started. Prepared dependency recovery is authorised outside the workspace.',
+    'stage1 dependency recovery',
+    '- Decision: retain stage scope and fix its dependency setup.\n- Execution: preserve the old run and use the prepared external installer.\n- Produced: actual prior missing-dependency error and recovery status; no market result.\n- Next: require native environment and synthetic PASS before measurement.',client=T.GitHubTransport())
+print(json.dumps({'recorded_commit':r['head'],'pyarrow_loaded':'pyarrow' in sys.modules}))
+PY
+```
+
+A publishing HTTP error still honours its server wait. Failure of the package installer never grants permission to bypass the synthetic measurement admission.
 
 ## 9. Required files and stage acceptance
 
