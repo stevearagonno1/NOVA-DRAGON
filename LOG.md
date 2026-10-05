@@ -757,3 +757,10 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - No market outcomes read or measured. Complete metric/report audit and integrated final delivery remain outstanding.
 - Next: complete full audit/report path and synthetic failure/recovery coverage before code publication and any measurement.
 
+### L0084-R1 restart-journal integrity correction (2026-10-05T08:39:54Z)
+
+- Synthetic restart testing found and corrected duplicate receipt handling for a partition committed before its coverage index. Resume now verifies existing storage-journal shards and avoids duplicate receipts; full synthetic remote reconciliation passes.
+- Disk-guard test and memory-limit/peak-RSS reporting added. Local suite: 28/28 PASS.
+- No market measurement or outcomes read; code remains uncommitted. Metrics/report generation and independent raw-to-metrics audit remain incomplete; audit is gated to fail closed until implemented.
+- Workspace: 69,174,215 bytes of 125,000,000. Next: complete and test all metrics/reconciliation before code publication or measurement.
+
