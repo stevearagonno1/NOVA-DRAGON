@@ -1,0 +1,7 @@
+{
+  "run_id": "r1-20261005T145115Z",
+  "code_commit": "8a7c81fd91f1984d799c13f7484f89a43712c22d",
+  "started_utc": "2026-10-05T14:51:15.344448+00:00",
+  "status": "RUNNING",
+  "resume_policy": "recompute candidate-window and verify identical committed partitions before continuation"
+}
