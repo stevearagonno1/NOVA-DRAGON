@@ -839,3 +839,9 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - نُشرت ضوابط no-signal وconstituent singleton/pair وrandom وequal-book $1000/$20 مع إعادة حساب مستقلة في التدقيق. اختبار pair synthetic يطابق عائلات الضوابط الخمس ويكشف العبث.
 - قبل النشر: py_compile PASS؛ pytest 24/24 PASS؛ module tests 10/10 PASS؛ workspace package 67,500,394 bytes. CLI synthetic readiness لم يكتمل؛ gate CLOSED ولا نتائج سوق.
 - التالي: إنشاء واختبار synthetic measure/audit الفعلي عبر CLI مع persistence/readback وتحقق كل شروط v7.
+
+
+## 2026-10-05 16:46 Asia/Aden — نشر تدقيق pair والـconstituents
+- نُشر fixture التدقيق المستقل لزوج مسجل وضوابط مكوناته وequal-book/no-signal/random مع شرط exit 0 الكامل في audit CLI.
+- فحوص ما قبل النشر: py_compile PASS؛ pytest 24/24؛ module tests 10/10. قياس السوق NOT RUN؛ readiness CLI لا يزال pending والحارس CLOSED.
+- التالي: synthetic measure/audit actual path مع persistence/readback وبقية اختبارات v7.
