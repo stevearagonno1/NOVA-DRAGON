@@ -900,3 +900,8 @@ Published readiness is generated from observed exact-code prechecks, 24 pytest a
 ### measurement run state initialized (2026-10-05T14:51:18Z)
 
 Run r1-20261005T145115Z begins only after the current-code preregistration and all prechecks were verified.
+
+
+## 2026-10-05 - Owner-directed stage 1 only
+
+Lead prepared a singleton-only entry point and scoped registration after GitHub rate-limit interruption. Short tests and full-grid synthetic raw auditing passed. Market stage 1 is NOT RUN under this new registration; no adoption verdict. The old scheduled all-stage run must be quiescent before the replacement starts. No main write or PR.
