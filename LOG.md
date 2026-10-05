@@ -779,3 +779,11 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - 32/32 local tests PASS; synthetic checks 14/16 PASS (599 trades). Corrected check 06 now covers 12 assets (1,872 mask and 72 combination comparisons), PASS.
 - Actual CLI measure returned exit 1 at the deliberate closed gate. The shared synthetic CLI path, metrics/control partitions, and raw-to-metrics audit remain unimplemented; readiness is IN_PROGRESS_NOT_READY.
 - Workspace: 69,782,856 bytes of 125,000,000. Next: finish synthetic CLI integration and full metric audit before reopening the gate.
+
+
+### L0084-R1 real-network synthetic partition/raw audit (2026-10-05T10:29:44Z)
+
+- Current DRAFT code `db8c43289652c160b622791ec2940fd357c018ec` wrote one labelled synthetic full-field trade partition and a zero-trade window to the authorized branch; immutable content/schema/SHA/Git-blob readback passed. Independent raw-only rebuild passed 2 groups, 1 trade, 1 zero group, 0 violations at fixed head `85f209bc1faefbc8f1fc94cf714dd4c77082063e`.
+- Tool emitted the full result but timed out at 180 seconds; final shell exit code unknown. No claim of CLI readiness.
+- 32/32 local tests and checks 06/14/16 pass. No market outcome read or measurement. Metrics/control tables and raw-to-metrics audit are absent; gate stays closed.
+- Workspace 69,783,342 bytes; writer peak 69,782,856; RSS 191,574,016; hard disk cap 125,000,000. Next: implement full shared CLI metrics/audit integration.

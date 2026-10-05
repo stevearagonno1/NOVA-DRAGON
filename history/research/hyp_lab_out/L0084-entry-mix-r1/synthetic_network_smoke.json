@@ -1,0 +1,26 @@
+{
+  "run_id": "readiness-synth-20261005T102326Z",
+  "initial_head": "1a801fd5605b2bed967223e1e7e0ffc6e7dbe998",
+  "raw_writer_readback_head": "656a7c2fe24520faccd7def92be8a868978396d1",
+  "metadata_commit": "85f209bc1faefbc8f1fc94cf714dd4c77082063e",
+  "raw_audit_fixed_head": "85f209bc1faefbc8f1fc94cf714dd4c77082063e",
+  "metadata_base": "history/research/hyp_lab_out/L0084-entry-mix-r1/synthetic_readiness/readiness-synth-20261005T102326Z",
+  "raw_partition": {
+    "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/trades/run=readiness-synth-20261005T102326Z/role=single/candidate=SYNTH-R1-RAW-AUDIT-001/window=SYNTH_A/part-00000.parquet",
+    "rows": 1,
+    "bytes": 8955,
+    "sha256": "edbd2e721cd81b9ec4cdf517a3d4ede2734d798b8e9bf291d3df8ef59bdd517c",
+    "git_blob_sha": "cbc7676ff453532c4f0fb157d214cef1e0ff43e4",
+    "commit_sha": "51ba5589c09b0305286a41dc1d7a63bf5b2bca9c",
+    "remote_readback": "PASS"
+  },
+  "coverage_groups": 2,
+  "zero_trade_groups": 1,
+  "raw_partition_reconciliation": "PASS",
+  "independent_trade_rebuild": "PASS",
+  "groups_rebuilt": 2,
+  "trades_rebuilt": 1,
+  "violations": 0,
+  "metric_reconciliation": "NOT_IMPLEMENTED",
+  "shell_tool_process": "timed out at 180 seconds after emitting complete result JSON; final process exit code not observed"
+}
