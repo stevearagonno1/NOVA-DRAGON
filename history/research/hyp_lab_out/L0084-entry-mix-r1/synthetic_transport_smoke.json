@@ -1,0 +1,21 @@
+{
+  "audit_exit_code": 0,
+  "audit_violations": 0,
+  "code_commit": "35995aac29ad3132b1cdc92795c3a39abf63658f",
+  "control_rows": 1248,
+  "final_metric_rows": 2295,
+  "groups": 765,
+  "label": "SYNTHETIC_ONLY_NO_MARKET_OUTCOMES",
+  "largest_parquet_bytes": 28885,
+  "measure_exit_code": 0,
+  "measurement_gate": "CLOSED",
+  "peak_memory_bytes": 233140224,
+  "peak_workspace_bytes": 121236146,
+  "raw_partitions": 697,
+  "run_id": "synthetic-cli-v1",
+  "synthetic_command": "python -m l0084_entry_mix_r1.cli synthetic-readiness",
+  "synthetic_evidence_bytes": 7344200,
+  "trade_rows": 1442,
+  "utc": "2026-10-05T14:03:00Z",
+  "zero_trade_groups": 68
+}
