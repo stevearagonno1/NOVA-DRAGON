@@ -864,3 +864,8 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - نُشر تعديل implementation-only amendment ليستعمل حقول `selection` و`multiplicity` الموجودة فعليًا في preregistration المقفلة، مع حفظ القيم كما هي.
 - محاولة amendment السابقة توقفت قبل الكتابة بـKeyError ولم تقرأ outcomes. القياس ما زال NOT RUN.
 - التالي: إعادة الأمر من code SHA الجديد، ثم prechecks مطابقة قبل أي قياس.
+
+
+### implementation-only preregistration amendment frozen (2026-10-05T14:12:45Z)
+
+Amendment pins the complete runner/audit code SHA and explicitly preserves the original methods, parameters, source panels, 52 settings, 3,978 pair modes, and gates. No outcome read.
