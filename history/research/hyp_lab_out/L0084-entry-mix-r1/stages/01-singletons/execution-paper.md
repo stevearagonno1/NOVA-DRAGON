@@ -1,46 +1,53 @@
-# L0084-R1 — المرحلة الأولى فقط: إشارات المؤشرات منفردة — الإصدار 2
+# L0084-R1 — ورقة المرحلة الأولى المفحوصة، الإصدار 3
 
-**تصحيح تجهيز البيئة:** أبلغ الوكيل عن `ModuleNotFoundError: No module named 'pyarrow'` قبل قياس السوق. كان منع إعادة التثبيت خطأ في الورقة. هذا الإصدار يجيز ويعدّ تثبيت الاعتماديات المفقودة خارج مساحة العمل، ويعيد التحقق منها في كل جلسة جديدة. كود البحث ونطاق المرحلة والفرع ومعرّف التشغيل لم تتغير.
+**المطلوب:** تشغيل قياس الإعدادات الـ52 منفردة ورفع أدلته وتدقيقه، ثم التوقف عند تسليم هذه المرحلة. لا أزواج ولا ثلاثيات الآن. الكود وتجهيز البيئة جاهزان؛ إصلاح البرمجيات وتحليل النتائج وكتابة التقرير المالي من عمل Lead.
 
-هذه ورقة واحدة لمرحلة واحدة. تقيس الإعدادات الـ52 الحالية كلًّا على حدة، مقابل الدخول دون إشارة، ثم تنتهي. لا تجمع مؤشرين ولا تبدأ ثلاثيات. أنا أراجع الأدلة وأكتب التقرير وأحدد المرحلة التالية.
+**هذه الورقة تستبدل تعليمات المرحلة الأولى السابقة.** احتفظ بكل الأعمال القديمة. نفّذ الأمر الواحد أدناه بعد التأكد من عدم وجود تشغيل قديم نشط؛ لا تحتاج ورقة أخرى بين الفحص والقياس والتدقيق والتسليم.
 
-**هذه الورقة تحلّ محل أمر التشغيل الشامل السابق، ولا تلغي نتائجه الجزئية أو تحذفها.** لا تشغّل الأمر القديم معها. اكتمال هذه المرحلة ليس اكتمال L0084 كله، وليس توصية بتداول أي مؤشر.
+## 1. Objective and boundary
 
-## 1. Binding assignment
+Question: how does each locked entry signal behave historically, separately, after the fixed costs versus its contemporaneous no-signal book? **No prior hypothesis of a profitable winner.** The scope is one descriptive stage, not an exhaustive combination search or trading approval.
 
-Execute the prepared long stage only. Do not develop, repair, redesign or modify any code. Setup below only materializes the Lead's already prepared files. Do not run the old `cli measure`: it automatically proceeds to pairs and triples.
+Why this revision: the executor reported the prior attempt stopped at `ModuleNotFoundError: No module named 'pyarrow'`, before market measurement. The earlier paper prohibited routine dependency recovery; this revision explicitly permits and automates the prepared recovery outside the workspace. Lead additionally reproduced a resume defect that could leave metric tables incomplete, repaired it, and added full table-coverage checks. Executor does no implementation or repair.
 
-Question: what is the measured historical behaviour of each locked singleton signal, separately, after costs against its contemporaneous no-signal book?
-Why now: the owner requested separate stages after the all-stage run encountered GitHub API limits. No hypothesis of a profitable singleton is asserted. Historical results are descriptive, not new blind evidence.
+The executor's former observation of 71,379,799 workspace bytes and absence of running tasks is **reported history**, not a current measurement. Recheck the workspace and active tasks before running. The old run `r1-20261005T145115Z` and both old branches remain untouched. Check the old scheduled ID `r1-measurement-retry-after-rate--74824206`; `not_found` plus no active old process is an acceptable quiescence result, not a new blocker. If a previous attempt is still active, let it stop safely before starting this publisher. Never run both papers together.
 
-The executor already reported cancellation returned `not_found` and confirmed no R1/Stage1 process was active. Treat that combination as quiescent, not a new blocker; recheck only if a new process has started. Before starting, cancel your previously scheduled retry `r1-measurement-retry-after-rate--74824206` using the scheduling capability that created it, verify cancellation, and verify that its old measurement process is no longer writing. Preserve its run `r1-20261005T145115Z` and all remote/local evidence; no deletion or main write. If you cannot verify quiescence, report the actual obstacle and do not run competing publishers. No separate paper is needed for routine progress within this stage.
+## 2. Sources, exact code and destination
 
-## 2. Pinned sources and destination
+- Official constitution/main verified by Lead: `8e966404e77a97cd32cd19b7b574b55809e743ab`.
+- Previous stage source base: `5e0e9121c5a382638072f7cec83f3b002a701f87`.
+- **Executable source commit:** `74bc4cba32c083f34b6588b685f93216aaa580c9`.
+- Repository: https://github.com/stevearagonno1/NOVA-DRAGON
+- **Only write destination:** `agent/l0084-stage1-checked-2026-10-05`.
+- **Run ID:** `stage1-singletons-v1` on that new branch. Same scientific scope; a corrected implementation isolated from old partial branches.
+- Stage directory, denoted **S** below: `history/research/hyp_lab_out/L0084-entry-mix-r1/stages/01-singletons`.
+- Evidence root, denoted **R** below: `history/research/hyp_lab_out/L0084-entry-mix-r1`.
+- Scope at the executable source commit: `S/scope.json`; SHA-256 `93dcc3e5d8eb0c4deb54b7fe6b58be2cbe0760e27c846ec221c809f7861ebcd7`. It lists all code hashes and the 12 input panel paths, byte counts and hashes.
+- Launcher: `tools/launch_stage1_checked.py`; SHA-256 `b534e24d98045da55ac167171bfdbd76d1ae39a9d0cbfcaf47d037c6b8119207`.
+- Runtime installer: `tools/prepare_stage1_runtime.py`; package: `tools/l0084_entry_mix_r1/`.
 
-| Item | Identifier |
+All source files were uploaded and read back byte-for-byte from their immutable commit. Read public sources without credentials; authenticate only the GitHub API write/read route. No `gh`, clone, local `origin`, extra service or manual new environment design is required. No PR, main push or merge.
+
+Reused unchanged by SHA-256: `engine.py`, `indicators.py`, `data.py`, `measure.py`, `stats.py`. Changes are prepared runtime admission, a sequential launcher, recovery of unfinished metric tables, metric coverage checks and resource-path handling. No signal, fill, exit, cost, date or candidate threshold is changed.
+
+## 3. What Lead actually checked
+
+| Check actually performed | Observed result |
 |---|---|
-| Official constitution in main | `8e966404e77a97cd32cd19b7b574b55809e743ab` |
-| Prior R1 engine/readiness code | `8a7c81fd91f1984d799c13f7484f89a43712c22d` |
-| Retained partial R1 snapshot | `f66ce8b411f0e226ab3203dc37af6729b632960d` |
-| Prepared stage-1 source and fixed scope | `005e9eed558542ce6f0468ecd6786dc71d3dce57` |
-| Tested paced upload and immutable readback | `f313674937d7d3f764bd5a7cda6cd5be82d89561` |
-| Stage work branch | `agent/l0084-r1-stage1-2026-10-05` |
-| New stage run ID | `stage1-singletons-v1` |
-| Stage manifest/audit/delivery root | `history/research/hyp_lab_out/L0084-entry-mix-r1/stages/01-singletons/` |
-| Full raw trades | `history/research/hyp_lab_out/L0084-entry-mix-r1/trades/run=stage1-singletons-v1/` |
-| Coverage index | `history/research/hyp_lab_out/L0084-entry-mix-r1/measurement_index/run=stage1-singletons-v1/` |
+| Package test suite | 39/39 passed, exit 0 |
+| Launcher order/failure gate tests | 4/4 passed; a failed step cannot start the following one |
+| Native clean dependency restoration | Python 3.12.14: missing PyArrow restored; Python 3.13.14: all four libraries initially missing and installed successfully |
+| Native Parquet/zstd encode/decode | Passed in both environments |
+| Actual `stage1 --synthetic` shared measure/write/independent-audit path | Passed on Python 3.12.14 and 3.13.14; 636 groups, 12 assets, 12 windows; 720 synthetic trades and 600 zero-trade groups |
+| Derived table coverage | 636 summary + 7,632 asset + 8,268 final rows; missing/duplicate groups rejected |
+| Interruption and restart | Nine publication boundaries, including lost acknowledgement after a committed index; no missing/duplicated rows; complete repeat unchanged |
+| Missing or changed evidence and HTTP 403 listing | Rejected; a rate limit is not interpreted as an empty directory |
+| Pinned-source launcher preflight | Immutable remote download, dependency admission and synthetic CLI passed; market not started |
+| Actual work-branch upload and immutable readback | Passed through the launcher's logging/upload method at `56dccc25aff0fb1ef7fc942c209f009b28366286` |
 
-The new work branch already exists. Do not create it from scratch, overwrite it, switch to main, open a PR or merge. The prepared stage source hashes are in `scope.json`; engine/indicator/writer/statistics files inherited from the partial snapshot were verified by Git blob SHA and remain unchanged. Only the stage-specific entry point and its tests were added.
+Evidence: `S/lead-readiness-v3/`. Reproducible short commands are `python -m unittest discover -s tools/l0084_entry_mix_r1 -t tools`, `python -m l0084_entry_mix_r1.stage1 --synthetic`, and `python tools/launch_stage1_checked.py --source 74bc4cba32c083f34b6588b685f93216aaa580c9 --workspace <empty-small-workspace> --preflight-only` with the prepared runtime. Executor uses only the full command in §7, which contains its own preflight.
 
-## 3. What is verified, and what is not
-
-Lead executed the stage's actual synthetic CLI: **636 candidate-window groups**, all 52 settings, all 12 assets and all 12 half-years, with 720 synthetic trades and 600 zero-trade groups. Full independent raw execution rebuilding, completed-run resume, interruption/resume and rejection of altered evidence passed. **36 existing/new short tests passed**. A virtual-clock test checked 1,000 write/read cycles for pacing; cached immutable reads checked blob SHA and rejected changed bytes.
-
-Lead also ran the actual paced GitHub publication route on the named branch with a non-financial artifact, LOG/tick recording and immutable readback. This is an actual upload check, not a market result or an assurance against all future platform failures.
-
-Lead test runtime: Python 3.12.14, NumPy 2.3.5, Pandas 2.2.3, SciPy 1.17.0, PyArrow 25.0.1. The previous executor readiness reported Python 3.13.14/SciPy 1.17.1 and the same NumPy/Pandas/PyArrow; this report is not a fresh runtime measurement. Run the prepared short synthetic command below once in the existing executor runtime before the long stage; dependency installation through the exact prepared bootstrap in §8 is now explicitly authorised outside `/home/user`; do not repair research code or install packages inside the workspace.
-
-Market stage-1 outcomes: **NOT RUN by Lead**. Wall-clock duration and full-run peak storage/memory: **not measured**. Current executor free space is checked at admission; its earlier 121,423,124-byte peak is historical evidence only.
+These are synthetic/readiness results, **not market performance**. There is no new market result, indicator ranking, profitability verdict, or guarantee against future network/platform failures. Raw trade reconstruction is independent; draft financial/inferential values still require Lead's financial audit. Storage size and duration of the long run have not been measured by this rehearsal.
 
 ## 4. Data, scope, baseline and chronology
 
@@ -64,260 +71,211 @@ Fresh $1,000 paper book per asset/candidate/window; fixed $20 trade notional; 0.
 
 The existing draft metric writer emits per-asset and summary partitions. **Only independently rebuilt full raw trades are accepted as finished evidence here.** Summary metrics and inferential fields remain DRAFT until the Lead re-derives them. In particular, pooled drawdown percentages must not be quoted from the inherited single-$1,000 denominator; the Lead checks against $1,000 per asset. Do not issue an adoption verdict or present these draft summaries as final financial conclusions.
 
-## 6. Resource and publication rules
 
-Use the prepared stage entry point, which bounds raw Parquet parts to 8,000,000 bytes and batches to 5,000,000 bytes; 5,000 rows is a chunk ceiling, not a guarantee of file size. Full raw fields are retained; no sampling, deletion or compressed summary substitutes for the full ledger. Parquet is written from bounded memory directly to the registered work branch. No giant local ledger.
 
-Source setup reserves 750,000 local bytes; total workspace cap remains 125,000,000 bytes. Dependencies already importable and matching the accepted versions are reused. Missing dependencies are installed by the prepared bootstrap outside the workspace, with installer temporary files outside it and no pip download cache. Do not presume a previous `/tmp` installation survived a new session. No full clone/fetch, dependency cache inside the workspace, market archive download or deletion. The bootstrap may install/replace generated packages inside its own external runtime directory; this grants no authority over research code, datasets or main. Existing runtime memory guard remains active. Larger-run duration/storage estimates are not acceptance results.
+## 6. Environment, resources and restart
 
-Publication is serial. The prepared client spaces total requests by at least 2 seconds and writes by at least 15 seconds; branch reads and immutable tree/blob reads are cached/bounded. Parent transport's bounded retry can add one request; these pacing values are not claims about shared-account usage or GitHub's unpublished secondary limits. Respect any actual Retry-After. Do not change the token, thresholds or code to bypass a rate limit.
+Python supported and tested here: 3.12.14 and 3.13.14. Prepared libraries: NumPy 2.3.5, Pandas 2.2.3, SciPy 1.17.0 or 1.17.1, PyArrow 25.0.1. The installer first checks imports and a native Parquet round trip. If needed, it installs the pinned binary wheels using the existing interpreter's pip, without cache, into `/tmp/nova-stage1-runtime-<python-cache-tag>` **outside `/home/user`**. This exact recovery is authorised setup, not forbidden code repair. Do not assume a temporary dependency folder from an earlier session survives.
 
-If HTTP 403/429 or another platform error interrupts execution, preserve work; record the exact operation, code, message and Retry-After without the secret. Verify branch head and scope hashes on restart, then repeat the same prepared command for the same run ID after the server wait. The writer verifies recovered partitions and coverage; no new run ID or second experiment is needed. Only one active publisher. A critical integrity mismatch stops the affected measurement; send the error to Lead for repair, not executor code changes.
+The single launcher performs setup and all subsequent commands in one invocation and supplies the same runtime path to each. Source lives at `/home/user/nova-stage1-checked-v3`. It checks scope and source SHA-256; refuses different pre-existing source files; locks against a second checked launcher in the same workspace; reserves 1 MB for source/small records; enforces the actual workspace limit of 125,000,000 bytes before materialisation, during writing and before delivery. Keep old evidence; no deletion or full repository download. Do not duplicate market panels locally: read the 12 existing immutable panels into memory with byte/hash checks.
 
-## 7. Private authentication
+Full trade evidence goes from bounded memory to the exact work branch: Parquet parts ≤8,000,000 bytes, batch threshold 5,000,000 bytes, up to 5,000 rows per raw chunk. Keep complete raw fields and zero groups, never sample or replace the ledger with aggregates. No enormous local ledger. The writer may use up to its 8 MB hard batch ceiling when adding a chunk; the 5 MB value is a flush threshold, not a stronger ceiling.
 
-This is the owner-supplied token, included directly as requested. Initialise it in the execution process; never print it, enable shell tracing, put it in code, LOG, ticks, raw outputs, remote URLs or the repository copy of this paper. The public copy redacts only the value. No `gh` or local `origin` is required.
+Paced measurement/audit/normal status publication spaces API calls ≥2 seconds and writes ≥15 seconds. Bounded transport retries can add a request. This is a client throttle, not a guarantee against GitHub account-wide limits. If runtime admission itself fails, the prepared status path uses stdlib only and may upload the actual error without PyArrow. Local `last_error.txt` and phase logs remain available if remote publication fails.
+
+For a recoverable network error, honour the actual server `Retry-After`, verify no previous process remains, and rerun **the same §7 command**, same source, branch and run ID. No new paper or owner confirmation is needed. The writer rereads committed partitions and deterministically reconstructs both raw and metric output; recovery may take time because evidence is reverified. Do not increment the run ID, overwrite mismatched evidence or invent an empty remote directory when a read fails. A critical hash, schema, causality or independent-reconstruction mismatch stops the affected work and goes to Lead for repair with the exact error.
+
+Do not use `python -m l0084_entry_mix_r1.cli measure`: that is the old multi-stage route. Do not resume the old comprehensive run or execute another stage after this delivery.
+
+## 7. One execution command — private credential included
+
+Run the following **entire block once** in the executor's terminal. The owner-supplied token is initialised directly. Never echo it or put this private block in source, LOG, ticks, outputs or public repository files. The repository copy is redacted. Preserve this private paper for restarts.
 
 ```sh
 set +x
 export GH_TOKEN='[OWNER_TOKEN_REDACTED]'
-```
-
-## 8. Exact execution commands — dependency admission before synthetic readiness
-
-### Prepared dependency bootstrap: allowed setup, not executor development
-
-On every fresh session/resume, execute the following prepared code using the same Python that will run the stage. It probes NumPy/Pandas/SciPy/PyArrow imports and accepted versions, tests Parquet with Zstandard, installs a missing PyArrow wheel (or a missing numeric environment) into its versioned external runtime, then repeats the probe. Pip uses the official PyPI index, binary wheels, no cache and an external temporary directory. GH_TOKEN is removed from the installer environment. Dependency installation is explicitly authorised by this correction; no new paper/owner confirmation is needed.
-
-Do not remove existing files or reinstall the research engine. No full clone or original market download. Only the prepared package installer may maintain its generated external runtime. Preserve the previously prepared stage sources and partial R1 evidence.
-
-Lead checks actually executed: native PyArrow 25.0.1 import and Parquet/Zstandard round-trip on Python 3.12.14; the complete 636-group synthetic stage; standard-library-only transport import with Python `-S`; real pip resolution (`--dry-run`) of the CPython 3.13 x86_64 wheel from PyPI. The missing-dependency/installation control flow and forbidden workspace-path case were simulated. **A fresh native Python 3.13 installation was not executed by Lead**, and the executor runtime has not been remeasured yet. Final environment PASS must come from this probe in the executor runtime; dry-run is not installation.
-
-Run this prepared bootstrap before the previous source/synthetic steps. Its code needs only the Python standard library and invokes the existing `python -m pip` only when a dependency is missing or mismatched:
-
-```sh
-python - <<'PY'
-"""Prepared dependency setup; no research-code or market-data modification."""
-from __future__ import annotations
-import argparse
-import json
-import os
-from pathlib import Path
-import subprocess
-import sys
-
-VERSIONS = {'numpy': ['2.3.5'], 'pandas': ['2.2.3'],
-            'scipy': ['1.17.0', '1.17.1'], 'pyarrow': ['25.0.1']}
-PROBE = r'''
-import json, importlib
-allowed = %s
-versions = {}; issues = {}
-for name, accepted in allowed.items():
+python3 - <<'PYCODE'
+import hashlib, sys, time, urllib.request
+commit = '74bc4cba32c083f34b6588b685f93216aaa580c9'
+url = 'https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/' + commit + '/tools/launch_stage1_checked.py'
+for attempt in range(3):
     try:
-        m = importlib.import_module(name); versions[name] = m.__version__
-        if m.__version__ not in accepted: issues[name] = 'version: '+m.__version__
-    except Exception as e: issues[name] = type(e).__name__+': '+str(e)
-if not issues:
-    try:
-        import pyarrow as pa, pyarrow.parquet as pq
-        table = pa.table({'asset':['fixture','fixture'], 'gross':[1.0,-0.3], 'cost':[0.052,0.052]})
-        sink = pa.BufferOutputStream(); pq.write_table(table,sink,compression='zstd',version='2.6')
-        if not pq.read_table(pa.BufferReader(sink.getvalue())).equals(table):
-            raise RuntimeError('Parquet round-trip mismatch')
-    except Exception as e: issues['pyarrow'] = type(e).__name__+': '+str(e)
-print(json.dumps({'versions':versions,'issues':issues,'parquet_roundtrip':'PASS' if not issues else 'NOT RUN'}))
-''' % repr(VERSIONS)
-
-
-def prepare(target, workspace, runner=subprocess.run):
-    target=Path(target).resolve(); workspace=Path(workspace).resolve()
-    if target == workspace or workspace in target.parents:
-        raise RuntimeError('dependency directory must be outside the experiment workspace')
-    target.mkdir(parents=True,exist_ok=True)
-    env=dict(os.environ); env.pop('GH_TOKEN',None)
-    env['PYTHONPATH']=str(target)+os.pathsep+env.get('PYTHONPATH','')
-    env['PYTHONDONTWRITEBYTECODE']='1'
-    temporary=target/'installer-temporary';temporary.mkdir(exist_ok=True)
-    env['TMPDIR']=str(temporary)
-    def probe():
-        result=runner([sys.executable,'-c',PROBE],env=env,text=True,capture_output=True)
-        if result.returncode:
-            raise RuntimeError('dependency probe exit '+str(result.returncode)+': '+result.stderr)
-        return json.loads(result.stdout.strip().splitlines()[-1])
-    before=probe()
-    if before['issues']:
-        requirements=(['pyarrow==25.0.1'] if set(before['issues'])=={'pyarrow'}
-                      else ['numpy==2.3.5','pandas==2.2.3','scipy==1.17.1','pyarrow==25.0.1'])
-        command=[sys.executable,'-m','pip','install','--index-url','https://pypi.org/simple',
-                 '--target',str(target),'--upgrade','--only-binary=:all:',
-                 '--no-cache-dir','--disable-pip-version-check']
-        if requirements==['pyarrow==25.0.1']:command.append('--no-deps')
-        result=runner(command+requirements,env=env,text=True,capture_output=True)
-        if result.returncode:
-            raise RuntimeError('prepared dependency install exit '+str(result.returncode)+': '+result.stdout+'\n'+result.stderr)
-    after=probe()
-    if after['issues']:raise RuntimeError('dependency setup incomplete: '+json.dumps(after['issues']))
-    return {'status':'PASS','external_runtime':str(target),'python':sys.version.split()[0],
-            **after,'initial_issues':before['issues'],'market_outcomes_read':False}
-
-
-def main():
-    parser=argparse.ArgumentParser()
-    parser.add_argument('--target',default='/tmp/nova-stage1-runtime-'+sys.implementation.cache_tag)
-    parser.add_argument('--workspace',default='/home/user')
-    args=parser.parse_args();print(json.dumps(prepare(args.target,args.workspace),indent=2))
-
-
-if __name__=='__main__':main()
-
-PY
-export NOVA_STAGE1_RUNTIME="$(python -c 'import sys; print("/tmp/nova-stage1-runtime-"+sys.implementation.cache_tag)')"
-export PYTHONDONTWRITEBYTECODE=1
-export PYTHONPATH="${NOVA_STAGE1_RUNTIME}:${PYTHONPATH:-}"
+        with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent':'NOVA-Stage1'}), timeout=40) as response:
+            code = response.read()
+        break
+    except Exception:
+        if attempt == 2: raise
+        time.sleep(2*(attempt+1))
+if hashlib.sha256(code).hexdigest() != 'b534e24d98045da55ac167171bfdbd76d1ae39a9d0cbfcaf47d037c6b8119207':
+    raise RuntimeError('prepared launcher SHA256 mismatch')
+sys.argv = ['launch_stage1_checked.py', '--source', commit, '--workspace', '/home/user']
+exec(compile(code, 'launch_stage1_checked.py', 'exec'), {'__name__':'__main__'})
+PYCODE
 ```
 
-Continue only if this code exits 0 and prints `status: PASS`. Keep its exact version/probe output as environment evidence in final delivery. Never substitute a pip exit alone for the fresh native probe. If the session is reset later, repeat this bootstrap before synthetic/measure/audit, not the entire experiment under a new run ID.
+Execution sequence, automatic and gated: source checks → dependency restoration/probe → synthetic acceptance → long singleton measurement → independent raw audit plus metric coverage → final handoff, LOG and numbered tick → verified remote head. The next step executes only after the previous one succeeds. Do not stop merely after synthetic PASS; the same authorised command continues through final delivery. A long-running process is IN PROGRESS, not BLOCKED simply because no final result has printed yet.
 
-### Stage source and synthetic admission
+## 8. Exact deliverables and acceptance
 
+| Repository path | Required content |
+|---|---|
+| `S/scope.json` | Locked settings, assets, windows, source/helper hashes, input panel paths/hashes |
+| `S/measurement.json` | Status, run ID, complete scope, raw-writer counts/partition receipts and derived-output manifest |
+| `S/raw_audit.json` | PASS, immutable audited head, 636 groups, raw row/partition reconciliation and metric coverage counts |
+| `S/delivery.json` | `STAGE1_RAW_COMPLETE_LEAD_REVIEW_PENDING`, branch, run ID, executable source, verified parent, audited head, 52/12/12 scope, workspace bytes and remaining Lead review |
+| `S/environment.json` | Interpreter, library versions, initial missing imports, native probe and external runtime path |
+| `S/HANDOFF.md` | Raw completion, financial review pending, no strategy adoption |
+| `R/trades/run=stage1-singletons-v1/role=…/candidate=…/window=…/part-*.parquet` | Every raw trade, schema below |
+| `R/measurement_index/run=stage1-singletons-v1/part-*.jsonl` | Every candidate/role/window including zero groups; trade/partition counts, schema version and partition paths |
+| `R/storage_journal/run=stage1-singletons-v1/part-*.jsonl` and `R/storage_journal.jsonl` | Immutable part receipt shards and their pointers: path, bytes, hashes, commit and readback status |
+| `R/metrics_raw/run=stage1-singletons-v1/part-*.parquet` | 636 draft summary rows |
+| `R/metrics_by_asset/run=stage1-singletons-v1/part-*.parquet` | 7,632 draft per-asset rows |
+| `R/metrics/run=stage1-singletons-v1/part-*.parquet` | 8,268 draft final-format rows; values not yet financially endorsed |
+| `R/controls/run=stage1-singletons-v1/part-*.parquet` | Baseline no-signal bookkeeping only; no random controls |
+| `R/metric_adjustments/run=stage1-singletons-v1/part-*.parquet` | Draft inferential adjustment fields, schema below |
+| `R/halfyears.csv/run=stage1-singletons-v1/part-*.csv` | Draft half-year rows, columns below |
+| `LOG.md` and `docs/journal/2026-10-05-l0084-entry-mix-r1/NNN-*.md` | Automatic append/new numbered tick after each successful phase and final delivery; actual failure if interrupted |
 
-Run in the existing executor workspace `/home/user`, using its existing working Python/dependencies. Cancel and verify the old scheduled/process execution first (§1). Then materialise the fixed prepared source (this is setup, not implementation):
+Here S and R expand to the exact paths in §2; they are not literal directory names. Existing source files are already present at the destination; execute them unchanged. The locked `labels.py` evaluation labels are forbidden as signal inputs. No centred/future-defined label, leverage, shorts, live order, all-in sizing or exit optimisation.
 
-```sh
-cd /home/user
-python - <<'PY'
-from pathlib import Path
-import os, json, hashlib, urllib.request, time, sys
-root=Path('/home/user/nova-stage1-20261005')
-workspace=Path('/home/user')
-def disk_bytes():
-    total=0
-    for directory, _, files in os.walk(workspace):
-        for name in files:
-            try:total+=(Path(directory)/name).stat().st_size
-            except FileNotFoundError:pass
-    return total
-before=disk_bytes()
-if before+750000>125000000:
-    raise RuntimeError(f'workspace admission guard: {before} bytes; need 750000 bytes for prepared source and small records; no deletion permitted')
-commit='005e9eed558542ce6f0468ecd6786dc71d3dce57'
-url='https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/'+commit+'/'
-def read(path):
-    for attempt in range(3):
-        try:
-            return urllib.request.urlopen(urllib.request.Request(url+path,headers={'User-Agent':'NOVA-Stage1-Setup'}),timeout=40).read()
-        except Exception:
-            if attempt==2:raise
-            time.sleep(2*(attempt+1))
-raw=read('history/research/hyp_lab_out/L0084-entry-mix-r1/stages/01-singletons/scope.json')
-if hashlib.sha256(raw).hexdigest()!='08739a72ab49b244a8db8f1e8fc080b0e85a27817c34e7711bf3dfe515c5628a':raise RuntimeError('scope SHA256 mismatch')
-scope=json.loads(raw)
-package=root/'tools/l0084_entry_mix_r1';package.mkdir(parents=True,exist_ok=True)
-for name,digest in scope['code_sha256'].items():
-    data=read('tools/l0084_entry_mix_r1/'+name)
-    if hashlib.sha256(data).hexdigest()!=digest:raise RuntimeError('source hash mismatch: '+name)
-    target=package/name
-    if target.exists() and target.read_bytes()!=data:raise RuntimeError('existing stage source differs: '+name)
-    if not target.exists():target.write_bytes(data)
-if disk_bytes()>125000000:raise RuntimeError('workspace disk guard exceeded after source setup')
-print('STAGE1_PREPARED_SOURCE_VERIFIED',len(scope['settings']),len(scope['assets']),len(scope['windows']))
-PY
-export L0084_R1_ROOT=/home/user/nova-stage1-20261005
-export L0084_R1_OUTPUT=/home/user/nova-stage1-20261005/local-record
-export PYTHONPATH="/home/user/nova-stage1-20261005/tools:${NOVA_STAGE1_RUNTIME}:${PYTHONPATH:-}"
-python -m l0084_entry_mix_r1.stage1 --synthetic
+**Numeric technical acceptance:** exactly 636 unique candidate/window groups including zero groups; all 12 fixed assets, 52 settings and 12 windows retained; all raw partition bytes/SHA/schema/receipts verified; every trade field agrees with the independent fill/exit/portfolio reconstruction; derived coverage exactly 636/7,632/8,268 with no missing or duplicate key; workspace ≤125,000,000 bytes; final handoff/LOG/tick uploaded and remote head verified. No pair/triple groups. Zero trades or losses are valid measured outcomes, not technical failure.
+
+**Reject completion** if any required group/partition/output is missing, duplicated or altered, any independent raw field fails, any required upload is unverified, or any gate failed. Use IN PROGRESS/BLOCKED with the actual error, never COMPLETE. No profitability acceptance criterion is being passed in this descriptive evidence stage. Random controls, final inference, winner selection and future evaluation remain **NOT RUN**.
+
+## 9. Completion response and Lead handoff
+
+After the launcher prints `STAGE1_RAW_COMPLETE_LEAD_REVIEW_PENDING` with a verified commit, return that commit link, branch, run ID, coverage and workspace size; include the small judgment contents from `S/raw_audit.json` and `S/delivery.json`, and the unresolved limits. Do not call a setup-only/DRAFT upload or ZIP the completed experiment. If blocked, return the command/operation, actual error, last verified remote head and available local logs; never disclose the token.
+
+The owner may then send Lead only **تم**. Lead will read the branch and paths in §2, derive statistics from the complete raw evidence, audit the draft summaries and write the Arabic financial report with the constitution's summary and seven tables. That includes win rate/Wilson, actual breakeven and baseline lift, dollar/R expectancy after costs, MAE/MFE, durations, per-asset/year/half-year coverage and the registered bootstrap: 2,000 moving-block replicates of seven UTC days, synchronised across all 12 assets including empty days, seed 84; one-sided 95% lower bound at the fifth percentile. Holm retains the 70,330 full-search family with untested members set to p=1. These inferential calculations are Lead review work after raw delivery, not a claim that this stage computed them. This paper does not delegate unfinished financial review to the executor. The next stage requires Lead review and a new single-stage paper; do not start it automatically.
+
+## 10. File schemas
+
+### Raw trade Parquet
+
+```text
+candidate_id: string
+role: string
+window: string
+asset: string
+signal_bar: int64
+fill_bar: int64
+exit_bar: int64
+signal_time_utc: string
+fill_time_utc: string
+exit_time_utc: string
+entry: double
+exit: double
+atr: double
+quantity: double
+notional: double
+outcome: string
+gap_flag: bool
+double_touch: bool
+holding_bars: int64
+gross_dollars: double
+cost_dollars: double
+net_dollars: double
+gross_atr_r: double
+cost_atr: double
+net_atr_r: double
+barrier_r: double
+mae_atr_r: double
+mfe_atr_r: double
+seg: int64
 ```
 
-Do not start market measurement unless setup and the prepared synthetic command both exit 0. The command never reads market outcomes. Preserve the output; a failure goes to Lead with the actual error. No development task is delegated.
+### Draft metric Parquet
 
-After initialising GH_TOKEN exactly as above, run **only**:
-
-```sh
-python -m l0084_entry_mix_r1.stage1 --mode measure
-python -m l0084_entry_mix_r1.stage1 --mode audit
+```text
+candidate_id: string
+members: string
+mode: string
+role: string
+window: string
+asset: string
+scope: string
+n_exec: int64
+n_win: int64
+n_stop: int64
+n_timeout: int64
+n_resolved: int64
+n_eff: int64
+n_signals: int64
+n_incomplete: int64
+win_rate: double
+wilson_lo: double
+wilson_hi: double
+gross_dollars: double
+cost_dollars: double
+net_dollars: double
+expectancy_dollars: double
+profit_factor: double
+gross_atr_r: double
+cost_atr: double
+net_atr_r: double
+barrier_r: double
+mae_atr_r: double
+mfe_atr_r: double
+mean_holding_bars: double
+mean_time_to_hit_bars: double
+gap_count: int64
+double_touch_count: int64
+n_active_days: int64
+coverage: double
+mdd_dollars: double
+mdd_pct_book: double
+drawdown_duration_trades: int64
+worst_day_dollars: double
+longest_losing_streak: int64
+exposure_bars: int64
+baseline_win_rate: double
+breakeven_rate: double
+lift_win_points: double
+p_raw: double
+p_adjusted: double
+ci_lo: double
+ci_hi: double
+power80: double
+metric_status: string
 ```
 
-Run the second command only after the first exits 0. It independently rebuilds every raw trade using the separate reference portfolio/exit loop. Neither command runs pairs, triples or chooses winners. A publication interruption is resumable with the same run ID and verified bytes; retain actual errors and honour the server wait.
+### Draft adjustment Parquet
 
-After both return 0, record the final handoff, LOG and new numbered tick with this prepared command:
-
-```sh
-python - <<'PY'
-import json
-from l0084_entry_mix_r1.stage1 import PacedTransport,BRANCH,BASE,RUN
-from l0084_entry_mix_r1 import transport as T
-from l0084_entry_mix_r1.evidence import commit_evidence
-T.BRANCH=BRANCH
-client=PacedTransport();head=client.branch_head()
-audit=json.loads(client.blob_from_commit(head,BASE+'/raw_audit.json'))
-measurement=json.loads(client.blob_from_commit(head,BASE+'/measurement.json'))
-if audit.get('status')!='PASS' or audit.get('groups')!=636:
-    raise RuntimeError('stage1 full raw audit is absent or incomplete')
-if measurement.get('status')!='RAW_MEASUREMENT_COMPLETE_AUDIT_PENDING':
-    raise RuntimeError('stage1 measurement manifest is absent or unexpected')
-delivery={'status':'STAGE1_RAW_COMPLETE_LEAD_REVIEW_PENDING','run_id':RUN,'branch':BRANCH,
-          'verified_results_parent':head,'independent_raw_audit_head':audit['fixed_head'],
-          'report':'Lead will derive and audit the financial report; no executor adoption judgment',
-          'next_stage':'NOT STARTED','unresolved':['Final metric/inference review by Lead; no random-control or final strategy-adoption verdict in this stage'],
-          'measurement_manifest':BASE+'/measurement.json','raw_audit':BASE+'/raw_audit.json',
-          'raw_trade_path':'history/research/hyp_lab_out/L0084-entry-mix-r1/trades/run='+RUN,
-          'coverage_groups':636,'assets':12,'settings':52,'windows':12}
-handoff=('Stage 1 only is complete as raw measurement and independent raw audit.\n'
-         'Pairs, triples, random-entry controls, final financial report and strategy adoption are NOT COMPLETED in this delivery.\n'
-         'The Lead reviews the immutable evidence and prepares the report before issuing another stage.\n')
-receipt=commit_evidence({BASE+'/delivery.json':json.dumps(delivery,indent=2).encode(),BASE+'/HANDOFF.md':handoff.encode()},
-    'L0084 stage 1: deliver singleton evidence for Lead review',
-    'Stage-1 raw measurement and full independent execution audit completed; remaining stages not started. Final financial/statistical judgment belongs to Lead.',
-    'stage1 raw evidence delivered',
-    '- Decision: stop at the boundary of stage 1.\n- Execution: all 636 registered candidate-window groups measured and independently reconciled.\n- Produced: immutable full raw evidence, coverage, audit and delivery; not an adoption verdict.\n- Next: Lead reviews results and writes the financial report before another stage.',client=client)
-print(json.dumps({'status':delivery['status'],'verified_remote_commit':receipt['head'],'branch':BRANCH},indent=2))
-PY
+```text
+candidate_id: string
+role: string
+window: string
+p_raw: double
+p_adjusted: double
+power80: double
+n80: int64
+alpha: double
+family_m: int64
 ```
 
-### Recording an environment obstruction without PyArrow
+### Baseline control bookkeeping Parquet
 
-The package `__init__`, `transport` and `evidence` modules use only the standard library. The absent PyArrow prevents importing `stage1`, **not** this status transport. With the prepared source directory on PYTHONPATH and GH_TOKEN initialised, this prepared command records the current known dependency recovery, append-only LOG and a new numbered tick without importing the market runner. It may be run before the bootstrap if required. Do not claim a future different error matches this old message; preserve and report the full actual future error.
-
-```sh
-export PYTHONPATH="/home/user/nova-stage1-20261005/tools:${PYTHONPATH:-}"
-python - <<'PY'
-import sys,json
-from l0084_entry_mix_r1 import transport as T
-from l0084_entry_mix_r1.evidence import commit_evidence
-T.BRANCH='agent/l0084-r1-stage1-2026-10-05'
-path='history/research/hyp_lab_out/L0084-entry-mix-r1/stages/01-singletons/runtime-recovery-status.json'
-obj={'status':'ENVIRONMENT_RECOVERY_IN_PROGRESS_MARKET_NOT_STARTED',
-     'previous_error':"ModuleNotFoundError: No module named 'pyarrow'",
-     'action':'Prepared external runtime setup authorised; synthetic acceptance remains mandatory',
-     'scope_unchanged':True,'run_id':'stage1-singletons-v1'}
-r=commit_evidence({path:json.dumps(obj,indent=2).encode()},
-    'L0084 stage 1: record dependency recovery before market measurement',
-    'Executor reported PyArrow absent before synthetic acceptance; no stage market measurement started. Prepared dependency recovery is authorised outside the workspace.',
-    'stage1 dependency recovery',
-    '- Decision: retain stage scope and fix its dependency setup.\n- Execution: preserve the old run and use the prepared external installer.\n- Produced: actual prior missing-dependency error and recovery status; no market result.\n- Next: require native environment and synthetic PASS before measurement.',client=T.GitHubTransport())
-print(json.dumps({'recorded_commit':r['head'],'pyarrow_loaded':'pyarrow' in sys.modules}))
-PY
+```text
+candidate: string
+control_type: string
+replicate: int64
+asset: string
+window: string
+n: int64
+matched_count: int64
+net: double
+expectancy: double
+paired_difference: double
+ci_lo: double
+ci_hi: double
+seed: uint64
 ```
 
-A publishing HTTP error still honours its server wait. Failure of the package installer never grants permission to bypass the synthetic measurement admission.
-
-## 9. Required files and stage acceptance
-
-At the registered destination require: `scope.json`, `measurement.json`, `raw_audit.json`, `delivery.json`, `HANDOFF.md`; complete raw trade partitions; coverage and receipt shards; draft per-asset/summary/half-year metric partitions; append-only `LOG.md` entry and new numbered activity tick. The measurement manifest contains all partition paths, counts and hashes. Do not deliver only tests, setup, DRAFT source or a ZIP while calling the stage complete.
-
-Accept **STAGE1_RAW_COMPLETE_LEAD_REVIEW_PENDING** only if: all 636 unique candidate/window groups including zero groups exist; all 12 assets and fixed settings/windows are retained; all raw partitions have verified immutable bytes/hash/schema; every raw field agrees with independent execution rebuilding; no pair/triple group is present in this new run; delivery/LOG/tick are uploaded and final remote head is verified. Zero trades or negative expectancy do not make technical completion fail. No profitability or adoption criterion is weakened or considered passed by this stage.
-
-An incomplete upload or audit is **IN PROGRESS/BLOCKED**, not complete. The old all-stage run may retain its independent IN PROGRESS state; this delivery does not rewrite its history.
-
-## 10. Completion and Lead responsibilities
-
-Return the final remote commit and exact stage status once uploaded; the owner then needs to tell Lead only **تم**. Do not open a PR, merge, push to main or start any next stage. Lead reads this named branch, re-derives statistics from the raw evidence, audits draft metrics and writes the complete Arabic financial report with the constitution's summary/seven tables and explicit unmeasured fields. No executor software repair or strategy judgment.
-
-The next stage is not executable under this paper. The Lead issues one subsequent stage only after reviewing this one. The registered pairs/triples and remaining controls are deferred execution, not dropped research possibilities.
+Half-year CSV columns: `candidate, asset, halfyear, partial, n, net, pf, win, baseline, lift, ci_lo, ci_hi`. JSON/JSONL manifests use the explicit fields described in §8; their emitted files remain the authoritative machine-readable records. No random-control output is required or claimed in this stage.
 
 ---
 
-## 5. Complete definitions
+## 11. Complete signal definitions
 
 O,H,L,C,V=open,high,low,close,BASEvolume. TP=(H+L+C)/3. EMA(n) alpha2/(n+1),adjust=False,min_periods=n; Wilder(n) alpha1/n,adjust=False,min_periods=n. Series-cross: previous A<=B/current A>B. Scalar upwardcross: previous<t/current>=t. First previous invalid. Trailing windows include current unless specified.
 

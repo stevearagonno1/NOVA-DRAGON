@@ -1,0 +1,43 @@
+{
+  "scope": "Lead preparation only; no market measurement",
+  "package_tests": ".......................................\n----------------------------------------------------------------------\nRan 39 tests in 26.568s\n\nOK",
+  "launcher_tests": "...START synthetic\n\nModuleNotFoundError: fixture\n.\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nOK",
+  "fresh_python313": {
+    "status": "PASS",
+    "external_runtime": "/tmp/nova-stage1-runtime313",
+    "python": "3.13.14",
+    "versions": {
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "scipy": "1.17.1",
+      "pyarrow": "25.0.1"
+    },
+    "issues": {},
+    "parquet_roundtrip": "PASS",
+    "initial_issues": {
+      "numpy": "ModuleNotFoundError: No module named 'numpy'",
+      "pandas": "ModuleNotFoundError: No module named 'pandas'",
+      "scipy": "ModuleNotFoundError: No module named 'scipy'",
+      "pyarrow": "ModuleNotFoundError: No module named 'pyarrow'"
+    },
+    "market_outcomes_read": false
+  },
+  "remote_preflight": "PREFLIGHT_PASS_MARKET_NOT_RUN",
+  "source_commit": "74bc4cba32c083f34b6588b685f93216aaa580c9",
+  "resume_boundaries": [
+    "raw trade part",
+    "receipt shard",
+    "receipt index",
+    "raw metrics",
+    "asset metrics",
+    "halfyear CSV",
+    "coverage index",
+    "adjustment part",
+    "final metrics"
+  ],
+  "remaining": [
+    "actual market outcomes not measured",
+    "financial statistics remain Lead audit work",
+    "network availability not guaranteed"
+  ]
+}

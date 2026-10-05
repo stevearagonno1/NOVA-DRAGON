@@ -1,6 +1,6 @@
-import importlib.util,subprocess,tempfile,unittest
+import importlib.util,subprocess,tempfile,unittest,os
 from pathlib import Path
-spec=importlib.util.spec_from_file_location('launcher',Path(__file__).parent/'tools/launch_stage1_checked.py')
+spec=importlib.util.spec_from_file_location('launcher',Path(os.environ.get('NOVA_STAGE1_LAUNCHER','tools/launch_stage1_checked.py')))
 L=importlib.util.module_from_spec(spec);spec.loader.exec_module(L)
 class Gates(unittest.TestCase):
  def test_order(self):

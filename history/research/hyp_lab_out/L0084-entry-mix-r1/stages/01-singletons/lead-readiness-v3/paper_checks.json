@@ -1,0 +1,11 @@
+{
+  "source_commit": "74bc4cba32c083f34b6588b685f93216aaa580c9",
+  "scope_sha256": "93dcc3e5d8eb0c4deb54b7fe6b58be2cbe0760e27c846ec221c809f7861ebcd7",
+  "launcher_sha256": "b534e24d98045da55ac167171bfdbd76d1ae39a9d0cbfcaf47d037c6b8119207",
+  "private_sha256": "5fb8f9152d70385f20ffbb9081c5c3994d5cbd67777782293f569cc17126dcc4",
+  "public_sha256": "6916cb851e87cd90d6a18bb437472184a56b8b7eaf488be163449dfa141fc5d8",
+  "settings": 52,
+  "groups": 636,
+  "private_credential_occurrences": 1,
+  "bootstrap_syntax": "PASS"
+}

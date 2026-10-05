@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "receipt": {
+    "parent": "74bc4cba32c083f34b6588b685f93216aaa580c9",
+    "commit": "56dccc25aff0fb1ef7fc942c209f009b28366286",
+    "head": "56dccc25aff0fb1ef7fc942c209f009b28366286",
+    "tick_number": 26,
+    "tick_path": "docs/journal/2026-10-05-l0084-entry-mix-r1/026-stage1-checked-upload-rehearsal.md",
+    "files": [
+      {
+        "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/stages/01-singletons/lead-readiness-v3/upload_probe.json",
+        "bytes": 251,
+        "sha256": "3d5b7bb51c8520fc3a323b299a5a31a4b320f14565ee022a3608b63ecdcc08f1",
+        "git_blob_sha": "8b7d047e9fb35db42160d64ca030e76a77d05765"
+      },
+      {
+        "path": "LOG.md",
+        "bytes": 143570,
+        "sha256": "a730396d6d0c9f67b3bd89ccf396b16c251811ee00685410168d531ddccbfa78",
+        "git_blob_sha": "6be7e2f1a92d49f8469b81f2c94119fdc463ad7c"
+      },
+      {
+        "path": "docs/journal/2026-10-05-l0084-entry-mix-r1/026-stage1-checked-upload-rehearsal.md",
+        "bytes": 316,
+        "sha256": "d87c9597391a6b1f7238e3554cd05243e63388a1aa2a66d5660fbc76d909f332",
+        "git_blob_sha": "3f1f9fe40bddec77f48cac4963f9772615723252"
+      }
+    ]
+  },
+  "market_outcomes_read": false
+}
