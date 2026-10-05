@@ -151,8 +151,8 @@ def independent_simulate_window(o,h,l,c,atr,seg,mask,symbol,candidate,first,last
     return rows
 
 
-def _read_csv(client,head,name):
-    raw=client.blob_from_commit(head,f"{BASE}/{name}").decode("utf-8")
+def _read_csv(client,head,name,base=BASE):
+    raw=client.blob_from_commit(head,f"{base}/{name}").decode("utf-8")
     return list(csv.DictReader(io.StringIO(raw)))
 
 
@@ -219,18 +219,24 @@ def _actual_rows(client,head,paths):
     return rows
 
 
-def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None) -> dict:
-    """Independently regenerate every indexed trade group at one fixed head."""
+def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
+                metadata_base=BASE) -> dict:
+    """Independently regenerate every indexed trade group at one fixed head.
+
+    ``metadata_base`` is normally the immutable R1 registry directory; the
+    explicit override lets the exact same auditor use a separately labelled
+    synthetic fixture without replacing production registrations.
+    """
     base_check=verify_remote_partitions(client,head,run_id)
     coverage=_run_index(client,head,run_id)
     _pointers,receipts=_run_receipts(client,head,run_id)
-    pair_rows=_read_csv(client,head,"pairs_registry.csv")
+    pair_rows=_read_csv(client,head,"pairs_registry.csv",metadata_base)
     pair_map={r["pair_id"]:(r["member_a"],r["member_b"]) for r in pair_rows}
-    tr_rows=_read_csv(client,head,"triples_registry.csv")
+    tr_rows=_read_csv(client,head,"triples_registry.csv",metadata_base)
     triple_map={(r["prefix_id"],r["triple_id"]):r for r in tr_rows if r.get("triple_id")}
-    sel_rows=_read_csv(client,head,"selection_log.csv")
+    sel_rows=_read_csv(client,head,"selection_log.csv",metadata_base)
     selected={r["prefix"]:r["candidate"] for r in sel_rows if r.get("selected")=="1" and r.get("candidate")!="CASH"}
-    ng=_read_csv(client,head,"neighbors_registry.csv")
+    ng=_read_csv(client,head,"neighbors_registry.csv",metadata_base)
     neighbor_map={r["neighbour_id"]:r for r in ng if r.get("neighbour_id")}
     if measurer is None:measurer=M.Measurer()
     receipts_by_key={}

@@ -11,12 +11,12 @@ import pyarrow.parquet as pq
 
 try:
     from . import engine as E
-    from .streaming import RemoteTradeWriter, TRADE_SCHEMA
+    from .streaming import RemoteTradeWriter, TRADE_SCHEMA, BASE
     from .transport import TransportError
     from .audit import verify_remote_partitions,rebuild_all
 except ImportError:
     from l0084_entry_mix_r1 import engine as E
-    from l0084_entry_mix_r1.streaming import RemoteTradeWriter, TRADE_SCHEMA
+    from l0084_entry_mix_r1.streaming import RemoteTradeWriter, TRADE_SCHEMA, BASE
     from l0084_entry_mix_r1.transport import TransportError
     from l0084_entry_mix_r1.audit import verify_remote_partitions,rebuild_all
 
@@ -176,17 +176,17 @@ class StreamingTests(unittest.TestCase):
             def __init__(self,p):self.panels={'X':p}
         p=Panel();m=Measurer(p)
         trades,_=E.simulate_window(p.o,p.h,p.l,p.c,p.atr,p.seg,p.mask,'X','candidate',0,59)
-        t=MemoryTransport();meta={
-          'history/research/hyp_lab_out/L0084-entry-mix-r1/pairs_registry.csv':b'pair_id,member_a,member_b\n',
-          'history/research/hyp_lab_out/L0084-entry-mix-r1/triples_registry.csv':b'prefix_id,triple_id,member_a,member_b,member_c,mode,parent_ids\n',
-          'history/research/hyp_lab_out/L0084-entry-mix-r1/selection_log.csv':b'prefix,candidate,selected\n',
-          'history/research/hyp_lab_out/L0084-entry-mix-r1/neighbors_registry.csv':b'neighbour_id,prefix_id,base_candidate,member,neighbour_setting,mode\n'}
+        t=MemoryTransport();meta_base=BASE+'/synthetic_fixture';meta={
+          meta_base+'/pairs_registry.csv':b'pair_id,member_a,member_b\n',
+          meta_base+'/triples_registry.csv':b'prefix_id,triple_id,member_a,member_b,member_c,mode,parent_ids\n',
+          meta_base+'/selection_log.csv':b'prefix,candidate,selected\n',
+          meta_base+'/neighbors_registry.csv':b'neighbour_id,prefix_id,base_candidate,member,neighbour_setting,mode\n'}
         head=t.branch_head();head,_=t.commit_files(meta,head,'synthetic metadata')
         w=RemoteTradeWriter(t,run_id='full-audit')
         w.add_window('C0','single','2023H1',{'X':trades},m.panels)
         w.add_window('C0','single','2023H2',{'X':[]},m.panels)
         w.add_window('C1','single','2023H1',{'X':trades},m.panels);w.close()
-        result=rebuild_all(t,t.head,'full-audit',m)
+        result=rebuild_all(t,t.head,'full-audit',m,metadata_base=meta_base)
         self.assertEqual(result['independent_execution_rebuild'],'PASS')
         self.assertEqual(result['groups_rebuilt'],3)
         self.assertEqual(result['zero_trade_candidate_windows'],1)
