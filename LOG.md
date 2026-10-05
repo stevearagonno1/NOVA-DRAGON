@@ -739,3 +739,12 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 
 - The engine-code commit and the preregistration commits both used `004` as the numeric prefix, and the pre-check used `005`; this duplicate is a journal-numbering defect. Historical committed records are preserved, not edited. Future journal entries will use unique increasing numbers beginning at 008. This is a documentation defect only; checks, preregistration content and panel bytes were not changed.
 - No R1 financial measurement has run.
+
+
+### L0084-R1 v5 continuation received (2026-10-05T06:54:54Z)
+
+- Re-read authorized branch head; it remains `64856c574db165ad2bc65c34c35fd328d3413124`. No later work was overwritten.
+- Workspace measured at 69,109,390 bytes before code work; hard cap remains 125,000,000 bytes.
+- Confirmed preregistration, input-panel manifest, pre-checks and storage journal are present. No final REPORT, HANDOFF, VERDICT or delivery is present.
+- `cmd_measure` and `cmd_audit` still refuse execution; no R1 financial measurement or full raw-ledger audit has been run.
+- Next: implement bounded in-memory partition measurement and full remote rebuild audit; synthetic end-to-end tests first.
