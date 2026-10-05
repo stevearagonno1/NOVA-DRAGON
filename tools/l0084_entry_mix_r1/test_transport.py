@@ -2,7 +2,10 @@ import base64
 import hashlib
 import json
 import unittest
-from transport import GitHubTransport, HeadConflict, TransportError, verify_bytes
+try:
+    from .transport import GitHubTransport, HeadConflict, TransportError, verify_bytes
+except ImportError:
+    from transport import GitHubTransport, HeadConflict, TransportError, verify_bytes
 
 
 class FakeResponse:

@@ -715,3 +715,13 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - Independent reference cases: 4/4 PASS. Focused tests: transport 7/7, engine 9/9 PASS (gaps, timeout, incomplete horizon, segment break, nonoverlap/re-entry, cash book and one $0.052 cost).
 - Engine SHA256 `532e381e539342d1028eee356ec343387f65e004d994e03341d3cd84aa76ea7a`; tests SHA256 `eddbceed195d6be2abcff5568b074dc45702c18542d410ec3a8a2629ffd7a0a7`; results `history/research/hyp_lab_out/L0084-entry-mix-r1/premeasurement_check.json`.
 - Full 18-check suite and all measurement remain NOT RUN. Next: reproduce source pins/registries and complete integrity checks before any outcomes.
+
+
+### L0084-R1 corrected execution engine and premeasurement suite (2026-10-05T06:38:23Z)
+
+- Imported only the necessary pinned L0084 research modules; paths now use R1 environment variables. No production or main files changed.
+- Corrected fill horizon to i+1..i+18, gap-first resolution, stop-first same-bar double touch, double-touch only through exit, inclusive holding count, and pre-index completeness checks.
+- Each evaluation half-year now starts a fresh $1,000 per-asset/candidate book; signals are embargoed 18 bars and must fit the full 18-bar horizon in the window. No pre-window position/cash affects a window.
+- Focused tests: 17/17 PASS; independent lead audit cases: 4/4; synthetic end-to-end check 14 PASS and check 16 PASS (599 trades, exact deterministic rerun).
+- Full 18 checks, preregistration and financial measurement have not run yet. Old local sample/key ledger pipeline is disabled from CLI; no outcome was read.
+- Next: freeze preregistration and run the complete pre-measurement integrity suite.

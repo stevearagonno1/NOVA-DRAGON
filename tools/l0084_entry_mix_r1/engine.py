@@ -78,8 +78,8 @@ def simulate(o,h,l,c,atr,seg_id,mask,symbol,cand):
     if mask is not None and len(mask)!=n: raise ValueError('mask length mismatch')
     accept=np.ones(n,dtype=bool) if mask is None else np.asarray(mask,dtype=bool)
     trades=[];signals=rejected=incomplete=skipped=0;busy_until=-1;cash=BOOK0
-    for i in range(n-1):
-        if not accept[i]: continue
+    for i0 in np.flatnonzero(accept[:max(0,n-1)]):
+        i=int(i0)
         if i<busy_until:
             if mask is not None: skipped+=1
             continue
@@ -92,6 +92,29 @@ def simulate(o,h,l,c,atr,seg_id,mask,symbol,cand):
         trades.append(rec);cash+=rec['net_dollars'];busy_until=rec['exit_bar']
     return trades,{'signals':signals,'executed':len(trades),'rejected':rejected,
                    'incomplete':incomplete,'skipped_occupied':skipped}
+
+
+def simulate_window(o,h,l,c,atr,seg_id,mask,symbol,cand,first,last,
+                    embargo=HORIZON):
+    """Fresh $1,000 book for one evaluation window; no pre-window trade or
+    cash state can affect decisions. Only signals with a full horizon inside
+    the window and after the fixed left embargo are eligible."""
+    n=_validate_arrays(o,h,l,c,atr,seg_id)
+    first=int(first);last=int(last)
+    if first<0 or last>=n or last<first: raise ValueError('invalid window bounds')
+    if mask is None:
+        allowed=np.ones(n,dtype=bool)
+    else:
+        if len(mask)!=n:raise ValueError('mask length mismatch')
+        allowed=np.asarray(mask,dtype=bool).copy()
+    left=first+int(embargo)
+    right=last-HORIZON
+    if left>right:
+        allowed[:]=False
+    else:
+        allowed[:left]=False
+        allowed[right+1:]=False
+    return simulate(o,h,l,c,atr,seg_id,allowed,symbol,cand)
 
 
 def execute_many(o,h,l,c,atr,seg_id,starts,symbol,cand):

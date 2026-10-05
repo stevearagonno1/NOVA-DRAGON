@@ -1,7 +1,10 @@
 """Pre-measurement independent reference and corrected fill tests."""
 import unittest
 import numpy as np
-import engine as E
+try:
+    from . import engine as E
+except ImportError:
+    import engine as E
 
 
 def reference(o,h,l,c,atr,seg,i):
@@ -101,6 +104,14 @@ class CorrectedEngineTests(unittest.TestCase):
         self.assertTrue(all(abs(t['net_dollars']+0.352)<1e-10 for t in rows))
         self.assertGreater(cnt['rejected'],0)
 
+    def test_each_window_has_fresh_state_and_purge_embargo(self):
+        o,h,l,c,a,s,m=panel(70);m[:]=False;m[[0,27,28,29,40]]=True
+        rows,counters=E.simulate_window(o,h,l,c,a,s,m,'SYN','window',10,49,18)
+        self.assertEqual([t['signal_bar'] for t in rows],[28])
+        self.assertEqual(rows[0]['fill_bar'],29)
+        self.assertEqual(rows[0]['exit_bar'],46)
+        self.assertEqual(counters['signals'],1)
+
     def test_atr_and_stop_rejection(self):
         o,h,l,c,a,s,m=panel();a[0]=np.nan
         self.assertEqual(E.simulate(o,h,l,c,a,s,m,'SYN','nan')[0],[])
@@ -108,3 +119,9 @@ class CorrectedEngineTests(unittest.TestCase):
         self.assertEqual(E.execute_many(o,h,l,c,a,s,[0],'SYN','nonpositive-stop')[0],[])
 
 if __name__=='__main__':unittest.main()
+
+
+def run_all(phase='pre', m=None):
+    """Run the complete constitutional integrity suite from integrity.py."""
+    from . import integrity
+    return integrity.run_all(phase, m=m)
