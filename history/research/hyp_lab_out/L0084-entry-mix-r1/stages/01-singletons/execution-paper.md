@@ -1,8 +1,24 @@
-# L0084-R1 — ورقة المرحلة الأولى المفحوصة، الإصدار 3
+# L0084-R1 — ورقة المرحلة الأولى المفحوصة، الإصدار 4 — إصلاح المتابعة والاستئناف
 
 **المطلوب:** تشغيل قياس الإعدادات الـ52 منفردة ورفع أدلته وتدقيقه، ثم التوقف عند تسليم هذه المرحلة. لا أزواج ولا ثلاثيات الآن. الكود وتجهيز البيئة جاهزان؛ إصلاح البرمجيات وتحليل النتائج وكتابة التقرير المالي من عمل Lead.
 
 **هذه الورقة تستبدل تعليمات المرحلة الأولى السابقة.** احتفظ بكل الأعمال القديمة. نفّذ الأمر الواحد أدناه بعد التأكد من عدم وجود تشغيل قديم نشط؛ لا تحتاج ورقة أخرى بين الفحص والقياس والتدقيق والتسليم.
+
+## إلزام المنفّذ: المتابعة حتى التسليم أو عائق فعلي
+
+هذه الورقة كاملة وتحل محل النسخة السابقة. **لا تُنهِ دورك برسالة IN PROGRESS أو «مستمر» أو بمجرد استلام معرّف عملية.** بعد بدء الأمر، تابع معرّف العملية بأداة الانتظار/المتابعة المتاحة في المنصة إلى أن ينتهي، ثم تحقّق من التسليم. التحديثات تكون أثناء المتابعة ولا تستبدلها. البطء أو الانتظار وفق GitHub ليس سببًا لإنهاء العمل. لا تفترض أن Arena تواصل العمل بعد انتهاء ردك؛ لم نتحقق من ضمان كهذا.
+
+إذا أعادت الأداة `not_found`، افحص العمليات الفعلية وسجلات `supervision` أولًا. وجود عملية قياس حيّة يعني متابعتها وعدم بدء نسخة ثانية. إذا ثبت عدم وجود عملية حيّة، فغياب رمز الخروج القديم **ليس مانعًا من الاستئناف**: أعد الأمر نفسه بالفرع والمعرّف نفسيهما؛ الكاتب يتحقق من الأدلة المحفوظة قبل إعادة استخدامها. لا تمسح الأدلة ولا تخترع سبب الانقطاع. إذا تعذّر تحديد حالة العمليات فعلًا، فهذا عائق محدد يُذكر كما هو، ولا يُحل بتشغيل ناشرين متنافسين.
+
+لا تنهِ الدور إلا عند التسليم المكتمل المتحقق منه، أو عائق فعلي لا يمكن تجاوزه ضمن الأوامر المصرّح بها. إذا فرضت المنصة حدًا قاطعًا للمدة أو أغلقت العملية، اذكر الدليل والخطأ أو القيد المشاهد، وآخر سجل/التزام متحقق منه. لا تجعل غياب خطأ قديم شرطًا مستحيلًا للاستمرار. لا ترسل سؤال إذن جديدًا للاستئناف المعتاد.
+
+**التغيير التقني:** مشغّل المتابعة الجديد يكتب سجلًا منذ البداية ويُفرغه إلى القرص أثناء التنفيذ، مع سجل حالة قبل بدء الطفل، ورقم PID، وملاحظة حياة كل 30 ثانية، ورمز الخروج حين يكون متاحًا. ملاحظة الحياة مؤرخة وليست دليلًا على أن العملية ما زالت تعمل بعد ذلك. يحتفظ بكل محاولة في ملف مستقل، ويورّث قفل الاستئناف للعملية التابعة لمنع تكرارها إذا اختفى المشغّل وحده. يعيد استخدام نجاح الفحص الاصطناعي محليًا فقط إذا تطابقت بصمات النطاق والمفسّر وإصدارات المكتبات؛ لا يتجاوز القياس أو التدقيق اعتمادًا على سجل محلي.
+
+**مصادر الإصلاح:** `tools/launch_stage1_recovery.py` في الالتزام `059de27feec44d50cc464e69d586eec8d822bf8e`، وفرع التجهيز `agent/l0084-stage1-supervision-2026-10-05`. هذا فرع نشر الإصلاح فقط؛ **نتائج القياس تبقى على `agent/l0084-stage1-checked-2026-10-05`** والمعرّف `stage1-singletons-v1`. المحرك والنطاق ومصدرهما `74bc4cba32c083f34b6588b685f93216aaa580c9` لم تتغير.
+
+**تحقق Lead:** أربعة اختبارات إصلاح ناجحة تشمل قتلًا فعليًا بـSIGKILL، وبقاء القفل مع الطفل، وحفظ النص قبل انتهاء العملية ولو بلا سطر جديد، والاستئناف بعد فقدان رمز الخروج، وحجب التوكن، ورفض إعادة استخدام فحص تغيّر نطاقه. نجح مسار الفحص الاصطناعي عبر المشغّل الجديد. وفي الرأس `4db5769519147f67a50f942ffef1a8590b29ba04` وجدت 168 جزء صفقات و7 شظايا إيصالات؛ تحققت من تطابق بصمات Git لكود المحرك والمدخلات الـ12. هذا جرد أدلة جزئية، **وليس تدقيقًا ماليًا أو إثبات اكتمال**. تحقق SHA256 ومحتوى الأجزاء عند الاستئناف من عمل الكاتب القائم ولم يُلغَ.
+
+السجلات المحلية الجديدة: `/home/user/nova-stage1-checked-v3/supervision/<phase>-<attempt>.log` وملف JSON بالاسم نفسه؛ `synthetic-passed.json` إيصال فحص وليس حكمًا على السوق. عند فقد العملية لا تعتمد على وجود كلمة RUNNING قديمة؛ افحص PID والعمليات والقفل. يحتفظ السجل بما كُتب قبل الانقطاع إذا بقي القرص؛ لا يستطيع البرنامج ضمان بقاء قرص تمسحه المنصة. الأدلة البعيدة محفوظة في الفرع الأصلي ولا تُحذف.
 
 ## 1. Objective and boundary
 
@@ -77,11 +93,11 @@ The existing draft metric writer emits per-asset and summary partitions. **Only 
 
 Python supported and tested here: 3.12.14 and 3.13.14. Prepared libraries: NumPy 2.3.5, Pandas 2.2.3, SciPy 1.17.0 or 1.17.1, PyArrow 25.0.1. The installer first checks imports and a native Parquet round trip. If needed, it installs the pinned binary wheels using the existing interpreter's pip, without cache, into `/tmp/nova-stage1-runtime-<python-cache-tag>` **outside `/home/user`**. This exact recovery is authorised setup, not forbidden code repair. Do not assume a temporary dependency folder from an earlier session survives.
 
-The single launcher performs setup and all subsequent commands in one invocation and supplies the same runtime path to each. Source lives at `/home/user/nova-stage1-checked-v3`. It checks scope and source SHA-256; refuses different pre-existing source files; locks against a second checked launcher in the same workspace; reserves 1 MB for source/small records; enforces the actual workspace limit of 125,000,000 bytes before materialisation, during writing and before delivery. Keep old evidence; no deletion or full repository download. Do not duplicate market panels locally: read the 12 existing immutable panels into memory with byte/hash checks.
+The recovery supervisor wraps the unchanged stage launcher and performs setup and all subsequent commands in one invocation and supplies the same runtime path to each. Source lives at `/home/user/nova-stage1-checked-v3`. It checks scope and source SHA-256; refuses different pre-existing source files; locks against a second checked launcher in the same workspace; reserves 1 MB for source/small records; enforces the actual workspace limit of 125,000,000 bytes before materialisation, during writing and before delivery. Keep old evidence; no deletion or full repository download. Do not duplicate market panels locally: read the 12 existing immutable panels into memory with byte/hash checks.
 
 Full trade evidence goes from bounded memory to the exact work branch: Parquet parts ≤8,000,000 bytes, batch threshold 5,000,000 bytes, up to 5,000 rows per raw chunk. Keep complete raw fields and zero groups, never sample or replace the ledger with aggregates. No enormous local ledger. The writer may use up to its 8 MB hard batch ceiling when adding a chunk; the 5 MB value is a flush threshold, not a stronger ceiling.
 
-Paced measurement/audit/normal status publication spaces API calls ≥2 seconds and writes ≥15 seconds. Bounded transport retries can add a request. This is a client throttle, not a guarantee against GitHub account-wide limits. If runtime admission itself fails, the prepared status path uses stdlib only and may upload the actual error without PyArrow. Local `last_error.txt` and phase logs remain available if remote publication fails.
+Paced measurement/audit/normal status publication spaces API calls ≥2 seconds and writes ≥15 seconds. Bounded transport retries can add a request. This is a client throttle, not a guarantee against GitHub account-wide limits. If runtime admission itself fails, the prepared status path uses stdlib only and may upload the actual error without PyArrow. The new `supervision/<phase>-<attempt>.log` and JSON records are written during execution. `last_error.txt` is additional evidence only when the parent catches an error. An uncatchable SIGKILL can leave the last status RUNNING with no exit code; this is not proof of current liveness or a ban on recovery.
 
 For a recoverable network error, honour the actual server `Retry-After`, verify no previous process remains, and rerun **the same §7 command**, same source, branch and run ID. No new paper or owner confirmation is needed. The writer rereads committed partitions and deterministically reconstructs both raw and metric output; recovery may take time because evidence is reverified. Do not increment the run ID, overwrite mismatched evidence or invent an empty remote directory when a read fails. A critical hash, schema, causality or independent-reconstruction mismatch stops the affected work and goes to Lead for repair with the exact error.
 
@@ -96,24 +112,24 @@ set +x
 export GH_TOKEN='[OWNER_TOKEN_REDACTED]'
 python3 - <<'PYCODE'
 import hashlib, sys, time, urllib.request
-commit = '74bc4cba32c083f34b6588b685f93216aaa580c9'
-url = 'https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/' + commit + '/tools/launch_stage1_checked.py'
+commit = '059de27feec44d50cc464e69d586eec8d822bf8e'
+url = 'https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/' + commit + '/tools/launch_stage1_recovery.py'
 for attempt in range(3):
     try:
-        with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent':'NOVA-Stage1'}), timeout=40) as response:
+        with urllib.request.urlopen(urllib.request.Request(url, headers={'User-Agent':'NOVA-Stage1-Recovery'}), timeout=40) as response:
             code = response.read()
         break
     except Exception:
         if attempt == 2: raise
         time.sleep(2*(attempt+1))
-if hashlib.sha256(code).hexdigest() != 'b534e24d98045da55ac167171bfdbd76d1ae39a9d0cbfcaf47d037c6b8119207':
-    raise RuntimeError('prepared launcher SHA256 mismatch')
-sys.argv = ['launch_stage1_checked.py', '--source', commit, '--workspace', '/home/user']
-exec(compile(code, 'launch_stage1_checked.py', 'exec'), {'__name__':'__main__'})
+if hashlib.sha256(code).hexdigest() != '1c411a5d963fdb80311ebcefda32a4fdc8426aef31f57900dc400f554de09f20':
+    raise RuntimeError('recovery launcher SHA256 mismatch')
+sys.argv = ['launch_stage1_recovery.py', '--workspace', '/home/user']
+exec(compile(code, 'launch_stage1_recovery.py', 'exec'), {'__name__':'__main__'})
 PYCODE
 ```
 
-Execution sequence, automatic and gated: source checks → dependency restoration/probe → synthetic acceptance → long singleton measurement → independent raw audit plus metric coverage → final handoff, LOG and numbered tick → verified remote head. The next step executes only after the previous one succeeds. Do not stop merely after synthetic PASS; the same authorised command continues through final delivery. A long-running process is IN PROGRESS, not BLOCKED simply because no final result has printed yet.
+Execution sequence, automatic and gated: source checks → dependency restoration/probe → synthetic acceptance → long singleton measurement → independent raw audit plus metric coverage → final handoff, LOG and numbered tick → verified remote head. The next step executes only after the previous one succeeds. Do not stop merely after synthetic PASS; the same authorised command continues through final delivery. Keep waiting on the active tool/process; a progress update does not end the executor assignment. A long-running process is IN PROGRESS, not BLOCKED simply because no final result has printed yet.
 
 ## 8. Exact deliverables and acceptance
 

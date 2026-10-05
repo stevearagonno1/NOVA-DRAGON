@@ -950,3 +950,8 @@ synthetic exited 0 under pinned scope; continue only this stage.
 ## 2026-10-05 - Lead fixes stage1 supervision
 
 Prepared foreground durable logging, 30-second liveness observations, explicit exit records, inherited child lock and same-environment synthetic receipt reuse. Real SIGKILL fixture preserved pre-death logs and prevented a duplicate while the child held its lock; same-phase recovery succeeded once the child stopped despite unknown old exit status. 4 regression tests and full synthetic CLI preflight passed. Stage engine/scope/run and measurement destination remain unchanged; no market measurement by Lead. Existing partial evidence inspected by tree hashes, not financially audited.
+
+
+## Stage1 recovery paper v4 released
+
+Complete private paper replaces v3 with the checked supervisor entry point and explicit follow-through until verified delivery or an actual obstacle. Missing old exit status alone does not block recovery after quiescence. Same engine scope, run ID and measurement destination; token redacted in repository copy. No market measurement by Lead.
