@@ -88,7 +88,8 @@ def cmd_amend_prereg(args):
       "code_commit_before_measurement":code_sha,"code_files_sha256":source_hashes,
       "unchanged":{"assets":previous["universe"]["assets"],"settings_52":previous["settings_52"],
         "pair_sets":1326,"pair_modes":3978,"modes":previous["modes"],"outer_windows":previous["outer_windows"],
-        "container":previous["container"],"gates":previous["gates"],"bootstrap":previous["bootstrap"]},
+        "container":previous["container"],"gates":previous["gates"],
+        "selection":previous["selection"],"multiplicity":previous["multiplicity"]},
       "reason":"implementation correction only: bounded remote full-trade Parquet streaming, exact readback, resumable index, and full independent rebuild audit; no methods, universe, gates, candidate network, inputs, or outcomes changed.",
       "written_before_any_R1_measurement":True,"results_read":False}
     data=json.dumps(amendment,indent=2,ensure_ascii=False).encode()+b"\n"

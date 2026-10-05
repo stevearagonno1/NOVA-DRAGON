@@ -858,3 +858,9 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - نُشر العلم الذي يتيح real runner بعد synthetic E2E مع test يحمي من أي وصول شبكة قبل code pin؛ التنفيذ الحقيقي ما زال يتطلب amendment وchecks pre على SHA نفسه.
 - الاختبارات على النسخة الجديدة ستعاد قبل amendment أو القياس. السوق لم يُقرأ ولم يبدأ experiment.
 - التالي: py_compile/pytest/module checks وsynthetic CLI على commit الجديد، ثم amendment/prechecks.
+
+
+## 2026-10-05 17:09 Asia/Aden — نشر إصلاح حقل amendment
+- نُشر تعديل implementation-only amendment ليستعمل حقول `selection` و`multiplicity` الموجودة فعليًا في preregistration المقفلة، مع حفظ القيم كما هي.
+- محاولة amendment السابقة توقفت قبل الكتابة بـKeyError ولم تقرأ outcomes. القياس ما زال NOT RUN.
+- التالي: إعادة الأمر من code SHA الجديد، ثم prechecks مطابقة قبل أي قياس.
