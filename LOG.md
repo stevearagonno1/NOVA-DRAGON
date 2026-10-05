@@ -885,3 +885,8 @@ Phase=pre; all_pass=False; failures=['check_01', 'check_18']; code_commit=6aaaac
 ### implementation-only preregistration amendment frozen (2026-10-05T14:42:32Z)
 
 Amendment pins the complete runner/audit code SHA and explicitly preserves the original methods, parameters, source panels, 52 settings, 3,978 pair modes, and gates. No outcome read.
+
+
+### pre-measurement checks (2026-10-05T14:43:34Z)
+
+Phase=pre; all_pass=True; failures=[]; code_commit=8a7c81fd91f1984d799c13f7484f89a43712c22d.

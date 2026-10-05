@@ -1,18 +1,18 @@
 {
   "phase": "pre",
-  "ran_utc": "2026-10-05T14:14:30Z",
-  "elapsed_s": 24.5,
+  "ran_utc": "2026-10-05T14:43:33Z",
+  "elapsed_s": 33.9,
   "checks": {
     "check_01": {
       "check": "1",
       "name": "source pins and hashes",
-      "ok": false,
+      "ok": true,
       "critical": true,
-      "evidence": "source records=20; mismatches=[('tools/l0084_entry_mix_r1/integrity.py', 'local SHA mismatch/missing')]",
+      "evidence": "source records=20; mismatches=none",
       "evidence_path": "_meta/fetch_manifest.txt",
       "command": "python -m l0084_entry_mix.cli check --phase pre",
-      "measured_error": "source records=20; mismatches=[('tools/l0084_entry_mix_r1/integrity.py', 'local SHA mismatch/missing')]",
-      "status": "FAIL"
+      "measured_error": "none",
+      "status": "PASS"
     },
     "check_02": {
       "check": "2",
@@ -182,19 +182,16 @@
     "check_18": {
       "check": "18",
       "name": "workspace <=125MB, no secrets/pushes",
-      "ok": false,
+      "ok": true,
       "critical": true,
-      "evidence": "{\"workspace_mb\": 115.86, \"secrets\": [\"/home/user/l0084-package/tools/l0084_entry_mix/tests.py\"], \"branch\": \"arena/l0084-entry-mix-2026-10-04\", \"remotes\": \"none\"}",
+      "evidence": "{\"workspace_mb\": 115.8, \"secrets\": [], \"branch\": \"arena/l0084-entry-mix-2026-10-04\", \"remotes\": \"none\"}",
       "evidence_path": "output_hashes.json",
       "command": "python -m l0084_entry_mix.cli check --phase pre",
-      "measured_error": "{\"workspace_mb\": 115.86, \"secrets\": [\"/home/user/l0084-package/tools/l0084_entry_mix/tests.py\"], \"branch\": \"arena/l0084-entry-mix-2026-10-04\", \"remotes\": \"none\"}",
-      "status": "FAIL"
+      "measured_error": "none",
+      "status": "PASS"
     }
   },
-  "all_pass": false,
-  "failures": [
-    "check_01",
-    "check_18"
-  ],
-  "code_commit": "6aaaacf72a3c89cf5b26c11eaebf90727a892fc7"
+  "all_pass": true,
+  "failures": [],
+  "code_commit": "8a7c81fd91f1984d799c13f7484f89a43712c22d"
 }
