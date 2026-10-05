@@ -9,9 +9,11 @@ except ImportError:
 
 
 class CliSafetyTests(unittest.TestCase):
-    def test_measure_is_closed_before_remote_access(self):
-        with self.assertRaisesRegex(RuntimeError,"measurement gate is intentionally closed"):
-            cli.main(["measure"])
+    def test_measure_requires_pinned_code_before_network_access(self):
+        from unittest.mock import patch
+        with patch.dict('os.environ',{},clear=True):
+            with self.assertRaisesRegex(RuntimeError,"L0084_R1_CODE_COMMIT is required"):
+                cli.main(["measure"])
 
     def test_legacy_force_and_skip_switches_removed(self):
         with contextlib.redirect_stderr(io.StringIO()):

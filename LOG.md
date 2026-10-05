@@ -852,3 +852,9 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - فحوص ما قبل الرفع على الشجرة المنشورة: py_compile PASS؛ pytest 24/24؛ module tests 10/10. يوجد synthetic CLI smoke ناجح على نسخة محلية؛ يلزم إعادة تشغيله على SHA هذا.
 - القياس السوقي NOT RUN؛ gate CLOSED؛ اختبار network artifact الحقيقي وبقية شروط readiness معلقة.
 - التالي: إعادة تشغيل CLI readiness بعد النشر قبل أي تغيير للحارس أو وصول لنتائج السوق.
+
+
+## 2026-10-05 17:05 Asia/Aden — نشر بوابة synthetic conditional
+- نُشر العلم الذي يتيح real runner بعد synthetic E2E مع test يحمي من أي وصول شبكة قبل code pin؛ التنفيذ الحقيقي ما زال يتطلب amendment وchecks pre على SHA نفسه.
+- الاختبارات على النسخة الجديدة ستعاد قبل amendment أو القياس. السوق لم يُقرأ ولم يبدأ experiment.
+- التالي: py_compile/pytest/module checks وsynthetic CLI على commit الجديد، ثم amendment/prechecks.

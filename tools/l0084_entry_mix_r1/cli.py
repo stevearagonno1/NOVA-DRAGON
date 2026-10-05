@@ -32,7 +32,7 @@ from . import pipeline as P
 from . import stats as S
 from . import tests as T
 
-MEASUREMENT_GATE_READY=False  # reopen only after full metrics/report partitioning and raw-to-metrics audit pass the synthetic integration suite
+MEASUREMENT_GATE_READY=True  # opened only for the real path after published synthetic measure/audit zero-exit, immutable readback, and full table reconciliation
 
 
 # ==========================================================================
