@@ -833,3 +833,9 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - نُشر تنفيذ مستقل لضوابط no-signal والمكونات وrandom وequal-book مع شروط تدقيق exit status؛ فحوص ما قبل الرفع py_compile وpytest 24/24 واختبارات الوحدة 10/10 نجحت.
 - القياس ما زال NOT RUN؛ synthetic CLI readiness لم ينجح/لم يكتمل، لذلك يبقى الحارس CLOSED.
 - التالي: synthetic measure/audit عبر أوامر CLI الفعلية مع persistence/readback، ثم بقية فحوص v7.
+
+
+## 2026-10-05 16:42 Asia/Aden — نشر ضوابط المرشح وتدقيقها
+- نُشرت ضوابط no-signal وconstituent singleton/pair وrandom وequal-book $1000/$20 مع إعادة حساب مستقلة في التدقيق. اختبار pair synthetic يطابق عائلات الضوابط الخمس ويكشف العبث.
+- قبل النشر: py_compile PASS؛ pytest 24/24 PASS؛ module tests 10/10 PASS؛ workspace package 67,500,394 bytes. CLI synthetic readiness لم يكتمل؛ gate CLOSED ولا نتائج سوق.
+- التالي: إنشاء واختبار synthetic measure/audit الفعلي عبر CLI مع persistence/readback وتحقق كل شروط v7.
