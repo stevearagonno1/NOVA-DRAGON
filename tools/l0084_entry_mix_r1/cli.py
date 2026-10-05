@@ -314,8 +314,9 @@ def cmd_audit(args):
         if run.get("status") not in ("MEASUREMENT_STAGES_COMPLETE_AUDIT_PENDING","RUNNING"):
             raise TransportError("measurement run is not in an auditable state")
         m=M.Measurer();res=rebuild_all(client,head,run["run_id"],m)
-        if res.get("metrics_reconciliation")!="PASS":
-            raise TransportError("full raw-trade rebuild passed, but independent metrics/table reconciliation is not implemented or did not pass")
+        required_checks={"independent_execution_rebuild":"PASS","raw_metric_reconciliation":"PASS"}
+        if any(res.get(k)!=v for k,v in required_checks.items()) or not str(res.get("metrics_reconciliation","")).startswith("PASS_CANONICAL_METRIC_TABLE") or not str(res.get("adjustment_reconciliation","")).startswith("PASS_HOLM_POWER_OVERLAY") or not str(res.get("controls_reconciliation","")).startswith("PASS_INDEPENDENT_CONTROL_REBUILD") or int(res.get("violations",-1))!=0:
+            raise TransportError("full rebuild failed one or more raw, canonical-metric, adjustment, control, or violation reconciliations")
         obj={"status":"PASS","fixed_head":head,"run_id":run["run_id"],"code_commit":run["code_commit"],**res}
         code=0
     except Exception as exc:

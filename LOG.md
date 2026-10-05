@@ -827,3 +827,9 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - سُجل الرأس المنشور `c5bd96d01a2cf11c84fc558b11ab86efb44da9c2` ومسار التكة 008 بعد التحقق من القراءة الثابتة للفرع.
 - الحالة IN PROGRESS: الحارس مغلق؛ اكتمال controls وsynthetic CLI readiness لم يتحقق. لا قياس سوق.
 - الخطوة التالية: استكمال readiness قبل أي وصول لنتائج السوق.
+
+
+## 2026-10-05 16:42 Asia/Aden — نشر تحديث جداول الضوابط
+- نُشر تنفيذ مستقل لضوابط no-signal والمكونات وrandom وequal-book مع شروط تدقيق exit status؛ فحوص ما قبل الرفع py_compile وpytest 24/24 واختبارات الوحدة 10/10 نجحت.
+- القياس ما زال NOT RUN؛ synthetic CLI readiness لم ينجح/لم يكتمل، لذلك يبقى الحارس CLOSED.
+- التالي: synthetic measure/audit عبر أوامر CLI الفعلية مع persistence/readback، ثم بقية فحوص v7.

@@ -225,7 +225,7 @@ def _actual_rows(client,head,paths):
 
 def _independent_paired_difference(base_rows,control_rows,window,panel):
     """Independent synchronized block bootstrap for one matched asset pair."""
-    if not base_rows or not control_rows or len(base_rows)!=len(control_rows):return None
+    if not base_rows or not control_rows:return None
     first,last=M.WIN_RANGE[window];n_days=int((np.datetime64(last)-np.datetime64(first)).astype(int))+1
     sums=[np.zeros(n_days),np.zeros(n_days)];counts=[np.zeros(n_days),np.zeros(n_days)]
     for side,rows in enumerate((base_rows,control_rows)):
@@ -535,6 +535,54 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
     asset_metrics=iter(_metric_rows(client,head,"metrics_by_asset",run_id))
     checked_summary_metrics=checked_asset_metrics=checked_inference_metrics=0
     expected_control_rows=[];expected_halfyear_rows=[];adjustment_groups={}
+    # Rebuild the selected finalist's equal-capital and $20 hold controls from
+    # the fixed panel endpoints and independently simulated candidate trades.
+    for prefix,baseid in selected.items():
+        role=_role_for_id(baseid)
+        members,mode=_resolve_candidate(baseid,prefix,role,pair_map,triple_map,selected,neighbor_map)
+        for window in list(M.inner_windows(prefix))+[prefix]:
+            if role=="triple":target_cid=f"{prefix}:{baseid}";target_role="triple"
+            elif window==prefix:target_cid=f"{prefix}:{baseid}";target_role="outer"
+            else:target_cid=baseid;target_role=role
+            target_key=(target_cid,target_role,window)
+            if target_key not in receipts_by_key:continue
+            bot_by_asset={}
+            for sym,p in measurer.panels.items():
+                masks=[p.mask_of(name) for name in members]
+                mask=_combine_independent(masks,mode,p.seg)
+                lo,hi=p.ranges[window]
+                bot_by_asset[sym]=independent_simulate_window(p.o,p.h,p.l,p.c,p.atr,p.seg,mask,sym,target_cid,lo,hi)
+            if not any(bot_by_asset.values()):continue
+            for sym,p in measurer.panels.items():
+                lo,hi=p.ranges[window];entry_ix=lo+1 if lo+1<=hi else lo
+                entry,exit_=float(p.o[entry_ix]),float(p.c[hi])
+                bot_net=float(sum(t["net_dollars"] for t in bot_by_asset[sym]))
+                for control_type,net in (("equal_book_1000",(1000.0/entry)*(exit_-entry)-2.6),
+                                         ("equal_book_20",(20.0/entry)*(exit_-entry)-0.052)):
+                    expected_control_rows.append({"candidate":baseid,"control_type":control_type,"replicate":0,
+                        "asset":sym,"window":window,"n":1,"matched_count":len(bot_by_asset[sym]),
+                        "net":float(net),"expectancy":float(net),"paired_difference":bot_net-float(net),
+                        "ci_lo":None,"ci_hi":None,"seed":None})
+            comparators=[]
+            if len(members)>=2:
+                comparators.extend(("constituent_singleton|"+name,(name,),"AND0") for name in members)
+            if len(members)==3:
+                import itertools
+                comparators.extend(("constituent_pair|"+"|".join(pair)+"|"+mode,tuple(pair),mode)
+                                   for pair in itertools.combinations(members,2))
+            for control_type,control_members,control_mode in comparators:
+                for sym,p in measurer.panels.items():
+                    lo,hi=p.ranges[window]
+                    cmask=_combine_independent([p.mask_of(name) for name in control_members],control_mode,p.seg)
+                    comp=independent_simulate_window(p.o,p.h,p.l,p.c,p.atr,p.seg,cmask,sym,target_cid,lo,hi)
+                    target_refs=[trade_row(t,target_cid,target_role,window,measurer.panels) for t in bot_by_asset[sym]]
+                    comp_refs=[trade_row(t,target_cid,"constituent",window,measurer.panels) for t in comp]
+                    paired=_independent_paired_difference(target_refs,comp_refs,window,p)
+                    net=float(sum(t["net_dollars"] for t in comp));n=len(comp)
+                    expected_control_rows.append({"candidate":baseid,"control_type":control_type,"replicate":0,
+                        "asset":sym,"window":window,"n":n,"matched_count":None,"net":net,
+                        "expectancy":net/n if n else None,"paired_difference":paired["diff"] if paired else None,
+                        "ci_lo":paired["lo5"] if paired else None,"ci_hi":paired["hi95"] if paired else None,"seed":None})
     for entry in coverage:
         cid,role,window=entry["candidate_id"],entry["role"],entry["window"]
         key=(cid,role,window);paths=entry.get("partition_paths",[])
@@ -666,6 +714,8 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
     asset_rows,asset_parts=_metric_rows.last_meta
     stored_controls,control_parts=_control_rows(client,head,run_id)
     _compare_control_rows(stored_controls,expected_control_rows)
+    control_families=sorted({str(r["control_type"]).split("|",1)[0] for r in stored_controls})
+    controls_reconciliation="PASS_INDEPENDENT_CONTROL_REBUILD; families="+",".join(control_families)
     stored_halfyears,halfyear_parts=_halfyear_rows(client,head,run_id)
     _compare_halfyear_rows(stored_halfyears,expected_halfyear_rows)
     expected_adjustments=[]
@@ -709,7 +759,7 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
             "adjustment_reconciliation":"PASS_HOLM_POWER_OVERLAY_AND_CANONICAL_JOIN",
             "adjustment_rows":len(stored_adjustments),"final_metric_rows":final_rows,
             "final_metric_partitions":len(final_parts),
-            "controls_reconciliation":"PASS_RAW_CONTROL_TABLE; paired_difference_and_CI_pending",
+            "controls_reconciliation":controls_reconciliation,
             "control_result_rows":len(stored_controls),"control_partitions":len(control_parts),
             "halfyear_raw_reconciliation":"PASS; per_asset_baseline_lift_CI_pending",
             "halfyear_rows":len(stored_halfyears),"halfyear_partitions":len(halfyear_parts),

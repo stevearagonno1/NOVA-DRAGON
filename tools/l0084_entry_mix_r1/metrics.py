@@ -237,6 +237,9 @@ class RawMetricWriter:
         if (len(self.controls)>=self.rows_per_part or len(self.halfyears)>=self.rows_per_part
                 or len(self.summary)>=self.rows_per_part or len(self.assets)>=self.rows_per_part):
             self.flush()
+    def add_control_results(self,rows):
+        self.controls.extend(rows)
+        if len(self.controls)>=self.rows_per_part:self.flush()
     def _commit_table(self,kind,part,rows):
         if not rows:return None
         schema=CONTROL_SCHEMA if kind=="controls" else ADJUSTMENT_SCHEMA if kind=="metric_adjustments" else METRIC_SCHEMA

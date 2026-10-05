@@ -757,6 +757,13 @@ def stage_controls(m, finalists, singles, writer=None):
             continue
         members, mode = tuple(det["member_names"]), det["mode"]
         wins = list(info["inner"]) + [prefix]
+        constituents=[]
+        if len(members)>=2:
+            for member in members:constituents.append(("constituent_singleton|"+member,(member,),"AND0"))
+        if len(members)==3:
+            import itertools
+            for pair in itertools.combinations(members,2):
+                constituents.append(("constituent_pair|"+"|".join(pair)+"|"+mode,tuple(pair),mode))
         for w in wins:
             cb = m.candidate_trades(members, mode, window=w)
             pooled = m.windowed(cb, w)
@@ -766,6 +773,24 @@ def stage_controls(m, finalists, singles, writer=None):
             counts = {}
             for t in pooled:
                 counts[t["symbol"]] = counts.get(t["symbol"], 0) + 1
+            if writer is not None and constituents:
+                constituent_rows=[]
+                for control_type,control_members,control_mode in constituents:
+                    cb_by_asset=m.candidate_trades(control_members,control_mode,window=w)
+                    for sym in m.panels:
+                        target_asset=cb.get(sym,[]);control_asset=cb_by_asset.get(sym,[])
+                        target_stats=m.stat_window(target_asset,w) if target_asset else None
+                        control_stats=m.stat_window(control_asset,w) if control_asset else None
+                        paired=(S.paired_block_diff(target_stats["days"],target_stats["nets"],
+                            control_stats["days"],control_stats["nets"],target_stats["n_days"])
+                            if target_stats is not None and control_stats is not None else None)
+                        control_net=float(sum(t["net_dollars"] for t in control_asset))
+                        constituent_rows.append({"candidate":str(info["chosen"]),"control_type":control_type,
+                            "replicate":0,"asset":sym,"window":w,"n":len(control_asset),"matched_count":None,
+                            "net":control_net,"expectancy":control_net/len(control_asset) if control_asset else None,
+                            "paired_difference":paired["diff"] if paired else None,
+                            "ci_lo":paired["lo5"] if paired else None,"ci_hi":paired["hi95"] if paired else None,"seed":None})
+                writer.add_control_results(constituent_rows)
             # ---- random-entry controls (200 replicates, matched count)
             rep_rows = []
             unmatched = 0
@@ -826,15 +851,22 @@ def stage_controls(m, finalists, singles, writer=None):
                             "win_rate_mean": float(rr["win_rate"].dropna().mean())
                             if len(rr) else None}
             # ---- buy-and-hold equal capital ($1000/asset) + $20 hold
-            hold_1000, hold_20 = [], []
+            hold_1000, hold_20 = [], [];book_control_rows=[]
             for sym, p in m.panels.items():
                 lo, hi = p.ranges[w]
                 e = lo + 1 if lo + 1 <= hi else lo
                 entry, exit_ = float(p.o[e]), float(p.c[hi])
-                g = (1000.0 / entry) * (exit_ - entry)
-                hold_1000.append(g - 2.6)                 # 0.13% each side
-                g20 = (20.0 / entry) * (exit_ - entry)
-                hold_20.append(g20 - 0.052)
+                hold_net=(1000.0/entry)*(exit_-entry)-2.6
+                hold20_net=(20.0/entry)*(exit_-entry)-0.052
+                hold_1000.append(hold_net);hold_20.append(hold20_net)
+                bot_net=float(sum(t["net_dollars"] for t in cb.get(sym,[])))
+                for control_type,net in (("equal_book_1000",hold_net),("equal_book_20",hold20_net)):
+                    book_control_rows.append({"candidate":str(info["chosen"]),"control_type":control_type,
+                        "replicate":0,"asset":sym,"window":w,"n":1,"matched_count":len(cb.get(sym,[])),
+                        "net":float(net),"expectancy":float(net),"paired_difference":bot_net-float(net),
+                        "ci_lo":None,"ci_hi":None,"seed":None})
+            if writer is not None and hasattr(writer,"add_control_results"):
+                writer.add_control_results(book_control_rows)
             base = m.baseline(w)
             rows.append({
                 "candidate": info["chosen"], "prefix": prefix, "window": w,

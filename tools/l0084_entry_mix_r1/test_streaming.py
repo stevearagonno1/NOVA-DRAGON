@@ -87,6 +87,14 @@ class StreamingTests(unittest.TestCase):
         self.trade=trade
         self.panels={'X':SimpleNamespace(dt=dt,ranges={'2023H1':(0,len(dt)-1),'2023H2':(0,19)})}
 
+    def test_paired_block_reference_supports_unequal_counts(self):
+        rows=[trade_row(self.trade,'A','single','2023H1',self.panels)]
+        doubled=[trade_row(self.trade,'B','control','2023H1',self.panels),
+                 trade_row(self.trade,'B','control','2023H1',self.panels)]
+        result=_independent_paired_difference(rows,doubled,'2023H1',self.panels['X'])
+        self.assertIsNotNone(result)
+        self.assertAlmostEqual(result['diff'],0.0)
+
     def test_roundtrip_schema_values_and_empty_window(self):
         t=MemoryTransport();w=RemoteTradeWriter(t,run_id='synthetic',max_rows=1,batch_bytes=100000)
         w.add_window('C0','pair','2023H1',{'X':[self.trade]},self.panels)
@@ -209,9 +217,9 @@ class StreamingTests(unittest.TestCase):
         all_trades=[t for rows in trades_by_asset.values() for t in rows]
         matched_counts={sym:len(rows) for sym,rows in trades_by_asset.items()}
         t=MemoryTransport();meta_base=BASE+'/synthetic_fixture';meta={
-          meta_base+'/pairs_registry.csv':b'pair_id,member_a,member_b\n',
+          meta_base+'/pairs_registry.csv':b'pair_id,member_a,member_b,mode\nP0001,C0,C1,AND0\n',
           meta_base+'/triples_registry.csv':b'prefix_id,triple_id,member_a,member_b,member_c,mode,parent_ids\n',
-          meta_base+'/selection_log.csv':b'prefix,candidate,selected\n2023H1,C0,1\n',
+          meta_base+'/selection_log.csv':b'prefix,candidate,selected\n2023H1,P0001|AND0,1\n',
           meta_base+'/neighbors_registry.csv':b'neighbour_id,prefix_id,base_candidate,member,neighbour_setting,mode\n'}
         head=t.branch_head();head,_=t.commit_files(meta,head,'synthetic metadata')
         w=RemoteTradeWriter(t,run_id='full-audit')
@@ -221,18 +229,40 @@ class StreamingTests(unittest.TestCase):
                     "lift_win_pts":audited["lift_win_points"],"p_raw":audited["p_raw"],
                     "exp_lo5":audited["ci_lo"],"exp_hi95":audited["ci_hi"],
                     "expectancy":audited["expectancy"],"exp_se":audited["exp_se"]}
-        w.add_window('2023H1:C0','outer','2023H1',trades_by_asset,m.panels,stats=runner_stats('2023H1:C0','outer'),baseline_by_asset=base_by_asset,members=('C0',),mode='AND0')
+        w.add_window('NO-SIGNAL','baseline','2023H1',base_by_asset,m.panels)
+        w.add_window('2023H1:P0001|AND0','outer','2023H1',trades_by_asset,m.panels,stats=runner_stats('2023H1:P0001|AND0','outer'),baseline_by_asset=base_by_asset,members=('C0','C1'),mode='AND0')
         w.add_window('C0','single','2023H2',{'X':[],'Y':[]},m.panels,baseline_by_asset={'X':[],'Y':[]},members=('C0',),mode='AND0')
         w.add_window('C1','single','2023H1',trades_by_asset,m.panels,stats=runner_stats('C1'),baseline_by_asset=base_by_asset,members=('C1',),mode='AND0')
-        random_by_asset={sym:_random_reference(p,'2023H1',matched_counts[sym],'C0',0) for sym,p in panels.items()}
-        seeds={sym:__import__('l0084_entry_mix_r1.measure',fromlist=['sha_seed']).sha_seed(f'84|{sym}|2023H1|C0|0') for sym in panels}
+        random_by_asset={sym:_random_reference(p,'2023H1',matched_counts[sym],'P0001|AND0',0) for sym,p in panels.items()}
+        seeds={sym:__import__('l0084_entry_mix_r1.measure',fromlist=['sha_seed']).sha_seed(f'84|{sym}|2023H1|P0001|AND0|0') for sym in panels}
         paired_by_asset={sym:_independent_paired_difference(
             [trade_row(x,'C0','outer','2023H1',m.panels) for x in trades_by_asset[sym]],
             [trade_row(x,'C0','random_control','2023H1',m.panels) for x in random_by_asset[sym]],'2023H1',panels[sym])
             for sym in panels}
-        w.add_window('RAND:2023H1:C0:rep000','random_control','2023H1',random_by_asset,m.panels,
-            control_info={'candidate':'C0','replicate':0,'matched_counts':matched_counts,'seeds':seeds,
-                          'paired_by_asset':paired_by_asset},baseline_by_asset=base_by_asset,members=('C0',),mode='AND0')
+        w.add_window('RAND:2023H1:P0001|AND0:rep000','random_control','2023H1',random_by_asset,m.panels,
+            control_info={'candidate':'P0001|AND0','replicate':0,'matched_counts':matched_counts,'seeds':seeds,
+                          'paired_by_asset':paired_by_asset},baseline_by_asset=base_by_asset,members=('C0','C1'),mode='AND0')
+        book_rows=[]
+        for sym,p in panels.items():
+            lo,hi=p.ranges['2023H1'];entry_ix=lo+1;entry=float(p.o[entry_ix]);exit_=float(p.c[hi])
+            bot_net=sum(x['net_dollars'] for x in trades_by_asset[sym])
+            for typ,net in (("equal_book_1000",(1000.0/entry)*(exit_-entry)-2.6),
+                            ("equal_book_20",(20.0/entry)*(exit_-entry)-0.052)):
+                book_rows.append({"candidate":"P0001|AND0","control_type":typ,"replicate":0,"asset":sym,"window":"2023H1",
+                    "n":1,"matched_count":len(trades_by_asset[sym]),"net":net,"expectancy":net,
+                    "paired_difference":bot_net-net,"ci_lo":None,"ci_hi":None,"seed":None})
+        constituent_rows=[]
+        for member in ('C0','C1'):
+            for sym,p in panels.items():
+                target_refs=[trade_row(x,'P0001|AND0','outer','2023H1',m.panels) for x in trades_by_asset[sym]]
+                component_refs=[trade_row(x,member,'single','2023H1',m.panels) for x in trades_by_asset[sym]]
+                paired=_independent_paired_difference(target_refs,component_refs,'2023H1',p)
+                net=sum(x['net_dollars'] for x in trades_by_asset[sym]);n=len(trades_by_asset[sym])
+                constituent_rows.append({"candidate":"P0001|AND0","control_type":"constituent_singleton|"+member,
+                    "replicate":0,"asset":sym,"window":"2023H1","n":n,"matched_count":None,
+                    "net":net,"expectancy":net/n if n else None,"paired_difference":paired['diff'] if paired else None,
+                    "ci_lo":paired['lo5'] if paired else None,"ci_hi":paired['hi95'] if paired else None,"seed":None})
+        w.add_control_results(book_rows+constituent_rows)
         w.close()
         result=rebuild_all(t,t.head,'full-audit',m,metadata_base=meta_base)
         self.assertEqual(result['independent_execution_rebuild'],'PASS')
@@ -240,14 +270,14 @@ class StreamingTests(unittest.TestCase):
         self.assertEqual(result['independent_inference_rows_reconciled'],2)
         self.assertEqual(result['metrics_reconciliation'],'PASS_CANONICAL_METRIC_TABLE; raw trades and adjustment join independently reconciled')
         self.assertEqual(result['adjustment_reconciliation'],'PASS_HOLM_POWER_OVERLAY_AND_CANONICAL_JOIN')
-        self.assertEqual(result['groups_rebuilt'],4)
+        self.assertEqual(result['groups_rebuilt'],5)
         self.assertEqual(result['zero_trade_candidate_windows'],1)
-        self.assertEqual(result['controls_reconciliation'],'PASS_RAW_CONTROL_TABLE; paired_difference_and_CI_pending')
-        self.assertEqual(result['control_result_rows'],2)
-        self.assertEqual(result['halfyear_rows'],8)
+        self.assertEqual(result['controls_reconciliation'],'PASS_INDEPENDENT_CONTROL_REBUILD; families=constituent_singleton,equal_book_1000,equal_book_20,no_signal,random_entry')
+        self.assertEqual(result['halfyear_rows'],10)
         self.assertEqual(result['adjustment_rows'],2)
-        self.assertEqual(result['final_metric_rows'],12)
-        self.assertEqual(result['trades_rebuilt'],sum(map(len,trades_by_asset.values()))*2+sum(map(len,random_by_asset.values())))
+        self.assertEqual(result['control_result_rows'],12)
+        self.assertEqual(result['final_metric_rows'],15)
+        self.assertEqual(result['trades_rebuilt'],sum(map(len,base_by_asset.values()))+sum(map(len,trades_by_asset.values()))*2+sum(map(len,random_by_asset.values())))
         metric_path=next(x for x in t.trees[t.head] if '/metrics_raw/run=full-audit/' in x and x.endswith('.parquet'))
         original_metric=t.blob_from_commit(t.head,metric_path)
         metric=pq.read_table(pa.BufferReader(original_metric))
@@ -260,7 +290,7 @@ class StreamingTests(unittest.TestCase):
         control_path=next(x for x in t.trees[t.head] if '/controls/run=full-audit/' in x and x.endswith('.parquet'))
         original_control=t.blob_from_commit(t.head,control_path)
         control=pq.read_table(pa.BufferReader(original_control))
-        altered_control=control.to_pylist();altered_control[0]['matched_count']+=1
+        altered_control=control.to_pylist();target_control=next(r for r in altered_control if r['matched_count'] is not None);target_control['matched_count']+=1
         sink=pa.BufferOutputStream();pq.write_table(pa.Table.from_pylist(altered_control,schema=control.schema),sink,compression='zstd')
         payload=sink.getvalue().to_pybytes();badhead=t.branch_head();t.commit_files({control_path:payload},badhead,'synthetic changed-control failure')
         with self.assertRaisesRegex(Exception,'control value mismatch'):

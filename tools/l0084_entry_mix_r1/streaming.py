@@ -280,6 +280,9 @@ class RemoteTradeWriter:
         self._resource_snapshot()
         return row_count
 
+    def add_control_results(self,rows):
+        self.metric_writer.add_control_results(rows)
+
     def _add_chunk(self, candidate, role, window, rows, panels):
         payload, table = encode_rows(rows)
         if len(payload) > MAX_PART_BYTES:
