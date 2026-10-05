@@ -116,14 +116,27 @@ class RawMetricWriter:
                         try:ids.append(int(name[5:-8]))
                         except ValueError:raise TransportError("invalid metric partition name")
                 setattr(self,attr,max(ids,default=-1)+1)
-    def add_window(self,candidate,role,window,trades_by_asset,panels):
+    def add_window(self,candidate,role,window,trades_by_asset,panels,stats=None):
         asset_rows=[];all_trades=[]
         for asset,panel in panels.items():
             trades=list(trades_by_asset.get(asset,[]));all_trades.extend(trades)
             asset_rows.append(_metric_row(candidate,role,window,asset,"asset",trades,panel))
         # A synthetic or partial group missing an asset is still represented as zero.
         summary_panel=next(iter(panels.values()))
-        self.summary.append(_metric_row(candidate,role,window,"ALL","summary",all_trades,summary_panel))
+        summary=_metric_row(candidate,role,window,"ALL","summary",all_trades,summary_panel)
+        # The runner's registered synchronized block bootstrap is computed once
+        # by stat_window and handed in; never substitute a second, unsynchronized
+        # per-trade resampling implementation here.
+        if stats:
+            summary.update({
+                "baseline_win_rate":stats.get("baseline_win"),
+                "breakeven_rate":stats.get("breakeven_ref"),
+                "lift_win_points":stats.get("lift_win_pts"),
+                "p_raw":stats.get("p_raw"),
+                "ci_lo":stats.get("exp_lo5"),
+                "ci_hi":stats.get("exp_hi95"),
+                "metric_status":"REGISTERED_BLOCK_STATS; Holm_and_power_pending"})
+        self.summary.append(summary)
         self.assets.extend(asset_rows);self.group_count+=1
         if len(self.summary)>=self.rows_per_part or len(self.assets)>=self.rows_per_part:
             self.flush()

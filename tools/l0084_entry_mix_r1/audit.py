@@ -221,6 +221,50 @@ def _actual_rows(client,head,paths):
     return rows
 
 
+def _independent_block_stats(rows,window,panels):
+    """Literal independent synchronized seven-day bootstrap over raw rebuilt trades."""
+    if window not in M.WIN_RANGE or not rows:return None
+    first,last=M.WIN_RANGE[window]
+    n_days=int((np.datetime64(last)-np.datetime64(first)).astype(int))+1
+    daily_sum=np.zeros(n_days);daily_count=np.zeros(n_days)
+    nets=np.asarray([float(r["net_dollars"]) for r in rows])
+    for r in rows:
+        p=panels[r["asset"]]
+        day=np.datetime64(pd.Timestamp(p.dt[int(r["fill_bar"])]).date())
+        idx=int((day-np.datetime64(first)).astype(int))
+        if idx<0 or idx>=n_days:raise TransportError("rebuilt trade day outside requested window")
+        daily_sum[idx]+=float(r["net_dollars"]);daily_count[idx]+=1
+    rng=np.random.default_rng(84)
+    reps=2000;block=7
+    if n_days<=block:
+        chosen=rng.integers(0,n_days,size=(reps,n_days))
+    else:
+        blocks=int(np.ceil(n_days/block))
+        starts=rng.integers(0,n_days-block+1,size=(reps,blocks))
+        chosen=(starts[:,:,None]+np.arange(block)[None,None,:]).reshape(reps,-1)[:,:n_days]
+    denom=daily_count[chosen].sum(axis=1);numer=daily_sum[chosen].sum(axis=1)
+    vals=np.divide(numer,denom,out=np.full(reps,np.nan),where=denom>0)
+    vals=vals[np.isfinite(vals)]
+    if not len(vals):return None
+    expectancy=float(nets.mean());lo=float(np.percentile(vals,5));hi=float(np.percentile(vals,95));se=float(np.std(vals,ddof=1))
+    from scipy.stats import norm
+    praw=float(norm.sf(expectancy/se)) if se>0 else float("nan")
+    wins=sum(r["outcome"]=="target" for r in rows);stops=sum(r["outcome"]=="stop" for r in rows)
+    resolved=wins+stops;winrate=wins/resolved if resolved else float("nan")
+    base=[]
+    for sym,p in panels.items():
+        lo_bar,hi_bar=p.ranges[window]
+        expected=independent_simulate_window(p.o,p.h,p.l,p.c,p.atr,p.seg,None,sym,"NO-SIGNAL",lo_bar,hi_bar)
+        base.extend(expected)
+    base_w=sum(x["outcome"]=="target" for x in base);base_d=sum(x["outcome"] in ("target","stop") for x in base)
+    base_win=base_w/base_d if base_d else float("nan")
+    mean_cost_atr=float(np.mean([float(r["cost_atr"]) for r in rows]))
+    lift=(winrate-base_win)*100 if np.isfinite(winrate) and np.isfinite(base_win) else float("nan")
+    return {"baseline_win_rate":base_win,"breakeven_rate":0.5+mean_cost_atr/3,
+      "lift_win_points":lift,
+      "p_raw":praw,"ci_lo":lo,"ci_hi":hi}
+
+
 def _audit_metric_row(candidate,role,window,asset,scope,trades,panel):
     """Independent descriptive-statistic implementation over rebuilt trades."""
     rows=sorted(trades,key=lambda x:(int(x["fill_bar"]),int(x["signal_bar"])))
@@ -319,7 +363,7 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
     checked_groups=checked_trades=0;violations=[]
     summary_metrics=iter(_metric_rows(client,head,"metrics",run_id))
     asset_metrics=iter(_metric_rows(client,head,"metrics_by_asset",run_id))
-    checked_summary_metrics=checked_asset_metrics=0
+    checked_summary_metrics=checked_asset_metrics=checked_inference_metrics=0
     for entry in coverage:
         cid,role,window=entry["candidate_id"],entry["role"],entry["window"]
         key=(cid,role,window);paths=entry.get("partition_paths",[])
@@ -356,6 +400,17 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
         try:stored_metric=next(summary_metrics)
         except StopIteration:raise TransportError("missing raw-derived summary metric row: "+str(key))
         expected_metric=_audit_metric_row(cid,role,window,"ALL","summary",exp_rows,next(iter(measurer.panels.values())))
+        inferential_role=role in ("single","pair","triple","outer","neighbour","descriptive")
+        registered_stats=_independent_block_stats(exp_rows,window,measurer.panels) if inferential_role else None
+        infer_fields=("p_raw","ci_lo","ci_hi","baseline_win_rate","breakeven_rate","lift_win_points")
+        stored_has_inference=any(stored_metric.get(field) is not None for field in infer_fields)
+        if stored_has_inference:
+            if not registered_stats:raise TransportError("inferential metric exists for empty raw group: "+str(key))
+            expected_metric.update(registered_stats)
+            expected_metric["metric_status"]="REGISTERED_BLOCK_STATS; Holm_and_power_pending"
+            checked_inference_metrics+=1
+        else:
+            expected_metric.update({field:None for field in infer_fields})
         _compare_metric(stored_metric,expected_metric,key);checked_summary_metrics+=1
         for sym,panel in measurer.panels.items():
             asset_trades=[x for x in exp_rows if x["asset"]==sym]
@@ -387,6 +442,7 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
     return {**base_check,"groups_rebuilt":checked_groups,"trades_rebuilt":checked_trades,
             "independent_execution_rebuild":"PASS","raw_metric_reconciliation":"PASS",
             "metrics_reconciliation":"DESCRIPTIVE_RAW_METRICS_ONLY; inference_and_controls_pending",
+            "independent_inference_rows_reconciled":checked_inference_metrics,
             "summary_metric_rows":summary_rows,"asset_metric_rows":asset_rows,
             "metric_partitions":summary_parts+asset_parts,"metric_partition_receipts":summary_parts+asset_parts,
             "violations":0}

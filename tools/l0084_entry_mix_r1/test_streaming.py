@@ -11,14 +11,14 @@ import pyarrow.parquet as pq
 
 try:
     from . import engine as E
-    from .streaming import RemoteTradeWriter, TRADE_SCHEMA, BASE
+    from .streaming import RemoteTradeWriter, TRADE_SCHEMA, BASE, _row as trade_row
     from .transport import TransportError
-    from .audit import verify_remote_partitions,rebuild_all
+    from .audit import verify_remote_partitions,rebuild_all,_independent_block_stats
 except ImportError:
     from l0084_entry_mix_r1 import engine as E
-    from l0084_entry_mix_r1.streaming import RemoteTradeWriter, TRADE_SCHEMA, BASE
+    from l0084_entry_mix_r1.streaming import RemoteTradeWriter, TRADE_SCHEMA, BASE, _row as trade_row
     from l0084_entry_mix_r1.transport import TransportError
-    from l0084_entry_mix_r1.audit import verify_remote_partitions,rebuild_all
+    from l0084_entry_mix_r1.audit import verify_remote_partitions,rebuild_all,_independent_block_stats
 
 
 class MemoryTransport:
@@ -193,12 +193,18 @@ class StreamingTests(unittest.TestCase):
           meta_base+'/neighbors_registry.csv':b'neighbour_id,prefix_id,base_candidate,member,neighbour_setting,mode\n'}
         head=t.branch_head();head,_=t.commit_files(meta,head,'synthetic metadata')
         w=RemoteTradeWriter(t,run_id='full-audit')
-        w.add_window('C0','single','2023H1',{'X':trades},m.panels)
+        def runner_stats(cid):
+            audited=_independent_block_stats([trade_row(x,cid,'single','2023H1',m.panels) for x in trades],'2023H1',m.panels)
+            return {"baseline_win":audited["baseline_win_rate"],"breakeven_ref":audited["breakeven_rate"],
+                    "lift_win_pts":audited["lift_win_points"],"p_raw":audited["p_raw"],
+                    "exp_lo5":audited["ci_lo"],"exp_hi95":audited["ci_hi"]}
+        w.add_window('C0','single','2023H1',{'X':trades},m.panels,stats=runner_stats('C0'))
         w.add_window('C0','single','2023H2',{'X':[]},m.panels)
-        w.add_window('C1','single','2023H1',{'X':trades},m.panels);w.close()
+        w.add_window('C1','single','2023H1',{'X':trades},m.panels,stats=runner_stats('C1'));w.close()
         result=rebuild_all(t,t.head,'full-audit',m,metadata_base=meta_base)
         self.assertEqual(result['independent_execution_rebuild'],'PASS')
         self.assertEqual(result['raw_metric_reconciliation'],'PASS')
+        self.assertEqual(result['independent_inference_rows_reconciled'],2)
         self.assertEqual(result['metrics_reconciliation'],'DESCRIPTIVE_RAW_METRICS_ONLY; inference_and_controls_pending')
         self.assertEqual(result['groups_rebuilt'],3)
         self.assertEqual(result['zero_trade_candidate_windows'],1)

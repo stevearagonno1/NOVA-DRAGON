@@ -799,3 +799,7 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - Work: published current R1 implementation, tests, environment lock, DRAFT status, and activity tick to the authorized R1 branch via the existing GitHub API publisher.
 - Result: DRAFT only; measurement gate remains closed; experiment NOT RUN. Local validation: pytest 22/22 and module self-test 10/10; synthetic end-to-end CLI readiness not established.
 - Next: complete inferential/control/half-year artifacts and audit, then full synthetic CLI readiness before any market measurement.
+## L0084-R1 DRAFT update — metric inference wiring
+- Work: updated R1 DRAFT runner, raw metric writer and independent auditor; uploaded source, tests, environment lock, truthful DRAFT status, LOG entry and a unique UTC/Asia-Aden activity tick.
+- Result: candidate summary metric rows now receive registered bootstrap fields, and the audit independently recalculates those from raw rebuilt trades. This remains partial: per-asset inference, Holm/power, controls and complete half-year reconciliation are pending. Gate remains CLOSED; market experiment NOT RUN. Local checks: py_compile PASS; pytest 22/22; module self-test 10/10.
+- Next: finish required result/control tables and audit; implement and run full shared CLI synthetic readiness before any measurement.

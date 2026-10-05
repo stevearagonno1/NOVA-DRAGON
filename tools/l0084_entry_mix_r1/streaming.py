@@ -238,7 +238,7 @@ class RemoteTradeWriter:
                 self.row_count+=int(row["trade_rows"])
                 self.partition_count+=int(row["partition_count"])
 
-    def add_window(self, candidate, role, window, trades_by_asset, panels):
+    def add_window(self, candidate, role, window, trades_by_asset, panels, stats=None):
         """Persist all rows for one candidate/window; records zero windows too."""
         key=(str(candidate),str(role),str(window))
         previous=self.completed_windows.get(key)
@@ -276,7 +276,7 @@ class RemoteTradeWriter:
             self.flush_index()
         if self.pending_bytes >= self.batch_bytes or len(self.pending) >= self.batch_parts:
             self.flush()
-        self.metric_writer.add_window(candidate,role,window,trades_by_asset,panels)
+        self.metric_writer.add_window(candidate,role,window,trades_by_asset,panels,stats=stats)
         self._resource_snapshot()
         return row_count
 

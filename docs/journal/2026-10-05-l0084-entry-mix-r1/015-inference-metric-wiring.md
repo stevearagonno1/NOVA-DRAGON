@@ -1,0 +1,6 @@
+- UTC: 2026-10-05T12:48:33Z
+- Asia/Aden: 2026-10-05T15:48:33+03:00
+- Preliminary registered-bootstrap fields are passed through the common runner to metric rows; audit independently recalculates summary bootstrap values from rebuilt raw trades.
+- Validation: `py_compile` PASS; pytest 22/22; module self-test 10/10; workspace 67,340,236 bytes. Full inference/control and synthetic CLI readiness are NOT complete.
+- Gate CLOSED; experiment NOT RUN.
+- Next: complete tables/audit and actual measure/audit synthetic path.
