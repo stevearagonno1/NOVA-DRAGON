@@ -930,3 +930,8 @@ Lead non-financial upload and immutable readback; no market run.
 ## 2026-10-05 - Checked stage1 paper v3 released
 
 Immutable remote-source launcher preflight passed after actual missing-dependency restoration. Same launcher logging route completed a non-financial work-branch upload and immutable readback. The private send-ready paper includes owner-provided authentication; public copy is redacted. Executor runs only 52 singleton settings plus baseline across the locked 12 assets and 12 windows. Market measurement NOT RUN by Lead; final financial audit remains Lead work.
+
+
+### stage1 synthetic passed (2026-10-05T17:42:42Z)
+
+synthetic exited 0 under pinned scope; continue only this stage.
