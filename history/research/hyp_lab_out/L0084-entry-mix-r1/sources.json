@@ -1,0 +1,437 @@
+{
+  "fetched_utc": "2026-10-05T06:39:15.098063+00:00",
+  "pins": {
+    "main": "71f52f0741cdaceb71797b1fe07de07db31fcced",
+    "grid_52": "62f4d255e0fc6fce8e7c331a6349484ccb0b8fc0",
+    "cost_model": "2d8e8f3afca6a72679382780ddaeb0d71de2cad6",
+    "prior_delivery": "d310df96901fa062022db41a35a24c5f229e0459"
+  },
+  "sources": [
+    {
+      "commit": "71f52f0741cdaceb71797b1fe07de07db31fcced",
+      "path": "CONSTITUTION.md",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/71f52f0741cdaceb71797b1fe07de07db31fcced/CONSTITUTION.md",
+      "http_status": 200,
+      "sha256": "34c60abcebcff6db194e8fcb6956225240ac1b614122af76194a792bff49bc8c",
+      "bytes": 36480,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "71f52f0741cdaceb71797b1fe07de07db31fcced",
+      "path": "docs/HANDOFF-L0083-TO-NEXT-LEAD.md",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/71f52f0741cdaceb71797b1fe07de07db31fcced/docs/HANDOFF-L0083-TO-NEXT-LEAD.md",
+      "http_status": 200,
+      "sha256": "f153a129949f49b0daf2c8a0a07492506d3f145309d4885bc33d786c819f212f",
+      "bytes": 14809,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "71f52f0741cdaceb71797b1fe07de07db31fcced",
+      "path": "docs/DECISIONS.md",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/71f52f0741cdaceb71797b1fe07de07db31fcced/docs/DECISIONS.md",
+      "http_status": 200,
+      "sha256": "814cd250b582e168799811c92454ccb4cb3095d7b99e34de56f0218f70395733",
+      "bytes": 56574,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "71f52f0741cdaceb71797b1fe07de07db31fcced",
+      "path": "docs/HANDOFF.md",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/71f52f0741cdaceb71797b1fe07de07db31fcced/docs/HANDOFF.md",
+      "http_status": 200,
+      "sha256": "2a5b8028abc1212791f7395a7ef0645b1248e09c519dfcdc0b4c1634207522cc",
+      "bytes": 39602,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "71f52f0741cdaceb71797b1fe07de07db31fcced",
+      "path": "docs/lanes/L0084-CARRY-FORWARD.md",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/71f52f0741cdaceb71797b1fe07de07db31fcced/docs/lanes/L0084-CARRY-FORWARD.md",
+      "http_status": 200,
+      "sha256": "b347715c7ed1dba4d112f85604a354072bf40d7e9c95c75e6f7205dbf612e4df",
+      "bytes": 7610,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "71f52f0741cdaceb71797b1fe07de07db31fcced",
+      "path": "LOG.md",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/71f52f0741cdaceb71797b1fe07de07db31fcced/LOG.md",
+      "http_status": 200,
+      "sha256": "9d20c773a0dcc445a0b2fb98debe49eaf95fa6f2974955a77b04238d08390312",
+      "bytes": 120679,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "71f52f0741cdaceb71797b1fe07de07db31fcced",
+      "path": "INDEX.md",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/71f52f0741cdaceb71797b1fe07de07db31fcced/INDEX.md",
+      "http_status": 200,
+      "sha256": "1d37b965f121f50c4baa67c29e6ba44bd8b0f74f2a5e0f2e391daf3d27c5e5c0",
+      "bytes": 9910,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "71f52f0741cdaceb71797b1fe07de07db31fcced",
+      "path": "BACKLOG.md",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/71f52f0741cdaceb71797b1fe07de07db31fcced/BACKLOG.md",
+      "http_status": 200,
+      "sha256": "77b8c38e32fc04699a1a573e9195aa3a15300f27b9a880b552ce05d0587c47c7",
+      "bytes": 4103,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "71f52f0741cdaceb71797b1fe07de07db31fcced",
+      "path": "docs/journal/README.md",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/71f52f0741cdaceb71797b1fe07de07db31fcced/docs/journal/README.md",
+      "http_status": 200,
+      "sha256": "89fc36318f74ea1107d59e0aea3f7d9bae1cb0dadb6023d6652827c5436d3eb8",
+      "bytes": 1579,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "71f52f0741cdaceb71797b1fe07de07db31fcced",
+      "path": "docs/journal/2026-09-19-arena-resume/002-tape-merge-closed.md",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/71f52f0741cdaceb71797b1fe07de07db31fcced/docs/journal/2026-09-19-arena-resume/002-tape-merge-closed.md",
+      "http_status": 200,
+      "sha256": "fe27cb996deb0b151c7eb3b4c3cbad87f6b2418fcdef5bc83518b93f9adf5eeb",
+      "bytes": 2514,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "62f4d255e0fc6fce8e7c331a6349484ccb0b8fc0",
+      "path": "history/hyp_lab/l0083_indicators.py",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/62f4d255e0fc6fce8e7c331a6349484ccb0b8fc0/history/hyp_lab/l0083_indicators.py",
+      "http_status": 200,
+      "sha256": "4dd0dfcd69dd191c78e635b875f9927335b95f0e90e59d49dead44e3773595e6",
+      "bytes": 6193,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "62f4d255e0fc6fce8e7c331a6349484ccb0b8fc0",
+      "path": "history/hyp_lab/l0083_run.py",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/62f4d255e0fc6fce8e7c331a6349484ccb0b8fc0/history/hyp_lab/l0083_run.py",
+      "http_status": 200,
+      "sha256": "181aef27158986101765736d7af6a8097e6d0090fe4afef9a4dac9354883e8a3",
+      "bytes": 15386,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "2d8e8f3afca6a72679382780ddaeb0d71de2cad6",
+      "path": "history/research/hyp_lab_out/L0082/cost_model_l0082.csv",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/2d8e8f3afca6a72679382780ddaeb0d71de2cad6/history/research/hyp_lab_out/L0082/cost_model_l0082.csv",
+      "http_status": 200,
+      "sha256": "aba615e2537dfb29427e2cf4b4e505b92cf2260be4881c1c33766d9addc52b61",
+      "bytes": 5027,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "d310df96901fa062022db41a35a24c5f229e0459",
+      "path": "tools/l0084_entry_mix/engine.py",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/d310df96901fa062022db41a35a24c5f229e0459/tools/l0084_entry_mix/engine.py",
+      "http_status": 200,
+      "sha256": "d4bf645d62a554da6ea50fddd4f44105a37c6b3bcba16f9a27628462f0f30749",
+      "bytes": 10485,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "d310df96901fa062022db41a35a24c5f229e0459",
+      "path": "tools/l0084_entry_mix/cli.py",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/d310df96901fa062022db41a35a24c5f229e0459/tools/l0084_entry_mix/cli.py",
+      "http_status": 200,
+      "sha256": "ee00a079da2debf70ab8bef46c5f92287da69e341a000298aa689263111124ff",
+      "bytes": 7960,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "d310df96901fa062022db41a35a24c5f229e0459",
+      "path": "tools/l0084_entry_mix/tests.py",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/d310df96901fa062022db41a35a24c5f229e0459/tools/l0084_entry_mix/tests.py",
+      "http_status": 200,
+      "sha256": "71d36ecffa4d4dfa722b8f096a6edeb20163a27e1b3504f97bc0c11483fa5c07",
+      "bytes": 39458,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "d310df96901fa062022db41a35a24c5f229e0459",
+      "path": "tools/l0084_entry_mix/indicators.py",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/d310df96901fa062022db41a35a24c5f229e0459/tools/l0084_entry_mix/indicators.py",
+      "http_status": 200,
+      "sha256": "e5b2026cad5266f7aacb6dfad4deed89c66e41a804ba9f0ed1e067076aafe636",
+      "bytes": 18124,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "d310df96901fa062022db41a35a24c5f229e0459",
+      "path": "tools/l0084_entry_mix/measure.py",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/d310df96901fa062022db41a35a24c5f229e0459/tools/l0084_entry_mix/measure.py",
+      "http_status": 200,
+      "sha256": "928401402afdd6b14e9a64ce25c0da158e5c9b631cde23b72a461b46177b0f52",
+      "bytes": 17489,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "d310df96901fa062022db41a35a24c5f229e0459",
+      "path": "tools/l0084_entry_mix/pipeline.py",
+      "url": "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/d310df96901fa062022db41a35a24c5f229e0459/tools/l0084_entry_mix/pipeline.py",
+      "http_status": 200,
+      "sha256": "5a38df986426e9e308d3bf19707e7927a5d8344844749ab5fcf499c797a7bc14",
+      "bytes": 49451,
+      "versions": {
+        "python": "3.13.14",
+        "numpy": "2.3.5",
+        "pandas": "2.2.3"
+      },
+      "errors": []
+    },
+    {
+      "commit": "owner-attachment",
+      "path": "L0084-R1-FINAL-EXECUTION-v3.md",
+      "url": "workspace upload",
+      "http_status": "attached",
+      "sha256": "5ffbd4fac58e060c3ea26408cb4b6293d53059efc67a4e3f9693491dec859e49",
+      "bytes": 129966,
+      "versions": {},
+      "errors": []
+    }
+  ],
+  "data_panels": [
+    {
+      "asset": "BTCUSDT",
+      "path": "/home/user/l0084-package/work/BTCUSDT_4h.parquet",
+      "sha256": "8ad03c4c5ebe8ec7e3925781ba303854c09c96bfde0079be2c6c9d50b7966b1b",
+      "bytes": 650573,
+      "matches_prior_coverage_sha": true,
+      "source": "data.binance.vision/data/futures/um/{monthly,daily}/klines/{asset}/4h/",
+      "http_status": "prior-run source records; no R1 refetch",
+      "errors": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "path": "/home/user/l0084-package/work/ETHUSDT_4h.parquet",
+      "sha256": "a60cde96dcd75035ac104afe44e7f5dccfcd1d111b230ad37f36782001be8551",
+      "bytes": 642134,
+      "matches_prior_coverage_sha": true,
+      "source": "data.binance.vision/data/futures/um/{monthly,daily}/klines/{asset}/4h/",
+      "http_status": "prior-run source records; no R1 refetch",
+      "errors": []
+    },
+    {
+      "asset": "BNBUSDT",
+      "path": "/home/user/l0084-package/work/BNBUSDT_4h.parquet",
+      "sha256": "500fca4b7532dfe6ced2b8c813a3df2ebee0e0f697c46e067cc80e61346aa009",
+      "bytes": 591659,
+      "matches_prior_coverage_sha": true,
+      "source": "data.binance.vision/data/futures/um/{monthly,daily}/klines/{asset}/4h/",
+      "http_status": "prior-run source records; no R1 refetch",
+      "errors": []
+    },
+    {
+      "asset": "SOLUSDT",
+      "path": "/home/user/l0084-package/work/SOLUSDT_4h.parquet",
+      "sha256": "c6819545b0a3d89868704dab8a7dce1d659ab21f7af54c67fc8cca14d6b809a9",
+      "bytes": 606180,
+      "matches_prior_coverage_sha": true,
+      "source": "data.binance.vision/data/futures/um/{monthly,daily}/klines/{asset}/4h/",
+      "http_status": "prior-run source records; no R1 refetch",
+      "errors": []
+    },
+    {
+      "asset": "XRPUSDT",
+      "path": "/home/user/l0084-package/work/XRPUSDT_4h.parquet",
+      "sha256": "3619cb4b1b1d86bd284fa65132aa91efe78798f98b6421d12641d8e64b1bd424",
+      "bytes": 576118,
+      "matches_prior_coverage_sha": true,
+      "source": "data.binance.vision/data/futures/um/{monthly,daily}/klines/{asset}/4h/",
+      "http_status": "prior-run source records; no R1 refetch",
+      "errors": []
+    },
+    {
+      "asset": "ADAUSDT",
+      "path": "/home/user/l0084-package/work/ADAUSDT_4h.parquet",
+      "sha256": "efa9276db52cfd70e9c15460f566d81647ddb7a42aaf5c33a718c3b88021213e",
+      "bytes": 566545,
+      "matches_prior_coverage_sha": true,
+      "source": "data.binance.vision/data/futures/um/{monthly,daily}/klines/{asset}/4h/",
+      "http_status": "prior-run source records; no R1 refetch",
+      "errors": []
+    },
+    {
+      "asset": "DOGEUSDT",
+      "path": "/home/user/l0084-package/work/DOGEUSDT_4h.parquet",
+      "sha256": "40b55a2361a09983cbfef10fd0b1c8e8dc303b2154bc25b239c43cc331226a3a",
+      "bytes": 709175,
+      "matches_prior_coverage_sha": true,
+      "source": "data.binance.vision/data/futures/um/{monthly,daily}/klines/{asset}/4h/",
+      "http_status": "prior-run source records; no R1 refetch",
+      "errors": []
+    },
+    {
+      "asset": "AVAXUSDT",
+      "path": "/home/user/l0084-package/work/AVAXUSDT_4h.parquet",
+      "sha256": "c6fbb38b9643cd0b0cd4689629d8a3b38ba13b6f8a1ccab2e4fb85ddf030d424",
+      "bytes": 591156,
+      "matches_prior_coverage_sha": true,
+      "source": "data.binance.vision/data/futures/um/{monthly,daily}/klines/{asset}/4h/",
+      "http_status": "prior-run source records; no R1 refetch",
+      "errors": []
+    },
+    {
+      "asset": "LINKUSDT",
+      "path": "/home/user/l0084-package/work/LINKUSDT_4h.parquet",
+      "sha256": "ac65ed8f870fda956253191a217bdd422dde82541378d8ed8613e347df2d28ae",
+      "bytes": 593791,
+      "matches_prior_coverage_sha": true,
+      "source": "data.binance.vision/data/futures/um/{monthly,daily}/klines/{asset}/4h/",
+      "http_status": "prior-run source records; no R1 refetch",
+      "errors": []
+    },
+    {
+      "asset": "DOTUSDT",
+      "path": "/home/user/l0084-package/work/DOTUSDT_4h.parquet",
+      "sha256": "a78c3a10b30b5600a2bc7ecdcb744b337b56954c55147c8f0dc42bb444bd59b5",
+      "bytes": 558710,
+      "matches_prior_coverage_sha": true,
+      "source": "data.binance.vision/data/futures/um/{monthly,daily}/klines/{asset}/4h/",
+      "http_status": "prior-run source records; no R1 refetch",
+      "errors": []
+    },
+    {
+      "asset": "LTCUSDT",
+      "path": "/home/user/l0084-package/work/LTCUSDT_4h.parquet",
+      "sha256": "1578482ed6ab7058932fe0e313643e68fc3b3d3188dc8026f8cc2120889a80ec",
+      "bytes": 547166,
+      "matches_prior_coverage_sha": true,
+      "source": "data.binance.vision/data/futures/um/{monthly,daily}/klines/{asset}/4h/",
+      "http_status": "prior-run source records; no R1 refetch",
+      "errors": []
+    },
+    {
+      "asset": "ATOMUSDT",
+      "path": "/home/user/l0084-package/work/ATOMUSDT_4h.parquet",
+      "sha256": "0b364604781a8af43aa80e4df549c1372349ba84a5c75707bb607db9a4ecd3d8",
+      "bytes": 577398,
+      "matches_prior_coverage_sha": true,
+      "source": "data.binance.vision/data/futures/um/{monthly,daily}/klines/{asset}/4h/",
+      "http_status": "prior-run source records; no R1 refetch",
+      "errors": []
+    }
+  ],
+  "local_source_files": [
+    {
+      "path": "tools/l0084_entry_mix_r1/engine.py",
+      "sha256": "b9b84b37d81e8acf521e7bd54c276df507b0e5887015c7ea9b94a62ed7a59db9"
+    },
+    {
+      "path": "tools/l0084_entry_mix_r1/indicators.py",
+      "sha256": "e5b2026cad5266f7aacb6dfad4deed89c66e41a804ba9f0ed1e067076aafe636"
+    },
+    {
+      "path": "tools/l0084_entry_mix_r1/tests.py",
+      "sha256": "830a7afc7618cfb159b085ed5fe01c084722475656f52b40835d939c2b47c670"
+    },
+    {
+      "path": "tools/l0084_entry_mix_r1/integrity.py",
+      "sha256": "90c33f906d88966cc0a087c40ba55c6c9896d829f658596e7a525e10d5b2664c"
+    },
+    {
+      "path": "tools/l0084_entry_mix_r1/measure.py",
+      "sha256": "8b18dc4f9dbeb45890bdebf964730528db1e06fe854e25d816039cbbbcdced19"
+    }
+  ],
+  "tape_note": "Pinned main tree has no path containing “tape”; inspected latest tape reference at docs/journal/2026-09-19-arena-resume/002-tape-merge-closed.md.",
+  "versions": {
+    "python": "3.13.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3"
+  }
+}

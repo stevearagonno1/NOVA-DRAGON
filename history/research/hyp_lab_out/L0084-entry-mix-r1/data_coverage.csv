@@ -1,0 +1,13 @@
+asset,start_utc,end_utc,n_bars,duplicates,gap_count,gap_start_end_hours,action,segment_count,warmup_bars,parquet_sha256
+BTCUSDT,2021-01-01T00:00:00,2026-09-27T20:00:00,12576,0,0,[],prior converted panel; SHA verified against previous data_coverage.csv,1,200,8ad03c4c5ebe8ec7e3925781ba303854c09c96bfde0079be2c6c9d50b7966b1b
+ETHUSDT,2021-01-01T00:00:00,2026-09-27T20:00:00,12576,0,0,[],prior converted panel; SHA verified against previous data_coverage.csv,1,200,a60cde96dcd75035ac104afe44e7f5dccfcd1d111b230ad37f36782001be8551
+BNBUSDT,2021-01-01T00:00:00,2026-09-27T20:00:00,12576,0,0,[],prior converted panel; SHA verified against previous data_coverage.csv,1,200,500fca4b7532dfe6ced2b8c813a3df2ebee0e0f697c46e067cc80e61346aa009
+SOLUSDT,2021-01-01T00:00:00,2026-09-27T20:00:00,12576,0,0,[],prior converted panel; SHA verified against previous data_coverage.csv,1,200,c6819545b0a3d89868704dab8a7dce1d659ab21f7af54c67fc8cca14d6b809a9
+XRPUSDT,2021-01-01T00:00:00,2026-09-27T20:00:00,12576,0,0,[],prior converted panel; SHA verified against previous data_coverage.csv,1,200,3619cb4b1b1d86bd284fa65132aa91efe78798f98b6421d12641d8e64b1bd424
+ADAUSDT,2021-01-01T00:00:00,2026-09-27T20:00:00,12576,0,0,[],prior converted panel; SHA verified against previous data_coverage.csv,1,200,efa9276db52cfd70e9c15460f566d81647ddb7a42aaf5c33a718c3b88021213e
+DOGEUSDT,2021-01-01T00:00:00,2026-09-27T20:00:00,12576,0,0,[],prior converted panel; SHA verified against previous data_coverage.csv,1,200,40b55a2361a09983cbfef10fd0b1c8e8dc303b2154bc25b239c43cc331226a3a
+AVAXUSDT,2021-01-01T00:00:00,2026-09-27T20:00:00,12576,0,0,[],prior converted panel; SHA verified against previous data_coverage.csv,1,200,c6fbb38b9643cd0b0cd4689629d8a3b38ba13b6f8a1ccab2e4fb85ddf030d424
+LINKUSDT,2021-01-01T00:00:00,2026-09-27T20:00:00,12576,0,0,[],prior converted panel; SHA verified against previous data_coverage.csv,1,200,ac65ed8f870fda956253191a217bdd422dde82541378d8ed8613e347df2d28ae
+DOTUSDT,2021-01-01T00:00:00,2026-09-27T20:00:00,12576,0,0,[],prior converted panel; SHA verified against previous data_coverage.csv,1,200,a78c3a10b30b5600a2bc7ecdcb744b337b56954c55147c8f0dc42bb444bd59b5
+LTCUSDT,2021-01-01T00:00:00,2026-09-27T20:00:00,12576,0,0,[],prior converted panel; SHA verified against previous data_coverage.csv,1,200,1578482ed6ab7058932fe0e313643e68fc3b3d3188dc8026f8cc2120889a80ec
+ATOMUSDT,2021-01-01T00:00:00,2026-09-27T20:00:00,12576,0,0,[],prior converted panel; SHA verified against previous data_coverage.csv,1,200,0b364604781a8af43aa80e4df549c1372349ba84a5c75707bb607db9a4ecd3d8

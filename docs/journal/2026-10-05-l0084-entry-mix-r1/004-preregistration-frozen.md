@@ -1,0 +1,1 @@
+# L0084-R1 tick 004 — preregistration frozen\n\n- UTC: 2026-10-05T06:39:16Z\n- Asia/Aden: 2026-10-05T09:39:16+03:00\n- Counts: 52 settings; 1326 Appendix-B pairs; 3978 pair modes; 12 fixed assets.\n- Exact owner-sheet definitions and Appendix B were parsed and compared with canonical ordering.\n- R1 measurements remain NOT RUN.\n- Next: full pre-measurement checks.\n
