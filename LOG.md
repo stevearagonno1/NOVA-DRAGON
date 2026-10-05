@@ -905,3 +905,8 @@ Run r1-20261005T145115Z begins only after the current-code preregistration and a
 ## 2026-10-05 - Owner-directed stage 1 only
 
 Lead prepared a singleton-only entry point and scoped registration after GitHub rate-limit interruption. Short tests and full-grid synthetic raw auditing passed. Market stage 1 is NOT RUN under this new registration; no adoption verdict. The old scheduled all-stage run must be quiescent before the replacement starts. No main write or PR.
+
+
+### stage1 transport rehearsal pass (2026-10-05T16:16:45Z)
+
+Lead tested the stage-1 paced GitHub route with a small non-financial artifact and immutable readback. No market outcome or long experiment was measured.
