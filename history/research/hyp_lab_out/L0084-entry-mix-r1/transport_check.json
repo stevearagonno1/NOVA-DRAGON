@@ -1,0 +1,19 @@
+{
+  "result": "PASS",
+  "test": "synthetic-only in-memory Parquet; no trades",
+  "utc": "2026-10-05T06:25:36.231168+00:00",
+  "asia_aden": "2026-10-05T09:25:36.231168+03:00",
+  "branch": "arena/l0084-entry-mix-r1-2026-10-05",
+  "bootstrap_commit": "33b592dd9e84cf63c427d2c61e2b50e567c3af3d",
+  "smoke_commit": "e6f7312e9ab7aa47bd3a6051f629b100101bfbd8",
+  "path": "transport_smoke/r1_synthetic_cases.parquet",
+  "rows": 2,
+  "schema": "case_id: string\nbar_index: int16\nprice: double\nflag: bool",
+  "size_bytes": 1342,
+  "sha256": "ac65c4d854db9854aa487543287a92fe8d7d7888e987ee041b758fea8788af06",
+  "git_blob_sha": "da7819aab4975608bf8d02a006c873ef0c5aff04",
+  "readback_commit": "e6f7312e9ab7aa47bd3a6051f629b100101bfbd8",
+  "schema_equal": true,
+  "values_equal": true,
+  "sha256_equal": true
+}

@@ -700,3 +700,10 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - Live synthetic Parquet smoke: details in `history/research/hyp_lab_out/L0084-entry-mix-r1/transport_check.json`; no measurement has run.
 - Reproduce mock tests: `python3 -m unittest discover -s tools/l0084_entry_mix_r1 -p test_transport.py`.
 - Not measured: corrected engine, candidate trades/metrics, selection, full-ledger audit. Next: implement and independently test corrected fills.
+
+
+### L0084-R1 transport smoke (2026-10-05T06:25:36Z)
+
+- In-memory synthetic Parquet, 2 rows, 1342 bytes, remote schema/value/row-count/SHA readback exact; no financial data.
+- R1 commit: `e6f7312e9ab7aa47bd3a6051f629b100101bfbd8`; path `transport_smoke/r1_synthetic_cases.parquet`; SHA256 `ac65c4d854db9854aa487543287a92fe8d7d7888e987ee041b758fea8788af06`; Git blob `da7819aab4975608bf8d02a006c873ef0c5aff04`.
+- Result: PASS. No measurement run. Next: implement/fix execution engine tests.
