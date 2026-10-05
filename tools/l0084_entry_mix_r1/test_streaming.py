@@ -111,7 +111,7 @@ class StreamingTests(unittest.TestCase):
         half=pd.concat([pd.read_csv(io.BytesIO(t.blob_from_commit(t.head,x))) for x in hp],ignore_index=True)
         self.assertEqual(list(half.columns),['candidate','asset','halfyear','partial','n','net','pf','win','baseline','lift','ci_lo','ci_hi'])
         self.assertEqual(sorted(half['n'].tolist()),[0,1])
-        mp=[x for x in t.trees[t.head] if '/metrics/run=synthetic/' in x and x.endswith('.parquet')]
+        mp=[x for x in t.trees[t.head] if '/metrics_raw/run=synthetic/' in x and x.endswith('.parquet')]
         ap=[x for x in t.trees[t.head] if '/metrics_by_asset/run=synthetic/' in x and x.endswith('.parquet')]
         self.assertEqual(len(mp),1);self.assertEqual(len(ap),1)
         mt=pq.read_table(pa.BufferReader(t.blob_from_commit(t.head,mp[0]))).to_pylist()
@@ -221,9 +221,9 @@ class StreamingTests(unittest.TestCase):
                     "lift_win_pts":audited["lift_win_points"],"p_raw":audited["p_raw"],
                     "exp_lo5":audited["ci_lo"],"exp_hi95":audited["ci_hi"],
                     "expectancy":audited["expectancy"],"exp_se":audited["exp_se"]}
-        w.add_window('2023H1:C0','outer','2023H1',trades_by_asset,m.panels,stats=runner_stats('2023H1:C0','outer'),baseline_by_asset=base_by_asset)
-        w.add_window('C0','single','2023H2',{'X':[],'Y':[]},m.panels,baseline_by_asset={'X':[],'Y':[]})
-        w.add_window('C1','single','2023H1',trades_by_asset,m.panels,stats=runner_stats('C1'),baseline_by_asset=base_by_asset)
+        w.add_window('2023H1:C0','outer','2023H1',trades_by_asset,m.panels,stats=runner_stats('2023H1:C0','outer'),baseline_by_asset=base_by_asset,members=('C0',),mode='AND0')
+        w.add_window('C0','single','2023H2',{'X':[],'Y':[]},m.panels,baseline_by_asset={'X':[],'Y':[]},members=('C0',),mode='AND0')
+        w.add_window('C1','single','2023H1',trades_by_asset,m.panels,stats=runner_stats('C1'),baseline_by_asset=base_by_asset,members=('C1',),mode='AND0')
         random_by_asset={sym:_random_reference(p,'2023H1',matched_counts[sym],'C0',0) for sym,p in panels.items()}
         seeds={sym:__import__('l0084_entry_mix_r1.measure',fromlist=['sha_seed']).sha_seed(f'84|{sym}|2023H1|C0|0') for sym in panels}
         paired_by_asset={sym:_independent_paired_difference(
@@ -232,22 +232,23 @@ class StreamingTests(unittest.TestCase):
             for sym in panels}
         w.add_window('RAND:2023H1:C0:rep000','random_control','2023H1',random_by_asset,m.panels,
             control_info={'candidate':'C0','replicate':0,'matched_counts':matched_counts,'seeds':seeds,
-                          'paired_by_asset':paired_by_asset},baseline_by_asset=base_by_asset)
+                          'paired_by_asset':paired_by_asset},baseline_by_asset=base_by_asset,members=('C0',),mode='AND0')
         w.close()
         result=rebuild_all(t,t.head,'full-audit',m,metadata_base=meta_base)
         self.assertEqual(result['independent_execution_rebuild'],'PASS')
         self.assertEqual(result['raw_metric_reconciliation'],'PASS')
         self.assertEqual(result['independent_inference_rows_reconciled'],2)
-        self.assertEqual(result['metrics_reconciliation'],'PARTIAL_RAW_METRICS; canonical_adjusted_metric_table_and_complete_controls_pending')
-        self.assertEqual(result['adjustment_reconciliation'],'PASS_HOLM_POWER_OVERLAY; canonical_metric_join_pending')
+        self.assertEqual(result['metrics_reconciliation'],'PASS_CANONICAL_METRIC_TABLE; raw trades and adjustment join independently reconciled')
+        self.assertEqual(result['adjustment_reconciliation'],'PASS_HOLM_POWER_OVERLAY_AND_CANONICAL_JOIN')
         self.assertEqual(result['groups_rebuilt'],4)
         self.assertEqual(result['zero_trade_candidate_windows'],1)
         self.assertEqual(result['controls_reconciliation'],'PASS_RAW_CONTROL_TABLE; paired_difference_and_CI_pending')
         self.assertEqual(result['control_result_rows'],2)
         self.assertEqual(result['halfyear_rows'],8)
         self.assertEqual(result['adjustment_rows'],2)
+        self.assertEqual(result['final_metric_rows'],12)
         self.assertEqual(result['trades_rebuilt'],sum(map(len,trades_by_asset.values()))*2+sum(map(len,random_by_asset.values())))
-        metric_path=next(x for x in t.trees[t.head] if '/metrics/run=full-audit/' in x and x.endswith('.parquet'))
+        metric_path=next(x for x in t.trees[t.head] if '/metrics_raw/run=full-audit/' in x and x.endswith('.parquet'))
         original_metric=t.blob_from_commit(t.head,metric_path)
         metric=pq.read_table(pa.BufferReader(original_metric))
         altered=metric.to_pylist();altered[0]['net_dollars']+=1.0

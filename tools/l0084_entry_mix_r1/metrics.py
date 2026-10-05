@@ -34,7 +34,8 @@ CONTROL_SCHEMA=pa.schema([
     ("seed",pa.uint64())])
 
 METRIC_SCHEMA=pa.schema([
-    ("candidate_id",pa.string()),("role",pa.string()),("window",pa.string()),
+    ("candidate_id",pa.string()),("members",pa.string()),("mode",pa.string()),
+    ("role",pa.string()),("window",pa.string()),
     ("asset",pa.string()),("scope",pa.string()),
     ("n_exec",pa.int64()),("n_win",pa.int64()),("n_stop",pa.int64()),
     ("n_timeout",pa.int64()),("n_resolved",pa.int64()),("n_eff",pa.int64()),
@@ -57,7 +58,7 @@ METRIC_SCHEMA=pa.schema([
     ("power80",pa.float64()),("metric_status",pa.string())])
 
 
-def _metric_row(candidate,role,window,asset,scope,trades,panel,baseline_trades=None):
+def _metric_row(candidate,role,window,asset,scope,trades,panel,baseline_trades=None,members=None,mode=None):
     trades=sorted(trades,key=lambda t:(int(t["fill_bar"]),int(t["signal_bar"])))
     n=len(trades);wins=sum(t["outcome"]=="target" for t in trades)
     stops=sum(t["outcome"]=="stop" for t in trades);timeouts=sum(t["outcome"]=="timeout" for t in trades)
@@ -104,7 +105,8 @@ def _metric_row(candidate,role,window,asset,scope,trades,panel,baseline_trades=N
         ci=block_ci(np.asarray(day_ix,dtype=int),nets,n_days)
         ci_lo=ci["lo5"];ci_hi=ci["hi95"];p_raw=z_from_lb(ci["lo5"],ci["expectancy"],ci["se"])
     status="REGISTERED_BLOCK_STATS; Holm_and_power_pending" if baseline_trades is not None and n else ("ZERO_TRADES; inference_not_computed" if not n else "RAW_DESCRIPTIVE; inference_not_computed")
-    return {"candidate_id":str(candidate),"role":str(role),"window":str(window),"asset":str(asset),"scope":str(scope),
+    return {"candidate_id":str(candidate),"members":"|".join(members) if members else None,"mode":str(mode) if mode else None,
+      "role":str(role),"window":str(window),"asset":str(asset),"scope":str(scope),
       "n_exec":n,"n_win":wins,"n_stop":stops,"n_timeout":timeouts,"n_resolved":resolved,"n_eff":n,
       "n_signals":None,"n_incomplete":None,"win_rate":winrate,"wilson_lo":wlo,"wilson_hi":whi,
       "gross_dollars":gross_sum,"cost_dollars":cost_sum,"net_dollars":net_sum,
@@ -144,11 +146,11 @@ class RawMetricWriter:
     """Creates resumable summary and per-asset metrics from each raw group."""
     def __init__(self,transport,run_id,rows_per_part=ROWS_PER_PART):
         self.transport=transport or GitHubTransport();self.run_id=str(run_id);self.rows_per_part=int(rows_per_part)
-        self.summary=[];self.assets=[];self.controls=[];self.halfyears=[];self.adjustment_groups={};self.group_count=0;self.summary_part=0;self.asset_part=0;self.control_part=0;self.halfyear_part=0;self.adjustment_part=0
-        self.expected_summary_parts=0;self.expected_asset_parts=0;self.expected_control_parts=0;self.expected_halfyear_parts=0;self.expected_adjustment_parts=0;self.adjustment_rows=0
+        self.summary=[];self.assets=[];self.controls=[];self.halfyears=[];self.adjustment_groups={};self.adjustment_map={};self.group_count=0;self.summary_part=0;self.asset_part=0;self.control_part=0;self.halfyear_part=0;self.adjustment_part=0;self.final_part=0
+        self.expected_summary_parts=0;self.expected_asset_parts=0;self.expected_control_parts=0;self.expected_halfyear_parts=0;self.expected_adjustment_parts=0;self.expected_final_parts=0;self.adjustment_rows=0;self.final_metric_rows=0
         self.parts=[];self.closed=False
         if hasattr(self.transport,"list_directory"):
-            for kind,attr in (("metrics","expected_summary_parts"),("metrics_by_asset","expected_asset_parts"),("controls","expected_control_parts"),("metric_adjustments","expected_adjustment_parts")): 
+            for kind,attr in (("metrics_raw","expected_summary_parts"),("metrics_by_asset","expected_asset_parts"),("controls","expected_control_parts"),("metric_adjustments","expected_adjustment_parts")):  
                 try:names=self.transport.list_directory(self.transport.branch_head(),f"{BASE}/{kind}/run={urllib.parse.quote(self.run_id,safe='-_=.')}")
                 except TransportError:names=[]
                 ids=[]
@@ -157,6 +159,14 @@ class RawMetricWriter:
                         try:ids.append(int(name[5:-8]))
                         except ValueError:raise TransportError("invalid metric partition name")
                 setattr(self,attr,max(ids,default=-1)+1)
+            try:names=self.transport.list_directory(self.transport.branch_head(),f"{BASE}/metrics/run={urllib.parse.quote(self.run_id,safe='-_=.')}")
+            except TransportError:names=[]
+            ids=[]
+            for name in names:
+                if name.startswith("part-") and name.endswith(".parquet"):
+                    try:ids.append(int(name[5:-8]))
+                    except ValueError:raise TransportError("invalid final metric partition name")
+            self.expected_final_parts=max(ids,default=-1)+1
             try:names=self.transport.list_directory(self.transport.branch_head(),f"{BASE}/halfyears.csv/run={urllib.parse.quote(self.run_id,safe='-_=.')}")
             except TransportError:names=[]
             ids=[]
@@ -165,12 +175,12 @@ class RawMetricWriter:
                     try:ids.append(int(name[5:-4]))
                     except ValueError:raise TransportError("invalid halfyear partition name")
             self.expected_halfyear_parts=max(ids,default=-1)+1
-    def add_window(self,candidate,role,window,trades_by_asset,panels,stats=None,baseline_by_asset=None,control_info=None):
+    def add_window(self,candidate,role,window,trades_by_asset,panels,stats=None,baseline_by_asset=None,control_info=None,members=None,mode=None):
         asset_rows=[];all_trades=[]
         for asset,panel in panels.items():
             trades=list(trades_by_asset.get(asset,[]));all_trades.extend(trades)
             asset_rows.append(_metric_row(candidate,role,window,asset,"asset",trades,panel,
-                (baseline_by_asset or {}).get(asset) if baseline_by_asset is not None else None))
+                (baseline_by_asset or {}).get(asset) if baseline_by_asset is not None else None,members,mode))
         is_halfyear=(len(window) in (6,7) and window[:4].isdigit() and window[4:] in ("H1","H2","H2p"))
         if is_halfyear:
             for row in asset_rows:
@@ -180,7 +190,7 @@ class RawMetricWriter:
                     "lift":row["lift_win_points"],"ci_lo":row["ci_lo"],"ci_hi":row["ci_hi"]})
         # A synthetic or partial group missing an asset is still represented as zero.
         summary_panel=next(iter(panels.values()))
-        summary=_metric_row(candidate,role,window,"ALL","summary",all_trades,summary_panel)
+        summary=_metric_row(candidate,role,window,"ALL","summary",all_trades,summary_panel,members=members,mode=mode)
         # The runner's registered synchronized block bootstrap is computed once
         # by stat_window and handed in; never substitute a second, unsynchronized
         # per-trade resampling implementation here.
@@ -279,7 +289,7 @@ class RawMetricWriter:
     def flush(self):
         srows,self.summary=self.summary,[];arows,self.assets=self.assets,[];crows,self.controls=self.controls,[];hrows,self.halfyears=self.halfyears,[]
         if srows:
-            made=self._commit_table("metrics",self.summary_part,srows)
+            made=self._commit_table("metrics_raw",self.summary_part,srows)
             self.summary_part+=len(made) if isinstance(made,list) else 1
             self.expected_summary_parts=max(self.expected_summary_parts,self.summary_part)
         if arows:
@@ -301,9 +311,11 @@ class RawMetricWriter:
             adjusted=holm([float(items[i][2]) for i in valid],m=70330) if valid else []
             adjmap={i:float(v) for i,v in zip(valid,adjusted)}
             for i,(candidate,role,praw,power,n80) in sorted(enumerate(items),key=lambda z:(z[1][0],z[1][1])):
-                pending.append({"candidate_id":candidate,"role":role,"window":window,
+                record={"candidate_id":candidate,"role":role,"window":window,
                     "p_raw":None if praw is None else float(praw),"p_adjusted":adjmap.get(i,1.0),
-                    "power80":power,"n80":n80,"alpha":0.05/70330,"family_m":70330})
+                    "power80":power,"n80":n80,"alpha":0.05/70330,"family_m":70330}
+                self.adjustment_map[(candidate,role,window)]=record
+                pending.append(record)
                 if len(pending)>=self.rows_per_part:
                     self._commit_table("metric_adjustments",self.adjustment_part,pending)
                     self.adjustment_part+=1;self.expected_adjustment_parts=max(self.expected_adjustment_parts,self.adjustment_part)
@@ -313,14 +325,39 @@ class RawMetricWriter:
             self.adjustment_part+=1;self.expected_adjustment_parts=max(self.expected_adjustment_parts,self.adjustment_part)
             self.adjustment_rows+=len(pending)
         self.adjustment_groups.clear()
+    def _finalize_full_metrics(self):
+        for kind in ("metrics_raw","metrics_by_asset"):
+            directory=f"{BASE}/{kind}/run={urllib.parse.quote(self.run_id,safe='-_=.')}"
+            try:names=self.transport.list_directory(self.transport.branch_head(),directory)
+            except TransportError as exc:
+                if "directory resolution failed" in str(exc):continue
+                raise
+            for name in sorted(x for x in names if x.endswith(".parquet")):
+                raw=self.transport.blob_from_commit(self.transport.branch_head(),directory+"/"+name)
+                tab=pq.read_table(pa.BufferReader(raw))
+                if not tab.schema.equals(METRIC_SCHEMA,check_metadata=False):raise TransportError("raw metric schema mismatch during final join")
+                rows=tab.to_pylist()
+                for row in rows:
+                    if row["scope"]=="summary":
+                        adj=self.adjustment_map.get((row["candidate_id"],row["role"],row["window"]))
+                        if adj is not None:
+                            row["p_adjusted"]=adj["p_adjusted"];row["power80"]=adj["power80"]
+                            row["metric_status"]="REGISTERED_BLOCK_STATS; Holm_adjusted; power_on_file"
+                for start in range(0,len(rows),self.rows_per_part):
+                    block=rows[start:start+self.rows_per_part]
+                    made=self._commit_table("metrics",self.final_part,block)
+                    self.final_part+=len(made) if isinstance(made,list) else 1
+                    self.expected_final_parts=max(self.expected_final_parts,self.final_part)
+                    self.final_metric_rows+=len(block)
     def close(self):
         if self.closed:raise TransportError("metric writer already closed")
-        self.flush();self._finalize_adjustments();self.closed=True
+        self.flush();self._finalize_adjustments();self._finalize_full_metrics();self.closed=True
         if (self.summary_part!=self.expected_summary_parts or self.asset_part!=self.expected_asset_parts
                 or self.control_part!=self.expected_control_parts or self.halfyear_part!=self.expected_halfyear_parts
-                or self.adjustment_part!=self.expected_adjustment_parts):
-            raise TransportError(f"metric resume coverage mismatch: summary {self.summary_part}/{self.expected_summary_parts}; asset {self.asset_part}/{self.expected_asset_parts}; controls {self.control_part}/{self.expected_control_parts}; halfyears {self.halfyear_part}/{self.expected_halfyear_parts}; adjustments {self.adjustment_part}/{self.expected_adjustment_parts}")
+                or self.adjustment_part!=self.expected_adjustment_parts or self.final_part!=self.expected_final_parts):
+            raise TransportError(f"metric resume coverage mismatch: summary {self.summary_part}/{self.expected_summary_parts}; asset {self.asset_part}/{self.expected_asset_parts}; controls {self.control_part}/{self.expected_control_parts}; halfyears {self.halfyear_part}/{self.expected_halfyear_parts}; adjustments {self.adjustment_part}/{self.expected_adjustment_parts}; final metrics {self.final_part}/{self.expected_final_parts}")
         return {"groups":self.group_count,"parts":list(self.parts),"summary_part_count":self.summary_part,
                 "asset_part_count":self.asset_part,"control_part_count":self.control_part,
                 "halfyear_part_count":self.halfyear_part,"adjustment_part_count":self.adjustment_part,
-                "adjustment_rows":self.adjustment_rows}
+                "adjustment_rows":self.adjustment_rows,"final_metric_part_count":self.final_part,
+                "final_metric_rows":self.final_metric_rows}

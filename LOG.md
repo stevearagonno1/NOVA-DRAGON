@@ -815,3 +815,9 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - Work: published bounded candidate-family Holm and 80%-power/sample-size adjustment partitions plus independent recalculation/audit, updated tests and DRAFT status, LOG and activity tick.
 - Result: DRAFT only. Local validation: py_compile PASS; pytest 23/23; module self-test 10/10; workspace 67,454,260 bytes. Adjustment overlays pass the two-asset synthetic audit fixture; canonical full-field metrics join and full v7 CLI synthetic readiness remain incomplete. Gate CLOSED; experiment NOT RUN.
 - Next: integrate the final metric table and complete all controls/readiness CLI checks before market measurement.
+
+
+## 2026-10-05 16:29 Asia/Aden — canonical metric join draft publication
+- Published implementation and tests for a canonical full-field metrics table: raw summary/per-asset tables remain separate; adjustment partitions are joined into bounded final `metrics` partitions. Independent audit reconstructs expected final rows from verified raw metrics and recalculated adjustments.
+- Validation before publication: py_compile PASS; pytest 23/23 PASS. Synthetic fixture final rows reconciled, but no actual synthetic measure/audit CLI readiness or complete control-family readiness was established. Gate remains CLOSED; no market experiment run.
+- Next: complete control families and actual synthetic CLI readiness; only then consider preregistration amendment and measurement.

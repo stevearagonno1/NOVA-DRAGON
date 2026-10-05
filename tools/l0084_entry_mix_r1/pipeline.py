@@ -259,7 +259,7 @@ def stage_singles(m, writer=None):
             trades=m.candidate_trades((name,),"AND0",window=w)
             pooled=m.windowed(trades,w)
             per[w]=m.stat_window(pooled,w) if pooled else None
-            if writer is not None:writer.add_window(name,"single",w,trades,m.panels,stats=per[w],baseline_by_asset=(m.baseline(w) or {}).get("per_asset"))
+            if writer is not None:writer.add_window(name,"single",w,trades,m.panels,stats=per[w],baseline_by_asset=(m.baseline(w) or {}).get("per_asset"),members=(name,),mode="AND0")
         out[name]=per
     journal("singles_done",n=len(out),elapsed_s=round(time.time()-t0,1),window_state="fresh $1,000 book per asset/candidate/window")
     return out
@@ -279,7 +279,7 @@ def stage_pairs(m, singles, batch=150, writer=None):
                 cb=m.candidate_trades((a,b),mode,window=w)
                 pooled=m.windowed(cb,w)
                 st=m.stat_window(pooled,w) if pooled else None
-                if writer is not None:writer.add_window(cid,"pair",w,cb,m.panels,stats=st,baseline_by_asset=(m.baseline(w) or {}).get("per_asset"))
+                if writer is not None:writer.add_window(cid,"pair",w,cb,m.panels,stats=st,baseline_by_asset=(m.baseline(w) or {}).get("per_asset"),members=(a,b),mode=mode)
                 if st is not None:wdays[w]=(st["days"],st["nets"])
                 wstats[w]={k:v for k,v in (st or {}).items() if k not in ("days","nets")} if st else None
                 del cb
@@ -412,7 +412,7 @@ def stage_triples(m, singles, pairs, prefix, reg_rows, writer=None):
             cb=m.candidate_trades(members,mode,window=w)
             pooled=m.windowed(cb,w)
             st=m.stat_window(pooled,w) if pooled else None
-            if writer is not None:writer.add_window(f"{prefix}:{row['triple_id']}","triple",w,cb,m.panels,stats=st,baseline_by_asset=(m.baseline(w) or {}).get("per_asset"))
+            if writer is not None:writer.add_window(f"{prefix}:{row['triple_id']}","triple",w,cb,m.panels,stats=st,baseline_by_asset=(m.baseline(w) or {}).get("per_asset"),members=members,mode=mode)
             if st is not None:
                 wdays[w]=(st["days"],st["nets"])
                 wstats[w]={k:v for k,v in st.items() if k not in ("days","nets")}
@@ -680,7 +680,7 @@ def stage_outer(m, finalists, writer=None):
         cb = m.candidate_trades(members, mode, window=prefix)
         pooled = m.windowed(cb, prefix)
         st = m.stat_window(pooled, prefix) if pooled else None
-        if writer is not None:writer.add_window(f"{prefix}:{chosen}","outer",prefix,cb,m.panels,stats=st,baseline_by_asset=(m.baseline(prefix) or {}).get("per_asset"))
+        if writer is not None:writer.add_window(f"{prefix}:{chosen}","outer",prefix,cb,m.panels,stats=st,baseline_by_asset=(m.baseline(prefix) or {}).get("per_asset"),members=members,mode=mode)
         if st is None:
             r["note"] = "no trades inside target window"
             rows.append(r)
@@ -797,7 +797,7 @@ def stage_controls(m, finalists, singles, writer=None):
                     writer.add_window(f"RAND:{prefix}:{info['chosen']}:rep{rep:03d}","random_control",w,tr_by_asset,m.panels,
                         control_info={"candidate":info["chosen"],"replicate":rep,"matched_counts":counts,
                             "seeds":control_seeds,"paired_by_asset":paired_by_asset,"paired_all":paired_all},
-                        baseline_by_asset=(m.baseline(w) or {}).get("per_asset"))
+                        baseline_by_asset=(m.baseline(w) or {}).get("per_asset"),members=members,mode=mode)
                 if not tr_all:
                     rep_rows.append({"replicate": rep, "n": 0,
                                      "expectancy": None, "net": None,
@@ -910,7 +910,7 @@ def stage_neighbours(m, finalists, singles, pair_records, writer=None, register_
             nb=candidate_trades_names(m,tuple(new_members),mode,window=w)
             pooled=m.windowed(nb,w)
             st = m.stat_window(pooled, w) if pooled else None
-            if writer is not None:writer.add_window(row["neighbour_id"],"neighbour",w,nb,m.panels,stats=st,baseline_by_asset=(m.baseline(w) or {}).get("per_asset"))
+            if writer is not None:writer.add_window(row["neighbour_id"],"neighbour",w,nb,m.panels,stats=st,baseline_by_asset=(m.baseline(w) or {}).get("per_asset"),members=tuple(new_members),mode=mode)
             bs = base_stats.get(w)
             pos = bool(st and st["expectancy"] > 0)
             ratio = (st["expectancy"] / bs["expectancy"]
@@ -965,13 +965,13 @@ def stage_descriptive(m,singles,pair_records,writer=None):
         for w in windows:
             cb=m.candidate_trades((name,),"AND0",window=w)
             pooled=m.windowed(cb,w);st=m.stat_window(pooled,w) if pooled else None
-            if writer is not None:writer.add_window(name,"descriptive",w,cb,m.panels,stats=st,baseline_by_asset=(m.baseline(w) or {}).get("per_asset"))
+            if writer is not None:writer.add_window(name,"descriptive",w,cb,m.panels,stats=st,baseline_by_asset=(m.baseline(w) or {}).get("per_asset"),members=(name,),mode="AND0")
             rows.append({"candidate":name,"candidate_id":name,"stage":"single","mode":"AND0","window":w,**({k:v for k,v in (st or {}).items() if k not in ("days","nets")} if st else {"n_exec":0,"net":None,"pf":None,"expectancy":None})})
     for cid,rec in pair_records.items():
         for w in windows:
             cb=m.candidate_trades(tuple(rec["members"]),rec["mode"],window=w)
             pooled=m.windowed(cb,w);st=m.stat_window(pooled,w) if pooled else None
-            if writer is not None:writer.add_window(cid,"descriptive",w,cb,m.panels,stats=st,baseline_by_asset=(m.baseline(w) or {}).get("per_asset"))
+            if writer is not None:writer.add_window(cid,"descriptive",w,cb,m.panels,stats=st,baseline_by_asset=(m.baseline(w) or {}).get("per_asset"),members=tuple(rec["members"]),mode=rec["mode"])
             rows.append({"candidate":cid,"candidate_id":cid,"stage":"pair","mode":rec["mode"],"window":w,**({k:v for k,v in (st or {}).items() if k not in ("days","nets")} if st else {"n_exec":0,"net":None,"pf":None,"expectancy":None})})
     for w in windows:
         b=m.baseline(w)

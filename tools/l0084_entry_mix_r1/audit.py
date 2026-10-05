@@ -319,7 +319,7 @@ def _independent_block_stats(rows,window,panels):
       "p_raw":praw,"ci_lo":lo,"ci_hi":hi,"se":se,"expectancy":expectancy,"exp_se":se}
 
 
-def _audit_metric_row(candidate,role,window,asset,scope,trades,panel):
+def _audit_metric_row(candidate,role,window,asset,scope,trades,panel,members=None,mode=None):
     """Independent descriptive-statistic implementation over rebuilt trades."""
     rows=sorted(trades,key=lambda x:(int(x["fill_bar"]),int(x["signal_bar"])))
     n=len(rows);wins=sum(x["outcome"]=="target" for x in rows);stops=sum(x["outcome"]=="stop" for x in rows)
@@ -348,7 +348,8 @@ def _audit_metric_row(candidate,role,window,asset,scope,trades,panel):
     else:mdd=0.0;max_dd=0;max_losing=0;active=0;coverage=0.0;worst=None
     gp=float(sum(x["gross_dollars"] for x in rows));cost=float(sum(x["cost_dollars"] for x in rows))
     hit=[x for x in rows if x["outcome"] in ("target","stop")]
-    return {"candidate_id":str(candidate),"role":str(role),"window":str(window),"asset":str(asset),"scope":str(scope),
+    return {"candidate_id":str(candidate),"members":"|".join(members) if members else None,"mode":str(mode) if mode else None,
+      "role":str(role),"window":str(window),"asset":str(asset),"scope":str(scope),
       "n_exec":n,"n_win":wins,"n_stop":stops,"n_timeout":timeouts,"n_resolved":resolved,"n_eff":n,
       "n_signals":None,"n_incomplete":None,"win_rate":winrate,"wilson_lo":wlo,"wilson_hi":whi,
       "gross_dollars":gp,"cost_dollars":cost,"net_dollars":float(net.sum()) if n else 0.0,
@@ -437,7 +438,9 @@ def _compare_adjustments(got_rows,want_rows):
             if a is None or v is None:
                 if a is not None or v is not None:raise TransportError(f"metric adjustment null mismatch {k} {f}")
             elif isinstance(v,float):
-                if not math.isclose(float(a),float(v),rel_tol=0,abs_tol=1e-9):raise TransportError(f"metric adjustment mismatch {k} {f}: {a} vs {v}")
+                if math.isnan(v):
+                    if not isinstance(a,float) or not math.isnan(a):raise TransportError(f"metric adjustment NaN mismatch {k} {f}")
+                elif not math.isclose(float(a),float(v),rel_tol=0,abs_tol=1e-9):raise TransportError(f"metric adjustment mismatch {k} {f}: {a} vs {v}")
             elif a!=v:raise TransportError(f"metric adjustment mismatch {k} {f}: {a} vs {v}")
 
 
@@ -528,7 +531,7 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
     receipts_by_key={}
     for r in receipts:receipts_by_key.setdefault((r["candidate_id"],r["role"],r["window"]),[]).append(r["path"])
     checked_groups=checked_trades=0;violations=[]
-    summary_metrics=iter(_metric_rows(client,head,"metrics",run_id))
+    summary_metrics=iter(_metric_rows(client,head,"metrics_raw",run_id))
     asset_metrics=iter(_metric_rows(client,head,"metrics_by_asset",run_id))
     checked_summary_metrics=checked_asset_metrics=checked_inference_metrics=0
     expected_control_rows=[];expected_halfyear_rows=[];adjustment_groups={}
@@ -558,6 +561,7 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
                 base_members,base_mode=_resolve_candidate(f"{pfx}:{baseid}",pfx,"outer",pair_map,triple_map,selected,neighbor_map)
             else:
                 base_members,base_mode=_resolve_candidate(baseid,pfx,base_role,pair_map,triple_map,selected,neighbor_map)
+            members,mode=base_members,base_mode
             base_expected_by_asset={}
             for sym,p in measurer.panels.items():
                 masks=[p.mask_of(nm) for nm in base_members]
@@ -593,7 +597,7 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
                     "seed":M.sha_seed(f"84|{sym}|{window}|{baseid}|{replicate}")})
         try:stored_metric=next(summary_metrics)
         except StopIteration:raise TransportError("missing raw-derived summary metric row: "+str(key))
-        expected_metric=_audit_metric_row(cid,role,window,"ALL","summary",exp_rows,next(iter(measurer.panels.values())))
+        expected_metric=_audit_metric_row(cid,role,window,"ALL","summary",exp_rows,next(iter(measurer.panels.values())),members,mode)
         inferential_role=role in ("single","pair","triple","outer","neighbour","descriptive")
         registered_stats=_independent_block_stats(exp_rows,window,measurer.panels) if exp_rows else None
         infer_fields=("p_raw","ci_lo","ci_hi","baseline_win_rate","breakeven_rate","lift_win_points")
@@ -622,7 +626,7 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
             asset_trades=[x for x in exp_rows if x["asset"]==sym]
             try:stored_asset=next(asset_metrics)
             except StopIteration:raise TransportError("missing raw-derived per-asset metric row: "+str((key,sym)))
-            expected_asset=_audit_metric_row(cid,role,window,sym,"asset",asset_trades,panel)
+            expected_asset=_audit_metric_row(cid,role,window,sym,"asset",asset_trades,panel,members,mode)
             asset_infer_fields=("baseline_win_rate","breakeven_rate","lift_win_points","p_raw","ci_lo","ci_hi")
             stored_has_asset_stats=any(stored_asset.get(field) is not None for field in asset_infer_fields)
             asset_registered=stored_asset.get("metric_status","").startswith("REGISTERED_BLOCK_STATS")
@@ -677,15 +681,34 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
                 "n80":r["n80"],"alpha":0.05/70330,"family_m":70330})
     stored_adjustments,adjustment_parts=_adjustment_rows(client,head,run_id)
     _compare_adjustments(stored_adjustments,expected_adjustments)
+    adj_map={(r["candidate_id"],r["role"],r["window"]):r for r in expected_adjustments}
+    final_metrics=iter(_metric_rows(client,head,"metrics",run_id));final_rows_checked=0
+    for source_kind in ("metrics_raw","metrics_by_asset"):
+        for expected_final in _metric_rows(client,head,source_kind,run_id):
+            expected_final=dict(expected_final)
+            if expected_final["scope"]=="summary":
+                adj=adj_map.get((expected_final["candidate_id"],expected_final["role"],expected_final["window"]))
+                if adj is not None:
+                    expected_final["p_adjusted"]=adj["p_adjusted"];expected_final["power80"]=adj["power80"]
+                    expected_final["metric_status"]="REGISTERED_BLOCK_STATS; Holm_adjusted; power_on_file"
+            try:actual_final=next(final_metrics)
+            except StopIteration:raise TransportError("final metrics table is missing reconciled rows")
+            _compare_metric(actual_final,expected_final,(expected_final["candidate_id"],expected_final["role"],expected_final["window"],expected_final["asset"]))
+            final_rows_checked+=1
+    try:next(final_metrics);raise TransportError("extra final metric rows")
+    except StopIteration:pass
+    final_rows,final_parts=_metric_rows.last_meta
+    if final_rows!=final_rows_checked:raise TransportError("final metrics row count mismatch")
     if checked_trades!=base_check["trade_rows"]:raise TransportError("full rebuild trade total differs from verified raw total")
     if checked_summary_metrics!=len(coverage) or summary_rows!=len(coverage):raise TransportError("summary metric coverage does not match trade coverage")
     if checked_asset_metrics!=len(coverage)*len(measurer.panels) or asset_rows!=checked_asset_metrics:raise TransportError("per-asset metric coverage does not match trade coverage")
     return {**base_check,"groups_rebuilt":checked_groups,"trades_rebuilt":checked_trades,
             "independent_execution_rebuild":"PASS","raw_metric_reconciliation":"PASS",
-            "metrics_reconciliation":"PARTIAL_RAW_METRICS; canonical_adjusted_metric_table_and_complete_controls_pending",
+            "metrics_reconciliation":"PASS_CANONICAL_METRIC_TABLE; raw trades and adjustment join independently reconciled",
             "independent_inference_rows_reconciled":checked_inference_metrics,
-            "adjustment_reconciliation":"PASS_HOLM_POWER_OVERLAY; canonical_metric_join_pending",
-            "adjustment_rows":len(stored_adjustments),
+            "adjustment_reconciliation":"PASS_HOLM_POWER_OVERLAY_AND_CANONICAL_JOIN",
+            "adjustment_rows":len(stored_adjustments),"final_metric_rows":final_rows,
+            "final_metric_partitions":len(final_parts),
             "controls_reconciliation":"PASS_RAW_CONTROL_TABLE; paired_difference_and_CI_pending",
             "control_result_rows":len(stored_controls),"control_partitions":len(control_parts),
             "halfyear_raw_reconciliation":"PASS; per_asset_baseline_lift_CI_pending",
