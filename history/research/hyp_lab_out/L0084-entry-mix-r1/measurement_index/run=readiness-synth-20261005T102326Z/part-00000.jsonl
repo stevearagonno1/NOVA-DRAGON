@@ -1,0 +1,2 @@
+{"candidate_id":"SYNTH-R1-RAW-AUDIT-001","partition_count":1,"partition_paths":["history/research/hyp_lab_out/L0084-entry-mix-r1/trades/run=readiness-synth-20261005T102326Z/role=single/candidate=SYNTH-R1-RAW-AUDIT-001/window=SYNTH_A/part-00000.parquet"],"role":"single","schema_version":"l0084-r1-trade-v1","trade_rows":1,"window":"SYNTH_A"}
+{"candidate_id":"SYNTH-R1-RAW-AUDIT-001","partition_count":0,"partition_paths":[],"role":"single","schema_version":"l0084-r1-trade-v1","trade_rows":0,"window":"SYNTH_EMPTY"}
