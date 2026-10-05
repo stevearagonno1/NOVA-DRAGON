@@ -1,5 +1,6 @@
 import hashlib
 import json
+import io
 import unittest
 from unittest.mock import patch
 from types import SimpleNamespace
@@ -13,12 +14,12 @@ try:
     from . import engine as E
     from .streaming import RemoteTradeWriter, TRADE_SCHEMA, BASE, _row as trade_row
     from .transport import TransportError
-    from .audit import verify_remote_partitions,rebuild_all,_independent_block_stats
+    from .audit import verify_remote_partitions,rebuild_all,_independent_block_stats,_independent_paired_difference,_random_reference,independent_simulate_window
 except ImportError:
     from l0084_entry_mix_r1 import engine as E
     from l0084_entry_mix_r1.streaming import RemoteTradeWriter, TRADE_SCHEMA, BASE, _row as trade_row
     from l0084_entry_mix_r1.transport import TransportError
-    from l0084_entry_mix_r1.audit import verify_remote_partitions,rebuild_all,_independent_block_stats
+    from l0084_entry_mix_r1.audit import verify_remote_partitions,rebuild_all,_independent_block_stats,_independent_paired_difference,_random_reference,independent_simulate_window
 
 
 class MemoryTransport:
@@ -104,6 +105,12 @@ class StreamingTests(unittest.TestCase):
         self.assertEqual(result['rows'],1)
         self.assertLessEqual(result['peak_pending_bytes'],5_000_000)
         self.assertEqual(result['metrics']['groups'],2)
+        self.assertEqual(result['metrics']['halfyear_part_count'],1)
+        hp=[x for x in t.trees[t.head] if '/halfyears.csv/run=synthetic/' in x and x.endswith('.csv')]
+        self.assertEqual(len(hp),1)
+        half=pd.concat([pd.read_csv(io.BytesIO(t.blob_from_commit(t.head,x))) for x in hp],ignore_index=True)
+        self.assertEqual(list(half.columns),['candidate','asset','halfyear','partial','n','net','pf','win','baseline','lift','ci_lo','ci_hi'])
+        self.assertEqual(sorted(half['n'].tolist()),[0,1])
         mp=[x for x in t.trees[t.head] if '/metrics/run=synthetic/' in x and x.endswith('.parquet')]
         ap=[x for x in t.trees[t.head] if '/metrics_by_asset/run=synthetic/' in x and x.endswith('.parquet')]
         self.assertEqual(len(mp),1);self.assertEqual(len(ap),1)
@@ -113,6 +120,20 @@ class StreamingTests(unittest.TestCase):
         self.assertEqual([x['n_exec'] for x in at],[1,0])
         self.assertEqual(mt[1]['win_rate'],None)
         self.assertEqual(mt[1]['metric_status'],'ZERO_TRADES; inference_not_computed')
+
+    def test_random_control_result_partition_has_matched_counts_and_seed(self):
+        from .metrics import CONTROL_SCHEMA
+        t=MemoryTransport();w=RemoteTradeWriter(t,run_id='controls')
+        w.add_window('RAND:2023H1:C0:rep000','random_control','2023H1',{'X':[self.trade]},self.panels,
+            control_info={'candidate':'C0','replicate':0,'matched_counts':{'X':1},'seeds':{'X':84}})
+        result=w.close();self.assertEqual(result['metrics']['control_part_count'],1)
+        path=next(p for p in t.trees[t.head] if '/controls/run=controls/' in p and p.endswith('.parquet'))
+        tab=pq.read_table(pa.BufferReader(t.blob_from_commit(t.head,path)))
+        self.assertTrue(tab.schema.equals(CONTROL_SCHEMA,check_metadata=False))
+        row=tab.to_pylist()[0]
+        self.assertEqual((row['candidate'],row['control_type'],row['replicate']),('C0','random_entry',0))
+        self.assertEqual((row['n'],row['matched_count'],row['seed']),(1,1,84))
+        self.assertIsNone(row['paired_difference'])
 
     def test_readback_mismatch_fails_closed(self):
         t=MemoryTransport();w=RemoteTradeWriter(t,run_id='mismatch');t.fail='bad_readback'
@@ -174,47 +195,78 @@ class StreamingTests(unittest.TestCase):
 
     def test_full_independent_rebuild_matches_synthetic_window(self):
         class Panel:
-            def __init__(self):
-                self.sym='X';self.dt=self.panels_dt
-                self.o=np.full(60,100.0);self.h=np.full(60,100.2);self.l=np.full(60,99.8);self.c=self.o.copy()
+            def __init__(self,sym,price):
+                self.sym=sym;self.dt=pd.date_range('2023-01-01',periods=60,freq='4h',tz='UTC').to_numpy()
+                self.o=np.full(60,price);self.h=self.o+.2;self.l=self.o-.2;self.c=self.o.copy()
                 self.atr=np.ones(60);self.seg=np.zeros(60,dtype=int);self.ranges={'2023H1':(0,59),'2023H2':(0,19)}
-                self.mask=np.zeros(60,dtype=bool);self.mask[20]=True;self.h[21]=102.0
-            @property
-            def panels_dt(self):return pd.date_range('2023-01-01',periods=60,freq='4h',tz='UTC').to_numpy()
+                self.mask=np.zeros(60,dtype=bool);self.mask[20]=True;self.h[21]=price+2.0
             def mask_of(self,name):return self.mask
         class Measurer:
-            def __init__(self,p):self.panels={'X':p}
-        p=Panel();m=Measurer(p)
-        trades,_=E.simulate_window(p.o,p.h,p.l,p.c,p.atr,p.seg,p.mask,'X','candidate',0,59)
+            def __init__(self,panels):self.panels=panels
+        panels={'X':Panel('X',100.0),'Y':Panel('Y',50.0)};m=Measurer(panels)
+        trades_by_asset={sym:E.simulate_window(p.o,p.h,p.l,p.c,p.atr,p.seg,p.mask,sym,'candidate',0,59)[0] for sym,p in panels.items()}
+        base_by_asset={sym:independent_simulate_window(p.o,p.h,p.l,p.c,p.atr,p.seg,None,sym,'NO-SIGNAL',0,59) for sym,p in panels.items()}
+        all_trades=[t for rows in trades_by_asset.values() for t in rows]
+        matched_counts={sym:len(rows) for sym,rows in trades_by_asset.items()}
         t=MemoryTransport();meta_base=BASE+'/synthetic_fixture';meta={
           meta_base+'/pairs_registry.csv':b'pair_id,member_a,member_b\n',
           meta_base+'/triples_registry.csv':b'prefix_id,triple_id,member_a,member_b,member_c,mode,parent_ids\n',
-          meta_base+'/selection_log.csv':b'prefix,candidate,selected\n',
+          meta_base+'/selection_log.csv':b'prefix,candidate,selected\n2023H1,C0,1\n',
           meta_base+'/neighbors_registry.csv':b'neighbour_id,prefix_id,base_candidate,member,neighbour_setting,mode\n'}
         head=t.branch_head();head,_=t.commit_files(meta,head,'synthetic metadata')
         w=RemoteTradeWriter(t,run_id='full-audit')
-        def runner_stats(cid):
-            audited=_independent_block_stats([trade_row(x,cid,'single','2023H1',m.panels) for x in trades],'2023H1',m.panels)
+        def runner_stats(cid,role='single'):
+            audited=_independent_block_stats([trade_row(x,cid,role,'2023H1',m.panels) for x in all_trades],'2023H1',m.panels)
             return {"baseline_win":audited["baseline_win_rate"],"breakeven_ref":audited["breakeven_rate"],
                     "lift_win_pts":audited["lift_win_points"],"p_raw":audited["p_raw"],
                     "exp_lo5":audited["ci_lo"],"exp_hi95":audited["ci_hi"]}
-        w.add_window('C0','single','2023H1',{'X':trades},m.panels,stats=runner_stats('C0'))
-        w.add_window('C0','single','2023H2',{'X':[]},m.panels)
-        w.add_window('C1','single','2023H1',{'X':trades},m.panels,stats=runner_stats('C1'));w.close()
+        w.add_window('2023H1:C0','outer','2023H1',trades_by_asset,m.panels,stats=runner_stats('2023H1:C0','outer'),baseline_by_asset=base_by_asset)
+        w.add_window('C0','single','2023H2',{'X':[],'Y':[]},m.panels,baseline_by_asset={'X':[],'Y':[]})
+        w.add_window('C1','single','2023H1',trades_by_asset,m.panels,stats=runner_stats('C1'),baseline_by_asset=base_by_asset)
+        random_by_asset={sym:_random_reference(p,'2023H1',matched_counts[sym],'C0',0) for sym,p in panels.items()}
+        seeds={sym:__import__('l0084_entry_mix_r1.measure',fromlist=['sha_seed']).sha_seed(f'84|{sym}|2023H1|C0|0') for sym in panels}
+        paired_by_asset={sym:_independent_paired_difference(
+            [trade_row(x,'C0','outer','2023H1',m.panels) for x in trades_by_asset[sym]],
+            [trade_row(x,'C0','random_control','2023H1',m.panels) for x in random_by_asset[sym]],'2023H1',panels[sym])
+            for sym in panels}
+        w.add_window('RAND:2023H1:C0:rep000','random_control','2023H1',random_by_asset,m.panels,
+            control_info={'candidate':'C0','replicate':0,'matched_counts':matched_counts,'seeds':seeds,
+                          'paired_by_asset':paired_by_asset},baseline_by_asset=base_by_asset)
+        w.close()
         result=rebuild_all(t,t.head,'full-audit',m,metadata_base=meta_base)
         self.assertEqual(result['independent_execution_rebuild'],'PASS')
         self.assertEqual(result['raw_metric_reconciliation'],'PASS')
         self.assertEqual(result['independent_inference_rows_reconciled'],2)
-        self.assertEqual(result['metrics_reconciliation'],'DESCRIPTIVE_RAW_METRICS_ONLY; inference_and_controls_pending')
-        self.assertEqual(result['groups_rebuilt'],3)
+        self.assertEqual(result['metrics_reconciliation'],'PARTIAL_RAW_METRICS; Holm_power_and_complete_control_tests_pending')
+        self.assertEqual(result['groups_rebuilt'],4)
         self.assertEqual(result['zero_trade_candidate_windows'],1)
-        self.assertEqual(result['trades_rebuilt'],len(trades)*2)
+        self.assertEqual(result['controls_reconciliation'],'PASS_RAW_CONTROL_TABLE; paired_difference_and_CI_pending')
+        self.assertEqual(result['control_result_rows'],2)
+        self.assertEqual(result['halfyear_rows'],8)
+        self.assertEqual(result['trades_rebuilt'],sum(map(len,trades_by_asset.values()))*2+sum(map(len,random_by_asset.values())))
         metric_path=next(x for x in t.trees[t.head] if '/metrics/run=full-audit/' in x and x.endswith('.parquet'))
-        metric=pq.read_table(pa.BufferReader(t.blob_from_commit(t.head,metric_path)))
+        original_metric=t.blob_from_commit(t.head,metric_path)
+        metric=pq.read_table(pa.BufferReader(original_metric))
         altered=metric.to_pylist();altered[0]['net_dollars']+=1.0
         sink=pa.BufferOutputStream();pq.write_table(pa.Table.from_pylist(altered,schema=metric.schema),sink,compression='zstd')
         payload=sink.getvalue().to_pybytes();badhead=t.branch_head();t.commit_files({metric_path:payload},badhead,'synthetic changed-metric failure')
         with self.assertRaisesRegex(Exception,'metric value mismatch'):
+            rebuild_all(t,t.head,'full-audit',m,metadata_base=meta_base)
+        t.commit_files({metric_path:original_metric},t.branch_head(),'restore synthetic metric after tamper check')
+        control_path=next(x for x in t.trees[t.head] if '/controls/run=full-audit/' in x and x.endswith('.parquet'))
+        original_control=t.blob_from_commit(t.head,control_path)
+        control=pq.read_table(pa.BufferReader(original_control))
+        altered_control=control.to_pylist();altered_control[0]['matched_count']+=1
+        sink=pa.BufferOutputStream();pq.write_table(pa.Table.from_pylist(altered_control,schema=control.schema),sink,compression='zstd')
+        payload=sink.getvalue().to_pybytes();badhead=t.branch_head();t.commit_files({control_path:payload},badhead,'synthetic changed-control failure')
+        with self.assertRaisesRegex(Exception,'control value mismatch'):
+            rebuild_all(t,t.head,'full-audit',m,metadata_base=meta_base)
+        t.commit_files({control_path:original_control},t.branch_head(),'restore synthetic control after tamper check')
+        halfyear_path=next(x for x in t.trees[t.head] if '/halfyears.csv/run=full-audit/' in x and x.endswith('.csv'))
+        half_raw=t.blob_from_commit(t.head,halfyear_path);half_df=pd.read_csv(io.BytesIO(half_raw));half_df.loc[0,'net']+=1.0
+        half_bad=half_df.to_csv(index=False,lineterminator='\n').encode()
+        t.commit_files({halfyear_path:half_bad},t.branch_head(),'synthetic changed halfyear failure')
+        with self.assertRaisesRegex(Exception,'half-year value mismatch'):
             rebuild_all(t,t.head,'full-audit',m,metadata_base=meta_base)
 
 

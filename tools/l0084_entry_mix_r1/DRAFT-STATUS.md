@@ -1,8 +1,8 @@
 # L0084-R1 DRAFT status
 
-Published to the authorized R1 branch as DRAFT at commit `97a6b9611d464698a748dc80b4f6ec4231cf4c78`; this local working copy now contains subsequent uncommitted improvements.
+Last published DRAFT commit: `67020fb3118f4a51eabf64544b7ab684c4985d3d`; this workspace contains newer local code awaiting its next authorized API publication.
 
-- Gate: CLOSED. Market experiment: NOT RUN.
-- Added handoff of registered summary bootstrap statistics into result metrics and an independent seven-day block-bootstrap recalculation in the raw-ledger audit for populated candidate summary groups. The audit explicitly remains `DESCRIPTIVE_RAW_METRICS_ONLY; inference_and_controls_pending`.
-- Pending: complete per-asset inferential metrics, Holm/power, paired controls and controls.parquet, complete halfyears.csv reconciliation, shared synthetic measure/audit CLI, readiness.json, full audit, actual measurement and report.
-- Latest local validation: py_compile passed; pytest 22/22; module self-test 10/10. No full synthetic CLI readiness claim.
+- Gate: CLOSED. Experiment: NOT RUN.
+- Newly implemented locally: raw-derived summary/per-asset metrics with candidate synchronized bootstrap handoff and independent raw-trade recalculation; partitioned controls result Parquet (matched counts, seeds, per-asset paired block differences/CIs where counts match); partitioned half-year CSV with per-asset raw stats; independent audit of metric, control and half-year rows and tamper detection.
+- Still incomplete: true Holm adjustments across the preregistered 70,330 family, power fields, complete paired no-signal/constituent controls and mandatory control coverage, complete runnable shared synthetic measure/audit CLI/readiness, actual experiment, full audit and report.
+- Validation: `py_compile` passed; pytest 23/23; module self-test 10/10. Synthetic writer/auditor unit fixture uses two assets and four groups, but does not satisfy the full v7 readiness protocol.

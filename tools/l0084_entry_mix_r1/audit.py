@@ -12,14 +12,14 @@ import pyarrow.parquet as pq
 
 try:
     from .streaming import BASE, TRADE_SCHEMA, _row as trade_row
-    from .metrics import METRIC_SCHEMA
+    from .metrics import METRIC_SCHEMA, CONTROL_SCHEMA
     from .transport import GitHubTransport, TransportError
     from . import engine as E
     from . import measure as M
     from . import indicators as I
 except ImportError:
     from streaming import BASE, TRADE_SCHEMA, _row as trade_row
-    from metrics import METRIC_SCHEMA
+    from metrics import METRIC_SCHEMA, CONTROL_SCHEMA
     from transport import GitHubTransport, TransportError
     import engine as E
     import measure as M
@@ -221,6 +221,58 @@ def _actual_rows(client,head,paths):
     return rows
 
 
+def _independent_paired_difference(base_rows,control_rows,window,panel):
+    """Independent synchronized block bootstrap for one matched asset pair."""
+    if not base_rows or not control_rows or len(base_rows)!=len(control_rows):return None
+    first,last=M.WIN_RANGE[window];n_days=int((np.datetime64(last)-np.datetime64(first)).astype(int))+1
+    sums=[np.zeros(n_days),np.zeros(n_days)];counts=[np.zeros(n_days),np.zeros(n_days)]
+    for side,rows in enumerate((base_rows,control_rows)):
+        for r in rows:
+            day=np.datetime64(pd.Timestamp(panel.dt[int(r["fill_bar"])]).date())
+            idx=int((day-np.datetime64(first)).astype(int))
+            if idx<0 or idx>=n_days:raise TransportError("paired trade day outside requested window")
+            sums[side][idx]+=float(r["net_dollars"]);counts[side][idx]+=1
+    rng=np.random.default_rng(84);reps=2000;block=7
+    if n_days<=block:chosen=rng.integers(0,n_days,size=(reps,n_days))
+    else:
+        blocks=int(np.ceil(n_days/block));starts=rng.integers(0,n_days-block+1,size=(reps,blocks))
+        chosen=(starts[:,:,None]+np.arange(block)[None,None,:]).reshape(reps,-1)[:,:n_days]
+    c0=counts[0][chosen].sum(axis=1);c1=counts[1][chosen].sum(axis=1)
+    with np.errstate(invalid="ignore",divide="ignore"):
+        vals=sums[0][chosen].sum(axis=1)/c0-sums[1][chosen].sum(axis=1)/c1
+    vals=vals[np.isfinite(vals)]
+    if not len(vals):return None
+    observed=float(sums[0].sum()/counts[0].sum()-sums[1].sum()/counts[1].sum())
+    return {"diff":observed,"lo5":float(np.percentile(vals,5)),"hi95":float(np.percentile(vals,95))}
+
+
+def _independent_asset_stats(rows,window,panel):
+    if window not in M.WIN_RANGE:return None
+    first,last=M.WIN_RANGE[window];n_days=int((np.datetime64(last)-np.datetime64(first)).astype(int))+1
+    base_expected=independent_simulate_window(panel.o,panel.h,panel.l,panel.c,panel.atr,panel.seg,None,panel.sym,"NO-SIGNAL",*panel.ranges[window])
+    bw=sum(x["outcome"]=="target" for x in base_expected);bd=sum(x["outcome"] in ("target","stop") for x in base_expected)
+    baseline=bw/bd if bd else None
+    if not rows:return {"baseline_win_rate":baseline,"breakeven_rate":None,"lift_win_points":None,"p_raw":None,"ci_lo":None,"ci_hi":None}
+    s=np.zeros(n_days);c=np.zeros(n_days);nets=np.asarray([float(r["net_dollars"]) for r in rows]);wins=sum(r["outcome"]=="target" for r in rows);stops=sum(r["outcome"]=="stop" for r in rows)
+    for r in rows:
+        day=np.datetime64(pd.Timestamp(panel.dt[int(r["fill_bar"])]).date());idx=int((day-np.datetime64(first)).astype(int))
+        if idx<0 or idx>=n_days:raise TransportError("per-asset trade day outside window")
+        s[idx]+=float(r["net_dollars"]);c[idx]+=1
+    rng=np.random.default_rng(84);reps=2000;block=7
+    if n_days<=block:idxs=rng.integers(0,n_days,size=(reps,n_days))
+    else:
+        nb=int(np.ceil(n_days/block));starts=rng.integers(0,n_days-block+1,size=(reps,nb))
+        idxs=(starts[:,:,None]+np.arange(block)[None,None,:]).reshape(reps,-1)[:,:n_days]
+    den=c[idxs].sum(axis=1);num=s[idxs].sum(axis=1);vals=np.divide(num,den,out=np.full(reps,np.nan),where=den>0);vals=vals[np.isfinite(vals)]
+    lo=float(np.percentile(vals,5));hi=float(np.percentile(vals,95));se=float(np.std(vals,ddof=1));expectancy=float(nets.mean())
+    from scipy.stats import norm
+    praw=float(norm.sf(expectancy/se)) if se>0 else float("nan")
+    winrate=wins/(wins+stops) if wins+stops else None
+    mean_cost=float(np.mean([r["cost_atr"] for r in rows]))
+    lift=(winrate-baseline)*100 if winrate is not None and baseline is not None else None
+    return {"baseline_win_rate":baseline,"breakeven_rate":0.5+mean_cost/3,"lift_win_points":lift,"p_raw":praw,"ci_lo":lo,"ci_hi":hi}
+
+
 def _independent_block_stats(rows,window,panels):
     """Literal independent synchronized seven-day bootstrap over raw rebuilt trades."""
     if window not in M.WIN_RANGE or not rows:return None
@@ -326,6 +378,75 @@ def _metric_rows(client,head,kind,run_id):
     _metric_rows.last_meta=(count,part_meta)
 
 
+def _control_rows(client,head,run_id):
+    directory=f"{BASE}/controls/run={run_id}"
+    try:names=client.list_directory(head,directory)
+    except TransportError as exc:
+        if "directory resolution failed" in str(exc):return [],[]
+        raise
+    out=[];parts=[]
+    for name in sorted(names):
+        if not name.endswith(".parquet"):continue
+        path=directory+"/"+name;raw=client.blob_from_commit(head,path)
+        if len(raw)>8_000_000:raise TransportError("control partition exceeds 8,000,000 bytes: "+path)
+        tab=pq.read_table(pa.BufferReader(raw))
+        if not tab.schema.equals(CONTROL_SCHEMA,check_metadata=False):raise TransportError("control schema mismatch: "+path)
+        out.extend(tab.to_pylist());parts.append({"path":path,"rows":tab.num_rows,"sha256":hashlib.sha256(raw).hexdigest()})
+    return out,parts
+
+
+def _halfyear_rows(client,head,run_id):
+    directory=f"{BASE}/halfyears.csv/run={run_id}"
+    try:names=client.list_directory(head,directory)
+    except TransportError as exc:
+        if "directory resolution failed" in str(exc):return [],[]
+        raise
+    rows=[];parts=[]
+    for name in sorted(names):
+        if not name.endswith(".csv"):continue
+        path=directory+"/"+name;raw=client.blob_from_commit(head,path)
+        if len(raw)>8_000_000:raise TransportError("half-year partition exceeds byte cap")
+        local=list(csv.DictReader(io.StringIO(raw.decode("utf-8"))))
+        rows.extend(local);parts.append({"path":path,"rows":len(local),"sha256":hashlib.sha256(raw).hexdigest()})
+    return rows,parts
+
+
+def _compare_halfyear_rows(got_rows,want_rows):
+    keys=("candidate","asset","halfyear")
+    def key(r):return tuple(r[k] for k in keys)
+    got={key(r):r for r in got_rows};want={key(r):r for r in want_rows}
+    if len(got)!=len(got_rows) or len(want)!=len(want_rows):raise TransportError("duplicate half-year result row")
+    if set(got)!=set(want):raise TransportError("half-year table coverage mismatch")
+    numeric=("partial","n","net","pf","win","baseline","lift","ci_lo","ci_hi")
+    for k,b in want.items():
+        a=got[k]
+        for field in numeric:
+            av=a.get(field);bv=b.get(field)
+            if bv is None:
+                if av not in (None,""):raise TransportError(f"half-year null mismatch {k} {field}")
+            else:
+                try:actual=float(av)
+                except (TypeError,ValueError):raise TransportError(f"half-year missing numeric {k} {field}")
+                if not math.isclose(actual,float(bv),rel_tol=0,abs_tol=1e-9):raise TransportError(f"half-year value mismatch {k} {field}: {actual} vs {bv}")
+
+
+def _compare_control_rows(got_rows,want_rows):
+    key_fields=("candidate","control_type","replicate","asset","window")
+    got={tuple(r[k] for k in key_fields):r for r in got_rows}
+    want={tuple(r[k] for k in key_fields):r for r in want_rows}
+    if len(got)!=len(got_rows) or len(want)!=len(want_rows):raise TransportError("duplicate control result row")
+    if set(got)!=set(want):raise TransportError(f"control row coverage mismatch: missing={list(set(want)-set(got))[:2]} extra={list(set(got)-set(want))[:2]}")
+    for key,b in want.items():
+        a=got[key]
+        for field in CONTROL_SCHEMA.names:
+            av,bv=a.get(field),b.get(field)
+            if av is None or bv is None:
+                if av is not None or bv is not None:raise TransportError(f"control null mismatch {key} {field}")
+            elif isinstance(bv,float):
+                if not math.isclose(float(av),bv,rel_tol=0,abs_tol=1e-9):raise TransportError(f"control value mismatch {key} {field}: {av} vs {bv}")
+            elif av!=bv:raise TransportError(f"control value mismatch {key} {field}: {av} vs {bv}")
+
+
 def _compare_metric(got,want,key):
     for field in METRIC_SCHEMA.names:
         a=got.get(field);b=want.get(field)
@@ -364,6 +485,7 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
     summary_metrics=iter(_metric_rows(client,head,"metrics",run_id))
     asset_metrics=iter(_metric_rows(client,head,"metrics_by_asset",run_id))
     checked_summary_metrics=checked_asset_metrics=checked_inference_metrics=0
+    expected_control_rows=[];expected_halfyear_rows=[]
     for entry in coverage:
         cid,role,window=entry["candidate_id"],entry["role"],entry["window"]
         key=(cid,role,window);paths=entry.get("partition_paths",[])
@@ -386,7 +508,17 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
             base_paths=receipts_by_key.get(base_key,[])
             base_rows=_actual_rows(client,head,base_paths) if base_paths else []
             counts={sym:sum(x["asset"]==sym for x in base_rows) for sym in measurer.panels}
-            for sym,p in measurer.panels.items():expected.extend(_random_reference(p,window,counts.get(sym,0),baseid,replicate))
+            if window==pfx:
+                base_members,base_mode=_resolve_candidate(f"{pfx}:{baseid}",pfx,"outer",pair_map,triple_map,selected,neighbor_map)
+            else:
+                base_members,base_mode=_resolve_candidate(baseid,pfx,base_role,pair_map,triple_map,selected,neighbor_map)
+            base_expected_by_asset={}
+            for sym,p in measurer.panels.items():
+                masks=[p.mask_of(nm) for nm in base_members]
+                base_mask=_combine_independent(masks,base_mode,p.seg)
+                lo,hi=p.ranges[window]
+                base_expected_by_asset[sym]=independent_simulate_window(p.o,p.h,p.l,p.c,p.atr,p.seg,base_mask,sym,baseid,lo,hi)
+                expected.extend(_random_reference(p,window,counts.get(sym,0),baseid,replicate))
         else:
             for sym,p in measurer.panels.items():
                 if role=="baseline":mask=None
@@ -397,18 +529,39 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
                 lo,hi=p.ranges[window]
                 expected.extend(independent_simulate_window(p.o,p.h,p.l,p.c,p.atr,p.seg,mask,sym,cid,lo,hi))
         exp_rows=[trade_row(t,cid,role,window,measurer.panels) for t in expected]
+        if role=="baseline":
+            for sym in measurer.panels:
+                ar=[x for x in exp_rows if x["asset"]==sym];n=len(ar);net=float(sum(x["net_dollars"] for x in ar))
+                expected_control_rows.append({"candidate":"NO-SIGNAL","control_type":"no_signal","replicate":0,
+                    "asset":sym,"window":window,"n":n,"matched_count":None,"net":net,
+                    "expectancy":net/n if n else None,"paired_difference":None,"ci_lo":None,"ci_hi":None,"seed":None})
+        elif role=="random_control":
+            for sym in measurer.panels:
+                ar=[x for x in exp_rows if x["asset"]==sym];n=len(ar);net=float(sum(x["net_dollars"] for x in ar))
+                base_asset=[dict(x,asset=sym) for x in base_expected_by_asset.get(sym,[])]
+                paired=_independent_paired_difference(base_asset,ar,window,measurer.panels[sym]) if n==int(counts.get(sym,0)) else None
+                expected_control_rows.append({"candidate":baseid,"control_type":"random_entry","replicate":replicate,
+                    "asset":sym,"window":window,"n":n,"matched_count":int(counts.get(sym,0)),"net":net,
+                    "expectancy":net/n if n else None,"paired_difference":paired["diff"] if paired else None,
+                    "ci_lo":paired["lo5"] if paired else None,"ci_hi":paired["hi95"] if paired else None,
+                    "seed":M.sha_seed(f"84|{sym}|{window}|{baseid}|{replicate}")})
         try:stored_metric=next(summary_metrics)
         except StopIteration:raise TransportError("missing raw-derived summary metric row: "+str(key))
         expected_metric=_audit_metric_row(cid,role,window,"ALL","summary",exp_rows,next(iter(measurer.panels.values())))
         inferential_role=role in ("single","pair","triple","outer","neighbour","descriptive")
-        registered_stats=_independent_block_stats(exp_rows,window,measurer.panels) if inferential_role else None
+        registered_stats=_independent_block_stats(exp_rows,window,measurer.panels) if exp_rows else None
         infer_fields=("p_raw","ci_lo","ci_hi","baseline_win_rate","breakeven_rate","lift_win_points")
         stored_has_inference=any(stored_metric.get(field) is not None for field in infer_fields)
+        registered=stored_metric.get("metric_status","").startswith("REGISTERED_BLOCK_STATS")
         if stored_has_inference:
             if not registered_stats:raise TransportError("inferential metric exists for empty raw group: "+str(key))
-            expected_metric.update(registered_stats)
-            expected_metric["metric_status"]="REGISTERED_BLOCK_STATS; Holm_and_power_pending"
-            checked_inference_metrics+=1
+            expected_metric.update({k:registered_stats[k] for k in ("p_raw","ci_lo","ci_hi","breakeven_rate")})
+            if registered and inferential_role:
+                expected_metric.update({k:registered_stats[k] for k in ("baseline_win_rate","lift_win_points")})
+                expected_metric["metric_status"]="REGISTERED_BLOCK_STATS; Holm_and_power_pending"
+                checked_inference_metrics+=1
+            else:
+                expected_metric["baseline_win_rate"]=None;expected_metric["lift_win_points"]=None
         else:
             expected_metric.update({field:None for field in infer_fields})
         _compare_metric(stored_metric,expected_metric,key);checked_summary_metrics+=1
@@ -417,7 +570,25 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
             try:stored_asset=next(asset_metrics)
             except StopIteration:raise TransportError("missing raw-derived per-asset metric row: "+str((key,sym)))
             expected_asset=_audit_metric_row(cid,role,window,sym,"asset",asset_trades,panel)
+            asset_infer_fields=("baseline_win_rate","breakeven_rate","lift_win_points","p_raw","ci_lo","ci_hi")
+            stored_has_asset_stats=any(stored_asset.get(field) is not None for field in asset_infer_fields)
+            asset_registered=stored_asset.get("metric_status","").startswith("REGISTERED_BLOCK_STATS")
+            if stored_has_asset_stats:
+                asset_stats=_independent_asset_stats(asset_trades,window,panel)
+                expected_asset.update({k:asset_stats[k] for k in ("breakeven_rate","p_raw","ci_lo","ci_hi")})
+                if asset_registered:
+                    expected_asset.update({k:asset_stats[k] for k in ("baseline_win_rate","lift_win_points")})
+                    if asset_trades:expected_asset["metric_status"]="REGISTERED_BLOCK_STATS; Holm_and_power_pending"
+                else:
+                    expected_asset["baseline_win_rate"]=None;expected_asset["lift_win_points"]=None
+            else:expected_asset.update({field:None for field in asset_infer_fields})
             _compare_metric(stored_asset,expected_asset,(key,sym));checked_asset_metrics+=1
+            if len(window) in (6,7) and window[:4].isdigit() and window[4:] in ("H1","H2","H2p"):
+                expected_halfyear_rows.append({"candidate":cid,"asset":sym,"halfyear":window,
+                    "partial":int(window.endswith("p")),"n":expected_asset["n_exec"],
+                    "net":expected_asset["net_dollars"],"pf":expected_asset["profit_factor"],
+                    "win":expected_asset["win_rate"],"baseline":expected_asset["baseline_win_rate"],
+                    "lift":expected_asset["lift_win_points"],"ci_lo":expected_asset["ci_lo"],"ci_hi":expected_asset["ci_hi"]})
         keyfn=lambda x:(x["asset"],int(x["signal_bar"]))
         actual.sort(key=keyfn);exp_rows.sort(key=keyfn)
         if len(actual)!=len(exp_rows):raise TransportError(f"independent rebuild count mismatch {key}: stored={len(actual)} rebuilt={len(exp_rows)}")
@@ -436,13 +607,22 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
     try:next(asset_metrics);raise TransportError("extra per-asset metric rows after coverage exhausted")
     except StopIteration:pass
     asset_rows,asset_parts=_metric_rows.last_meta
+    stored_controls,control_parts=_control_rows(client,head,run_id)
+    _compare_control_rows(stored_controls,expected_control_rows)
+    stored_halfyears,halfyear_parts=_halfyear_rows(client,head,run_id)
+    _compare_halfyear_rows(stored_halfyears,expected_halfyear_rows)
     if checked_trades!=base_check["trade_rows"]:raise TransportError("full rebuild trade total differs from verified raw total")
     if checked_summary_metrics!=len(coverage) or summary_rows!=len(coverage):raise TransportError("summary metric coverage does not match trade coverage")
     if checked_asset_metrics!=len(coverage)*len(measurer.panels) or asset_rows!=checked_asset_metrics:raise TransportError("per-asset metric coverage does not match trade coverage")
     return {**base_check,"groups_rebuilt":checked_groups,"trades_rebuilt":checked_trades,
             "independent_execution_rebuild":"PASS","raw_metric_reconciliation":"PASS",
-            "metrics_reconciliation":"DESCRIPTIVE_RAW_METRICS_ONLY; inference_and_controls_pending",
+            "metrics_reconciliation":"PARTIAL_RAW_METRICS; Holm_power_and_complete_control_tests_pending",
             "independent_inference_rows_reconciled":checked_inference_metrics,
+            "controls_reconciliation":"PASS_RAW_CONTROL_TABLE; paired_difference_and_CI_pending",
+            "control_result_rows":len(stored_controls),"control_partitions":len(control_parts),
+            "halfyear_raw_reconciliation":"PASS; per_asset_baseline_lift_CI_pending",
+            "halfyear_rows":len(stored_halfyears),"halfyear_partitions":len(halfyear_parts),
             "summary_metric_rows":summary_rows,"asset_metric_rows":asset_rows,
-            "metric_partitions":summary_parts+asset_parts,"metric_partition_receipts":summary_parts+asset_parts,
+            "metric_partitions":summary_parts+asset_parts+control_parts+halfyear_parts,
+            "metric_partition_receipts":summary_parts+asset_parts+control_parts+halfyear_parts,
             "violations":0}

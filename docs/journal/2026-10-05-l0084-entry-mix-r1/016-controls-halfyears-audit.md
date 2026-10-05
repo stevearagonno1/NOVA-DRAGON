@@ -1,0 +1,6 @@
+- UTC: 2026-10-05T13:04:11Z
+- Asia/Aden: 2026-10-05T16:04:11+03:00
+- DRAFT includes bounded controls/half-year partitions and independent recalculation/comparison; synthetic fixture expanded to two assets and changed-metric/control/halfyear rejection.
+- Validation: py_compile PASS; pytest 23/23; module self-test 10/10; workspace 67,422,699 bytes. Full v7 CLI readiness still incomplete. Holm/power/full control family pending.
+- Measurement gate CLOSED; experiment NOT RUN.
+- Next: finish results and complete shared synthetic CLI validation.

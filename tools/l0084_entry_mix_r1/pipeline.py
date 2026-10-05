@@ -259,7 +259,7 @@ def stage_singles(m, writer=None):
             trades=m.candidate_trades((name,),"AND0",window=w)
             pooled=m.windowed(trades,w)
             per[w]=m.stat_window(pooled,w) if pooled else None
-            if writer is not None:writer.add_window(name,"single",w,trades,m.panels,stats=per[w])
+            if writer is not None:writer.add_window(name,"single",w,trades,m.panels,stats=per[w],baseline_by_asset=(m.baseline(w) or {}).get("per_asset"))
         out[name]=per
     journal("singles_done",n=len(out),elapsed_s=round(time.time()-t0,1),window_state="fresh $1,000 book per asset/candidate/window")
     return out
@@ -279,7 +279,7 @@ def stage_pairs(m, singles, batch=150, writer=None):
                 cb=m.candidate_trades((a,b),mode,window=w)
                 pooled=m.windowed(cb,w)
                 st=m.stat_window(pooled,w) if pooled else None
-                if writer is not None:writer.add_window(cid,"pair",w,cb,m.panels,stats=st)
+                if writer is not None:writer.add_window(cid,"pair",w,cb,m.panels,stats=st,baseline_by_asset=(m.baseline(w) or {}).get("per_asset"))
                 if st is not None:wdays[w]=(st["days"],st["nets"])
                 wstats[w]={k:v for k,v in (st or {}).items() if k not in ("days","nets")} if st else None
                 del cb
@@ -412,7 +412,7 @@ def stage_triples(m, singles, pairs, prefix, reg_rows, writer=None):
             cb=m.candidate_trades(members,mode,window=w)
             pooled=m.windowed(cb,w)
             st=m.stat_window(pooled,w) if pooled else None
-            if writer is not None:writer.add_window(f"{prefix}:{row['triple_id']}","triple",w,cb,m.panels,stats=st)
+            if writer is not None:writer.add_window(f"{prefix}:{row['triple_id']}","triple",w,cb,m.panels,stats=st,baseline_by_asset=(m.baseline(w) or {}).get("per_asset"))
             if st is not None:
                 wdays[w]=(st["days"],st["nets"])
                 wstats[w]={k:v for k,v in st.items() if k not in ("days","nets")}
@@ -680,7 +680,7 @@ def stage_outer(m, finalists, writer=None):
         cb = m.candidate_trades(members, mode, window=prefix)
         pooled = m.windowed(cb, prefix)
         st = m.stat_window(pooled, prefix) if pooled else None
-        if writer is not None:writer.add_window(f"{prefix}:{chosen}","outer",prefix,cb,m.panels,stats=st)
+        if writer is not None:writer.add_window(f"{prefix}:{chosen}","outer",prefix,cb,m.panels,stats=st,baseline_by_asset=(m.baseline(prefix) or {}).get("per_asset"))
         if st is None:
             r["note"] = "no trades inside target window"
             rows.append(r)
@@ -780,12 +780,28 @@ def stage_controls(m, finalists, singles, writer=None):
                         unmatched += 1
                     tr_by_asset[sym]=recs
                     tr_all.extend(recs)
+                paired_by_asset={}
+                for sym,recs in tr_by_asset.items():
+                    target=cb.get(sym,[])
+                    target_stats=m.stat_window(target,w) if target else None
+                    random_stats=m.stat_window(recs,w) if recs else None
+                    if target_stats and random_stats and len(recs)==counts.get(sym,0):
+                        paired_by_asset[sym]=S.paired_block_diff(target_stats["days"],target_stats["nets"],
+                            random_stats["days"],random_stats["nets"],target_stats["n_days"])
+                rand_st=m.stat_window(tr_all,w) if tr_all else None
+                fully_matched=all(len(tr_by_asset[sym])==counts.get(sym,0) for sym in m.panels)
+                paired_all=(S.paired_block_diff(st["days"],st["nets"],rand_st["days"],rand_st["nets"],st["n_days"])
+                            if rand_st and fully_matched else None)
                 if writer is not None:
-                    writer.add_window(f"RAND:{prefix}:{info['chosen']}:rep{rep:03d}","random_control",w,tr_by_asset,m.panels)
+                    control_seeds={sym:M.sha_seed(f"84|{sym}|{w}|{info['chosen']}|{rep}") for sym in m.panels}
+                    writer.add_window(f"RAND:{prefix}:{info['chosen']}:rep{rep:03d}","random_control",w,tr_by_asset,m.panels,
+                        control_info={"candidate":info["chosen"],"replicate":rep,"matched_counts":counts,
+                            "seeds":control_seeds,"paired_by_asset":paired_by_asset,"paired_all":paired_all},
+                        baseline_by_asset=(m.baseline(w) or {}).get("per_asset"))
                 if not tr_all:
                     rep_rows.append({"replicate": rep, "n": 0,
                                      "expectancy": None, "net": None,
-                                     "win_rate": None})
+                                     "win_rate": None,"paired_difference":None,"ci_lo":None,"ci_hi":None})
                     continue
                 nets = np.array([t["net_dollars"] for t in tr_all])
                 wins_ = sum(1 for t in tr_all if t["outcome"] == "target")
@@ -794,7 +810,10 @@ def stage_controls(m, finalists, singles, writer=None):
                 rep_rows.append({"replicate": rep, "n": len(tr_all),
                                  "expectancy": float(nets.mean()),
                                  "net": float(nets.sum()),
-                                 "win_rate": (wins_ / dec) if dec else None})
+                                 "win_rate": (wins_ / dec) if dec else None,
+                                 "paired_difference":paired_all["diff"] if paired_all else None,
+                                 "ci_lo":paired_all["lo5"] if paired_all else None,
+                                 "ci_hi":paired_all["hi95"] if paired_all else None})
             rr = pd.DataFrame(rep_rows)
             rand_summary = {"reps": len(rr), "unmatched_assets_reps": unmatched,
                             "n_median": float(rr["n"].median()) if len(rr) else 0,
@@ -891,7 +910,7 @@ def stage_neighbours(m, finalists, singles, pair_records, writer=None, register_
             nb=candidate_trades_names(m,tuple(new_members),mode,window=w)
             pooled=m.windowed(nb,w)
             st = m.stat_window(pooled, w) if pooled else None
-            if writer is not None:writer.add_window(row["neighbour_id"],"neighbour",w,nb,m.panels,stats=st)
+            if writer is not None:writer.add_window(row["neighbour_id"],"neighbour",w,nb,m.panels,stats=st,baseline_by_asset=(m.baseline(w) or {}).get("per_asset"))
             bs = base_stats.get(w)
             pos = bool(st and st["expectancy"] > 0)
             ratio = (st["expectancy"] / bs["expectancy"]
@@ -946,13 +965,13 @@ def stage_descriptive(m,singles,pair_records,writer=None):
         for w in windows:
             cb=m.candidate_trades((name,),"AND0",window=w)
             pooled=m.windowed(cb,w);st=m.stat_window(pooled,w) if pooled else None
-            if writer is not None:writer.add_window(name,"descriptive",w,cb,m.panels,stats=st)
+            if writer is not None:writer.add_window(name,"descriptive",w,cb,m.panels,stats=st,baseline_by_asset=(m.baseline(w) or {}).get("per_asset"))
             rows.append({"candidate":name,"candidate_id":name,"stage":"single","mode":"AND0","window":w,**({k:v for k,v in (st or {}).items() if k not in ("days","nets")} if st else {"n_exec":0,"net":None,"pf":None,"expectancy":None})})
     for cid,rec in pair_records.items():
         for w in windows:
             cb=m.candidate_trades(tuple(rec["members"]),rec["mode"],window=w)
             pooled=m.windowed(cb,w);st=m.stat_window(pooled,w) if pooled else None
-            if writer is not None:writer.add_window(cid,"descriptive",w,cb,m.panels,stats=st)
+            if writer is not None:writer.add_window(cid,"descriptive",w,cb,m.panels,stats=st,baseline_by_asset=(m.baseline(w) or {}).get("per_asset"))
             rows.append({"candidate":cid,"candidate_id":cid,"stage":"pair","mode":rec["mode"],"window":w,**({k:v for k,v in (st or {}).items() if k not in ("days","nets")} if st else {"n_exec":0,"net":None,"pf":None,"expectancy":None})})
     for w in windows:
         b=m.baseline(w)

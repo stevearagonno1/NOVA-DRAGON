@@ -13,12 +13,21 @@ import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from .stats import wilson, pf
+from .stats import wilson, pf, block_ci, z_from_lb
+from . import measure as M
 from .transport import GitHubTransport, TransportError
 
 BASE="history/research/hyp_lab_out/L0084-entry-mix-r1"
 MAX_PART_BYTES=8_000_000
 ROWS_PER_PART=2400
+HALFYEAR_COLUMNS=("candidate","asset","halfyear","partial","n","net","pf","win","baseline","lift","ci_lo","ci_hi")
+CONTROL_SCHEMA=pa.schema([
+    ("candidate",pa.string()),("control_type",pa.string()),("replicate",pa.int64()),
+    ("asset",pa.string()),("window",pa.string()),("n",pa.int64()),
+    ("matched_count",pa.int64()),("net",pa.float64()),("expectancy",pa.float64()),
+    ("paired_difference",pa.float64()),("ci_lo",pa.float64()),("ci_hi",pa.float64()),
+    ("seed",pa.uint64())])
+
 METRIC_SCHEMA=pa.schema([
     ("candidate_id",pa.string()),("role",pa.string()),("window",pa.string()),
     ("asset",pa.string()),("scope",pa.string()),
@@ -43,7 +52,7 @@ METRIC_SCHEMA=pa.schema([
     ("power80",pa.float64()),("metric_status",pa.string())])
 
 
-def _metric_row(candidate,role,window,asset,scope,trades,panel):
+def _metric_row(candidate,role,window,asset,scope,trades,panel,baseline_trades=None):
     trades=sorted(trades,key=lambda t:(int(t["fill_bar"]),int(t["signal_bar"])))
     n=len(trades);wins=sum(t["outcome"]=="target" for t in trades)
     stops=sum(t["outcome"]=="stop" for t in trades);timeouts=sum(t["outcome"]=="timeout" for t in trades)
@@ -76,7 +85,20 @@ def _metric_row(candidate,role,window,asset,scope,trades,panel):
         mdd=0.0;duration=0;maxstreak=0;worst=None;active=0;coverage=0.0
     gross_sum=float(gross.sum()) if n else 0.0;cost_sum=float(costs.sum()) if n else 0.0;net_sum=float(nets.sum()) if n else 0.0
     p_factor=pf(nets) if n else None
-    status="ZERO_TRADES; inference_not_computed" if not n else "RAW_DESCRIPTIVE; inference_not_computed"
+    base=list(baseline_trades or []);base_w=sum(t["outcome"]=="target" for t in base);base_d=sum(t["outcome"] in ("target","stop") for t in base)
+    baseline_wr=base_w/base_d if base_d else None
+    breakeven=0.5+float(np.mean([t["cost_atr"] for t in trades]))/3 if trades else None
+    lift=(winrate-baseline_wr)*100 if winrate is not None and baseline_wr is not None else None
+    ci_lo=ci_hi=p_raw=None
+    if trades and window in M.WIN_RANGE:
+        start,end=M.WIN_RANGE[window];n_days=int((np.datetime64(end)-np.datetime64(start)).astype(int))+1
+        first=np.datetime64(start);day_ix=[]
+        for t in trades:
+            stamp=np.datetime64(pd.Timestamp(panel.dt[int(t["fill_bar"])]).date())
+            day_ix.append(int((stamp-first).astype(int)))
+        ci=block_ci(np.asarray(day_ix,dtype=int),nets,n_days)
+        ci_lo=ci["lo5"];ci_hi=ci["hi95"];p_raw=z_from_lb(ci["lo5"],ci["expectancy"],ci["se"])
+    status="REGISTERED_BLOCK_STATS; Holm_and_power_pending" if baseline_trades is not None and n else ("ZERO_TRADES; inference_not_computed" if not n else "RAW_DESCRIPTIVE; inference_not_computed")
     return {"candidate_id":str(candidate),"role":str(role),"window":str(window),"asset":str(asset),"scope":str(scope),
       "n_exec":n,"n_win":wins,"n_stop":stops,"n_timeout":timeouts,"n_resolved":resolved,"n_eff":n,
       "n_signals":None,"n_incomplete":None,"win_rate":winrate,"wilson_lo":wlo,"wilson_hi":whi,
@@ -89,25 +111,39 @@ def _metric_row(candidate,role,window,asset,scope,trades,panel):
       "gap_count":sum(bool(t["gap_flag"]) for t in trades),"double_touch_count":sum(bool(t["double_touch"]) for t in trades),
       "n_active_days":active,"coverage":coverage,"mdd_dollars":mdd,"mdd_pct_book":mdd/1000*100,
       "drawdown_duration_trades":duration,"worst_day_dollars":worst,"longest_losing_streak":maxstreak,
-      "exposure_bars":sum(int(t["holding_bars"]) for t in trades),"baseline_win_rate":None,"breakeven_rate":None,
-      "lift_win_points":None,"p_raw":None,"p_adjusted":None,"ci_lo":None,"ci_hi":None,"power80":None,"metric_status":status}
+      "exposure_bars":sum(int(t["holding_bars"]) for t in trades),"baseline_win_rate":baseline_wr,"breakeven_rate":breakeven,
+      "lift_win_points":lift,"p_raw":p_raw,"p_adjusted":None,"ci_lo":ci_lo,"ci_hi":ci_hi,"power80":None,"metric_status":status}
 
 
-def _encode(rows):
-    tab=pa.Table.from_pylist(rows,schema=METRIC_SCHEMA);sink=pa.BufferOutputStream()
+def _encode(rows,schema=METRIC_SCHEMA):
+    tab=pa.Table.from_pylist(rows,schema=schema);sink=pa.BufferOutputStream()
     pq.write_table(tab,sink,compression="zstd",version="2.6")
     return sink.getvalue().to_pybytes(),tab
+
+
+def _same_table(a,b):
+    if not a.schema.equals(b.schema,check_metadata=False) or a.num_rows!=b.num_rows:return False
+    for ra,rb in zip(a.to_pylist(),b.to_pylist()):
+        for name in a.schema.names:
+            x,y=ra[name],rb[name]
+            if x is None or y is None:
+                if x is not None or y is not None:return False
+            elif isinstance(x,float) and isinstance(y,float):
+                if math.isnan(x) and math.isnan(y):continue
+                if not math.isclose(x,y,rel_tol=0,abs_tol=0):return False
+            elif x!=y:return False
+    return True
 
 
 class RawMetricWriter:
     """Creates resumable summary and per-asset metrics from each raw group."""
     def __init__(self,transport,run_id,rows_per_part=ROWS_PER_PART):
         self.transport=transport or GitHubTransport();self.run_id=str(run_id);self.rows_per_part=int(rows_per_part)
-        self.summary=[];self.assets=[];self.group_count=0;self.summary_part=0;self.asset_part=0
-        self.expected_summary_parts=0;self.expected_asset_parts=0
+        self.summary=[];self.assets=[];self.controls=[];self.halfyears=[];self.group_count=0;self.summary_part=0;self.asset_part=0;self.control_part=0;self.halfyear_part=0
+        self.expected_summary_parts=0;self.expected_asset_parts=0;self.expected_control_parts=0;self.expected_halfyear_parts=0
         self.parts=[];self.closed=False
         if hasattr(self.transport,"list_directory"):
-            for kind,attr in (("metrics","expected_summary_parts"),("metrics_by_asset","expected_asset_parts")):
+            for kind,attr in (("metrics","expected_summary_parts"),("metrics_by_asset","expected_asset_parts"),("controls","expected_control_parts")): 
                 try:names=self.transport.list_directory(self.transport.branch_head(),f"{BASE}/{kind}/run={urllib.parse.quote(self.run_id,safe='-_=.')}")
                 except TransportError:names=[]
                 ids=[]
@@ -116,11 +152,27 @@ class RawMetricWriter:
                         try:ids.append(int(name[5:-8]))
                         except ValueError:raise TransportError("invalid metric partition name")
                 setattr(self,attr,max(ids,default=-1)+1)
-    def add_window(self,candidate,role,window,trades_by_asset,panels,stats=None):
+            try:names=self.transport.list_directory(self.transport.branch_head(),f"{BASE}/halfyears.csv/run={urllib.parse.quote(self.run_id,safe='-_=.')}")
+            except TransportError:names=[]
+            ids=[]
+            for name in names:
+                if name.startswith("part-") and name.endswith(".csv"):
+                    try:ids.append(int(name[5:-4]))
+                    except ValueError:raise TransportError("invalid halfyear partition name")
+            self.expected_halfyear_parts=max(ids,default=-1)+1
+    def add_window(self,candidate,role,window,trades_by_asset,panels,stats=None,baseline_by_asset=None,control_info=None):
         asset_rows=[];all_trades=[]
         for asset,panel in panels.items():
             trades=list(trades_by_asset.get(asset,[]));all_trades.extend(trades)
-            asset_rows.append(_metric_row(candidate,role,window,asset,"asset",trades,panel))
+            asset_rows.append(_metric_row(candidate,role,window,asset,"asset",trades,panel,
+                (baseline_by_asset or {}).get(asset) if baseline_by_asset is not None else None))
+        is_halfyear=(len(window) in (6,7) and window[:4].isdigit() and window[4:] in ("H1","H2","H2p"))
+        if is_halfyear:
+            for row in asset_rows:
+                self.halfyears.append({"candidate":str(candidate),"asset":row["asset"],"halfyear":str(window),
+                    "partial":int(window.endswith("p")),"n":int(row["n_exec"]),"net":float(row["net_dollars"]),
+                    "pf":row["profit_factor"],"win":row["win_rate"],"baseline":row["baseline_win_rate"],
+                    "lift":row["lift_win_points"],"ci_lo":row["ci_lo"],"ci_hi":row["ci_hi"]})
         # A synthetic or partial group missing an asset is still represented as zero.
         summary_panel=next(iter(panels.values()))
         summary=_metric_row(candidate,role,window,"ALL","summary",all_trades,summary_panel)
@@ -138,11 +190,31 @@ class RawMetricWriter:
                 "metric_status":"REGISTERED_BLOCK_STATS; Holm_and_power_pending"})
         self.summary.append(summary)
         self.assets.extend(asset_rows);self.group_count+=1
-        if len(self.summary)>=self.rows_per_part or len(self.assets)>=self.rows_per_part:
+        if role=="baseline":
+            for row in asset_rows:
+                count=int(row["n_exec"]);net=float(row["net_dollars"])
+                self.controls.append({"candidate":"NO-SIGNAL","control_type":"no_signal","replicate":0,
+                    "asset":row["asset"],"window":window,"n":count,"matched_count":None,
+                    "net":net,"expectancy":net/count if count else None,"paired_difference":None,
+                    "ci_lo":None,"ci_hi":None,"seed":None})
+        elif role=="random_control" and control_info:
+            for row in asset_rows:
+                count=int(row["n_exec"]);net=float(row["net_dollars"]);asset=row["asset"]
+                self.controls.append({"candidate":str(control_info["candidate"]),"control_type":"random_entry",
+                    "replicate":int(control_info["replicate"]),"asset":asset,"window":window,"n":count,
+                    "matched_count":int(control_info["matched_counts"].get(asset,0)),"net":net,
+                    "expectancy":net/count if count else None,
+                    "paired_difference":(control_info.get("paired_by_asset",{}).get(asset) or {}).get("diff"),
+                    "ci_lo":(control_info.get("paired_by_asset",{}).get(asset) or {}).get("lo5"),
+                    "ci_hi":(control_info.get("paired_by_asset",{}).get(asset) or {}).get("hi95"),
+                    "seed":int(control_info["seeds"][asset])})
+        if (len(self.controls)>=self.rows_per_part or len(self.halfyears)>=self.rows_per_part
+                or len(self.summary)>=self.rows_per_part or len(self.assets)>=self.rows_per_part):
             self.flush()
     def _commit_table(self,kind,part,rows):
         if not rows:return None
-        payload,table=_encode(rows)
+        schema=CONTROL_SCHEMA if kind=="controls" else METRIC_SCHEMA
+        payload,table=_encode(rows,schema=schema)
         if len(payload)>MAX_PART_BYTES:
             if len(rows)<2:raise TransportError("single metric row exceeds 8MB")
             mid=len(rows)//2
@@ -154,7 +226,7 @@ class RawMetricWriter:
             remote=self.transport.blob_from_commit(head,path)
             if len(remote)!=len(payload) or hashlib.sha256(remote).digest()!=hashlib.sha256(payload).digest():raise TransportError("resumed metric partition differs: "+path)
             rt=pq.read_table(pa.BufferReader(remote))
-            if not rt.schema.equals(METRIC_SCHEMA,check_metadata=False) or not rt.equals(table):raise TransportError("resumed metric schema/values differ: "+path)
+            if not _same_table(rt,table):raise TransportError("resumed metric schema/values differ: "+path)
             commit=head;receipts=[];reused=True
         except TransportError as exc:
             if "path resolution failed" not in str(exc):raise
@@ -162,15 +234,34 @@ class RawMetricWriter:
             remote=self.transport.blob_from_commit(commit,path)
             if hashlib.sha256(remote).digest()!=hashlib.sha256(payload).digest():raise TransportError("metric readback hash mismatch")
             rt=pq.read_table(pa.BufferReader(remote))
-            if not rt.schema.equals(METRIC_SCHEMA,check_metadata=False) or not rt.equals(table):raise TransportError("metric readback values/schema mismatch")
+            if not _same_table(rt,table):raise TransportError("metric readback values/schema mismatch")
             reused=False
         rec=receipts[0] if receipts else None
         actual_blob=rec.blob_sha if rec else hashlib.sha1(b"blob "+str(len(remote)).encode()+b"\0"+remote).hexdigest()
         item={"path":path,"rows":table.num_rows,"bytes":len(payload),"sha256":hashlib.sha256(payload).hexdigest(),
           "git_blob_sha":actual_blob,"commit_sha":commit,"reused":reused}
         self.parts.append(item);return item
+    def _commit_halfyear_csv(self,part,rows):
+        if not rows:return None
+        payload=pd.DataFrame(rows,columns=HALFYEAR_COLUMNS).to_csv(index=False,lineterminator="\n").encode("utf-8")
+        if len(payload)>MAX_PART_BYTES:raise TransportError("half-year CSV partition exceeds 8,000,000 bytes")
+        path=f"{BASE}/halfyears.csv/run={urllib.parse.quote(self.run_id,safe='-_=.')}/part-{part:05d}.csv"
+        head=self.transport.branch_head()
+        try:
+            remote=self.transport.blob_from_commit(head,path)
+            if remote!=payload:raise TransportError("resumed half-year CSV differs: "+path)
+            commit=head;reused=True
+        except TransportError as exc:
+            if "path resolution failed" not in str(exc):raise
+            commit,receipts=self.transport.commit_files({path:payload},head,"L0084-R1: append half-year CSV partition")
+            remote=self.transport.blob_from_commit(commit,path)
+            if remote!=payload:raise TransportError("half-year CSV readback mismatch: "+path)
+            reused=False
+        item={"path":path,"rows":len(rows),"bytes":len(payload),"sha256":hashlib.sha256(payload).hexdigest(),
+              "commit_sha":commit,"reused":reused}
+        self.parts.append(item);return item
     def flush(self):
-        srows,self.summary=self.summary,[];arows,self.assets=self.assets,[]
+        srows,self.summary=self.summary,[];arows,self.assets=self.assets,[];crows,self.controls=self.controls,[];hrows,self.halfyears=self.halfyears,[]
         if srows:
             made=self._commit_table("metrics",self.summary_part,srows)
             self.summary_part+=len(made) if isinstance(made,list) else 1
@@ -179,9 +270,20 @@ class RawMetricWriter:
             made=self._commit_table("metrics_by_asset",self.asset_part,arows)
             self.asset_part+=len(made) if isinstance(made,list) else 1
             self.expected_asset_parts=max(self.expected_asset_parts,self.asset_part)
+        if crows:
+            made=self._commit_table("controls",self.control_part,crows)
+            self.control_part+=len(made) if isinstance(made,list) else 1
+            self.expected_control_parts=max(self.expected_control_parts,self.control_part)
+        if hrows:
+            made=self._commit_halfyear_csv(self.halfyear_part,hrows)
+            self.halfyear_part+=1
+            self.expected_halfyear_parts=max(self.expected_halfyear_parts,self.halfyear_part)
     def close(self):
         if self.closed:raise TransportError("metric writer already closed")
         self.flush();self.closed=True
-        if self.summary_part!=self.expected_summary_parts or self.asset_part!=self.expected_asset_parts:
-            raise TransportError(f"metric resume coverage mismatch: summary parts {self.summary_part}/{self.expected_summary_parts}; asset parts {self.asset_part}/{self.expected_asset_parts}")
-        return {"groups":self.group_count,"parts":list(self.parts),"summary_part_count":self.summary_part,"asset_part_count":self.asset_part}
+        if (self.summary_part!=self.expected_summary_parts or self.asset_part!=self.expected_asset_parts
+                or self.control_part!=self.expected_control_parts or self.halfyear_part!=self.expected_halfyear_parts):
+            raise TransportError(f"metric resume coverage mismatch: summary {self.summary_part}/{self.expected_summary_parts}; asset {self.asset_part}/{self.expected_asset_parts}; controls {self.control_part}/{self.expected_control_parts}; halfyears {self.halfyear_part}/{self.expected_halfyear_parts}")
+        return {"groups":self.group_count,"parts":list(self.parts),"summary_part_count":self.summary_part,
+                "asset_part_count":self.asset_part,"control_part_count":self.control_part,
+                "halfyear_part_count":self.halfyear_part}
