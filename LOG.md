@@ -726,3 +726,10 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - Full 18 checks, preregistration and financial measurement have not run yet. Old local sample/key ledger pipeline is disabled from CLI; no outcome was read.
 - Next: freeze preregistration and run the complete pre-measurement integrity suite.
 \n\n### L0084-R1 preregistration (2026-10-05T06:39:16Z)\n\n- Pre-outcome registries frozen; 52 settings, 1326 pairs, 3978 modes; input panels=12.\n- Preregistration SHA256 recorded in its file; code commit 28d99eff6dcabe1fddff00d4867ae6755653dd16.\n- No candidate outcomes or selection read. Next: run the pre-measurement integrity suite.\n\n\n### L0084-R1 integrity phase pre (2026-10-05T06:39:58Z)\n\n- all_pass=True; failures=[]; command `python -m l0084_entry_mix_r1.cli check --phase pre`.\n- Full measurement status: NOT RUN.\n- Next: measure only if all critical prechecks pass.\n
+
+### L0084-R1 input panel partitions pinned (2026-10-05T06:41:56Z)
+
+- Uploaded all 12 processed 4h panels (7,210,605 bytes total) to the authorized branch; each SHA256 and byte count was independently read back from the committed Git blobs and verified.
+- Four bounded batches; no panel payload written to local workspace.
+- These are exact copies of the panels whose hashes match the preregistered prior coverage; no new data source or transformation.
+- No financial measurement has run.

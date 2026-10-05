@@ -1,0 +1,117 @@
+{
+  "status": "PASS",
+  "source": "12 converted 4h panels; their SHA256 matches previous data_coverage.csv and R1 preregistration",
+  "panels": [
+    {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=BTCUSDT/panel.parquet",
+      "asset": "BTCUSDT",
+      "bytes": 650573,
+      "sha256": "8ad03c4c5ebe8ec7e3925781ba303854c09c96bfde0079be2c6c9d50b7966b1b",
+      "git_blob_sha": "2700813bb228c36d6c341d65ceb827f911c63928",
+      "commit_sha": "3e29b293af86f3b138ec11a0b6f773aa6209f8ef",
+      "readback": "PASS"
+    },
+    {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=ETHUSDT/panel.parquet",
+      "asset": "ETHUSDT",
+      "bytes": 642134,
+      "sha256": "a60cde96dcd75035ac104afe44e7f5dccfcd1d111b230ad37f36782001be8551",
+      "git_blob_sha": "2adea1621d2e2ff748418dfe5c0ae9eef093e612",
+      "commit_sha": "3e29b293af86f3b138ec11a0b6f773aa6209f8ef",
+      "readback": "PASS"
+    },
+    {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=BNBUSDT/panel.parquet",
+      "asset": "BNBUSDT",
+      "bytes": 591659,
+      "sha256": "500fca4b7532dfe6ced2b8c813a3df2ebee0e0f697c46e067cc80e61346aa009",
+      "git_blob_sha": "9cfe27f9eba17d5d7fa9c4930163b985e0583898",
+      "commit_sha": "3e29b293af86f3b138ec11a0b6f773aa6209f8ef",
+      "readback": "PASS"
+    },
+    {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=SOLUSDT/panel.parquet",
+      "asset": "SOLUSDT",
+      "bytes": 606180,
+      "sha256": "c6819545b0a3d89868704dab8a7dce1d659ab21f7af54c67fc8cca14d6b809a9",
+      "git_blob_sha": "1e139f3e6275d62cafa90f0a1782fecbf8a24a56",
+      "commit_sha": "e1ee7faa0f47cab7f4dd431a382789ca75748d87",
+      "readback": "PASS"
+    },
+    {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=XRPUSDT/panel.parquet",
+      "asset": "XRPUSDT",
+      "bytes": 576118,
+      "sha256": "3619cb4b1b1d86bd284fa65132aa91efe78798f98b6421d12641d8e64b1bd424",
+      "git_blob_sha": "471136bf6e56f2f168483a1615bf9eece9bd7da4",
+      "commit_sha": "e1ee7faa0f47cab7f4dd431a382789ca75748d87",
+      "readback": "PASS"
+    },
+    {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=ADAUSDT/panel.parquet",
+      "asset": "ADAUSDT",
+      "bytes": 566545,
+      "sha256": "efa9276db52cfd70e9c15460f566d81647ddb7a42aaf5c33a718c3b88021213e",
+      "git_blob_sha": "0e1d634c5ad52227d103d104f0bb05cfc2244671",
+      "commit_sha": "e1ee7faa0f47cab7f4dd431a382789ca75748d87",
+      "readback": "PASS"
+    },
+    {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=DOGEUSDT/panel.parquet",
+      "asset": "DOGEUSDT",
+      "bytes": 709175,
+      "sha256": "40b55a2361a09983cbfef10fd0b1c8e8dc303b2154bc25b239c43cc331226a3a",
+      "git_blob_sha": "423d07f4be63315d727559eda48a786df71f444a",
+      "commit_sha": "20408e9f41365f68b3efe74ed1b736a9ed302821",
+      "readback": "PASS"
+    },
+    {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=AVAXUSDT/panel.parquet",
+      "asset": "AVAXUSDT",
+      "bytes": 591156,
+      "sha256": "c6fbb38b9643cd0b0cd4689629d8a3b38ba13b6f8a1ccab2e4fb85ddf030d424",
+      "git_blob_sha": "1366cae25c02739cca5bf896db6e29a7cd15c713",
+      "commit_sha": "20408e9f41365f68b3efe74ed1b736a9ed302821",
+      "readback": "PASS"
+    },
+    {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=LINKUSDT/panel.parquet",
+      "asset": "LINKUSDT",
+      "bytes": 593791,
+      "sha256": "ac65ed8f870fda956253191a217bdd422dde82541378d8ed8613e347df2d28ae",
+      "git_blob_sha": "0e3296b76f53beb9b6215175c7e6f87c17b75856",
+      "commit_sha": "20408e9f41365f68b3efe74ed1b736a9ed302821",
+      "readback": "PASS"
+    },
+    {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=DOTUSDT/panel.parquet",
+      "asset": "DOTUSDT",
+      "bytes": 558710,
+      "sha256": "a78c3a10b30b5600a2bc7ecdcb744b337b56954c55147c8f0dc42bb444bd59b5",
+      "git_blob_sha": "cd7910c5a68643342860059861204d1a5d45cf79",
+      "commit_sha": "b2e24956d1b01b73a4d550e70d84cac71a140e7a",
+      "readback": "PASS"
+    },
+    {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=LTCUSDT/panel.parquet",
+      "asset": "LTCUSDT",
+      "bytes": 547166,
+      "sha256": "1578482ed6ab7058932fe0e313643e68fc3b3d3188dc8026f8cc2120889a80ec",
+      "git_blob_sha": "8571a47a49930ab98918ddc9aca791bd043e91ff",
+      "commit_sha": "b2e24956d1b01b73a4d550e70d84cac71a140e7a",
+      "readback": "PASS"
+    },
+    {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=ATOMUSDT/panel.parquet",
+      "asset": "ATOMUSDT",
+      "bytes": 577398,
+      "sha256": "0b364604781a8af43aa80e4df549c1372349ba84a5c75707bb607db9a4ecd3d8",
+      "git_blob_sha": "441b0b4ff2785bfa642d12857590ea4d3aeb27ce",
+      "commit_sha": "b2e24956d1b01b73a4d550e70d84cac71a140e7a",
+      "readback": "PASS"
+    }
+  ],
+  "total_bytes": 7210605,
+  "remote_head": "b2e24956d1b01b73a4d550e70d84cac71a140e7a",
+  "utc": "2026-10-05T06:41:49.564510+00:00"
+}
