@@ -1,0 +1,5 @@
+- UTC: 2026-10-05T13:06:00Z
+- Asia/Aden: 2026-10-05T16:06:00+03:00
+- Added per-asset bootstrap/baseline/lift, paired matched-control intervals and half-year rows; independent audit verifies raw-derived metric/control/halfyear outputs. The synthetic fixture uses two assets, zero-trade group, matched random control and tamper failures.
+- Validation: py_compile PASS; pytest 23/23; module self-test 10/10; workspace 67,425,562 bytes. This is not full readiness.
+- Holm/power, complete control families and actual CLI synthetic readiness pending. Gate CLOSED; experiment NOT RUN.
