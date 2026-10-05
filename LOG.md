@@ -771,3 +771,11 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - Complete metric/control/report partitions and reconciliation remain unfinished; code is not published.
 - Executor-created pip download cache removed; owner inputs/evidence untouched. Workspace 69,889,857 bytes of 125,000,000. Next: implement and test metric/control partitions and full audit before measurement.
 
+
+
+### L0084-R1 DRAFT source published; readiness blocked (2026-10-05T10:21:41Z)
+
+- Published and SHA-verified the closed-gate DRAFT source snapshot at code commit `092999033afbeace71c40892c22b4b65c65b36d6`; no market result was read.
+- 32/32 local tests PASS; synthetic checks 14/16 PASS (599 trades). Corrected check 06 now covers 12 assets (1,872 mask and 72 combination comparisons), PASS.
+- Actual CLI measure returned exit 1 at the deliberate closed gate. The shared synthetic CLI path, metrics/control partitions, and raw-to-metrics audit remain unimplemented; readiness is IN_PROGRESS_NOT_READY.
+- Workspace: 69,782,856 bytes of 125,000,000. Next: finish synthetic CLI integration and full metric audit before reopening the gate.

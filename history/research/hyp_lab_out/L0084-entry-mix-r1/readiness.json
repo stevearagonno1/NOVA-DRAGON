@@ -1,0 +1,191 @@
+{
+  "status": "IN_PROGRESS_NOT_READY",
+  "paper_version": 7,
+  "draft_source_commit": "092999033afbeace71c40892c22b4b65c65b36d6",
+  "measurement_gate": "CLOSED",
+  "source_files": {
+    "tools/l0084_entry_mix_r1/__init__.py": {
+      "sha256": "2b108ca437398214e3d7fcfe549ea43efde19bea15ca86b4604aff086335486e",
+      "bytes": 55
+    },
+    "tools/l0084_entry_mix_r1/audit.py": {
+      "sha256": "86ef02ce8653b4b01467fc83895ba85a2071ef2b439115398cef3e5bb5eabb75",
+      "bytes": 15635
+    },
+    "tools/l0084_entry_mix_r1/cli.py": {
+      "sha256": "166d23a90f9080f986eb48fa676af31a3d2cdd52f1ea5c09e2b85936b18e9a4b",
+      "bytes": 21444
+    },
+    "tools/l0084_entry_mix_r1/data.py": {
+      "sha256": "ba01791f8c64906819a37a418c6f3d8f086a69a20816efe84efa47ee0deaf219",
+      "bytes": 9107
+    },
+    "tools/l0084_entry_mix_r1/engine.py": {
+      "sha256": "b9b84b37d81e8acf521e7bd54c276df507b0e5887015c7ea9b94a62ed7a59db9",
+      "bytes": 7559
+    },
+    "tools/l0084_entry_mix_r1/environment.lock": {
+      "sha256": "a9a6781c5b6d0daa25fd475778ef36a38d18acc45358c8575f99d015eff64a0c",
+      "bytes": 158
+    },
+    "tools/l0084_entry_mix_r1/evidence.py": {
+      "sha256": "5695e450754d5e4113d7d7165fe8fd8f71838f32b558fabccd41e6c43215723f",
+      "bytes": 3853
+    },
+    "tools/l0084_entry_mix_r1/indicators.py": {
+      "sha256": "e5b2026cad5266f7aacb6dfad4deed89c66e41a804ba9f0ed1e067076aafe636",
+      "bytes": 18124
+    },
+    "tools/l0084_entry_mix_r1/integrity.py": {
+      "sha256": "76d5c6aec3dbc8d22c58c551860650a70cb6b815b47ce2b66247802ddd9a706c",
+      "bytes": 38311
+    },
+    "tools/l0084_entry_mix_r1/labels.py": {
+      "sha256": "e555326fa28d5fc0f871a71403a436f6d5915623f980f72eb504f9f309fa395e",
+      "bytes": 3001
+    },
+    "tools/l0084_entry_mix_r1/measure.py": {
+      "sha256": "8b18dc4f9dbeb45890bdebf964730528db1e06fe854e25d816039cbbbcdced19",
+      "bytes": 17783
+    },
+    "tools/l0084_entry_mix_r1/neighbours.py": {
+      "sha256": "ca1a62a9702de7bec3aa1d0dc8596013dfffd782d78e4943d0b272126d69308a",
+      "bytes": 1129
+    },
+    "tools/l0084_entry_mix_r1/pipeline.py": {
+      "sha256": "5fa14fb3797d0b1b838dcff72ca8c0d2ab07e1dfd3716d48bd67500817d9ce8e",
+      "bytes": 48231
+    },
+    "tools/l0084_entry_mix_r1/preregister.py": {
+      "sha256": "96b55b594a3f20f56ef021e13294ebe943c780c23c7540d639563baecad81ef5",
+      "bytes": 11168
+    },
+    "tools/l0084_entry_mix_r1/publisher.py": {
+      "sha256": "96efa4976bce2d835e3b1366d64575d4de8c4726783533afff105bc7cd09be03",
+      "bytes": 1667
+    },
+    "tools/l0084_entry_mix_r1/report.py": {
+      "sha256": "5d54611a300dd4f793e7bd49ae1d8a440c6e0635b41333172340c66be575aeb0",
+      "bytes": 56522
+    },
+    "tools/l0084_entry_mix_r1/stats.py": {
+      "sha256": "f3b5444e82c9e8811925bd1708ca728d53b5afdacbaa7a997e08adce9180cf31",
+      "bytes": 6394
+    },
+    "tools/l0084_entry_mix_r1/streaming.py": {
+      "sha256": "ff654377fc82379d0726674bbabb86fa75548a9eb8b6d7d98b4714dce05650cc",
+      "bytes": 22051
+    },
+    "tools/l0084_entry_mix_r1/test_cli.py": {
+      "sha256": "9ac6b7903a0c86cd481a33c7af74bc9c9a1314bfe6b67ac7a6a23945e74bb0bb",
+      "bytes": 1251
+    },
+    "tools/l0084_entry_mix_r1/test_streaming.py": {
+      "sha256": "f2d967d96792b81f0713477779c517aa68a71931de60af6e63072ac32fe06259",
+      "bytes": 9828
+    },
+    "tools/l0084_entry_mix_r1/test_transport.py": {
+      "sha256": "29bf0d297b6b5ee542d5e07af8a42402870dbe3cbea0b1a1991106668edf19be",
+      "bytes": 5412
+    },
+    "tools/l0084_entry_mix_r1/tests.py": {
+      "sha256": "830a7afc7618cfb159b085ed5fe01c084722475656f52b40835d939c2b47c670",
+      "bytes": 6444
+    },
+    "tools/l0084_entry_mix_r1/transport.py": {
+      "sha256": "ef67cb3bdf1505e84e99a4c3cfd092bb613aeb8bbb39ad34c39c07d3fe473b7e",
+      "bytes": 8264
+    }
+  },
+  "commands": [
+    {
+      "command": "python3 -m py_compile tools/l0084_entry_mix_r1/*.py",
+      "exit_code": 0,
+      "scope": "local draft package"
+    },
+    {
+      "command": "PYTHONPATH=tools:/tmp/l0084-r1-deps python3 -m unittest discover -s tools/l0084_entry_mix_r1 -p test*.py -q",
+      "exit_code": 0,
+      "tests_passed": 32,
+      "scope": "local synthetic/unit suite; PyArrow supplied in /tmp, not installed in workspace"
+    },
+    {
+      "command": "integrity.check_14_ordering() synthetic",
+      "exit_code": 0,
+      "status": "PASS"
+    },
+    {
+      "command": "integrity.check_16_determinism() synthetic",
+      "exit_code": 0,
+      "status": "PASS",
+      "compared_trades": 599
+    },
+    {
+      "command": "integrity.check_06_truncation(Measurer())",
+      "exit_code": 0,
+      "status": "PASS",
+      "assets": 12,
+      "mask_comparisons": 1872,
+      "combination_comparisons": 72
+    },
+    {
+      "command": "python3 -m l0084_entry_mix_r1.cli measure",
+      "exit_code": 1,
+      "status": "BLOCKED_BY_INTENTIONAL_CLOSED_GATE",
+      "market_rows_read": false
+    },
+    {
+      "command": "python3 -m l0084_entry_mix_r1.cli audit --rebuild-all --synthetic",
+      "exit_code": null,
+      "status": "NOT_IMPLEMENTED; no synthetic command interface"
+    }
+  ],
+  "synthetic_full_rebuild_fixture": {
+    "assets": 1,
+    "candidates": 2,
+    "windows": 2,
+    "indexed_groups": 3,
+    "zero_trade_groups": 1,
+    "trade_rows": 2,
+    "raw_persisted": "in-memory mock only",
+    "metrics_artifacts": "not produced"
+  },
+  "required_matrix": {
+    "pair_modes": [
+      "AND0",
+      "AND2",
+      "OR0"
+    ],
+    "multi_asset": "NOT TESTED in full runner",
+    "controls": "NOT TESTED through CLI",
+    "full_metrics": "NOT IMPLEMENTED",
+    "full_raw_to_metrics_audit": "NOT IMPLEMENTED",
+    "failure_cli_exit_codes": "PARTIAL"
+  },
+  "raw_partition_paths": [],
+  "metric_partition_paths": [],
+  "readiness_artifacts": [
+    "tools/l0084_entry_mix_r1/test_cli.py",
+    "tools/l0084_entry_mix_r1/test_streaming.py",
+    "tools/l0084_entry_mix_r1/test_transport.py"
+  ],
+  "real_network_transport": "prior labelled transport smoke exists in branch history; full-runner partitions not tested over network",
+  "resource_observations": {
+    "workspace_bytes": 69782856,
+    "workspace_cap_bytes": 125000000,
+    "peak_memory_bytes": null,
+    "memory_limit_bytes": null,
+    "compressed_partition_max_bytes": null,
+    "reason": "process-wide readiness resource capture and full-runner partition measurements not yet implemented"
+  },
+  "dependency_observation": "Default interpreter lacked PyArrow during this turn; pinned pyarrow 25.0.1 was temporarily installed under /tmp with --no-cache-dir for synthetic tests. No package was installed under /home/user.",
+  "experiment_status": "NOT RUN",
+  "market_outcomes_read": false,
+  "blocking_items": [
+    "actual shared synthetic CLI measure/audit path",
+    "full bounded metric/control artifacts",
+    "independent full raw-to-metrics reconciliation",
+    "complete report and delivery integration"
+  ],
+  "recorded_utc": "2026-10-05T10:21:41Z"
+}

@@ -1,0 +1,111 @@
+{
+  "status": "DRAFT",
+  "source_commit": "092999033afbeace71c40892c22b4b65c65b36d6",
+  "measurement_gate": "CLOSED",
+  "files": {
+    "tools/l0084_entry_mix_r1/__init__.py": {
+      "sha256": "2b108ca437398214e3d7fcfe549ea43efde19bea15ca86b4604aff086335486e",
+      "bytes": 55
+    },
+    "tools/l0084_entry_mix_r1/audit.py": {
+      "sha256": "86ef02ce8653b4b01467fc83895ba85a2071ef2b439115398cef3e5bb5eabb75",
+      "bytes": 15635
+    },
+    "tools/l0084_entry_mix_r1/cli.py": {
+      "sha256": "166d23a90f9080f986eb48fa676af31a3d2cdd52f1ea5c09e2b85936b18e9a4b",
+      "bytes": 21444
+    },
+    "tools/l0084_entry_mix_r1/data.py": {
+      "sha256": "ba01791f8c64906819a37a418c6f3d8f086a69a20816efe84efa47ee0deaf219",
+      "bytes": 9107
+    },
+    "tools/l0084_entry_mix_r1/engine.py": {
+      "sha256": "b9b84b37d81e8acf521e7bd54c276df507b0e5887015c7ea9b94a62ed7a59db9",
+      "bytes": 7559
+    },
+    "tools/l0084_entry_mix_r1/environment.lock": {
+      "sha256": "a9a6781c5b6d0daa25fd475778ef36a38d18acc45358c8575f99d015eff64a0c",
+      "bytes": 158
+    },
+    "tools/l0084_entry_mix_r1/evidence.py": {
+      "sha256": "5695e450754d5e4113d7d7165fe8fd8f71838f32b558fabccd41e6c43215723f",
+      "bytes": 3853
+    },
+    "tools/l0084_entry_mix_r1/indicators.py": {
+      "sha256": "e5b2026cad5266f7aacb6dfad4deed89c66e41a804ba9f0ed1e067076aafe636",
+      "bytes": 18124
+    },
+    "tools/l0084_entry_mix_r1/integrity.py": {
+      "sha256": "76d5c6aec3dbc8d22c58c551860650a70cb6b815b47ce2b66247802ddd9a706c",
+      "bytes": 38311
+    },
+    "tools/l0084_entry_mix_r1/labels.py": {
+      "sha256": "e555326fa28d5fc0f871a71403a436f6d5915623f980f72eb504f9f309fa395e",
+      "bytes": 3001
+    },
+    "tools/l0084_entry_mix_r1/measure.py": {
+      "sha256": "8b18dc4f9dbeb45890bdebf964730528db1e06fe854e25d816039cbbbcdced19",
+      "bytes": 17783
+    },
+    "tools/l0084_entry_mix_r1/neighbours.py": {
+      "sha256": "ca1a62a9702de7bec3aa1d0dc8596013dfffd782d78e4943d0b272126d69308a",
+      "bytes": 1129
+    },
+    "tools/l0084_entry_mix_r1/pipeline.py": {
+      "sha256": "5fa14fb3797d0b1b838dcff72ca8c0d2ab07e1dfd3716d48bd67500817d9ce8e",
+      "bytes": 48231
+    },
+    "tools/l0084_entry_mix_r1/preregister.py": {
+      "sha256": "96b55b594a3f20f56ef021e13294ebe943c780c23c7540d639563baecad81ef5",
+      "bytes": 11168
+    },
+    "tools/l0084_entry_mix_r1/publisher.py": {
+      "sha256": "96efa4976bce2d835e3b1366d64575d4de8c4726783533afff105bc7cd09be03",
+      "bytes": 1667
+    },
+    "tools/l0084_entry_mix_r1/report.py": {
+      "sha256": "5d54611a300dd4f793e7bd49ae1d8a440c6e0635b41333172340c66be575aeb0",
+      "bytes": 56522
+    },
+    "tools/l0084_entry_mix_r1/stats.py": {
+      "sha256": "f3b5444e82c9e8811925bd1708ca728d53b5afdacbaa7a997e08adce9180cf31",
+      "bytes": 6394
+    },
+    "tools/l0084_entry_mix_r1/streaming.py": {
+      "sha256": "ff654377fc82379d0726674bbabb86fa75548a9eb8b6d7d98b4714dce05650cc",
+      "bytes": 22051
+    },
+    "tools/l0084_entry_mix_r1/test_cli.py": {
+      "sha256": "9ac6b7903a0c86cd481a33c7af74bc9c9a1314bfe6b67ac7a6a23945e74bb0bb",
+      "bytes": 1251
+    },
+    "tools/l0084_entry_mix_r1/test_streaming.py": {
+      "sha256": "f2d967d96792b81f0713477779c517aa68a71931de60af6e63072ac32fe06259",
+      "bytes": 9828
+    },
+    "tools/l0084_entry_mix_r1/test_transport.py": {
+      "sha256": "29bf0d297b6b5ee542d5e07af8a42402870dbe3cbea0b1a1991106668edf19be",
+      "bytes": 5412
+    },
+    "tools/l0084_entry_mix_r1/tests.py": {
+      "sha256": "830a7afc7618cfb159b085ed5fe01c084722475656f52b40835d939c2b47c670",
+      "bytes": 6444
+    },
+    "tools/l0084_entry_mix_r1/transport.py": {
+      "sha256": "ef67cb3bdf1505e84e99a4c3cfd092bb613aeb8bbb39ad34c39c07d3fe473b7e",
+      "bytes": 8264
+    }
+  },
+  "unit_tests": {
+    "passed": 32,
+    "failed": 0,
+    "synthetic_check_14": "PASS",
+    "synthetic_check_16": "PASS",
+    "compared_trades": 599,
+    "check_06_assets": 12,
+    "check_06_masks": 1872,
+    "check_06_combinations": 72
+  },
+  "market_measurement": "NOT RUN",
+  "readiness_path": "history/research/hyp_lab_out/L0084-entry-mix-r1/readiness.json"
+}
