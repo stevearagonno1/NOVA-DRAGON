@@ -1,0 +1,30 @@
+{
+  "utc": "2026-10-05T06:27:48.887337+00:00",
+  "code_commit_before_measurement": true,
+  "engine_sha256": "532e381e539342d1028eee356ec343387f65e004d994e03341d3cd84aa76ea7a",
+  "tests_sha256": "eddbceed195d6be2abcff5568b074dc45702c18542d410ec3a8a2629ffd7a0a7",
+  "focused_suite": {
+    "command": "PYTHONPATH=tools/l0084_entry_mix_r1 python3 -m unittest discover -s tools/l0084_entry_mix_r1",
+    "transport_mock_tests": "7/7 PASS",
+    "engine_tests": "9/9 PASS",
+    "audit_reference_harness": "4/4 PASS",
+    "cases": [
+      "fill_stop_then_later_target",
+      "fill_target",
+      "fill_double_touch",
+      "double_touch_after_exit",
+      "favorable_gap",
+      "adverse_gap",
+      "timeout_18_inclusive",
+      "incomplete_horizon",
+      "segment_break",
+      "nonoverlap_reentry",
+      "cash_book",
+      "single_round_trip_cost"
+    ],
+    "status": "PASS"
+  },
+  "full_18_check_suite": "NOT RUN",
+  "measurement": "NOT RUN",
+  "important_limit": "This focused premeasurement suite is not the full R1 integrity suite and is not financial evidence."
+}

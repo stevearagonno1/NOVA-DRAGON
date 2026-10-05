@@ -707,3 +707,11 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - In-memory synthetic Parquet, 2 rows, 1342 bytes, remote schema/value/row-count/SHA readback exact; no financial data.
 - R1 commit: `e6f7312e9ab7aa47bd3a6051f629b100101bfbd8`; path `transport_smoke/r1_synthetic_cases.parquet`; SHA256 `ac65c4d854db9854aa487543287a92fe8d7d7888e987ee041b758fea8788af06`; Git blob `da7819aab4975608bf8d02a006c873ef0c5aff04`.
 - Result: PASS. No measurement run. Next: implement/fix execution engine tests.
+
+
+### L0084-R1 premeasurement engine correction (2026-10-05T06:27:48Z)
+
+- Corrected engine fixed and committed before measurement: barriers checked from fill bar i+1 through i+18 inclusive; gaps first, same-bar double touch resolves stop-first, and ambiguity ends at exit. Holding duration counts inclusive bars; incomplete starts are bounds-checked before indexing.
+- Independent reference cases: 4/4 PASS. Focused tests: transport 7/7, engine 9/9 PASS (gaps, timeout, incomplete horizon, segment break, nonoverlap/re-entry, cash book and one $0.052 cost).
+- Engine SHA256 `532e381e539342d1028eee356ec343387f65e004d994e03341d3cd84aa76ea7a`; tests SHA256 `eddbceed195d6be2abcff5568b074dc45702c18542d410ec3a8a2629ffd7a0a7`; results `history/research/hyp_lab_out/L0084-entry-mix-r1/premeasurement_check.json`.
+- Full 18-check suite and all measurement remain NOT RUN. Next: reproduce source pins/registries and complete integrity checks before any outcomes.
