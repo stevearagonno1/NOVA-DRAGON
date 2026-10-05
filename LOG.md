@@ -748,3 +748,12 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - Confirmed preregistration, input-panel manifest, pre-checks and storage journal are present. No final REPORT, HANDOFF, VERDICT or delivery is present.
 - `cmd_measure` and `cmd_audit` still refuse execution; no R1 financial measurement or full raw-ledger audit has been run.
 - Next: implement bounded in-memory partition measurement and full remote rebuild audit; synthetic end-to-end tests first.
+
+### L0084-R1 runner/audit implementation prototype (2026-10-05T07:21:32Z)
+
+- Tick 009 records local, uncommitted implementation progress; it does not represent a measurement or delivery.
+- Added bounded remote full-field Parquet partition handling, exact readback/recovery checks, CLI amendment and precheck gates, and independent synthetic full-window rebuild coverage.
+- Validation: 28 unit tests PASS; synthetic checks 14 and 16 PASS (599 deterministic synthetic trades). Workspace: 69,652,913 bytes; cap: 125,000,000.
+- No market outcomes read or measured. Complete metric/report audit and integrated final delivery remain outstanding.
+- Next: complete full audit/report path and synthetic failure/recovery coverage before code publication and any measurement.
+
