@@ -219,7 +219,8 @@ class StreamingTests(unittest.TestCase):
             audited=_independent_block_stats([trade_row(x,cid,role,'2023H1',m.panels) for x in all_trades],'2023H1',m.panels)
             return {"baseline_win":audited["baseline_win_rate"],"breakeven_ref":audited["breakeven_rate"],
                     "lift_win_pts":audited["lift_win_points"],"p_raw":audited["p_raw"],
-                    "exp_lo5":audited["ci_lo"],"exp_hi95":audited["ci_hi"]}
+                    "exp_lo5":audited["ci_lo"],"exp_hi95":audited["ci_hi"],
+                    "expectancy":audited["expectancy"],"exp_se":audited["exp_se"]}
         w.add_window('2023H1:C0','outer','2023H1',trades_by_asset,m.panels,stats=runner_stats('2023H1:C0','outer'),baseline_by_asset=base_by_asset)
         w.add_window('C0','single','2023H2',{'X':[],'Y':[]},m.panels,baseline_by_asset={'X':[],'Y':[]})
         w.add_window('C1','single','2023H1',trades_by_asset,m.panels,stats=runner_stats('C1'),baseline_by_asset=base_by_asset)
@@ -237,12 +238,14 @@ class StreamingTests(unittest.TestCase):
         self.assertEqual(result['independent_execution_rebuild'],'PASS')
         self.assertEqual(result['raw_metric_reconciliation'],'PASS')
         self.assertEqual(result['independent_inference_rows_reconciled'],2)
-        self.assertEqual(result['metrics_reconciliation'],'PARTIAL_RAW_METRICS; Holm_power_and_complete_control_tests_pending')
+        self.assertEqual(result['metrics_reconciliation'],'PARTIAL_RAW_METRICS; canonical_adjusted_metric_table_and_complete_controls_pending')
+        self.assertEqual(result['adjustment_reconciliation'],'PASS_HOLM_POWER_OVERLAY; canonical_metric_join_pending')
         self.assertEqual(result['groups_rebuilt'],4)
         self.assertEqual(result['zero_trade_candidate_windows'],1)
         self.assertEqual(result['controls_reconciliation'],'PASS_RAW_CONTROL_TABLE; paired_difference_and_CI_pending')
         self.assertEqual(result['control_result_rows'],2)
         self.assertEqual(result['halfyear_rows'],8)
+        self.assertEqual(result['adjustment_rows'],2)
         self.assertEqual(result['trades_rebuilt'],sum(map(len,trades_by_asset.values()))*2+sum(map(len,random_by_asset.values())))
         metric_path=next(x for x in t.trees[t.head] if '/metrics/run=full-audit/' in x and x.endswith('.parquet'))
         original_metric=t.blob_from_commit(t.head,metric_path)
@@ -267,6 +270,14 @@ class StreamingTests(unittest.TestCase):
         half_bad=half_df.to_csv(index=False,lineterminator='\n').encode()
         t.commit_files({halfyear_path:half_bad},t.branch_head(),'synthetic changed halfyear failure')
         with self.assertRaisesRegex(Exception,'half-year value mismatch'):
+            rebuild_all(t,t.head,'full-audit',m,metadata_base=meta_base)
+        t.commit_files({halfyear_path:half_raw},t.branch_head(),'restore synthetic halfyear after tamper check')
+        adj_path=next(x for x in t.trees[t.head] if '/metric_adjustments/run=full-audit/' in x and x.endswith('.parquet'))
+        adj_raw=t.blob_from_commit(t.head,adj_path);adj_tab=pq.read_table(pa.BufferReader(adj_raw))
+        altered_adj=adj_tab.to_pylist();altered_adj[0]['p_adjusted']=0.123
+        sink=pa.BufferOutputStream();pq.write_table(pa.Table.from_pylist(altered_adj,schema=adj_tab.schema),sink,compression='zstd')
+        t.commit_files({adj_path:sink.getvalue().to_pybytes()},t.branch_head(),'synthetic changed adjustment failure')
+        with self.assertRaisesRegex(Exception,'metric adjustment mismatch'):
             rebuild_all(t,t.head,'full-audit',m,metadata_base=meta_base)
 
 

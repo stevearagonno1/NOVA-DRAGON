@@ -12,18 +12,20 @@ import pyarrow.parquet as pq
 
 try:
     from .streaming import BASE, TRADE_SCHEMA, _row as trade_row
-    from .metrics import METRIC_SCHEMA, CONTROL_SCHEMA
+    from .metrics import METRIC_SCHEMA, CONTROL_SCHEMA, ADJUSTMENT_SCHEMA
     from .transport import GitHubTransport, TransportError
     from . import engine as E
     from . import measure as M
     from . import indicators as I
+    from . import stats as S
 except ImportError:
     from streaming import BASE, TRADE_SCHEMA, _row as trade_row
-    from metrics import METRIC_SCHEMA, CONTROL_SCHEMA
+    from metrics import METRIC_SCHEMA, CONTROL_SCHEMA, ADJUSTMENT_SCHEMA
     from transport import GitHubTransport, TransportError
     import engine as E
     import measure as M
     import indicators as I
+    import stats as S
 
 
 def _git_blob_sha(data: bytes) -> str:
@@ -270,7 +272,7 @@ def _independent_asset_stats(rows,window,panel):
     winrate=wins/(wins+stops) if wins+stops else None
     mean_cost=float(np.mean([r["cost_atr"] for r in rows]))
     lift=(winrate-baseline)*100 if winrate is not None and baseline is not None else None
-    return {"baseline_win_rate":baseline,"breakeven_rate":0.5+mean_cost/3,"lift_win_points":lift,"p_raw":praw,"ci_lo":lo,"ci_hi":hi}
+    return {"baseline_win_rate":baseline,"breakeven_rate":0.5+mean_cost/3,"lift_win_points":lift,"p_raw":praw,"ci_lo":lo,"ci_hi":hi,"se":se}
 
 
 def _independent_block_stats(rows,window,panels):
@@ -314,7 +316,7 @@ def _independent_block_stats(rows,window,panels):
     lift=(winrate-base_win)*100 if np.isfinite(winrate) and np.isfinite(base_win) else float("nan")
     return {"baseline_win_rate":base_win,"breakeven_rate":0.5+mean_cost_atr/3,
       "lift_win_points":lift,
-      "p_raw":praw,"ci_lo":lo,"ci_hi":hi}
+      "p_raw":praw,"ci_lo":lo,"ci_hi":hi,"se":se,"expectancy":expectancy,"exp_se":se}
 
 
 def _audit_metric_row(candidate,role,window,asset,scope,trades,panel):
@@ -393,6 +395,50 @@ def _control_rows(client,head,run_id):
         if not tab.schema.equals(CONTROL_SCHEMA,check_metadata=False):raise TransportError("control schema mismatch: "+path)
         out.extend(tab.to_pylist());parts.append({"path":path,"rows":tab.num_rows,"sha256":hashlib.sha256(raw).hexdigest()})
     return out,parts
+
+
+def _adjustment_rows(client,head,run_id):
+    directory=f"{BASE}/metric_adjustments/run={run_id}"
+    try:names=client.list_directory(head,directory)
+    except TransportError as exc:
+        if "directory resolution failed" in str(exc):return [],[]
+        raise
+    rows=[];parts=[]
+    for name in sorted(names):
+        if not name.endswith(".parquet"):continue
+        path=directory+"/"+name;raw=client.blob_from_commit(head,path)
+        if len(raw)>8_000_000:raise TransportError("metric-adjustment partition exceeds byte cap")
+        tab=pq.read_table(pa.BufferReader(raw))
+        if not tab.schema.equals(ADJUSTMENT_SCHEMA,check_metadata=False):raise TransportError("metric-adjustment schema mismatch")
+        rows.extend(tab.to_pylist());parts.append({"path":path,"rows":tab.num_rows,"sha256":hashlib.sha256(raw).hexdigest()})
+    return rows,parts
+
+
+def _independent_power80(effect,sd,se,n,alpha):
+    if not (np.isfinite(effect) and np.isfinite(sd) and sd>0 and np.isfinite(se) and se>0 and n>=3):return None,None
+    from scipy.stats import norm
+    dependence=(se/(sd/math.sqrt(n)))**2
+    if not np.isfinite(dependence) or dependence<=0:return None,None
+    n80=max(2,int(math.ceil(((norm.ppf(1-alpha)+0.8416212335729143)**2)*dependence*sd*sd/(effect*effect)))) if effect else None
+    if n80 is None:return None,None
+    power=float(norm.cdf(effect*math.sqrt(n80/dependence)/sd-norm.ppf(1-alpha)))
+    return power,n80
+
+
+def _compare_adjustments(got_rows,want_rows):
+    keys=("candidate_id","role","window")
+    key=lambda r:tuple(r[k] for k in keys)
+    got={key(r):r for r in got_rows};want={key(r):r for r in want_rows}
+    if len(got)!=len(got_rows) or len(want)!=len(want_rows):raise TransportError("duplicate metric adjustment")
+    if set(got)!=set(want):raise TransportError("metric adjustment coverage mismatch")
+    for k,b in want.items():
+        for f in ADJUSTMENT_SCHEMA.names:
+            a=got[k].get(f);v=b.get(f)
+            if a is None or v is None:
+                if a is not None or v is not None:raise TransportError(f"metric adjustment null mismatch {k} {f}")
+            elif isinstance(v,float):
+                if not math.isclose(float(a),float(v),rel_tol=0,abs_tol=1e-9):raise TransportError(f"metric adjustment mismatch {k} {f}: {a} vs {v}")
+            elif a!=v:raise TransportError(f"metric adjustment mismatch {k} {f}: {a} vs {v}")
 
 
 def _halfyear_rows(client,head,run_id):
@@ -485,7 +531,7 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
     summary_metrics=iter(_metric_rows(client,head,"metrics",run_id))
     asset_metrics=iter(_metric_rows(client,head,"metrics_by_asset",run_id))
     checked_summary_metrics=checked_asset_metrics=checked_inference_metrics=0
-    expected_control_rows=[];expected_halfyear_rows=[]
+    expected_control_rows=[];expected_halfyear_rows=[];adjustment_groups={}
     for entry in coverage:
         cid,role,window=entry["candidate_id"],entry["role"],entry["window"]
         key=(cid,role,window);paths=entry.get("partition_paths",[])
@@ -564,6 +610,13 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
                 expected_metric["baseline_win_rate"]=None;expected_metric["lift_win_points"]=None
         else:
             expected_metric.update({field:None for field in infer_fields})
+        if role in ("single","pair","triple"):
+            power=n80=None
+            if registered_stats and exp_rows:
+                nets=np.asarray([float(x["net_dollars"]) for x in exp_rows]);sd=float(np.std(nets,ddof=1)) if len(nets)>1 else float("nan")
+                power,n80=_independent_power80(float(np.mean(nets)),sd,registered_stats["se"],len(nets),0.05/70330)
+            adjustment_groups.setdefault(window,[]).append({"candidate_id":cid,"role":role,
+                "p_raw":registered_stats.get("p_raw") if registered_stats else None,"power80":power,"n80":n80})
         _compare_metric(stored_metric,expected_metric,key);checked_summary_metrics+=1
         for sym,panel in measurer.panels.items():
             asset_trades=[x for x in exp_rows if x["asset"]==sym]
@@ -611,17 +664,33 @@ def rebuild_all(client: GitHubTransport,head: str,run_id: str,measurer=None,
     _compare_control_rows(stored_controls,expected_control_rows)
     stored_halfyears,halfyear_parts=_halfyear_rows(client,head,run_id)
     _compare_halfyear_rows(stored_halfyears,expected_halfyear_rows)
+    expected_adjustments=[]
+    for window,items in sorted(adjustment_groups.items()):
+        ordered=sorted(items,key=lambda r:(r["candidate_id"],r["role"]))
+        valid=[(i,float(r["p_raw"])) for i,r in enumerate(ordered) if r["p_raw"] is not None and math.isfinite(float(r["p_raw"]))]
+        ranked=sorted(valid,key=lambda x:(x[1],x[0]));adjusted={};running=0.0
+        for rank,(idx,pv) in enumerate(ranked):
+            running=max(running,min(1.0,pv*(70330-rank)));adjusted[idx]=running
+        for i,r in enumerate(ordered):
+            expected_adjustments.append({"candidate_id":r["candidate_id"],"role":r["role"],"window":window,
+                "p_raw":r["p_raw"],"p_adjusted":adjusted.get(i,1.0),"power80":r["power80"],
+                "n80":r["n80"],"alpha":0.05/70330,"family_m":70330})
+    stored_adjustments,adjustment_parts=_adjustment_rows(client,head,run_id)
+    _compare_adjustments(stored_adjustments,expected_adjustments)
     if checked_trades!=base_check["trade_rows"]:raise TransportError("full rebuild trade total differs from verified raw total")
     if checked_summary_metrics!=len(coverage) or summary_rows!=len(coverage):raise TransportError("summary metric coverage does not match trade coverage")
     if checked_asset_metrics!=len(coverage)*len(measurer.panels) or asset_rows!=checked_asset_metrics:raise TransportError("per-asset metric coverage does not match trade coverage")
     return {**base_check,"groups_rebuilt":checked_groups,"trades_rebuilt":checked_trades,
             "independent_execution_rebuild":"PASS","raw_metric_reconciliation":"PASS",
-            "metrics_reconciliation":"PARTIAL_RAW_METRICS; Holm_power_and_complete_control_tests_pending",
+            "metrics_reconciliation":"PARTIAL_RAW_METRICS; canonical_adjusted_metric_table_and_complete_controls_pending",
             "independent_inference_rows_reconciled":checked_inference_metrics,
+            "adjustment_reconciliation":"PASS_HOLM_POWER_OVERLAY; canonical_metric_join_pending",
+            "adjustment_rows":len(stored_adjustments),
             "controls_reconciliation":"PASS_RAW_CONTROL_TABLE; paired_difference_and_CI_pending",
             "control_result_rows":len(stored_controls),"control_partitions":len(control_parts),
             "halfyear_raw_reconciliation":"PASS; per_asset_baseline_lift_CI_pending",
             "halfyear_rows":len(stored_halfyears),"halfyear_partitions":len(halfyear_parts),
+            "adjustment_rows":len(stored_adjustments),"adjustment_partitions":len(adjustment_parts),
             "summary_metric_rows":summary_rows,"asset_metric_rows":asset_rows,
             "metric_partitions":summary_parts+asset_parts+control_parts+halfyear_parts,
             "metric_partition_receipts":summary_parts+asset_parts+control_parts+halfyear_parts,

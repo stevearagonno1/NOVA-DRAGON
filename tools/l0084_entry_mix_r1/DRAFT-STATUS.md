@@ -1,9 +1,8 @@
 # L0084-R1 DRAFT status
 
-Last published DRAFT commit: `ed8ab5aeafdb63d9ab13b878718dcc3c2c9ee6d9`; this local workspace has newer changes awaiting the next API publication.
+Last published DRAFT commit: `868e8c109de147908f4f8b71f58f49ac28dae9a5`; current workspace includes newer local changes awaiting publication.
 
-- Gate: CLOSED. Experiment: NOT RUN.
-- Current local implementation adds per-asset synchronized bootstrap/breakeven/lift fields, raw-derived controls Parquet with matched counts/seeds/per-asset paired differences and intervals when exact counts match, partitioned half-year CSV, and independent raw-ledger verification for these outputs.
-- Synthetic unit audit now uses two assets and candidate, zero-trade, and random-control groups; it verifies saved/read-back artifacts, independent execution and statistical reconstruction, raw metrics/control/half-year reconciliation, and rejects tampered metric/control/half-year rows.
-- Remaining: true Holm across 70,330 and power fields; complete no-signal/constituent/equal-book controls and coverage; full shared synthetic measure/audit CLI plus readiness record, including all v7 edge cases/resources/network synthetic evidence; then full experiment/audit/report.
-- Validation: `py_compile` passed; pytest 23/23; module self-test 10/10; workspace 67,425,562 bytes (<125,000,000). This is partial progress, not readiness.
+- Gate: CLOSED. Registered market experiment: NOT RUN.
+- Implemented: streamed raw trades; descriptive and per-asset metrics with registered synchronized bootstrap; raw/metric/half-year/control table persistence and independent rebuild comparison; matched random controls with independently recalculated paired seven-day CIs; Holm-adjustment and power overlay partitions per candidate family/window with independent raw recalculation.
+- Pending: canonical join of adjustments into the required full-field metrics result; full no-signal/constituent/equal-book control tests and complete control/report outputs; full actual `measure --synthetic` and `audit --synthetic` CLI path/readiness record meeting every v7 fixture, injection, conflict, resource and exit-code check. Only then may measurement proceed.
+- Latest checks: `py_compile` passed; pytest 23/23; module self-test 10/10; workspace 67,454,260 bytes (<125,000,000). Partial test readiness only.

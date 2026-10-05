@@ -811,3 +811,7 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - Work: updated the DRAFT metric/control/half-year writers and independent audit, expanded synthetic persistence/readback and tamper tests, and uploaded source/tests/environment/status, LOG, and a unique activity tick via GitHub API.
 - Result: local validation py_compile PASS; pytest 23/23; module self-test 10/10; workspace 67,425,562 bytes. Two-asset synthetic unit audit passes for the tested raw/bootstrap/control/half-year scopes. Full v7 readiness is NOT met: Holm/power, complete control families, actual synthetic measure/audit CLI/readiness remain incomplete. Gate CLOSED; market experiment NOT RUN.
 - Next: complete Holm/power and control families; implement/run full shared CLI synthetic readiness before measurement.
+## L0084-R1 DRAFT update — Holm/power overlay
+- Work: published bounded candidate-family Holm and 80%-power/sample-size adjustment partitions plus independent recalculation/audit, updated tests and DRAFT status, LOG and activity tick.
+- Result: DRAFT only. Local validation: py_compile PASS; pytest 23/23; module self-test 10/10; workspace 67,454,260 bytes. Adjustment overlays pass the two-asset synthetic audit fixture; canonical full-field metrics join and full v7 CLI synthetic readiness remain incomplete. Gate CLOSED; experiment NOT RUN.
+- Next: integrate the final metric table and complete all controls/readiness CLI checks before market measurement.

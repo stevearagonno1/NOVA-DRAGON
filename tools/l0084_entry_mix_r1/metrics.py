@@ -13,7 +13,7 @@ import pandas as pd
 import pyarrow as pa
 import pyarrow.parquet as pq
 
-from .stats import wilson, pf, block_ci, z_from_lb
+from .stats import wilson, pf, block_ci, z_from_lb, holm, power_n
 from . import measure as M
 from .transport import GitHubTransport, TransportError
 
@@ -21,6 +21,11 @@ BASE="history/research/hyp_lab_out/L0084-entry-mix-r1"
 MAX_PART_BYTES=8_000_000
 ROWS_PER_PART=2400
 HALFYEAR_COLUMNS=("candidate","asset","halfyear","partial","n","net","pf","win","baseline","lift","ci_lo","ci_hi")
+ADJUSTMENT_SCHEMA=pa.schema([
+    ("candidate_id",pa.string()),("role",pa.string()),("window",pa.string()),
+    ("p_raw",pa.float64()),("p_adjusted",pa.float64()),("power80",pa.float64()),
+    ("n80",pa.int64()),("alpha",pa.float64()),("family_m",pa.int64())])
+
 CONTROL_SCHEMA=pa.schema([
     ("candidate",pa.string()),("control_type",pa.string()),("replicate",pa.int64()),
     ("asset",pa.string()),("window",pa.string()),("n",pa.int64()),
@@ -139,11 +144,11 @@ class RawMetricWriter:
     """Creates resumable summary and per-asset metrics from each raw group."""
     def __init__(self,transport,run_id,rows_per_part=ROWS_PER_PART):
         self.transport=transport or GitHubTransport();self.run_id=str(run_id);self.rows_per_part=int(rows_per_part)
-        self.summary=[];self.assets=[];self.controls=[];self.halfyears=[];self.group_count=0;self.summary_part=0;self.asset_part=0;self.control_part=0;self.halfyear_part=0
-        self.expected_summary_parts=0;self.expected_asset_parts=0;self.expected_control_parts=0;self.expected_halfyear_parts=0
+        self.summary=[];self.assets=[];self.controls=[];self.halfyears=[];self.adjustment_groups={};self.group_count=0;self.summary_part=0;self.asset_part=0;self.control_part=0;self.halfyear_part=0;self.adjustment_part=0
+        self.expected_summary_parts=0;self.expected_asset_parts=0;self.expected_control_parts=0;self.expected_halfyear_parts=0;self.expected_adjustment_parts=0;self.adjustment_rows=0
         self.parts=[];self.closed=False
         if hasattr(self.transport,"list_directory"):
-            for kind,attr in (("metrics","expected_summary_parts"),("metrics_by_asset","expected_asset_parts"),("controls","expected_control_parts")): 
+            for kind,attr in (("metrics","expected_summary_parts"),("metrics_by_asset","expected_asset_parts"),("controls","expected_control_parts"),("metric_adjustments","expected_adjustment_parts")): 
                 try:names=self.transport.list_directory(self.transport.branch_head(),f"{BASE}/{kind}/run={urllib.parse.quote(self.run_id,safe='-_=.')}")
                 except TransportError:names=[]
                 ids=[]
@@ -190,6 +195,17 @@ class RawMetricWriter:
                 "metric_status":"REGISTERED_BLOCK_STATS; Holm_and_power_pending"})
         self.summary.append(summary)
         self.assets.extend(asset_rows);self.group_count+=1
+        if role in ("single","pair","triple"):
+            raw_p=stats.get("p_raw") if stats else None
+            power=None;n80=None
+            if stats and all_trades:
+                vals=np.asarray([float(t["net_dollars"]) for t in all_trades],dtype=float)
+                sd=float(np.std(vals,ddof=1)) if len(vals)>1 else float("nan")
+                effect=float(stats["expectancy"])
+                pw=(power_n(effect,sd,float(stats.get("exp_se",float("nan"))),len(vals),0.05/70330)
+                    if effect!=0 else {})
+                power=pw.get("power_at_n");n80=pw.get("n80")
+            self.adjustment_groups.setdefault(str(window),[]).append((str(candidate),str(role),raw_p,power,n80))
         if role=="baseline":
             for row in asset_rows:
                 count=int(row["n_exec"]);net=float(row["net_dollars"])
@@ -213,7 +229,7 @@ class RawMetricWriter:
             self.flush()
     def _commit_table(self,kind,part,rows):
         if not rows:return None
-        schema=CONTROL_SCHEMA if kind=="controls" else METRIC_SCHEMA
+        schema=CONTROL_SCHEMA if kind=="controls" else ADJUSTMENT_SCHEMA if kind=="metric_adjustments" else METRIC_SCHEMA
         payload,table=_encode(rows,schema=schema)
         if len(payload)>MAX_PART_BYTES:
             if len(rows)<2:raise TransportError("single metric row exceeds 8MB")
@@ -278,12 +294,33 @@ class RawMetricWriter:
             made=self._commit_halfyear_csv(self.halfyear_part,hrows)
             self.halfyear_part+=1
             self.expected_halfyear_parts=max(self.expected_halfyear_parts,self.halfyear_part)
+    def _finalize_adjustments(self):
+        pending=[]
+        for window,items in sorted(self.adjustment_groups.items()):
+            valid=[i for i,x in enumerate(items) if x[2] is not None and math.isfinite(float(x[2]))]
+            adjusted=holm([float(items[i][2]) for i in valid],m=70330) if valid else []
+            adjmap={i:float(v) for i,v in zip(valid,adjusted)}
+            for i,(candidate,role,praw,power,n80) in sorted(enumerate(items),key=lambda z:(z[1][0],z[1][1])):
+                pending.append({"candidate_id":candidate,"role":role,"window":window,
+                    "p_raw":None if praw is None else float(praw),"p_adjusted":adjmap.get(i,1.0),
+                    "power80":power,"n80":n80,"alpha":0.05/70330,"family_m":70330})
+                if len(pending)>=self.rows_per_part:
+                    self._commit_table("metric_adjustments",self.adjustment_part,pending)
+                    self.adjustment_part+=1;self.expected_adjustment_parts=max(self.expected_adjustment_parts,self.adjustment_part)
+                    self.adjustment_rows+=len(pending);pending=[]
+        if pending:
+            self._commit_table("metric_adjustments",self.adjustment_part,pending)
+            self.adjustment_part+=1;self.expected_adjustment_parts=max(self.expected_adjustment_parts,self.adjustment_part)
+            self.adjustment_rows+=len(pending)
+        self.adjustment_groups.clear()
     def close(self):
         if self.closed:raise TransportError("metric writer already closed")
-        self.flush();self.closed=True
+        self.flush();self._finalize_adjustments();self.closed=True
         if (self.summary_part!=self.expected_summary_parts or self.asset_part!=self.expected_asset_parts
-                or self.control_part!=self.expected_control_parts or self.halfyear_part!=self.expected_halfyear_parts):
-            raise TransportError(f"metric resume coverage mismatch: summary {self.summary_part}/{self.expected_summary_parts}; asset {self.asset_part}/{self.expected_asset_parts}; controls {self.control_part}/{self.expected_control_parts}; halfyears {self.halfyear_part}/{self.expected_halfyear_parts}")
+                or self.control_part!=self.expected_control_parts or self.halfyear_part!=self.expected_halfyear_parts
+                or self.adjustment_part!=self.expected_adjustment_parts):
+            raise TransportError(f"metric resume coverage mismatch: summary {self.summary_part}/{self.expected_summary_parts}; asset {self.asset_part}/{self.expected_asset_parts}; controls {self.control_part}/{self.expected_control_parts}; halfyears {self.halfyear_part}/{self.expected_halfyear_parts}; adjustments {self.adjustment_part}/{self.expected_adjustment_parts}")
         return {"groups":self.group_count,"parts":list(self.parts),"summary_part_count":self.summary_part,
                 "asset_part_count":self.asset_part,"control_part_count":self.control_part,
-                "halfyear_part_count":self.halfyear_part}
+                "halfyear_part_count":self.halfyear_part,"adjustment_part_count":self.adjustment_part,
+                "adjustment_rows":self.adjustment_rows}

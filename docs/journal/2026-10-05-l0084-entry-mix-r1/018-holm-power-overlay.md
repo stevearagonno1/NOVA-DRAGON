@@ -1,0 +1,6 @@
+- UTC: 2026-10-05T13:20:01Z
+- Asia/Aden: 2026-10-05T16:20:01+03:00
+- Added bounded Holm m=70,330 and power/sample-size adjustment partitions with independent raw-trade recalculation and tamper validation. Canonical full-field metrics join and complete v7 synthetic CLI readiness are still pending.
+- Validation: py_compile PASS; pytest 23/23; module self-test 10/10; workspace 67,454,260 bytes.
+- Gate CLOSED; market experiment NOT RUN.
+- Next: integrate tables and complete synthetic readiness.
