@@ -950,3 +950,8 @@ synthetic exited 0 under pinned scope; continue only this stage.
 ### stage1 synthetic passed (2026-10-05T20:39:30Z)
 
 synthetic exited 0 under pinned scope; continue only this stage.
+
+
+### stage1 measure passed (2026-10-06T00:48:03Z)
+
+measure exited 0 under pinned scope; continue only this stage.
