@@ -1,0 +1,7 @@
+{
+  "draft_summary_missing_baseline": 636,
+  "draft_summary_null_adjusted_p": 636,
+  "draft_ci_lower_differences": 0,
+  "draft_risk_dollar_differences": 453,
+  "risk_basis": "Lead: chronological UTC exit bars, simultaneous exits pooled, $12000 total for 12 independent $1000 books. Draft uses fill-bar order and $1000 pooled denominator. Neither is mark-to-market."
+}

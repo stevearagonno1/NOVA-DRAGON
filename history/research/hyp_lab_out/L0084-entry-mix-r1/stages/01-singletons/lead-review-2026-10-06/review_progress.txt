@@ -1,0 +1,21 @@
+PREFIX_CAUSALITY_PASS 1872
+REBUILT_GROUPS 100
+REBUILT_GROUPS 200
+REBUILT_GROUPS 300
+REBUILT_GROUPS 400
+REBUILT_GROUPS 500
+REBUILT_GROUPS 600
+            candidate    n        net       pf  expectancy  positive_windows  positive_assets  basic_gate_windows  holm_positive_windows
+         RSI14_xup_20  309  86.119715 1.644153    0.278705                 8               11                   0                      0
+         RSI21_xup_25  297  85.011951 1.654838    0.286236                 8               11                   0                      0
+         RSI21_xup_30  779  39.894369 1.106176    0.051212                 5                9                   0                      0
+         RSI21_xup_20   80  30.216151 1.930876    0.377702                 8               10                   0                      0
+         RSI14_xup_25  842  23.453758 1.058852    0.027855                 6                7                   0                      0
+         EMA_x_20_200  594 -27.996047 0.866986   -0.047131                 5                2                   0                      0
+RSI14_bull_divergence 1863 -29.587184 0.960641   -0.015881                 5                5                   0                      0
+         EMA_x_50_200  394 -37.003620 0.763612   -0.093918                 4                3                   0                      0
+RSI21_bull_divergence 1705 -45.557858 0.934056   -0.026720                 5                5                   0                      0
+   TakerRatioZ_ge_2.5  897 -50.051206 0.857360   -0.055798                 3                3                   0                      0
+     BB20_3.0_reenter  750 -52.542639 0.844285   -0.070057                 6                4                   0                      0
+          EMA_x_20_50 1313 -63.480612 0.868087   -0.048348                 3                2                   1                      0
+LEAD_AUDIT_FINISHED

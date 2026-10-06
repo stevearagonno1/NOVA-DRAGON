@@ -1,0 +1,14 @@
+{
+  "id": "D-L0084-S1-20261006",
+  "verdict": "Defer",
+  "raw_stage": "ACCEPTED_FOR_DESCRIPTIVE_REVIEW",
+  "positive_singletons": 5,
+  "best_descriptive": "RSI14_xup_20",
+  "best_net": 86.11971524303303,
+  "best_n": 309,
+  "best_pf": 1.644152530166559,
+  "max_best_window_n": 54,
+  "qualified_holm_windows": 0,
+  "next": "prepare registered OR0 pair-only stage, all 1326 pairs; no execution authorised by this report",
+  "fixed_delivery": "2d67a6593a34c0b46e7e4f686efc57db435982a9"
+}
