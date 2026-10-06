@@ -42,7 +42,7 @@
     "signals_each_asset": 3,
     "events_each_asset": 3
   },
-  "selection": "freeze top10 eligible; if none, descriptive-only top10 insufficient",
+  "selection": "freeze top10 eligible pairs; if none, top10 pairs labelled insufficient. Also show top10 overall and all singleton parents.",
   "primary_scope": "one historical discovery experiment only",
   "prior_financial_OR0_next_step": "superseded by owner 2026-10-06; not executed",
   "missing_families": "VPFR and unspecified custom library indicators not implemented; no claim of all indicators in existence",

@@ -5,6 +5,7 @@ import prepare_runtime as E
 import supervision85 as V
 import publish85 as P
 ROOT=Path(__file__).resolve().parent
+STATE_ROOT=None
 
 def guard(workspace,reserve=0):
     total=0
@@ -14,8 +15,9 @@ def guard(workspace,reserve=0):
     return total
 
 def main():
+    global STATE_ROOT
     ap=argparse.ArgumentParser();ap.add_argument('--workspace',required=True);ap.add_argument('--source',required=True);ap.add_argument('--runtime',default='/tmp/nova-l0085-runtime-'+sys.implementation.cache_tag);ap.add_argument('--preflight-only',action='store_true');a=ap.parse_args()
-    workspace=Path(a.workspace).resolve();root=workspace/'nova-l0085';root.mkdir(parents=True,exist_ok=True)
+    workspace=Path(a.workspace).resolve();root=workspace/'nova-l0085';root.mkdir(parents=True,exist_ok=True);STATE_ROOT=root
     lock=(root/'run.lock').open('a')
     try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     except BlockingIOError:raise RuntimeError('L0085 supervisor or its child is active; follow that process instead of starting another') from None
@@ -41,4 +43,6 @@ def main():
 if __name__=='__main__':
     try:main()
     except Exception as e:
-        token=os.environ.get('GH_TOKEN','');s=type(e).__name__+': '+str(e);print('BLOCKED '+(s.replace(token,'[REDACTED]') if token else s),flush=True);raise SystemExit(1)
+        token=os.environ.get('GH_TOKEN','');s=type(e).__name__+': '+str(e);safe=s.replace(token,'[REDACTED]') if token else s
+        if STATE_ROOT:V.durable(STATE_ROOT/'BLOCKED.json',{'status':'BLOCKED','actual_error':safe,'no_completion_claim':True})
+        print('BLOCKED '+safe,flush=True);raise SystemExit(1)

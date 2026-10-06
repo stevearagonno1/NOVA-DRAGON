@@ -1,6 +1,6 @@
 """Few-request, paced Git Data upload; no gh/origin, no per-candidate API calls."""
 from pathlib import Path
-import base64,hashlib,json,os,time,urllib.request,urllib.error,zipfile
+import base64,hashlib,io,json,os,time,urllib.request,urllib.error,zipfile
 REPO='stevearagonno1/NOVA-DRAGON';BRANCH='agent/l0085-rise-onset-2026-10-06';DEST='history/research/hyp_lab_out/L0085-rise-onset';LAST=0
 
 def api(path,method='GET',body=None):
@@ -63,7 +63,10 @@ def preflight(root,source):
     else:
         if already==data:return head
         raise RuntimeError('different upload proof already exists')
-    return publish({path:data},'L0085: non-financial upload/readback readiness',head)
+    archive=io.BytesIO()
+    with zipfile.ZipFile(archive,'w') as z:z.writestr('fixture.txt','NON_FINANCIAL_SYNTHETIC_UPLOAD_ONLY')
+    log=get_file(head,'LOG.md')
+    return publish({path:data,DEST+'/readiness/upload-proof.zip':archive.getvalue(),'LOG.md':log+b'\n\n## L0085 executor setup\nPinned runtime and synthetic admission passed; non-financial archive upload/readback verified by the prepared publisher. Market completion is not established.\n','docs/journal/2026-10-06-l0085-rise-onset/002-upload-admission.md':b'- Decision: test the exact compressed-evidence upload route.\n- Execution: synthetic-only archive upload and immutable byte readback.\n- Produced: readiness/upload-proof.json and upload-proof.zip.\n- Next: execute the registered discovery, then audit and publish.\n'},'L0085: non-financial upload/readback readiness',head)
 
 def complete(root,out,source):
     root=Path(root);out=Path(out);head=api('/git/ref/heads/'+BRANCH)['object']['sha'];assert get_file(head,'tools/l0085/package_manifest.json')==(root/'package_manifest.json').read_bytes()
@@ -73,6 +76,8 @@ def complete(root,out,source):
     with zipfile.ZipFile(archive,'w',compression=zipfile.ZIP_DEFLATED) as z:
         for p in sorted(out.iterdir()):
             if p.is_file() and not p.name.endswith('.pending'):
+                token=os.environ.get('GH_TOKEN','').encode()
+                if token and token in p.read_bytes():raise RuntimeError('secret in local evidence')
                 info=zipfile.ZipInfo(p.name,(2026,10,6,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;z.writestr(info,p.read_bytes())
     digest=hashlib.sha256(archive.read_bytes()).hexdigest();receipt={'status':delivery['status'],'source':source,'archive_sha256':digest,'archive_bytes':archive.stat().st_size,'rows':delivery['rows'],'branch':BRANCH,'market_scope':'discovery only; validation NOT RUN'}
     path=DEST+'/delivery.json';b=(json.dumps(receipt,sort_keys=True,indent=2)+'\n').encode()
@@ -83,7 +88,7 @@ def complete(root,out,source):
         if prior==b:
             recorded=api('/git/blobs/'+blob_sha(archive.read_bytes()));assert base64.b64decode(recorded['content'])==archive.read_bytes();return head,receipt
         raise RuntimeError('different completed delivery already exists; Lead review required')
-    log=get_file(head,'LOG.md');tick='docs/journal/2026-10-06-l0085-rise-onset/002-executor-complete.md'
+    log=get_file(head,'LOG.md');tick='docs/journal/2026-10-06-l0085-rise-onset/003-executor-complete.md'
     files={DEST+'/evidence.zip':archive.read_bytes(),path:b,DEST+'/REPORT.md':(out/'REPORT.md').read_bytes(),DEST+'/audit.json':(out/'audit.json').read_bytes(),DEST+'/selection.json':(out/'selection.json').read_bytes(),
         'LOG.md':log+b'\n\n## L0085 completed discovery\nFull registered signal grid scored, raw matching audited, results uploaded for Lead review. No validation or trading.\n',
         tick:b'- Decision: execute the registered onset-discovery search only.\n- Execution: all candidates scored; raw evidence reconciled.\n- Produced: history/research/hyp_lab_out/L0085-rise-onset/evidence.zip and audit/report/selection.\n- Next: Lead independently reviews; no adoption or validation run.\n'}

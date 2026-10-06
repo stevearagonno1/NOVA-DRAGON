@@ -205,7 +205,7 @@ def detail(raw,row):
     m['rule']=[raw['grid'][row['a']]]+([raw['grid'][row['b']]] if row['b']>=0 else []);return m
 
 def report(out):
-    out=Path(out);raw=json.loads(gzip.decompress((out/'raw_signals.json.gz').read_bytes()));best=[];qualified=[];singles=[];best_family={};byasset={s:[] for s in ASSETS};count=0
+    out=Path(out);raw=json.loads(gzip.decompress((out/'raw_signals.json.gz').read_bytes()));best=[];qualified=[];pairs=[];qualified_pairs=[];singles=[];best_family={};byasset={s:[] for s in ASSETS};count=0
     def keep(heap,x,key):
         val=(key,-x['candidate'],x)
         if len(heap)<20:heapq.heappush(heap,val)
@@ -213,21 +213,25 @@ def report(out):
     for row in read_rows(out):
         d=detail(raw,row);count+=1;keep(best,d,d['macro_f1'])
         if d['eligible']:keep(qualified,d,d['macro_f1'])
+        if row['mode']!='S':
+            keep(pairs,d,d['macro_f1'])
+            if d['eligible']:keep(qualified_pairs,d,d['macro_f1'])
         if row['mode']=='S':
             singles.append(d);fam=d['rule'][0]['family']
             if fam not in best_family or (d['macro_f1'],-d['candidate'])>(best_family[fam]['macro_f1'],-best_family[fam]['candidate']):best_family[fam]=d
         for s,x in zip(ASSETS,d['per_asset']):keep(byasset[s],d,x['f1'])
     order=lambda h:[x[2] for x in sorted(h,reverse=True)]
-    top=order(qualified) if qualified else order(best);write_json(out/'ranking.json',{'all_top20':order(best),'eligible_top20':order(qualified),'best_by_family':best_family,'best_by_asset':{s:order(h) for s,h in byasset.items()}})
-    selected=top[:10];write_json(out/'selection.json',{'status':'PROVISIONAL_DISCOVERY_ONLY' if qualified else 'INSUFFICIENT_SAMPLE','frozen_candidate_ids':[x['candidate'] for x in selected],'rules':selected,'validation_read':False,'future_claim':False})
-    data=inflate(raw);controls=[];alerts=[];months=[]
+    top=order(qualified) if qualified else order(best);write_json(out/'ranking.json',{'all_top20':order(best),'eligible_top20':order(qualified),'pair_top20':order(pairs),'eligible_pair_top20':order(qualified_pairs),'best_by_family':best_family,'best_by_asset':{s:order(h) for s,h in byasset.items()}})
+    selected=(order(qualified_pairs) if qualified_pairs else order(pairs))[:10];
+    top=list({d['candidate']:d for d in top[:10]+selected}.values());write_json(out/'selection.json',{'status':'PROVISIONAL_DISCOVERY_ONLY' if qualified_pairs else 'INSUFFICIENT_SAMPLE','frozen_candidate_ids':[x['candidate'] for x in selected],'rules':selected,'validation_read':False,'future_claim':False})
+    data=inflate(raw);controls=[];alerts=[];months=[];panels=fixture() if raw['synthetic'] else load_market()
     for d in top:
         for sym,(valid,masks,events) in zip(ASSETS,data):
-            a=raw['assets'][sym];x=combine(masks[d['a']],masks[d['b']] if d['b']>=0 else 0,d['mode'],valid);claimed=set()
+            a=raw['assets'][sym];panel=panels[sym];atr=I.wilder_atr(panel['h'],panel['l'],panel['c'],14);x=combine(masks[d['a']],masks[d['b']] if d['b']>=0 else 0,d['mode'],valid);claimed=set()
             for bar in bits(x):
                 match=next((j for j,e in enumerate(events) if j not in claimed and abs(bar-e['onset'])<=2),None)
                 if match is not None:claimed.add(match)
-                alerts.append({'candidate':d['candidate'],'asset':sym,'bar':bar,'time':a['times'][bar],'event':match,'onset':events[match]['onset'] if match is not None else None,'lag':bar-events[match]['onset'] if match is not None else None})
+                alerts.append({'candidate':d['candidate'],'asset':sym,'bar':bar,'time':a['times'][bar],'event':match,'onset':events[match]['onset'] if match is not None else None,'lag':bar-events[match]['onset'] if match is not None else None,'mae_atr_24':float(min(0,np.min(panel['l'][bar+1:bar+25])-panel['c'][bar])/atr[bar]),'mfe_atr_24':float(max(0,np.max(panel['h'][bar+1:bar+25])-panel['c'][bar])/atr[bar])})
             indices=list(bits(valid));n=len(indices);base=indices[0];local=x>>base;rng=random.Random(85);shifts=rng.sample(range(25,n-24),min(19,max(0,n-49)))
             for shift in shifts:
                 moved=(((local<<shift)|(local>>(n-shift)))&((1<<n)-1))<<base;ns,tp,lag=score(moved,events);controls.append({'candidate':d['candidate'],'asset':sym,'shift':shift,**metric(ns,tp,len(events))})
@@ -241,7 +245,16 @@ def report(out):
         for name,x in [('NONE',0),('EVERY_BAR',valid),('EVERY_5_BARS',sum(1<<i for i in bits(valid) if (i-(valid&-valid).bit_length()+1)%5==0))]:
             ns,tp,_=score(x,events);baselines.append({'asset':sym,'baseline':name,**metric(ns,tp,len(events))})
     write_json(out/'controls.json',{'baselines':baselines,'shift_controls_top20':controls,'inferential_p_values':'NOT MEASURED; selected-candidate shifts are descriptive, not multiplicity-adjusted'})
-    write_json(out/'alerts_top20.json',alerts);write_json(out/'months_top20.json',months)
+    write_json(out/'alerts_top20.json',alerts);
+    diagnostics=[]
+    for d in top:
+        for sym in ASSETS:
+            aa=[v for v in alerts if v['candidate']==d['candidate'] and v['asset']==sym];lags=[v['lag'] for v in aa if v['lag'] is not None];ns=len(aa);tp=len(lags);z=1.959963984540054
+            if ns:
+                phat=tp/ns;den=1+z*z/ns;center=(phat+z*z/(2*ns))/den;half=z*math.sqrt(phat*(1-phat)/ns+z*z/(4*ns*ns))/den;wilson=[center-half,center+half]
+            else:wilson=None
+            diagnostics.append({'candidate':d['candidate'],'asset':sym,'signals':ns,'precision_wilson95_descriptive':wilson,'lag_median_bars':float(np.median(lags)) if lags else None,'mae_median_atr_24':float(np.median([v['mae_atr_24'] for v in aa])) if aa else None,'mfe_median_atr_24':float(np.median([v['mfe_atr_24'] for v in aa])) if aa else None,'interval_limit':'Not corrected for serial dependence or search selection'})
+    write_json(out/'diagnostics_top20.json',diagnostics);write_json(out/'months_top20.json',months)
     # Numeric comparisons to single parents; no claims of unmeasured financial performance.
     parents={x['candidate']:x for x in singles};comparison=[]
     for d in top:
@@ -255,8 +268,8 @@ def report(out):
         '8. التالي: Lead يعيد الحساب من الخام ويدقق المرشحين قبل ورقة التحقق.','',
         '## 1. الهوية','| البند | القيمة |','|---|---|',f'| الحالات | {count} |','| المصدر | scope.json وinputs.json |','| الموضوع | بداية الصعود بلا محرك صفقات |',
         '## 2. المال','| الحقل | القيمة |','|---|---|','| الصافي والتكاليف والتوقع ومعامل الربح | not measured |',
-        '## 3. الإشارات','| المرشح | إشارات | أحداث ملتقطة | الدقة | الاسترجاع | متوسط F1 للعملات |','|---|---:|---:|---:|---:|---:|']
-    for d in top:lines.append(f"| {d['candidate']} | {d['signals']} | {d['matched_events']} | {d['precision']:.6f} | {d['recall']:.6f} | {d['macro_f1']:.6f} |")
+        '## 3. الإشارات','| المرشح وتعريفه | إشارات | أحداث ملتقطة | الدقة | الاسترجاع | متوسط F1 للعملات |','|---|---:|---:|---:|---:|---:|']
+    for d in top:lines.append(f"| {d['candidate']}: {d['mode']} / {' + '.join(q['id'] for q in d['rule'])} | {d['signals']} | {d['matched_events']} | {d['precision']:.6f} | {d['recall']:.6f} | {d['macro_f1']:.6f} |")
     lines+=['## 4. المخاطر','| الحقل | القيمة |','|---|---|','| هبوط رأس المال والتعرض | not measured |','| التنبيهات الخاطئة أو المكررة | signals − matched_events؛ الجداول الخام |',
         '## 5. الجوار','| الحقل | القيمة |','|---|---|','| جميع الإعدادات والمزائج | scores-*.csv.gz |','| حكم جوار ±20% | not measured؛ لا اعتماد من قمة منفردة |',
         '## 6. الفترات','| الفترة | الحالة |','|---|---|','| البحث | الجداول الحالية |','| التفصيل الشهري للمتصدرين | months_top20.json |','| التحقق المحجوز | not measured |','| العمياء والاحتفاظ | not measured |',
