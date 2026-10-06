@@ -1,0 +1,31 @@
+{
+  "status": "PASS",
+  "source": "f9e67bee4891ade0ab3162071f8da9bc64a66656",
+  "bootstrap_exit": 0,
+  "market_run": false,
+  "upload_head": "aa07b1466d487e1ac1c531d8d0c29ebfb51f32f3",
+  "workspace_bytes": 3045517,
+  "synthetic_bytes": 2389578,
+  "audit": {
+    "independent_matching_all_rows": true,
+    "raw_sha256": "d83866bdaa609ce794aff1242cda06eff7a6870aea2bf863253fad7d39ed6166",
+    "rows": 339626,
+    "scalar_mode_reference_rows": 35,
+    "source_status": "synthetic",
+    "status": "PASS",
+    "zero_signal_rows_retained": true
+  },
+  "environment": {
+    "status": "PASS",
+    "external_runtime": "/workspace/scratch/e30dadfbbb9a/rewrite84/deps",
+    "python": "3.12.14",
+    "versions": {
+      "numpy": "2.3.5",
+      "pandas": "2.2.3"
+    },
+    "issues": {},
+    "native_smoke": "PASS",
+    "initial_issues": {},
+    "market_outcomes_read": false
+  }
+}
