@@ -1,0 +1,52 @@
+{
+  "round": "L0086",
+  "question": "Historical transfer of ten frozen L0085 pairs; no search or money",
+  "base": "fde81fa6fbc4849f23842ab2541846a8d048c60c",
+  "discovery_delivery": "d1fe9978bee6bc7e3478f53d07633f9fabd198cf",
+  "frozen_sha256": "db691407ad6e55936510e9a4dc691ecee8439abcfa94bb4b2515919d4992db92",
+  "primary": 17312,
+  "pair_ids": [
+    17312,
+    338952,
+    48501,
+    43187,
+    48543,
+    338754,
+    9899,
+    17334,
+    17292,
+    16893
+  ],
+  "pairs": 10,
+  "unique_parents": 12,
+  "scored_variants": 22,
+  "assets": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "timeframe": "4h",
+  "warmup_start": "2024-07-01",
+  "validation_start": "2025-04-05T00:00:00Z",
+  "end_exclusive": "2025-07-01T00:00:00Z",
+  "market_period_bars": 522,
+  "eligible_bars_each": 493,
+  "label_unchanged_from_L0085": true,
+  "gates": {
+    "signals": 15,
+    "matched": 6,
+    "signals_each_asset": 3,
+    "events_each_asset": 3,
+    "precision": 0.5,
+    "recall": 0.3,
+    "macro_f1_retention": 0.8,
+    "beat_both_parents": true,
+    "beat_periodic_baseline": true,
+    "not_below_best_parent_assets": 2,
+    "holm_max": 0.05
+  },
+  "multiplicity_family": 10,
+  "cyclic_null": "All 493 simultaneous circular offsets, including zero. Ties count in upper tail. No Monte Carlo. Assumes cyclic exchangeability; historical data previously observed.",
+  "no_reselection": true,
+  "no_adoption": true
+}

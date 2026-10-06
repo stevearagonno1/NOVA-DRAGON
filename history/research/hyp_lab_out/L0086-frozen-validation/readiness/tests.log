@@ -1,0 +1,15 @@
+SYNTHETIC_INTERRUPTION_AT_RAW
+{"status": "VALIDATION_COMPLETE_LEAD_REVIEW_PENDING", "synthetic": true, "pairs": 10, "parents": 12, "audit": "PASS"}
+INDEPENDENT_AUDIT_PASS
+{"status": "VALIDATION_COMPLETE_LEAD_REVIEW_PENDING", "synthetic": true, "pairs": 10, "parents": 12, "audit": "PASS"}
+
+test_frozen (__main__.Checks.test_frozen) ... ok
+test_gates (__main__.Checks.test_gates) ... ok
+test_holm (__main__.Checks.test_holm) ... ok
+test_pipeline_resume_tamper (__main__.Checks.test_pipeline_resume_tamper) ... ok
+test_rotations (__main__.Checks.test_rotations) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.436s
+
+OK
