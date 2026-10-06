@@ -1,0 +1,15 @@
+{
+  "status": "STAGE1_RAW_COMPLETE_LEAD_REVIEW_PENDING",
+  "branch": "agent/l0084-stage1-checked-2026-10-05",
+  "run_id": "stage1-singletons-v1",
+  "source_commit": "74bc4cba32c083f34b6588b685f93216aaa580c9",
+  "verified_parent": "f78a4f46dc12e26a65a57c7b6a53dae08fd6b172",
+  "audit_fixed_head": "ccdd9981507725365d1756f72ede2d5961317a9c",
+  "workspace_bytes": 72114978,
+  "coverage_groups": 636,
+  "settings": 52,
+  "assets": 12,
+  "windows": 12,
+  "financial_report": "Lead review pending",
+  "pairs_triples": "NOT RUN"
+}
