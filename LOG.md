@@ -711,3 +711,7 @@ Pinned runtime and synthetic admission passed; non-financial archive upload/read
 
 ## L0085 checked execution paper released
 The exact pinned bootstrap completed short synthetic acceptance, all 339626 candidate rows were independently matched, and the compressed upload route passed immutable readback. Source f9e67bee4891ade0ab3162071f8da9bc64a66656. Private paper delivered separately; repository copy has no credential. Market discovery NOT RUN by Lead.
+
+
+## L0085 completed discovery
+Full registered signal grid scored, raw matching audited, results uploaded for Lead review. No validation or trading.
