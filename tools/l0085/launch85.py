@@ -1,0 +1,44 @@
+"""Prepared single-command foreground path: setup -> fixture -> measure -> audit -> publish."""
+from pathlib import Path
+import argparse,fcntl,hashlib,json,os,sys,time
+import prepare_runtime as E
+import supervision85 as V
+import publish85 as P
+ROOT=Path(__file__).resolve().parent
+
+def guard(workspace,reserve=0):
+    total=0
+    for p in Path(workspace).rglob('*'):
+        if p.is_file() and not p.is_symlink():total+=p.stat().st_size
+    if total+reserve>125000000:raise RuntimeError('Workspace bytes '+str(total)+' + reserved '+str(reserve)+' exceeds 125000000; no deletion authorised')
+    return total
+
+def main():
+    ap=argparse.ArgumentParser();ap.add_argument('--workspace',required=True);ap.add_argument('--source',required=True);ap.add_argument('--runtime',default='/tmp/nova-l0085-runtime-'+sys.implementation.cache_tag);ap.add_argument('--preflight-only',action='store_true');a=ap.parse_args()
+    workspace=Path(a.workspace).resolve();root=workspace/'nova-l0085';root.mkdir(parents=True,exist_ok=True)
+    lock=(root/'run.lock').open('a')
+    try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
+    except BlockingIOError:raise RuntimeError('L0085 supervisor or its child is active; follow that process instead of starting another') from None
+    V.LOCK_FD=lock.fileno()
+    manifest=json.loads((ROOT/'package_manifest.json').read_text())
+    for name,digest in manifest.items():assert hashlib.sha256((ROOT/name).read_bytes()).hexdigest()==digest,('pinned package changed',name)
+    V.durable(root/'scope.json',json.loads((ROOT/'scope.json').read_text()))
+    guard(workspace,20000000)
+    env=dict(os.environ);env['PYTHONDONTWRITEBYTECODE']='1';env['OPENBLAS_NUM_THREADS']='1';env['OMP_NUM_THREADS']='1';env['NOVA85_WORKSPACE']=str(workspace)
+    setup=E.prepare(a.runtime,workspace);V.durable(root/'environment.json',setup)
+    env['PYTHONPATH']=str(Path(a.runtime).resolve())+os.pathsep+str(ROOT)+os.pathsep+env.get('PYTHONPATH','')
+    V.run_checked('tests',[sys.executable,str(ROOT/'test85.py')],env,root)
+    V.run_checked('synthetic',[sys.executable,str(ROOT/'research85.py'),'synthetic','--out',str(root/'synthetic')],env,root)
+    guard(workspace,16000000)
+    # Public reading does not need credentials. Upload is tested before long work.
+    head=P.preflight(ROOT,a.source);V.durable(root/'upload-preflight.json',{'head':head,'status':'PASS'})
+    if a.preflight_only:print('PREFLIGHT_PASS; MARKET NOT RUN',flush=True);return
+    V.run_checked('measure',[sys.executable,str(ROOT/'research85.py'),'measure','--out',str(root/'market')],env,root)
+    guard(workspace,8000000)
+    head,receipt=P.complete(ROOT,root/'market',a.source)
+    receipt.update(commit=head,workspace_bytes=guard(workspace),verified_remote=True);V.durable(root/'remote-delivery.json',receipt)
+    print(json.dumps(receipt,indent=2),flush=True)
+if __name__=='__main__':
+    try:main()
+    except Exception as e:
+        token=os.environ.get('GH_TOKEN','');s=type(e).__name__+': '+str(e);print('BLOCKED '+(s.replace(token,'[REDACTED]') if token else s),flush=True);raise SystemExit(1)

@@ -1,0 +1,38 @@
+[
+  {
+    "asset": "BTCUSDT",
+    "file": "BTCUSDT.csv",
+    "sha256": "ee6db47777921a062b1cbd48426590c5717a7c031f5697e213ca28a1f1fa1789",
+    "bytes": 183402,
+    "rows": 1644,
+    "first": "2024-07-01T00:00:00Z",
+    "last": "2025-03-31T20:00:00Z",
+    "source_commit": "2d67a6593a34c0b46e7e4f686efc57db435982a9",
+    "source_path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=BTCUSDT/panel.parquet",
+    "source_sha256": "8ad03c4c5ebe8ec7e3925781ba303854c09c96bfde0079be2c6c9d50b7966b1b"
+  },
+  {
+    "asset": "ETHUSDT",
+    "file": "ETHUSDT.csv",
+    "sha256": "71e6ec3a148581e24566dee344c8e0e2452b0aed4a52a0ad617e9dcf4919a1fa",
+    "bytes": 193167,
+    "rows": 1644,
+    "first": "2024-07-01T00:00:00Z",
+    "last": "2025-03-31T20:00:00Z",
+    "source_commit": "2d67a6593a34c0b46e7e4f686efc57db435982a9",
+    "source_path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=ETHUSDT/panel.parquet",
+    "source_sha256": "a60cde96dcd75035ac104afe44e7f5dccfcd1d111b230ad37f36782001be8551"
+  },
+  {
+    "asset": "SOLUSDT",
+    "file": "SOLUSDT.csv",
+    "sha256": "5a156b942d6091c18f0ce3c5ea537e39a6ba68b0a641aa1ba0c7040b854b023e",
+    "bytes": 155682,
+    "rows": 1644,
+    "first": "2024-07-01T00:00:00Z",
+    "last": "2025-03-31T20:00:00Z",
+    "source_commit": "2d67a6593a34c0b46e7e4f686efc57db435982a9",
+    "source_path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=SOLUSDT/panel.parquet",
+    "source_sha256": "c6819545b0a3d89868704dab8a7dce1d659ab21f7af54c67fc8cca14d6b809a9"
+  }
+]

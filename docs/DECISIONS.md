@@ -387,3 +387,8 @@ D-0054 | 2026-10-05
 
 branch : agent/practical-execution-papers-2026-10-05
 merge : by user hand only
+
+
+## D-L0085-20261006 — owner corrects the research objective
+
+The owner requests entry-signal onset discovery without money, positions, exits or costs. This supersedes the proposed L0084 OR0 financial follow-up; it does not invalidate completed L0084 measurements. L0085 is one discovery search: 476 settings in 32 named categories, all 113050 unordered pairs in AND0/AND2/OR0, 339626 candidates. BTCUSDT/ETHUSDT/SOLUSDT, 4h, 2025-01-01 inclusive to 2025-04-01 exclusive. No financial/adoption claim and no validation outcomes in this paper. Historical data is previously seen. Code, grid, definitions and raw inputs are pinned under tools/l0085. Validation after a 24-bar embargo is reserved for a separate paper after Lead review. No protected-branch write or PR.

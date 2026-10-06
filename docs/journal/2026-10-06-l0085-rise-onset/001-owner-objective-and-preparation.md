@@ -1,0 +1,4 @@
+- Decision: owner chooses onset-signal discovery, no trade-profit experiment.
+- Execution: Lead prepared the bounded grid, source extracts, runner, raw matching audit and short readiness checks.
+- Produced: tools/l0085 package; all-grid synthetic 339626 rows passed, no market measurement.
+- Next: immutable upload rehearsal and final private paper; executor runs only the registered discovery.
