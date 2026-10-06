@@ -1,0 +1,20 @@
+{
+  "status": "PASS",
+  "head": "d1fe9978bee6bc7e3478f53d07633f9fabd198cf",
+  "files": [
+    "BTCUSDT.csv",
+    "ETHUSDT.csv",
+    "SOLUSDT.csv",
+    "grid.json",
+    "indicators84.py",
+    "inputs.json",
+    "launch85.py",
+    "prepare_runtime.py",
+    "publish85.py",
+    "research85.py",
+    "scope.json",
+    "signals85.py",
+    "supervision85.py",
+    "test85.py"
+  ]
+}

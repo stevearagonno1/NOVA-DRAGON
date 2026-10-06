@@ -1,0 +1,75 @@
+{
+  "diagnostic_groups_verified": 30,
+  "winner_precision_wilson95_descriptive": [
+    0.48410269273102247,
+    0.8279480969309202
+  ],
+  "winner_false_unmatched": 8,
+  "winner_duplicate_alerts": 0,
+  "missed_events": 19,
+  "median_lag_bars": 0,
+  "matched_same_onset_bar": 9,
+  "matched_early": 2,
+  "matched_late": 6,
+  "months": [
+    {
+      "month": "2025-01",
+      "signals": 6,
+      "matched": 3,
+      "onsets": 13
+    },
+    {
+      "month": "2025-02",
+      "signals": 16,
+      "matched": 11,
+      "onsets": 14
+    },
+    {
+      "month": "2025-03",
+      "signals": 3,
+      "matched": 3,
+      "onsets": 9
+    }
+  ],
+  "winner_diagnostics": [
+    {
+      "asset": "BTCUSDT",
+      "candidate": 17312,
+      "interval_limit": "Not corrected for serial dependence or search selection",
+      "lag_median_bars": 0.0,
+      "mae_median_atr_24": -0.5819813597427097,
+      "mfe_median_atr_24": 3.0520681860835115,
+      "precision_wilson95_descriptive": [
+        0.31267376973365824,
+        0.8318196702937638
+      ],
+      "signals": 10
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 17312,
+      "interval_limit": "Not corrected for serial dependence or search selection",
+      "lag_median_bars": 1.0,
+      "mae_median_atr_24": -0.9106090429067404,
+      "mfe_median_atr_24": 2.447732755535405,
+      "precision_wilson95_descriptive": [
+        0.26665129349549305,
+        0.8112214789023355
+      ],
+      "signals": 9
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 17312,
+      "interval_limit": "Not corrected for serial dependence or search selection",
+      "lag_median_bars": 0.0,
+      "mae_median_atr_24": -1.010322882714871,
+      "mfe_median_atr_24": 2.535801662725193,
+      "precision_wilson95_descriptive": [
+        0.6096657120978346,
+        1.0
+      ],
+      "signals": 6
+    }
+  ]
+}

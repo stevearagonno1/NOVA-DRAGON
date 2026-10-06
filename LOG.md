@@ -715,3 +715,12 @@ The exact pinned bootstrap completed short synthetic acceptance, all 339626 cand
 
 ## L0085 completed discovery
 Full registered signal grid scored, raw matching audited, results uploaded for Lead review. No validation or trading.
+
+
+## D-L0085-REVIEW-20261006
+
+- Before: discovery delivery awaiting Lead review. After: technically accepted, descriptive result independently verified; adoption Defer.
+- Evidence: 339626 candidates, 1018878 asset evaluations; 1428 raw masks rebuilt; centered labels and winner BB/VWAP independently recomputed. Winner AND0 BB_20_2.5 + VWAP_30_1.5: 25 alerts,17 matched events of36,8 false alerts,19 missed; macro-F1 0.5628019323671497.
+- Limits: only25 alerts, selection and evaluation share discovery period; no reserved validation or corrected significance; no money or trades.
+- Next: prepare L0086 validation of the ten frozen pairs on 2025-04-05 through 2025-06-30, unchanged parameters, signal metrics only. No new experiment run by this review.
+- Report: history/research/hyp_lab_out/L0085-rise-onset/lead-review/REPORT.md
