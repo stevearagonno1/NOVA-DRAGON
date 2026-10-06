@@ -1,0 +1,24 @@
+{
+  "status": "PASS",
+  "groups": 636,
+  "trade_rows": 265255,
+  "raw_partition_reconciliation": {
+    "head": "ccdd9981507725365d1756f72ede2d5961317a9c",
+    "run_id": "stage1-singletons-v1",
+    "partitions": 635,
+    "trade_rows": 265255,
+    "coverage_rows": 636,
+    "zero_trade_candidate_windows": 1,
+    "storage_journal_shards": 27,
+    "sha_size_schema_reconciliation": "PASS"
+  },
+  "scope": "singletons_and_no_signal_only",
+  "metric_coverage": {
+    "metrics_raw": 636,
+    "metrics_by_asset": 7632,
+    "metrics": 8268
+  },
+  "strategy_adoption": "NOT EVALUATED",
+  "metrics_and_inference_final_audit": "Lead review pending",
+  "fixed_head": "ccdd9981507725365d1756f72ede2d5961317a9c"
+}
