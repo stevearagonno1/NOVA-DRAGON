@@ -89,7 +89,7 @@ def complete(root,out,source):
             recorded=api('/git/blobs/'+blob_sha(archive.read_bytes()));assert base64.b64decode(recorded['content'])==archive.read_bytes();return head,receipt
         raise RuntimeError('different completed delivery already exists; Lead review required')
     log=get_file(head,'LOG.md');tick='docs/journal/2026-10-06-l0086-frozen-validation/003-executor-complete.md'
-    files={DEST+'/evidence.zip':archive.read_bytes(),path:b,DEST+'/REPORT.md':(out/'REPORT.md').read_bytes(),DEST+'/audit.json':(out/'audit.json').read_bytes(),DEST+'/selection.json':(out/'selection.json').read_bytes(),
-        'LOG.md':log+b'\n\n## L0086 completed discovery\nTen frozen pairs and twelve parents measured, raw matching audited, results uploaded for Lead review. No new search or trading.\n',
-        tick:b'- Decision: execute the registered onset-discovery search only.\n- Execution: all candidates scored; raw evidence reconciled.\n- Produced: history/research/hyp_lab_out/L0086-frozen-validation/evidence.zip and audit/report/selection.\n- Next: Lead independently reviews; no adoption or validation run.\n'}
+    files={DEST+'/evidence.zip':archive.read_bytes(),path:b,DEST+'/REPORT.md':(out/'REPORT.md').read_bytes(),DEST+'/audit.json':(out/'audit.json').read_bytes(),DEST+'/frozen_selection.json':(out/'frozen_selection.json').read_bytes(),
+        'LOG.md':log+b'\n\n## L0086 completed frozen validation\nTen frozen pairs and twelve parents measured, raw matching audited, results uploaded for Lead review. No new search or trading.\n',
+        tick:b'- Decision: execute only the ten frozen pairs and twelve parent controls.\n- Execution: registered validation scored; raw evidence reconciled.\n- Produced: history/research/hyp_lab_out/L0086-frozen-validation/evidence.zip and audit/report/frozen selection.\n- Next: Lead independently reviews validation; no adoption, new search or main merge.\n'}
     return publish(files,'L0086: complete frozen validation, raw evidence and audit',head),receipt

@@ -729,3 +729,8 @@ Full registered signal grid scored, raw matching audited, results uploaded for L
 ## D-L0086-PREREG-20261006
 
 Prepare one historical transfer validation of the ten L0085 pairs frozen at d1fe9978bee6bc7e3478f53d07633f9fabd198cf. Primary remains 17312. BTC/ETH/SOL 4h, 2025-04-05 inclusive to 2025-07-01 exclusive. Compare 12 distinct parent settings, no new search or money. Scope and numeric gates in tools/l0086/scope.json are fixed before market labels. All cyclic shifts jointly across assets; upper-tail ties, Holm family10, conditional on cyclic exchangeability, not a true future blind trial. Full synthetic path and independent audit passed; market NOT RUN by Lead. No merge/main/PR.
+
+
+## D-L0086-PREREG-20261006
+
+Prepare one historical transfer validation of the ten L0085 pairs frozen at d1fe9978bee6bc7e3478f53d07633f9fabd198cf. Primary remains 17312. BTC/ETH/SOL 4h, 2025-04-05 inclusive to 2025-07-01 exclusive. Compare 12 distinct parent settings, no new search or money. Scope and numeric gates in tools/l0086/scope.json are fixed before market labels. All cyclic shifts jointly across assets; upper-tail ties, Holm family10, conditional on cyclic exchangeability, not a true future blind trial. Full synthetic path and independent audit passed; market NOT RUN by Lead. No merge/main/PR.
