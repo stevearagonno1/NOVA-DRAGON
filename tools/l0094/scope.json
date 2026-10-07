@@ -1,0 +1,25 @@
+{
+  "round": "L0094",
+  "stage": "all-pairs discovery only",
+  "parent_result_commit": "6f6d9535009423a1d1e2cb0f3d20519d09ddeef7",
+  "parent_archive_sha256": "c0d00344ade2e148355fcef43a5b18d0be97b171234117e3b2e682f9e62135fa",
+  "parent_raw_sha256": "511f2d600ff9885a9dd61b6ee7946301db0003f271210760eebc142d8b49c31c",
+  "settings": 482,
+  "unordered_pairs": 115921,
+  "modes": [
+    "AND0",
+    "AND2",
+    "OR0"
+  ],
+  "pair_variants": 347763,
+  "candidate_rows_including_parents": 348245,
+  "asset_evaluations": 1044735,
+  "period_evaluations": 3134205,
+  "eligibility": "NS20/R30%;quarterNS3/R15%",
+  "rank": "minimum-quarter precision,pooled precision,recall,id",
+  "selection": "top20 eligible per asset;detailed quality and marginal comparisons on these only",
+  "inference": "not measured",
+  "adoption": "NOT AUTHORISED",
+  "historical_development_only": true,
+  "no_new_data_or_indicators": true
+}
