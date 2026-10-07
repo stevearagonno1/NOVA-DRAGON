@@ -1,0 +1,4 @@
+- Decision: freeze6 short price-recovery definitions vsCCI,21asset cases/63quarter evaluations;no deep-oversold requirement.
+- Executed: synthetic readiness72mask/prefix checks and scalar labels/matching PASS;tuple-reference call corrected before market.
+- Produced: code,scope,registration and readiness;market NOT RUN at this commit.
+- Next: Lead executes the authorised light comparison,independently audits and publishes;no executor paper or adoption.
