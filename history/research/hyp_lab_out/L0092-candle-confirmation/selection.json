@@ -1,0 +1,10 @@
+{
+  "adoption": "NOT AUTHORISED",
+  "conditional_inference": "not measured;no null/MCMC controls in this descriptive stage",
+  "eligibility_and_ranking_frozen": true,
+  "selected_by_asset": {
+    "BTCUSDT": "6",
+    "ETHUSDT": null,
+    "SOLUSDT": null
+  }
+}

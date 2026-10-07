@@ -1,0 +1,4 @@
+- Decision:Defer high-precision adoption of tested candle variants;not allcandlestick methods rejected.
+- Executed:57rows/171evaluations;216real mask/prefix checks and9scalar labels PASS.
+- Produced:raw archive,full report/audit/selection;BTC6eligible only,ETH/SOLnull;MorningCCI6/11P54.55%,R5.66%. Task654.517s before upload exceeds600s;Lead estimation/stop-boundary breach recorded.
+- Next:immutable delivery and focused timing/sample diagnosis;no main merge or unregistered experiments.
