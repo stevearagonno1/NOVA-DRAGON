@@ -1,0 +1,4 @@
+- Decision:run singleton discovery only.
+- Executed:all115921pairs in3modes plus482parents on3assets/3periods;scalar matching and causal prefixes checked.
+- Produced:raw masks,all rows,selection,report,analysis,audit,verified upload.
+- Next:Lead review;no automatic mixtures or main merge.

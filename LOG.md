@@ -866,3 +866,7 @@ Frozen6crypto-adapted candle definitions×3standalone/CCI timing modes;57rows/17
 
 ## L0092 timing diagnosis — 2026-10-07
 Saved57-row counts reconciled;636 event-variant timing partitions checked. Of56 CCI-caught events,Morning0.5 sameCCI6,after1/2inside1,otherinside0,nearestearly5,nearestlate3,absent41. Scarcity dominates delay for this definition;no wider-window performance or new selection. AuditPASS,Defer;no adoption/main merge. Next:design a causal persistent price-recovery confirmation before any new measurement. Whole-task timer and pre-work estimate were not recorded this turn;compute0.021386s is not full duration.
+
+
+## L0094 singleton survey
+482parents+347763pair variants/348245candidate rows/3134205period evaluations;independent matching PASS. Historical discovery only;Lead review pending,no triples,trading or adoption.

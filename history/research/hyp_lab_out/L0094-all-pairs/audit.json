@@ -1,0 +1,11 @@
+{
+  "audit_seconds": 63.72066618599999,
+  "compute_seconds": 83.028099806,
+  "independent_matching_all_rows": true,
+  "raw_sha256": "551918480f66ae32257b5bd4115451ec1f6d9351fbec202f046a0ff7949e547b",
+  "rows": 348245,
+  "scalar_mode_reference_rows": 36,
+  "source_status": "historical_discovery",
+  "status": "PASS",
+  "zero_signal_rows_retained": true
+}

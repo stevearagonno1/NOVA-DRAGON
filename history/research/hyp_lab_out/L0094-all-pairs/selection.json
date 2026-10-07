@@ -1,0 +1,4940 @@
+{
+  "adoption": "NOT AUTHORISED",
+  "ranking": "minimum_period_precision,pooled_precision,recall,candidate_id",
+  "top20_eligible_pairs_by_asset": {
+    "BTCUSDT": [
+      {
+        "a": 19,
+        "asset": "BTCUSDT",
+        "b": 317,
+        "candidate": 28278,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.42105263157894735,
+        "false_or_duplicate": 8,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 0.5,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 1,
+            "parent": 19,
+            "precision": 0.35294117647058826,
+            "recall": 0.32432432432432434
+          },
+          {
+            "added": 2,
+            "lost": 12,
+            "parent": 317,
+            "precision": 0.21359223300970873,
+            "recall": 0.5945945945945946
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.43478260869565216,
+            "false_or_duplicate": 5,
+            "matched_events": 5,
+            "precision": 0.5,
+            "recall": 0.38461538461538464,
+            "signals": 10
+          },
+          {
+            "events": 13,
+            "f1": 0.47058823529411764,
+            "false_or_duplicate": 0,
+            "matched_events": 4,
+            "precision": 1.0,
+            "recall": 0.3076923076923077,
+            "signals": 4
+          },
+          {
+            "events": 11,
+            "f1": 0.35294117647058826,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.2727272727272727,
+            "signals": 6
+          }
+        ],
+        "precision": 0.6,
+        "quality_pass": false,
+        "recall": 0.32432432432432434,
+        "rule": [
+          {
+            "family": "BB",
+            "id": "BB_50_2.5",
+            "k": 2.5,
+            "n": 50
+          },
+          {
+            "family": "STOCHRSI",
+            "id": "STOCHRSI_21_0.2",
+            "n": 21,
+            "t": 0.2
+          }
+        ],
+        "signals": 20,
+        "wilson95": [
+          0.3865815007622531,
+          0.781193467627183
+        ]
+      },
+      {
+        "a": 10,
+        "asset": "BTCUSDT",
+        "b": 31,
+        "candidate": 14837,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.41379310344827586,
+        "false_or_duplicate": 9,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND0",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 6,
+            "parent": 10,
+            "precision": 0.23076923076923078,
+            "recall": 0.4864864864864865
+          },
+          {
+            "added": 0,
+            "lost": 8,
+            "parent": 31,
+            "precision": 0.3448275862068966,
+            "recall": 0.5405405405405406
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.47619047619047616,
+            "false_or_duplicate": 3,
+            "matched_events": 5,
+            "precision": 0.625,
+            "recall": 0.38461538461538464,
+            "signals": 8
+          },
+          {
+            "events": 13,
+            "f1": 0.45454545454545453,
+            "false_or_duplicate": 4,
+            "matched_events": 5,
+            "precision": 0.5555555555555556,
+            "recall": 0.38461538461538464,
+            "signals": 9
+          },
+          {
+            "events": 11,
+            "f1": 0.26666666666666666,
+            "false_or_duplicate": 2,
+            "matched_events": 2,
+            "precision": 0.5,
+            "recall": 0.18181818181818182,
+            "signals": 4
+          }
+        ],
+        "precision": 0.5714285714285714,
+        "quality_pass": false,
+        "recall": 0.32432432432432434,
+        "rule": [
+          {
+            "family": "BB",
+            "id": "BB_20_2",
+            "k": 2,
+            "n": 20
+          },
+          {
+            "family": "CCI",
+            "id": "CCI_10_-150",
+            "n": 10,
+            "t": -150
+          }
+        ],
+        "signals": 21,
+        "wilson95": [
+          0.3654655436930671,
+          0.7553003107462404
+        ]
+      },
+      {
+        "a": 30,
+        "asset": "BTCUSDT",
+        "b": 32,
+        "candidate": 42470,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.4375,
+        "false_or_duplicate": 13,
+        "marginal_gain": false,
+        "matched_events": 14,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND0",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 13,
+            "parent": 30,
+            "precision": 0.25961538461538464,
+            "recall": 0.7297297297297297
+          },
+          {
+            "added": 0,
+            "lost": 9,
+            "parent": 32,
+            "precision": 0.19827586206896552,
+            "recall": 0.6216216216216216
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.43478260869565216,
+            "false_or_duplicate": 5,
+            "matched_events": 5,
+            "precision": 0.5,
+            "recall": 0.38461538461538464,
+            "signals": 10
+          },
+          {
+            "events": 13,
+            "f1": 0.43478260869565216,
+            "false_or_duplicate": 5,
+            "matched_events": 5,
+            "precision": 0.5,
+            "recall": 0.38461538461538464,
+            "signals": 10
+          },
+          {
+            "events": 11,
+            "f1": 0.4444444444444444,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.36363636363636365,
+            "signals": 7
+          }
+        ],
+        "precision": 0.5185185185185185,
+        "quality_pass": false,
+        "recall": 0.3783783783783784,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_10_-100",
+            "n": 10,
+            "t": -100
+          },
+          {
+            "family": "CCI",
+            "id": "CCI_10_-50",
+            "n": 10,
+            "t": -50
+          }
+        ],
+        "signals": 27,
+        "wilson95": [
+          0.3398561575495229,
+          0.6925677302378153
+        ]
+      },
+      {
+        "a": 31,
+        "asset": "BTCUSDT",
+        "b": 43,
+        "candidate": 43853,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.46153846153846156,
+        "false_or_duplicate": 13,
+        "marginal_gain": false,
+        "matched_events": 15,
+        "median_lag": 1,
+        "minimum_period_precision": 0.45454545454545453,
+        "mode": "AND0",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 5,
+            "parent": 31,
+            "precision": 0.3448275862068966,
+            "recall": 0.5405405405405406
+          },
+          {
+            "added": 0,
+            "lost": 10,
+            "parent": 43,
+            "precision": 0.3333333333333333,
+            "recall": 0.6756756756756757
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.4166666666666667,
+            "false_or_duplicate": 6,
+            "matched_events": 5,
+            "precision": 0.45454545454545453,
+            "recall": 0.38461538461538464,
+            "signals": 11
+          },
+          {
+            "events": 13,
+            "f1": 0.5833333333333334,
+            "false_or_duplicate": 4,
+            "matched_events": 7,
+            "precision": 0.6363636363636364,
+            "recall": 0.5384615384615384,
+            "signals": 11
+          },
+          {
+            "events": 11,
+            "f1": 0.35294117647058826,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.2727272727272727,
+            "signals": 6
+          }
+        ],
+        "precision": 0.5357142857142857,
+        "quality_pass": false,
+        "recall": 0.40540540540540543,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_10_-150",
+            "n": 10,
+            "t": -150
+          },
+          {
+            "family": "CCI",
+            "id": "CCI_7_-150",
+            "n": 7,
+            "t": -150
+          }
+        ],
+        "signals": 28,
+        "wilson95": [
+          0.358126892344679,
+          0.7046843001720462
+        ]
+      },
+      {
+        "a": 43,
+        "asset": "BTCUSDT",
+        "b": 467,
+        "candidate": 61092,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.45714285714285713,
+        "false_or_duplicate": 17,
+        "marginal_gain": false,
+        "matched_events": 16,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.45454545454545453,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 10,
+            "parent": 43,
+            "precision": 0.3333333333333333,
+            "recall": 0.6756756756756757
+          },
+          {
+            "added": 0,
+            "lost": 3,
+            "parent": 467,
+            "precision": 0.23170731707317074,
+            "recall": 0.5135135135135135
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.5,
+            "false_or_duplicate": 5,
+            "matched_events": 6,
+            "precision": 0.5454545454545454,
+            "recall": 0.46153846153846156,
+            "signals": 11
+          },
+          {
+            "events": 13,
+            "f1": 0.4166666666666667,
+            "false_or_duplicate": 6,
+            "matched_events": 5,
+            "precision": 0.45454545454545453,
+            "recall": 0.38461538461538464,
+            "signals": 11
+          },
+          {
+            "events": 11,
+            "f1": 0.45454545454545453,
+            "false_or_duplicate": 6,
+            "matched_events": 5,
+            "precision": 0.45454545454545453,
+            "recall": 0.45454545454545453,
+            "signals": 11
+          }
+        ],
+        "precision": 0.48484848484848486,
+        "quality_pass": false,
+        "recall": 0.43243243243243246,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_7_-150",
+            "n": 7,
+            "t": -150
+          },
+          {
+            "family": "WR",
+            "id": "WR_21_-70",
+            "n": 21,
+            "t": -70
+          }
+        ],
+        "signals": 33,
+        "wilson95": [
+          0.32504042108133696,
+          0.6478162455108585
+        ]
+      },
+      {
+        "a": 31,
+        "asset": "BTCUSDT",
+        "b": 445,
+        "candidate": 45059,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.45161290322580644,
+        "false_or_duplicate": 11,
+        "marginal_gain": false,
+        "matched_events": 14,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.4444444444444444,
+        "mode": "AND0",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 6,
+            "parent": 31,
+            "precision": 0.3448275862068966,
+            "recall": 0.5405405405405406
+          },
+          {
+            "added": 0,
+            "lost": 20,
+            "parent": 445,
+            "precision": 0.16666666666666666,
+            "recall": 0.918918918918919
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.36363636363636365,
+            "false_or_duplicate": 5,
+            "matched_events": 4,
+            "precision": 0.4444444444444444,
+            "recall": 0.3076923076923077,
+            "signals": 9
+          },
+          {
+            "events": 13,
+            "f1": 0.5454545454545454,
+            "false_or_duplicate": 3,
+            "matched_events": 6,
+            "precision": 0.6666666666666666,
+            "recall": 0.46153846153846156,
+            "signals": 9
+          },
+          {
+            "events": 11,
+            "f1": 0.4444444444444444,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.36363636363636365,
+            "signals": 7
+          }
+        ],
+        "precision": 0.56,
+        "quality_pass": false,
+        "recall": 0.3783783783783784,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_10_-150",
+            "n": 10,
+            "t": -150
+          },
+          {
+            "family": "VWAP",
+            "id": "VWAP_10_1",
+            "k": 1,
+            "n": 10
+          }
+        ],
+        "signals": 25,
+        "wilson95": [
+          0.3706733186979878,
+          0.7333436111893266
+        ]
+      },
+      {
+        "a": 34,
+        "asset": "BTCUSDT",
+        "b": 467,
+        "candidate": 49158,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.4,
+        "false_or_duplicate": 15,
+        "marginal_gain": false,
+        "matched_events": 13,
+        "median_lag": 1,
+        "minimum_period_precision": 0.4444444444444444,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 4,
+            "parent": 34,
+            "precision": 0.3469387755102041,
+            "recall": 0.4594594594594595
+          },
+          {
+            "added": 0,
+            "lost": 6,
+            "parent": 467,
+            "precision": 0.23170731707317074,
+            "recall": 0.5135135135135135
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.36363636363636365,
+            "false_or_duplicate": 5,
+            "matched_events": 4,
+            "precision": 0.4444444444444444,
+            "recall": 0.3076923076923077,
+            "signals": 9
+          },
+          {
+            "events": 13,
+            "f1": 0.4166666666666667,
+            "false_or_duplicate": 6,
+            "matched_events": 5,
+            "precision": 0.45454545454545453,
+            "recall": 0.38461538461538464,
+            "signals": 11
+          },
+          {
+            "events": 11,
+            "f1": 0.42105263157894735,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.36363636363636365,
+            "signals": 8
+          }
+        ],
+        "precision": 0.4642857142857143,
+        "quality_pass": false,
+        "recall": 0.35135135135135137,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_14_-150",
+            "n": 14,
+            "t": -150
+          },
+          {
+            "family": "WR",
+            "id": "WR_21_-70",
+            "n": 21,
+            "t": -70
+          }
+        ],
+        "signals": 28,
+        "wilson95": [
+          0.2953156998279538,
+          0.6418731076553209
+        ]
+      },
+      {
+        "a": 31,
+        "asset": "BTCUSDT",
+        "b": 316,
+        "candidate": 44672,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.38095238095238093,
+        "false_or_duplicate": 14,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.4444444444444444,
+        "mode": "AND0",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 8,
+            "parent": 31,
+            "precision": 0.3448275862068966,
+            "recall": 0.5405405405405406
+          },
+          {
+            "added": 0,
+            "lost": 12,
+            "parent": 316,
+            "precision": 0.2553191489361702,
+            "recall": 0.6486486486486487
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.3157894736842105,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.23076923076923078,
+            "signals": 6
+          },
+          {
+            "events": 13,
+            "f1": 0.36363636363636365,
+            "false_or_duplicate": 5,
+            "matched_events": 4,
+            "precision": 0.4444444444444444,
+            "recall": 0.3076923076923077,
+            "signals": 9
+          },
+          {
+            "events": 11,
+            "f1": 0.45454545454545453,
+            "false_or_duplicate": 6,
+            "matched_events": 5,
+            "precision": 0.45454545454545453,
+            "recall": 0.45454545454545453,
+            "signals": 11
+          }
+        ],
+        "precision": 0.46153846153846156,
+        "quality_pass": false,
+        "recall": 0.32432432432432434,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_10_-150",
+            "n": 10,
+            "t": -150
+          },
+          {
+            "family": "STOCHRSI",
+            "id": "STOCHRSI_21_0.1",
+            "n": 21,
+            "t": 0.1
+          }
+        ],
+        "signals": 26,
+        "wilson95": [
+          0.2875585353039122,
+          0.6454206125314121
+        ]
+      },
+      {
+        "a": 43,
+        "asset": "BTCUSDT",
+        "b": 315,
+        "candidate": 60636,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.4810126582278481,
+        "false_or_duplicate": 23,
+        "marginal_gain": false,
+        "matched_events": 19,
+        "median_lag": 1,
+        "minimum_period_precision": 0.4166666666666667,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 7,
+            "parent": 43,
+            "precision": 0.3333333333333333,
+            "recall": 0.6756756756756757
+          },
+          {
+            "added": 0,
+            "lost": 6,
+            "parent": 315,
+            "precision": 0.1937984496124031,
+            "recall": 0.6756756756756757
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.5161290322580645,
+            "false_or_duplicate": 10,
+            "matched_events": 8,
+            "precision": 0.4444444444444444,
+            "recall": 0.6153846153846154,
+            "signals": 18
+          },
+          {
+            "events": 13,
+            "f1": 0.48,
+            "false_or_duplicate": 6,
+            "matched_events": 6,
+            "precision": 0.5,
+            "recall": 0.46153846153846156,
+            "signals": 12
+          },
+          {
+            "events": 11,
+            "f1": 0.43478260869565216,
+            "false_or_duplicate": 7,
+            "matched_events": 5,
+            "precision": 0.4166666666666667,
+            "recall": 0.45454545454545453,
+            "signals": 12
+          }
+        ],
+        "precision": 0.4523809523809524,
+        "quality_pass": false,
+        "recall": 0.5135135135135135,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_7_-150",
+            "n": 7,
+            "t": -150
+          },
+          {
+            "family": "STOCHRSI",
+            "id": "STOCHRSI_14_0.3",
+            "n": 14,
+            "t": 0.3
+          }
+        ],
+        "signals": 42,
+        "wilson95": [
+          0.31223393233454466,
+          0.6005088096526652
+        ]
+      },
+      {
+        "a": 15,
+        "asset": "BTCUSDT",
+        "b": 314,
+        "candidate": 22707,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.4262295081967213,
+        "false_or_duplicate": 11,
+        "marginal_gain": false,
+        "matched_events": 13,
+        "median_lag": 0,
+        "minimum_period_precision": 0.4,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 1,
+            "parent": 15,
+            "precision": 0.35135135135135137,
+            "recall": 0.35135135135135137
+          },
+          {
+            "added": 2,
+            "lost": 15,
+            "parent": 314,
+            "precision": 0.21487603305785125,
+            "recall": 0.7027027027027027
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.34782608695652173,
+            "false_or_duplicate": 6,
+            "matched_events": 4,
+            "precision": 0.4,
+            "recall": 0.3076923076923077,
+            "signals": 10
+          },
+          {
+            "events": 13,
+            "f1": 0.5263157894736842,
+            "false_or_duplicate": 1,
+            "matched_events": 5,
+            "precision": 0.8333333333333334,
+            "recall": 0.38461538461538464,
+            "signals": 6
+          },
+          {
+            "events": 11,
+            "f1": 0.42105263157894735,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.36363636363636365,
+            "signals": 8
+          }
+        ],
+        "precision": 0.5416666666666666,
+        "quality_pass": false,
+        "recall": 0.35135135135135137,
+        "rule": [
+          {
+            "family": "BB",
+            "id": "BB_30_2.5",
+            "k": 2.5,
+            "n": 30
+          },
+          {
+            "family": "STOCHRSI",
+            "id": "STOCHRSI_14_0.2",
+            "n": 14,
+            "t": 0.2
+          }
+        ],
+        "signals": 24,
+        "wilson95": [
+          0.3507486535891948,
+          0.72108666268789
+        ]
+      },
+      {
+        "a": 31,
+        "asset": "BTCUSDT",
+        "b": 319,
+        "candidate": 44681,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.45714285714285713,
+        "false_or_duplicate": 17,
+        "marginal_gain": false,
+        "matched_events": 16,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.4,
+        "mode": "AND0",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 4,
+            "parent": 31,
+            "precision": 0.3448275862068966,
+            "recall": 0.5405405405405406
+          },
+          {
+            "added": 0,
+            "lost": 15,
+            "parent": 319,
+            "precision": 0.17714285714285713,
+            "recall": 0.8378378378378378
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.34782608695652173,
+            "false_or_duplicate": 6,
+            "matched_events": 4,
+            "precision": 0.4,
+            "recall": 0.3076923076923077,
+            "signals": 10
+          },
+          {
+            "events": 13,
+            "f1": 0.5,
+            "false_or_duplicate": 5,
+            "matched_events": 6,
+            "precision": 0.5454545454545454,
+            "recall": 0.46153846153846156,
+            "signals": 11
+          },
+          {
+            "events": 11,
+            "f1": 0.5217391304347826,
+            "false_or_duplicate": 6,
+            "matched_events": 6,
+            "precision": 0.5,
+            "recall": 0.5454545454545454,
+            "signals": 12
+          }
+        ],
+        "precision": 0.48484848484848486,
+        "quality_pass": false,
+        "recall": 0.43243243243243246,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_10_-150",
+            "n": 10,
+            "t": -150
+          },
+          {
+            "family": "STOCHRSI",
+            "id": "STOCHRSI_7_0.1",
+            "n": 7,
+            "t": 0.1
+          }
+        ],
+        "signals": 33,
+        "wilson95": [
+          0.32504042108133696,
+          0.6478162455108585
+        ]
+      },
+      {
+        "a": 31,
+        "asset": "BTCUSDT",
+        "b": 321,
+        "candidate": 44687,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.4117647058823529,
+        "false_or_duplicate": 17,
+        "marginal_gain": false,
+        "matched_events": 14,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.4,
+        "mode": "AND0",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 6,
+            "parent": 31,
+            "precision": 0.3448275862068966,
+            "recall": 0.5405405405405406
+          },
+          {
+            "added": 0,
+            "lost": 18,
+            "parent": 321,
+            "precision": 0.17582417582417584,
+            "recall": 0.8648648648648649
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.34782608695652173,
+            "false_or_duplicate": 6,
+            "matched_events": 4,
+            "precision": 0.4,
+            "recall": 0.3076923076923077,
+            "signals": 10
+          },
+          {
+            "events": 13,
+            "f1": 0.45454545454545453,
+            "false_or_duplicate": 4,
+            "matched_events": 5,
+            "precision": 0.5555555555555556,
+            "recall": 0.38461538461538464,
+            "signals": 9
+          },
+          {
+            "events": 11,
+            "f1": 0.43478260869565216,
+            "false_or_duplicate": 7,
+            "matched_events": 5,
+            "precision": 0.4166666666666667,
+            "recall": 0.45454545454545453,
+            "signals": 12
+          }
+        ],
+        "precision": 0.45161290322580644,
+        "quality_pass": false,
+        "recall": 0.3783783783783784,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_10_-150",
+            "n": 10,
+            "t": -150
+          },
+          {
+            "family": "STOCHRSI",
+            "id": "STOCHRSI_7_0.3",
+            "n": 7,
+            "t": 0.3
+          }
+        ],
+        "signals": 31,
+        "wilson95": [
+          0.29161735980520015,
+          0.6222783236264549
+        ]
+      },
+      {
+        "a": 31,
+        "asset": "BTCUSDT",
+        "b": 314,
+        "candidate": 44666,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.375,
+        "false_or_duplicate": 15,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.4,
+        "mode": "AND0",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 8,
+            "parent": 31,
+            "precision": 0.3448275862068966,
+            "recall": 0.5405405405405406
+          },
+          {
+            "added": 0,
+            "lost": 14,
+            "parent": 314,
+            "precision": 0.21487603305785125,
+            "recall": 0.7027027027027027
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.34782608695652173,
+            "false_or_duplicate": 6,
+            "matched_events": 4,
+            "precision": 0.4,
+            "recall": 0.3076923076923077,
+            "signals": 10
+          },
+          {
+            "events": 13,
+            "f1": 0.3157894736842105,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.23076923076923078,
+            "signals": 6
+          },
+          {
+            "events": 11,
+            "f1": 0.45454545454545453,
+            "false_or_duplicate": 6,
+            "matched_events": 5,
+            "precision": 0.45454545454545453,
+            "recall": 0.45454545454545453,
+            "signals": 11
+          }
+        ],
+        "precision": 0.4444444444444444,
+        "quality_pass": false,
+        "recall": 0.32432432432432434,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_10_-150",
+            "n": 10,
+            "t": -150
+          },
+          {
+            "family": "STOCHRSI",
+            "id": "STOCHRSI_14_0.2",
+            "n": 14,
+            "t": 0.2
+          }
+        ],
+        "signals": 27,
+        "wilson95": [
+          0.27585858177023004,
+          0.6268697548677552
+        ]
+      },
+      {
+        "a": 31,
+        "asset": "BTCUSDT",
+        "b": 320,
+        "candidate": 44684,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.4057971014492754,
+        "false_or_duplicate": 18,
+        "marginal_gain": false,
+        "matched_events": 14,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.4,
+        "mode": "AND0",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 6,
+            "parent": 31,
+            "precision": 0.3448275862068966,
+            "recall": 0.5405405405405406
+          },
+          {
+            "added": 0,
+            "lost": 17,
+            "parent": 320,
+            "precision": 0.1791907514450867,
+            "recall": 0.8378378378378378
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.34782608695652173,
+            "false_or_duplicate": 6,
+            "matched_events": 4,
+            "precision": 0.4,
+            "recall": 0.3076923076923077,
+            "signals": 10
+          },
+          {
+            "events": 13,
+            "f1": 0.4166666666666667,
+            "false_or_duplicate": 6,
+            "matched_events": 5,
+            "precision": 0.45454545454545453,
+            "recall": 0.38461538461538464,
+            "signals": 11
+          },
+          {
+            "events": 11,
+            "f1": 0.45454545454545453,
+            "false_or_duplicate": 6,
+            "matched_events": 5,
+            "precision": 0.45454545454545453,
+            "recall": 0.45454545454545453,
+            "signals": 11
+          }
+        ],
+        "precision": 0.4375,
+        "quality_pass": false,
+        "recall": 0.3783783783783784,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_10_-150",
+            "n": 10,
+            "t": -150
+          },
+          {
+            "family": "STOCHRSI",
+            "id": "STOCHRSI_7_0.2",
+            "n": 7,
+            "t": 0.2
+          }
+        ],
+        "signals": 32,
+        "wilson95": [
+          0.2816533111504036,
+          0.6067440886314801
+        ]
+      },
+      {
+        "a": 16,
+        "asset": "BTCUSDT",
+        "b": 144,
+        "candidate": 23593,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.3880597014925373,
+        "false_or_duplicate": 17,
+        "marginal_gain": false,
+        "matched_events": 13,
+        "median_lag": 0,
+        "minimum_period_precision": 0.4,
+        "mode": "OR0",
+        "parent_comparison": [
+          {
+            "added": 4,
+            "lost": 0,
+            "parent": 16,
+            "precision": 0.45,
+            "recall": 0.24324324324324326
+          },
+          {
+            "added": 9,
+            "lost": 0,
+            "parent": 144,
+            "precision": 0.4,
+            "recall": 0.10810810810810811
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.4,
+            "false_or_duplicate": 7,
+            "matched_events": 5,
+            "precision": 0.4166666666666667,
+            "recall": 0.38461538461538464,
+            "signals": 12
+          },
+          {
+            "events": 13,
+            "f1": 0.38095238095238093,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3076923076923077,
+            "signals": 8
+          },
+          {
+            "events": 11,
+            "f1": 0.38095238095238093,
+            "false_or_duplicate": 6,
+            "matched_events": 4,
+            "precision": 0.4,
+            "recall": 0.36363636363636365,
+            "signals": 10
+          }
+        ],
+        "precision": 0.43333333333333335,
+        "quality_pass": false,
+        "recall": 0.35135135135135137,
+        "rule": [
+          {
+            "family": "BB",
+            "id": "BB_30_3",
+            "k": 3,
+            "n": 30
+          },
+          {
+            "bottom": 10,
+            "family": "HAMMER",
+            "id": "HAMMER_2_0.5_10",
+            "lower": 2,
+            "upper": 0.5
+          }
+        ],
+        "signals": 30,
+        "wilson95": [
+          0.2737748557646652,
+          0.6080269299918639
+        ]
+      },
+      {
+        "a": 310,
+        "asset": "BTCUSDT",
+        "b": 471,
+        "candidate": 304608,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.36363636363636365,
+        "false_or_duplicate": 17,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.4,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 6,
+            "parent": 310,
+            "precision": 0.20238095238095238,
+            "recall": 0.4594594594594595
+          },
+          {
+            "added": 2,
+            "lost": 5,
+            "parent": 471,
+            "precision": 0.25,
+            "recall": 0.40540540540540543
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.34782608695652173,
+            "false_or_duplicate": 6,
+            "matched_events": 4,
+            "precision": 0.4,
+            "recall": 0.3076923076923077,
+            "signals": 10
+          },
+          {
+            "events": 13,
+            "f1": 0.36363636363636365,
+            "false_or_duplicate": 5,
+            "matched_events": 4,
+            "precision": 0.4444444444444444,
+            "recall": 0.3076923076923077,
+            "signals": 9
+          },
+          {
+            "events": 11,
+            "f1": 0.38095238095238093,
+            "false_or_duplicate": 6,
+            "matched_events": 4,
+            "precision": 0.4,
+            "recall": 0.36363636363636365,
+            "signals": 10
+          }
+        ],
+        "precision": 0.41379310344827586,
+        "quality_pass": false,
+        "recall": 0.32432432432432434,
+        "rule": [
+          {
+            "family": "RSI",
+            "form": "state",
+            "id": "RSI_7_35_state",
+            "n": 7,
+            "t": 35
+          },
+          {
+            "family": "WR",
+            "id": "WR_28_-80",
+            "n": 28,
+            "t": -80
+          }
+        ],
+        "signals": 29,
+        "wilson95": [
+          0.255131773413224,
+          0.5926216401212141
+        ]
+      },
+      {
+        "a": 33,
+        "asset": "BTCUSDT",
+        "b": 102,
+        "candidate": 46722,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.3939393939393939,
+        "false_or_duplicate": 16,
+        "marginal_gain": false,
+        "matched_events": 13,
+        "median_lag": 1,
+        "minimum_period_precision": 0.38461538461538464,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 8,
+            "parent": 33,
+            "precision": 0.24096385542168675,
+            "recall": 0.5405405405405406
+          },
+          {
+            "added": 0,
+            "lost": 0,
+            "parent": 102,
+            "precision": 0.24074074074074073,
+            "recall": 0.35135135135135137
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.48,
+            "false_or_duplicate": 6,
+            "matched_events": 6,
+            "precision": 0.5,
+            "recall": 0.46153846153846156,
+            "signals": 12
+          },
+          {
+            "events": 13,
+            "f1": 0.23529411764705882,
+            "false_or_duplicate": 2,
+            "matched_events": 2,
+            "precision": 0.5,
+            "recall": 0.15384615384615385,
+            "signals": 4
+          },
+          {
+            "events": 11,
+            "f1": 0.4166666666666667,
+            "false_or_duplicate": 8,
+            "matched_events": 5,
+            "precision": 0.38461538461538464,
+            "recall": 0.45454545454545453,
+            "signals": 13
+          }
+        ],
+        "precision": 0.4482758620689655,
+        "quality_pass": false,
+        "recall": 0.35135135135135137,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_14_-100",
+            "n": 14,
+            "t": -100
+          },
+          {
+            "family": "DONCHIAN_FAIL",
+            "id": "DONCHIAN_FAIL_20",
+            "n": 20
+          }
+        ],
+        "signals": 29,
+        "wilson95": [
+          0.28413168023037194,
+          0.6245203678902909
+        ]
+      },
+      {
+        "a": 33,
+        "asset": "BTCUSDT",
+        "b": 381,
+        "candidate": 47559,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.3939393939393939,
+        "false_or_duplicate": 16,
+        "marginal_gain": false,
+        "matched_events": 13,
+        "median_lag": 1,
+        "minimum_period_precision": 0.38461538461538464,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 8,
+            "parent": 33,
+            "precision": 0.24096385542168675,
+            "recall": 0.5405405405405406
+          },
+          {
+            "added": 0,
+            "lost": 0,
+            "parent": 381,
+            "precision": 0.24074074074074073,
+            "recall": 0.35135135135135137
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.48,
+            "false_or_duplicate": 6,
+            "matched_events": 6,
+            "precision": 0.5,
+            "recall": 0.46153846153846156,
+            "signals": 12
+          },
+          {
+            "events": 13,
+            "f1": 0.23529411764705882,
+            "false_or_duplicate": 2,
+            "matched_events": 2,
+            "precision": 0.5,
+            "recall": 0.15384615384615385,
+            "signals": 4
+          },
+          {
+            "events": 11,
+            "f1": 0.4166666666666667,
+            "false_or_duplicate": 8,
+            "matched_events": 5,
+            "precision": 0.38461538461538464,
+            "recall": 0.45454545454545453,
+            "signals": 13
+          }
+        ],
+        "precision": 0.4482758620689655,
+        "quality_pass": false,
+        "recall": 0.35135135135135137,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_14_-100",
+            "n": 14,
+            "t": -100
+          },
+          {
+            "depth": 0,
+            "family": "SWEEP",
+            "id": "SWEEP_20_0",
+            "n": 20
+          }
+        ],
+        "signals": 29,
+        "wilson95": [
+          0.28413168023037194,
+          0.6245203678902909
+        ]
+      },
+      {
+        "a": 34,
+        "asset": "BTCUSDT",
+        "b": 451,
+        "candidate": 49110,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.4,
+        "false_or_duplicate": 19,
+        "marginal_gain": false,
+        "matched_events": 14,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.38461538461538464,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 3,
+            "parent": 34,
+            "precision": 0.3469387755102041,
+            "recall": 0.4594594594594595
+          },
+          {
+            "added": 0,
+            "lost": 4,
+            "parent": 451,
+            "precision": 0.20930232558139536,
+            "recall": 0.4864864864864865
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.4166666666666667,
+            "false_or_duplicate": 6,
+            "matched_events": 5,
+            "precision": 0.45454545454545453,
+            "recall": 0.38461538461538464,
+            "signals": 11
+          },
+          {
+            "events": 13,
+            "f1": 0.38461538461538464,
+            "false_or_duplicate": 8,
+            "matched_events": 5,
+            "precision": 0.38461538461538464,
+            "recall": 0.38461538461538464,
+            "signals": 13
+          },
+          {
+            "events": 11,
+            "f1": 0.4,
+            "false_or_duplicate": 5,
+            "matched_events": 4,
+            "precision": 0.4444444444444444,
+            "recall": 0.36363636363636365,
+            "signals": 9
+          }
+        ],
+        "precision": 0.42424242424242425,
+        "quality_pass": false,
+        "recall": 0.3783783783783784,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_14_-150",
+            "n": 14,
+            "t": -150
+          },
+          {
+            "family": "VWAP",
+            "id": "VWAP_20_2",
+            "k": 2,
+            "n": 20
+          }
+        ],
+        "signals": 33,
+        "wilson95": [
+          0.2723559663341021,
+          0.5919273666268755
+        ]
+      },
+      {
+        "a": 16,
+        "asset": "BTCUSDT",
+        "b": 135,
+        "candidate": 23566,
+        "eligible": true,
+        "events": 37,
+        "f1": 0.38235294117647056,
+        "false_or_duplicate": 18,
+        "marginal_gain": false,
+        "matched_events": 13,
+        "median_lag": 0,
+        "minimum_period_precision": 0.38461538461538464,
+        "mode": "OR0",
+        "parent_comparison": [
+          {
+            "added": 4,
+            "lost": 0,
+            "parent": 16,
+            "precision": 0.45,
+            "recall": 0.24324324324324326
+          },
+          {
+            "added": 9,
+            "lost": 0,
+            "parent": 135,
+            "precision": 0.36363636363636365,
+            "recall": 0.10810810810810811
+          }
+        ],
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.38461538461538464,
+            "false_or_duplicate": 8,
+            "matched_events": 5,
+            "precision": 0.38461538461538464,
+            "recall": 0.38461538461538464,
+            "signals": 13
+          },
+          {
+            "events": 13,
+            "f1": 0.38095238095238093,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3076923076923077,
+            "signals": 8
+          },
+          {
+            "events": 11,
+            "f1": 0.38095238095238093,
+            "false_or_duplicate": 6,
+            "matched_events": 4,
+            "precision": 0.4,
+            "recall": 0.36363636363636365,
+            "signals": 10
+          }
+        ],
+        "precision": 0.41935483870967744,
+        "quality_pass": false,
+        "recall": 0.35135135135135137,
+        "rule": [
+          {
+            "family": "BB",
+            "id": "BB_30_3",
+            "k": 3,
+            "n": 30
+          },
+          {
+            "bottom": 10,
+            "family": "HAMMER",
+            "id": "HAMMER_1.5_0.5_10",
+            "lower": 1.5,
+            "upper": 0.5
+          }
+        ],
+        "signals": 31,
+        "wilson95": [
+          0.2641554306731223,
+          0.5923373750463029
+        ]
+      }
+    ],
+    "ETHUSDT": [
+      {
+        "a": 34,
+        "asset": "ETHUSDT",
+        "b": 459,
+        "candidate": 49134,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.4528301886792453,
+        "false_or_duplicate": 8,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.5555555555555556,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 7,
+            "parent": 34,
+            "precision": 0.40425531914893614,
+            "recall": 0.5757575757575758
+          },
+          {
+            "added": 0,
+            "lost": 4,
+            "parent": 459,
+            "precision": 0.43243243243243246,
+            "recall": 0.48484848484848486
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.5,
+            "false_or_duplicate": 4,
+            "matched_events": 5,
+            "precision": 0.5555555555555556,
+            "recall": 0.45454545454545453,
+            "signals": 9
+          },
+          {
+            "events": 12,
+            "f1": 0.4444444444444444,
+            "false_or_duplicate": 2,
+            "matched_events": 4,
+            "precision": 0.6666666666666666,
+            "recall": 0.3333333333333333,
+            "signals": 6
+          },
+          {
+            "events": 10,
+            "f1": 0.4,
+            "false_or_duplicate": 2,
+            "matched_events": 3,
+            "precision": 0.6,
+            "recall": 0.3,
+            "signals": 5
+          }
+        ],
+        "precision": 0.6,
+        "quality_pass": false,
+        "recall": 0.36363636363636365,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_14_-150",
+            "n": 14,
+            "t": -150
+          },
+          {
+            "family": "VWAP",
+            "id": "VWAP_50_2",
+            "k": 2,
+            "n": 50
+          }
+        ],
+        "signals": 20,
+        "wilson95": [
+          0.3865815007622531,
+          0.781193467627183
+        ]
+      },
+      {
+        "a": 159,
+        "asset": "ETHUSDT",
+        "b": 314,
+        "candidate": 192698,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.49122807017543857,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 14,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.5555555555555556,
+        "mode": "AND0",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 10,
+            "parent": 159,
+            "precision": 0.19047619047619047,
+            "recall": 0.7272727272727273
+          },
+          {
+            "added": 0,
+            "lost": 12,
+            "parent": 314,
+            "precision": 0.24761904761904763,
+            "recall": 0.7878787878787878
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.5,
+            "false_or_duplicate": 4,
+            "matched_events": 5,
+            "precision": 0.5555555555555556,
+            "recall": 0.45454545454545453,
+            "signals": 9
+          },
+          {
+            "events": 12,
+            "f1": 0.42105263157894735,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.3333333333333333,
+            "signals": 7
+          },
+          {
+            "events": 10,
+            "f1": 0.5555555555555556,
+            "false_or_duplicate": 3,
+            "matched_events": 5,
+            "precision": 0.625,
+            "recall": 0.5,
+            "signals": 8
+          }
+        ],
+        "precision": 0.5833333333333334,
+        "quality_pass": false,
+        "recall": 0.42424242424242425,
+        "rule": [
+          {
+            "family": "KELTNER",
+            "id": "KELTNER_10_1",
+            "k": 1,
+            "n": 10
+          },
+          {
+            "family": "STOCHRSI",
+            "id": "STOCHRSI_14_0.2",
+            "n": 14,
+            "t": 0.2
+          }
+        ],
+        "signals": 24,
+        "wilson95": [
+          0.3883466586522876,
+          0.7553239739018824
+        ]
+      },
+      {
+        "a": 451,
+        "asset": "ETHUSDT",
+        "b": 459,
+        "candidate": 346872,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.5172413793103449,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 15,
+        "median_lag": 0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 8,
+            "parent": 451,
+            "precision": 0.25842696629213485,
+            "recall": 0.696969696969697
+          },
+          {
+            "added": 0,
+            "lost": 1,
+            "parent": 459,
+            "precision": 0.43243243243243246,
+            "recall": 0.48484848484848486
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.5454545454545454,
+            "false_or_duplicate": 5,
+            "matched_events": 6,
+            "precision": 0.5454545454545454,
+            "recall": 0.5454545454545454,
+            "signals": 11
+          },
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 10,
+            "f1": 0.625,
+            "false_or_duplicate": 1,
+            "matched_events": 5,
+            "precision": 0.8333333333333334,
+            "recall": 0.5,
+            "signals": 6
+          }
+        ],
+        "precision": 0.6,
+        "quality_pass": false,
+        "recall": 0.45454545454545453,
+        "rule": [
+          {
+            "family": "VWAP",
+            "id": "VWAP_20_2",
+            "k": 2,
+            "n": 20
+          },
+          {
+            "family": "VWAP",
+            "id": "VWAP_50_2",
+            "k": 2,
+            "n": 50
+          }
+        ],
+        "signals": 25,
+        "wilson95": [
+          0.40739457358967,
+          0.7659669762225203
+        ]
+      },
+      {
+        "a": 43,
+        "asset": "ETHUSDT",
+        "b": 318,
+        "candidate": 60645,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.4528301886792453,
+        "false_or_duplicate": 8,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 12,
+            "parent": 43,
+            "precision": 0.3382352941176471,
+            "recall": 0.696969696969697
+          },
+          {
+            "added": 0,
+            "lost": 6,
+            "parent": 318,
+            "precision": 0.18,
+            "recall": 0.5454545454545454
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.6666666666666666,
+            "false_or_duplicate": 3,
+            "matched_events": 7,
+            "precision": 0.7,
+            "recall": 0.6363636363636364,
+            "signals": 10
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          },
+          {
+            "events": 10,
+            "f1": 0.2857142857142857,
+            "false_or_duplicate": 2,
+            "matched_events": 2,
+            "precision": 0.5,
+            "recall": 0.2,
+            "signals": 4
+          }
+        ],
+        "precision": 0.6,
+        "quality_pass": false,
+        "recall": 0.36363636363636365,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_7_-150",
+            "n": 7,
+            "t": -150
+          },
+          {
+            "family": "STOCHRSI",
+            "id": "STOCHRSI_21_0.3",
+            "n": 21,
+            "t": 0.3
+          }
+        ],
+        "signals": 20,
+        "wilson95": [
+          0.3865815007622531,
+          0.781193467627183
+        ]
+      },
+      {
+        "a": 314,
+        "asset": "ETHUSDT",
+        "b": 459,
+        "candidate": 306594,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.5084745762711864,
+        "false_or_duplicate": 11,
+        "marginal_gain": false,
+        "matched_events": 15,
+        "median_lag": 1,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 11,
+            "parent": 314,
+            "precision": 0.24761904761904763,
+            "recall": 0.7878787878787878
+          },
+          {
+            "added": 0,
+            "lost": 1,
+            "parent": 459,
+            "precision": 0.43243243243243246,
+            "recall": 0.48484848484848486
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.5217391304347826,
+            "false_or_duplicate": 6,
+            "matched_events": 6,
+            "precision": 0.5,
+            "recall": 0.5454545454545454,
+            "signals": 12
+          },
+          {
+            "events": 12,
+            "f1": 0.42105263157894735,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.3333333333333333,
+            "signals": 7
+          },
+          {
+            "events": 10,
+            "f1": 0.5882352941176471,
+            "false_or_duplicate": 2,
+            "matched_events": 5,
+            "precision": 0.7142857142857143,
+            "recall": 0.5,
+            "signals": 7
+          }
+        ],
+        "precision": 0.5769230769230769,
+        "quality_pass": false,
+        "recall": 0.45454545454545453,
+        "rule": [
+          {
+            "family": "STOCHRSI",
+            "id": "STOCHRSI_14_0.2",
+            "n": 14,
+            "t": 0.2
+          },
+          {
+            "family": "VWAP",
+            "id": "VWAP_50_2",
+            "k": 2,
+            "n": 50
+          }
+        ],
+        "signals": 26,
+        "wilson95": [
+          0.3894861374659171,
+          0.7445555668634343
+        ]
+      },
+      {
+        "a": 12,
+        "asset": "ETHUSDT",
+        "b": 30,
+        "candidate": 17652,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.41509433962264153,
+        "false_or_duplicate": 9,
+        "marginal_gain": false,
+        "matched_events": 11,
+        "median_lag": 1,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 3,
+            "parent": 12,
+            "precision": 0.37142857142857144,
+            "recall": 0.3939393939393939
+          },
+          {
+            "added": 0,
+            "lost": 16,
+            "parent": 30,
+            "precision": 0.28125,
+            "recall": 0.8181818181818182
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.5,
+            "false_or_duplicate": 4,
+            "matched_events": 5,
+            "precision": 0.5555555555555556,
+            "recall": 0.45454545454545453,
+            "signals": 9
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          },
+          {
+            "events": 10,
+            "f1": 0.4,
+            "false_or_duplicate": 2,
+            "matched_events": 3,
+            "precision": 0.6,
+            "recall": 0.3,
+            "signals": 5
+          }
+        ],
+        "precision": 0.55,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "family": "BB",
+            "id": "BB_20_3",
+            "k": 3,
+            "n": 20
+          },
+          {
+            "family": "CCI",
+            "id": "CCI_10_-100",
+            "n": 10,
+            "t": -100
+          }
+        ],
+        "signals": 20,
+        "wilson95": [
+          0.34208534245034233,
+          0.7418021417443759
+        ]
+      },
+      {
+        "a": 31,
+        "asset": "ETHUSDT",
+        "b": 456,
+        "candidate": 45093,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.41509433962264153,
+        "false_or_duplicate": 9,
+        "marginal_gain": false,
+        "matched_events": 11,
+        "median_lag": 1,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 11,
+            "parent": 31,
+            "precision": 0.36666666666666664,
+            "recall": 0.6666666666666666
+          },
+          {
+            "added": 0,
+            "lost": 1,
+            "parent": 456,
+            "precision": 0.375,
+            "recall": 0.36363636363636365
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.4444444444444444,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.36363636363636365,
+            "signals": 7
+          },
+          {
+            "events": 12,
+            "f1": 0.47619047619047616,
+            "false_or_duplicate": 4,
+            "matched_events": 5,
+            "precision": 0.5555555555555556,
+            "recall": 0.4166666666666667,
+            "signals": 9
+          },
+          {
+            "events": 10,
+            "f1": 0.2857142857142857,
+            "false_or_duplicate": 2,
+            "matched_events": 2,
+            "precision": 0.5,
+            "recall": 0.2,
+            "signals": 4
+          }
+        ],
+        "precision": 0.55,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_10_-150",
+            "n": 10,
+            "t": -150
+          },
+          {
+            "family": "VWAP",
+            "id": "VWAP_30_2.5",
+            "k": 2.5,
+            "n": 30
+          }
+        ],
+        "signals": 20,
+        "wilson95": [
+          0.34208534245034233,
+          0.7418021417443759
+        ]
+      },
+      {
+        "a": 314,
+        "asset": "ETHUSDT",
+        "b": 472,
+        "candidate": 306633,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.41509433962264153,
+        "false_or_duplicate": 9,
+        "marginal_gain": false,
+        "matched_events": 11,
+        "median_lag": 2,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 15,
+            "parent": 314,
+            "precision": 0.24761904761904763,
+            "recall": 0.7878787878787878
+          },
+          {
+            "added": 0,
+            "lost": 2,
+            "parent": 472,
+            "precision": 0.34210526315789475,
+            "recall": 0.3939393939393939
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.4444444444444444,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.36363636363636365,
+            "signals": 7
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          },
+          {
+            "events": 10,
+            "f1": 0.47058823529411764,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.4,
+            "signals": 7
+          }
+        ],
+        "precision": 0.55,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "family": "STOCHRSI",
+            "id": "STOCHRSI_14_0.2",
+            "n": 14,
+            "t": 0.2
+          },
+          {
+            "family": "WR",
+            "id": "WR_28_-90",
+            "n": 28,
+            "t": -90
+          }
+        ],
+        "signals": 20,
+        "wilson95": [
+          0.34208534245034233,
+          0.7418021417443759
+        ]
+      },
+      {
+        "a": 454,
+        "asset": "ETHUSDT",
+        "b": 456,
+        "candidate": 347115,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.41509433962264153,
+        "false_or_duplicate": 9,
+        "marginal_gain": false,
+        "matched_events": 11,
+        "median_lag": 0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 12,
+            "parent": 454,
+            "precision": 0.2268041237113402,
+            "recall": 0.6666666666666666
+          },
+          {
+            "added": 0,
+            "lost": 1,
+            "parent": 456,
+            "precision": 0.375,
+            "recall": 0.36363636363636365
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.5,
+            "false_or_duplicate": 4,
+            "matched_events": 5,
+            "precision": 0.5555555555555556,
+            "recall": 0.45454545454545453,
+            "signals": 9
+          },
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 10,
+            "f1": 0.3076923076923077,
+            "false_or_duplicate": 1,
+            "matched_events": 2,
+            "precision": 0.6666666666666666,
+            "recall": 0.2,
+            "signals": 3
+          }
+        ],
+        "precision": 0.55,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "family": "VWAP",
+            "id": "VWAP_30_1.5",
+            "k": 1.5,
+            "n": 30
+          },
+          {
+            "family": "VWAP",
+            "id": "VWAP_30_2.5",
+            "k": 2.5,
+            "n": 30
+          }
+        ],
+        "signals": 20,
+        "wilson95": [
+          0.34208534245034233,
+          0.7418021417443759
+        ]
+      },
+      {
+        "a": 10,
+        "asset": "ETHUSDT",
+        "b": 459,
+        "candidate": 16122,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.43636363636363634,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 0.0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 7,
+            "parent": 10,
+            "precision": 0.24358974358974358,
+            "recall": 0.5757575757575758
+          },
+          {
+            "added": 0,
+            "lost": 4,
+            "parent": 459,
+            "precision": 0.43243243243243246,
+            "recall": 0.48484848484848486
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.47619047619047616,
+            "false_or_duplicate": 5,
+            "matched_events": 5,
+            "precision": 0.5,
+            "recall": 0.45454545454545453,
+            "signals": 10
+          },
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 10,
+            "f1": 0.42857142857142855,
+            "false_or_duplicate": 1,
+            "matched_events": 3,
+            "precision": 0.75,
+            "recall": 0.3,
+            "signals": 4
+          }
+        ],
+        "precision": 0.5454545454545454,
+        "quality_pass": false,
+        "recall": 0.36363636363636365,
+        "rule": [
+          {
+            "family": "BB",
+            "id": "BB_20_2",
+            "k": 2,
+            "n": 20
+          },
+          {
+            "family": "VWAP",
+            "id": "VWAP_50_2",
+            "k": 2,
+            "n": 50
+          }
+        ],
+        "signals": 22,
+        "wilson95": [
+          0.3465979532073494,
+          0.7307970581918668
+        ]
+      },
+      {
+        "a": 33,
+        "asset": "ETHUSDT",
+        "b": 463,
+        "candidate": 47805,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.43636363636363634,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 2.0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 11,
+            "parent": 33,
+            "precision": 0.2987012987012987,
+            "recall": 0.696969696969697
+          },
+          {
+            "added": 1,
+            "lost": 4,
+            "parent": 463,
+            "precision": 0.3191489361702128,
+            "recall": 0.45454545454545453
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.5,
+            "false_or_duplicate": 4,
+            "matched_events": 5,
+            "precision": 0.5555555555555556,
+            "recall": 0.45454545454545453,
+            "signals": 9
+          },
+          {
+            "events": 12,
+            "f1": 0.35294117647058826,
+            "false_or_duplicate": 2,
+            "matched_events": 3,
+            "precision": 0.6,
+            "recall": 0.25,
+            "signals": 5
+          },
+          {
+            "events": 10,
+            "f1": 0.4444444444444444,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.4,
+            "signals": 8
+          }
+        ],
+        "precision": 0.5454545454545454,
+        "quality_pass": false,
+        "recall": 0.36363636363636365,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_14_-100",
+            "n": 14,
+            "t": -100
+          },
+          {
+            "family": "WR",
+            "id": "WR_10_-90",
+            "n": 10,
+            "t": -90
+          }
+        ],
+        "signals": 22,
+        "wilson95": [
+          0.3465979532073494,
+          0.7307970581918668
+        ]
+      },
+      {
+        "a": 19,
+        "asset": "ETHUSDT",
+        "b": 320,
+        "candidate": 28287,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.4074074074074074,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 11,
+        "median_lag": 1,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 0,
+            "parent": 19,
+            "precision": 0.4074074074074074,
+            "recall": 0.3333333333333333
+          },
+          {
+            "added": 0,
+            "lost": 21,
+            "parent": 320,
+            "precision": 0.18604651162790697,
+            "recall": 0.9696969696969697
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.47619047619047616,
+            "false_or_duplicate": 5,
+            "matched_events": 5,
+            "precision": 0.5,
+            "recall": 0.45454545454545453,
+            "signals": 10
+          },
+          {
+            "events": 12,
+            "f1": 0.42105263157894735,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.3333333333333333,
+            "signals": 7
+          },
+          {
+            "events": 10,
+            "f1": 0.2857142857142857,
+            "false_or_duplicate": 2,
+            "matched_events": 2,
+            "precision": 0.5,
+            "recall": 0.2,
+            "signals": 4
+          }
+        ],
+        "precision": 0.5238095238095238,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "family": "BB",
+            "id": "BB_50_2.5",
+            "k": 2.5,
+            "n": 50
+          },
+          {
+            "family": "STOCHRSI",
+            "id": "STOCHRSI_7_0.2",
+            "n": 7,
+            "t": 0.2
+          }
+        ],
+        "signals": 21,
+        "wilson95": [
+          0.3236953458284443,
+          0.7165599389846583
+        ]
+      },
+      {
+        "a": 19,
+        "asset": "ETHUSDT",
+        "b": 459,
+        "candidate": 28704,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.4074074074074074,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 11,
+        "median_lag": 0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 0,
+            "parent": 19,
+            "precision": 0.4074074074074074,
+            "recall": 0.3333333333333333
+          },
+          {
+            "added": 0,
+            "lost": 5,
+            "parent": 459,
+            "precision": 0.43243243243243246,
+            "recall": 0.48484848484848486
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.5,
+            "false_or_duplicate": 4,
+            "matched_events": 5,
+            "precision": 0.5555555555555556,
+            "recall": 0.45454545454545453,
+            "signals": 9
+          },
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 10,
+            "f1": 0.2857142857142857,
+            "false_or_duplicate": 2,
+            "matched_events": 2,
+            "precision": 0.5,
+            "recall": 0.2,
+            "signals": 4
+          }
+        ],
+        "precision": 0.5238095238095238,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "family": "BB",
+            "id": "BB_50_2.5",
+            "k": 2.5,
+            "n": 50
+          },
+          {
+            "family": "VWAP",
+            "id": "VWAP_50_2",
+            "k": 2,
+            "n": 50
+          }
+        ],
+        "signals": 21,
+        "wilson95": [
+          0.3236953458284443,
+          0.7165599389846583
+        ]
+      },
+      {
+        "a": 37,
+        "asset": "ETHUSDT",
+        "b": 447,
+        "candidate": 53103,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.4074074074074074,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 11,
+        "median_lag": 1,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 3,
+            "parent": 37,
+            "precision": 0.35135135135135137,
+            "recall": 0.3939393939393939
+          },
+          {
+            "added": 0,
+            "lost": 18,
+            "parent": 447,
+            "precision": 0.1895424836601307,
+            "recall": 0.8787878787878788
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.4444444444444444,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.36363636363636365,
+            "signals": 7
+          },
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 10,
+            "f1": 0.375,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.3,
+            "signals": 6
+          }
+        ],
+        "precision": 0.5238095238095238,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_21_-150",
+            "n": 21,
+            "t": -150
+          },
+          {
+            "family": "VWAP",
+            "id": "VWAP_10_2",
+            "k": 2,
+            "n": 10
+          }
+        ],
+        "signals": 21,
+        "wilson95": [
+          0.3236953458284443,
+          0.7165599389846583
+        ]
+      },
+      {
+        "a": 43,
+        "asset": "ETHUSDT",
+        "b": 239,
+        "candidate": 60408,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.4074074074074074,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 11,
+        "median_lag": 1,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 12,
+            "parent": 43,
+            "precision": 0.3382352941176471,
+            "recall": 0.696969696969697
+          },
+          {
+            "added": 0,
+            "lost": 2,
+            "parent": 239,
+            "precision": 0.29545454545454547,
+            "recall": 0.3939393939393939
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.42105263157894735,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.36363636363636365,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          },
+          {
+            "events": 10,
+            "f1": 0.47058823529411764,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.4,
+            "signals": 7
+          }
+        ],
+        "precision": 0.5238095238095238,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_7_-150",
+            "n": 7,
+            "t": -150
+          },
+          {
+            "family": "MFI",
+            "form": "cross",
+            "id": "MFI_7_15_cross",
+            "n": 7,
+            "t": 15
+          }
+        ],
+        "signals": 21,
+        "wilson95": [
+          0.3236953458284443,
+          0.7165599389846583
+        ]
+      },
+      {
+        "a": 101,
+        "asset": "ETHUSDT",
+        "b": 243,
+        "candidate": 131499,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.4074074074074074,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 11,
+        "median_lag": 1,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 8,
+            "parent": 101,
+            "precision": 0.2375,
+            "recall": 0.5757575757575758
+          },
+          {
+            "added": 0,
+            "lost": 6,
+            "parent": 243,
+            "precision": 0.2236842105263158,
+            "recall": 0.5151515151515151
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.4444444444444444,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.36363636363636365,
+            "signals": 7
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          },
+          {
+            "events": 10,
+            "f1": 0.4444444444444444,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.4,
+            "signals": 8
+          }
+        ],
+        "precision": 0.5238095238095238,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "family": "DONCHIAN_FAIL",
+            "id": "DONCHIAN_FAIL_10",
+            "n": 10
+          },
+          {
+            "family": "MFI",
+            "form": "cross",
+            "id": "MFI_7_25_cross",
+            "n": 7,
+            "t": 25
+          }
+        ],
+        "signals": 21,
+        "wilson95": [
+          0.3236953458284443,
+          0.7165599389846583
+        ]
+      },
+      {
+        "a": 243,
+        "asset": "ETHUSDT",
+        "b": 378,
+        "candidate": 263325,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.4074074074074074,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 11,
+        "median_lag": 1,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 6,
+            "parent": 243,
+            "precision": 0.2236842105263158,
+            "recall": 0.5151515151515151
+          },
+          {
+            "added": 0,
+            "lost": 8,
+            "parent": 378,
+            "precision": 0.2375,
+            "recall": 0.5757575757575758
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.4444444444444444,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.36363636363636365,
+            "signals": 7
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          },
+          {
+            "events": 10,
+            "f1": 0.4444444444444444,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.4,
+            "signals": 8
+          }
+        ],
+        "precision": 0.5238095238095238,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "family": "MFI",
+            "form": "cross",
+            "id": "MFI_7_25_cross",
+            "n": 7,
+            "t": 25
+          },
+          {
+            "depth": 0,
+            "family": "SWEEP",
+            "id": "SWEEP_10_0",
+            "n": 10
+          }
+        ],
+        "signals": 21,
+        "wilson95": [
+          0.3236953458284443,
+          0.7165599389846583
+        ]
+      },
+      {
+        "a": 313,
+        "asset": "ETHUSDT",
+        "b": 472,
+        "candidate": 306132,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.4074074074074074,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 11,
+        "median_lag": 1,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 16,
+            "parent": 313,
+            "precision": 0.24545454545454545,
+            "recall": 0.8181818181818182
+          },
+          {
+            "added": 0,
+            "lost": 2,
+            "parent": 472,
+            "precision": 0.34210526315789475,
+            "recall": 0.3939393939393939
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.42105263157894735,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.36363636363636365,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.35294117647058826,
+            "false_or_duplicate": 2,
+            "matched_events": 3,
+            "precision": 0.6,
+            "recall": 0.25,
+            "signals": 5
+          },
+          {
+            "events": 10,
+            "f1": 0.4444444444444444,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.4,
+            "signals": 8
+          }
+        ],
+        "precision": 0.5238095238095238,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "family": "STOCHRSI",
+            "id": "STOCHRSI_14_0.1",
+            "n": 14,
+            "t": 0.1
+          },
+          {
+            "family": "WR",
+            "id": "WR_28_-90",
+            "n": 28,
+            "t": -90
+          }
+        ],
+        "signals": 21,
+        "wilson95": [
+          0.3236953458284443,
+          0.7165599389846583
+        ]
+      },
+      {
+        "a": 33,
+        "asset": "ETHUSDT",
+        "b": 475,
+        "candidate": 47841,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.42857142857142855,
+        "false_or_duplicate": 11,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 2.0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 11,
+            "parent": 33,
+            "precision": 0.2987012987012987,
+            "recall": 0.696969696969697
+          },
+          {
+            "added": 1,
+            "lost": 3,
+            "parent": 475,
+            "precision": 0.2545454545454545,
+            "recall": 0.42424242424242425
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.5,
+            "false_or_duplicate": 4,
+            "matched_events": 5,
+            "precision": 0.5555555555555556,
+            "recall": 0.45454545454545453,
+            "signals": 9
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          },
+          {
+            "events": 10,
+            "f1": 0.4444444444444444,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.4,
+            "signals": 8
+          }
+        ],
+        "precision": 0.5217391304347826,
+        "quality_pass": false,
+        "recall": 0.36363636363636365,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_14_-100",
+            "n": 14,
+            "t": -100
+          },
+          {
+            "family": "WR",
+            "id": "WR_7_-90",
+            "n": 7,
+            "t": -90
+          }
+        ],
+        "signals": 23,
+        "wilson95": [
+          0.32962737336427406,
+          0.7076284258335335
+        ]
+      },
+      {
+        "a": 43,
+        "asset": "ETHUSDT",
+        "b": 263,
+        "candidate": 60480,
+        "eligible": true,
+        "events": 33,
+        "f1": 0.4482758620689655,
+        "false_or_duplicate": 12,
+        "marginal_gain": false,
+        "matched_events": 13,
+        "median_lag": 1,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 2,
+            "lost": 12,
+            "parent": 43,
+            "precision": 0.3382352941176471,
+            "recall": 0.696969696969697
+          },
+          {
+            "added": 0,
+            "lost": 1,
+            "parent": 263,
+            "precision": 0.17721518987341772,
+            "recall": 0.42424242424242425
+          }
+        ],
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.5217391304347826,
+            "false_or_duplicate": 6,
+            "matched_events": 6,
+            "precision": 0.5,
+            "recall": 0.5454545454545454,
+            "signals": 12
+          },
+          {
+            "events": 12,
+            "f1": 0.42105263157894735,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.3333333333333333,
+            "signals": 7
+          },
+          {
+            "events": 10,
+            "f1": 0.375,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.3,
+            "signals": 6
+          }
+        ],
+        "precision": 0.52,
+        "quality_pass": false,
+        "recall": 0.3939393939393939,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_7_-150",
+            "n": 7,
+            "t": -150
+          },
+          {
+            "family": "RSI",
+            "form": "cross",
+            "id": "RSI_10_40_cross",
+            "n": 10,
+            "t": 40
+          }
+        ],
+        "signals": 25,
+        "wilson95": [
+          0.3349851695035678,
+          0.6996871404588704
+        ]
+      }
+    ],
+    "SOLUSDT": [
+      {
+        "a": 42,
+        "asset": "SOLUSDT",
+        "b": 345,
+        "candidate": 59411,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.4827586206896552,
+        "false_or_duplicate": 8,
+        "marginal_gain": false,
+        "matched_events": 14,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND0",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 18,
+            "parent": 42,
+            "precision": 0.25,
+            "recall": 0.8888888888888888
+          },
+          {
+            "added": 0,
+            "lost": 5,
+            "parent": 345,
+            "precision": 0.2602739726027397,
+            "recall": 0.5277777777777778
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.5,
+            "false_or_duplicate": 3,
+            "matched_events": 5,
+            "precision": 0.625,
+            "recall": 0.4166666666666667,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.5555555555555556,
+            "false_or_duplicate": 1,
+            "matched_events": 5,
+            "precision": 0.8333333333333334,
+            "recall": 0.4166666666666667,
+            "signals": 6
+          }
+        ],
+        "precision": 0.6363636363636364,
+        "quality_pass": false,
+        "recall": 0.3888888888888889,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_7_-100",
+            "n": 7,
+            "t": -100
+          },
+          {
+            "d": 5,
+            "family": "STOCH",
+            "id": "STOCH_21_5_30",
+            "n": 21,
+            "t": 30
+          }
+        ],
+        "signals": 22,
+        "wilson95": [
+          0.42951708090131013,
+          0.8026679532963387
+        ]
+      },
+      {
+        "a": 37,
+        "asset": "SOLUSDT",
+        "b": 461,
+        "candidate": 53145,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.5396825396825397,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 17,
+        "median_lag": 1,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 4,
+            "parent": 37,
+            "precision": 0.4878048780487805,
+            "recall": 0.5555555555555556
+          },
+          {
+            "added": 0,
+            "lost": 11,
+            "parent": 461,
+            "precision": 0.23140495867768596,
+            "recall": 0.7777777777777778
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.6086956521739131,
+            "false_or_duplicate": 4,
+            "matched_events": 7,
+            "precision": 0.6363636363636364,
+            "recall": 0.5833333333333334,
+            "signals": 11
+          },
+          {
+            "events": 12,
+            "f1": 0.6363636363636364,
+            "false_or_duplicate": 3,
+            "matched_events": 7,
+            "precision": 0.7,
+            "recall": 0.5833333333333334,
+            "signals": 10
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          }
+        ],
+        "precision": 0.6296296296296297,
+        "quality_pass": false,
+        "recall": 0.4722222222222222,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_21_-150",
+            "n": 21,
+            "t": -150
+          },
+          {
+            "family": "WR",
+            "id": "WR_10_-70",
+            "n": 10,
+            "t": -70
+          }
+        ],
+        "signals": 27,
+        "wilson95": [
+          0.4422923441210239,
+          0.784674870390344
+        ]
+      },
+      {
+        "a": 37,
+        "asset": "SOLUSDT",
+        "b": 447,
+        "candidate": 53103,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.4745762711864407,
+        "false_or_duplicate": 9,
+        "marginal_gain": false,
+        "matched_events": 14,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 6,
+            "parent": 37,
+            "precision": 0.4878048780487805,
+            "recall": 0.5555555555555556
+          },
+          {
+            "added": 0,
+            "lost": 14,
+            "parent": 447,
+            "precision": 0.18421052631578946,
+            "recall": 0.7777777777777778
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.47619047619047616,
+            "false_or_duplicate": 4,
+            "matched_events": 5,
+            "precision": 0.5555555555555556,
+            "recall": 0.4166666666666667,
+            "signals": 9
+          },
+          {
+            "events": 12,
+            "f1": 0.6,
+            "false_or_duplicate": 2,
+            "matched_events": 6,
+            "precision": 0.75,
+            "recall": 0.5,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          }
+        ],
+        "precision": 0.6086956521739131,
+        "quality_pass": false,
+        "recall": 0.3888888888888889,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_21_-150",
+            "n": 21,
+            "t": -150
+          },
+          {
+            "family": "VWAP",
+            "id": "VWAP_10_2",
+            "k": 2,
+            "n": 10
+          }
+        ],
+        "signals": 23,
+        "wilson95": [
+          0.4078552239138171,
+          0.7784237720752205
+        ]
+      },
+      {
+        "a": 37,
+        "asset": "SOLUSDT",
+        "b": 454,
+        "candidate": 53124,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.5079365079365079,
+        "false_or_duplicate": 11,
+        "marginal_gain": false,
+        "matched_events": 16,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 4,
+            "parent": 37,
+            "precision": 0.4878048780487805,
+            "recall": 0.5555555555555556
+          },
+          {
+            "added": 0,
+            "lost": 5,
+            "parent": 454,
+            "precision": 0.23595505617977527,
+            "recall": 0.5833333333333334
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.56,
+            "false_or_duplicate": 6,
+            "matched_events": 7,
+            "precision": 0.5384615384615384,
+            "recall": 0.5833333333333334,
+            "signals": 13
+          },
+          {
+            "events": 12,
+            "f1": 0.6,
+            "false_or_duplicate": 2,
+            "matched_events": 6,
+            "precision": 0.75,
+            "recall": 0.5,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          }
+        ],
+        "precision": 0.5925925925925926,
+        "quality_pass": false,
+        "recall": 0.4444444444444444,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_21_-150",
+            "n": 21,
+            "t": -150
+          },
+          {
+            "family": "VWAP",
+            "id": "VWAP_30_1.5",
+            "k": 1.5,
+            "n": 30
+          }
+        ],
+        "signals": 27,
+        "wilson95": [
+          0.4072670096806468,
+          0.7548524292560443
+        ]
+      },
+      {
+        "a": 33,
+        "asset": "SOLUSDT",
+        "b": 191,
+        "candidate": 46988,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.43333333333333335,
+        "false_or_duplicate": 11,
+        "marginal_gain": false,
+        "matched_events": 13,
+        "median_lag": 2,
+        "minimum_period_precision": 0.5,
+        "mode": "AND0",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 8,
+            "parent": 33,
+            "precision": 0.25301204819277107,
+            "recall": 0.5833333333333334
+          },
+          {
+            "added": 0,
+            "lost": 4,
+            "parent": 191,
+            "precision": 0.1650485436893204,
+            "recall": 0.4722222222222222
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.42105263157894735,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.3333333333333333,
+            "signals": 7
+          },
+          {
+            "events": 12,
+            "f1": 0.47619047619047616,
+            "false_or_duplicate": 4,
+            "matched_events": 5,
+            "precision": 0.5555555555555556,
+            "recall": 0.4166666666666667,
+            "signals": 9
+          }
+        ],
+        "precision": 0.5416666666666666,
+        "quality_pass": false,
+        "recall": 0.3611111111111111,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_14_-100",
+            "n": 14,
+            "t": -100
+          },
+          {
+            "family": "MACD",
+            "fast": 5,
+            "id": "MACD_5_21_5",
+            "signal": 5,
+            "slow": 21
+          }
+        ],
+        "signals": 24,
+        "wilson95": [
+          0.3507486535891948,
+          0.72108666268789
+        ]
+      },
+      {
+        "a": 452,
+        "asset": "SOLUSDT",
+        "b": 466,
+        "candidate": 346980,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.38596491228070173,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 11,
+        "median_lag": 0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 4,
+            "parent": 452,
+            "precision": 0.3409090909090909,
+            "recall": 0.4166666666666667
+          },
+          {
+            "added": 0,
+            "lost": 10,
+            "parent": 466,
+            "precision": 0.2876712328767123,
+            "recall": 0.5833333333333334
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.42105263157894735,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.3333333333333333,
+            "signals": 7
+          },
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          }
+        ],
+        "precision": 0.5238095238095238,
+        "quality_pass": false,
+        "recall": 0.3055555555555556,
+        "rule": [
+          {
+            "family": "VWAP",
+            "id": "VWAP_20_2.5",
+            "k": 2.5,
+            "n": 20
+          },
+          {
+            "family": "WR",
+            "id": "WR_14_-90",
+            "n": 14,
+            "t": -90
+          }
+        ],
+        "signals": 21,
+        "wilson95": [
+          0.3236953458284443,
+          0.7165599389846583
+        ]
+      },
+      {
+        "a": 31,
+        "asset": "SOLUSDT",
+        "b": 453,
+        "candidate": 45084,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.4067796610169492,
+        "false_or_duplicate": 11,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 11,
+            "parent": 31,
+            "precision": 0.3770491803278688,
+            "recall": 0.6388888888888888
+          },
+          {
+            "added": 0,
+            "lost": 8,
+            "parent": 453,
+            "precision": 0.1724137931034483,
+            "recall": 0.5555555555555556
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.42105263157894735,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.3333333333333333,
+            "signals": 7
+          }
+        ],
+        "precision": 0.5217391304347826,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_10_-150",
+            "n": 10,
+            "t": -150
+          },
+          {
+            "family": "VWAP",
+            "id": "VWAP_30_1",
+            "k": 1,
+            "n": 30
+          }
+        ],
+        "signals": 23,
+        "wilson95": [
+          0.32962737336427406,
+          0.7076284258335335
+        ]
+      },
+      {
+        "a": 102,
+        "asset": "SOLUSDT",
+        "b": 471,
+        "candidate": 133320,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.4067796610169492,
+        "false_or_duplicate": 11,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 0.0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 6,
+            "parent": 102,
+            "precision": 0.3269230769230769,
+            "recall": 0.4722222222222222
+          },
+          {
+            "added": 0,
+            "lost": 6,
+            "parent": 471,
+            "precision": 0.2727272727272727,
+            "recall": 0.5
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.47619047619047616,
+            "false_or_duplicate": 4,
+            "matched_events": 5,
+            "precision": 0.5555555555555556,
+            "recall": 0.4166666666666667,
+            "signals": 9
+          },
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          }
+        ],
+        "precision": 0.5217391304347826,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "family": "DONCHIAN_FAIL",
+            "id": "DONCHIAN_FAIL_20",
+            "n": 20
+          },
+          {
+            "family": "WR",
+            "id": "WR_28_-80",
+            "n": 28,
+            "t": -80
+          }
+        ],
+        "signals": 23,
+        "wilson95": [
+          0.32962737336427406,
+          0.7076284258335335
+        ]
+      },
+      {
+        "a": 381,
+        "asset": "SOLUSDT",
+        "b": 471,
+        "candidate": 333363,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.4067796610169492,
+        "false_or_duplicate": 11,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 0.0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 6,
+            "parent": 381,
+            "precision": 0.3269230769230769,
+            "recall": 0.4722222222222222
+          },
+          {
+            "added": 0,
+            "lost": 6,
+            "parent": 471,
+            "precision": 0.2727272727272727,
+            "recall": 0.5
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.47619047619047616,
+            "false_or_duplicate": 4,
+            "matched_events": 5,
+            "precision": 0.5555555555555556,
+            "recall": 0.4166666666666667,
+            "signals": 9
+          },
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          }
+        ],
+        "precision": 0.5217391304347826,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "depth": 0,
+            "family": "SWEEP",
+            "id": "SWEEP_20_0",
+            "n": 20
+          },
+          {
+            "family": "WR",
+            "id": "WR_28_-80",
+            "n": 28,
+            "t": -80
+          }
+        ],
+        "signals": 23,
+        "wilson95": [
+          0.32962737336427406,
+          0.7076284258335335
+        ]
+      },
+      {
+        "a": 165,
+        "asset": "SOLUSDT",
+        "b": 454,
+        "candidate": 198852,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.41935483870967744,
+        "false_or_duplicate": 13,
+        "marginal_gain": false,
+        "matched_events": 13,
+        "median_lag": 1,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 2,
+            "parent": 165,
+            "precision": 0.29411764705882354,
+            "recall": 0.4166666666666667
+          },
+          {
+            "added": 1,
+            "lost": 9,
+            "parent": 454,
+            "precision": 0.23595505617977527,
+            "recall": 0.5833333333333334
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.5,
+            "false_or_duplicate": 6,
+            "matched_events": 6,
+            "precision": 0.5,
+            "recall": 0.5,
+            "signals": 12
+          },
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          }
+        ],
+        "precision": 0.5,
+        "quality_pass": false,
+        "recall": 0.3611111111111111,
+        "rule": [
+          {
+            "family": "KELTNER",
+            "id": "KELTNER_20_2",
+            "k": 2,
+            "n": 20
+          },
+          {
+            "family": "VWAP",
+            "id": "VWAP_30_1.5",
+            "k": 1.5,
+            "n": 30
+          }
+        ],
+        "signals": 26,
+        "wilson95": [
+          0.3206059352575905,
+          0.6793940647424095
+        ]
+      },
+      {
+        "a": 101,
+        "asset": "SOLUSDT",
+        "b": 471,
+        "candidate": 132183,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.4,
+        "false_or_duplicate": 12,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 0.0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 7,
+            "parent": 101,
+            "precision": 0.1935483870967742,
+            "recall": 0.5
+          },
+          {
+            "added": 0,
+            "lost": 6,
+            "parent": 471,
+            "precision": 0.2727272727272727,
+            "recall": 0.5
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.45454545454545453,
+            "false_or_duplicate": 5,
+            "matched_events": 5,
+            "precision": 0.5,
+            "recall": 0.4166666666666667,
+            "signals": 10
+          },
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          }
+        ],
+        "precision": 0.5,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "family": "DONCHIAN_FAIL",
+            "id": "DONCHIAN_FAIL_10",
+            "n": 10
+          },
+          {
+            "family": "WR",
+            "id": "WR_28_-80",
+            "n": 28,
+            "t": -80
+          }
+        ],
+        "signals": 24,
+        "wilson95": [
+          0.3142742581957335,
+          0.6857257418042665
+        ]
+      },
+      {
+        "a": 378,
+        "asset": "SOLUSDT",
+        "b": 471,
+        "candidate": 332454,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.4,
+        "false_or_duplicate": 12,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 0.0,
+        "minimum_period_precision": 0.5,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 7,
+            "parent": 378,
+            "precision": 0.1935483870967742,
+            "recall": 0.5
+          },
+          {
+            "added": 0,
+            "lost": 6,
+            "parent": 471,
+            "precision": 0.2727272727272727,
+            "recall": 0.5
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.45454545454545453,
+            "false_or_duplicate": 5,
+            "matched_events": 5,
+            "precision": 0.5,
+            "recall": 0.4166666666666667,
+            "signals": 10
+          },
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          }
+        ],
+        "precision": 0.5,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "depth": 0,
+            "family": "SWEEP",
+            "id": "SWEEP_10_0",
+            "n": 10
+          },
+          {
+            "family": "WR",
+            "id": "WR_28_-80",
+            "n": 28,
+            "t": -80
+          }
+        ],
+        "signals": 24,
+        "wilson95": [
+          0.3142742581957335,
+          0.6857257418042665
+        ]
+      },
+      {
+        "a": 5,
+        "asset": "SOLUSDT",
+        "b": 34,
+        "candidate": 7751,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.4126984126984127,
+        "false_or_duplicate": 14,
+        "marginal_gain": false,
+        "matched_events": 13,
+        "median_lag": 1,
+        "minimum_period_precision": 0.46153846153846156,
+        "mode": "AND0",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 19,
+            "parent": 5,
+            "precision": 0.17679558011049723,
+            "recall": 0.8888888888888888
+          },
+          {
+            "added": 0,
+            "lost": 8,
+            "parent": 34,
+            "precision": 0.42,
+            "recall": 0.5833333333333334
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.48,
+            "false_or_duplicate": 7,
+            "matched_events": 6,
+            "precision": 0.46153846153846156,
+            "recall": 0.5,
+            "signals": 13
+          },
+          {
+            "events": 12,
+            "f1": 0.4,
+            "false_or_duplicate": 4,
+            "matched_events": 4,
+            "precision": 0.5,
+            "recall": 0.3333333333333333,
+            "signals": 8
+          },
+          {
+            "events": 12,
+            "f1": 0.3333333333333333,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.25,
+            "signals": 6
+          }
+        ],
+        "precision": 0.48148148148148145,
+        "quality_pass": false,
+        "recall": 0.3611111111111111,
+        "rule": [
+          {
+            "family": "BB",
+            "id": "BB_10_1.5",
+            "k": 1.5,
+            "n": 10
+          },
+          {
+            "family": "CCI",
+            "id": "CCI_14_-150",
+            "n": 14,
+            "t": -150
+          }
+        ],
+        "signals": 27,
+        "wilson95": [
+          0.3074322697621846,
+          0.6601438424504771
+        ]
+      },
+      {
+        "a": 37,
+        "asset": "SOLUSDT",
+        "b": 125,
+        "candidate": 52136,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.45614035087719296,
+        "false_or_duplicate": 8,
+        "marginal_gain": false,
+        "matched_events": 13,
+        "median_lag": 1,
+        "minimum_period_precision": 0.45454545454545453,
+        "mode": "AND0",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 7,
+            "parent": 37,
+            "precision": 0.4878048780487805,
+            "recall": 0.5555555555555556
+          },
+          {
+            "added": 0,
+            "lost": 18,
+            "parent": 125,
+            "precision": 0.12109375,
+            "recall": 0.8611111111111112
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.43478260869565216,
+            "false_or_duplicate": 6,
+            "matched_events": 5,
+            "precision": 0.45454545454545453,
+            "recall": 0.4166666666666667,
+            "signals": 11
+          },
+          {
+            "events": 12,
+            "f1": 0.631578947368421,
+            "false_or_duplicate": 1,
+            "matched_events": 6,
+            "precision": 0.8571428571428571,
+            "recall": 0.5,
+            "signals": 7
+          },
+          {
+            "events": 12,
+            "f1": 0.26666666666666666,
+            "false_or_duplicate": 1,
+            "matched_events": 2,
+            "precision": 0.6666666666666666,
+            "recall": 0.16666666666666666,
+            "signals": 3
+          }
+        ],
+        "precision": 0.6190476190476191,
+        "quality_pass": false,
+        "recall": 0.3611111111111111,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_21_-150",
+            "n": 21,
+            "t": -150
+          },
+          {
+            "family": "FORCE",
+            "id": "FORCE_2",
+            "n": 2
+          }
+        ],
+        "signals": 21,
+        "wilson95": [
+          0.4087865377511576,
+          0.7924898863143551
+        ]
+      },
+      {
+        "a": 9,
+        "asset": "SOLUSDT",
+        "b": 37,
+        "candidate": 13443,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.5555555555555556,
+        "false_or_duplicate": 16,
+        "marginal_gain": true,
+        "matched_events": 20,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.45454545454545453,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 4,
+            "parent": 9,
+            "precision": 0.20512820512820512,
+            "recall": 0.6666666666666666
+          },
+          {
+            "added": 1,
+            "lost": 1,
+            "parent": 37,
+            "precision": 0.4878048780487805,
+            "recall": 0.5555555555555556
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.5384615384615384,
+            "false_or_duplicate": 7,
+            "matched_events": 7,
+            "precision": 0.5,
+            "recall": 0.5833333333333334,
+            "signals": 14
+          },
+          {
+            "events": 12,
+            "f1": 0.6956521739130435,
+            "false_or_duplicate": 3,
+            "matched_events": 8,
+            "precision": 0.7272727272727273,
+            "recall": 0.6666666666666666,
+            "signals": 11
+          },
+          {
+            "events": 12,
+            "f1": 0.43478260869565216,
+            "false_or_duplicate": 6,
+            "matched_events": 5,
+            "precision": 0.45454545454545453,
+            "recall": 0.4166666666666667,
+            "signals": 11
+          }
+        ],
+        "precision": 0.5555555555555556,
+        "quality_pass": false,
+        "recall": 0.5555555555555556,
+        "rule": [
+          {
+            "family": "BB",
+            "id": "BB_20_1.5",
+            "k": 1.5,
+            "n": 20
+          },
+          {
+            "family": "CCI",
+            "id": "CCI_21_-150",
+            "n": 21,
+            "t": -150
+          }
+        ],
+        "signals": 36,
+        "wilson95": [
+          0.395810617556973,
+          0.7045873125991978
+        ]
+      },
+      {
+        "a": 271,
+        "asset": "SOLUSDT",
+        "b": 462,
+        "candidate": 282351,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.38596491228070173,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 11,
+        "median_lag": 1,
+        "minimum_period_precision": 0.45454545454545453,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 1,
+            "lost": 0,
+            "parent": 271,
+            "precision": 0.38461538461538464,
+            "recall": 0.2777777777777778
+          },
+          {
+            "added": 0,
+            "lost": 18,
+            "parent": 462,
+            "precision": 0.23577235772357724,
+            "recall": 0.8055555555555556
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.43478260869565216,
+            "false_or_duplicate": 6,
+            "matched_events": 5,
+            "precision": 0.45454545454545453,
+            "recall": 0.4166666666666667,
+            "signals": 11
+          },
+          {
+            "events": 12,
+            "f1": 0.4444444444444444,
+            "false_or_duplicate": 2,
+            "matched_events": 4,
+            "precision": 0.6666666666666666,
+            "recall": 0.3333333333333333,
+            "signals": 6
+          },
+          {
+            "events": 12,
+            "f1": 0.25,
+            "false_or_duplicate": 2,
+            "matched_events": 2,
+            "precision": 0.5,
+            "recall": 0.16666666666666666,
+            "signals": 4
+          }
+        ],
+        "precision": 0.5238095238095238,
+        "quality_pass": false,
+        "recall": 0.3055555555555556,
+        "rule": [
+          {
+            "family": "RSI",
+            "form": "cross",
+            "id": "RSI_14_30_cross",
+            "n": 14,
+            "t": 30
+          },
+          {
+            "family": "WR",
+            "id": "WR_10_-80",
+            "n": 10,
+            "t": -80
+          }
+        ],
+        "signals": 21,
+        "wilson95": [
+          0.3236953458284443,
+          0.7165599389846583
+        ]
+      },
+      {
+        "a": 31,
+        "asset": "SOLUSDT",
+        "b": 451,
+        "candidate": 45078,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.5333333333333333,
+        "false_or_duplicate": 19,
+        "marginal_gain": true,
+        "matched_events": 20,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.45454545454545453,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 3,
+            "parent": 31,
+            "precision": 0.3770491803278688,
+            "recall": 0.6388888888888888
+          },
+          {
+            "added": 2,
+            "lost": 4,
+            "parent": 451,
+            "precision": 0.28205128205128205,
+            "recall": 0.6111111111111112
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.5384615384615384,
+            "false_or_duplicate": 7,
+            "matched_events": 7,
+            "precision": 0.5,
+            "recall": 0.5833333333333334,
+            "signals": 14
+          },
+          {
+            "events": 12,
+            "f1": 0.6153846153846154,
+            "false_or_duplicate": 6,
+            "matched_events": 8,
+            "precision": 0.5714285714285714,
+            "recall": 0.6666666666666666,
+            "signals": 14
+          },
+          {
+            "events": 12,
+            "f1": 0.43478260869565216,
+            "false_or_duplicate": 6,
+            "matched_events": 5,
+            "precision": 0.45454545454545453,
+            "recall": 0.4166666666666667,
+            "signals": 11
+          }
+        ],
+        "precision": 0.5128205128205128,
+        "quality_pass": false,
+        "recall": 0.5555555555555556,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_10_-150",
+            "n": 10,
+            "t": -150
+          },
+          {
+            "family": "VWAP",
+            "id": "VWAP_20_2",
+            "k": 2,
+            "n": 20
+          }
+        ],
+        "signals": 39,
+        "wilson95": [
+          0.36199362884457964,
+          0.6613482467013799
+        ]
+      },
+      {
+        "a": 34,
+        "asset": "SOLUSDT",
+        "b": 361,
+        "candidate": 48840,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.4406779661016949,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 13,
+        "median_lag": 1,
+        "minimum_period_precision": 0.4444444444444444,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 8,
+            "parent": 34,
+            "precision": 0.42,
+            "recall": 0.5833333333333334
+          },
+          {
+            "added": 0,
+            "lost": 1,
+            "parent": 361,
+            "precision": 0.2916666666666667,
+            "recall": 0.3888888888888889
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.38095238095238093,
+            "false_or_duplicate": 5,
+            "matched_events": 4,
+            "precision": 0.4444444444444444,
+            "recall": 0.3333333333333333,
+            "signals": 9
+          },
+          {
+            "events": 12,
+            "f1": 0.5882352941176471,
+            "false_or_duplicate": 0,
+            "matched_events": 5,
+            "precision": 1.0,
+            "recall": 0.4166666666666667,
+            "signals": 5
+          },
+          {
+            "events": 12,
+            "f1": 0.38095238095238093,
+            "false_or_duplicate": 5,
+            "matched_events": 4,
+            "precision": 0.4444444444444444,
+            "recall": 0.3333333333333333,
+            "signals": 9
+          }
+        ],
+        "precision": 0.5652173913043478,
+        "quality_pass": false,
+        "recall": 0.3611111111111111,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_14_-150",
+            "n": 14,
+            "t": -150
+          },
+          {
+            "d": 5,
+            "family": "STOCH",
+            "id": "STOCH_7_5_30",
+            "n": 7,
+            "t": 30
+          }
+        ],
+        "signals": 23,
+        "wilson95": [
+          0.3681137508501646,
+          0.743653646743258
+        ]
+      },
+      {
+        "a": 37,
+        "asset": "SOLUSDT",
+        "b": 318,
+        "candidate": 52716,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.41379310344827586,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 12,
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.4444444444444444,
+        "mode": "AND2",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 8,
+            "parent": 37,
+            "precision": 0.4878048780487805,
+            "recall": 0.5555555555555556
+          },
+          {
+            "added": 0,
+            "lost": 5,
+            "parent": 318,
+            "precision": 0.2,
+            "recall": 0.4722222222222222
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.38095238095238093,
+            "false_or_duplicate": 5,
+            "matched_events": 4,
+            "precision": 0.4444444444444444,
+            "recall": 0.3333333333333333,
+            "signals": 9
+          },
+          {
+            "events": 12,
+            "f1": 0.5714285714285714,
+            "false_or_duplicate": 3,
+            "matched_events": 6,
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "signals": 9
+          },
+          {
+            "events": 12,
+            "f1": 0.25,
+            "false_or_duplicate": 2,
+            "matched_events": 2,
+            "precision": 0.5,
+            "recall": 0.16666666666666666,
+            "signals": 4
+          }
+        ],
+        "precision": 0.5454545454545454,
+        "quality_pass": false,
+        "recall": 0.3333333333333333,
+        "rule": [
+          {
+            "family": "CCI",
+            "id": "CCI_21_-150",
+            "n": 21,
+            "t": -150
+          },
+          {
+            "family": "STOCHRSI",
+            "id": "STOCHRSI_21_0.3",
+            "n": 21,
+            "t": 0.3
+          }
+        ],
+        "signals": 22,
+        "wilson95": [
+          0.3465979532073494,
+          0.7307970581918668
+        ]
+      },
+      {
+        "a": 5,
+        "asset": "SOLUSDT",
+        "b": 353,
+        "candidate": 8708,
+        "eligible": true,
+        "events": 36,
+        "f1": 0.38596491228070173,
+        "false_or_duplicate": 10,
+        "marginal_gain": false,
+        "matched_events": 11,
+        "median_lag": 1,
+        "minimum_period_precision": 0.4444444444444444,
+        "mode": "AND0",
+        "parent_comparison": [
+          {
+            "added": 0,
+            "lost": 21,
+            "parent": 5,
+            "precision": 0.17679558011049723,
+            "recall": 0.8888888888888888
+          },
+          {
+            "added": 0,
+            "lost": 5,
+            "parent": 353,
+            "precision": 0.24242424242424243,
+            "recall": 0.4444444444444444
+          }
+        ],
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.38095238095238093,
+            "false_or_duplicate": 5,
+            "matched_events": 4,
+            "precision": 0.4444444444444444,
+            "recall": 0.3333333333333333,
+            "signals": 9
+          },
+          {
+            "events": 12,
+            "f1": 0.42105263157894735,
+            "false_or_duplicate": 3,
+            "matched_events": 4,
+            "precision": 0.5714285714285714,
+            "recall": 0.3333333333333333,
+            "signals": 7
+          },
+          {
+            "events": 12,
+            "f1": 0.35294117647058826,
+            "false_or_duplicate": 2,
+            "matched_events": 3,
+            "precision": 0.6,
+            "recall": 0.25,
+            "signals": 5
+          }
+        ],
+        "precision": 0.5238095238095238,
+        "quality_pass": false,
+        "recall": 0.3055555555555556,
+        "rule": [
+          {
+            "family": "BB",
+            "id": "BB_10_1.5",
+            "k": 1.5,
+            "n": 10
+          },
+          {
+            "d": 5,
+            "family": "STOCH",
+            "id": "STOCH_28_5_30",
+            "n": 28,
+            "t": 30
+          }
+        ],
+        "signals": 21,
+        "wilson95": [
+          0.3236953458284443,
+          0.7165599389846583
+        ]
+      }
+    ]
+  },
+  "validation_read": false
+}
