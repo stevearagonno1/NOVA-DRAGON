@@ -1,0 +1,120 @@
+{
+  "round": "L0090",
+  "main": "a5f6995f64bb3d3aa3a213ae0076e1257b5f4dc7",
+  "parent_delivery": "783b92825f8f932ba5a38aa3e8ce7fe4c7c47a78",
+  "question": "Marginal effect of persistent causal volume state on frozen price pulses, with all108 L0089 pulse-pair controls per coin",
+  "assets": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "price_families": [
+    "CCI",
+    "BB",
+    "DONCHIAN_RECLAIM"
+  ],
+  "modes": [
+    "AND0",
+    "AND2",
+    "PRICE_THEN_VOLUME2",
+    "VOLUME_THEN_PRICE2"
+  ],
+  "volumes": [
+    {
+      "id": "TAKER_PRESSURE_1_0.52"
+    },
+    {
+      "id": "TAKER_PRESSURE_1_0.56"
+    },
+    {
+      "id": "TAKER_PRESSURE_3_0.52"
+    },
+    {
+      "id": "TAKER_PRESSURE_3_0.56"
+    },
+    {
+      "id": "TAKER_PRESSURE_6_0.52"
+    },
+    {
+      "id": "TAKER_PRESSURE_6_0.56"
+    },
+    {
+      "id": "OBV_EMA_5_20"
+    },
+    {
+      "id": "OBV_EMA_10_30"
+    },
+    {
+      "id": "OBV_EMA_20_50"
+    }
+  ],
+  "price": {
+    "BTCUSDT": [
+      "CCI_14_-150",
+      "BB_30_2.5",
+      "DONCHIAN_RECLAIM_20"
+    ],
+    "ETHUSDT": [
+      "CCI_14_-150",
+      "BB_20_2.5",
+      "DONCHIAN_RECLAIM_40"
+    ],
+    "SOLUSDT": [
+      "CCI_21_-150",
+      "BB_20_2",
+      "DONCHIAN_RECLAIM_20"
+    ]
+  },
+  "pairs_each_asset": 108,
+  "pairs_total": 405,
+  "parents_each_asset": 12,
+  "asset_period_evaluations": 1323,
+  "inferential_family": 405,
+  "selection": "same eligibility/ranking/quality gates asL0089; null if no qualified choice",
+  "eligibility": {
+    "signals_total_asset": 20,
+    "signals_each_period": 3,
+    "recall_total_asset": 0.3,
+    "recall_each_period": 0.15
+  },
+  "raw_parent_sha256": "7776f3a154487801123b14e6051864f713cd0456b08c6b0335ccdcdfa01f8d51",
+  "selection_sha256": "49c3a5d2efaf9060b60b2cd269479598584d7af28a5e2978b9dcf82bf7a1df18",
+  "money": "not measured",
+  "data_previously_observed": true,
+  "circular_controls": "10000 draws seed89007;Holm405 over full405 pair-asset family;conditional timing only",
+  "execution_owner": "Lead if whole task <=600 seconds",
+  "inference_warning": "Holm324 is conditional for this pair family; does not correct earlier L0088 choice or entire project; discovery only",
+  "pvalue_scope": "conditional timing-alignment test, not a direct test of marginal superiority over price component; reused discovery data, not independent validation",
+  "parent_review": "9ada99c3fca9e3a4f990c7f551f030b931287a2e",
+  "new_state_pairs_per_asset": 27,
+  "new_state_pairs": 81,
+  "parents_total": 36,
+  "total_rows": 441,
+  "market_authorisation": "NOT RUN; preparation only",
+  "states": {
+    "TAKER_PRESSURE": "sum(taker_buy_volume,n)/sum(volume,n)>=threshold at current close; no edge extraction; zero denominator false",
+    "OBV_EMA": "EMA_OBV_fast>EMA_OBV_slow at current close; adjust=False,min_periods=span; no edge extraction"
+  },
+  "state_mode": "STATE_NOW: price singleton pulse now AND current volume state; no future or retrospective timing",
+  "data_inputs_sha256": {
+    "BTCUSDT.csv": "ed1ef1568753eabd6700ceef587d5211abfd5713dfe34460f4144690951b165c",
+    "ETHUSDT.csv": "b19352207c28ec2db3eb1b66f937a1d1b7dbbb0ea10fad1ecb9fee25c87fd704",
+    "SOLUSDT.csv": "d9ba90bfbd819da27afc952a9a9285759d89ba89abf5e834b6bb287fb523ba01",
+    "inputs.json": "d2b5e7c56e8522be45d400ff387575887e2a3da8869e5913ba2cd80f5c7df172"
+  },
+  "state_numeric_policy": "Round taker ratio and OBV fast-minus-slow to10 decimals before threshold comparison; finite/warmup required; fixed before market.",
+  "gzip_policy": "New gzip header canonical OS255; resumed raw compares decompressed JSON exact bytes; archive/checkpoint still hash actual gzip bytes.",
+  "lead_execution_estimate_seconds": {
+    "whole_ready_measure_audit_report_upload": 360,
+    "measure": 60,
+    "audit": 60,
+    "report_and_checks": 60,
+    "publication_and_verified_readback": 180,
+    "basis": "L0089 measured25.542s,audit31.229s,pre-upload182.512s; network uncertainty may push beyond600s; checkpoint and ready handoff if so."
+  },
+  "marginal_hypothesis_criterion": {
+    "precision_delta_min": 0.1,
+    "retained_parent_recall_min": 0.8,
+    "status": "descriptive per candidate; not a new adoption gate; conditional Holm tests timing only"
+  }
+}

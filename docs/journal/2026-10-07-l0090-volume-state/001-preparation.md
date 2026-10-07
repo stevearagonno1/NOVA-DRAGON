@@ -1,0 +1,4 @@
+- Decision: freeze persistent volume confirmation at current close,retain L0089 pulse controls and standalone baselines.
+- Executed: prepared code,fixed gzip portability and publisher wording; scalar/prefix/synthetic restart and tamper checks passed.
+- Produced: scope,source manifest,441-row synthetic readiness and preparation report; market NOT RUN.
+- Next: Lead executes ready light market measurement,audits and publishes; no adoption or main merge.

@@ -841,3 +841,7 @@ Three fixed cases and two frozen policies compared, raw matching audited, result
 
 ## L0089 Lead review — 2026-10-07
 D-L0089-REVIEW-20261007: Defer adoption. Technical discovery complete; independent scalar audit PASS for360 rows and9,720,000 controls. Zero eligible pairs. Correction: prior publisher text about three fixed cases/frozen validation is wrong; actual scope324 pair-asset discovery cases+36 parents. Task estimate15–45min overstated: pre-upload total182.512s; no padding to make work heavy. Next: Lead prepares persistent volume-state comparison; no new measurement or main merge.
+
+
+## L0090 preparation — 2026-10-07
+Prepared81 persistent-volume state pairs alongside324 inherited pulse controls and36 parents. Frozen441-row scope,causal definitions and unchanged quality gates before market. Synthetic scalar/prefix/end-to-end audit/gzip/tamper checks PASS. Market NOT RUN; no adoption. Corrected L0089 publisher description in a new source revision. Ready-task estimate360s; Lead handles light execution. Next: market measurement and independent review as separate milestone.
