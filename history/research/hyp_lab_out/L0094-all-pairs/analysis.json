@@ -1,0 +1,13 @@
+{
+  "adoption": "NOT AUTHORISED",
+  "all_rows": 348245,
+  "eligible_pair_counts": {
+    "BTCUSDT": 70071,
+    "ETHUSDT": 77171,
+    "SOLUSDT": 77366
+  },
+  "limits": "Only frozen top20 per asset get detailed quality checks;no claim of exhaustive quality evaluation of every pair. Raw counts for all pairs retained.",
+  "quality_and_marginal_passes": [],
+  "state": "DISCOVERY_ONLY",
+  "zero_signal_asset_rows": 234199
+}
