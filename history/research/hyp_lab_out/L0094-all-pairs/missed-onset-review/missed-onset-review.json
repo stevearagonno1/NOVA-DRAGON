@@ -1,0 +1,1869 @@
+{
+  "status": "PASS",
+  "decision": "D-L0094-MISSED-ONSET-20261007",
+  "verdict": "Defer",
+  "kind": "post-hoc descriptive diagnosis;not new signal performance",
+  "source": "d7e72e6d8639088243e93ced30ab682bcdbf0985",
+  "summaries": [
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "mode": "AND2",
+      "rules": [
+        {
+          "family": "BB",
+          "id": "BB_50_2.5",
+          "k": 2.5,
+          "n": 50
+        },
+        {
+          "family": "STOCHRSI",
+          "id": "STOCHRSI_14_0.2",
+          "n": 14,
+          "t": 0.2
+        }
+      ],
+      "events": 37,
+      "caught": 13,
+      "missed": 24,
+      "miss_reasons": {
+        "neither_component_in_window": 9,
+        "only_a_in_window": 0,
+        "only_b_in_window": 15,
+        "both_in_window_without_mix_pulse": 0
+      },
+      "nearest_confirmation_timing": {
+        "early_outside": 1,
+        "late_outside": 0,
+        "absent_12": 23
+      },
+      "period_counts": [
+        {
+          "events": 13,
+          "caught": 6
+        },
+        {
+          "events": 13,
+          "caught": 4
+        },
+        {
+          "events": 11,
+          "caught": 3
+        }
+      ]
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "mode": "OR0",
+      "rules": [
+        {
+          "family": "EMA",
+          "fast": 50,
+          "id": "EMA_50_200",
+          "slow": 200
+        },
+        {
+          "family": "RSI",
+          "form": "cross",
+          "id": "RSI_7_20_cross",
+          "n": 7,
+          "t": 20
+        }
+      ],
+      "events": 33,
+      "caught": 14,
+      "missed": 19,
+      "miss_reasons": {
+        "neither_component_in_window": 19,
+        "only_a_in_window": 0,
+        "only_b_in_window": 0,
+        "both_in_window_without_mix_pulse": 0
+      },
+      "nearest_confirmation_timing": {
+        "early_outside": 0,
+        "late_outside": 0,
+        "absent_12": 19
+      },
+      "period_counts": [
+        {
+          "events": 11,
+          "caught": 5
+        },
+        {
+          "events": 12,
+          "caught": 6
+        },
+        {
+          "events": 10,
+          "caught": 3
+        }
+      ]
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "mode": "AND0",
+      "rules": [
+        {
+          "family": "CCI",
+          "id": "CCI_7_-100",
+          "n": 7,
+          "t": -100
+        },
+        {
+          "d": 5,
+          "family": "STOCH",
+          "id": "STOCH_21_5_30",
+          "n": 21,
+          "t": 30
+        }
+      ],
+      "events": 36,
+      "caught": 14,
+      "missed": 22,
+      "miss_reasons": {
+        "neither_component_in_window": 3,
+        "only_a_in_window": 14,
+        "only_b_in_window": 1,
+        "both_in_window_without_mix_pulse": 4
+      },
+      "nearest_confirmation_timing": {
+        "early_outside": 3,
+        "late_outside": 0,
+        "absent_12": 19
+      },
+      "period_counts": [
+        {
+          "events": 12,
+          "caught": 4
+        },
+        {
+          "events": 12,
+          "caught": 5
+        },
+        {
+          "events": 12,
+          "caught": 5
+        }
+      ]
+    }
+  ],
+  "records": [
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 0,
+      "onset": 1131,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        0
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        0
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 0,
+      "onset": 1157,
+      "matched_mix_lag": 0,
+      "a_lags_in_success_window": [
+        0
+      ],
+      "b_lags_in_success_window": [
+        -2,
+        0
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 0,
+      "onset": 1197,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        12
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 0,
+      "onset": 1238,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        -12,
+        -4,
+        1
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 0,
+      "onset": 1271,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": -8,
+      "nearest_mix_timing": "early_outside",
+      "a_lags_diagnostic": [
+        -11,
+        -8
+      ],
+      "b_lags_diagnostic": [
+        -8
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 0,
+      "onset": 1302,
+      "matched_mix_lag": 2,
+      "a_lags_in_success_window": [
+        -2,
+        2
+      ],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 0,
+      "onset": 1359,
+      "matched_mix_lag": 0,
+      "a_lags_in_success_window": [
+        0
+      ],
+      "b_lags_in_success_window": [
+        -2
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 0,
+      "onset": 1396,
+      "matched_mix_lag": 1,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [
+        -2,
+        1
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 0,
+      "onset": 1454,
+      "matched_mix_lag": 0,
+      "a_lags_in_success_window": [
+        -2
+      ],
+      "b_lags_in_success_window": [
+        0
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 0,
+      "onset": 1479,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        1
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 0,
+      "onset": 1518,
+      "matched_mix_lag": 0,
+      "a_lags_in_success_window": [
+        -2,
+        0
+      ],
+      "b_lags_in_success_window": [
+        0
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 0,
+      "onset": 1563,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        -12,
+        -9,
+        1
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 0,
+      "onset": 1589,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        -5,
+        1
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 1,
+      "onset": 1681,
+      "matched_mix_lag": 2,
+      "a_lags_in_success_window": [
+        2
+      ],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 1,
+      "onset": 1750,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        0
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        0,
+        11
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 1,
+      "onset": 1784,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        2
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        2,
+        6
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 1,
+      "onset": 1821,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        -1
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        -11,
+        -3,
+        -1,
+        3
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 1,
+      "onset": 1848,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        -9,
+        1,
+        4
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 1,
+      "onset": 1894,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        -11,
+        -8,
+        -6,
+        3
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 1,
+      "onset": 1920,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        -10,
+        6
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 1,
+      "onset": 1961,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        3,
+        11
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 1,
+      "onset": 2004,
+      "matched_mix_lag": -2,
+      "a_lags_in_success_window": [
+        -2
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": null
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 1,
+      "onset": 2039,
+      "matched_mix_lag": 1,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 1,
+      "onset": 2082,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        3
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 1,
+      "onset": 2116,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        12
+      ],
+      "b_lags_diagnostic": [
+        -4,
+        1
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 1,
+      "onset": 2141,
+      "matched_mix_lag": 0,
+      "a_lags_in_success_window": [
+        0
+      ],
+      "b_lags_in_success_window": [
+        0
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 2,
+      "onset": 2222,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        11
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 2,
+      "onset": 2277,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        -12,
+        4
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 2,
+      "onset": 2309,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        -11,
+        -4,
+        1,
+        6,
+        8
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 2,
+      "onset": 2335,
+      "matched_mix_lag": 1,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 2,
+      "onset": 2403,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        1
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 2,
+      "onset": 2441,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        -11,
+        4,
+        9
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 2,
+      "onset": 2526,
+      "matched_mix_lag": -1,
+      "a_lags_in_success_window": [
+        -1
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": null
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 2,
+      "onset": 2583,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        2
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        2
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 2,
+      "onset": 2613,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        2
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        2
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 2,
+      "onset": 2649,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        -2,
+        1
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": [
+        -5,
+        -2,
+        1
+      ]
+    },
+    {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "period": 2,
+      "onset": 2714,
+      "matched_mix_lag": -2,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        -2,
+        2
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 0,
+      "onset": 1131,
+      "matched_mix_lag": 2,
+      "a_lags_in_success_window": [
+        2
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": null
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 0,
+      "onset": 1179,
+      "matched_mix_lag": 2,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        2
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 0,
+      "onset": 1214,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 0,
+      "onset": 1261,
+      "matched_mix_lag": 2,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        2
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 0,
+      "onset": 1302,
+      "matched_mix_lag": 1,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 0,
+      "onset": 1359,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 0,
+      "onset": 1387,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 0,
+      "onset": 1415,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 0,
+      "onset": 1453,
+      "matched_mix_lag": 2,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        2
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 0,
+      "onset": 1552,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 0,
+      "onset": 1581,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 1,
+      "onset": 1681,
+      "matched_mix_lag": 2,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        2
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 1,
+      "onset": 1720,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 1,
+      "onset": 1760,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 1,
+      "onset": 1821,
+      "matched_mix_lag": -1,
+      "a_lags_in_success_window": [
+        -1
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": null
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 1,
+      "onset": 1857,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 1,
+      "onset": 1894,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 1,
+      "onset": 1942,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 1,
+      "onset": 1970,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 1,
+      "onset": 2004,
+      "matched_mix_lag": 1,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 1,
+      "onset": 2040,
+      "matched_mix_lag": 0,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        0
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 1,
+      "onset": 2082,
+      "matched_mix_lag": 1,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 1,
+      "onset": 2141,
+      "matched_mix_lag": 0,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        0
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 2,
+      "onset": 2230,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 2,
+      "onset": 2259,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 2,
+      "onset": 2329,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 2,
+      "onset": 2388,
+      "matched_mix_lag": 0,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        0
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 2,
+      "onset": 2433,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 2,
+      "onset": 2490,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 2,
+      "onset": 2526,
+      "matched_mix_lag": 0,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        0
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 2,
+      "onset": 2567,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 2,
+      "onset": 2596,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "period": 2,
+      "onset": 2710,
+      "matched_mix_lag": 2,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        2
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 0,
+      "onset": 1132,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": "only_a_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        -6,
+        1
+      ],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 0,
+      "onset": 1179,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": "only_a_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        1
+      ],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 0,
+      "onset": 1225,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": "only_a_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        -6,
+        1
+      ],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 0,
+      "onset": 1262,
+      "matched_mix_lag": 1,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 0,
+      "onset": 1302,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": "only_a_in_window",
+      "nearest_mix_lag": -5,
+      "nearest_mix_timing": "early_outside",
+      "a_lags_diagnostic": [
+        -12,
+        -5,
+        1
+      ],
+      "b_lags_diagnostic": [
+        -5
+      ]
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 0,
+      "onset": 1331,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [
+        2
+      ],
+      "miss_reason": "only_b_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        -11,
+        -6
+      ],
+      "b_lags_diagnostic": [
+        -4,
+        2
+      ]
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 0,
+      "onset": 1359,
+      "matched_mix_lag": 1,
+      "a_lags_in_success_window": [
+        -2,
+        1
+      ],
+      "b_lags_in_success_window": [
+        -1,
+        1
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 0,
+      "onset": 1396,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        -1
+      ],
+      "b_lags_in_success_window": [
+        -2,
+        0
+      ],
+      "miss_reason": "both_in_window_without_mix_pulse",
+      "nearest_mix_lag": -8,
+      "nearest_mix_timing": "early_outside",
+      "a_lags_diagnostic": [
+        -8,
+        -5,
+        -1
+      ],
+      "b_lags_diagnostic": [
+        -8,
+        -6,
+        -2,
+        0
+      ]
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 0,
+      "onset": 1453,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": "only_a_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        -8,
+        1,
+        9
+      ],
+      "b_lags_diagnostic": [
+        -7
+      ]
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 0,
+      "onset": 1518,
+      "matched_mix_lag": 0,
+      "a_lags_in_success_window": [
+        0
+      ],
+      "b_lags_in_success_window": [
+        0
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 0,
+      "onset": 1563,
+      "matched_mix_lag": 1,
+      "a_lags_in_success_window": [
+        -1,
+        1
+      ],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 0,
+      "onset": 1603,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        11
+      ],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 1,
+      "onset": 1681,
+      "matched_mix_lag": 1,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 1,
+      "onset": 1736,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        -1
+      ],
+      "b_lags_in_success_window": [
+        0
+      ],
+      "miss_reason": "both_in_window_without_mix_pulse",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        -1
+      ],
+      "b_lags_diagnostic": [
+        0
+      ]
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 1,
+      "onset": 1761,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": "only_a_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        1
+      ],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 1,
+      "onset": 1821,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": "only_a_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        -3,
+        1,
+        11
+      ],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 1,
+      "onset": 1857,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": "only_a_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        -12,
+        -8,
+        1
+      ],
+      "b_lags_diagnostic": [
+        -9
+      ]
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 1,
+      "onset": 1887,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        10
+      ],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 1,
+      "onset": 1933,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        2
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": "only_a_in_window",
+      "nearest_mix_lag": -12,
+      "nearest_mix_timing": "early_outside",
+      "a_lags_diagnostic": [
+        -12,
+        -8,
+        2
+      ],
+      "b_lags_diagnostic": [
+        -12,
+        -10,
+        -7
+      ]
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 1,
+      "onset": 1971,
+      "matched_mix_lag": 1,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [
+        1
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 1,
+      "onset": 2004,
+      "matched_mix_lag": 1,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [
+        -2,
+        1
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 1,
+      "onset": 2039,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [
+        -2,
+        0
+      ],
+      "miss_reason": "both_in_window_without_mix_pulse",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        -10,
+        -3,
+        1
+      ],
+      "b_lags_diagnostic": [
+        -2,
+        0
+      ]
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 1,
+      "onset": 2082,
+      "matched_mix_lag": 2,
+      "a_lags_in_success_window": [
+        2
+      ],
+      "b_lags_in_success_window": [
+        2
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 1,
+      "onset": 2141,
+      "matched_mix_lag": 0,
+      "a_lags_in_success_window": [
+        0
+      ],
+      "b_lags_in_success_window": [
+        0
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 2,
+      "onset": 2231,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": "only_a_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        1
+      ],
+      "b_lags_diagnostic": [
+        -10
+      ]
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 2,
+      "onset": 2259,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        2
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": "only_a_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        -3,
+        2
+      ],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 2,
+      "onset": 2297,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [],
+      "b_lags_in_success_window": [],
+      "miss_reason": "neither_component_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 2,
+      "onset": 2334,
+      "matched_mix_lag": 2,
+      "a_lags_in_success_window": [
+        2
+      ],
+      "b_lags_in_success_window": [
+        2
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 2,
+      "onset": 2386,
+      "matched_mix_lag": 2,
+      "a_lags_in_success_window": [
+        2
+      ],
+      "b_lags_in_success_window": [
+        2
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 2,
+      "onset": 2441,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": "only_a_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        -8,
+        1
+      ],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 2,
+      "onset": 2488,
+      "matched_mix_lag": 2,
+      "a_lags_in_success_window": [
+        -2,
+        2
+      ],
+      "b_lags_in_success_window": [
+        2
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 2,
+      "onset": 2525,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        2
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": "only_a_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        2
+      ],
+      "b_lags_diagnostic": [
+        4
+      ]
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 2,
+      "onset": 2567,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [
+        -1
+      ],
+      "miss_reason": "both_in_window_without_mix_pulse",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        -12,
+        -4,
+        1
+      ],
+      "b_lags_diagnostic": [
+        -1
+      ]
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 2,
+      "onset": 2596,
+      "matched_mix_lag": 2,
+      "a_lags_in_success_window": [
+        2
+      ],
+      "b_lags_in_success_window": [
+        2
+      ],
+      "miss_reason": null
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 2,
+      "onset": 2638,
+      "matched_mix_lag": null,
+      "a_lags_in_success_window": [
+        1
+      ],
+      "b_lags_in_success_window": [],
+      "miss_reason": "only_a_in_window",
+      "nearest_mix_lag": null,
+      "nearest_mix_timing": "absent_12",
+      "a_lags_diagnostic": [
+        1
+      ],
+      "b_lags_diagnostic": []
+    },
+    {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "period": 2,
+      "onset": 2714,
+      "matched_mix_lag": -2,
+      "a_lags_in_success_window": [
+        -2
+      ],
+      "b_lags_in_success_window": [
+        -2,
+        1
+      ],
+      "miss_reason": null
+    }
+  ],
+  "compute_seconds": 0.01822274099868082,
+  "limits": "Presence of pulses around future-labelled onsets is evaluation-only;absence in diagnostic12 bars is not proof of impossibility;no causal state tested",
+  "adoption": "NOT AUTHORISED"
+}
