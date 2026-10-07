@@ -17,5 +17,8 @@
   "audit_seconds": 32.11637574500014,
   "instrumented_elapsed_before_upload_seconds": 251.90341424942017,
   "full_turn_elapsed_seconds": "not measured: timer began after initial source/ref reading",
-  "verified_remote": false
+  "verified_remote": true,
+  "verified_evidence_commit": "cdb5d002a3579001b4795f990b5e1daa44066b5b",
+  "instrumented_run_through_verified_evidence_seconds": 537.9251914024353,
+  "verification": "Full archive bytes fetched at immutable commit and SHA256+GitSHA checked; final receipt publication duration excluded from this instrumented interval."
 }
