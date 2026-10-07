@@ -1,0 +1,11 @@
+{
+  "asset_period_evaluations": 63,
+  "elapsed_seconds": 0.5274458060002871,
+  "labels_reference_checks": 9,
+  "new_rules": 6,
+  "real_mask_and_prefix_checks": 72,
+  "rows": 21,
+  "scope_sha256": "fbbba29a3d3f32d018a5295c50d946dc1bf11c86133d90eb66306f5e3f0ad92e",
+  "source_commit": "27a8cde05c0d977a335d68822057a2ba3ecb2efa",
+  "status": "PASS"
+}

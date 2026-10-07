@@ -1,0 +1,4 @@
+- Decision: reject high-precision adoption of six registered recovery rules;Defer broader research.
+- Executed:21rows/63evaluations,scalar audit,72real mask/prefix and9label checks PASS;compute1.113s.
+- Produced: report,raw archive,review;P3.31%–10.34%. Whole-stage instrumented time before upload623.846s exceeded600s;Lead failed to checkpoint on time;do not infer task duration from compute.
+- Next: immutable delivery readback,then diagnose trend/pullback context;no main merge or executor review assignment.

@@ -1,0 +1,48 @@
+{
+  "decision": "D-L0091-REVIEW-20261007",
+  "verdict": "Defer",
+  "scope_outcome": "valid negative for standalone high-precision use of these six recovery rules",
+  "source_commit": "27a8cde05c0d977a335d68822057a2ba3ecb2efa",
+  "selected": {
+    "BTCUSDT": "3",
+    "ETHUSDT": "1",
+    "SOLUSDT": "1"
+  },
+  "selection_counts": {
+    "signals": 523,
+    "matched_events": 44,
+    "events": 106,
+    "precision": 0.0841300191204589,
+    "recall": 0.41509433962264153,
+    "wilson95_low_descriptive": 0.06326630792087463
+  },
+  "quality_checks": {
+    "all_assets": true,
+    "sample": true,
+    "precision070": false,
+    "recall030": true,
+    "asset_precision055": false,
+    "wilson060": false,
+    "median_lag1": false
+  },
+  "quality_status": "NOT_CONFIRMED",
+  "adoption": "NOT AUTHORISED",
+  "statistical_inference": "not measured",
+  "audit": {
+    "asset_period_evaluations": 63,
+    "elapsed_seconds": 0.5274458060002871,
+    "labels_reference_checks": 9,
+    "new_rules": 6,
+    "real_mask_and_prefix_checks": 72,
+    "rows": 21,
+    "scope_sha256": "fbbba29a3d3f32d018a5295c50d946dc1bf11c86133d90eb66306f5e3f0ad92e",
+    "source_commit": "27a8cde05c0d977a335d68822057a2ba3ecb2efa",
+    "status": "PASS"
+  },
+  "new_rule_precision_range": [
+    0.03305785123966942,
+    0.10344827586206896
+  ],
+  "new_rule_neighbor_pairs": "with/without no-lower-low gates retain the same TP in all9 asset/window-length pairs",
+  "next": "Diagnose trend/pullback context of newly captured events versus unmatched price-recovery alerts before preregistering a causal context filter."
+}

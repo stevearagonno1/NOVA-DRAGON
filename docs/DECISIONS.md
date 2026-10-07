@@ -482,3 +482,5 @@ D-L0090-PREP-20261007 | 2026-10-07 | Freeze causal STATE_NOW comparison;81 new p
 D-L0090-REVIEW-20261007 | 2026-10-07 | Defer adoption;valid negative for81 persistent volume filters | Scalar441-row/12,150,000-count audit PASS;0 eligible,0 marginal hypothesis passes | Diagnose CCI false alerts and missed events before another signal; historical discovery only,no trading or adoption.
 
 D-L0090-CCI-DIAG-20261007 | 2026-10-07 | CCI diagnosis accepted; no new signal/adoption | 37/50 missed events lack deep oversold in post-hoc diagnostic window;65/81 false/duplicate alerts hit lower barrier first | Prepare causal price recovery comparison vsCCI;diagnostic future labels forbidden as inputs;no new experiment run here.
+
+D-L0091-REVIEW-20261007 | 2026-10-07 | Defer standalone price-recovery rules;valid negative for high-precision use in this grid | P3.31%–10.34%,auditPASS;additional onset events coexist with many false alerts | Diagnose trend/pullback context before another causal filter;no adoption,new grid or unregistered OR.
