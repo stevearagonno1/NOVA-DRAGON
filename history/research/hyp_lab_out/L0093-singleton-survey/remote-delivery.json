@@ -1,0 +1,16 @@
+{
+  "status": "DISCOVERY_COMPLETE_LEAD_REVIEW_PENDING",
+  "source_sha256": "3298e2fe3365286db1f3cc5eb863877fcf6704136a8cc5541483360c3d401ca4",
+  "archive_sha256": "c0d00344ade2e148355fcef43a5b18d0be97b171234117e3b2e682f9e62135fa",
+  "archive_bytes": 298981,
+  "settings": 482,
+  "rows": 1446,
+  "period_evaluations": 4338,
+  "elapsed_before_final_upload_seconds": 76.53192377090454,
+  "full_task_through_readback_seconds": 125.93123531341553,
+  "compute_seconds": 7.739888487000002,
+  "workspace_bytes": 5294258,
+  "adoption": "NOT AUTHORISED",
+  "verified_remote": true,
+  "commit": "9e6dc794bc7c9bb898d409ea27347b892d994ac7"
+}
