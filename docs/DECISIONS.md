@@ -484,3 +484,5 @@ D-L0090-REVIEW-20261007 | 2026-10-07 | Defer adoption;valid negative for81 persi
 D-L0090-CCI-DIAG-20261007 | 2026-10-07 | CCI diagnosis accepted; no new signal/adoption | 37/50 missed events lack deep oversold in post-hoc diagnostic window;65/81 false/duplicate alerts hit lower barrier first | Prepare causal price recovery comparison vsCCI;diagnostic future labels forbidden as inputs;no new experiment run here.
 
 D-L0091-REVIEW-20261007 | 2026-10-07 | Defer standalone price-recovery rules;valid negative for high-precision use in this grid | P3.31%–10.34%,auditPASS;additional onset events coexist with many false alerts | Diagnose trend/pullback context before another causal filter;no adoption,new grid or unregistered OR.
+
+D-L0092-REVIEW-20261007 | 2026-10-07 | Defer candle-confirmation adoption in this grid | Scalar auditPASS,but sample/coverage/precision gates do not jointly pass;100%single-alert cases do not establish accuracy | Diagnose missed-onset timing and rare confirmations before scope changes;historical discovery only.

@@ -858,3 +858,7 @@ L0090 timing correction: final local receipt recorded626.100s after initial read
 
 ## L0091 completed discovery — 2026-10-07
 Six frozen price-recovery rules vsCCI;21rows/63quarter evaluations,auditPASS,72real mask/prefix checks and9independent labels. New-rule precision3.31%–10.34%;descriptive selections523alerts,44/106events,P8.41%,R41.51%;NOT_CONFIRMED,Defer adoption. Full raw alerts/results in evidence.zip. Lead handled execution;no executor paper. Timing correction:pre-upload instrumented whole-stage623.846s exceeded600s despite compute1.113s. Estimate was wrong and Lead did not checkpoint at600s;record this breach and keep future preparation smaller before it crosses the boundary. No padding or relabelling as light based on compute.
+
+
+## L0092 candle confirmation — 2026-10-07
+Frozen6crypto-adapted candle definitions×3standalone/CCI timing modes;57rows/171quarter evaluations,216real mask/prefix checks and9scalar labels PASS.Only BTC standaloneEngulf1 eligible;ETH/SOLnull. BasicMorning+currentCCI precision54.55%from6/11 alerts,butrecall5.66%;perfect precision is single-alert cases. Defer,no adoption. Lead misestimated full-task duration:654.517s before final upload vs360s estimate;compute111.314s;600s boundary exceeded. Document this breach;no claim that task was light based on measurement alone.

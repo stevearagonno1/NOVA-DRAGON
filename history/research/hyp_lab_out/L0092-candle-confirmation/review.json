@@ -1,0 +1,122 @@
+{
+  "decision": "D-L0092-REVIEW-20261007",
+  "verdict": "Defer",
+  "quality": "NOT_CONFIRMED",
+  "selected_by_asset": {
+    "BTCUSDT": "6",
+    "ETHUSDT": null,
+    "SOLUSDT": null
+  },
+  "adoption": "NOT AUTHORISED",
+  "audit": {
+    "asset_period_evaluations": 171,
+    "elapsed_seconds": 68.6295028049999,
+    "labels_reference_checks": 9,
+    "new_rules": 18,
+    "real_mask_and_prefix_checks": 216,
+    "rows": 57,
+    "scope_sha256": "ad912d2919f8c98428700fffb4465bdce220f77f7dcdb33dd3b65b64f9f3f516",
+    "source_commit": "246ee79697b2317973e10e992d20fde2bbd1a00f",
+    "status": "PASS"
+  },
+  "basic_variant_aggregates": [
+    {
+      "pattern": "\u0627\u0644\u0645\u0637\u0631\u0642\u06292",
+      "mode": "\u0645\u0646\u0641\u0631\u062f",
+      "signals": 91,
+      "matched": 14,
+      "events": 106,
+      "precision": 0.15384615384615385,
+      "recall": 0.1320754716981132
+    },
+    {
+      "pattern": "\u0627\u0644\u0645\u0637\u0631\u0642\u06292",
+      "mode": "\u0645\u062a\u0632\u0627\u0645\u0646CCI",
+      "signals": 2,
+      "matched": 0,
+      "events": 106,
+      "precision": 0.0,
+      "recall": 0.0
+    },
+    {
+      "pattern": "\u0627\u0644\u0645\u0637\u0631\u0642\u06292",
+      "mode": "\u0644\u0627\u062d\u0642CCI",
+      "signals": 10,
+      "matched": 2,
+      "events": 106,
+      "precision": 0.2,
+      "recall": 0.018867924528301886
+    },
+    {
+      "pattern": "\u0627\u0644\u0627\u0628\u062a\u0644\u0627\u06391",
+      "mode": "\u0645\u0646\u0641\u0631\u062f",
+      "signals": 245,
+      "matched": 32,
+      "events": 106,
+      "precision": 0.1306122448979592,
+      "recall": 0.3018867924528302
+    },
+    {
+      "pattern": "\u0627\u0644\u0627\u0628\u062a\u0644\u0627\u06391",
+      "mode": "\u0645\u062a\u0632\u0627\u0645\u0646CCI",
+      "signals": 25,
+      "matched": 6,
+      "events": 106,
+      "precision": 0.24,
+      "recall": 0.05660377358490566
+    },
+    {
+      "pattern": "\u0627\u0644\u0627\u0628\u062a\u0644\u0627\u06391",
+      "mode": "\u0644\u0627\u062d\u0642CCI",
+      "signals": 21,
+      "matched": 3,
+      "events": 106,
+      "precision": 0.14285714285714285,
+      "recall": 0.02830188679245283
+    },
+    {
+      "pattern": "\u0646\u062c\u0645 \u0627\u0644\u0635\u0628\u0627\u062d0.5",
+      "mode": "\u0645\u0646\u0641\u0631\u062f",
+      "signals": 35,
+      "matched": 10,
+      "events": 106,
+      "precision": 0.2857142857142857,
+      "recall": 0.09433962264150944
+    },
+    {
+      "pattern": "\u0646\u062c\u0645 \u0627\u0644\u0635\u0628\u0627\u062d0.5",
+      "mode": "\u0645\u062a\u0632\u0627\u0645\u0646CCI",
+      "signals": 11,
+      "matched": 6,
+      "events": 106,
+      "precision": 0.5454545454545454,
+      "recall": 0.05660377358490566
+    },
+    {
+      "pattern": "\u0646\u062c\u0645 \u0627\u0644\u0635\u0628\u0627\u062d0.5",
+      "mode": "\u0644\u0627\u062d\u0642CCI",
+      "signals": 1,
+      "matched": 1,
+      "events": 106,
+      "precision": 1.0,
+      "recall": 0.009433962264150943
+    }
+  ],
+  "perfect_precision_cases": [
+    {
+      "asset": "SOLUSDT",
+      "id": "5",
+      "signals": 1,
+      "matched": 1,
+      "recall": 0.027777777777777776
+    },
+    {
+      "asset": "SOLUSDT",
+      "id": "14",
+      "signals": 1,
+      "matched": 1,
+      "recall": 0.027777777777777776
+    }
+  ],
+  "inference": "not measured;historical discovery only"
+}
