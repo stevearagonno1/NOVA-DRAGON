@@ -862,3 +862,7 @@ Six frozen price-recovery rules vsCCI;21rows/63quarter evaluations,auditPASS,72r
 
 ## L0092 candle confirmation — 2026-10-07
 Frozen6crypto-adapted candle definitions×3standalone/CCI timing modes;57rows/171quarter evaluations,216real mask/prefix checks and9scalar labels PASS.Only BTC standaloneEngulf1 eligible;ETH/SOLnull. BasicMorning+currentCCI precision54.55%from6/11 alerts,butrecall5.66%;perfect precision is single-alert cases. Defer,no adoption. Lead misestimated full-task duration:654.517s before final upload vs360s estimate;compute111.314s;600s boundary exceeded. Document this breach;no claim that task was light based on measurement alone.
+
+
+## L0092 timing diagnosis — 2026-10-07
+Saved57-row counts reconciled;636 event-variant timing partitions checked. Of56 CCI-caught events,Morning0.5 sameCCI6,after1/2inside1,otherinside0,nearestearly5,nearestlate3,absent41. Scarcity dominates delay for this definition;no wider-window performance or new selection. AuditPASS,Defer;no adoption/main merge. Next:design a causal persistent price-recovery confirmation before any new measurement. Whole-task timer and pre-work estimate were not recorded this turn;compute0.021386s is not full duration.

@@ -310,3 +310,7 @@ docs/lanes/L0061-LONGCYCLE-FULL-LAUNCH-PROMPT.md
 — دورة كاملة 5 سنوات + تشخيص حدّ الأربع عملات (بلا تعديل) + تشريح الإلغاء مقابل التوزيع + 5 بذور كاملة · سقف 26 قياسًا · ممنوع التطوير · بوّابة: التفوّق على الاحتفاظ.
 - **التالي:** دمج الفرع بيد القائد من تيرمكس ← ثم تسليم الورقة لغرفة وكيل جديد.
 - فرع الجلسة: arena/new-brain-a1-2026-09-26 — **الدمج بيد القائد من تيرمكس بالأداة الرسمية.**
+
+
+## L0092 timing diagnosis — 2026-10-07
+Saved57-row counts reconciled;636 event-variant timing partitions checked. Of56 CCI-caught events,Morning0.5 sameCCI6,after1/2inside1,otherinside0,nearestearly5,nearestlate3,absent41. Scarcity dominates delay for this definition;no wider-window performance or new selection. AuditPASS,Defer;no adoption/main merge. Next:design a causal persistent price-recovery confirmation before any new measurement. Whole-task timer and pre-work estimate were not recorded this turn;compute0.021386s is not full duration.

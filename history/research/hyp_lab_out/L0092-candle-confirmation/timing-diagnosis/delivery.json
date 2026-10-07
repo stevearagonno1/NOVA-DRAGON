@@ -1,0 +1,16 @@
+{
+  "status": "DIAGNOSIS_COMPLETE",
+  "base_main": "ab605c9c1b94ec1cde5ff9fd44dfaf05ad2e1761",
+  "source_result": "563d14325a872ea0682b7f3c25b5f1739cd63d17",
+  "archive_sha256": "b8b5f5f450d74dcf1a144cb2e2a1bc9ba1a0d5576f8bb409baee87e52b9297d3",
+  "archive_bytes": 8570,
+  "audit": "PASS",
+  "events": 106,
+  "cci_caught": 56,
+  "event_variant_rows": 636,
+  "verdict": "Defer",
+  "new_signal": false,
+  "adoption": "NOT AUTHORISED",
+  "full_turn_elapsed": "not measured: no timer at first reading",
+  "timing_note": "compute0.021386s is not full task duration; initial component estimate was not recorded, process defect"
+}
