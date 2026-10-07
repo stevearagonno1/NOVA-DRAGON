@@ -1,0 +1,4 @@
+- Decision: preregister36 singleton settings and per-coin family selection.
+- Execution: Lead implements and verifies synthetic execution, independent raw audit, restart and tampering.
+- Produced: tools/l0088, scope, registration, readiness; market NOT RUN.
+- Next: Lead light measurement only after pinned remote source is read back.

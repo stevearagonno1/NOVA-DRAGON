@@ -802,3 +802,7 @@ Report: history/research/hyp_lab_out/L0087-timing-personalization/lead-review/RE
 - لا حذف للأدلة أو أي فصل؛ حُفظت الأقسام20 كاملة. التصحيح طال البنود المتعارضة نفسها: سؤال إجباري، طباعة النتائج، حدود التنفيذ، وتسجيل كل نبضة بطلب API منفصل. لا تغيير بيانات أو كود تجارب أو نتائج أو تداول حي.
 - تعديل الدستور بإذن المالك على فرع عمل فقط؛ الدمج للمالك من Termux. أمره: `bash tools/merge_main.sh agent/constitution-owner-rules-2026-10-07`.
 - الحالة: تعديل منشور للمراجعة على الفرع المذكور، لم يدمجه القائد. تعليمات المالك الحالية واجبة منذ صدورها؛ النص الرسمي على main يتغير بعد دمجه فقط.
+
+
+## L0088 preregistration
+Owner-directed singleton entry-signal discovery:36 settings,3 coins,3 development periods. Lead runs light market measurement; synthetic/scalar/prefix/restart/tamper and persisted evidence audit passed. No market result or adoption yet.
