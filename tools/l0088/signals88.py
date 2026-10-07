@@ -74,7 +74,7 @@ def primitives(d,scalar=False):
   elif f=='CCI':
    mean=roll(tp,n,'mean')
    dev=np.array([sum(abs(z-mean[i]) for z in tp[i-n+1:i+1])/n if i>=n-1 else np.nan for i in range(N)])
-   x=np.divide(tp-mean,.015*dev,out=np.full(N,np.nan),where=dev>0);truth=cross(x,q['t'],True)
+   x=np.divide(tp-mean,.015*dev,out=np.full(N,np.nan),where=dev>0);truth=cross(np.round(x,10),q['t'],True)
   elif f=='EMA_RECLAIM':truth=cross(c,ema(c,n))
   elif f=='DONCHIAN_RECLAIM':bottom=roll(shift(l),n,'min');truth=(l<bottom)&(c>bottom)
   elif f=='OBV_EMA':truth=cross(ema(obv,q['fast']),ema(obv,q['slow']))

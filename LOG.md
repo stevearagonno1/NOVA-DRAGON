@@ -806,3 +806,7 @@ Report: history/research/hyp_lab_out/L0087-timing-personalization/lead-review/RE
 
 ## L0088 preregistration
 Owner-directed singleton entry-signal discovery:36 settings,3 coins,3 development periods. Lead runs light market measurement; synthetic/scalar/prefix/restart/tamper and persisted evidence audit passed. No market result or adoption yet.
+
+
+## L0088 numerical admission correction
+Attempt1 stopped on SOL CCI21 threshold rounding at warmup bars930/931(2024-12-03), before valid market files. CCI now rounds to10 decimals before threshold crossing; grid, thresholds, periods and gates unchanged. Full108 real-input masks and216 prefixes match before evaluating labels; synthetic, restart, tamper and independent persisted audit pass again. Original logs retained.

@@ -53,5 +53,8 @@
   },
   "inferential_significance": "not measured in discovery; no p values or corrected superiority claim",
   "runtime_routing": "Lead if expected <=600 seconds; no padding; elapsed recorded",
-  "dependency_manifest_sha256": "9943394620ddfc1eeac9a2f27f3120ac4d5e331590fd71c0fd091caa12aaaaeb"
+  "dependency_manifest_sha256": "9943394620ddfc1eeac9a2f27f3120ac4d5e331590fd71c0fd091caa12aaaaeb",
+  "numerical_policy": {
+    "CCI": "round computed CCI to10 decimal places before threshold comparison; fixed after warmup-only rounding discrepancy, before any valid market report"
+  }
 }
