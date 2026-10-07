@@ -1,0 +1,22 @@
+[
+  {
+    "asset": "SOLUSDT",
+    "file": "SOLUSDT.csv",
+    "rows": 2742,
+    "start_index": 2214,
+    "scored_bars": 499,
+    "sha256": "d9ba90bfbd819da27afc952a9a9285759d89ba89abf5e834b6bb287fb523ba01",
+    "source": {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=SOLUSDT/panel.parquet",
+      "asset": "SOLUSDT",
+      "bytes": 606180,
+      "sha256": "c6819545b0a3d89868704dab8a7dce1d659ab21f7af54c67fc8cca14d6b809a9",
+      "git_blob_sha": "1e139f3e6275d62cafa90f0a1782fecbf8a24a56",
+      "commit_sha": "e1ee7faa0f47cab7f4dd431a382789ca75748d87",
+      "readback": "PASS"
+    },
+    "source_commit": "2d67a6593a34c0b46e7e4f686efc57db435982a9",
+    "first": "2024-07-01T00:00:00Z",
+    "last": "2025-09-30T20:00:00Z"
+  }
+]

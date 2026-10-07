@@ -1,0 +1,39 @@
+{
+  "stage": "L0095",
+  "cases": [
+    "CCI_ONLY",
+    "CCI_AND_STOCH_PULSE",
+    "CCI_AND_STOCH_STATE_30",
+    "CCI_AND_STOCH_STATE_ANY"
+  ],
+  "asset": "SOLUSDT",
+  "timeframe": "4h",
+  "periods": [
+    [
+      "2025-01-01",
+      "2025-04-01"
+    ],
+    [
+      "2025-04-05",
+      "2025-07-01"
+    ],
+    [
+      "2025-07-05",
+      "2025-10-01"
+    ]
+  ],
+  "quality": {
+    "precision": 0.7,
+    "recall": 0.3,
+    "signals": 20,
+    "wilson95_lower": 0.6,
+    "median_lag_max": 1,
+    "quarter_signals": 3,
+    "quarter_recall": 0.15
+  },
+  "gain": {
+    "precision_above_cci": 0.05,
+    "recall_retained": 0.8
+  },
+  "no_reselection": true
+}

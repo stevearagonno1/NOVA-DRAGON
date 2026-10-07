@@ -1,0 +1,16 @@
+{
+  "base_main": "0428c7b4e72d9891b24cf130d4c7cd08158f5f57",
+  "sha256": {
+    "indicators84.py": "e5b2026cad5266f7aacb6dfad4deed89c66e41a804ba9f0ed1e067076aafe636",
+    "parent93.json.gz": "511f2d600ff9885a9dd61b6ee7946301db0003f271210760eebc142d8b49c31c",
+    "publish85.py": "3857bce285bfbad7e96e63bc193447a6ccf72eeeed74719891d9e0bd187640a0",
+    "signals85.py": "255e4dbe938d6c607e11e66a7b45fa5d0164978fb92a77f672eb62f3b1c47301",
+    "SOLUSDT.csv": "d9ba90bfbd819da27afc952a9a9285759d89ba89abf5e834b6bb287fb523ba01",
+    "inputs.json": "09dad92c773a212264b7aed6361cd1ab994d3c99c1eb8454b90bcaa648905048",
+    "run95.py": "70eebf00b4614bbcf3e8aa2ce9e0b3264474f545408ed2d20c1c8a60ecc2bcee",
+    "launch95.py": "5a43d872153787b2e863a5e421a75dcf567d6601d8ecb53740ceb0614cd9a865",
+    "scope.json": "dd16108ab089c84aa9095eb3042cf11e1f698c9fb9358f575daebdd633850a4b",
+    "prepare_runtime.py": "e342f9e09177dbd6c96919468b5ce1bac1dc0d6f508392d3fdcb888fd384c5b6",
+    "research85.py": "116809601316cff3e2917de54403673a089e8e2da8b897b0bffbf7ce9244161e"
+  }
+}
