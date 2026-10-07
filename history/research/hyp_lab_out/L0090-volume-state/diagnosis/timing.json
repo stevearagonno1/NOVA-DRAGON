@@ -1,0 +1,14 @@
+{
+  "start_epoch": 1791393476.8299186,
+  "whole_task_estimate_seconds": 300,
+  "components_seconds": {
+    "analysis_and_code": 120,
+    "raw_recompute_and_audit": 30,
+    "report": 30,
+    "publication_and_verified_readback": 120
+  },
+  "scope": "diagnosis of existing CCI alerts only; no new strategy measurement",
+  "new_grid_search": false,
+  "compute_and_report_elapsed_seconds": 263.06911540031433,
+  "status": "AUDITED_PUBLICATION_PENDING"
+}

@@ -1,0 +1,4 @@
+- Decision: diagnose existingCCI false alerts/missed events only;no new grid or automatic run.
+- Executed: raw scalarCCI reconciliation,137 alert/barrier checks and106 event records;post-hoc future labels explicitly separated.
+- Produced: diagnosisCSV/JSON/report,audit and runnable code;37/50misses without deep oversold,65/81false/duplicate lower-first. Timing correction:previous final local delivery626.100s exceeded600s;remote537.925s excluded final receipt publication.
+- Next: prepare causal short price-recovery signal comparison vsCCI with fixed budget/gates;no adoption.
