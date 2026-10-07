@@ -1,0 +1,4 @@
+- Decision: diagnose existing selected alerts using strictly prior bars only;do not run a new context filter.
+- Executed:523case records,1569prior arithmetic/prefix checks andfrozen-count reconciliation.
+- Produced:cohortCSV/JSON/report:20new,24shared,479unmatched;drawdown>=1ATR in12/20,20/24,167/479.
+- Next:prepare a small causal prior-drawdown comparison vsunfiltered recovery andCCI;no adoption or automatic experiment.

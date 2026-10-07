@@ -1,0 +1,78 @@
+{
+  "source_commit": "179d3684a5a0ac3bf2b069b53a5bc46f423b383a",
+  "scope": "post-hoc diagnosis of frozen selectedL0091 alerts; no new filter/grid/precision scored",
+  "definitions": {
+    "return20": "close[t-1]/close[t-21]-1",
+    "return6": "close[t-1]/close[t-7]-1",
+    "drawdown6_atr": "(max(high[t-6:t])-close[t-1])/ATR14Wilder[t-1]",
+    "above_sma20": "close[t-1]>mean(close[t-20:t])"
+  },
+  "groups": {
+    "MATCHED_NEW_VS_CCI": {
+      "n": 20,
+      "positive_return20_count": 10,
+      "positive_return6_count": 5,
+      "above_prior_sma20_count": 9,
+      "drawdown_at_least1_atr_count": 12,
+      "median_return20": -0.0024370759481028292,
+      "median_drawdown6_atr": 1.1839352661989737
+    },
+    "MATCHED_SHARED_WITH_CCI": {
+      "n": 24,
+      "positive_return20_count": 1,
+      "positive_return6_count": 1,
+      "above_prior_sma20_count": 1,
+      "drawdown_at_least1_atr_count": 20,
+      "median_return20": -0.04119115157123315,
+      "median_drawdown6_atr": 1.5850168692505322
+    },
+    "UNMATCHED": {
+      "n": 479,
+      "positive_return20_count": 267,
+      "positive_return6_count": 278,
+      "above_prior_sma20_count": 272,
+      "drawdown_at_least1_atr_count": 167,
+      "median_return20": 0.007490698584573963,
+      "median_drawdown6_atr": 0.7279239034213553
+    }
+  },
+  "per_asset": {
+    "BTCUSDT": {
+      "selected": "3",
+      "signals": 154,
+      "matched": 13,
+      "new_events_vs_cci": 9,
+      "lost_events_vs_cci": 13,
+      "unmatched": 141
+    },
+    "ETHUSDT": {
+      "selected": "1",
+      "signals": 177,
+      "matched": 14,
+      "new_events_vs_cci": 5,
+      "lost_events_vs_cci": 10,
+      "unmatched": 163
+    },
+    "SOLUSDT": {
+      "selected": "1",
+      "signals": 192,
+      "matched": 17,
+      "new_events_vs_cci": 6,
+      "lost_events_vs_cci": 9,
+      "unmatched": 175
+    }
+  },
+  "audit": {
+    "status": "PASS",
+    "prior_only_arithmetic_checks": 1569,
+    "selected_alert_count_reconciliations": 3,
+    "frozen_rows_checked": 523
+  },
+  "limits": "Post-hoc context bins, thresholds0 and1ATR and already-selected alerts. No inference, causal attribution,filterperformance or future prediction. Outcomes only form diagnostic cohorts.",
+  "input_sha256": {
+    "results.json": "53343c8c2ea01b44138b70c9b73112fecafa79c0dd56044f413bc64b9b1b0a8a",
+    "selection.json": "9205fff53c7bc47ed63f4c5c44bd8920ecc7e811fe3b3d455fb2286769657f8c",
+    "alerts.json": "017c61553ca0ec2aeeca1d737ea0388de7ff77729e7ff898aba74d500a46464b"
+  },
+  "adoption": "NOT AUTHORISED"
+}

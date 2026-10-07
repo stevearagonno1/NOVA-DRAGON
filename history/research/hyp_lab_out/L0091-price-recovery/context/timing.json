@@ -1,0 +1,10 @@
+{
+  "start_epoch": 1791396383.1595824,
+  "estimate_seconds": 240,
+  "scope": "post-hoc context diagnosis of frozen selected L0091 cases; no new grid,filter or candidate measurement",
+  "components_seconds": {
+    "code_and_compute": 90,
+    "audit_and_report": 45,
+    "publish_readback": 105
+  }
+}

@@ -858,3 +858,7 @@ L0090 timing correction: final local receipt recorded626.100s after initial read
 
 ## L0091 completed discovery — 2026-10-07
 Six frozen price-recovery rules vsCCI;21rows/63quarter evaluations,auditPASS,72real mask/prefix checks and9independent labels. New-rule precision3.31%–10.34%;descriptive selections523alerts,44/106events,P8.41%,R41.51%;NOT_CONFIRMED,Defer adoption. Full raw alerts/results in evidence.zip. Lead handled execution;no executor paper. Timing correction:pre-upload instrumented whole-stage623.846s exceeded600s despite compute1.113s. Estimate was wrong and Lead did not checkpoint at600s;record this breach and keep future preparation smaller before it crosses the boundary. No padding or relabelling as light based on compute.
+
+
+## L0091 prior-context diagnosis — 2026-10-07
+Post-hoc diagnosis only;no new signal/filter scored. Selected523alerts:20events new vsCCI,24shared,479unmatched. Prior6-bar drawdown>=1ATR occurs12/20new,20/24shared,167/479unmatched;general prior uptrend also common in unmatched.1569prior arithmetic/prefix checks PASS;counts reconcile frozen rows. Next:preregister small prior-drawdown context grid vsunfiltered recovery/CCI,not automatic bullish-trend gate;no adoption or future-performance claim.
