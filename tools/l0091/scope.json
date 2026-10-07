@@ -1,0 +1,67 @@
+{
+  "round": "L0091",
+  "question": "Can short causal price recovery improve coverage without requiring deep CCI oversold?",
+  "assets": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "timeframe": "4h UTC",
+  "periods": [
+    "2025-01-01/2025-04-01 exclusive",
+    "2025-04-05/2025-07-01 exclusive",
+    "2025-07-05/2025-10-01 exclusive"
+  ],
+  "grid": [
+    {
+      "n": 2,
+      "no_lower_low": false
+    },
+    {
+      "n": 2,
+      "no_lower_low": true
+    },
+    {
+      "n": 3,
+      "no_lower_low": false
+    },
+    {
+      "n": 3,
+      "no_lower_low": true
+    },
+    {
+      "n": 5,
+      "no_lower_low": false
+    },
+    {
+      "n": 5,
+      "no_lower_low": true
+    }
+  ],
+  "definition": "At close,close>max(high of strictly prior n bars);optional current low>=min(low of strictly prior2 bars);alert only false-to-true of that full condition. No future-confirmed pivots,CCI orvolume gates.",
+  "scoring": "same frozenL0085/L0088 centered rise labels,24-bar +2ATR/-1ATR upper-before-lower,tie adverse;matched first alert within onset+-2,one event;same valid decision bars",
+  "baseline": "frozen CCI14_-150 BTC/ETH,CCI21_-150 SOL",
+  "budget": {
+    "new_rules": 6,
+    "new_asset_cases": 18,
+    "baseline_asset_cases": 3,
+    "total_rows": 21,
+    "asset_period_evaluations": 63
+  },
+  "selection": "eligible NS>=20,recall>=.30 per asset;each periodNS>=3,recall>=.15;rank minimum-quarter precision,thenpooledprecision,recall,lowerID",
+  "quality_goal": "precision>=.70,recall>=.30,totalNS>=100,perassetNS>=20,perassetprecision>=.55,Wilson95 lower>=.60,medianlag<=1;descriptive only,noadoption even if passed",
+  "hypothesis": "recover additional onset events without deep oversold prerequisite;do not claim directional superiority before result",
+  "inference": "not measured in this descriptive screen;no significance claim;pre-inspected historical development only",
+  "money": "not measured,outside signal phase",
+  "parent_diagnosis_commit": "c40278c8329fcdcfb7080506e76065111ba96dab",
+  "input_code_source": "tools/l0090 at c01b1d255acf6c1c167e3b87e64da3cbe34ea5d3",
+  "input_sha256": {
+    "BTCUSDT.csv": "ed1ef1568753eabd6700ceef587d5211abfd5713dfe34460f4144690951b165c",
+    "ETHUSDT.csv": "b19352207c28ec2db3eb1b66f937a1d1b7dbbb0ea10fad1ecb9fee25c87fd704",
+    "SOLUSDT.csv": "d9ba90bfbd819da27afc952a9a9285759d89ba89abf5e834b6bb287fb523ba01",
+    "inputs.json": "d2b5e7c56e8522be45d400ff387575887e2a3da8869e5913ba2cd80f5c7df172",
+    "parent_raw.json.gz": "7776f3a154487801123b14e6051864f713cd0456b08c6b0335ccdcdfa01f8d51"
+  },
+  "lead_estimate_seconds": 420,
+  "owner_authorisation": "2026-10-07T20:29:01+03:00 \u0627\u0644\u062a\u0627\u0644\u064a"
+}
