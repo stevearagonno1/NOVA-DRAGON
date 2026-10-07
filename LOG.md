@@ -829,3 +829,7 @@ Verdict Defer. Shared discovery target passes: []. Next: prepare registered marg
 - تقدير مسبب للمجموع ومكوناته قبل العمل؛زمن المهمة الكلي منفصل عن زمن الحساب عند التسليم. الزمن غير المسجل not measured،لا رقم مختلق. لا تقسيم صوري أو إطالة لإرضاء الحد،ولا متابعة صامتة لمهمة تجاوزته.
 - الحفظ:تصحيح §§7 و11.7 و11.10 و16 والمقدمة؛حفظ الأقسام20 وقواعد المال والاعتماد ورد تم/خطأ والتوكن الخاص والحظر على main/PR. لا تغيير لتجارب L0088 أو نتائجها.
 - الأساس main `4e0f66705f551ec9f1c7df18d4634211eddc5e25`؛الفرع `agent/constitution-total-task-time-2026-10-07`؛الدمج للمالك من Termux فقط.
+
+
+## L0089 executor setup
+Pinned runtime and synthetic admission passed; non-financial archive upload/readback verified by the prepared publisher. Market completion is not established.
