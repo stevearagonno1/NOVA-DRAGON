@@ -1,0 +1,424 @@
+{
+  "status": "PASS",
+  "delivery_commit": "ae57878017bc92c0e64a4c655c65160a6f1e0e7d",
+  "independent_indicator_masks": 6,
+  "events_by_asset": {
+    "BTCUSDT": 11,
+    "ETHUSDT": 10,
+    "SOLUSDT": 12
+  },
+  "candidate_asset_rows": 9,
+  "policy_asset_rows": 6,
+  "weekly_cells_checked": 180,
+  "bootstrap_repetitions": 10000,
+  "alert_diagnostics_checked": 77,
+  "cases": [
+    {
+      "candidate": 11,
+      "signals": 40,
+      "matched_events": 9,
+      "events": 33,
+      "precision": 0.225,
+      "recall": 0.2727272727272727,
+      "f1": 0.2465753424657534,
+      "macro_f1": 0.25396825396825395,
+      "per_asset": [
+        {
+          "signals": 17,
+          "matched_events": 3,
+          "events": 11,
+          "precision": 0.17647058823529413,
+          "recall": 0.2727272727272727,
+          "f1": 0.21428571428571427,
+          "asset": "BTCUSDT"
+        },
+        {
+          "signals": 11,
+          "matched_events": 4,
+          "events": 10,
+          "precision": 0.36363636363636365,
+          "recall": 0.4,
+          "f1": 0.38095238095238093,
+          "asset": "ETHUSDT"
+        },
+        {
+          "signals": 12,
+          "matched_events": 2,
+          "events": 12,
+          "precision": 0.16666666666666666,
+          "recall": 0.16666666666666666,
+          "f1": 0.16666666666666666,
+          "asset": "SOLUSDT"
+        }
+      ],
+      "lag_median": 0,
+      "quality": {
+        "status": "INSUFFICIENT_SAMPLE",
+        "wilson95_low_descriptive": 0.12316091323540744,
+        "checks": {
+          "lag_median_at_most_1": true,
+          "sample": false,
+          "precision_070": false,
+          "recall_030": false,
+          "precision_each_055": false,
+          "wilson_low_060": false
+        }
+      }
+    },
+    {
+      "candidate": 17312,
+      "signals": 14,
+      "matched_events": 5,
+      "events": 33,
+      "precision": 0.35714285714285715,
+      "recall": 0.15151515151515152,
+      "f1": 0.2127659574468085,
+      "macro_f1": 0.19907407407407407,
+      "per_asset": [
+        {
+          "signals": 7,
+          "matched_events": 2,
+          "events": 11,
+          "precision": 0.2857142857142857,
+          "recall": 0.18181818181818182,
+          "f1": 0.2222222222222222,
+          "asset": "BTCUSDT"
+        },
+        {
+          "signals": 6,
+          "matched_events": 3,
+          "events": 10,
+          "precision": 0.5,
+          "recall": 0.3,
+          "f1": 0.375,
+          "asset": "ETHUSDT"
+        },
+        {
+          "signals": 1,
+          "matched_events": 0,
+          "events": 12,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "asset": "SOLUSDT"
+        }
+      ],
+      "lag_median": 0,
+      "quality": {
+        "status": "INSUFFICIENT_SAMPLE",
+        "wilson95_low_descriptive": 0.1634473175355414,
+        "checks": {
+          "lag_median_at_most_1": true,
+          "sample": false,
+          "precision_070": false,
+          "recall_030": false,
+          "precision_each_055": false,
+          "wilson_low_060": false
+        }
+      }
+    },
+    {
+      "candidate": 17313,
+      "signals": 23,
+      "matched_events": 5,
+      "events": 33,
+      "precision": 0.21739130434782608,
+      "recall": 0.15151515151515152,
+      "f1": 0.17857142857142858,
+      "macro_f1": 0.18052003410059675,
+      "per_asset": [
+        {
+          "signals": 12,
+          "matched_events": 2,
+          "events": 11,
+          "precision": 0.16666666666666666,
+          "recall": 0.18181818181818182,
+          "f1": 0.17391304347826086,
+          "asset": "BTCUSDT"
+        },
+        {
+          "signals": 6,
+          "matched_events": 2,
+          "events": 10,
+          "precision": 0.3333333333333333,
+          "recall": 0.2,
+          "f1": 0.25,
+          "asset": "ETHUSDT"
+        },
+        {
+          "signals": 5,
+          "matched_events": 1,
+          "events": 12,
+          "precision": 0.2,
+          "recall": 0.08333333333333333,
+          "f1": 0.11764705882352941,
+          "asset": "SOLUSDT"
+        }
+      ],
+      "lag_median": 0,
+      "quality": {
+        "status": "INSUFFICIENT_SAMPLE",
+        "wilson95_low_descriptive": 0.09663978026586202,
+        "checks": {
+          "lag_median_at_most_1": true,
+          "sample": false,
+          "precision_070": false,
+          "recall_030": false,
+          "precision_each_055": false,
+          "wilson_low_060": false
+        }
+      }
+    }
+  ],
+  "policies": [
+    {
+      "signals": 14,
+      "matched_events": 5,
+      "events": 33,
+      "precision": 0.35714285714285715,
+      "recall": 0.15151515151515152,
+      "f1": 0.2127659574468085,
+      "macro_f1": 0.19907407407407407,
+      "per_asset": [
+        {
+          "signals": 7,
+          "matched_events": 2,
+          "events": 11,
+          "precision": 0.2857142857142857,
+          "recall": 0.18181818181818182,
+          "f1": 0.2222222222222222,
+          "asset": "BTCUSDT"
+        },
+        {
+          "signals": 6,
+          "matched_events": 3,
+          "events": 10,
+          "precision": 0.5,
+          "recall": 0.3,
+          "f1": 0.375,
+          "asset": "ETHUSDT"
+        },
+        {
+          "signals": 1,
+          "matched_events": 0,
+          "events": 12,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "asset": "SOLUSDT"
+        }
+      ],
+      "lag_median": 0,
+      "name": "SHARED",
+      "choices": {
+        "BTCUSDT": 17312,
+        "ETHUSDT": 17312,
+        "SOLUSDT": 17312
+      },
+      "quality": {
+        "status": "INSUFFICIENT_SAMPLE",
+        "wilson95_low_descriptive": 0.1634473175355414,
+        "checks": {
+          "lag_median_at_most_1": true,
+          "sample": false,
+          "precision_070": false,
+          "recall_030": false,
+          "precision_each_055": false,
+          "wilson_low_060": false
+        }
+      }
+    },
+    {
+      "signals": 14,
+      "matched_events": 5,
+      "events": 33,
+      "precision": 0.35714285714285715,
+      "recall": 0.15151515151515152,
+      "f1": 0.2127659574468085,
+      "macro_f1": 0.19907407407407407,
+      "per_asset": [
+        {
+          "signals": 7,
+          "matched_events": 2,
+          "events": 11,
+          "precision": 0.2857142857142857,
+          "recall": 0.18181818181818182,
+          "f1": 0.2222222222222222,
+          "asset": "BTCUSDT"
+        },
+        {
+          "signals": 6,
+          "matched_events": 3,
+          "events": 10,
+          "precision": 0.5,
+          "recall": 0.3,
+          "f1": 0.375,
+          "asset": "ETHUSDT"
+        },
+        {
+          "signals": 1,
+          "matched_events": 0,
+          "events": 12,
+          "precision": 0.0,
+          "recall": 0.0,
+          "f1": 0.0,
+          "asset": "SOLUSDT"
+        }
+      ],
+      "lag_median": 0,
+      "name": "PERSONAL",
+      "choices": {
+        "BTCUSDT": 17312,
+        "ETHUSDT": 17312,
+        "SOLUSDT": 17312
+      },
+      "quality": {
+        "status": "INSUFFICIENT_SAMPLE",
+        "wilson95_low_descriptive": 0.1634473175355414,
+        "checks": {
+          "lag_median_at_most_1": true,
+          "sample": false,
+          "precision_070": false,
+          "recall_030": false,
+          "precision_each_055": false,
+          "wilson_low_060": false
+        }
+      }
+    }
+  ],
+  "inference": {
+    "assumption": "week-cluster resampling approximately exchangeable; historical data previously observed; descriptive ratios and conditional intervals are not adoption",
+    "block_bars": 42,
+    "blocks": 12,
+    "family": 3,
+    "interval_level": 0.9833333333333333,
+    "personal_recall_delta": 0.0,
+    "repetitions": 10000,
+    "seed": 87007,
+    "tests": [
+      {
+        "hypothesis": "AND2_precision_vs_BB",
+        "observed_delta": -0.007608695652173925,
+        "required_delta": 0.1,
+        "simultaneous_interval": [
+          -0.221875,
+          0.13329324699352463
+        ],
+        "status": "NOT_CONFIRMED"
+      },
+      {
+        "hypothesis": "AND2_recall_vs_AND0",
+        "observed_delta": 0.0,
+        "required_delta": 0.1,
+        "simultaneous_interval": [
+          -0.10256410256410257,
+          0.09375
+        ],
+        "status": "NOT_CONFIRMED"
+      },
+      {
+        "hypothesis": "PERSONAL_precision_vs_SHARED",
+        "observed_delta": 0.0,
+        "required_delta": 0.0,
+        "simultaneous_interval": [
+          0.0,
+          0.0
+        ],
+        "status": "IDENTICAL_FROZEN_POLICIES"
+      }
+    ]
+  },
+  "baselines": [
+    {
+      "macro_f1": 0.0,
+      "name": "NONE",
+      "per_asset": [
+        {
+          "events": 11,
+          "f1": 0.0,
+          "matched_events": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "signals": 0
+        },
+        {
+          "events": 10,
+          "f1": 0.0,
+          "matched_events": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "signals": 0
+        },
+        {
+          "events": 12,
+          "f1": 0.0,
+          "matched_events": 0,
+          "precision": 0.0,
+          "recall": 0.0,
+          "signals": 0
+        }
+      ]
+    },
+    {
+      "macro_f1": 0.04313223921499775,
+      "name": "EVERY_BAR",
+      "per_asset": [
+        {
+          "events": 11,
+          "f1": 0.043137254901960784,
+          "matched_events": 11,
+          "precision": 0.022044088176352707,
+          "recall": 1.0,
+          "signals": 499
+        },
+        {
+          "events": 10,
+          "f1": 0.03929273084479371,
+          "matched_events": 10,
+          "precision": 0.02004008016032064,
+          "recall": 1.0,
+          "signals": 499
+        },
+        {
+          "events": 12,
+          "f1": 0.046966731898238745,
+          "matched_events": 12,
+          "precision": 0.02404809619238477,
+          "recall": 1.0,
+          "signals": 499
+        }
+      ]
+    },
+    {
+      "macro_f1": 0.19810069810069808,
+      "name": "EVERY_5_BARS",
+      "per_asset": [
+        {
+          "events": 11,
+          "f1": 0.1981981981981982,
+          "matched_events": 11,
+          "precision": 0.11,
+          "recall": 1.0,
+          "signals": 100
+        },
+        {
+          "events": 10,
+          "f1": 0.18181818181818182,
+          "matched_events": 10,
+          "precision": 0.1,
+          "recall": 1.0,
+          "signals": 100
+        },
+        {
+          "events": 12,
+          "f1": 0.21428571428571427,
+          "matched_events": 12,
+          "precision": 0.12,
+          "recall": 1.0,
+          "signals": 100
+        }
+      ]
+    }
+  ],
+  "new_experiment_run": false
+}

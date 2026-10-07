@@ -1,0 +1,59 @@
+INDEPENDENT_INDICATORS_LABELS_PASS 6 {'BTCUSDT': 11, 'ETHUSDT': 10, 'SOLUSDT': 12}
+LEAD_AUDIT_PASS {
+  "status": "PASS",
+  "delivery_commit": "ae57878017bc92c0e64a4c655c65160a6f1e0e7d",
+  "independent_indicator_masks": 6,
+  "events_by_asset": {
+    "BTCUSDT": 11,
+    "ETHUSDT": 10,
+    "SOLUSDT": 12
+  },
+  "candidate_asset_rows": 9,
+  "policy_asset_rows": 6,
+  "weekly_cells_checked": 180,
+  "bootstrap_repetitions": 10000,
+  "alert_diagnostics_checked": 77,
+  "inference": {
+    "assumption": "week-cluster resampling approximately exchangeable; historical data previously observed; descriptive ratios and conditional intervals are not adoption",
+    "block_bars": 42,
+    "blocks": 12,
+    "family": 3,
+    "interval_level": 0.9833333333333333,
+    "personal_recall_delta": 0.0,
+    "repetitions": 10000,
+    "seed": 87007,
+    "tests": [
+      {
+        "hypothesis": "AND2_precision_vs_BB",
+        "observed_delta": -0.007608695652173925,
+        "required_delta": 0.1,
+        "simultaneous_interval": [
+          -0.221875,
+          0.13329324699352463
+        ],
+        "status": "NOT_CONFIRMED"
+      },
+      {
+        "hypothesis": "AND2_recall_vs_AND0",
+        "observed_delta": 0.0,
+        "required_delta": 0.1,
+        "simultaneous_interval": [
+          -0.10256410256410257,
+          0.09375
+        ],
+        "status": "NOT_CONFIRMED"
+      },
+      {
+        "hypothesis": "PERSONAL_precision_vs_SHARED",
+        "observed_delta": 0.0,
+        "required_delta": 0.0,
+        "simultaneous_interval": [
+          0.0,
+          0.0
+        ],
+        "status": "IDENTICAL_FROZEN_POLICIES"
+      }
+    ]
+  },
+  "new_experiment_run": false
+}
