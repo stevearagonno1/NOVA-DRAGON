@@ -738,3 +738,7 @@ Prepare one historical transfer validation of the ten L0085 pairs frozen at d1fe
 
 ## L0086 executor setup
 Pinned runtime and synthetic admission passed; non-financial archive upload/readback verified by the prepared publisher. Market completion is not established.
+
+
+## L0086 checked paper released
+Six tests and exact bootstrap synthetic admission passed, including all ten pairs, twelve parents, full cyclic controls and real compressed upload/readback. Scope fixed before market measurement. Private execution credential omitted from repository copy. No market validation run by Lead, no main merge or PR.

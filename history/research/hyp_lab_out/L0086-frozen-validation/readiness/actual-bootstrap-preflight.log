@@ -1,0 +1,15 @@
+START tests 2026-10-07T12:27:14.989013+00:00
+{"status": "VALIDATION_COMPLETE_LEAD_REVIEW_PENDING", "synthetic": true, "pairs": 10, "parents": 12, "audit": "PASS"}
+....SYNTHETIC_INTERRUPTION_AT_RAW
+{"status": "VALIDATION_COMPLETE_LEAD_REVIEW_PENDING", "synthetic": true, "pairs": 10, "parents": 12, "audit": "PASS"}
+INDEPENDENT_AUDIT_PASS
+{"status": "VALIDATION_COMPLETE_LEAD_REVIEW_PENDING", "synthetic": true, "pairs": 10, "parents": 12, "audit": "PASS"}
+..
+----------------------------------------------------------------------
+Ran 6 tests in 0.589s
+
+OK
+EXIT tests 0
+REUSE synthetic: verified local admission under identical scope/environment
+PREFLIGHT_PASS; MARKET NOT RUN
+
