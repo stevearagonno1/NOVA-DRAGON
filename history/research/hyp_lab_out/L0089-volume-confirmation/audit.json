@@ -1,0 +1,12 @@
+{
+  "adoption": "NOT AUTHORISED",
+  "control_draws_each": 10000,
+  "elapsed_seconds": 31.229373623999976,
+  "null_asset_period_counts": 9720000,
+  "pairs": 324,
+  "raw_sha256": "98d49668c3ac6025c205b21d838defdf503249d1a5c48bc9eb6cd59e776c2ce6",
+  "rows": 360,
+  "scope_sha256": "ac21225df20626758fda9a30a08286caea9d31ddfc945277ccff9feb76291deb",
+  "status": "PASS",
+  "synthetic": false
+}

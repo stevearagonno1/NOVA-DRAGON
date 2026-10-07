@@ -1,0 +1,96 @@
+{
+  "round": "L0089",
+  "main": "690ae9efca869f929a6e3d392052046f77121d0e",
+  "parent_delivery": "783b92825f8f932ba5a38aa3e8ce7fe4c7c47a78",
+  "question": "marginal volume confirmation of frozen per-coin CCI/BB/Donchian entry pulses",
+  "assets": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "price_families": [
+    "CCI",
+    "BB",
+    "DONCHIAN_RECLAIM"
+  ],
+  "modes": [
+    "AND0",
+    "AND2",
+    "PRICE_THEN_VOLUME2",
+    "VOLUME_THEN_PRICE2"
+  ],
+  "volumes": [
+    {
+      "id": "TAKER_PRESSURE_1_0.52"
+    },
+    {
+      "id": "TAKER_PRESSURE_1_0.56"
+    },
+    {
+      "id": "TAKER_PRESSURE_3_0.52"
+    },
+    {
+      "id": "TAKER_PRESSURE_3_0.56"
+    },
+    {
+      "id": "TAKER_PRESSURE_6_0.52"
+    },
+    {
+      "id": "TAKER_PRESSURE_6_0.56"
+    },
+    {
+      "id": "OBV_EMA_5_20"
+    },
+    {
+      "id": "OBV_EMA_10_30"
+    },
+    {
+      "id": "OBV_EMA_20_50"
+    }
+  ],
+  "price": {
+    "BTCUSDT": [
+      "CCI_14_-150",
+      "BB_30_2.5",
+      "DONCHIAN_RECLAIM_20"
+    ],
+    "ETHUSDT": [
+      "CCI_14_-150",
+      "BB_20_2.5",
+      "DONCHIAN_RECLAIM_40"
+    ],
+    "SOLUSDT": [
+      "CCI_21_-150",
+      "BB_20_2",
+      "DONCHIAN_RECLAIM_20"
+    ]
+  },
+  "pairs_each_asset": 108,
+  "pairs_total": 324,
+  "parents_each_asset": 12,
+  "asset_period_evaluations": 1080,
+  "inferential_family": 324,
+  "selection": "discovery only; no adoption; per asset rank eligible by minimum period precision, then pooled precision, recall, lower numeric ID",
+  "eligibility": {
+    "signals_total_asset": 20,
+    "signals_each_period": 3,
+    "recall_total_asset": 0.3,
+    "recall_each_period": 0.15
+  },
+  "raw_parent_sha256": "7776f3a154487801123b14e6051864f713cd0456b08c6b0335ccdcdfa01f8d51",
+  "selection_sha256": "49c3a5d2efaf9060b60b2cd269479598584d7af28a5e2978b9dcf82bf7a1df18",
+  "money": "not measured",
+  "data_previously_observed": true,
+  "circular_controls": "MonteCarlo10000 draws,seed89007; independent uniform offset per quarter, shared offsets across all cases/assets; pooled TP at preserved per-period alert counts; conditional phase-exchangeability",
+  "execution_owner": "executor",
+  "total_task_estimate_minutes": [
+    15,
+    45
+  ],
+  "inference_warning": "Holm324 is conditional for this pair family; does not correct earlier L0088 choice or entire project; discovery only",
+  "execution_total_estimate_minutes": [
+    15,
+    45
+  ],
+  "pvalue_scope": "conditional timing-alignment test, not a direct test of marginal superiority over price component; reused discovery data, not independent validation"
+}

@@ -1,0 +1,29 @@
+{
+  "adoption": "NOT AUTHORISED",
+  "discovery_only": true,
+  "no_reselection_from_validation": true,
+  "quality": {
+    "checks": {
+      "all_assets": false,
+      "asset_precision055": false,
+      "conditional_holm005": false,
+      "median_lag1": false,
+      "precision070": false,
+      "recall030": false,
+      "sample": false,
+      "wilson060": false
+    },
+    "events": 0,
+    "matched_events": 0,
+    "precision": 0.0,
+    "recall": 0.0,
+    "signals": 0,
+    "status": "INSUFFICIENT_SAMPLE",
+    "wilson95_low_descriptive": 0.0
+  },
+  "selected_by_asset": {
+    "BTCUSDT": null,
+    "ETHUSDT": null,
+    "SOLUSDT": null
+  }
+}

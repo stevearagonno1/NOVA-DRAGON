@@ -1,0 +1,41 @@
+{
+  "decision": "D-L0089-REVIEW-20261007",
+  "verdict": "Defer",
+  "delivery_commit": "70a9ab055049f6e7f201c5ab1a874169305808fa",
+  "main": "690ae9efca869f929a6e3d392052046f77121d0e",
+  "archive_sha256": "fbaeac1d3bd0a55d49ff418ad4c4549cc16020168c1fbededd5e8a8b4897da80",
+  "independent_audit": {
+    "adoption": "NOT AUTHORISED",
+    "control_draws_each": 10000,
+    "elapsed_seconds": 23.255200143000025,
+    "null_asset_period_counts": 9720000,
+    "pairs": 324,
+    "raw_sha256": "98d49668c3ac6025c205b21d838defdf503249d1a5c48bc9eb6cd59e776c2ce6",
+    "rows": 360,
+    "scope_sha256": "ac21225df20626758fda9a30a08286caea9d31ddfc945277ccff9feb76291deb",
+    "status": "PASS",
+    "synthetic": false
+  },
+  "independent_receipts_reused": false,
+  "per_asset": {
+    "BTCUSDT": {
+      "eligible": 0,
+      "max_recall": 0.1891891891891892
+    },
+    "ETHUSDT": {
+      "eligible": 0,
+      "max_recall": 0.24242424242424243
+    },
+    "SOLUSDT": {
+      "eligible": 0,
+      "max_recall": 0.25
+    }
+  },
+  "nonzero_pairs": 88,
+  "pairs": 324,
+  "market_run_by_lead": false,
+  "adoption": "NOT AUTHORISED",
+  "gzip_compatibility": "Raw decompressed bytes match; only gzip header OS byte differs ff vs03; header canonicalised in Lead wrapper without modifying raw JSON or published code.",
+  "documentation_correction": "Publisher LOG/tick wording incorrectly reused previous three-case validation description. Actual L0089 was 324 pair-asset discovery cases plus36 parents, not frozen validation.",
+  "task_time_correction": "15\u201345minute paper estimate was excessive: measurement25.542s,audit31.229s,full pre-upload182.512s; post-upload total not saved remotely. Future assignment depends on measured whole-task estimate, not padded controls."
+}

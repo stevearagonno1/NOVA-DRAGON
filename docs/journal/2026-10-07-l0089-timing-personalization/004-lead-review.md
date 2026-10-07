@@ -1,0 +1,2 @@
+# L0089 Lead review
+D-L0089-REVIEW-20261007: Defer adoption. Archive/checkpoint/source hashes verified; all360 rows and9,720,000 null counts independently recomputed without executor audit receipts. No eligible pair. Correct prior publisher wording: marginal volume discovery324 pairs+36 parents, not three-case frozen validation. Next: prepare causal persistent volume-state comparison; no new measurement here.

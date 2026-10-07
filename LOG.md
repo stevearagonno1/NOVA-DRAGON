@@ -829,3 +829,15 @@ Verdict Defer. Shared discovery target passes: []. Next: prepare registered marg
 - تقدير مسبب للمجموع ومكوناته قبل العمل؛زمن المهمة الكلي منفصل عن زمن الحساب عند التسليم. الزمن غير المسجل not measured،لا رقم مختلق. لا تقسيم صوري أو إطالة لإرضاء الحد،ولا متابعة صامتة لمهمة تجاوزته.
 - الحفظ:تصحيح §§7 و11.7 و11.10 و16 والمقدمة؛حفظ الأقسام20 وقواعد المال والاعتماد ورد تم/خطأ والتوكن الخاص والحظر على main/PR. لا تغيير لتجارب L0088 أو نتائجها.
 - الأساس main `4e0f66705f551ec9f1c7df18d4634211eddc5e25`؛الفرع `agent/constitution-total-task-time-2026-10-07`؛الدمج للمالك من Termux فقط.
+
+
+## L0089 executor setup
+Pinned runtime and synthetic admission passed; non-financial archive upload/readback verified by the prepared publisher. Market completion is not established.
+
+
+## L0089 completed frozen validation
+Three fixed cases and two frozen policies compared, raw matching audited, results uploaded for Lead review. No new search or trading.
+
+
+## L0089 Lead review — 2026-10-07
+D-L0089-REVIEW-20261007: Defer adoption. Technical discovery complete; independent scalar audit PASS for360 rows and9,720,000 controls. Zero eligible pairs. Correction: prior publisher text about three fixed cases/frozen validation is wrong; actual scope324 pair-asset discovery cases+36 parents. Task estimate15–45min overstated: pre-upload total182.512s; no padding to make work heavy. Next: Lead prepares persistent volume-state comparison; no new measurement or main merge.
