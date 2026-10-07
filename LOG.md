@@ -837,3 +837,7 @@ Pinned runtime and synthetic admission passed; non-financial archive upload/read
 
 ## L0089 completed frozen validation
 Three fixed cases and two frozen policies compared, raw matching audited, results uploaded for Lead review. No new search or trading.
+
+
+## L0089 Lead review — 2026-10-07
+D-L0089-REVIEW-20261007: Defer adoption. Technical discovery complete; independent scalar audit PASS for360 rows and9,720,000 controls. Zero eligible pairs. Correction: prior publisher text about three fixed cases/frozen validation is wrong; actual scope324 pair-asset discovery cases+36 parents. Task estimate15–45min overstated: pre-upload total182.512s; no padding to make work heavy. Next: Lead prepares persistent volume-state comparison; no new measurement or main merge.

@@ -474,3 +474,5 @@ Verdict Defer. Shared discovery target passes: []. Next: prepare registered marg
 - تقدير مسبب للمجموع ومكوناته قبل العمل؛زمن المهمة الكلي منفصل عن زمن الحساب عند التسليم. الزمن غير المسجل not measured،لا رقم مختلق. لا تقسيم صوري أو إطالة لإرضاء الحد،ولا متابعة صامتة لمهمة تجاوزته.
 - الحفظ:تصحيح §§7 و11.7 و11.10 و16 والمقدمة؛حفظ الأقسام20 وقواعد المال والاعتماد ورد تم/خطأ والتوكن الخاص والحظر على main/PR. لا تغيير لتجارب L0088 أو نتائجها.
 - الأساس main `4e0f66705f551ec9f1c7df18d4634211eddc5e25`؛الفرع `agent/constitution-total-task-time-2026-10-07`؛الدمج للمالك من Termux فقط.
+
+D-L0089-REVIEW-20261007 | 2026-10-07 | Defer adoption; accept technical discovery completion | Independent360-row/9,720,000-control audit PASS; no eligible pairs | Prepare causal persistent volume-state comparison only; correct gzip portability and publication wording; assign by whole-task10-minute estimate, no padded workload.
