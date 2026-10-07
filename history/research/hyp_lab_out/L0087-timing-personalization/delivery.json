@@ -1,0 +1,9 @@
+{
+  "archive_bytes": 27731,
+  "archive_sha256": "ea5ba59382aad079370ba195319d5a92a74c67a16e3a2480a9d42be32cdea26d",
+  "branch": "agent/l0087-timing-personalization-2026-10-07",
+  "market_scope": "registered timing comparison and fixed policy evaluation; no holdout selection",
+  "rows": 5,
+  "source": "1e97b53d8d6d0a3db3842c17f6a6b6f8110e134c",
+  "status": "COMPARISON_COMPLETE_LEAD_REVIEW_PENDING"
+}

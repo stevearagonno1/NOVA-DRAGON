@@ -1,0 +1,11 @@
+{
+  "bootstrap_reps": 10000,
+  "candidate_asset_rows": 9,
+  "cases": 3,
+  "policies": 2,
+  "policy_asset_rows": 6,
+  "raw_sha256": "93e6d17224c6c58b09176080f0467ad617e189ac4b9c449e9bb33ca2bf71623a",
+  "reference_counts_and_clusters": true,
+  "status": "PASS",
+  "synthetic": false
+}

@@ -1,0 +1,560 @@
+{
+  "per_asset": {
+    "BTCUSDT": {
+      "candidates": [
+        {
+          "candidate": 11,
+          "eligible": true,
+          "events": 26,
+          "matched": 13,
+          "precision": 0.40625,
+          "recall": 0.5,
+          "signals": 32
+        },
+        {
+          "candidate": 17312,
+          "eligible": true,
+          "events": 26,
+          "matched": 11,
+          "precision": 0.7333333333333333,
+          "recall": 0.4230769230769231,
+          "signals": 15
+        },
+        {
+          "candidate": 17313,
+          "eligible": true,
+          "events": 26,
+          "matched": 12,
+          "precision": 0.6,
+          "recall": 0.46153846153846156,
+          "signals": 20
+        }
+      ],
+      "eligible_choice": true,
+      "selected": 17312
+    },
+    "ETHUSDT": {
+      "candidates": [
+        {
+          "candidate": 11,
+          "eligible": true,
+          "events": 23,
+          "matched": 12,
+          "precision": 0.34285714285714286,
+          "recall": 0.5217391304347826,
+          "signals": 35
+        },
+        {
+          "candidate": 17312,
+          "eligible": true,
+          "events": 23,
+          "matched": 8,
+          "precision": 0.42105263157894735,
+          "recall": 0.34782608695652173,
+          "signals": 19
+        },
+        {
+          "candidate": 17313,
+          "eligible": true,
+          "events": 23,
+          "matched": 11,
+          "precision": 0.3793103448275862,
+          "recall": 0.4782608695652174,
+          "signals": 29
+        }
+      ],
+      "eligible_choice": true,
+      "selected": 17312
+    },
+    "SOLUSDT": {
+      "candidates": [
+        {
+          "candidate": 11,
+          "eligible": true,
+          "events": 24,
+          "matched": 15,
+          "precision": 0.4411764705882353,
+          "recall": 0.625,
+          "signals": 34
+        },
+        {
+          "candidate": 17312,
+          "eligible": true,
+          "events": 24,
+          "matched": 8,
+          "precision": 0.7272727272727273,
+          "recall": 0.3333333333333333,
+          "signals": 11
+        },
+        {
+          "candidate": 17313,
+          "eligible": true,
+          "events": 24,
+          "matched": 13,
+          "precision": 0.5416666666666666,
+          "recall": 0.5416666666666666,
+          "signals": 24
+        }
+      ],
+      "eligible_choice": true,
+      "selected": 17312
+    }
+  },
+  "records": [
+    {
+      "raw_sha256": "51669e91aae13e1306f4f28cb8d0bed43c0bfebfb00cfa4eb5a2e021b179baca",
+      "round": "L0085",
+      "rows": [
+        {
+          "BTCUSDT_lag_sum": -3,
+          "BTCUSDT_matched": 6,
+          "BTCUSDT_signals": 20,
+          "ETHUSDT_lag_sum": 1,
+          "ETHUSDT_matched": 7,
+          "ETHUSDT_signals": 18,
+          "SOLUSDT_lag_sum": -8,
+          "SOLUSDT_matched": 7,
+          "SOLUSDT_signals": 15,
+          "a": 0,
+          "b": -1,
+          "candidate": 11,
+          "eligible": true,
+          "events": 36,
+          "f1": 0.449438202247191,
+          "false_or_duplicate": 33,
+          "macro_f1": 0.4549711676148458,
+          "matched_events": 20,
+          "mode": "S",
+          "per_asset": [
+            {
+              "asset": "BTCUSDT",
+              "events": 13,
+              "f1": 0.36363636363636365,
+              "false_or_duplicate": 14,
+              "matched_events": 6,
+              "precision": 0.3,
+              "recall": 0.46153846153846156,
+              "signals": 20
+            },
+            {
+              "asset": "ETHUSDT",
+              "events": 11,
+              "f1": 0.4827586206896552,
+              "false_or_duplicate": 11,
+              "matched_events": 7,
+              "precision": 0.3888888888888889,
+              "recall": 0.6363636363636364,
+              "signals": 18
+            },
+            {
+              "asset": "SOLUSDT",
+              "events": 12,
+              "f1": 0.5185185185185185,
+              "false_or_duplicate": 8,
+              "matched_events": 7,
+              "precision": 0.4666666666666667,
+              "recall": 0.5833333333333334,
+              "signals": 15
+            }
+          ],
+          "precision": 0.37735849056603776,
+          "recall": 0.5555555555555556,
+          "rule": [
+            {
+              "family": "BB",
+              "id": "BB_20_2.5",
+              "k": 2.5,
+              "n": 20
+            }
+          ],
+          "signals": 53
+        },
+        {
+          "BTCUSDT_lag_sum": 2,
+          "BTCUSDT_matched": 6,
+          "BTCUSDT_signals": 10,
+          "ETHUSDT_lag_sum": 4,
+          "ETHUSDT_matched": 5,
+          "ETHUSDT_signals": 9,
+          "SOLUSDT_lag_sum": -2,
+          "SOLUSDT_matched": 6,
+          "SOLUSDT_signals": 6,
+          "a": 0,
+          "b": 1,
+          "candidate": 17312,
+          "eligible": true,
+          "events": 36,
+          "f1": 0.5573770491803278,
+          "false_or_duplicate": 8,
+          "macro_f1": 0.5628019323671497,
+          "matched_events": 17,
+          "mode": "AND0",
+          "per_asset": [
+            {
+              "asset": "BTCUSDT",
+              "events": 13,
+              "f1": 0.5217391304347826,
+              "false_or_duplicate": 4,
+              "matched_events": 6,
+              "precision": 0.6,
+              "recall": 0.46153846153846156,
+              "signals": 10
+            },
+            {
+              "asset": "ETHUSDT",
+              "events": 11,
+              "f1": 0.5,
+              "false_or_duplicate": 4,
+              "matched_events": 5,
+              "precision": 0.5555555555555556,
+              "recall": 0.45454545454545453,
+              "signals": 9
+            },
+            {
+              "asset": "SOLUSDT",
+              "events": 12,
+              "f1": 0.6666666666666666,
+              "false_or_duplicate": 0,
+              "matched_events": 6,
+              "precision": 1.0,
+              "recall": 0.5,
+              "signals": 6
+            }
+          ],
+          "precision": 0.68,
+          "recall": 0.4722222222222222,
+          "rule": [
+            {
+              "family": "BB",
+              "id": "BB_20_2.5",
+              "k": 2.5,
+              "n": 20
+            },
+            {
+              "family": "VWAP",
+              "id": "VWAP_30_1.5",
+              "k": 1.5,
+              "n": 30
+            }
+          ],
+          "signals": 25
+        },
+        {
+          "BTCUSDT_lag_sum": -3,
+          "BTCUSDT_matched": 6,
+          "BTCUSDT_signals": 13,
+          "ETHUSDT_lag_sum": 1,
+          "ETHUSDT_matched": 6,
+          "ETHUSDT_signals": 16,
+          "SOLUSDT_lag_sum": -6,
+          "SOLUSDT_matched": 7,
+          "SOLUSDT_signals": 11,
+          "a": 0,
+          "b": 1,
+          "candidate": 17313,
+          "eligible": true,
+          "events": 36,
+          "f1": 0.5,
+          "false_or_duplicate": 21,
+          "macro_f1": 0.5048928527189397,
+          "matched_events": 19,
+          "mode": "AND2",
+          "per_asset": [
+            {
+              "asset": "BTCUSDT",
+              "events": 13,
+              "f1": 0.46153846153846156,
+              "false_or_duplicate": 7,
+              "matched_events": 6,
+              "precision": 0.46153846153846156,
+              "recall": 0.46153846153846156,
+              "signals": 13
+            },
+            {
+              "asset": "ETHUSDT",
+              "events": 11,
+              "f1": 0.4444444444444444,
+              "false_or_duplicate": 10,
+              "matched_events": 6,
+              "precision": 0.375,
+              "recall": 0.5454545454545454,
+              "signals": 16
+            },
+            {
+              "asset": "SOLUSDT",
+              "events": 12,
+              "f1": 0.6086956521739131,
+              "false_or_duplicate": 4,
+              "matched_events": 7,
+              "precision": 0.6363636363636364,
+              "recall": 0.5833333333333334,
+              "signals": 11
+            }
+          ],
+          "precision": 0.475,
+          "recall": 0.5277777777777778,
+          "rule": [
+            {
+              "family": "BB",
+              "id": "BB_20_2.5",
+              "k": 2.5,
+              "n": 20
+            },
+            {
+              "family": "VWAP",
+              "id": "VWAP_30_1.5",
+              "k": 1.5,
+              "n": 30
+            }
+          ],
+          "signals": 40
+        }
+      ]
+    },
+    {
+      "raw_sha256": "09b94c23f86ec990949dda0382b74d701b77f9a71793b036ab8c7381a2a67a2e",
+      "round": "L0086",
+      "rows": [
+        {
+          "BTCUSDT_lag_sum": 2,
+          "BTCUSDT_matched": 7,
+          "BTCUSDT_signals": 12,
+          "ETHUSDT_lag_sum": -3,
+          "ETHUSDT_matched": 5,
+          "ETHUSDT_signals": 17,
+          "SOLUSDT_lag_sum": -6,
+          "SOLUSDT_matched": 8,
+          "SOLUSDT_signals": 19,
+          "a": 0,
+          "b": -1,
+          "candidate": 11,
+          "eligible": true,
+          "events": 37,
+          "f1": 0.47058823529411764,
+          "false_or_duplicate": 28,
+          "macro_f1": 0.47365220615498704,
+          "matched_events": 20,
+          "mode": "S",
+          "per_asset": [
+            {
+              "asset": "BTCUSDT",
+              "events": 13,
+              "f1": 0.56,
+              "false_or_duplicate": 5,
+              "matched_events": 7,
+              "precision": 0.5833333333333334,
+              "recall": 0.5384615384615384,
+              "signals": 12
+            },
+            {
+              "asset": "ETHUSDT",
+              "events": 12,
+              "f1": 0.3448275862068966,
+              "false_or_duplicate": 12,
+              "matched_events": 5,
+              "precision": 0.29411764705882354,
+              "recall": 0.4166666666666667,
+              "signals": 17
+            },
+            {
+              "asset": "SOLUSDT",
+              "events": 12,
+              "f1": 0.5161290322580645,
+              "false_or_duplicate": 11,
+              "matched_events": 8,
+              "precision": 0.42105263157894735,
+              "recall": 0.6666666666666666,
+              "signals": 19
+            }
+          ],
+          "precision": 0.4166666666666667,
+          "recall": 0.5405405405405406,
+          "rule": [
+            {
+              "family": "BB",
+              "id": "BB_20_2.5",
+              "k": 2.5,
+              "n": 20
+            }
+          ],
+          "signals": 48
+        },
+        {
+          "BTCUSDT_lag_sum": 2,
+          "BTCUSDT_matched": 5,
+          "BTCUSDT_signals": 5,
+          "ETHUSDT_lag_sum": 0,
+          "ETHUSDT_matched": 3,
+          "ETHUSDT_signals": 10,
+          "SOLUSDT_lag_sum": 1,
+          "SOLUSDT_matched": 2,
+          "SOLUSDT_signals": 5,
+          "a": 0,
+          "b": 1,
+          "candidate": 17312,
+          "eligible": true,
+          "events": 37,
+          "f1": 0.3508771929824561,
+          "false_or_duplicate": 10,
+          "macro_f1": 0.3545256486432957,
+          "matched_events": 10,
+          "mode": "AND0",
+          "per_asset": [
+            {
+              "asset": "BTCUSDT",
+              "events": 13,
+              "f1": 0.5555555555555556,
+              "false_or_duplicate": 0,
+              "matched_events": 5,
+              "precision": 1.0,
+              "recall": 0.38461538461538464,
+              "signals": 5
+            },
+            {
+              "asset": "ETHUSDT",
+              "events": 12,
+              "f1": 0.2727272727272727,
+              "false_or_duplicate": 7,
+              "matched_events": 3,
+              "precision": 0.3,
+              "recall": 0.25,
+              "signals": 10
+            },
+            {
+              "asset": "SOLUSDT",
+              "events": 12,
+              "f1": 0.23529411764705882,
+              "false_or_duplicate": 3,
+              "matched_events": 2,
+              "precision": 0.4,
+              "recall": 0.16666666666666666,
+              "signals": 5
+            }
+          ],
+          "precision": 0.5,
+          "recall": 0.2702702702702703,
+          "rule": [
+            {
+              "family": "BB",
+              "id": "BB_20_2.5",
+              "k": 2.5,
+              "n": 20
+            },
+            {
+              "family": "VWAP",
+              "id": "VWAP_30_1.5",
+              "k": 1.5,
+              "n": 30
+            }
+          ],
+          "signals": 20
+        },
+        {
+          "BTCUSDT_lag_sum": 3,
+          "BTCUSDT_matched": 6,
+          "BTCUSDT_signals": 7,
+          "ETHUSDT_lag_sum": 3,
+          "ETHUSDT_matched": 5,
+          "ETHUSDT_signals": 13,
+          "SOLUSDT_lag_sum": 1,
+          "SOLUSDT_matched": 6,
+          "SOLUSDT_signals": 13,
+          "a": 0,
+          "b": 1,
+          "candidate": 17313,
+          "eligible": true,
+          "events": 37,
+          "f1": 0.4857142857142857,
+          "false_or_duplicate": 16,
+          "macro_f1": 0.49333333333333335,
+          "matched_events": 17,
+          "mode": "AND2",
+          "per_asset": [
+            {
+              "asset": "BTCUSDT",
+              "events": 13,
+              "f1": 0.6,
+              "false_or_duplicate": 1,
+              "matched_events": 6,
+              "precision": 0.8571428571428571,
+              "recall": 0.46153846153846156,
+              "signals": 7
+            },
+            {
+              "asset": "ETHUSDT",
+              "events": 12,
+              "f1": 0.4,
+              "false_or_duplicate": 8,
+              "matched_events": 5,
+              "precision": 0.38461538461538464,
+              "recall": 0.4166666666666667,
+              "signals": 13
+            },
+            {
+              "asset": "SOLUSDT",
+              "events": 12,
+              "f1": 0.48,
+              "false_or_duplicate": 7,
+              "matched_events": 6,
+              "precision": 0.46153846153846156,
+              "recall": 0.5,
+              "signals": 13
+            }
+          ],
+          "precision": 0.5151515151515151,
+          "recall": 0.4594594594594595,
+          "rule": [
+            {
+              "family": "BB",
+              "id": "BB_20_2.5",
+              "k": 2.5,
+              "n": 20
+            },
+            {
+              "family": "VWAP",
+              "id": "VWAP_30_1.5",
+              "k": 1.5,
+              "n": 30
+            }
+          ],
+          "signals": 33
+        }
+      ]
+    }
+  ],
+  "selection_rule": "NS >=10 and recall>=.30 per asset; shared requires all assets. Max pooled precision, then recall, then smaller ID. If no eligible choice, descriptive best only. Development L0085+L0086 raw counts, no holdout read.",
+  "shared": {
+    "candidates": [
+      {
+        "candidate": 11,
+        "eligible": true,
+        "events": 73,
+        "matched": 40,
+        "precision": 0.39603960396039606,
+        "recall": 0.547945205479452,
+        "signals": 101
+      },
+      {
+        "candidate": 17312,
+        "eligible": true,
+        "events": 73,
+        "matched": 27,
+        "precision": 0.6,
+        "recall": 0.3698630136986301,
+        "signals": 45
+      },
+      {
+        "candidate": 17313,
+        "eligible": true,
+        "events": 73,
+        "matched": 36,
+        "precision": 0.4931506849315068,
+        "recall": 0.4931506849315068,
+        "signals": 73
+      }
+    ],
+    "eligible_choice": true,
+    "selected": 17312
+  },
+  "validation_read": false
+}

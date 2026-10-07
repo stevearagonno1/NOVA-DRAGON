@@ -772,3 +772,7 @@ Pinned runtime and synthetic admission passed; non-financial archive upload/read
 
 ## L0087 checked paper released
 Six tests and exact bootstrap synthetic admission passed, including three cases, two identical frozen policies, synchronous outcome clusters and real compressed upload/readback. Scope fixed before market measurement. Private execution credential omitted from repository copy. No market validation run by Lead, no main merge or PR.
+
+
+## L0087 completed frozen validation
+Three fixed cases and two frozen policies compared, raw matching audited, results uploaded for Lead review. No new search or trading.
