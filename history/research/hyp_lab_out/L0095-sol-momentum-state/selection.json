@@ -1,0 +1,11 @@
+{
+  "adoption": "NOT AUTHORISED",
+  "cases": [
+    "CCI_ONLY",
+    "CCI_AND_STOCH_PULSE",
+    "CCI_AND_STOCH_STATE_30",
+    "CCI_AND_STOCH_STATE_ANY"
+  ],
+  "reselection": false,
+  "validation_read": false
+}

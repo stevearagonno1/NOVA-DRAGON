@@ -1,0 +1,4 @@
+- Decision:run SOL momentum state comparison only.
+- Executed:four fixed CCI/Stochastic pulse/state cases on SOL/3 periods;scalar matching and causal prefixes checked.
+- Produced:raw masks,all rows,selection,report,analysis,audit,verified upload.
+- Next:Lead review;no automatic mixtures or main merge.
