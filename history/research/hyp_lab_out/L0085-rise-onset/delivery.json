@@ -1,0 +1,9 @@
+{
+  "archive_bytes": 3059541,
+  "archive_sha256": "5fa745d440e5455d345a9c95f3191c0f922a31aaa846c01dd901dd713fde915a",
+  "branch": "agent/l0085-rise-onset-2026-10-06",
+  "market_scope": "discovery only; validation NOT RUN",
+  "rows": 339626,
+  "source": "f9e67bee4891ade0ab3162071f8da9bc64a66656",
+  "status": "DISCOVERY_COMPLETE_LEAD_REVIEW_PENDING"
+}

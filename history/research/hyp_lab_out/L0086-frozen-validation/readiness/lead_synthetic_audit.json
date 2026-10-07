@@ -1,0 +1,10 @@
+{
+  "all_cyclic_controls_recomputed": 1310,
+  "candidate_asset_rows": 66,
+  "full_scalar_mode_and_matching_audit": true,
+  "pairs": 10,
+  "parents": 12,
+  "raw_sha256": "8b188949bdee2f843d0f9bb8912a36c5dfa330a9ce10b1438377ebdb5d07dc7e",
+  "status": "PASS",
+  "synthetic": true
+}

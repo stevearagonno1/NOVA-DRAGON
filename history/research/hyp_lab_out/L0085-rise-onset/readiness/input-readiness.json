@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "assets": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "rows_each": 1644,
+  "prefix_comparisons": 2856,
+  "market_labels_computed": false,
+  "market_outcomes_read": false
+}

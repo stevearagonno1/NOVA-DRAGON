@@ -1,0 +1,4 @@
+- Decision: release the preregistered frozen-pair validation paper.
+- Execution: exact immutable bootstrap passed six tests, synthetic scoring, independent matching and all cyclic controls, report writing, actual ZIP upload and immutable readback.
+- Produced: checked paper (credential redacted), pinned source and readiness evidence.
+- Next: executor runs one validation through audit and verified delivery; Lead reviews. Market NOT RUN by Lead.

@@ -1,0 +1,4 @@
+- Decision: release the owner-requested no-money onset-discovery paper.
+- Execution: exact immutable bootstrap passed full-grid synthetic scoring, audit and report, 8 tests, and actual ZIP upload/readback.
+- Produced: docs/lanes/L0085-RISE-ONSET-EXECUTION.md (credential redacted) and readiness evidence; market NOT RUN.
+- Next: executor runs the prepared registered search to audited remote delivery; Lead reviews.

@@ -1,0 +1,13 @@
+{
+  "head": "a3da7ba6f43fedfe42687e8383490bc724c1f6da",
+  "receipt": {
+    "archive_bytes": 105897,
+    "archive_sha256": "75a951cea62838e799b6ac8cc9b2f963898cdc05c526e089f2cb1e4c5bb5f7a0",
+    "branch": "agent/l0086-frozen-validation-2026-10-06",
+    "market_scope": "frozen historical validation; no new search",
+    "rows": 22,
+    "source": "262a82dc5f798b2dc783ab9ab62267e600cc62b0",
+    "status": "VALIDATION_COMPLETE_LEAD_REVIEW_PENDING"
+  },
+  "package_matches_prepared": true
+}

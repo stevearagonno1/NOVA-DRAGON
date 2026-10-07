@@ -698,3 +698,61 @@ ticks  : docs/journal/2026-10-04-constitution-v2/ (ثماني تكات)
 - أضيفت شروط الحزمة الجاهزة، دليل الفحص الفعلي، المسارات والموارد، وضبط التوكن في الورقة الخاصة؛ تفاصيل الحكم في docs/CONSTITUTION-AMENDMENTS.md.
 - صلاحيات المحرك المقفل وسلامة القياس وحظر main والدمج محفوظة؛ لا تغيير في تجربة L0084-R1 الجارية.
 - التالي: استعمال القواعد المعدلة في تجهيز المهمة التالية؛ دمج فرع الدستور بيد المالك وحده.
+
+
+## D-L0085-20261006 — owner corrects the research objective
+
+The owner requests entry-signal onset discovery without money, positions, exits or costs. This supersedes the proposed L0084 OR0 financial follow-up; it does not invalidate completed L0084 measurements. L0085 is one discovery search: 476 settings in 32 named categories, all 113050 unordered pairs in AND0/AND2/OR0, 339626 candidates. BTCUSDT/ETHUSDT/SOLUSDT, 4h, 2025-01-01 inclusive to 2025-04-01 exclusive. No financial/adoption claim and no validation outcomes in this paper. Historical data is previously seen. Code, grid, definitions and raw inputs are pinned under tools/l0085. Validation after a 24-bar embargo is reserved for a separate paper after Lead review. No protected-branch write or PR.
+
+
+## L0085 executor setup
+Pinned runtime and synthetic admission passed; non-financial archive upload/readback verified by the prepared publisher. Market completion is not established.
+
+
+## L0085 checked execution paper released
+The exact pinned bootstrap completed short synthetic acceptance, all 339626 candidate rows were independently matched, and the compressed upload route passed immutable readback. Source f9e67bee4891ade0ab3162071f8da9bc64a66656. Private paper delivered separately; repository copy has no credential. Market discovery NOT RUN by Lead.
+
+
+## L0085 completed discovery
+Full registered signal grid scored, raw matching audited, results uploaded for Lead review. No validation or trading.
+
+
+## D-L0085-REVIEW-20261006
+
+- Before: discovery delivery awaiting Lead review. After: technically accepted, descriptive result independently verified; adoption Defer.
+- Evidence: 339626 candidates, 1018878 asset evaluations; 1428 raw masks rebuilt; centered labels and winner BB/VWAP independently recomputed. Winner AND0 BB_20_2.5 + VWAP_30_1.5: 25 alerts,17 matched events of36,8 false alerts,19 missed; macro-F1 0.5628019323671497.
+- Limits: only25 alerts, selection and evaluation share discovery period; no reserved validation or corrected significance; no money or trades.
+- Next: prepare L0086 validation of the ten frozen pairs on 2025-04-05 through 2025-06-30, unchanged parameters, signal metrics only. No new experiment run by this review.
+- Report: history/research/hyp_lab_out/L0085-rise-onset/lead-review/REPORT.md
+
+
+## D-L0086-PREREG-20261006
+
+Prepare one historical transfer validation of the ten L0085 pairs frozen at d1fe9978bee6bc7e3478f53d07633f9fabd198cf. Primary remains 17312. BTC/ETH/SOL 4h, 2025-04-05 inclusive to 2025-07-01 exclusive. Compare 12 distinct parent settings, no new search or money. Scope and numeric gates in tools/l0086/scope.json are fixed before market labels. All cyclic shifts jointly across assets; upper-tail ties, Holm family10, conditional on cyclic exchangeability, not a true future blind trial. Full synthetic path and independent audit passed; market NOT RUN by Lead. No merge/main/PR.
+
+
+## D-L0086-PREREG-20261006
+
+Prepare one historical transfer validation of the ten L0085 pairs frozen at d1fe9978bee6bc7e3478f53d07633f9fabd198cf. Primary remains 17312. BTC/ETH/SOL 4h, 2025-04-05 inclusive to 2025-07-01 exclusive. Compare 12 distinct parent settings, no new search or money. Scope and numeric gates in tools/l0086/scope.json are fixed before market labels. All cyclic shifts jointly across assets; upper-tail ties, Holm family10, conditional on cyclic exchangeability, not a true future blind trial. Full synthetic path and independent audit passed; market NOT RUN by Lead. No merge/main/PR.
+
+
+## L0086 executor setup
+Pinned runtime and synthetic admission passed; non-financial archive upload/readback verified by the prepared publisher. Market completion is not established.
+
+
+## L0086 checked paper released
+Six tests and exact bootstrap synthetic admission passed, including all ten pairs, twelve parents, full cyclic controls and real compressed upload/readback. Scope fixed before market measurement. Private execution credential omitted from repository copy. No market validation run by Lead, no main merge or PR.
+
+
+## L0086 completed frozen validation
+Ten frozen pairs and twelve parents measured, raw matching audited, results uploaded for Lead review. No new search or trading.
+
+
+## D-L0086-REVIEW-20261007
+
+- Technical completion accepted; fixed L0085 selection confirmation closed: NOT_CONFIRMED. No adoption or secondary reselection.
+- Independent Lead audit: 36 scalar indicator masks, 37 events, 66 asset evaluations, 4930 cyclic controls and 401 alert diagnostics; archive and package hashes verified.
+- Primary17312:20 alerts,10 matched/37 events; precision0.5, recall0.270270270270, macroF1 0.354525648643; four quality gates failed despite conditional Holm significance. All10 pairs failed at least one gate.
+- Post-validation diagnosis: BB alone caught20 events; pair caught10 of those and added none; nonmatching alerts decreased28 to10. Descriptive diagnosis, no new selection or experiment.
+- Next: prepare a small new-period comparison of this same pair AND0 vs AND2 vs BB alone; preregister criteria and verify data first. No market trial run in this review.
+- Report: history/research/hyp_lab_out/L0086-frozen-validation/lead-review/REPORT.md

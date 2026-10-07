@@ -1,0 +1,95 @@
+{
+  "scope": "post-validation diagnosis only; no rule change or new trial",
+  "by_asset": {
+    "BTCUSDT": {
+      "pair_caught": 5,
+      "bb_caught": 7,
+      "shared": 5,
+      "bb_only": 2,
+      "pair_only": 0,
+      "neither": 6,
+      "bb_only_vwap_false_in_window": 1,
+      "pair_false_no_label": 0,
+      "pair_duplicate": 0,
+      "bb_only_events": [
+        {
+          "onset": "2025-04-07T04:00:00Z",
+          "vwap_true_in_window": true
+        },
+        {
+          "onset": "2025-05-12T16:00:00Z",
+          "vwap_true_in_window": false
+        }
+      ]
+    },
+    "ETHUSDT": {
+      "pair_caught": 3,
+      "bb_caught": 5,
+      "shared": 3,
+      "bb_only": 2,
+      "pair_only": 0,
+      "neither": 7,
+      "bb_only_vwap_false_in_window": 0,
+      "pair_false_no_label": 7,
+      "pair_duplicate": 0,
+      "bb_only_events": [
+        {
+          "onset": "2025-05-06T12:00:00Z",
+          "vwap_true_in_window": true
+        },
+        {
+          "onset": "2025-06-06T00:00:00Z",
+          "vwap_true_in_window": true
+        }
+      ]
+    },
+    "SOLUSDT": {
+      "pair_caught": 2,
+      "bb_caught": 8,
+      "shared": 2,
+      "bb_only": 6,
+      "pair_only": 0,
+      "neither": 4,
+      "bb_only_vwap_false_in_window": 3,
+      "pair_false_no_label": 3,
+      "pair_duplicate": 0,
+      "bb_only_events": [
+        {
+          "onset": "2025-04-16T08:00:00Z",
+          "vwap_true_in_window": true
+        },
+        {
+          "onset": "2025-05-19T04:00:00Z",
+          "vwap_true_in_window": true
+        },
+        {
+          "onset": "2025-05-31T00:00:00Z",
+          "vwap_true_in_window": false
+        },
+        {
+          "onset": "2025-06-05T20:00:00Z",
+          "vwap_true_in_window": false
+        },
+        {
+          "onset": "2025-06-13T00:00:00Z",
+          "vwap_true_in_window": false
+        },
+        {
+          "onset": "2025-06-22T20:00:00Z",
+          "vwap_true_in_window": true
+        }
+      ]
+    }
+  },
+  "totals": {
+    "pair_caught": 10,
+    "bb_caught": 20,
+    "shared": 10,
+    "bb_only": 10,
+    "pair_only": 0,
+    "neither": 17,
+    "bb_only_vwap_false_in_window": 4,
+    "pair_false_no_label": 10,
+    "pair_duplicate": 0
+  }
+}

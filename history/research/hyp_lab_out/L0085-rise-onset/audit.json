@@ -1,0 +1,9 @@
+{
+  "independent_matching_all_rows": true,
+  "raw_sha256": "51669e91aae13e1306f4f28cb8d0bed43c0bfebfb00cfa4eb5a2e021b179baca",
+  "rows": 339626,
+  "scalar_mode_reference_rows": 35,
+  "source_status": "historical_discovery",
+  "status": "PASS",
+  "zero_signal_rows_retained": true
+}

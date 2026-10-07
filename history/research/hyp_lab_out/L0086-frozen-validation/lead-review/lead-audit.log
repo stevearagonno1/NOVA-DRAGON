@@ -1,0 +1,62 @@
+INDEPENDENT_INDICATORS_LABELS_PASS 36 {'BTCUSDT': 13, 'ETHUSDT': 12, 'SOLUSDT': 12}
+LEAD_AUDIT_PASS {
+  "independent_scalar_indicator_masks": 36,
+  "independent_events_by_asset": {
+    "BTCUSDT": 13,
+    "ETHUSDT": 12,
+    "SOLUSDT": 12
+  },
+  "candidate_asset_rows": 66,
+  "cyclic_controls": 4930,
+  "alert_diagnostics_checked": 401,
+  "failures": {
+    "17312": [
+      "recall_at_least_030",
+      "retain_80pct_discovery_macro_f1",
+      "beat_both_parents",
+      "two_assets_not_below_best_parent"
+    ],
+    "338952": [
+      "precision_at_least_050",
+      "retain_80pct_discovery_macro_f1",
+      "two_assets_not_below_best_parent"
+    ],
+    "48501": [
+      "precision_at_least_050",
+      "beat_both_parents",
+      "two_assets_not_below_best_parent"
+    ],
+    "43187": [
+      "precision_at_least_050",
+      "retain_80pct_discovery_macro_f1",
+      "beat_both_parents"
+    ],
+    "48543": [
+      "beat_both_parents"
+    ],
+    "338754": [
+      "precision_at_least_050",
+      "retain_80pct_discovery_macro_f1"
+    ],
+    "9899": [
+      "precision_at_least_050",
+      "retain_80pct_discovery_macro_f1",
+      "two_assets_not_below_best_parent"
+    ],
+    "17334": [
+      "precision_at_least_050",
+      "retain_80pct_discovery_macro_f1",
+      "beat_both_parents",
+      "two_assets_not_below_best_parent"
+    ],
+    "17292": [
+      "precision_at_least_050"
+    ],
+    "16893": [
+      "precision_at_least_050",
+      "retain_80pct_discovery_macro_f1",
+      "beat_both_parents",
+      "two_assets_not_below_best_parent"
+    ]
+  }
+}

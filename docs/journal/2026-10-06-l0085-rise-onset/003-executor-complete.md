@@ -1,0 +1,4 @@
+- Decision: execute the registered onset-discovery search only.
+- Execution: all candidates scored; raw evidence reconciled.
+- Produced: history/research/hyp_lab_out/L0085-rise-onset/evidence.zip and audit/report/selection.
+- Next: Lead independently reviews; no adoption or validation run.

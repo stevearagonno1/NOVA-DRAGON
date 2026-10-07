@@ -1,0 +1,62 @@
+[
+  {
+    "asset": "BTCUSDT",
+    "file": "BTCUSDT.csv",
+    "rows": 2190,
+    "start_index": 1668,
+    "scored_bars": 493,
+    "sha256": "7a548e32ad5aeabc95a7133afbb91e2ab0817c22540b292fa51c8940b325ae65",
+    "source": {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=BTCUSDT/panel.parquet",
+      "asset": "BTCUSDT",
+      "bytes": 650573,
+      "sha256": "8ad03c4c5ebe8ec7e3925781ba303854c09c96bfde0079be2c6c9d50b7966b1b",
+      "git_blob_sha": "2700813bb228c36d6c341d65ceb827f911c63928",
+      "commit_sha": "3e29b293af86f3b138ec11a0b6f773aa6209f8ef",
+      "readback": "PASS"
+    },
+    "source_commit": "2d67a6593a34c0b46e7e4f686efc57db435982a9",
+    "first": "2024-07-01T00:00:00Z",
+    "last": "2025-06-30T20:00:00Z"
+  },
+  {
+    "asset": "ETHUSDT",
+    "file": "ETHUSDT.csv",
+    "rows": 2190,
+    "start_index": 1668,
+    "scored_bars": 493,
+    "sha256": "921c6d7f297a464ab8835c8fc5852af05289ae75d518d3076c281626e45f62ee",
+    "source": {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=ETHUSDT/panel.parquet",
+      "asset": "ETHUSDT",
+      "bytes": 642134,
+      "sha256": "a60cde96dcd75035ac104afe44e7f5dccfcd1d111b230ad37f36782001be8551",
+      "git_blob_sha": "2adea1621d2e2ff748418dfe5c0ae9eef093e612",
+      "commit_sha": "3e29b293af86f3b138ec11a0b6f773aa6209f8ef",
+      "readback": "PASS"
+    },
+    "source_commit": "2d67a6593a34c0b46e7e4f686efc57db435982a9",
+    "first": "2024-07-01T00:00:00Z",
+    "last": "2025-06-30T20:00:00Z"
+  },
+  {
+    "asset": "SOLUSDT",
+    "file": "SOLUSDT.csv",
+    "rows": 2190,
+    "start_index": 1668,
+    "scored_bars": 493,
+    "sha256": "a1c59990a207254ccdc05ae241b0839ec54e07dd7cdbcf54164d05c6732bc5a7",
+    "source": {
+      "path": "history/research/hyp_lab_out/L0084-entry-mix-r1/inputs/asset=SOLUSDT/panel.parquet",
+      "asset": "SOLUSDT",
+      "bytes": 606180,
+      "sha256": "c6819545b0a3d89868704dab8a7dce1d659ab21f7af54c67fc8cca14d6b809a9",
+      "git_blob_sha": "1e139f3e6275d62cafa90f0a1782fecbf8a24a56",
+      "commit_sha": "e1ee7faa0f47cab7f4dd431a382789ca75748d87",
+      "readback": "PASS"
+    },
+    "source_commit": "2d67a6593a34c0b46e7e4f686efc57db435982a9",
+    "first": "2024-07-01T00:00:00Z",
+    "last": "2025-06-30T20:00:00Z"
+  }
+]

@@ -1,0 +1,54 @@
+{
+  "round": "L0085",
+  "run_id": "rise-onset-discovery-v1",
+  "assets": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "timeframe": "4h",
+  "warmup_start": "2024-07-01T00:00:00Z",
+  "discovery_start": "2025-01-01T00:00:00Z",
+  "discovery_end_exclusive": "2025-04-01T00:00:00Z",
+  "reserved_validation_start": "2025-04-05T00:00:00Z",
+  "reserved_validation_end_exclusive": "2025-07-01T00:00:00Z",
+  "validation_in_this_paper": false,
+  "historically_unseen": false,
+  "grid_settings": 476,
+  "families": 32,
+  "unordered_pairs": 113050,
+  "pair_modes": [
+    "AND0",
+    "AND2",
+    "OR0"
+  ],
+  "candidate_count": 339626,
+  "label": {
+    "pivot_left": 5,
+    "pivot_right": 5,
+    "atr_period": 14,
+    "upper_atr": 2,
+    "lower_atr": 1,
+    "horizon": 24,
+    "minimum_episode_distance": 25,
+    "matching_tolerance": 2,
+    "tie": "adverse first; earliest tied pivot",
+    "no_money": true
+  },
+  "ranking": "macro F1 descending then candidate numeric id ascending",
+  "eligibility": {
+    "signals_total": 15,
+    "matched_total": 6,
+    "signals_each_asset": 3,
+    "events_each_asset": 3
+  },
+  "selection": "freeze top10 eligible pairs; if none, top10 pairs labelled insufficient. Also show top10 overall and all singleton parents.",
+  "primary_scope": "one historical discovery experiment only",
+  "prior_financial_OR0_next_step": "superseded by owner 2026-10-06; not executed",
+  "missing_families": "VPFR and unspecified custom library indicators not implemented; no claim of all indicators in existence",
+  "inference": "NOT MEASURED; no significant/validated/adopted designation allowed",
+  "money_and_trading": "NOT MEASURED; excluded by owner instruction",
+  "source_main": "8e966404e77a97cd32cd19b7b574b55809e743ab",
+  "previous_delivery": "2d67a6593a34c0b46e7e4f686efc57db435982a9",
+  "previous_review": "24d435713df2e9aca81da4d57c4187d7bb66b1a7"
+}

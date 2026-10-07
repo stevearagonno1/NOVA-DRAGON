@@ -1,0 +1,9 @@
+START redaction 2026-10-06T07:18:15.439911+00:00
+before HEARTBEAT redaction child_alive=True; completion not established
+[REDACTED] after
+HEARTBEAT redaction child_alive=False; completion not established
+EXIT redaction 0
+START resumed-after-unknown-exit 2026-10-06T07:18:15.657117+00:00
+resumed
+EXIT resumed-after-unknown-exit 0
+DURABLE_LOG_REDACTION_SIGKILL_CHILD_LOCK_AND_RESUME_PASS
