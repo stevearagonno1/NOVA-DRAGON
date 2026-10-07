@@ -1,0 +1,238 @@
+{
+  "status": "PASS",
+  "decision": "D-L0093-REVIEW-20261007",
+  "verdict": "Defer",
+  "adoption": "NOT AUTHORISED",
+  "asset_period_counts_checked": 4338,
+  "mask_consistency_checks": 1446,
+  "scalar_label_checks": 9,
+  "quality_passes": [],
+  "top_eligible_per_asset": [
+    {
+      "asset": "BTCUSDT",
+      "captured_onsets": [
+        [
+          1302,
+          1396,
+          1454,
+          1518,
+          1563
+        ],
+        [
+          1681,
+          1821,
+          1848,
+          1894,
+          2039,
+          2082,
+          2141
+        ],
+        [
+          2309,
+          2335,
+          2403,
+          2649,
+          2714
+        ]
+      ],
+      "eligible": true,
+      "events": 37,
+      "f1": 0.3953488372093023,
+      "false_or_duplicate": 32,
+      "family": "CCI",
+      "id": "CCI_14_-150",
+      "matched_events": 17,
+      "median_lag": 1.0,
+      "minimum_period_precision": 0.29411764705882354,
+      "periods": [
+        {
+          "events": 13,
+          "f1": 0.3333333333333333,
+          "false_or_duplicate": 12,
+          "matched_events": 5,
+          "precision": 0.29411764705882354,
+          "recall": 0.38461538461538464,
+          "signals": 17
+        },
+        {
+          "events": 13,
+          "f1": 0.4827586206896552,
+          "false_or_duplicate": 9,
+          "matched_events": 7,
+          "precision": 0.4375,
+          "recall": 0.5384615384615384,
+          "signals": 16
+        },
+        {
+          "events": 11,
+          "f1": 0.37037037037037035,
+          "false_or_duplicate": 11,
+          "matched_events": 5,
+          "precision": 0.3125,
+          "recall": 0.45454545454545453,
+          "signals": 16
+        }
+      ],
+      "precision": 0.3469387755102041,
+      "recall": 0.4594594594594595,
+      "signals": 49,
+      "wilson95": [
+        0.22924392834538948,
+        0.48688805713027256
+      ]
+    },
+    {
+      "asset": "ETHUSDT",
+      "captured_onsets": [
+        [
+          1179,
+          1261,
+          1302,
+          1453
+        ],
+        [
+          1681,
+          2004,
+          2040,
+          2082,
+          2141
+        ],
+        [
+          2388,
+          2526,
+          2710
+        ]
+      ],
+      "eligible": true,
+      "events": 33,
+      "f1": 0.4528301886792453,
+      "false_or_duplicate": 8,
+      "family": "RSI",
+      "id": "RSI_7_20_cross",
+      "matched_events": 12,
+      "median_lag": 1.0,
+      "minimum_period_precision": 0.4,
+      "periods": [
+        {
+          "events": 11,
+          "f1": 0.38095238095238093,
+          "false_or_duplicate": 6,
+          "matched_events": 4,
+          "precision": 0.4,
+          "recall": 0.36363636363636365,
+          "signals": 10
+        },
+        {
+          "events": 12,
+          "f1": 0.5882352941176471,
+          "false_or_duplicate": 0,
+          "matched_events": 5,
+          "precision": 1.0,
+          "recall": 0.4166666666666667,
+          "signals": 5
+        },
+        {
+          "events": 10,
+          "f1": 0.4,
+          "false_or_duplicate": 2,
+          "matched_events": 3,
+          "precision": 0.6,
+          "recall": 0.3,
+          "signals": 5
+        }
+      ],
+      "precision": 0.6,
+      "recall": 0.36363636363636365,
+      "signals": 20,
+      "wilson95": [
+        0.3865815007622531,
+        0.781193467627183
+      ]
+    },
+    {
+      "asset": "SOLUSDT",
+      "captured_onsets": [
+        [
+          1179,
+          1262,
+          1302,
+          1359,
+          1396,
+          1453,
+          1518
+        ],
+        [
+          1681,
+          1736,
+          1821,
+          1857,
+          1933,
+          1971,
+          2004,
+          2039,
+          2141
+        ],
+        [
+          2334,
+          2441,
+          2567,
+          2714
+        ]
+      ],
+      "eligible": true,
+      "events": 36,
+      "f1": 0.5194805194805194,
+      "false_or_duplicate": 21,
+      "family": "CCI",
+      "id": "CCI_21_-150",
+      "matched_events": 20,
+      "median_lag": 1.0,
+      "minimum_period_precision": 0.3333333333333333,
+      "periods": [
+        {
+          "events": 12,
+          "f1": 0.4827586206896552,
+          "false_or_duplicate": 10,
+          "matched_events": 7,
+          "precision": 0.4117647058823529,
+          "recall": 0.5833333333333334,
+          "signals": 17
+        },
+        {
+          "events": 12,
+          "f1": 0.75,
+          "false_or_duplicate": 3,
+          "matched_events": 9,
+          "precision": 0.75,
+          "recall": 0.75,
+          "signals": 12
+        },
+        {
+          "events": 12,
+          "f1": 0.3333333333333333,
+          "false_or_duplicate": 8,
+          "matched_events": 4,
+          "precision": 0.3333333333333333,
+          "recall": 0.3333333333333333,
+          "signals": 12
+        }
+      ],
+      "precision": 0.4878048780487805,
+      "recall": 0.5555555555555556,
+      "signals": 41,
+      "wilson95": [
+        0.34254429554432664,
+        0.6351549134845619
+      ]
+    }
+  ],
+  "zero_signal_rows": 52,
+  "eligible_per_asset": {
+    "BTCUSDT": 123,
+    "ETHUSDT": 144,
+    "SOLUSDT": 146
+  },
+  "elapsed_compute_seconds": 2.5472292590002326,
+  "limits": "same-period discovery;Wilson descriptive;all masks rebuilt with same indicator engine,not all numeric definitions independently reimplemented",
+  "next": "prepare frozen pair-search scope for executor;no new search in this review"
+}

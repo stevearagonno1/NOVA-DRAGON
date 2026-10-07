@@ -870,3 +870,7 @@ Saved57-row counts reconciled;636 event-variant timing partitions checked. Of56 
 
 ## L0093 singleton survey
 482settings/1446rows/4338period evaluations;independent matching PASS. Historical discovery only;Lead review pending,no mixtures,trading or adoption.
+
+
+## L0093 independently reviewed — 2026-10-07
+D-L0093-REVIEW-20261007: Defer adoption. 482settings/1446rows/4338quarter evaluations independently reconciled;1446engine masks and9scalar label periods match;52zero rows preserved. Zero quality passes. Registered stable eligible leaders:BTC CCI14-150 NS49/TP17/37/P34.69%,ETH RSI7-20cross NS20/TP12/33/P60%,SOL CCI21-150 NS41/TP20/36/P48.78%. Historical discovery only,no corrected superiority or future validation. Next:prepare frozen pair-search paper for executor;no further measurement by Lead.
