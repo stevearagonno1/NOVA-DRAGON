@@ -1,0 +1,21 @@
+{
+  "base_main": "45c704aa01e602f930f7d59f0a2f411a06400290",
+  "sha256": {
+    "run93.py": "f7baaa279a08c145837beae360da3e5bfd300e721406d0694cf54f7af7e5bba7",
+    "indicators84.py": "e5b2026cad5266f7aacb6dfad4deed89c66e41a804ba9f0ed1e067076aafe636",
+    "publish85.py": "3857bce285bfbad7e96e63bc193447a6ccf72eeeed74719891d9e0bd187640a0",
+    "launch93.py": "2f894bb832a986bfc75adea2ddedb2cf71984021187758dabc4cf1b97a5177fd",
+    "candles92.py": "82e10f571e87ef1a3f99b6402511ae2acddd38ddd1832192894bfdc09db306b4",
+    "signals85.py": "255e4dbe938d6c607e11e66a7b45fa5d0164978fb92a77f672eb62f3b1c47301",
+    "SOLUSDT.csv": "d9ba90bfbd819da27afc952a9a9285759d89ba89abf5e834b6bb287fb523ba01",
+    "test85.py": "281af3399c4556a0cb1bfd8611e1e20fe7716544312f6607bb53e25c1489588b",
+    "parent_raw.json.gz": "7776f3a154487801123b14e6051864f713cd0456b08c6b0335ccdcdfa01f8d51",
+    "inputs.json": "d2b5e7c56e8522be45d400ff387575887e2a3da8869e5913ba2cd80f5c7df172",
+    "ETHUSDT.csv": "b19352207c28ec2db3eb1b66f937a1d1b7dbbb0ea10fad1ecb9fee25c87fd704",
+    "BTCUSDT.csv": "ed1ef1568753eabd6700ceef587d5211abfd5713dfe34460f4144690951b165c",
+    "prepare_runtime.py": "e342f9e09177dbd6c96919468b5ce1bac1dc0d6f508392d3fdcb888fd384c5b6",
+    "scope93.json": "70564a18d647cf89ff1c32b35f5642751804bffa070ad7c09ce6d6716ed91584",
+    "research85.py": "116809601316cff3e2917de54403673a089e8e2da8b897b0bffbf7ce9244161e"
+  },
+  "revision": "R1 gzip binary upload correction"
+}

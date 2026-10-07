@@ -1,0 +1,4 @@
+- Decision:follow frozen singleton scope.
+- Executed:fixture,resume,tamper and source archive upload/readback.
+- Produced:tools/l0093 and admission proof.
+- Next:measure,audit and deliver;no mixtures or adoption.

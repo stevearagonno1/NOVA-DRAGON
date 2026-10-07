@@ -1,0 +1,15 @@
+{
+  "round": "L0093",
+  "base_main": "45c704aa01e602f930f7d59f0a2f411a06400290",
+  "stage": "singleton discovery only",
+  "settings": 482,
+  "rows": 1446,
+  "period_evaluations": 4338,
+  "pairs": 0,
+  "historical_development_only": true,
+  "adoption": "NOT AUTHORISED",
+  "raw_event_source": "tools/l0090/parent_raw.json.gz",
+  "causality": "false-to-true pulse of each complete primitive,full-history then eligible bars",
+  "selection": "eligible representative per family per asset; min period precision,Wilson lower,recall,signals,id",
+  "routing": "owner explicitly assigns execution and upload to executor;no padding or compute by Lead"
+}
