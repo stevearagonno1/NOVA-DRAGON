@@ -1,0 +1,15 @@
+{"status": "COMPARISON_COMPLETE_LEAD_REVIEW_PENDING", "synthetic": true, "audit": "PASS", "cases": 3, "policies": 2}
+{"status": "COMPARISON_COMPLETE_LEAD_REVIEW_PENDING", "synthetic": true, "audit": "PASS", "cases": 3, "policies": 2}
+INDEPENDENT_AUDIT_PASS
+{"status": "COMPARISON_COMPLETE_LEAD_REVIEW_PENDING", "synthetic": true, "audit": "PASS", "cases": 3, "policies": 2}
+
+test_clusters_zero_and_identity (__main__.Checks.test_clusters_zero_and_identity) ... ok
+test_delivery_packager_actual_outputs (__main__.Checks.test_delivery_packager_actual_outputs) ... ok
+test_frozen (__main__.Checks.test_frozen) ... ok
+test_pipeline_resume_tamper (__main__.Checks.test_pipeline_resume_tamper) ... ok
+test_quality (__main__.Checks.test_quality) ... ok
+
+----------------------------------------------------------------------
+Ran 5 tests in 0.196s
+
+OK

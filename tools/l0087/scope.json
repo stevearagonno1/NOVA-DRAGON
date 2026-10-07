@@ -1,0 +1,36 @@
+{
+  "round": "L0087",
+  "base": "91b70cab11ee7e0cd7a067e8b2e9e8e70d7ef86e",
+  "main": "91b70cab11ee7e0cd7a067e8b2e9e8e70d7ef86e",
+  "question": "BB vs fixed AND0/AND2; shared frozen policy vs per-asset frozen policy",
+  "validation_start": "2025-07-05T00:00:00Z",
+  "end_exclusive": "2025-10-01T00:00:00Z",
+  "assets": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "timeframe": "4h",
+  "market_bars": 528,
+  "eligible_each": 499,
+  "selection_sha256": "23aa2bec2a9218703e329bb504fea4c5d45ba8d6e587a312e3d98861e107c50e",
+  "cases": 3,
+  "policies": 2,
+  "hypotheses": 3,
+  "diagnostic_pairs_no_reselection": true,
+  "quality_gates": {
+    "pooled_precision": 0.7,
+    "pooled_recall": 0.3,
+    "alerts_total": 100,
+    "alerts_each": 20,
+    "precision_each": 0.55
+  },
+  "specialization_gate": "Identical frozen policies are declared before measure. Otherwise positive simultaneous Bonferroni interval lower bound for personal-minus-shared precision, and recall drop<=.05; 7-day synchronous outcome clusters,seed87007,10000 repetitions,3 hypotheses,98.333333pct intervals,minimum8 clusters.",
+  "money": "NOT MEASURED",
+  "no_adoption": true,
+  "timing_hypotheses": {
+    "AND2_precision_vs_BB": "lower simultaneous bound > .10",
+    "AND2_recall_vs_AND0": "lower simultaneous bound > .10"
+  },
+  "lead_review": "70c0305d70ae1e90ff672bae3db050c8f38cba78"
+}

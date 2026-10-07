@@ -1,0 +1,4 @@
+- Decision: freeze L0087 timing comparison and policy choices before validation outcomes.
+- Execution: prepare three cases and two fixed policies, short synthetic and independent audit.
+- Produced: tools/l0087 executable package; validation market NOT RUN.
+- Next: full bootstrap/upload admission, then executor validation and Lead review.
