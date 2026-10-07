@@ -5,11 +5,12 @@ INDEPENDENT_AUDIT_PASS
 
 test_clusters_zero_and_identity (__main__.Checks.test_clusters_zero_and_identity) ... ok
 test_delivery_packager_actual_outputs (__main__.Checks.test_delivery_packager_actual_outputs) ... ok
+test_development_selection_reconciles (__main__.Checks.test_development_selection_reconciles) ... ok
 test_frozen (__main__.Checks.test_frozen) ... ok
 test_pipeline_resume_tamper (__main__.Checks.test_pipeline_resume_tamper) ... ok
 test_quality (__main__.Checks.test_quality) ... ok
 
 ----------------------------------------------------------------------
-Ran 5 tests in 0.196s
+Ran 6 tests in 0.241s
 
 OK

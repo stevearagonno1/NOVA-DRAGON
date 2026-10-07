@@ -761,3 +761,6 @@ Ten frozen pairs and twelve parents measured, raw matching audited, results uplo
 ## D-L0087-PREREG-20261007
 
 One timing comparison: BB20_2.5 vs same BB+VWAP30_1.5 AND0 and AND2. Development choice from L0085+L0086 raw counts only, fixed shared/per-asset policies before holdout: all choose AND0, so identical policies, no established specialization gain. Validation 2025-07-05 through 2025-09-30, BTC/ETH/SOL4h. Three cases, two fixed policies. Registered synchronous week-cluster intervals with Bonferroni family3, seed87007,10000 repetitions. No new selection, no money/adoption. Synthetic tested; market NOT RUN by Lead.
+
+
+L0087 final package: six tests and synthetic audit passed, including reconciliation of all weekly counts and frozen development choices. Market NOT RUN.

@@ -77,6 +77,8 @@ def derive(raw,reference=False):
    for bar in R.bits(bits):
     j=matches.get(bar);anchor=ev[j]['onset'] if j is not None else bar;b=(anchor-first)//42;cells[b,0]+=1;cells[b,1]+=j is not None
   totals.append(cells.tolist())
+ for row,cells in zip(cases+policies,totals):
+  assert [sum(q[i] for q in cells) for i in range(3)]==[row['signals'],row['matched_events'],row['events']], 'weekly counts do not reconcile'
  for row,group in zip(cases+policies,arrays):
   lag=[]
   for bits,(_,_,ev) in zip(group,data):

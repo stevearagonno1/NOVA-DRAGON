@@ -7,6 +7,15 @@ import zipfile,io
 class Checks(unittest.TestCase):
  def test_frozen(self):
   f=V.load('selection87.json');self.assertEqual(f['shared']['selected'],17312);self.assertTrue(all(q['selected']==17312 for q in f['per_asset'].values()));self.assertFalse(f['validation_read'])
+ def test_development_selection_reconciles(self):
+  f=V.load('selection87.json')
+  for sym,entry in [(None,f['shared'])]+list(f['per_asset'].items()):
+   for q in entry['candidates']:
+    cells=[p for rec in f['records'] for row in rec['rows'] if row['candidate']==q['candidate'] for p in row['per_asset'] if sym is None or p['asset']==sym]
+    ns=sum(x['signals'] for x in cells);tp=sum(x['matched_events'] for x in cells);ne=sum(x['events'] for x in cells)
+    self.assertEqual((ns,tp,ne),(q['signals'],q['matched'],q['events']));self.assertEqual(q['precision'],tp/ns);self.assertEqual(q['recall'],tp/ne)
+   eligible=[x for x in entry['candidates'] if x['eligible']];winner=min(eligible or entry['candidates'],key=lambda x:(-x['precision'],-x['recall'],x['candidate']))
+   self.assertEqual(entry['selected'],winner['candidate'])
  def test_quality(self):
   row={'signals':120,'matched_events':90,'precision':.75,'recall':.5,'lag_median':0,'per_asset':[{'signals':40,'events':60,'precision':.75}]*3};self.assertEqual(V.quality(row)['status'],'QUALITY_CANDIDATE_ONLY');row['signals']=99;self.assertEqual(V.quality(row)['status'],'INSUFFICIENT_SAMPLE')
  def test_clusters_zero_and_identity(self):
