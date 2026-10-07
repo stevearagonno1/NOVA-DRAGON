@@ -1,0 +1,4 @@
+- Decision: test the exact compressed-evidence upload route.
+- Execution: synthetic-only archive upload and immutable byte readback.
+- Produced: readiness/upload-proof.json and upload-proof.zip.
+- Next: execute the frozen validation, then audit and publish.
