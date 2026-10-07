@@ -1,0 +1,8 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/e30dadfbbb9a/l0088/package/research88.py", line 98, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--inputs',required=True);p.add_argument('--out',required=True);p.add_argument('--synthetic',action='store_true');a=p.parse_args();execute(a.inputs,a.out,a.synthetic)
+                                                                                                                                                                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/e30dadfbbb9a/l0088/package/research88.py", line 45, in execute
+    for key in a:assert np.array_equal(a[key],ref[key]),('scalar mismatch',asset,key);reference_masks+=1
+                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+AssertionError: ('scalar mismatch', 'SOLUSDT', 'CCI_21_-100')

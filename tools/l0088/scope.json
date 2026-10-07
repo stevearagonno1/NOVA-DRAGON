@@ -1,0 +1,60 @@
+{
+  "round": "L0088",
+  "phase": "discovery_only",
+  "assets": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "timeframe": "4h",
+  "periods": [
+    [
+      "2025-01-01T00:00:00Z",
+      "2025-04-01T00:00:00Z"
+    ],
+    [
+      "2025-04-05T00:00:00Z",
+      "2025-07-01T00:00:00Z"
+    ],
+    [
+      "2025-07-05T00:00:00Z",
+      "2025-10-01T00:00:00Z"
+    ]
+  ],
+  "data_package_commit": "1e97b53d8d6d0a3db3842c17f6a6b6f8110e134c",
+  "input_manifest_sha256": "d2b5e7c56e8522be45d400ff387575887e2a3da8869e5913ba2cd80f5c7df172",
+  "settings": 36,
+  "evaluations": 324,
+  "money": "not measured",
+  "holdout_read": false,
+  "historical_periods_previously_observed": true,
+  "eligibility": {
+    "signals_each_period": 3,
+    "signals_total_asset": 20,
+    "recall_each_period": 0.15,
+    "recall_total_asset": 0.3
+  },
+  "ranking": [
+    "minimum_period_precision_desc",
+    "pooled_wilson95_low_desc",
+    "pooled_recall_desc",
+    "signals_total_desc",
+    "candidate_id_asc"
+  ],
+  "selection": "one eligible singleton per family per asset plus shared family representative; no validation or adoption",
+  "quality_targets_not_adoption": {
+    "precision": 0.7,
+    "pooled_recall": 0.3,
+    "signals_total_shared": 100,
+    "signals_each_asset": 20,
+    "each_asset_precision": 0.55,
+    "wilson95_low": 0.6,
+    "median_lag_at_most": 1
+  },
+  "inferential_significance": "not measured in discovery; no p values or corrected superiority claim",
+  "runtime_routing": "Lead if expected <=600 seconds; no padding; elapsed recorded",
+  "dependency_manifest_sha256": "9943394620ddfc1eeac9a2f27f3120ac4d5e331590fd71c0fd091caa12aaaaeb",
+  "numerical_policy": {
+    "CCI": "round computed CCI to10 decimal places before threshold comparison; fixed after warmup-only rounding discrepancy, before any valid market report"
+  }
+}

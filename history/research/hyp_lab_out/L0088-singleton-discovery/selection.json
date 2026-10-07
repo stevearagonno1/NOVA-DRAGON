@@ -1,0 +1,64 @@
+{
+  "criteria": {
+    "recall_each_period": 0.15,
+    "recall_total_asset": 0.3,
+    "signals_each_period": 3,
+    "signals_total_asset": 20
+  },
+  "discovery_only": true,
+  "no_adoption": true,
+  "per_asset": {
+    "BTCUSDT": {
+      "BB": "BB_30_2.5",
+      "CCI": "CCI_14_-150",
+      "DONCHIAN_RECLAIM": "DONCHIAN_RECLAIM_20",
+      "EMA_RECLAIM": "EMA_RECLAIM_10",
+      "MACD_REFERENCE": null,
+      "OBV_EMA": null,
+      "RSI_RECLAIM": "RSI_RECLAIM_10_40",
+      "SQUEEZE_BREAK": null,
+      "TAKER_PRESSURE": "TAKER_PRESSURE_1_0.52"
+    },
+    "ETHUSDT": {
+      "BB": "BB_20_2.5",
+      "CCI": "CCI_14_-150",
+      "DONCHIAN_RECLAIM": "DONCHIAN_RECLAIM_40",
+      "EMA_RECLAIM": "EMA_RECLAIM_20",
+      "MACD_REFERENCE": null,
+      "OBV_EMA": null,
+      "RSI_RECLAIM": "RSI_RECLAIM_10_30",
+      "SQUEEZE_BREAK": null,
+      "TAKER_PRESSURE": "TAKER_PRESSURE_1_0.52"
+    },
+    "SOLUSDT": {
+      "BB": "BB_20_2",
+      "CCI": "CCI_21_-150",
+      "DONCHIAN_RECLAIM": "DONCHIAN_RECLAIM_20",
+      "EMA_RECLAIM": "EMA_RECLAIM_10",
+      "MACD_REFERENCE": null,
+      "OBV_EMA": null,
+      "RSI_RECLAIM": "RSI_RECLAIM_10_30",
+      "SQUEEZE_BREAK": null,
+      "TAKER_PRESSURE": null
+    }
+  },
+  "ranking": [
+    "minimum_period_precision_desc",
+    "pooled_wilson95_low_desc",
+    "pooled_recall_desc",
+    "signals_total_desc",
+    "candidate_id_asc"
+  ],
+  "shared": {
+    "BB": "BB_30_2",
+    "CCI": "CCI_14_-150",
+    "DONCHIAN_RECLAIM": "DONCHIAN_RECLAIM_20",
+    "EMA_RECLAIM": "EMA_RECLAIM_10",
+    "MACD_REFERENCE": null,
+    "OBV_EMA": null,
+    "RSI_RECLAIM": "RSI_RECLAIM_10_40",
+    "SQUEEZE_BREAK": null,
+    "TAKER_PRESSURE": null
+  },
+  "synthetic": false
+}

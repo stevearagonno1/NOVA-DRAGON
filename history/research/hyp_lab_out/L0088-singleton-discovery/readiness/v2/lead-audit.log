@@ -1,0 +1,17 @@
+Traceback (most recent call last):
+  File "/workspace/scratch/e30dadfbbb9a/l0088/package/audit88.py", line 62, in <module>
+    p=argparse.ArgumentParser();p.add_argument('--inputs',required=True);p.add_argument('--out',required=True);a=p.parse_args();run(a.inputs,a.out)
+                                                                                                                                ^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/e30dadfbbb9a/l0088/package/audit88.py", line 10, in run
+    for n,h in load('checkpoint.json')['hashes'].items():assert sha(out/n)==h,('hash',n)
+               ^^^^^^^^^^^^^^^^^^^^^^^
+  File "/workspace/scratch/e30dadfbbb9a/l0088/package/audit88.py", line 9, in <lambda>
+    R.ROOT=inputs;load=lambda n:json.loads((out/n).read_text());sha=lambda p:hashlib.sha256(p.read_bytes()).hexdigest()
+                                           ^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1027, in read_text
+    with self.open(mode='r', encoding=encoding, errors=errors) as f:
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/opt/codex/runtimes/codex-primary-runtime/dependencies/python/lib/python3.12/pathlib.py", line 1013, in open
+    return io.open(self, mode, buffering, encoding, errors, newline)
+           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+FileNotFoundError: [Errno 2] No such file or directory: 'l0088/market/checkpoint.json'

@@ -1,0 +1,25 @@
+{
+  "head": "1a42145d58eb27e0cb80378cb0496f4e91ffa96f",
+  "branch": "agent/l0088-singleton-discovery-2026-10-07",
+  "base": "c1315955f9b276b51126201d364e406d48d54b68",
+  "verified_remote": true,
+  "main_written": false,
+  "files_sha256": {
+    "tools/l0088/audit88.py": "cbfc5f128a7daec11c435724d01d47cf23c013bc4776d5300279520f405ca819",
+    "tools/l0088/research88.py": "0112ed97ba4eedc2683c18c2c76be0f0a0bf9ec23f80ce7befb618a85d46a9ed",
+    "tools/l0088/scope.json": "a8c19cf939332cc99b9d49030b3f12b778090f26bdcc77efc5037575cbfc2f53",
+    "tools/l0088/signals88.py": "5e847c5a11855bb431053a64da37726c0c4bcf6a965488d89c501d0adeb2ca94",
+    "tools/l0088/test88.py": "bd2b3b0ca6320e036b9ac40e3295d39ae5072c42ce1271660dacef7543493b2e",
+    "tools/l0088/package_manifest.json": "0e5ffadd6a73b63afe4c9878c402700637d5be785fb433b1667935be0343e3fd",
+    "docs/lanes/L0088-SINGLETON-DISCOVERY.md": "b387be84c9a364c91b81197db663e64a71a960f445a076c4767a05a7d06b882a",
+    "history/research/hyp_lab_out/L0088-singleton-discovery/readiness/v2/tests-v2.log": "7a57d694f67a47ee418604378fa92ffc858aa426904a64678aaec9193ff2f33b",
+    "history/research/hyp_lab_out/L0088-singleton-discovery/readiness/v2/synthetic-v2.log": "caa0d417b81887d90b31154d72a14a0b30129f7dfec2ccfa6a6c295d51ca0e9e",
+    "history/research/hyp_lab_out/L0088-singleton-discovery/readiness/v2/audit-synthetic-v2.log": "5927537294f6b7213c37319d1a02a8e258849b25dfadcdece576c4719ccda4d9",
+    "history/research/hyp_lab_out/L0088-singleton-discovery/readiness/v2/indicator-admission-v2.log": "3751c07c14df8219a61ea63b1075c97803a43cf69f14b1d8ca4accf771df014a",
+    "history/research/hyp_lab_out/L0088-singleton-discovery/readiness/v2/market.log": "d93f636dcee5e7cb60008f6b78fa6d5af6b13a35bbc9d1d33a5cf598085432c1",
+    "history/research/hyp_lab_out/L0088-singleton-discovery/readiness/v2/lead-audit.log": "19709e38b29f9aa98a95869691223d36a18d53c4abdceee294ce10a998ab93f6",
+    "history/research/hyp_lab_out/L0088-singleton-discovery/readiness/v2/fixture.zip": "740ba590a3b3a0261a5622a75d899626af2a6a5da4de582d5eb34b4a9de79404",
+    "LOG.md": "222eb82447c191cf2562a457fa8c503f373fe4d23d2a457ccf9977455619d237",
+    "docs/journal/2026-10-07-l0088-singleton-discovery/002-numerical-admission-fix.md": "c19e3b21107e0d6ef69aba7dcfe46e87172390fd618ab4926dcf1bc1840e1212"
+  }
+}
