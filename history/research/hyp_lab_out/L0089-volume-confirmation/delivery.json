@@ -1,0 +1,9 @@
+{
+  "archive_bytes": 798044,
+  "archive_sha256": "fbaeac1d3bd0a55d49ff418ad4c4549cc16020168c1fbededd5e8a8b4897da80",
+  "branch": "agent/l0089-volume-confirmation-2026-10-07",
+  "market_scope": "registered marginal volume-confirmation discovery; no validation or adoption",
+  "rows": 360,
+  "source": "c3adccf163bc931f4063d419a97e6284d13e91a3882aa6bbeb90df72da44fbdb",
+  "status": "DISCOVERY_COMPLETE_LEAD_REVIEW_PENDING"
+}
