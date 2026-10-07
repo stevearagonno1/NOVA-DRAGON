@@ -1,0 +1,4 @@
+- Decision: close L0090 delivery after immutable full-byte archive readback.
+- Executed: verified archive atcdb5d002a3579001b4795f990b5e1daa44066b5b;SHA256 ab67ddbfa4731106830d3c6dc791e628aa42b6c9308a5eea0af5a472a5a3aeac.
+- Produced: verified delivery receipt;instrumented run through verified archive537.925s,measurement26.428s,audit32.116s;full-turn time not measured and final receipt publication excluded.
+- Next: diagnose CCI false alerts/missed rise events;Defer adoption;owner alone may merge records.

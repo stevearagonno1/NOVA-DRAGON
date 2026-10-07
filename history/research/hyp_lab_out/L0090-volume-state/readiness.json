@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "primitive_scalar_and_prefix_checks": 108,
+  "synthetic_only": true,
+  "market_run": false,
+  "rows": 441,
+  "pairs": 405,
+  "synthetic_null_counts": 77760,
+  "gzip_header_compatibility": true,
+  "raw_tamper_rejected": true
+}

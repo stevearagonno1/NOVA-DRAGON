@@ -841,3 +841,11 @@ Three fixed cases and two frozen policies compared, raw matching audited, result
 
 ## L0089 Lead review — 2026-10-07
 D-L0089-REVIEW-20261007: Defer adoption. Technical discovery complete; independent scalar audit PASS for360 rows and9,720,000 controls. Zero eligible pairs. Correction: prior publisher text about three fixed cases/frozen validation is wrong; actual scope324 pair-asset discovery cases+36 parents. Task estimate15–45min overstated: pre-upload total182.512s; no padding to make work heavy. Next: Lead prepares persistent volume-state comparison; no new measurement or main merge.
+
+
+## L0090 preparation — 2026-10-07
+Prepared81 persistent-volume state pairs alongside324 inherited pulse controls and36 parents. Frozen441-row scope,causal definitions and unchanged quality gates before market. Synthetic scalar/prefix/end-to-end audit/gzip/tamper checks PASS. Market NOT RUN; no adoption. Corrected L0089 publisher description in a new source revision. Ready-task estimate360s; Lead handles light execution. Next: market measurement and independent review as separate milestone.
+
+
+## L0090 measured and independently reviewed — 2026-10-07
+Owner authorised Lead execution. 441 rows/405 pairs/81 new persistent states; measurement26.428s,scalar audit32.116s,12,150,000 null counts. All360 inherited rows reproduce L0089 metrics;405 p-values/Holm recalculated;108 real-input state/prefix checks PASS. Zero eligible pairs;0/81 marginal hypothesis passes. D-L0090-REVIEW-20261007: Defer adoption,valid negative for this state-filter grid. Evidence and complete report published; no main merge. Next: diagnose CCI-alone false alerts/missed rise events before designing new causal price reversal signal.

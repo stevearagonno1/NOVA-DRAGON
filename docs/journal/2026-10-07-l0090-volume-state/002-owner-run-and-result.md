@@ -1,0 +1,4 @@
+- Decision: owner authorised Lead execution of pinned L0090 comparison; no executor assignment.
+- Executed: 441 rows/405 pairs,scalar null audit12,150,000 counts,real-state causal checks and360 inherited-row regression.
+- Produced: complete evidence/report/review;zero eligible pairs,0/81 marginal-value hypothesis passes;Defer adoption.
+- Next: verified work-branch delivery,then diagnose CCI-alone false alerts/missed events; no main merge.

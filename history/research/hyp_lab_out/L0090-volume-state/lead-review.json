@@ -1,0 +1,1098 @@
+{
+  "decision": "D-L0090-REVIEW-20261007",
+  "verdict": "Defer",
+  "scope_outcome": "valid negative for the81 tested persistent volume filters",
+  "source_commit": "c01b1d255acf6c1c167e3b87e64da3cbe34ea5d3",
+  "rows": 441,
+  "pairs": 405,
+  "new_states": 81,
+  "independent_scalar_audit": {
+    "adoption": "NOT AUTHORISED",
+    "control_draws_each": 10000,
+    "elapsed_seconds": 32.11637574500014,
+    "null_asset_period_counts": 12150000,
+    "pairs": 405,
+    "raw_sha256": "cfe2ef13734a5d6569153c89286d6b6415e1502f065e83ded19c037cb66597e5",
+    "rows": 441,
+    "scope_sha256": "57c4b417e0ba5bd940fe0eba85d912cca12180e85f32a27540fcd2a4b2c86d1a",
+    "status": "PASS",
+    "synthetic": false
+  },
+  "inherited_rows_regression_checked": 360,
+  "independent_p_and_holm_parts_checked": 405,
+  "per_asset": {
+    "BTCUSDT": {
+      "eligible_pairs": 0,
+      "maximum_new_state_recall": 0.16216216216216217,
+      "maximum_new_state_signals": 14,
+      "max_recall_example": {
+        "a": "CCI_14_-150",
+        "added_events_vs_price": 0,
+        "asset": "BTCUSDT",
+        "b": "STATE_OBV_EMA_20_50",
+        "candidate": "116",
+        "captured_onsets_by_period": [
+          [],
+          [
+            1821,
+            1848,
+            1894
+          ],
+          [
+            2309,
+            2335,
+            2649
+          ]
+        ],
+        "eligible": false,
+        "events": 37,
+        "f1": 0.23529411764705882,
+        "false_or_duplicate": 8,
+        "lag_sum": 6,
+        "lost_events_vs_price": 11,
+        "marginal_hypothesis_pass": false,
+        "matched_events": 6,
+        "matched_lags": [
+          1,
+          1,
+          1,
+          1,
+          1,
+          1
+        ],
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.0,
+        "mode": "STATE_NOW",
+        "p_holm405": 1,
+        "p_phase_shift": 0.0028997100289971,
+        "pair": true,
+        "periods": [
+          {
+            "events": 13,
+            "f1": 0.0,
+            "false_or_duplicate": 4,
+            "matched_events": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "signals": 4
+          },
+          {
+            "events": 13,
+            "f1": 0.3157894736842105,
+            "false_or_duplicate": 3,
+            "matched_events": 3,
+            "precision": 0.5,
+            "recall": 0.23076923076923078,
+            "signals": 6
+          },
+          {
+            "events": 11,
+            "f1": 0.4,
+            "false_or_duplicate": 1,
+            "matched_events": 3,
+            "precision": 0.75,
+            "recall": 0.2727272727272727,
+            "signals": 4
+          }
+        ],
+        "precision": 0.42857142857142855,
+        "precision_delta_vs_price": 0.08163265306122447,
+        "recall": 0.16216216216216217,
+        "recall_delta_vs_price": -0.2972972972972973,
+        "signals": 14
+      },
+      "price_parents": [
+        {
+          "a": "CCI_14_-150",
+          "asset": "BTCUSDT",
+          "b": null,
+          "candidate": "PRICE_0",
+          "captured_onsets_by_period": [
+            [
+              1302,
+              1396,
+              1454,
+              1518,
+              1563
+            ],
+            [
+              1681,
+              1821,
+              1848,
+              1894,
+              2039,
+              2082,
+              2141
+            ],
+            [
+              2309,
+              2335,
+              2403,
+              2649,
+              2714
+            ]
+          ],
+          "eligible": true,
+          "events": 37,
+          "f1": 0.3953488372093023,
+          "false_or_duplicate": 32,
+          "lag_sum": 15,
+          "matched_events": 17,
+          "matched_lags": [
+            2,
+            1,
+            1,
+            -1,
+            2,
+            1,
+            1,
+            1,
+            1,
+            2,
+            1,
+            0,
+            1,
+            1,
+            2,
+            1,
+            -2
+          ],
+          "median_lag": 1.0,
+          "minimum_period_precision": 0.29411764705882354,
+          "mode": "S",
+          "pair": false,
+          "periods": [
+            {
+              "events": 13,
+              "f1": 0.3333333333333333,
+              "false_or_duplicate": 12,
+              "matched_events": 5,
+              "precision": 0.29411764705882354,
+              "recall": 0.38461538461538464,
+              "signals": 17
+            },
+            {
+              "events": 13,
+              "f1": 0.4827586206896552,
+              "false_or_duplicate": 9,
+              "matched_events": 7,
+              "precision": 0.4375,
+              "recall": 0.5384615384615384,
+              "signals": 16
+            },
+            {
+              "events": 11,
+              "f1": 0.37037037037037035,
+              "false_or_duplicate": 11,
+              "matched_events": 5,
+              "precision": 0.3125,
+              "recall": 0.45454545454545453,
+              "signals": 16
+            }
+          ],
+          "precision": 0.3469387755102041,
+          "recall": 0.4594594594594595,
+          "signals": 49
+        },
+        {
+          "a": "BB_30_2.5",
+          "asset": "BTCUSDT",
+          "b": null,
+          "candidate": "PRICE_1",
+          "captured_onsets_by_period": [
+            [
+              1302,
+              1359,
+              1396,
+              1518
+            ],
+            [
+              1681,
+              1821,
+              2004,
+              2039,
+              2082,
+              2141
+            ],
+            [
+              2309,
+              2335,
+              2526
+            ]
+          ],
+          "eligible": true,
+          "events": 37,
+          "f1": 0.35135135135135137,
+          "false_or_duplicate": 24,
+          "lag_sum": -3,
+          "matched_events": 13,
+          "matched_lags": [
+            -2,
+            0,
+            1,
+            -2,
+            1,
+            0,
+            -2,
+            1,
+            0,
+            0,
+            0,
+            1,
+            -1
+          ],
+          "median_lag": 0.0,
+          "minimum_period_precision": 0.25,
+          "mode": "S",
+          "pair": false,
+          "periods": [
+            {
+              "events": 13,
+              "f1": 0.27586206896551724,
+              "false_or_duplicate": 12,
+              "matched_events": 4,
+              "precision": 0.25,
+              "recall": 0.3076923076923077,
+              "signals": 16
+            },
+            {
+              "events": 13,
+              "f1": 0.5454545454545454,
+              "false_or_duplicate": 3,
+              "matched_events": 6,
+              "precision": 0.6666666666666666,
+              "recall": 0.46153846153846156,
+              "signals": 9
+            },
+            {
+              "events": 11,
+              "f1": 0.2608695652173913,
+              "false_or_duplicate": 9,
+              "matched_events": 3,
+              "precision": 0.25,
+              "recall": 0.2727272727272727,
+              "signals": 12
+            }
+          ],
+          "precision": 0.35135135135135137,
+          "recall": 0.35135135135135137,
+          "signals": 37
+        },
+        {
+          "a": "DONCHIAN_RECLAIM_20",
+          "asset": "BTCUSDT",
+          "b": null,
+          "candidate": "PRICE_2",
+          "captured_onsets_by_period": [
+            [
+              1157,
+              1359,
+              1396,
+              1454,
+              1479,
+              1518
+            ],
+            [
+              2004,
+              2141
+            ],
+            [
+              2277,
+              2309,
+              2526,
+              2649,
+              2714
+            ]
+          ],
+          "eligible": true,
+          "events": 37,
+          "f1": 0.2857142857142857,
+          "false_or_duplicate": 41,
+          "lag_sum": -8,
+          "matched_events": 13,
+          "matched_lags": [
+            -2,
+            0,
+            -2,
+            0,
+            0,
+            0,
+            -2,
+            -1,
+            0,
+            0,
+            0,
+            -1,
+            0
+          ],
+          "median_lag": 0.0,
+          "minimum_period_precision": 0.20833333333333334,
+          "mode": "S",
+          "pair": false,
+          "periods": [
+            {
+              "events": 13,
+              "f1": 0.34285714285714286,
+              "false_or_duplicate": 16,
+              "matched_events": 6,
+              "precision": 0.2727272727272727,
+              "recall": 0.46153846153846156,
+              "signals": 22
+            },
+            {
+              "events": 13,
+              "f1": 0.19047619047619047,
+              "false_or_duplicate": 6,
+              "matched_events": 2,
+              "precision": 0.25,
+              "recall": 0.15384615384615385,
+              "signals": 8
+            },
+            {
+              "events": 11,
+              "f1": 0.2857142857142857,
+              "false_or_duplicate": 19,
+              "matched_events": 5,
+              "precision": 0.20833333333333334,
+              "recall": 0.45454545454545453,
+              "signals": 24
+            }
+          ],
+          "precision": 0.24074074074074073,
+          "recall": 0.35135135135135137,
+          "signals": 54
+        }
+      ],
+      "marginal_hypothesis_passes": 0
+    },
+    "ETHUSDT": {
+      "eligible_pairs": 0,
+      "maximum_new_state_recall": 0.12121212121212122,
+      "maximum_new_state_signals": 13,
+      "max_recall_example": {
+        "a": "CCI_14_-150",
+        "added_events_vs_price": 0,
+        "asset": "ETHUSDT",
+        "b": "STATE_TAKER_PRESSURE_1_0.52",
+        "candidate": "108",
+        "captured_onsets_by_period": [
+          [
+            1179
+          ],
+          [
+            1857,
+            2082
+          ],
+          [
+            2490
+          ]
+        ],
+        "eligible": false,
+        "events": 33,
+        "f1": 0.2,
+        "false_or_duplicate": 3,
+        "lag_sum": 5,
+        "lost_events_vs_price": 15,
+        "marginal_hypothesis_pass": false,
+        "matched_events": 4,
+        "matched_lags": [
+          2,
+          1,
+          2,
+          0
+        ],
+        "median_lag": 1.5,
+        "minimum_period_precision": 0.5,
+        "mode": "STATE_NOW",
+        "p_holm405": 0.9479052094790521,
+        "p_phase_shift": 0.0023997600239976003,
+        "pair": true,
+        "periods": [
+          {
+            "events": 11,
+            "f1": 0.16666666666666666,
+            "false_or_duplicate": 0,
+            "matched_events": 1,
+            "precision": 1.0,
+            "recall": 0.09090909090909091,
+            "signals": 1
+          },
+          {
+            "events": 12,
+            "f1": 0.25,
+            "false_or_duplicate": 2,
+            "matched_events": 2,
+            "precision": 0.5,
+            "recall": 0.16666666666666666,
+            "signals": 4
+          },
+          {
+            "events": 10,
+            "f1": 0.16666666666666666,
+            "false_or_duplicate": 1,
+            "matched_events": 1,
+            "precision": 0.5,
+            "recall": 0.1,
+            "signals": 2
+          }
+        ],
+        "precision": 0.5714285714285714,
+        "precision_delta_vs_price": 0.16717325227963525,
+        "recall": 0.12121212121212122,
+        "recall_delta_vs_price": -0.4545454545454546,
+        "signals": 7
+      },
+      "price_parents": [
+        {
+          "a": "CCI_14_-150",
+          "asset": "ETHUSDT",
+          "b": null,
+          "candidate": "PRICE_0",
+          "captured_onsets_by_period": [
+            [
+              1179,
+              1214,
+              1261,
+              1302,
+              1387,
+              1415,
+              1453,
+              1552
+            ],
+            [
+              1681,
+              1821,
+              1857,
+              2004,
+              2040,
+              2082
+            ],
+            [
+              2329,
+              2490,
+              2526,
+              2567,
+              2710
+            ]
+          ],
+          "eligible": true,
+          "events": 33,
+          "f1": 0.475,
+          "false_or_duplicate": 28,
+          "lag_sum": 17,
+          "matched_events": 19,
+          "matched_lags": [
+            2,
+            1,
+            2,
+            2,
+            -1,
+            1,
+            2,
+            0,
+            1,
+            1,
+            1,
+            1,
+            1,
+            2,
+            -1,
+            0,
+            0,
+            1,
+            1
+          ],
+          "median_lag": 1.0,
+          "minimum_period_precision": 0.35714285714285715,
+          "mode": "S",
+          "pair": false,
+          "periods": [
+            {
+              "events": 11,
+              "f1": 0.5517241379310345,
+              "false_or_duplicate": 10,
+              "matched_events": 8,
+              "precision": 0.4444444444444444,
+              "recall": 0.7272727272727273,
+              "signals": 18
+            },
+            {
+              "events": 12,
+              "f1": 0.4444444444444444,
+              "false_or_duplicate": 9,
+              "matched_events": 6,
+              "precision": 0.4,
+              "recall": 0.5,
+              "signals": 15
+            },
+            {
+              "events": 10,
+              "f1": 0.4166666666666667,
+              "false_or_duplicate": 9,
+              "matched_events": 5,
+              "precision": 0.35714285714285715,
+              "recall": 0.5,
+              "signals": 14
+            }
+          ],
+          "precision": 0.40425531914893614,
+          "recall": 0.5757575757575758,
+          "signals": 47
+        },
+        {
+          "a": "BB_20_2.5",
+          "asset": "ETHUSDT",
+          "b": null,
+          "candidate": "PRICE_1",
+          "captured_onsets_by_period": [
+            [
+              1179,
+              1214,
+              1302,
+              1359,
+              1387,
+              1415,
+              1453
+            ],
+            [
+              1821,
+              1857,
+              2004,
+              2040,
+              2082
+            ],
+            [
+              2329,
+              2526,
+              2567,
+              2710
+            ]
+          ],
+          "eligible": true,
+          "events": 33,
+          "f1": 0.4050632911392405,
+          "false_or_duplicate": 30,
+          "lag_sum": -3,
+          "matched_events": 16,
+          "matched_lags": [
+            2,
+            1,
+            -2,
+            0,
+            0,
+            0,
+            0,
+            0,
+            0,
+            -2,
+            -2,
+            1,
+            0,
+            0,
+            0,
+            -1
+          ],
+          "median_lag": 0.0,
+          "minimum_period_precision": 0.29411764705882354,
+          "mode": "S",
+          "pair": false,
+          "periods": [
+            {
+              "events": 11,
+              "f1": 0.4827586206896552,
+              "false_or_duplicate": 11,
+              "matched_events": 7,
+              "precision": 0.3888888888888889,
+              "recall": 0.6363636363636364,
+              "signals": 18
+            },
+            {
+              "events": 12,
+              "f1": 0.3448275862068966,
+              "false_or_duplicate": 12,
+              "matched_events": 5,
+              "precision": 0.29411764705882354,
+              "recall": 0.4166666666666667,
+              "signals": 17
+            },
+            {
+              "events": 10,
+              "f1": 0.38095238095238093,
+              "false_or_duplicate": 7,
+              "matched_events": 4,
+              "precision": 0.36363636363636365,
+              "recall": 0.4,
+              "signals": 11
+            }
+          ],
+          "precision": 0.34782608695652173,
+          "recall": 0.48484848484848486,
+          "signals": 46
+        },
+        {
+          "a": "DONCHIAN_RECLAIM_40",
+          "asset": "ETHUSDT",
+          "b": null,
+          "candidate": "PRICE_2",
+          "captured_onsets_by_period": [
+            [
+              1261,
+              1453
+            ],
+            [
+              1681,
+              2040,
+              2082,
+              2141
+            ],
+            [
+              2388,
+              2490,
+              2567,
+              2710
+            ]
+          ],
+          "eligible": true,
+          "events": 33,
+          "f1": 0.3333333333333333,
+          "false_or_duplicate": 17,
+          "lag_sum": -6,
+          "matched_events": 10,
+          "matched_lags": [
+            -1,
+            -2,
+            -1,
+            0,
+            0,
+            0,
+            -1,
+            0,
+            0,
+            -1
+          ],
+          "median_lag": -0.5,
+          "minimum_period_precision": 0.2222222222222222,
+          "mode": "S",
+          "pair": false,
+          "periods": [
+            {
+              "events": 11,
+              "f1": 0.2,
+              "false_or_duplicate": 7,
+              "matched_events": 2,
+              "precision": 0.2222222222222222,
+              "recall": 0.18181818181818182,
+              "signals": 9
+            },
+            {
+              "events": 12,
+              "f1": 0.38095238095238093,
+              "false_or_duplicate": 5,
+              "matched_events": 4,
+              "precision": 0.4444444444444444,
+              "recall": 0.3333333333333333,
+              "signals": 9
+            },
+            {
+              "events": 10,
+              "f1": 0.42105263157894735,
+              "false_or_duplicate": 5,
+              "matched_events": 4,
+              "precision": 0.4444444444444444,
+              "recall": 0.4,
+              "signals": 9
+            }
+          ],
+          "precision": 0.37037037037037035,
+          "recall": 0.30303030303030304,
+          "signals": 27
+        }
+      ],
+      "marginal_hypothesis_passes": 0
+    },
+    "SOLUSDT": {
+      "eligible_pairs": 0,
+      "maximum_new_state_recall": 0.16666666666666666,
+      "maximum_new_state_signals": 25,
+      "max_recall_example": {
+        "a": "CCI_21_-150",
+        "added_events_vs_price": 0,
+        "asset": "SOLUSDT",
+        "b": "STATE_OBV_EMA_20_50",
+        "candidate": "116",
+        "captured_onsets_by_period": [
+          [],
+          [
+            1736,
+            1821,
+            1933,
+            1971
+          ],
+          [
+            2334,
+            2441
+          ]
+        ],
+        "eligible": false,
+        "events": 36,
+        "f1": 0.2608695652173913,
+        "false_or_duplicate": 4,
+        "lag_sum": 8,
+        "lost_events_vs_price": 14,
+        "marginal_hypothesis_pass": false,
+        "matched_events": 6,
+        "matched_lags": [
+          1,
+          2,
+          2,
+          1,
+          1,
+          1
+        ],
+        "median_lag": 1.0,
+        "minimum_period_precision": 0.0,
+        "mode": "STATE_NOW",
+        "p_holm405": 0.6367363263673633,
+        "p_phase_shift": 0.0015998400159984002,
+        "pair": true,
+        "periods": [
+          {
+            "events": 12,
+            "f1": 0.0,
+            "false_or_duplicate": 2,
+            "matched_events": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "signals": 2
+          },
+          {
+            "events": 12,
+            "f1": 0.5,
+            "false_or_duplicate": 0,
+            "matched_events": 4,
+            "precision": 1.0,
+            "recall": 0.3333333333333333,
+            "signals": 4
+          },
+          {
+            "events": 12,
+            "f1": 0.25,
+            "false_or_duplicate": 2,
+            "matched_events": 2,
+            "precision": 0.5,
+            "recall": 0.16666666666666666,
+            "signals": 4
+          }
+        ],
+        "precision": 0.6,
+        "precision_delta_vs_price": 0.1121951219512195,
+        "recall": 0.16666666666666666,
+        "recall_delta_vs_price": -0.38888888888888895,
+        "signals": 10
+      },
+      "price_parents": [
+        {
+          "a": "CCI_21_-150",
+          "asset": "SOLUSDT",
+          "b": null,
+          "candidate": "PRICE_0",
+          "captured_onsets_by_period": [
+            [
+              1179,
+              1262,
+              1302,
+              1359,
+              1396,
+              1453,
+              1518
+            ],
+            [
+              1681,
+              1736,
+              1821,
+              1857,
+              1933,
+              1971,
+              2004,
+              2039,
+              2141
+            ],
+            [
+              2334,
+              2441,
+              2567,
+              2714
+            ]
+          ],
+          "eligible": true,
+          "events": 36,
+          "f1": 0.5194805194805194,
+          "false_or_duplicate": 21,
+          "lag_sum": 16,
+          "matched_events": 20,
+          "matched_lags": [
+            2,
+            1,
+            -1,
+            -1,
+            1,
+            1,
+            0,
+            2,
+            1,
+            2,
+            1,
+            2,
+            1,
+            1,
+            2,
+            0,
+            1,
+            1,
+            1,
+            -2
+          ],
+          "median_lag": 1.0,
+          "minimum_period_precision": 0.3333333333333333,
+          "mode": "S",
+          "pair": false,
+          "periods": [
+            {
+              "events": 12,
+              "f1": 0.4827586206896552,
+              "false_or_duplicate": 10,
+              "matched_events": 7,
+              "precision": 0.4117647058823529,
+              "recall": 0.5833333333333334,
+              "signals": 17
+            },
+            {
+              "events": 12,
+              "f1": 0.75,
+              "false_or_duplicate": 3,
+              "matched_events": 9,
+              "precision": 0.75,
+              "recall": 0.75,
+              "signals": 12
+            },
+            {
+              "events": 12,
+              "f1": 0.3333333333333333,
+              "false_or_duplicate": 8,
+              "matched_events": 4,
+              "precision": 0.3333333333333333,
+              "recall": 0.3333333333333333,
+              "signals": 12
+            }
+          ],
+          "precision": 0.4878048780487805,
+          "recall": 0.5555555555555556,
+          "signals": 41
+        },
+        {
+          "a": "BB_20_2",
+          "asset": "SOLUSDT",
+          "b": null,
+          "candidate": "PRICE_1",
+          "captured_onsets_by_period": [
+            [
+              1179,
+              1262,
+              1302,
+              1359,
+              1396,
+              1453,
+              1518
+            ],
+            [
+              1681,
+              1736,
+              1821,
+              1857,
+              1933,
+              1971,
+              2004,
+              2039,
+              2082,
+              2141
+            ],
+            [
+              2334,
+              2386,
+              2441,
+              2714
+            ]
+          ],
+          "eligible": true,
+          "events": 36,
+          "f1": 0.3888888888888889,
+          "false_or_duplicate": 51,
+          "lag_sum": -2,
+          "matched_events": 21,
+          "matched_lags": [
+            2,
+            1,
+            -2,
+            -2,
+            -2,
+            1,
+            -1,
+            1,
+            -2,
+            1,
+            0,
+            1,
+            -1,
+            1,
+            -2,
+            2,
+            -1,
+            1,
+            0,
+            2,
+            -2
+          ],
+          "median_lag": 0.0,
+          "minimum_period_precision": 0.2222222222222222,
+          "mode": "S",
+          "pair": false,
+          "periods": [
+            {
+              "events": 12,
+              "f1": 0.42424242424242425,
+              "false_or_duplicate": 14,
+              "matched_events": 7,
+              "precision": 0.3333333333333333,
+              "recall": 0.5833333333333334,
+              "signals": 21
+            },
+            {
+              "events": 12,
+              "f1": 0.4444444444444444,
+              "false_or_duplicate": 23,
+              "matched_events": 10,
+              "precision": 0.30303030303030304,
+              "recall": 0.8333333333333334,
+              "signals": 33
+            },
+            {
+              "events": 12,
+              "f1": 0.26666666666666666,
+              "false_or_duplicate": 14,
+              "matched_events": 4,
+              "precision": 0.2222222222222222,
+              "recall": 0.3333333333333333,
+              "signals": 18
+            }
+          ],
+          "precision": 0.2916666666666667,
+          "recall": 0.5833333333333334,
+          "signals": 72
+        },
+        {
+          "a": "DONCHIAN_RECLAIM_20",
+          "asset": "SOLUSDT",
+          "b": null,
+          "candidate": "PRICE_2",
+          "captured_onsets_by_period": [
+            [
+              1179,
+              1262,
+              1302,
+              1359,
+              1396,
+              1453,
+              1518,
+              1563
+            ],
+            [
+              1736,
+              1857,
+              1971,
+              2004,
+              2039,
+              2141
+            ],
+            [
+              2441,
+              2567,
+              2714
+            ]
+          ],
+          "eligible": true,
+          "events": 36,
+          "f1": 0.38636363636363635,
+          "false_or_duplicate": 35,
+          "lag_sum": -15,
+          "matched_events": 17,
+          "matched_lags": [
+            -2,
+            0,
+            -1,
+            -2,
+            -2,
+            0,
+            0,
+            -2,
+            -2,
+            -1,
+            -1,
+            -2,
+            0,
+            0,
+            0,
+            0,
+            0
+          ],
+          "median_lag": -1.0,
+          "minimum_period_precision": 0.2,
+          "mode": "S",
+          "pair": false,
+          "periods": [
+            {
+              "events": 12,
+              "f1": 0.47058823529411764,
+              "false_or_duplicate": 14,
+              "matched_events": 8,
+              "precision": 0.36363636363636365,
+              "recall": 0.6666666666666666,
+              "signals": 22
+            },
+            {
+              "events": 12,
+              "f1": 0.4444444444444444,
+              "false_or_duplicate": 9,
+              "matched_events": 6,
+              "precision": 0.4,
+              "recall": 0.5,
+              "signals": 15
+            },
+            {
+              "events": 12,
+              "f1": 0.2222222222222222,
+              "false_or_duplicate": 12,
+              "matched_events": 3,
+              "precision": 0.2,
+              "recall": 0.25,
+              "signals": 15
+            }
+          ],
+          "precision": 0.3269230769230769,
+          "recall": 0.4722222222222222,
+          "signals": 52
+        }
+      ],
+      "marginal_hypothesis_passes": 0
+    }
+  },
+  "state_marginal_hypothesis_passes": 0,
+  "adoption": "NOT AUTHORISED",
+  "discovery_only": true,
+  "future_validation_run": false,
+  "scope_metadata_notes": [
+    "pairs_each_asset108 is inherited pulse-control count; actual135 pairs per asset=108 controls+27 states,441 rows total",
+    "inference_warning literal Holm324 is inherited text; executable scope and all p-values useHolm405",
+    "market_authorisation NOT RUN is preparation snapshot; owner authorised execution on2026-10-07T20:01:58+03:00"
+  ],
+  "next": "Diagnose CCI standalone false alerts and missed rise events to define a new causal price reversal trigger; do not add another volume filter blindly."
+}

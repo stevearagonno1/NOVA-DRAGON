@@ -88,7 +88,7 @@ def preflight(root,source):
     archive=io.BytesIO()
     with zipfile.ZipFile(archive,'w') as z:z.writestr('fixture.txt','NON_FINANCIAL_SYNTHETIC_UPLOAD_ONLY')
     log=get_file(head,'LOG.md')
-    return publish({path:data,DEST+'/readiness/upload-proof.zip':archive.getvalue(),'LOG.md':log+b'\n\n## L0089 executor setup\nPinned runtime and synthetic admission passed; non-financial archive upload/readback verified by the prepared publisher. Market completion is not established.\n','docs/journal/2026-10-07-l0089-timing-personalization/002-upload-admission.md':b'- Decision: test the exact compressed-evidence upload route.\n- Execution: synthetic-only archive upload and immutable byte readback.\n- Produced: readiness/upload-proof.json and upload-proof.zip.\n- Next: execute the frozen validation, then audit and publish.\n'},'L0089: non-financial upload/readback readiness',head)
+    return publish({path:data,DEST+'/readiness/upload-proof.zip':archive.getvalue(),'LOG.md':log+b'\n\n## L0089 executor setup\nPinned runtime and synthetic admission passed; non-financial archive upload/readback verified by the prepared publisher. Market completion is not established.\n','docs/journal/2026-10-07-l0089-timing-personalization/002-upload-admission.md':b'- Decision: test the exact compressed-evidence upload route.\n- Execution: synthetic-only archive upload and immutable byte readback.\n- Produced: readiness/upload-proof.json and upload-proof.zip.\n- Next: execute the registered discovery, then audit and publish.\n'},'L0089: non-financial upload/readback readiness',head)
 
 def complete(root,out,source):
     root=Path(root);out=Path(out);head=api('/git/ref/heads/'+BRANCH)['object']['sha'];assert get_file(head,'tools/l0089/package_manifest.json')==(root/'package_manifest.json').read_bytes()
@@ -112,6 +112,6 @@ def complete(root,out,source):
         raise RuntimeError('different completed delivery already exists; Lead review required')
     log=get_file(head,'LOG.md');tick='docs/journal/2026-10-07-l0089-timing-personalization/003-executor-complete.md'
     files={DEST+'/evidence.zip':archive.read_bytes(),path:b,DEST+'/REPORT.md':(out/'REPORT.md').read_bytes(),DEST+'/audit.json':(out/'audit.json').read_bytes(),DEST+'/selection.json':(out/'selection.json').read_bytes(),
-        'LOG.md':log+b'\n\n## L0089 completed frozen validation\nThree fixed cases and two frozen policies compared, raw matching audited, results uploaded for Lead review. No new search or trading.\n',
-        tick:b'- Decision: execute only three fixed cases and two frozen policies.\n- Execution: registered validation scored; raw evidence reconciled.\n- Produced: history/research/hyp_lab_out/L0089-volume-confirmation/evidence.zip and audit/report/frozen selection.\n- Next: Lead independently reviews validation; no adoption, new search or main merge.\n'}
-    return publish(files,'L0089: complete frozen validation, raw evidence and audit',head),receipt
+        'LOG.md':log+b'\n\n## L0089 completed volume-confirmation discovery\n324 pair-asset cases and36 singleton parents compared, raw matching audited, results uploaded for Lead review. No additional unregistered search or trading.\n',
+        tick:b'- Decision: execute only the registered324 pair-asset cases and36 singleton parents.\n- Execution: registered discovery scored; raw evidence reconciled.\n- Produced: history/research/hyp_lab_out/L0089-volume-confirmation/evidence.zip and audit/report/development selection.\n- Next: Lead independently reviews discovery; no adoption, new search or main merge.\n'}
+    return publish(files,'L0089: complete volume-confirmation discovery, raw evidence and audit',head),receipt
