@@ -1,0 +1,11 @@
+{
+  "compute_seconds": 7.739888487000002,
+  "independent_scalar_matching": true,
+  "indicator_reference_limit": "Inherited EMA/RSI/BB tests;not every indicator independently reimplemented",
+  "period_evaluations": 4338,
+  "raw_sha256": "511f2d600ff9885a9dd61b6ee7946301db0003f271210760eebc142d8b49c31c",
+  "rows": 1446,
+  "settings": 482,
+  "status": "PASS",
+  "synthetic": false
+}
