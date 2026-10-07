@@ -1,0 +1,7 @@
+{
+  "role": "Lead",
+  "estimated_market_seconds_upper": 60,
+  "basis": "same runner synthetic 0.5s; market 2742 vs420 rows, same36settings3assets3periods; conservative allowance",
+  "source_commit": "c1315955f9b276b51126201d364e406d48d54b68",
+  "estimate_not_market_measurement": true
+}

@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "synthetic": false,
+  "rows_checked": 324,
+  "scalar_masks_checked": 108,
+  "asset_summaries_checked": 108,
+  "shared_summaries_checked": 36,
+  "alert_rows_checked": 5812,
+  "baselines_checked": 27,
+  "selection_and_quality_recomputed": true,
+  "new_experiment_run": false
+}

@@ -1,0 +1,23 @@
+{
+  "status": "DISCOVERY_COMPLETE_LEAD_REVIEWED",
+  "source_commit": "1a42145d58eb27e0cb80378cb0496f4e91ffa96f",
+  "synthetic": false,
+  "archive_bytes": 175033,
+  "archive_sha256": "eacf5ce0bdc20ebce2116dd95b4cb1c04902d11b250ccdad967399edb9ff40fd",
+  "settings": 36,
+  "candidate_asset_period_rows": 324,
+  "independent_raw_audit": "PASS",
+  "adoption": "NOT AUTHORISED",
+  "verdict": "Defer",
+  "scope": "development discovery only; all historical periods previously observed",
+  "branch": "agent/l0088-singleton-discovery-2026-10-07",
+  "elapsed_market_seconds": 2.651687956000387,
+  "resources": {
+    "experiment_bytes": 2989253,
+    "referenced_input_package_bytes": 1001220,
+    "parent_workspace_including_existing_archives_bytes": 936950860,
+    "cap_active_experiment_bytes": 125000000,
+    "no_files_deleted_or_moved": true,
+    "active_experiment_plus_references_bytes": 3990473
+  }
+}

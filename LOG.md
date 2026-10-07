@@ -810,3 +810,12 @@ Owner-directed singleton entry-signal discovery:36 settings,3 coins,3 developmen
 
 ## L0088 numerical admission correction
 Attempt1 stopped on SOL CCI21 threshold rounding at warmup bars930/931(2024-12-03), before valid market files. CCI now rounds to10 decimals before threshold crossing; grid, thresholds, periods and gates unchanged. Full108 real-input masks and216 prefixes match before evaluating labels; synthetic, restart, tamper and independent persisted audit pass again. Original logs retained.
+
+
+## D-L0088-REVIEW-20261007
+
+Lead completed36 settings,3coins,3development periods(324 evaluations); raw-derived independent audit PASS. No blind validation, money or adoption. Source: 1a42145d58eb27e0cb80378cb0496f4e91ffa96f. Market elapsed: 2.651687956000387 seconds.
+BTCUSDT: CCI_14_-150:NS=49,TP=17,N=37,precision=0.346938775510,recall=0.459459459459.
+ETHUSDT: CCI_14_-150:NS=47,TP=19,N=33,precision=0.404255319149,recall=0.575757575758.
+SOLUSDT: CCI_21_-150:NS=41,TP=20,N=36,precision=0.487804878049,recall=0.555555555556.
+Verdict Defer. Shared discovery target passes: []. Next: prepare registered marginal volume-confirmation comparison on development; no further phase run.
