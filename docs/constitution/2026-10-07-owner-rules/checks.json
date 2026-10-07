@@ -1,0 +1,16 @@
+{
+  "base": "0a980dd7b7ec28e927d36f1bb3660b5928ecf600",
+  "chapters_preserved": 20,
+  "all_targeted_replacements_unique": true,
+  "secret_not_in_constitution": true,
+  "files_changed": [
+    "CONSTITUTION.md",
+    "LOG.md",
+    "docs/DECISIONS.md",
+    "docs/CONSTITUTION-AMENDMENTS.md",
+    "docs/HANDOFF.md",
+    "docs/journal/2026-10-07-constitution-owner-rules/001-authorised-amendment.md"
+  ],
+  "runtime_code_changed": false,
+  "market_experiment_run": false
+}
