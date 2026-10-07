@@ -1,0 +1,4 @@
+- Decision: execute only three fixed cases and two frozen policies.
+- Execution: registered validation scored; raw evidence reconciled.
+- Produced: history/research/hyp_lab_out/L0087-timing-personalization/evidence.zip and audit/report/frozen selection.
+- Next: Lead independently reviews validation; no adoption, new search or main merge.

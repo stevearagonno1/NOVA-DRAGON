@@ -1,0 +1,16 @@
+START tests 2026-10-07T13:31:01.792290+00:00
+.{"status": "COMPARISON_COMPLETE_LEAD_REVIEW_PENDING", "synthetic": true, "audit": "PASS", "cases": 3, "policies": 2}
+...{"status": "COMPARISON_COMPLETE_LEAD_REVIEW_PENDING", "synthetic": true, "audit": "PASS", "cases": 3, "policies": 2}
+INDEPENDENT_AUDIT_PASS
+{"status": "COMPARISON_COMPLETE_LEAD_REVIEW_PENDING", "synthetic": true, "audit": "PASS", "cases": 3, "policies": 2}
+..
+----------------------------------------------------------------------
+Ran 6 tests in 0.213s
+
+OK
+EXIT tests 0
+START synthetic 2026-10-07T13:31:02.540014+00:00
+{"status": "COMPARISON_COMPLETE_LEAD_REVIEW_PENDING", "synthetic": true, "audit": "PASS", "cases": 3, "policies": 2}
+EXIT synthetic 0
+PREFLIGHT_PASS; MARKET NOT RUN
+

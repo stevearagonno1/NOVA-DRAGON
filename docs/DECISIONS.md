@@ -421,3 +421,21 @@ Prepare one historical transfer validation of the ten L0085 pairs frozen at d1fe
 - Post-validation diagnosis: BB alone caught20 events; pair caught10 of those and added none; nonmatching alerts decreased28 to10. Descriptive diagnosis, no new selection or experiment.
 - Next: prepare a small new-period comparison of this same pair AND0 vs AND2 vs BB alone; preregister criteria and verify data first. No market trial run in this review.
 - Report: history/research/hyp_lab_out/L0086-frozen-validation/lead-review/REPORT.md
+
+
+## D-L0087-PREREG-20261007
+
+One timing comparison: BB20_2.5 vs same BB+VWAP30_1.5 AND0 and AND2. Development choice from L0085+L0086 raw counts only, fixed shared/per-asset policies before holdout: all choose AND0, so identical policies, no established specialization gain. Validation 2025-07-05 through 2025-09-30, BTC/ETH/SOL4h. Three cases, two fixed policies. Registered synchronous week-cluster intervals with Bonferroni family3, seed87007,10000 repetitions. No new selection, no money/adoption. Synthetic tested; market NOT RUN by Lead.
+
+
+L0087 final package: six tests and synthetic audit passed, including reconciliation of all weekly counts and frozen development choices. Market NOT RUN.
+
+
+## D-L0087-REVIEW-20261007
+
+Technical completion accepted after independent Lead reconstruction:6 indicator masks,33 events,15 logical asset evaluations,180 weekly count cells,10000 synchronized bootstrap repetitions,77 alert diagnostics.
+Candidate11: NS=40, TP=9, N=33, precision=0.225000000000, recall=0.272727272727, macroF1=0.253968253968, quality=INSUFFICIENT_SAMPLE.
+Candidate17312: NS=14, TP=5, N=33, precision=0.357142857143, recall=0.151515151515, macroF1=0.199074074074, quality=INSUFFICIENT_SAMPLE.
+Candidate17313: NS=23, TP=5, N=33, precision=0.217391304348, recall=0.151515151515, macroF1=0.180520034101, quality=INSUFFICIENT_SAMPLE.
+Verdict: Defer adoption; both AND2 improvement hypotheses NOT_CONFIRMED. Frozen shared/personal policies identical before measurement; no general verdict against personalization. No reselection, trades or new experiment. Next: Lead prepares limited per-coin singleton discovery with independent volume/buy-pressure information before further combinations.
+Report: history/research/hyp_lab_out/L0087-timing-personalization/lead-review/REPORT.md
