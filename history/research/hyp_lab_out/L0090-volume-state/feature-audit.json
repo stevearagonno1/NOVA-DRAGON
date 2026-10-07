@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "real_input_mask_and_prefix_checks": 108,
+  "cadence_and_ohlcv_checks": "PASS via load_market",
+  "future_data_used": false,
+  "market_result_selection_used": false
+}

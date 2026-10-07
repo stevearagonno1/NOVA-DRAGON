@@ -478,3 +478,5 @@ Verdict Defer. Shared discovery target passes: []. Next: prepare registered marg
 D-L0089-REVIEW-20261007 | 2026-10-07 | Defer adoption; accept technical discovery completion | Independent360-row/9,720,000-control audit PASS; no eligible pairs | Prepare causal persistent volume-state comparison only; correct gzip portability and publication wording; assign by whole-task10-minute estimate, no padded workload.
 
 D-L0090-PREP-20261007 | 2026-10-07 | Freeze causal STATE_NOW comparison;81 new pairs+324 pulse controls+36 parents | Owner authorised preparation after L0089 showed sparse pulse coincidence | Synthetic readiness PASS,market NOT RUN; keep quality gates,Holm405 conditional; routing by whole-task600-second boundary.
+
+D-L0090-REVIEW-20261007 | 2026-10-07 | Defer adoption;valid negative for81 persistent volume filters | Scalar441-row/12,150,000-count audit PASS;0 eligible,0 marginal hypothesis passes | Diagnose CCI false alerts and missed events before another signal; historical discovery only,no trading or adoption.

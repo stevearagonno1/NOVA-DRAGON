@@ -1,0 +1,21 @@
+{
+  "status": "DISCOVERY_COMPLETE_LEAD_REVIEWED",
+  "round": "L0090",
+  "source_commit": "c01b1d255acf6c1c167e3b87e64da3cbe34ea5d3",
+  "branch": "agent/l0090-volume-state-preparation-2026-10-07",
+  "archive_sha256": "ab67ddbfa4731106830d3c6dc791e628aa42b6c9308a5eea0af5a472a5a3aeac",
+  "archive_bytes": 1093593,
+  "archive_git_blob_sha": "8dbf3464dd9f9e552dfb086c7170b0136f6ce7dd",
+  "workspace_active_bytes": 5052158,
+  "rows": 441,
+  "pairs": 405,
+  "new_state_pairs": 81,
+  "scalar_null_counts": 12150000,
+  "adoption": "NOT AUTHORISED",
+  "verdict": "Defer",
+  "measurement_seconds": 26.428284479000013,
+  "audit_seconds": 32.11637574500014,
+  "instrumented_elapsed_before_upload_seconds": 251.90341424942017,
+  "full_turn_elapsed_seconds": "not measured: timer began after initial source/ref reading",
+  "verified_remote": false
+}
