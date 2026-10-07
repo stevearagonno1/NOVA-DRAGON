@@ -1,0 +1,80 @@
+{
+  "round": "L0092",
+  "question": "Candle reversal patterns standalone and current/strictly subsequent CCI confirmation",
+  "assets": [
+    "BTCUSDT",
+    "ETHUSDT",
+    "SOLUSDT"
+  ],
+  "timeframe": "4h UTC",
+  "periods": [
+    "2025-01-01/2025-04-01 exclusive",
+    "2025-04-05/2025-07-01 exclusive",
+    "2025-07-05/2025-10-01 exclusive"
+  ],
+  "grid": [
+    {
+      "kind": "HAMMER",
+      "ratio": 2.0
+    },
+    {
+      "kind": "HAMMER",
+      "ratio": 3.0
+    },
+    {
+      "kind": "ENGULF",
+      "ratio": 1.0
+    },
+    {
+      "kind": "ENGULF",
+      "ratio": 1.25
+    },
+    {
+      "kind": "MORNING",
+      "recovery": 0.5
+    },
+    {
+      "kind": "MORNING",
+      "recovery": 1.0
+    }
+  ],
+  "definition": "Exact formulas in candles92.py;body=abs(close-open),range=high-low;false-to-true pattern pulse;crypto-adapted no gap requirement. HAMMER lowerwick>=2or3body,upper<=body,body<=.35range,closeposition>=.6;ENGULF previousbear,currentbull,open<=prevclose,close>=prevopen,bodyratio1or1.25;MORNING previous2bearbody>=.5range,middlebody<=.3firstbody,currentbullbody>=.5range,close>=firstclose+(.5or1)*firstbody.",
+  "scoring": "same frozenL0085/L0088 centered rise labels,24-bar +2ATR/-1ATR upper-before-lower,tie adverse;matched first alert within onset+-2,one event;same valid decision bars",
+  "baseline": "frozen CCI14_-150 BTC/ETH,CCI21_-150 SOL",
+  "budget": {
+    "pattern_definitions": 6,
+    "modes_each": 3,
+    "new_asset_cases": 54,
+    "baseline_asset_cases": 3,
+    "total_rows": 57,
+    "asset_period_evaluations": 171
+  },
+  "selection": "eligible NS>=20,recall>=.30 per asset;each periodNS>=3,recall>=.15;rank minimum-quarter precision,thenpooledprecision,recall,lowerID",
+  "quality_goal": "precision>=.70,recall>=.30,totalNS>=100,perassetNS>=20,perassetprecision>=.55,Wilson95 lower>=.60,medianlag<=1;descriptive only,noadoption even if passed",
+  "hypothesis": "recover additional onset events without deep oversold prerequisite;do not claim directional superiority before result",
+  "inference": "not measured in this descriptive screen;no significance claim;pre-inspected historical development only",
+  "money": "not measured,outside signal phase",
+  "parent_diagnosis_commit": "c40278c8329fcdcfb7080506e76065111ba96dab",
+  "input_code_source": "tools/l0090 at c01b1d255acf6c1c167e3b87e64da3cbe34ea5d3",
+  "input_sha256": {
+    "BTCUSDT.csv": "ed1ef1568753eabd6700ceef587d5211abfd5713dfe34460f4144690951b165c",
+    "ETHUSDT.csv": "b19352207c28ec2db3eb1b66f937a1d1b7dbbb0ea10fad1ecb9fee25c87fd704",
+    "SOLUSDT.csv": "d9ba90bfbd819da27afc952a9a9285759d89ba89abf5e834b6bb287fb523ba01",
+    "inputs.json": "d2b5e7c56e8522be45d400ff387575887e2a3da8869e5913ba2cd80f5c7df172",
+    "parent_raw.json.gz": "7776f3a154487801123b14e6051864f713cd0456b08c6b0335ccdcdfa01f8d51"
+  },
+  "lead_estimate_seconds": 360,
+  "owner_authorisation": "2026-10-07T21:21:51+03:00 \u0627\u0644\u062a\u0627\u0644\u064a",
+  "modes": [
+    "STANDALONE",
+    "CCI_AND_CURRENT",
+    "CCI_THEN_CANDLE2"
+  ],
+  "context": "close[t-1]<close[t-7],fixed prior six-bar decline,for allpatterns",
+  "confirmation_timing": "CCI_AND_CURRENT sameclose;CCI_THEN_CANDLE2 CCI pulse in strictly prior1or2 bars,candle completes now;stamp alert now,never at prior CCI or first candle.",
+  "historical_convention_difference": "No overnight body gaps required forMorning;Engulf allows equality atopen/prevclose;label crypto-adapted variants explicitly,not claim exact gap-based traditional version.",
+  "sources": [
+    "https://chartschool.stockcharts.com/table-of-contents/chart-analysis/candlestick-charts/candlestick-bullish-reversal-patterns",
+    "https://www.ig.com/en/trading-opportunities/16-candlestick-patterns-every-trader-should-know-180615"
+  ]
+}

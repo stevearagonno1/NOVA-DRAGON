@@ -1,0 +1,4 @@
+- Decision:freeze6crypto-adapted candlestick definitions×3standalone/CCI modes×3assets plusCCI controls=57rows/171quarter evaluations.
+- Executed:216synthetic mask/prefix checks,scalar labels/matching andhand hammer/engulf/morning fixtures PASS.
+- Produced:scope/source/registration before market;prior6-bar decline,confirmation timestamp currentclose only.
+- Next:Lead runs authorised light stage and publishes verified evidence;no executor paper or adoption.
