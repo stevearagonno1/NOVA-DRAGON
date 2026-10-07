@@ -764,3 +764,7 @@ One timing comparison: BB20_2.5 vs same BB+VWAP30_1.5 AND0 and AND2. Development
 
 
 L0087 final package: six tests and synthetic audit passed, including reconciliation of all weekly counts and frozen development choices. Market NOT RUN.
+
+
+## L0087 executor setup
+Pinned runtime and synthetic admission passed; non-financial archive upload/readback verified by the prepared publisher. Market completion is not established.
