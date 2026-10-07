@@ -11,5 +11,9 @@
   "adoption": "NOT AUTHORISED",
   "instrumented_before_upload_seconds": 654.5174844264984,
   "compute_seconds": 111.31427443499979,
-  "verified_remote": false
+  "verified_remote": true,
+  "verified_evidence_commit": "fe21c1e74bf1c1df5a64e449136b3def6083a872",
+  "instrumented_through_verified_archive_seconds": 801.2251551151276,
+  "full_turn_seconds": "not measured: initial reads preceded timer",
+  "time_boundary_exceeded": true
 }
