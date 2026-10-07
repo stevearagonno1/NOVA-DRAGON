@@ -849,3 +849,8 @@ Prepared81 persistent-volume state pairs alongside324 inherited pulse controls a
 
 ## L0090 measured and independently reviewed — 2026-10-07
 Owner authorised Lead execution. 441 rows/405 pairs/81 new persistent states; measurement26.428s,scalar audit32.116s,12,150,000 null counts. All360 inherited rows reproduce L0089 metrics;405 p-values/Holm recalculated;108 real-input state/prefix checks PASS. Zero eligible pairs;0/81 marginal hypothesis passes. D-L0090-REVIEW-20261007: Defer adoption,valid negative for this state-filter grid. Evidence and complete report published; no main merge. Next: diagnose CCI-alone false alerts/missed rise events before designing new causal price reversal signal.
+
+
+## CCI diagnosis after L0090 — 2026-10-07
+No new strategy/grid measured. Frozen CCI137 alerts captured56/106 events;81 unmatched/duplicate,50 missed. Scalar diagnosis:65 false/duplicate alerts hit lower barrier first,12 upper first,4 neither.37 missed events had no CCI<-150 within diagnostic[-12,+2] window;11 nearest crossings early,2 late. Three scalarCCI masks match frozen raw;137 classifications/barriers and106 event rows independently reconciled. Future fields are diagnostic labels only. Next: prepare limited causal price-recovery comparison,not another automatic volume filter.
+L0090 timing correction: final local receipt recorded626.100s after initial reading,in contrast to the remote537.925s interval ending at first archive readback. Final receipt publication was excluded from that shorter interval;the600s boundary was exceeded during final delivery. Keep source/measurement and task durations separate;no padding or retrospective relabelling as fully under10minutes.

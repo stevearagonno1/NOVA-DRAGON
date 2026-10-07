@@ -1,0 +1,154 @@
+{
+  "scope": "post-hoc diagnosis of existing frozen CCI; no new strategy or parameter search",
+  "source_commit": "ad6fd8dd724d24c3205ad578890a122a78d71d7f",
+  "raw_sha256": "cfe2ef13734a5d6569153c89286d6b6415e1502f065e83ded19c037cb66597e5",
+  "per_asset": {
+    "BTCUSDT": {
+      "signal": "CCI_14_-150",
+      "signals": 49,
+      "matched_events": 17,
+      "events": 37,
+      "precision": 0.3469387755102041,
+      "recall": 0.4594594594594595,
+      "false_or_duplicate": 32,
+      "missed_events": 20,
+      "categories": {
+        "UNMATCHED": 32,
+        "FALSE_UPPER_FIRST": 5,
+        "FALSE_LOWER_FIRST": 24,
+        "MATCHED": 17,
+        "FALSE_NO_BARRIER": 3,
+        "MISSED_NO_DEEP_OVERSOLD_IN_DIAGNOSTIC_WINDOW": 15,
+        "MISSED_NEAREST_CROSS_EARLY": 5
+      },
+      "periods": [
+        {
+          "UNMATCHED": 12,
+          "MATCHED": 5,
+          "EVENTS": 13,
+          "MISSED_EVENTS": 8
+        },
+        {
+          "MATCHED": 7,
+          "UNMATCHED": 9,
+          "EVENTS": 13,
+          "MISSED_EVENTS": 6
+        },
+        {
+          "UNMATCHED": 11,
+          "MATCHED": 5,
+          "EVENTS": 11,
+          "MISSED_EVENTS": 6
+        }
+      ]
+    },
+    "ETHUSDT": {
+      "signal": "CCI_14_-150",
+      "signals": 47,
+      "matched_events": 19,
+      "events": 33,
+      "precision": 0.40425531914893614,
+      "recall": 0.5757575757575758,
+      "false_or_duplicate": 28,
+      "missed_events": 14,
+      "categories": {
+        "UNMATCHED": 28,
+        "FALSE_LOWER_FIRST": 25,
+        "MATCHED": 19,
+        "FALSE_NO_BARRIER": 1,
+        "MISSED_NO_DEEP_OVERSOLD_IN_DIAGNOSTIC_WINDOW": 11,
+        "FALSE_UPPER_FIRST": 2,
+        "MISSED_NEAREST_CROSS_EARLY": 3
+      },
+      "periods": [
+        {
+          "UNMATCHED": 10,
+          "MATCHED": 8,
+          "EVENTS": 11,
+          "MISSED_EVENTS": 3
+        },
+        {
+          "MATCHED": 6,
+          "UNMATCHED": 9,
+          "EVENTS": 12,
+          "MISSED_EVENTS": 6
+        },
+        {
+          "MATCHED": 5,
+          "UNMATCHED": 9,
+          "EVENTS": 10,
+          "MISSED_EVENTS": 5
+        }
+      ]
+    },
+    "SOLUSDT": {
+      "signal": "CCI_21_-150",
+      "signals": 41,
+      "matched_events": 20,
+      "events": 36,
+      "precision": 0.4878048780487805,
+      "recall": 0.5555555555555556,
+      "false_or_duplicate": 21,
+      "missed_events": 16,
+      "categories": {
+        "UNMATCHED": 19,
+        "FALSE_LOWER_FIRST": 16,
+        "MATCHED": 20,
+        "DUPLICATE": 2,
+        "FALSE_UPPER_FIRST": 5,
+        "MISSED_NO_DEEP_OVERSOLD_IN_DIAGNOSTIC_WINDOW": 11,
+        "MISSED_NEAREST_CROSS_EARLY": 3,
+        "MISSED_NEAREST_CROSS_LATE": 2
+      },
+      "periods": [
+        {
+          "UNMATCHED": 8,
+          "MATCHED": 7,
+          "DUPLICATE": 2,
+          "EVENTS": 12,
+          "MISSED_EVENTS": 5
+        },
+        {
+          "MATCHED": 9,
+          "UNMATCHED": 3,
+          "EVENTS": 12,
+          "MISSED_EVENTS": 3
+        },
+        {
+          "MATCHED": 4,
+          "UNMATCHED": 8,
+          "EVENTS": 12,
+          "MISSED_EVENTS": 8
+        }
+      ]
+    }
+  },
+  "totals": {
+    "signals": 137,
+    "matched_events": 56,
+    "events": 106,
+    "false_or_duplicate": 81,
+    "missed_events": 50,
+    "false_forward_outcomes": {
+      "UPPER_FIRST": 12,
+      "LOWER_FIRST": 65,
+      "NO_BARRIER": 4
+    },
+    "missed_categories": {
+      "NO_DEEP_OVERSOLD_IN_DIAGNOSTIC_WINDOW": 37,
+      "NEAREST_CROSS_EARLY": 11,
+      "NEAREST_CROSS_LATE": 2
+    }
+  },
+  "audit": {
+    "status": "PASS",
+    "independent_scalar_cci_masks_checked": 3,
+    "asset_period_count_reconciliations": 9,
+    "alert_rows": 137,
+    "event_rows": 106
+  },
+  "lookahead_warning": "forward barriers and miss categorisation up to onset+2/+12 are diagnostic labels ONLY, never deployable features; no candidate selected or tested",
+  "false_label_warning": "unmatched against onset window is not synonymous with a losing trade; barrier outcomes are price diagnostics with no fills or costs",
+  "new_grid_search": false,
+  "adoption": "NOT AUTHORISED"
+}

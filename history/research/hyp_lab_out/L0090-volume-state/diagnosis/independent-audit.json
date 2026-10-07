@@ -1,0 +1,6 @@
+{
+  "status": "PASS",
+  "alert_classifications_and_scalar_barriers_checked": 137,
+  "event_rows_reconciled": 106,
+  "no_new_signal_test": true
+}
