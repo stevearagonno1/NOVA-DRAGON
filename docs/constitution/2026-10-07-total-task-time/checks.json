@@ -1,0 +1,8 @@
+{
+  "chapters_preserved": 20,
+  "financial_barriers_unchanged": true,
+  "no_experiment_or_live_code_changes": true,
+  "full_task_includes_preparation_audit_network_upload": true,
+  "executor_only_ready_commands": true,
+  "main_base": "4e0f66705f551ec9f1c7df18d4634211eddc5e25"
+}
