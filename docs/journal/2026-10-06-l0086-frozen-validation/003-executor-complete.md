@@ -1,0 +1,4 @@
+- Decision: execute only the ten frozen pairs and twelve parent controls.
+- Execution: registered validation scored; raw evidence reconciled.
+- Produced: history/research/hyp_lab_out/L0086-frozen-validation/evidence.zip and audit/report/frozen selection.
+- Next: Lead independently reviews validation; no adoption, new search or main merge.
