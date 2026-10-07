@@ -746,3 +746,13 @@ Six tests and exact bootstrap synthetic admission passed, including all ten pair
 
 ## L0086 completed frozen validation
 Ten frozen pairs and twelve parents measured, raw matching audited, results uploaded for Lead review. No new search or trading.
+
+
+## D-L0086-REVIEW-20261007
+
+- Technical completion accepted; fixed L0085 selection confirmation closed: NOT_CONFIRMED. No adoption or secondary reselection.
+- Independent Lead audit: 36 scalar indicator masks, 37 events, 66 asset evaluations, 4930 cyclic controls and 401 alert diagnostics; archive and package hashes verified.
+- Primary17312:20 alerts,10 matched/37 events; precision0.5, recall0.270270270270, macroF1 0.354525945865; four quality gates failed despite conditional Holm significance. All10 pairs failed at least one gate.
+- Post-validation diagnosis: BB alone caught20 events; pair caught10 of those and added none; nonmatching alerts decreased28 to10. Descriptive diagnosis, no new selection or experiment.
+- Next: prepare a small new-period comparison of this same pair AND0 vs AND2 vs BB alone; preregister criteria and verify data first. No market trial run in this review.
+- Report: history/research/hyp_lab_out/L0086-frozen-validation/lead-review/REPORT.md
