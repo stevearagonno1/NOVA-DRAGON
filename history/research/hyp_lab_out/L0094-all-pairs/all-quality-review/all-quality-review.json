@@ -1,0 +1,199 @@
+{
+  "status": "PASS",
+  "classification": "post-hoc diagnostic scan of existing scores;not new discovery selection or validation",
+  "source_commit": "bbad466f573f7b94052a22f6abc00d0dee7104d7",
+  "decision": "D-L0094-ALL-QUALITY-20261007",
+  "verdict": "Defer",
+  "counts": {
+    "BTCUSDT": {
+      "pairs": 347763,
+      "sample20": 134473,
+      "sample20_recall30": 71131,
+      "eligible": 70071,
+      "eligible_precision70": 0,
+      "eligible_precision70_wilson60": 0,
+      "quality_pass": 0,
+      "outside_top20_quality_pass": 0
+    },
+    "ETHUSDT": {
+      "pairs": 347763,
+      "sample20": 130319,
+      "sample20_recall30": 79657,
+      "eligible": 77171,
+      "eligible_precision70": 0,
+      "eligible_precision70_wilson60": 0,
+      "quality_pass": 0,
+      "outside_top20_quality_pass": 0
+    },
+    "SOLUSDT": {
+      "pairs": 347763,
+      "sample20": 133488,
+      "sample20_recall30": 80769,
+      "eligible": 77366,
+      "eligible_precision70": 0,
+      "eligible_precision70_wilson60": 0,
+      "quality_pass": 0,
+      "outside_top20_quality_pass": 0
+    }
+  },
+  "highest_precision_eligible_diagnostic": {
+    "BTCUSDT": {
+      "asset": "BTCUSDT",
+      "candidate": 28269,
+      "mode": "AND2",
+      "a": 19,
+      "b": 314,
+      "rule": [
+        {
+          "family": "BB",
+          "id": "BB_50_2.5",
+          "k": 2.5,
+          "n": 50
+        },
+        {
+          "family": "STOCHRSI",
+          "id": "STOCHRSI_14_0.2",
+          "n": 14,
+          "t": 0.2
+        }
+      ],
+      "signals": 21,
+      "matched_events": 13,
+      "events": 37,
+      "precision": 0.6190476190476191,
+      "recall": 0.35135135135135137,
+      "minimum_period_precision": 0.375,
+      "periods": [
+        {
+          "signals": 9,
+          "matched_events": 6,
+          "events": 13,
+          "precision": 0.6666666666666666,
+          "recall": 0.46153846153846156
+        },
+        {
+          "signals": 4,
+          "matched_events": 4,
+          "events": 13,
+          "precision": 1.0,
+          "recall": 0.3076923076923077
+        },
+        {
+          "signals": 8,
+          "matched_events": 3,
+          "events": 11,
+          "precision": 0.375,
+          "recall": 0.2727272727272727
+        }
+      ],
+      "outside_top20": true
+    },
+    "ETHUSDT": {
+      "asset": "ETHUSDT",
+      "candidate": 147325,
+      "mode": "OR0",
+      "a": 115,
+      "b": 303,
+      "rule": [
+        {
+          "family": "EMA",
+          "fast": 50,
+          "id": "EMA_50_200",
+          "slow": 200
+        },
+        {
+          "family": "RSI",
+          "form": "cross",
+          "id": "RSI_7_20_cross",
+          "n": 7,
+          "t": 20
+        }
+      ],
+      "signals": 22,
+      "matched_events": 14,
+      "events": 33,
+      "precision": 0.6363636363636364,
+      "recall": 0.42424242424242425,
+      "minimum_period_precision": 0.45454545454545453,
+      "periods": [
+        {
+          "signals": 11,
+          "matched_events": 5,
+          "events": 11,
+          "precision": 0.45454545454545453,
+          "recall": 0.45454545454545453
+        },
+        {
+          "signals": 6,
+          "matched_events": 6,
+          "events": 12,
+          "precision": 1.0,
+          "recall": 0.5
+        },
+        {
+          "signals": 5,
+          "matched_events": 3,
+          "events": 10,
+          "precision": 0.6,
+          "recall": 0.3
+        }
+      ],
+      "outside_top20": true
+    },
+    "SOLUSDT": {
+      "asset": "SOLUSDT",
+      "candidate": 59411,
+      "mode": "AND0",
+      "a": 42,
+      "b": 345,
+      "rule": [
+        {
+          "family": "CCI",
+          "id": "CCI_7_-100",
+          "n": 7,
+          "t": -100
+        },
+        {
+          "d": 5,
+          "family": "STOCH",
+          "id": "STOCH_21_5_30",
+          "n": 21,
+          "t": 30
+        }
+      ],
+      "signals": 22,
+      "matched_events": 14,
+      "events": 36,
+      "precision": 0.6363636363636364,
+      "recall": 0.3888888888888889,
+      "minimum_period_precision": 0.5,
+      "periods": [
+        {
+          "signals": 8,
+          "matched_events": 4,
+          "events": 12,
+          "precision": 0.5,
+          "recall": 0.3333333333333333
+        },
+        {
+          "signals": 8,
+          "matched_events": 5,
+          "events": 12,
+          "precision": 0.625,
+          "recall": 0.4166666666666667
+        },
+        {
+          "signals": 6,
+          "matched_events": 5,
+          "events": 12,
+          "precision": 0.8333333333333334,
+          "recall": 0.4166666666666667
+        }
+      ],
+      "outside_top20": false
+    }
+  },
+  "quality_passes_all_pairs": [],
+  "adoption": "NOT AUTHORISED",
+  "elapsed_compute_seconds": 5.764886947999912
+}

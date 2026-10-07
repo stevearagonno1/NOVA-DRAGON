@@ -493,3 +493,11 @@ D-L0092-TIMING-DIAG-20261007 | Descriptive diagnosis accepted;Defer adoption | 6
 
 ## L0094 independently reviewed — 2026-10-07
 D-L0094-REVIEW-20261007:Defer adoption.348245candidate rows/3134205period evaluations independently reconciled;234199zero asset rows retained;324logical-mode samples match. All60frozen detailed candidates fail joint quality/marginal gates. Stable eligible leaders BTC BB50_2.5+StochRSI21_.2 AND2:NS20/TP12,P60%,R32.43%;ETH CCI14-150+VWAP50_2 AND2:NS20/TP12,P60%,R36.36%;SOL CCI7-100+Stoch21_5_30 AND0:NS22/TP14,P63.64%,R38.89%. Correct inherited singleton tick titles in this new record;actual scope all-pairs. Quality outside top20 NOT measured in detail. Next:inspect raw high-precision/sample/coverage cases outside top20 before wider triples;no new market measurement or adoption.
+
+
+## L0094 all-score quality diagnosis — 2026-10-07
+D-L0094-ALL-QUALITY-20261007:Defer adoption. Scanned all347763pair variants per asset,all348245candidate rows and35hashedparts. Zeroeligible precision>=70%for BTC/ETH/SOL,hencezerofullqualitypasses. Diagnostic highest pooled precision amongeligible:BTC BB50_2.5+StochRSI14_.2 AND2,13/21,P61.90%,R35.14%;ETH EMA50/200 OR RSI7_20cross,14/22,P63.64%,R42.42%;SOL CCI7-100 ANDStoch21_5_30,14/22,P63.64%,R38.89%. BTC/ETHoutsideoriginaltop20;notreplacementselectionorvalidation. Nineleaderperiodsreconciledagainfromrawalerts. No newmarketmeasurement. Next:prepare frozen triple-search stage for executor;keep sample/coverage gates,no adoption.
+
+
+## L0094 missed-onset diagnosis — 2026-10-07
+D-L0094-MISSED-ONSET-20261007:Descriptive diagnosis accepted,Defer adoption. Three diagnostic eligible leaders captured41/106events;65missed. Ofmissed:61no mixture pulsewithin+-12bars,4nearearlier,0nearlater. BTC24missed:9neither/15StochRSIonly;ETH19neither;SOL22:3neither/14CCIonly/1Stochonly/4bothbutnonsimultaneous. No newmarket measurement or causal-state outcome. Next:prepare L0095 pulse-vs-persistent momentum confirmation and unfiltered control,starting SOL CCI/Stoch;futureeventlabels evaluation-only;executor runs/uploads.
