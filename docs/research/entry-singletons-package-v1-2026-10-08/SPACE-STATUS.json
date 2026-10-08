@@ -1,0 +1,73 @@
+{
+  "action_prevented": "R2 local fixture/code/evidence writes and full package publication; no space was reclaimed because deletion or relocation is prohibited.",
+  "available_bytes": -46538117,
+  "initial_total_bytes": 171538117,
+  "largest_10_files": [
+    {
+      "bytes": 23417329,
+      "existed_before_R2": true,
+      "path": "l0084-package/history/research/hyp_lab_out/L0084-entry-mix/trades_keys.parquet"
+    },
+    {
+      "bytes": 13262502,
+      "existed_before_R2": true,
+      "path": "singleton-package-fixture-v1/run/fixture-alerts.csv"
+    },
+    {
+      "bytes": 13262502,
+      "existed_before_R2": true,
+      "path": "singleton-package-fixture-v1/run-final/fixture-alerts.csv"
+    },
+    {
+      "bytes": 12940013,
+      "existed_before_R2": true,
+      "path": "l0084-package/history/research/hyp_lab_out/L0084-entry-mix/trades.parquet"
+    },
+    {
+      "bytes": 9532850,
+      "existed_before_R2": true,
+      "path": "singleton-package-fixture-v1/run/evidence.zip"
+    },
+    {
+      "bytes": 9531419,
+      "existed_before_R2": true,
+      "path": "singleton-package-fixture-v1/run-final/evidence.zip"
+    },
+    {
+      "bytes": 8858119,
+      "existed_before_R2": true,
+      "path": "l0084-package/history/research/hyp_lab_out/L0084-entry-mix/_cache/pairs.pkl.gz"
+    },
+    {
+      "bytes": 6237281,
+      "existed_before_R2": true,
+      "path": "l0084-package/history/research/hyp_lab_out/L0084-entry-mix/metrics.parquet"
+    },
+    {
+      "bytes": 5891985,
+      "existed_before_R2": true,
+      "path": "nova-l0094-workspace/run/evidence.zip"
+    },
+    {
+      "bytes": 4957455,
+      "existed_before_R2": true,
+      "path": "singleton-package-fixture-v1/run/fixture-masks.csv"
+    }
+  ],
+  "market_run": false,
+  "maximum_bytes": 125000000,
+  "minimum_free_bytes_for_local_work": 13000000,
+  "new_local_files_created_for_R2": false,
+  "next_step": "Owner/platform must resolve the existing workspace budget without deleting or relocating protected or partial evidence; then repeat the full metadata-only preflight.",
+  "package_ready": false,
+  "paper": "ENTRY-SINGLETONS-PACKAGE-01-R2 / 2026-10-08",
+  "prior_measurement_discrepancy": {
+    "cause": "unknown; no attribution made; no R2 deletion or relocation performed",
+    "r1_observed_fixture_input_and_stage_directories": "not present in the current metadata-only inventory",
+    "r1_recorded_package_tree_bytes": 176910260,
+    "r2_current_package_tree_bytes": 57579570
+  },
+  "publication_scope": "metadata-only blocker status; no package code/evidence/archive published",
+  "status": "BLOCKED_SPACE_LIMIT",
+  "workspace_root": "/home/user"
+}
