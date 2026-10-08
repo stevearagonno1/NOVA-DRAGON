@@ -1,0 +1,40 @@
+{
+  "source_commit": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+  "source_path": "data/SOLUSDT_1m.parquet",
+  "git_blob_sha": "08e03aa6c126d9fe94a8b8d519b399f8d48a67b9",
+  "sha256": "e9b18698ea2188a77b38aa44b1bbd0baa08cee7d868964461b5c8f6594aaaf1d",
+  "bytes": 2931088,
+  "timestamp_unit": "microseconds",
+  "rows": 132480,
+  "first_open": "2026-06-01T00:00:00+00:00",
+  "last_open": "2026-08-31T23:59:00+00:00",
+  "duplicates": 0,
+  "missing_minutes": 0,
+  "invalid_ohlcv_rows": 0,
+  "design_period": [
+    "2026-07-01T00:00:00Z",
+    "2026-08-01T00:00:00Z"
+  ],
+  "warmup": "2026-06-01..2026-06-30 UTC",
+  "signal_measurement": "NOT RUN",
+  "frames": {
+    "15m": {
+      "complete_bars_full_source": 8832,
+      "complete_bars_design_period": 2976,
+      "expected_design_bars": 2976,
+      "last_available_at": "2026-08-01T00:00:00+00:00"
+    },
+    "60m": {
+      "complete_bars_full_source": 2208,
+      "complete_bars_design_period": 744,
+      "expected_design_bars": 744,
+      "last_available_at": "2026-08-01T00:00:00+00:00"
+    },
+    "240m": {
+      "complete_bars_full_source": 552,
+      "complete_bars_design_period": 186,
+      "expected_design_bars": 186,
+      "last_available_at": "2026-08-01T00:00:00+00:00"
+    }
+  }
+}

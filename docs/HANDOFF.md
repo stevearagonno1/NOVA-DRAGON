@@ -318,3 +318,7 @@ Saved57-row counts reconciled;636 event-variant timing partitions checked. Of56 
 
 ## D-SAVED-SOURCES-ALERT-REVIEW-20261008
 Owner correction:target daily/weekly upward waves,precision priority,missed opportunities acceptable; prior 80%recall retention is not imposed automatically on future designs. Reviewed saved-source inventory44(15PDF,3DOCX,25TXT,1alert code); detailed alert logic static audit confirms RSI14<35/MACDline<0/volume1.5,STRICT_MODE=False,15 weights sum100,trend is score not hard bullish gate. No bot execution,Telegram/AI call,new experiment,adoption or edit to original source. Split causal higher-frame rise context/setup/lower-frame trigger; future pivots/hand-chosen AVWAP anchors prohibited as contemporaneous inputs. Next:define daily/weekly waves and prepare causal replay of original alert engine before a new paper; recorded report and manifest under docs/research/saved-sources-alert-review-2026-10-08/.
+
+
+## 2026-10-08 — Current next task: rise-wave package preparation
+Read docs/research/rise-waves-design-2026-10-08/DESIGN.md and data-readiness.json first. SOL July2026 calendar pilot, June warmup, August held back from signal measurement. New task NOT RUN; original L0096 is not resumed automatically. Lead must finish exact clauses, independence rule, onset timing and full synthetic acceptance before one execution paper. Executor only long prepared measurement+audit+upload. No main merge or adoption.

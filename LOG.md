@@ -890,3 +890,7 @@ Owner correction:target daily/weekly upward waves,precision priority,missed oppo
 
 ## Saved sources deeper reading — 2026-10-08
 Alert ZIP and loose code identical;SHA2569f69acd2606f9d3edd007e297c8bf1a184a26440efc2dba205aac3a1c60fb3ca. Read source sections8.2/8.3/8.6 and research6.4/6.5;identified pullback,compression breakout,VWAP recovery and conflicting Zero-Wait vs retest proposals. No bot/market run or adoption;priority precision,causal daily/weekly context before new paper.
+
+
+## 2026-10-08 — Rise-wave protocol and verified SOL data
+Design only; signal measurement NOT RUN. Verified SOL minute file:132480 rows, June–August2026, no gaps/duplicates/invalid OHLCV. July15m/1h/4h counts2976/744/186. Precision-first daily/weekly comparison, no recall-retention80% requirement. Details docs/research/rise-waves-design-2026-10-08/DESIGN.md. Tick docs/journal/2026-10-08-saved-sources-alert-review/003-rise-wave-design.md. No executor paper yet.

@@ -1,0 +1,11 @@
+{
+  "estimate_seconds": 300,
+  "parts": {
+    "source_data_inventory": 60,
+    "wave_protocol": 100,
+    "feasibility": 70,
+    "record_readback": 70
+  },
+  "task": "Lead design and data feasibility only;no market signal measurement",
+  "uncertainty": "repository/API access"
+}
