@@ -925,3 +925,6 @@ Approved root `/home/user/singleton-package-fixture-v1`. All listed bytes have r
 
 ## 2026-10-08 — Workspace cleanup: root result
 `/home/user/singleton-package-fixture-v1` status `DELETED`; removed 45/45 files (57579570 bytes); workspace after root `46383949` bytes; exceptions 0.
+
+## 2026-10-08 — Workspace cleanup: deletion started
+Approved root `/home/user/nova-l0094-workspace`. All listed bytes have remote preservation proof in `b373e56745083ca13b0ce9928cc60b2b7f76b2ce`; file hashes will be rechecked immediately before unlink.
