@@ -1,0 +1,19 @@
+{
+  "adoption": "NOT AUTHORISED",
+  "cases": [
+    "CCI_ONLY",
+    "CCI_DEPTH_2",
+    "CCI_DEPTH_3",
+    "CCI_DEPTH_4",
+    "CCI_RECOVERY_0",
+    "CCI_RECOVERY_0.25",
+    "CCI_DEPTH_2_RECOVERY_0",
+    "CCI_DEPTH_2_RECOVERY_0.25",
+    "CCI_DEPTH_3_RECOVERY_0",
+    "CCI_DEPTH_3_RECOVERY_0.25",
+    "CCI_DEPTH_4_RECOVERY_0",
+    "CCI_DEPTH_4_RECOVERY_0.25"
+  ],
+  "reselection": false,
+  "validation_read": false
+}

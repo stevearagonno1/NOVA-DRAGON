@@ -1,0 +1,4 @@
+- Decision:run SOL depth and recovery comparison only.
+- Executed:12 fixed CCI/depth/recovery cases on SOL/3 periods;scalar matching and causal prefixes checked.
+- Produced:raw masks,all rows,selection,report,analysis,audit,verified upload.
+- Next:Lead review;no automatic mixtures or main merge.

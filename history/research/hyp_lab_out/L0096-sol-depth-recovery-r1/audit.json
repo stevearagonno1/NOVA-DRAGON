@@ -1,0 +1,10 @@
+{
+  "compute_seconds": 0.2756710559999931,
+  "period_evaluations": 36,
+  "raw_matching_reference": true,
+  "raw_sha256": "3e4145c0f0ce846289d15f8e9c292c6eca58be6cbf422c57ca0c1a32d322e933",
+  "rows": 12,
+  "scalar_depth_recovery_and_prefix_checks": true,
+  "status": "PASS",
+  "synthetic": false
+}
