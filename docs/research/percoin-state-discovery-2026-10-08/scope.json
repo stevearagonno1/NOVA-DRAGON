@@ -1,0 +1,23 @@
+{
+ "id":"PERCOIN-STATE-DISCOVERY-20261008",
+ "phase":"discovery only; freeze shared/personal candidates, no validation",
+ "assets":["BTC","ETH","SOL"],"frame_minutes":15,
+ "warmup":"2026-06-01..2026-06-30 UTC","discovery":"2026-07-01..2026-07-31 UTC","heldout":"August2026; NOT RUN in this stage; historical, not future-blind",
+ "state_priority":["BREAKOUT","PULLBACK","TURN"],
+ "BREAKOUT":"close above highest high of20 earlier15m bars; earlier20-bar range<=4ATR of last closed1h",
+ "PULLBACK":"last closed1h EMA20>EMA50 and EMA20 rising; at least one of4 earlier15m closes<=its EMA20; current green close>its EMA20",
+ "TURN":"outside the up context; current green close>previous close; RSI14 rising",
+ "unclassified":"no signal; not inferred from future prices",
+ "grid":"4 confirmations(BASE,STRONG_CANDLE,CLOSE_BREAK,BOTH) x volume(None,RVOL1.5) x momentum(None,RSI>=50 and rising)=16; all9cells retained",
+ "strong_candle":"green; body/range>=0.5 and close location>=0.75","close_break":"close>previous high",
+ "relative_volume":"current volume divided by mean20 earlier bars",
+ "cooldown_hours":6,"pulse":"false-to-true per asset/state/candidate;6h separation",
+ "atr":"Wilder14 last closed1h","daily":"+2ATR before-1ATR within24h","weekly":"+4ATR before-2ATR within168h","intraminute_tie":"failure first","entry":"next minute open after15m close",
+ "labels":"no outcomes crossJul-end; censor incomplete horizon, retain zero rows; no new event-onset claims",
+ "personal_selection":"each asset/state/horizon separately; N>=5 exploratory; maximize descriptiveWilson lower, thenprecision, thenN, thenlowestID",
+ "shared_selection":"each state/horizon separately, one candidate shared across3assets; each assetN>=5; maximize pooled descriptiveWilson lower thenprecision,N,lowestID",
+ "adoption":"NOT AUTHORISED; N5 is exploratory selection only. Subsequent frozen validation requiresP>=70%,Wilsonlower>=60%,N>=100; overlapping alerts and multiple search restrict statistical claims",
+ "precision_priority":true,"recall80percent_rule":false,
+ "expected_seconds":{"compute_and_audit":[10,120],"whole_lead_task_ceiling":600},
+ "sources_main":"6d0226a03b84656e14b94dd8a37e39332cc2f68f","predecessor":"d2b582f7c2aec23521c13b1527fffc581e9b969d"
+}

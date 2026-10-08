@@ -509,3 +509,7 @@ Owner correction:target daily/weekly upward waves,precision priority,missed oppo
 
 ## D-RISE-WAVES-PILOT-20261008 — Defer
 Accept completed20-case SOL July pilot and independent556raw-outcome/40summary/40coverage audit. Do not adopt or choose a winner; allP<70% and allN<100. Highest daily3/5 not evidence of superiority. Scope remains historical discovery without money. Keep both failedattempt and documented numeric VWAP correction; no frozen threshold changes. August performance validation not run, but initial August masks had been built before filtering and are explicitly disclosed. Next is a bounded causal early-turn/recovery comparison with fixed control; precision remains the priority and recall80% is not imposed. No main merge.
+
+
+## D-PERCOIN-STATE-DISCOVERY-20261008 — Defer
+Accept technical completion and independent raw audit of144candidatecells/288rows/10036outcomes. Freeze18personal and6shared selections using predeclared exploratoryN5 and descriptiveWilsonranking;N5does not replace laterN100adoption target.10of18picks differ;not proof of personalization superiority. Highest notableselectedETH TURN weekly11/15=73.33%,lowerWilson48.05%,not adoption. Scopeclassifies state causally,not from future success. Next frozenAugustcomparison withoutreplacement,indicator/grid change or mainmerge;financial evaluation outside this task.

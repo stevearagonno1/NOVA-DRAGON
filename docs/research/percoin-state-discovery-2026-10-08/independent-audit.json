@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "imports_measurement_code": false,
+  "raw_alert_outcomes_rebuilt": 10036,
+  "distinct_minute_barrier_scans": 2358,
+  "summary_rows_rebuilt": 288,
+  "personal_selections_rebuilt": 18,
+  "shared_selections_rebuilt": 6,
+  "atr_independent_exponential_formula": true,
+  "validation": "NOT RUN",
+  "adoption": "NOT AUTHORISED"
+}

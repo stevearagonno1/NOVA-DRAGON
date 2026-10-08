@@ -1,0 +1,16 @@
+{
+  "status": "PASS",
+  "synthetic": false,
+  "cells": 9,
+  "candidate_cells": 144,
+  "summary_rows": 288,
+  "alert_outcomes": 10036,
+  "scalar_state_masks": true,
+  "prefix_causality": true,
+  "independent_barrier_scans": true,
+  "zero_rows_retained": true,
+  "raw_sha256": "d1ac7b2637cc35e436dc635091980f227b1778effea466ffb6f8536cfd490a84",
+  "compute_seconds": 4.6627284399996825,
+  "validation": "NOT RUN",
+  "adoption": "NOT AUTHORISED"
+}

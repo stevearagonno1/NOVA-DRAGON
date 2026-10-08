@@ -1,0 +1,41 @@
+{
+  "BTC": {
+    "commit": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+    "path": "data/BTCUSDT_1m.parquet",
+    "git_blob_sha": "3d7c5d3f6c8f2dd45b2f53922a92d4d5f3930f23",
+    "parquet_sha256": "725b4549ceacbed7483a5da456575739916fbcdae97471e05dae6e8be958e45c",
+    "source_timestamp_divisor": 1000000,
+    "csv_sha256": "81f93de6898e032f6448b869a994be9722ddf5a994fba78bf7239cabdb68da62",
+    "rows": 87840,
+    "missing_minutes": 0,
+    "duplicates": 0,
+    "first": 1780272000,
+    "last": 1785542340
+  },
+  "ETH": {
+    "commit": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+    "path": "crypto_archive/ETHUSDT_1m.parquet",
+    "git_blob_sha": "4f458623833ad59f94a3cdd65d9f3511d660ce7b",
+    "parquet_sha256": "082bab3f70af3966949bdc314f90ab266a6dd17bb8e8e14315bdb4c7223db0c8",
+    "source_timestamp_divisor": 1000,
+    "csv_sha256": "65a0576169a2733f3f27286a0f015b5b453d6f74268d9f6b33a079601e4fb0a9",
+    "rows": 87840,
+    "missing_minutes": 0,
+    "duplicates": 0,
+    "first": 1780272000,
+    "last": 1785542340
+  },
+  "SOL": {
+    "commit": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+    "path": "data/SOLUSDT_1m.parquet",
+    "git_blob_sha": "08e03aa6c126d9fe94a8b8d519b399f8d48a67b9",
+    "parquet_sha256": "e9b18698ea2188a77b38aa44b1bbd0baa08cee7d868964461b5c8f6594aaaf1d",
+    "source_timestamp_divisor": 1000000,
+    "csv_sha256": "7315325e8f34818c726477500a3ed6ed623fd051e07ea8867e91f28fb362adc2",
+    "rows": 87840,
+    "missing_minutes": 0,
+    "duplicates": 0,
+    "first": 1780272000,
+    "last": 1785542340
+  }
+}

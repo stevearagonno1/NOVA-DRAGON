@@ -1,0 +1,5 @@
+# 006 — Per-coin/state discovery and freeze
+Task ceiling600s;captured elapsed before finalupload574s;market compute+engineaudit4.66273s. Source mainunchanged6d0226a03b84656e14b94dd8a37e39332cc2f68f.
+Decided premeasurement:3assets/3exclusive causal stateclasses/16confirmation-volume-momentum combos;daily andweekly outcomes separate;precision-first,no80%recallrule. Scope/checksums written beforemarket. Synthetic scalar,prefix,zero,independentEMA,barrier,deterministicselection testsPASS. Verified87840June-Julyminutes percoin,normalizedETHms andBTC/SOLus. Julyonly;AugustvalidationNOT RUN.
+Executed144candidatecells,288rows,10036alert-outcomes (not independent trades);independentaudit rebuilt outcomes+selections fromraw,2358distinctbarrierscans. Retainedzeros andcensoring.18personal and6shared selections frozen;10personal differ. Deferalladoption.
+Produced report,scope,sources,selection,audits,evidenceZIP135497bytes SHA256fb5f71f836c7b6dae409a78b22790f9072cb7810fdc8a4c7eb1b1b43731a4e2c,reproduciblecode. No ownerfiles,lockedengine,main,PR or livefinance changed. Next Lead validates frozenpicks onAugust;newheavy work only ifestimated>600s.

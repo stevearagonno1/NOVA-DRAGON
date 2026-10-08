@@ -902,3 +902,7 @@ Design only; signal measurement NOT RUN. Verified SOL minute file:132480 rows, J
 
 ## 2026-10-08 — SOL rise-wave pilot completed; Defer
 20cases/40horizon rows,556alert outcomes; independent raw auditPASS. Highest daily precision3/5=60%, not an adequate sample; no caseP70. EMA15m15/31=48.39%, early5/48. First attempt stopped on scalar VWAP mismatch; previous-accumulator repair and July truncation documented, actual scalar regression passed. August validationNOT RUN; no adoption/mainmerge. DecisionD-RISE-WAVES-PILOT-20261008; report docs/research/rise-waves-design-2026-10-08/pilot/REPORT.md.
+
+
+## 2026-10-08 — Per-coin/state discovery complete / Defer
+BTC,ETH,SOL x causal BREAKOUT/PULLBACK/TURN x16fixed combinations;144candidate cells,288horizon rows,10036alert outcomes. Independent audit rebuilt all outcomes and18personal/6shared selections;10/18personal picks differ from shared. July discovery only,August validationNOT RUN. Best notable eligible ETH TURN weekly11/15=73.33%,Wilsonlower48.05%,not adoption. DecisionD-PERCOIN-STATE-DISCOVERY-20261008. Report docs/research/percoin-state-discovery-2026-10-08/REPORT.md. Timestamp units explicitly normalized ETHms/BTC-SOLus. Standaloneworkspace93.65MB beforearchive;oldsharedscratch not falsely claimed withincap.

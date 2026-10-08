@@ -1,0 +1,147 @@
+{
+  "personal": [
+    {
+      "asset": "BTC",
+      "state": "BREAKOUT",
+      "hours": 24,
+      "id": 2
+    },
+    {
+      "asset": "ETH",
+      "state": "BREAKOUT",
+      "hours": 24,
+      "id": 0
+    },
+    {
+      "asset": "SOL",
+      "state": "BREAKOUT",
+      "hours": 24,
+      "id": 6
+    },
+    {
+      "asset": "BTC",
+      "state": "PULLBACK",
+      "hours": 24,
+      "id": 1
+    },
+    {
+      "asset": "ETH",
+      "state": "PULLBACK",
+      "hours": 24,
+      "id": 0
+    },
+    {
+      "asset": "SOL",
+      "state": "PULLBACK",
+      "hours": 24,
+      "id": 1
+    },
+    {
+      "asset": "BTC",
+      "state": "TURN",
+      "hours": 24,
+      "id": 7
+    },
+    {
+      "asset": "ETH",
+      "state": "TURN",
+      "hours": 24,
+      "id": 2
+    },
+    {
+      "asset": "SOL",
+      "state": "TURN",
+      "hours": 24,
+      "id": 7
+    },
+    {
+      "asset": "BTC",
+      "state": "BREAKOUT",
+      "hours": 168,
+      "id": 2
+    },
+    {
+      "asset": "ETH",
+      "state": "BREAKOUT",
+      "hours": 168,
+      "id": 0
+    },
+    {
+      "asset": "SOL",
+      "state": "BREAKOUT",
+      "hours": 168,
+      "id": 0
+    },
+    {
+      "asset": "BTC",
+      "state": "PULLBACK",
+      "hours": 168,
+      "id": 1
+    },
+    {
+      "asset": "ETH",
+      "state": "PULLBACK",
+      "hours": 168,
+      "id": 8
+    },
+    {
+      "asset": "SOL",
+      "state": "PULLBACK",
+      "hours": 168,
+      "id": 12
+    },
+    {
+      "asset": "BTC",
+      "state": "TURN",
+      "hours": 168,
+      "id": 0
+    },
+    {
+      "asset": "ETH",
+      "state": "TURN",
+      "hours": 168,
+      "id": 3
+    },
+    {
+      "asset": "SOL",
+      "state": "TURN",
+      "hours": 168,
+      "id": 11
+    }
+  ],
+  "shared": [
+    {
+      "state": "BREAKOUT",
+      "hours": 24,
+      "id": 6
+    },
+    {
+      "state": "PULLBACK",
+      "hours": 24,
+      "id": 1
+    },
+    {
+      "state": "TURN",
+      "hours": 24,
+      "id": 7
+    },
+    {
+      "state": "BREAKOUT",
+      "hours": 168,
+      "id": 2
+    },
+    {
+      "state": "PULLBACK",
+      "hours": 168,
+      "id": 12
+    },
+    {
+      "state": "TURN",
+      "hours": 168,
+      "id": 3
+    }
+  ],
+  "exploratory_only": true,
+  "validation_run": false,
+  "adoption": "NOT AUTHORISED"
+}

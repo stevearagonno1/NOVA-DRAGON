@@ -1,0 +1,20 @@
+{
+  "status": "DISCOVERY_COMPLETE_LEAD_REVIEW_DEFER",
+  "cells": 9,
+  "candidates": 144,
+  "summary_rows": 288,
+  "raw_alert_outcomes": 10036,
+  "independent_audit": "PASS",
+  "personal_selections": 18,
+  "shared_selections": 6,
+  "different_personal_shared": 10,
+  "compute_seconds": 4.6627284399996825,
+  "captured_wall_seconds_before_upload": 574,
+  "archive_bytes": 135497,
+  "archive_sha256": "fb5f71f836c7b6dae409a78b22790f9072cb7810fdc8a4c7eb1b1b43731a4e2c",
+  "archive_git_blob": "6eaad57717e08f2ee3e6612bdace49592f771aa6",
+  "validation": "NOT RUN",
+  "source_main": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+  "adoption": "NOT AUTHORISED",
+  "main_merge": "NOT DONE"
+}
