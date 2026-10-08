@@ -314,3 +314,7 @@ docs/lanes/L0061-LONGCYCLE-FULL-LAUNCH-PROMPT.md
 
 ## L0092 timing diagnosis — 2026-10-07
 Saved57-row counts reconciled;636 event-variant timing partitions checked. Of56 CCI-caught events,Morning0.5 sameCCI6,after1/2inside1,otherinside0,nearestearly5,nearestlate3,absent41. Scarcity dominates delay for this definition;no wider-window performance or new selection. AuditPASS,Defer;no adoption/main merge. Next:design a causal persistent price-recovery confirmation before any new measurement. Whole-task timer and pre-work estimate were not recorded this turn;compute0.021386s is not full duration.
+
+
+## L0095 Lead review — 2026-10-08
+D-L0095-REVIEW-20261008:Defer adoption;technical comparison accepted.Independent246-alert/12-period raw audit PASS;CCI128/32,P25%,R88.89%;pulse22/14,P63.64%,R38.89%;state30 33/15,P45.45%,R41.67%;stateany63/22,P34.92%,R61.11%.All4 quality and3 marginal filters fail. Next:diagnose CCI false alerts vs captured events from saved evidence;no new market stage or adoption.

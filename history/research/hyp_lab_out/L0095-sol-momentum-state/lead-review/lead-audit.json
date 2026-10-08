@@ -1,0 +1,56 @@
+{
+  "status": "PASS",
+  "delivered_head": "0ca0e6256c16a5fca3a609720158a0054ee3f532",
+  "archive_sha256": "030655b63755b96b803f795f89f886e906a81490287c152e5630eafd2a0ba1a1",
+  "rows": [
+    {
+      "id": "CCI_ONLY",
+      "signals": 128,
+      "matched": 32,
+      "events": 36,
+      "precision": 0.25,
+      "recall": 0.8888888888888888,
+      "false": 96,
+      "missed": 4,
+      "quality": false
+    },
+    {
+      "id": "CCI_AND_STOCH_PULSE",
+      "signals": 22,
+      "matched": 14,
+      "events": 36,
+      "precision": 0.6363636363636364,
+      "recall": 0.3888888888888889,
+      "false": 8,
+      "missed": 22,
+      "quality": false
+    },
+    {
+      "id": "CCI_AND_STOCH_STATE_30",
+      "signals": 33,
+      "matched": 15,
+      "events": 36,
+      "precision": 0.45454545454545453,
+      "recall": 0.4166666666666667,
+      "false": 18,
+      "missed": 21,
+      "quality": false
+    },
+    {
+      "id": "CCI_AND_STOCH_STATE_ANY",
+      "signals": 63,
+      "matched": 22,
+      "events": 36,
+      "precision": 0.3492063492063492,
+      "recall": 0.6111111111111112,
+      "false": 41,
+      "missed": 14,
+      "quality": false
+    }
+  ],
+  "alerts_checked": 246,
+  "quality_passes": [],
+  "marginal_passes": [],
+  "new_experiment": "NOT RUN",
+  "duration_whole_review": "not measured;start timestamp not captured"
+}

@@ -878,3 +878,7 @@ D-L0094-REVIEW-20261007:Defer adoption.348245candidate rows/3134205period evalua
 
 ## L0095 SOL momentum state comparison
 4 fixed CCI/Stochastic cases on SOL/12 period evaluations;independent matching PASS. Historical discovery only;Lead review pending,no triples,trading or adoption.
+
+
+## L0095 Lead review — 2026-10-08
+D-L0095-REVIEW-20261008:Defer adoption;technical comparison accepted.Independent246-alert/12-period raw audit PASS;CCI128/32,P25%,R88.89%;pulse22/14,P63.64%,R38.89%;state30 33/15,P45.45%,R41.67%;stateany63/22,P34.92%,R61.11%.All4 quality and3 marginal filters fail. Next:diagnose CCI false alerts vs captured events from saved evidence;no new market stage or adoption.

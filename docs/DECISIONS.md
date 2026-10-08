@@ -493,3 +493,7 @@ D-L0092-TIMING-DIAG-20261007 | Descriptive diagnosis accepted;Defer adoption | 6
 
 ## L0094 independently reviewed — 2026-10-07
 D-L0094-REVIEW-20261007:Defer adoption.348245candidate rows/3134205period evaluations independently reconciled;234199zero asset rows retained;324logical-mode samples match. All60frozen detailed candidates fail joint quality/marginal gates. Stable eligible leaders BTC BB50_2.5+StochRSI21_.2 AND2:NS20/TP12,P60%,R32.43%;ETH CCI14-150+VWAP50_2 AND2:NS20/TP12,P60%,R36.36%;SOL CCI7-100+Stoch21_5_30 AND0:NS22/TP14,P63.64%,R38.89%. Correct inherited singleton tick titles in this new record;actual scope all-pairs. Quality outside top20 NOT measured in detail. Next:inspect raw high-precision/sample/coverage cases outside top20 before wider triples;no new market measurement or adoption.
+
+
+## L0095 Lead review — 2026-10-08
+D-L0095-REVIEW-20261008:Defer adoption;technical comparison accepted.Independent246-alert/12-period raw audit PASS;CCI128/32,P25%,R88.89%;pulse22/14,P63.64%,R38.89%;state30 33/15,P45.45%,R41.67%;stateany63/22,P34.92%,R61.11%.All4 quality and3 marginal filters fail. Next:diagnose CCI false alerts vs captured events from saved evidence;no new market stage or adoption.
