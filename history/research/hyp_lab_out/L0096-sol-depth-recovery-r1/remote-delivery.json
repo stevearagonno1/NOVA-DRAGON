@@ -1,0 +1,19 @@
+{
+  "status": "DISCOVERY_COMPLETE_LEAD_REVIEW_PENDING",
+  "source_sha256": "e5887ca76f67d58a58e804a0d25cbbb31ea6356f0782629aabd23f99bee334bb",
+  "archive_sha256": "45c8271ebe22fa2364709ef837a9086f81a814831b5ca53eac7bb0370270f2b6",
+  "archive_bytes": 16236,
+  "archive_git_sha": "0de155cfa600f7df4064d6e073e7830c5454e8a1",
+  "settings": 12,
+  "candidates": 12,
+  "rows": 12,
+  "asset_evaluations": 12,
+  "period_evaluations": 36,
+  "elapsed_before_final_upload_seconds": 80.00731420516968,
+  "elapsed_until_evidence_readback_seconds": 138.06308245658875,
+  "compute_seconds": 0.2756710559999931,
+  "workspace_bytes": 684983,
+  "adoption": "NOT AUTHORISED",
+  "verified_remote": true,
+  "commit": "d9a8b20cc9df6faab82c30cecd692a6b94289097"
+}
