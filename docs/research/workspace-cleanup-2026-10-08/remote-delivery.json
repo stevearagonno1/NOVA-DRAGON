@@ -1,0 +1,19 @@
+{
+  "archive_sha256": null,
+  "branch": "agent/workspace-cleanup-2026-10-08",
+  "final_receipt_publication_excluded": true,
+  "immutable_evidence_commit": "5bc6a4ca669d8cbc50a8ae52e302f6b073723138",
+  "manifest_sha256": "222852e92272a95c3b6abcb157dac97b9b8a31f11d517cf9ff92d15626f261ff",
+  "measured_elapsed_until_readback_seconds": 47.786,
+  "preservation_commit": "b373e56745083ca13b0ce9928cc60b2b7f76b2ce",
+  "readback_paths": [
+    "docs/research/workspace-cleanup-2026-10-08/inventory.json",
+    "docs/research/workspace-cleanup-2026-10-08/preservation-manifest.json",
+    "docs/research/workspace-cleanup-2026-10-08/delete-plan.json",
+    "docs/research/workspace-cleanup-2026-10-08/REPORT.md",
+    "docs/research/workspace-cleanup-2026-10-08/delivery.json",
+    "docs/research/workspace-cleanup-2026-10-08/cleanup-events.jsonl"
+  ],
+  "status": "CLEANUP_COMPLETE",
+  "verified_remote": true
+}
