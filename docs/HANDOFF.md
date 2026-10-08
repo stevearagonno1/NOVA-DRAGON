@@ -318,3 +318,7 @@ Saved57-row counts reconciled;636 event-variant timing partitions checked. Of56 
 
 ## L0095 Lead review — 2026-10-08
 D-L0095-REVIEW-20261008:Defer adoption;technical comparison accepted.Independent246-alert/12-period raw audit PASS;CCI128/32,P25%,R88.89%;pulse22/14,P63.64%,R38.89%;state30 33/15,P45.45%,R41.67%;stateany63/22,P34.92%,R61.11%.All4 quality and3 marginal filters fail. Next:diagnose CCI false alerts vs captured events from saved evidence;no new market stage or adoption.
+
+
+## D-L0095-CCI-CONTEXT-20261008
+Saved SOL CCI128 alerts partition32 captured/93 unmatched/3 duplicates. Prior-only t-1 context,8 prefix and128 scalar EMA/return checks PASS. Captured median18-bar return -5.70% vs -2.80% other;25/32 captured below falling EMA20. Descriptive diagnosis only,no new masks,threshold search,adoption or financial measurement. Next:prepare small frozen depth/recovery comparison,CCI baseline,no parameter chosen as proven from these medians.
