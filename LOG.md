@@ -906,3 +906,7 @@ Design only; signal measurement NOT RUN. Verified SOL minute file:132480 rows, J
 
 ## 2026-10-08 — Per-coin/state discovery complete / Defer
 BTC,ETH,SOL x causal BREAKOUT/PULLBACK/TURN x16fixed combinations;144candidate cells,288horizon rows,10036alert outcomes. Independent audit rebuilt all outcomes and18personal/6shared selections;10/18personal picks differ from shared. July discovery only,August validationNOT RUN. Best notable eligible ETH TURN weekly11/15=73.33%,Wilsonlower48.05%,not adoption. DecisionD-PERCOIN-STATE-DISCOVERY-20261008. Report docs/research/percoin-state-discovery-2026-10-08/REPORT.md. Timestamp units explicitly normalized ETHms/BTC-SOLus. Standaloneworkspace93.65MB beforearchive;oldsharedscratch not falsely claimed withincap.
+
+
+## 2026-10-08 — Owner routing correction and one-task paper
+Owner explicitly instructed Lead to write papers and not execute research; each paper one task. New paper ENTRY-SINGLETONS-PACKAGE-01 delegates preparation only:17singleton families/226settings/2034coin-state candidate cells/4068horizon rows+36controls. No market measurement, pairs, triples or August validation. Runnable expanded package does not yet exist; no readiness claimed. Executor must prepare and synthetically verify it before a separate market paper. Private credential supplied only in owner's send-ready artifact; public copy redacted. Destination agent/entry-singletons-package-v1-2026-10-08. Official constitution text unchanged; latest owner instructions govern role routing.
