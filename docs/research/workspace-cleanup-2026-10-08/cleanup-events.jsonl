@@ -1,2 +1,3 @@
 {"all_paths_have_preservation_route": true, "bytes": 137652330, "event": "INVENTORY_HASHED", "files": 418, "timestamp_utc": "2026-10-08T19:16:08.795006Z", "workspace_before_bytes": 171552512}
 {"event": "REMOTE_PARTS_VERIFIED", "file_paths": 418, "immutable_candidate_commit": "b373e56745083ca13b0ce9928cc60b2b7f76b2ce", "parts_verified": 44, "target_bytes": 137652330, "timestamp_utc": "2026-10-08T19:16:45.436517Z"}
+{"bytes_expected": 67588993, "event": "DELETE_ROOT_STARTED", "files_expected": 304, "preservation_commit": "b373e56745083ca13b0ce9928cc60b2b7f76b2ce", "root": "/home/user/l0084-package", "timestamp_utc": "2026-10-08T19:18:08.279656Z"}

@@ -913,3 +913,6 @@ Fresh workspace measurement: 171552512 bytes; authorized roots: 3, inventory fil
 
 ## 2026-10-08 — Workspace cleanup preservation verified
 All 44 compressed recovery parts and 418 source-path mappings were read back against immutable candidate commit `b373e56745083ca13b0ce9928cc60b2b7f76b2ce`. Deletion plan is published before any local unlink.
+
+## 2026-10-08 — Workspace cleanup: deletion started
+Approved root `/home/user/l0084-package`. All listed bytes have remote preservation proof in `b373e56745083ca13b0ce9928cc60b2b7f76b2ce`; file hashes will be rechecked immediately before unlink.
