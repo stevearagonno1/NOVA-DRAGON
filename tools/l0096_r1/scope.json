@@ -1,0 +1,42 @@
+{
+  "stage": "L0096",
+  "asset": "SOLUSDT",
+  "timeframe": "4h",
+  "CCI": {
+    "period": 7,
+    "cross_up": -100
+  },
+  "depth": {
+    "lookback_prior": 18,
+    "atr_period_prior": 14,
+    "levels": [
+      2,
+      3,
+      4
+    ]
+  },
+  "recovery": {
+    "atr_prior_levels": [
+      0,
+      0.25
+    ],
+    "bullish_closed_candle": true
+  },
+  "cases": 12,
+  "period_evaluations": 36,
+  "baseline": "CCI_ONLY",
+  "quality": {
+    "precision": 0.7,
+    "recall": 0.3,
+    "sample": 20,
+    "wilson95_lower": 0.6,
+    "median_lag_max": 1,
+    "period_sample": 3,
+    "period_recall": 0.15
+  },
+  "marginal": {
+    "precision_lift": 0.05,
+    "recall_retention": 0.8
+  },
+  "no_reselection": true
+}

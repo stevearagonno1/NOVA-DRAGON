@@ -1,0 +1,4 @@
+- Decision:follow frozen 12-case SOL scope.
+- Executed:fixture,resume,tamper and source archive upload/readback.
+- Produced:tools/l0096 and admission proof.
+- Next:measure,audit and deliver;no triples or adoption.

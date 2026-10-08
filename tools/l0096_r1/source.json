@@ -1,0 +1,18 @@
+{
+  "base_main": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+  "parent_review": "ccda6a9d14a1541b6dbd57a7f43dd043c86a5588",
+  "sha256": {
+    "publish85.py": "3857bce285bfbad7e96e63bc193447a6ccf72eeeed74719891d9e0bd187640a0",
+    "launch96.py": "05804decddd64777cd5a37b7607d32523f40096f36bf4269b3e83957ada89315",
+    "parent93.json.gz": "511f2d600ff9885a9dd61b6ee7946301db0003f271210760eebc142d8b49c31c",
+    "inputs.json": "09dad92c773a212264b7aed6361cd1ab994d3c99c1eb8454b90bcaa648905048",
+    "indicators84.py": "e5b2026cad5266f7aacb6dfad4deed89c66e41a804ba9f0ed1e067076aafe636",
+    "scope.json": "1655d25a4a52b8c9846864415e7e2f6bf93383e6d7c4597a72c3bf3a36ceeb98",
+    "run96.py": "f6254bd7e545c0ad4ed6976eb767c6cc62f30f250ef39a603a8a6785db459262",
+    "research85.py": "116809601316cff3e2917de54403673a089e8e2da8b897b0bffbf7ce9244161e",
+    "prepare_runtime.py": "e342f9e09177dbd6c96919468b5ce1bac1dc0d6f508392d3fdcb888fd384c5b6",
+    "signals85.py": "255e4dbe938d6c607e11e66a7b45fa5d0164978fb92a77f672eb62f3b1c47301",
+    "SOLUSDT.csv": "d9ba90bfbd819da27afc952a9a9285759d89ba89abf5e834b6bb287fb523ba01"
+  },
+  "revision": "R1;fix recovery-only warmup,unchanged grid/criteria"
+}
