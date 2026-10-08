@@ -49,6 +49,7 @@ def signals(raw,m,reference=False):
     for i,x in enumerate(b):
         at=x[0]+m*60;d=x[0]//86400
         if d!=day:day=d;cv=pv=0
+        oldcv,oldpv=cv,pv
         cv+=x[5];pv+=(x[2]+x[3]+x[4])/3*x[5];vwap=pv/cv if cv else None
         j=at//((60 if m==15 else 240)*60)-context[0][0]//((60 if m==15 else 240)*60)-1
         h=at//3600-hour[0][0]//3600-1
@@ -62,7 +63,6 @@ def signals(raw,m,reference=False):
         # Range break uses 20 fully completed earlier bars; no future range.
         br=c[i]>max(z[2] for z in b[i-20:i])
         # Session VWAP reclaim: same UTC day; previous value reconstructed separately for scalar audit.
-        oldcv=cv-x[5];oldpv=pv-(x[2]+x[3]+x[4])/3*x[5]
         oldv=oldpv/oldcv if oldcv>0 else None
         vr=oldv is not None and i>0 and b[i-1][0]//86400==d and c[i-1]<=oldv and c[i]>vwap and c[i]>x[1]
         botvol=sum(z[5] for z in b[i-19:i+1])/20
@@ -156,6 +156,7 @@ def fixture():
 def load():
     meta=json.loads((ROOT/'source.json').read_text());p=ROOT/'minutes.csv';assert sha(p)==meta['csv_sha256']
     with p.open() as f:raw=[[int(r[0])]+list(map(float,r[1:])) for r in list(csv.reader(f))[1:]]
+    raw=[r for r in raw if r[0]<1785542400] # Never build August candidate masks in July pilot.
     return raw,1782864000,1785542400
 
 def verify_source(root=ROOT):

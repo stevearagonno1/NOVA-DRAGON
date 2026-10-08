@@ -898,3 +898,7 @@ Design only; signal measurement NOT RUN. Verified SOL minute file:132480 rows, J
 
 ## 2026-10-08 — Prepared light SOL wave pilot
 20 cases/40 horizon rows; synthetic, deterministic rerun, zero-input, source-tamper and real-prefix checks PASS. No market scores or August validation run. Tools tools/rise_waves; preparation docs/research/rise-waves-design-2026-10-08/PREPARATION.md. Expected light10–120s; Lead performs it, no executor paper. Captured preparation interval502s before publication; final tick records timing limits.
+
+
+## 2026-10-08 — SOL rise-wave pilot completed; Defer
+20cases/40horizon rows,556alert outcomes; independent raw auditPASS. Highest daily precision3/5=60%, not an adequate sample; no caseP70. EMA15m15/31=48.39%, early5/48. First attempt stopped on scalar VWAP mismatch; previous-accumulator repair and July truncation documented, actual scalar regression passed. August validationNOT RUN; no adoption/mainmerge. DecisionD-RISE-WAVES-PILOT-20261008; report docs/research/rise-waves-design-2026-10-08/pilot/REPORT.md.

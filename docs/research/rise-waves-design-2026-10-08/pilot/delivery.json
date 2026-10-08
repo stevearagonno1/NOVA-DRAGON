@@ -1,0 +1,24 @@
+{
+  "status": "PILOT_COMPLETE_LEAD_REVIEW_DEFER",
+  "source_main": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+  "source_tooling": "5738e6462a069b54c51f977e2782808997d30f1b",
+  "scope_cases": 20,
+  "summary_rows": 40,
+  "raw_alert_outcomes": 556,
+  "independent_audit": "PASS",
+  "daily_events": 48,
+  "weekly_events": 13,
+  "archive_bytes": 21792,
+  "archive_sha256": "707d345710c6d18c81f966159c4a01a4baf0657cb1d3c63e99dc13f5bb4f41d2",
+  "archive_git_blob": "bf511d5fbc13d23334690d55b402ac74ff3ce473",
+  "compute_and_audit_seconds": 3.066550153000094,
+  "captured_wall_seconds_before_final_publication": 392,
+  "estimate_seconds": [
+    10,
+    120
+  ],
+  "estimate_limit": "measurement estimate; debugging/review/publication longer but total bounded600s",
+  "august_validation": "NOT RUN; initial prefilter built August masks, documented",
+  "adoption": "NOT AUTHORISED",
+  "main_merge": "NOT DONE"
+}

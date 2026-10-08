@@ -326,3 +326,7 @@ Read docs/research/rise-waves-design-2026-10-08/DESIGN.md and data-readiness.jso
 
 ## 2026-10-08 — Wave package prepared, next is light Lead measurement
 Read PREPARATION.md in docs/research/rise-waves-design-2026-10-08. tools/rise_waves contains scope/source/checksums/preparer/measurement/tests. CSV reconstructs from immutable SOL file; local prepared CSV5843554bytes.20cases×2horizons; July2026 only. Synthetic and tamper/causality tests PASS, market NOT RUN. Lead must run bounded light pilot and audit raw results; no light executor handoff. No claim of globally strongest entry, adoption or unseen validation.
+
+
+## 2026-10-08 — Current result: rise-wave pilot / Defer
+Read docs/research/rise-waves-design-2026-10-08/pilot/REPORT.md,results.json,raw evidence.zip,independent-audit.json andattempt-error.json.20cases/40rows all below70%P; strongest headline60% from5alerts is not a winner.48daily/13weekly retrospective waves; EMA-context excluded29daily early opportunities at15m. Next bounded design: early causal turn/recovery confirmation against current EMA context with precision-first judgment; deleting filter alone is not proved beneficial. No August validation/adoption/automatic newmeasurement/mainmerge. tools/rise_waves updated for saved previous VWAP accumulators and pre-signal July truncation.

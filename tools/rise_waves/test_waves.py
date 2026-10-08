@@ -41,6 +41,7 @@ def main():
     real,_,_=W.load()
     for m in W.FRAMES:
         full,_=W.signals(real,m)
+        scalar,_=W.signals(real,m,True);assert full==scalar,("actual scalar",m)
         pre,_=W.signals(real[:21*1440],m)
         cutoff=real[21*1440-1][0]+60
         assert all(pre[q]==[at for at in full[q] if at<=cutoff] for q in W.RULES)

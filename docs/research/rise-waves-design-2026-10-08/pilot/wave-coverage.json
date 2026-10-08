@@ -1,0 +1,657 @@
+[
+  {
+    "frame": 15,
+    "rule": "EMA_RECLAIM",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 5,
+    "missed": 43,
+    "coverage": 0.10416666666666667,
+    "median_onset_lag_hours": 0.7333333333333333,
+    "matches": [
+      {
+        "event_id": 2,
+        "alert_at": 1782938700
+      },
+      {
+        "event_id": 5,
+        "alert_at": 1783039500
+      },
+      {
+        "event_id": 23,
+        "alert_at": 1784085300
+      },
+      {
+        "event_id": 24,
+        "alert_at": 1784106900
+      },
+      {
+        "event_id": 41,
+        "alert_at": 1785096000
+      }
+    ]
+  },
+  {
+    "frame": 15,
+    "rule": "EMA_RECLAIM",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 2,
+    "missed": 11,
+    "coverage": 0.15384615384615385,
+    "median_onset_lag_hours": 0.9083333333333333,
+    "matches": [
+      {
+        "event_id": 1,
+        "alert_at": 1782892800
+      },
+      {
+        "event_id": 2,
+        "alert_at": 1782938700
+      }
+    ]
+  },
+  {
+    "frame": 15,
+    "rule": "EMA_RECLAIM_VOL",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 2,
+    "missed": 46,
+    "coverage": 0.041666666666666664,
+    "median_onset_lag_hours": 2.8916666666666666,
+    "matches": [
+      {
+        "event_id": 6,
+        "alert_at": 1783134900
+      },
+      {
+        "event_id": 24,
+        "alert_at": 1784119500
+      }
+    ]
+  },
+  {
+    "frame": 15,
+    "rule": "EMA_RECLAIM_VOL",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 1,
+    "missed": 12,
+    "coverage": 0.07692307692307693,
+    "median_onset_lag_hours": 6.616666666666666,
+    "matches": [
+      {
+        "event_id": 1,
+        "alert_at": 1782911700
+      }
+    ]
+  },
+  {
+    "frame": 15,
+    "rule": "RANGE_BREAK",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 0,
+    "missed": 48,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 15,
+    "rule": "RANGE_BREAK",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 1,
+    "missed": 12,
+    "coverage": 0.07692307692307693,
+    "median_onset_lag_hours": 1.45,
+    "matches": [
+      {
+        "event_id": 2,
+        "alert_at": 1782942300
+      }
+    ]
+  },
+  {
+    "frame": 15,
+    "rule": "RANGE_BREAK_VOL",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 0,
+    "missed": 48,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 15,
+    "rule": "RANGE_BREAK_VOL",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 1,
+    "missed": 12,
+    "coverage": 0.07692307692307693,
+    "median_onset_lag_hours": 1.45,
+    "matches": [
+      {
+        "event_id": 2,
+        "alert_at": 1782942300
+      }
+    ]
+  },
+  {
+    "frame": 15,
+    "rule": "VWAP_RECLAIM",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 6,
+    "missed": 42,
+    "coverage": 0.125,
+    "median_onset_lag_hours": 0.9583333333333333,
+    "matches": [
+      {
+        "event_id": 1,
+        "alert_at": 1782891000
+      },
+      {
+        "event_id": 3,
+        "alert_at": 1782954000
+      },
+      {
+        "event_id": 4,
+        "alert_at": 1782980100
+      },
+      {
+        "event_id": 5,
+        "alert_at": 1783039500
+      },
+      {
+        "event_id": 6,
+        "alert_at": 1783134900
+      },
+      {
+        "event_id": 42,
+        "alert_at": 1785146400
+      }
+    ]
+  },
+  {
+    "frame": 15,
+    "rule": "VWAP_RECLAIM",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 3,
+    "missed": 10,
+    "coverage": 0.23076923076923078,
+    "median_onset_lag_hours": 4.633333333333334,
+    "matches": [
+      {
+        "event_id": 1,
+        "alert_at": 1782891000
+      },
+      {
+        "event_id": 2,
+        "alert_at": 1782954000
+      },
+      {
+        "event_id": 10,
+        "alert_at": 1784546100
+      }
+    ]
+  },
+  {
+    "frame": 15,
+    "rule": "VWAP_RECLAIM_VOL",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 1,
+    "missed": 47,
+    "coverage": 0.020833333333333332,
+    "median_onset_lag_hours": 1.4166666666666667,
+    "matches": [
+      {
+        "event_id": 6,
+        "alert_at": 1783134900
+      }
+    ]
+  },
+  {
+    "frame": 15,
+    "rule": "VWAP_RECLAIM_VOL",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 1,
+    "missed": 12,
+    "coverage": 0.07692307692307693,
+    "median_onset_lag_hours": 6.616666666666666,
+    "matches": [
+      {
+        "event_id": 1,
+        "alert_at": 1782911700
+      }
+    ]
+  },
+  {
+    "frame": 15,
+    "rule": "BOT_RAW",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 4,
+    "missed": 44,
+    "coverage": 0.08333333333333333,
+    "median_onset_lag_hours": 0.008333333333333333,
+    "matches": [
+      {
+        "event_id": 19,
+        "alert_at": 1783837800
+      },
+      {
+        "event_id": 22,
+        "alert_at": 1783979100
+      },
+      {
+        "event_id": 27,
+        "alert_at": 1784367000
+      },
+      {
+        "event_id": 43,
+        "alert_at": 1785163500
+      }
+    ]
+  },
+  {
+    "frame": 15,
+    "rule": "BOT_RAW",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 6,
+    "missed": 7,
+    "coverage": 0.46153846153846156,
+    "median_onset_lag_hours": 6.233333333333333,
+    "matches": [
+      {
+        "event_id": 4,
+        "alert_at": 1783244700
+      },
+      {
+        "event_id": 5,
+        "alert_at": 1783524600
+      },
+      {
+        "event_id": 6,
+        "alert_at": 1783837800
+      },
+      {
+        "event_id": 7,
+        "alert_at": 1783979100
+      },
+      {
+        "event_id": 8,
+        "alert_at": 1784294100
+      },
+      {
+        "event_id": 12,
+        "alert_at": 1784927700
+      }
+    ]
+  },
+  {
+    "frame": 15,
+    "rule": "BOT_CONTEXT",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 1,
+    "missed": 47,
+    "coverage": 0.020833333333333332,
+    "median_onset_lag_hours": 0.0,
+    "matches": [
+      {
+        "event_id": 43,
+        "alert_at": 1785163500
+      }
+    ]
+  },
+  {
+    "frame": 15,
+    "rule": "BOT_CONTEXT",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 0,
+    "missed": 13,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 15,
+    "rule": "CONTEXT_EDGE",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 0,
+    "missed": 48,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 15,
+    "rule": "CONTEXT_EDGE",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 2,
+    "missed": 11,
+    "coverage": 0.15384615384615385,
+    "median_onset_lag_hours": 3.5666666666666664,
+    "matches": [
+      {
+        "event_id": 9,
+        "alert_at": 1784484000
+      },
+      {
+        "event_id": 10,
+        "alert_at": 1784534400
+      }
+    ]
+  },
+  {
+    "frame": 15,
+    "rule": "CONTEXT_DAILY",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 1,
+    "missed": 47,
+    "coverage": 0.020833333333333332,
+    "median_onset_lag_hours": 1.75,
+    "matches": [
+      {
+        "event_id": 5,
+        "alert_at": 1783036800
+      }
+    ]
+  },
+  {
+    "frame": 15,
+    "rule": "CONTEXT_DAILY",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 2,
+    "missed": 11,
+    "coverage": 0.15384615384615385,
+    "median_onset_lag_hours": 7.725,
+    "matches": [
+      {
+        "event_id": 2,
+        "alert_at": 1782950400
+      },
+      {
+        "event_id": 9,
+        "alert_at": 1784505600
+      }
+    ]
+  },
+  {
+    "frame": 60,
+    "rule": "EMA_RECLAIM",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 0,
+    "missed": 48,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 60,
+    "rule": "EMA_RECLAIM",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 0,
+    "missed": 13,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 60,
+    "rule": "EMA_RECLAIM_VOL",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 0,
+    "missed": 48,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 60,
+    "rule": "EMA_RECLAIM_VOL",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 0,
+    "missed": 13,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 60,
+    "rule": "RANGE_BREAK",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 0,
+    "missed": 48,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 60,
+    "rule": "RANGE_BREAK",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 1,
+    "missed": 12,
+    "coverage": 0.07692307692307693,
+    "median_onset_lag_hours": 1.7,
+    "matches": [
+      {
+        "event_id": 2,
+        "alert_at": 1782943200
+      }
+    ]
+  },
+  {
+    "frame": 60,
+    "rule": "RANGE_BREAK_VOL",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 0,
+    "missed": 48,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 60,
+    "rule": "RANGE_BREAK_VOL",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 0,
+    "missed": 13,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 60,
+    "rule": "VWAP_RECLAIM",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 1,
+    "missed": 47,
+    "coverage": 0.020833333333333332,
+    "median_onset_lag_hours": 1.6833333333333333,
+    "matches": [
+      {
+        "event_id": 4,
+        "alert_at": 1782982800
+      }
+    ]
+  },
+  {
+    "frame": 60,
+    "rule": "VWAP_RECLAIM",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 2,
+    "missed": 11,
+    "coverage": 0.15384615384615385,
+    "median_onset_lag_hours": 7.033333333333333,
+    "matches": [
+      {
+        "event_id": 1,
+        "alert_at": 1782892800
+      },
+      {
+        "event_id": 2,
+        "alert_at": 1782982800
+      }
+    ]
+  },
+  {
+    "frame": 60,
+    "rule": "VWAP_RECLAIM_VOL",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 0,
+    "missed": 48,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 60,
+    "rule": "VWAP_RECLAIM_VOL",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 0,
+    "missed": 13,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 60,
+    "rule": "BOT_RAW",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 0,
+    "missed": 48,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 60,
+    "rule": "BOT_RAW",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 2,
+    "missed": 11,
+    "coverage": 0.15384615384615385,
+    "median_onset_lag_hours": 6.258333333333333,
+    "matches": [
+      {
+        "event_id": 4,
+        "alert_at": 1783245600
+      },
+      {
+        "event_id": 8,
+        "alert_at": 1784296800
+      }
+    ]
+  },
+  {
+    "frame": 60,
+    "rule": "BOT_CONTEXT",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 0,
+    "missed": 48,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 60,
+    "rule": "BOT_CONTEXT",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 1,
+    "missed": 12,
+    "coverage": 0.07692307692307693,
+    "median_onset_lag_hours": 7.116666666666666,
+    "matches": [
+      {
+        "event_id": 4,
+        "alert_at": 1783245600
+      }
+    ]
+  },
+  {
+    "frame": 60,
+    "rule": "CONTEXT_EDGE",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 0,
+    "missed": 48,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 60,
+    "rule": "CONTEXT_EDGE",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 0,
+    "missed": 13,
+    "coverage": 0.0,
+    "median_onset_lag_hours": null,
+    "matches": []
+  },
+  {
+    "frame": 60,
+    "rule": "CONTEXT_DAILY",
+    "hours": 24,
+    "events": 48,
+    "captured_early": 1,
+    "missed": 47,
+    "coverage": 0.020833333333333332,
+    "median_onset_lag_hours": 1.75,
+    "matches": [
+      {
+        "event_id": 5,
+        "alert_at": 1783036800
+      }
+    ]
+  },
+  {
+    "frame": 60,
+    "rule": "CONTEXT_DAILY",
+    "hours": 168,
+    "events": 13,
+    "captured_early": 1,
+    "missed": 12,
+    "coverage": 0.07692307692307693,
+    "median_onset_lag_hours": 3.7,
+    "matches": [
+      {
+        "event_id": 2,
+        "alert_at": 1782950400
+      }
+    ]
+  }
+]

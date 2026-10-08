@@ -1,0 +1,12 @@
+{
+  "status": "PASS",
+  "audit_imports_measurement_code": false,
+  "alert_outcomes_rebuilt": 556,
+  "summary_rows_rebuilt": 40,
+  "coverage_rows_rebuilt": 40,
+  "daily_events": 48,
+  "weekly_events": 13,
+  "atr_independent_exponential_formula": true,
+  "wilson_independent_formula": true,
+  "adoption": "NOT AUTHORISED"
+}

@@ -1,0 +1,8 @@
+{
+  "status": "ABORTED_BEFORE_RESULTS",
+  "command": "python rise_wave_design/package/waves.py --out rise_wave_design/market",
+  "actual_error": "AssertionError: ('scalar masks differ', 60)",
+  "difference": "VWAP_RECLAIM at1786413600; August mask only, no August performance evaluation",
+  "repair": "save previous VWAP accumulators directly; truncate source atAug1 before signals; add actual scalar equality checks",
+  "first_attempt_market_results": "NOT PRODUCED"
+}

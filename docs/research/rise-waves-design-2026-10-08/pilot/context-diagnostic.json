@@ -1,0 +1,34 @@
+[
+  {
+    "frame": 15,
+    "hours": 24,
+    "events": 48,
+    "no_early_price_opportunity": 1,
+    "early_opportunity_but_context_never_up": 29,
+    "early_opportunity_and_context_up": 18
+  },
+  {
+    "frame": 15,
+    "hours": 168,
+    "events": 13,
+    "no_early_price_opportunity": 0,
+    "early_opportunity_but_context_never_up": 5,
+    "early_opportunity_and_context_up": 8
+  },
+  {
+    "frame": 60,
+    "hours": 24,
+    "events": 48,
+    "no_early_price_opportunity": 9,
+    "early_opportunity_but_context_never_up": 27,
+    "early_opportunity_and_context_up": 12
+  },
+  {
+    "frame": 60,
+    "hours": 168,
+    "events": 13,
+    "no_early_price_opportunity": 1,
+    "early_opportunity_but_context_never_up": 7,
+    "early_opportunity_and_context_up": 5
+  }
+]
