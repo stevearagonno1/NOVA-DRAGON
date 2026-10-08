@@ -882,3 +882,7 @@ D-L0094-ALL-QUALITY-20261007:Defer adoption. Scanned all347763pair variants per 
 
 ## L0094 missed-onset diagnosis — 2026-10-07
 D-L0094-MISSED-ONSET-20261007:Descriptive diagnosis accepted,Defer adoption. Three diagnostic eligible leaders captured41/106events;65missed. Ofmissed:61no mixture pulsewithin+-12bars,4nearearlier,0nearlater. BTC24missed:9neither/15StochRSIonly;ETH19neither;SOL22:3neither/14CCIonly/1Stochonly/4bothbutnonsimultaneous. No newmarket measurement or causal-state outcome. Next:prepare L0095 pulse-vs-persistent momentum confirmation and unfiltered control,starting SOL CCI/Stoch;futureeventlabels evaluation-only;executor runs/uploads.
+
+
+## D-SAVED-SOURCES-ALERT-REVIEW-20261008
+Owner correction:target daily/weekly upward waves,precision priority,missed opportunities acceptable; prior 80%recall retention is not imposed automatically on future designs. Reviewed saved-source inventory44(15PDF,3DOCX,25TXT,1alert code); detailed alert logic static audit confirms RSI14<35/MACDline<0/volume1.5,STRICT_MODE=False,15 weights sum100,trend is score not hard bullish gate. No bot execution,Telegram/AI call,new experiment,adoption or edit to original source. Split causal higher-frame rise context/setup/lower-frame trigger; future pivots/hand-chosen AVWAP anchors prohibited as contemporaneous inputs. Next:define daily/weekly waves and prepare causal replay of original alert engine before a new paper; recorded report and manifest under docs/research/saved-sources-alert-review-2026-10-08/.

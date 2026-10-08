@@ -314,3 +314,7 @@ docs/lanes/L0061-LONGCYCLE-FULL-LAUNCH-PROMPT.md
 
 ## L0092 timing diagnosis — 2026-10-07
 Saved57-row counts reconciled;636 event-variant timing partitions checked. Of56 CCI-caught events,Morning0.5 sameCCI6,after1/2inside1,otherinside0,nearestearly5,nearestlate3,absent41. Scarcity dominates delay for this definition;no wider-window performance or new selection. AuditPASS,Defer;no adoption/main merge. Next:design a causal persistent price-recovery confirmation before any new measurement. Whole-task timer and pre-work estimate were not recorded this turn;compute0.021386s is not full duration.
+
+
+## D-SAVED-SOURCES-ALERT-REVIEW-20261008
+Owner correction:target daily/weekly upward waves,precision priority,missed opportunities acceptable; prior 80%recall retention is not imposed automatically on future designs. Reviewed saved-source inventory44(15PDF,3DOCX,25TXT,1alert code); detailed alert logic static audit confirms RSI14<35/MACDline<0/volume1.5,STRICT_MODE=False,15 weights sum100,trend is score not hard bullish gate. No bot execution,Telegram/AI call,new experiment,adoption or edit to original source. Split causal higher-frame rise context/setup/lower-frame trigger; future pivots/hand-chosen AVWAP anchors prohibited as contemporaneous inputs. Next:define daily/weekly waves and prepare causal replay of original alert engine before a new paper; recorded report and manifest under docs/research/saved-sources-alert-review-2026-10-08/.

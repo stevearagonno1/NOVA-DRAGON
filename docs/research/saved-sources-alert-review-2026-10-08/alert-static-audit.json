@@ -1,0 +1,31 @@
+{
+  "settings": {
+    "RSI_BUY_MAX": 35,
+    "MACD_BELOW_ZERO": true,
+    "VOLUME_SURGE_X": 1.5,
+    "STRICT_MODE": false,
+    "STRICT_MIN_SCORE": 65,
+    "BEAR_MIN_SCORE": 70,
+    "COOLDOWN_SEC": 900,
+    "GLOBAL_GAP_SEC": 600
+  },
+  "weights": [
+    12,
+    3,
+    10,
+    5,
+    4,
+    10,
+    4,
+    8,
+    5,
+    5,
+    5,
+    8,
+    9,
+    8,
+    4
+  ],
+  "sum": 100,
+  "bot_execution": "NOT RUN"
+}
