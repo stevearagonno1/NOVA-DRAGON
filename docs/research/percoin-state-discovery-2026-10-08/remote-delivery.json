@@ -1,0 +1,15 @@
+{
+  "verified_remote": true,
+  "evidence_commit": "ad7bfa575eb03a2fc0d84302e7c5417c41cd21af",
+  "archive_sha256": "fb5f71f836c7b6dae409a78b22790f9072cb7810fdc8a4c7eb1b1b43731a4e2c",
+  "archive_bytes": 135497,
+  "wall_seconds_through_evidence_readback": 671,
+  "wall_time_note": "Includes data preparation, coding, tests, measurement, independent review and evidence publication/readback; excludes this final receipt publication.",
+  "planned_task_ceiling_seconds": 600,
+  "task_ceiling_exceeded": true,
+  "compute_seconds": 4.6627284399996825,
+  "reason": "Preparation/reporting/publication total exceeded initial planning budget; no artificial long measurement or future validation was run.",
+  "next_routing": "Keep next validation separate and bounded; assign executor only if full task is estimated beyond600s.",
+  "adoption": "NOT AUTHORISED",
+  "validation": "NOT RUN"
+}
