@@ -1,0 +1,14 @@
+{
+  "status": "PILOT_COMPLETE_LEAD_REVIEW_DEFER",
+  "verified_remote": true,
+  "evidence_commit": "9f23cb741b5dbeded69075d1024d8838f4888e12",
+  "archive_sha256": "707d345710c6d18c81f966159c4a01a4baf0657cb1d3c63e99dc13f5bb4f41d2",
+  "archive_bytes": 21792,
+  "independent_audit": "PASS",
+  "wall_seconds_through_evidence_readback": 525,
+  "wall_time_note": "starts immediately before first actual shell measurement; excludes final receipt publication",
+  "compute_and_engine_audit_seconds": 3.066550153000094,
+  "readback_transport_note": "github_fetch binary route returned HTTPError400 UTF-8-only; immutable raw byte download succeeded and SHA256 matched",
+  "adoption": "NOT AUTHORISED",
+  "main_merge": "NOT DONE"
+}
