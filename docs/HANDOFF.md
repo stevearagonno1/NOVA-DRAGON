@@ -322,3 +322,7 @@ Owner correction:target daily/weekly upward waves,precision priority,missed oppo
 
 ## 2026-10-08 — Current next task: rise-wave package preparation
 Read docs/research/rise-waves-design-2026-10-08/DESIGN.md and data-readiness.json first. SOL July2026 calendar pilot, June warmup, August held back from signal measurement. New task NOT RUN; original L0096 is not resumed automatically. Lead must finish exact clauses, independence rule, onset timing and full synthetic acceptance before one execution paper. Executor only long prepared measurement+audit+upload. No main merge or adoption.
+
+
+## 2026-10-08 — Wave package prepared, next is light Lead measurement
+Read PREPARATION.md in docs/research/rise-waves-design-2026-10-08. tools/rise_waves contains scope/source/checksums/preparer/measurement/tests. CSV reconstructs from immutable SOL file; local prepared CSV5843554bytes.20cases×2horizons; July2026 only. Synthetic and tamper/causality tests PASS, market NOT RUN. Lead must run bounded light pilot and audit raw results; no light executor handoff. No claim of globally strongest entry, adoption or unseen validation.

@@ -894,3 +894,7 @@ Alert ZIP and loose code identical;SHA2569f69acd2606f9d3edd007e297c8bf1a184a2644
 
 ## 2026-10-08 — Rise-wave protocol and verified SOL data
 Design only; signal measurement NOT RUN. Verified SOL minute file:132480 rows, June–August2026, no gaps/duplicates/invalid OHLCV. July15m/1h/4h counts2976/744/186. Precision-first daily/weekly comparison, no recall-retention80% requirement. Details docs/research/rise-waves-design-2026-10-08/DESIGN.md. Tick docs/journal/2026-10-08-saved-sources-alert-review/003-rise-wave-design.md. No executor paper yet.
+
+
+## 2026-10-08 — Prepared light SOL wave pilot
+20 cases/40 horizon rows; synthetic, deterministic rerun, zero-input, source-tamper and real-prefix checks PASS. No market scores or August validation run. Tools tools/rise_waves; preparation docs/research/rise-waves-design-2026-10-08/PREPARATION.md. Expected light10–120s; Lead performs it, no executor paper. Captured preparation interval502s before publication; final tick records timing limits.

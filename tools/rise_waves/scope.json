@@ -1,0 +1,48 @@
+{
+  "status": "PREPARED_PILOT_MARKET_NOT_RUN",
+  "asset": "SOLUSDT",
+  "frames_minutes": [
+    15,
+    60
+  ],
+  "cases_per_frame": 10,
+  "total_cases": 20,
+  "evaluation_rows": 40,
+  "context": {
+    "15m": "last closed 1h EMA20>EMA50 and EMA20 rising",
+    "60m": "last closed 4h EMA20>EMA50 and EMA20 rising"
+  },
+  "indicator_seeds": {
+    "context_and_reclaim_ema": "first observation; June warmup",
+    "bot_macd_ema": "initial SMA, matching source math",
+    "bot_rsi": "Wilder14; flat100 matching source math"
+  },
+  "confirmation": "relative volume>=1.5x20 previous bars; BOT uses20 including current",
+  "cooldown_hours": 6,
+  "signal_time": "closed bar; next-minute open reference",
+  "atr": "Wilder14 of last closed1h, same scale for both entry frames",
+  "horizons": {
+    "24h": {
+      "up_atr": 2,
+      "down_atr": 1
+    },
+    "168h": {
+      "up_atr": 4,
+      "down_atr": 2
+    }
+  },
+  "trough_events": "offline1h local low: strictly lower than3 preceding lows, no higher than3 following lows; actual minute of trough; barrier scan starts next minute; discard overlapping events until first target hit",
+  "early_capture": "daily within6h and entry<=trough+1ATR; weekly within24h and entry<=trough+2ATR; both before targethit; alert must succeed independently; one-to-one",
+  "period": "2026-07-01<=signal<2026-08-01 UTC; outcomes do not crossAug1",
+  "source": "source.json",
+  "minimum_precision_target": 0.7,
+  "descriptive_wilson_lower_target": 0.6,
+  "future_confirmation_minimum_alerts": 100,
+  "recall_retention_condition": null,
+  "selection": "Lead review only; no automatic adoption or heldout read",
+  "runtime_estimate_seconds": [
+    10,
+    120
+  ],
+  "role": "Lead; small pilot expected below600s. No executor paper for this stage. Publication latency separate; no artificial extension."
+}

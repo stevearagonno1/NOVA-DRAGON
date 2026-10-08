@@ -1,0 +1,8 @@
+{
+  "commit": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+  "path": "data/SOLUSDT_1m.parquet",
+  "git_blob_sha": "08e03aa6c126d9fe94a8b8d519b399f8d48a67b9",
+  "parquet_sha256": "e9b18698ea2188a77b38aa44b1bbd0baa08cee7d868964461b5c8f6594aaaf1d",
+  "csv_sha256": "f9c621573edc1f69a61a499ed892c0492c92678ef6f80b7e1c9a7b343140ab08",
+  "rows": 132480
+}
