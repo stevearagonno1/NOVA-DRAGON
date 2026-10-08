@@ -910,3 +910,6 @@ BTC,ETH,SOL x causal BREAKOUT/PULLBACK/TURN x16fixed combinations;144candidate c
 
 ## 2026-10-08 — Workspace cleanup inventory and preservation preparation
 Fresh workspace measurement: 171552512 bytes; authorized roots: 3, inventory files: 418, bytes: 137652330. No deletion until immutable backup evidence is committed and read back. Exact L0084 references use `d310df96901fa062022db41a35a24c5f229e0459`; pinned source copies were Git blob verified. Experiment_run=false.
+
+## 2026-10-08 — Workspace cleanup preservation verified
+All 44 compressed recovery parts and 418 source-path mappings were read back against immutable candidate commit `b373e56745083ca13b0ce9928cc60b2b7f76b2ce`. Deletion plan is published before any local unlink.
