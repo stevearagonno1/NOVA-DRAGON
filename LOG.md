@@ -916,3 +916,6 @@ All 44 compressed recovery parts and 418 source-path mappings were read back aga
 
 ## 2026-10-08 — Workspace cleanup: deletion started
 Approved root `/home/user/l0084-package`. All listed bytes have remote preservation proof in `b373e56745083ca13b0ce9928cc60b2b7f76b2ce`; file hashes will be rechecked immediately before unlink.
+
+## 2026-10-08 — Workspace cleanup: root result
+`/home/user/l0084-package` status `DELETED`; removed 304/304 files (67588993 bytes); workspace after root `103963519` bytes; exceptions 0.
