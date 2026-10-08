@@ -906,3 +906,7 @@ Design only; signal measurement NOT RUN. Verified SOL minute file:132480 rows, J
 
 ## 2026-10-08 — Per-coin/state discovery complete / Defer
 BTC,ETH,SOL x causal BREAKOUT/PULLBACK/TURN x16fixed combinations;144candidate cells,288horizon rows,10036alert outcomes. Independent audit rebuilt all outcomes and18personal/6shared selections;10/18personal picks differ from shared. July discovery only,August validationNOT RUN. Best notable eligible ETH TURN weekly11/15=73.33%,Wilsonlower48.05%,not adoption. DecisionD-PERCOIN-STATE-DISCOVERY-20261008. Report docs/research/percoin-state-discovery-2026-10-08/REPORT.md. Timestamp units explicitly normalized ETHms/BTC-SOLus. Standaloneworkspace93.65MB beforearchive;oldsharedscratch not falsely claimed withincap.
+
+
+## 2026-10-08 — Workspace cleanup inventory and preservation preparation
+Fresh workspace measurement: 171552512 bytes; authorized roots: 3, inventory files: 418, bytes: 137652330. No deletion until immutable backup evidence is committed and read back. Exact L0084 references use `d310df96901fa062022db41a35a24c5f229e0459`; pinned source copies were Git blob verified. Experiment_run=false.
