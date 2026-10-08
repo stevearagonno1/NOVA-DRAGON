@@ -1,0 +1,55 @@
+{
+  "after_bytes": 33900182,
+  "before_bytes": 171552512,
+  "deleted_bytes": 137652330,
+  "deleted_files": 418,
+  "elapsed_inventory_to_final_seconds": 39.489,
+  "elapsed_note": "task-start timestamp not instrumented; measured phase-2 interval reported honestly",
+  "elapsed_total_seconds": null,
+  "exceptions": [],
+  "experiment_run": false,
+  "off_scope_deleted": 0,
+  "preserved_commit_refs": [
+    "87124504d7ac7699819c655765cc8fb99668ad7d",
+    "b373e56745083ca13b0ce9928cc60b2b7f76b2ce",
+    "dd523aab6e63b96d5fb396440737304f0fa9cbc6"
+  ],
+  "preserved_unique_files": 403,
+  "roots": [
+    {
+      "bytes_deleted": 67588993,
+      "directories_removed": 142,
+      "exceptions": [],
+      "files_deleted": 304,
+      "files_expected": 304,
+      "remaining_bytes": 0,
+      "root": "/home/user/l0084-package",
+      "status": "DELETED",
+      "workspace_after_bytes": 103963519
+    },
+    {
+      "bytes_deleted": 57579570,
+      "directories_removed": 9,
+      "exceptions": [],
+      "files_deleted": 45,
+      "files_expected": 45,
+      "remaining_bytes": 0,
+      "root": "/home/user/singleton-package-fixture-v1",
+      "status": "DELETED",
+      "workspace_after_bytes": 46383949
+    },
+    {
+      "bytes_deleted": 12483767,
+      "directories_removed": 5,
+      "exceptions": [],
+      "files_deleted": 69,
+      "files_expected": 69,
+      "remaining_bytes": 0,
+      "root": "/home/user/nova-l0094-workspace",
+      "status": "DELETED",
+      "workspace_after_bytes": 33900182
+    }
+  ],
+  "source_space_report_commit": "87124504d7ac7699819c655765cc8fb99668ad7d",
+  "status": "CLEANUP_COMPLETE"
+}

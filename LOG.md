@@ -931,3 +931,6 @@ Approved root `/home/user/nova-l0094-workspace`. All listed bytes have remote pr
 
 ## 2026-10-08 — Workspace cleanup: root result
 `/home/user/nova-l0094-workspace` status `DELETED`; removed 69/69 files (12483767 bytes); workspace after root `33900182` bytes; exceptions 0.
+
+## 2026-10-08 — Workspace cleanup final result
+Status `CLEANUP_COMPLETE`; before 171552512 bytes; after 33900182; deleted 418 files / 137652330 bytes; off-scope deletions 0; experiment_run=false. See workspace-cleanup recovery branch.
