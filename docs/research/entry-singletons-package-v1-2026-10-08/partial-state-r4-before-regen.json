@@ -1,0 +1,34 @@
+{
+  "files": {
+    "asset-BTC-fixture-alerts.csv.gz": {
+      "bytes": 323119,
+      "sha256": "7926580a399062dea1bfce4a9660c6c3faf3b58dce9fcd94ee6b224e699b1fa0"
+    },
+    "asset-BTC-masks.bin.gz": {
+      "bytes": 27569,
+      "sha256": "ae0a68445b9f6bde0d9d1f8909495280affa62a78750288e89f15e8fdc81cf75"
+    },
+    "asset-ETH-fixture-alerts.csv.gz": {
+      "bytes": 323872,
+      "sha256": "8bbed9d9a546918e63bf60a83fcc9035d363ccffac0e94a5e8492580e0c29324"
+    },
+    "asset-ETH-masks.bin.gz": {
+      "bytes": 27218,
+      "sha256": "6671a9a3838b610630017dda8cf3a2876b6b25a9a62ecc225c8faa4d1e3c5fcc"
+    },
+    "asset-SOL-fixture-alerts.csv.gz": {
+      "bytes": 318318,
+      "sha256": "a86bc3557ed749fa550882f14c2338f5f01526f8a628748f4b95ecde157698d8"
+    },
+    "asset-SOL-masks.bin.gz": {
+      "bytes": 26366,
+      "sha256": "b66ba522c06cb4aca5eaba3f94b24632973f3b7f1c698050c40adea6c42c325f"
+    },
+    "checkpoint.json": {
+      "bytes": 6040,
+      "sha256": "ca1363f9b7cdc21616e9f3e90e4d744982dfff329f11fc1de47feb3992067836"
+    }
+  },
+  "reason": "code fingerprint changed by R5 gate/publisher/test edits; results never written (guard refused docs-classified CSV)",
+  "status": "INCOMPLETE_R4_PARTIAL_BEFORE_REGENERATION"
+}

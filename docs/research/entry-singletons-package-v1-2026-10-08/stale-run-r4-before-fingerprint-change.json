@@ -1,0 +1,86 @@
+{
+  "files": {
+    "asset-BTC-fixture-alerts.csv.gz": {
+      "bytes": 323119,
+      "sha256": "7926580a399062dea1bfce4a9660c6c3faf3b58dce9fcd94ee6b224e699b1fa0"
+    },
+    "asset-BTC-masks.bin.gz": {
+      "bytes": 27569,
+      "sha256": "ae0a68445b9f6bde0d9d1f8909495280affa62a78750288e89f15e8fdc81cf75"
+    },
+    "asset-ETH-fixture-alerts.csv.gz": {
+      "bytes": 323872,
+      "sha256": "8bbed9d9a546918e63bf60a83fcc9035d363ccffac0e94a5e8492580e0c29324"
+    },
+    "asset-ETH-masks.bin.gz": {
+      "bytes": 27218,
+      "sha256": "6671a9a3838b610630017dda8cf3a2876b6b25a9a62ecc225c8faa4d1e3c5fcc"
+    },
+    "asset-SOL-fixture-alerts.csv.gz": {
+      "bytes": 318318,
+      "sha256": "a86bc3557ed749fa550882f14c2338f5f01526f8a628748f4b95ecde157698d8"
+    },
+    "asset-SOL-masks.bin.gz": {
+      "bytes": 26366,
+      "sha256": "b66ba522c06cb4aca5eaba3f94b24632973f3b7f1c698050c40adea6c42c325f"
+    },
+    "audit.json": {
+      "bytes": 863,
+      "sha256": "29343e3ef4ff68ca01510824daa7b0f6dc2692d76feeafa1b89b62fe8d449f99"
+    },
+    "checkpoint.json": {
+      "bytes": 6040,
+      "sha256": "df6f21b31afb9eb281a6ec73bcd6a7425fde6b2ed7133b1c97b67cbc56917f3d"
+    },
+    "fixtures-results.csv": {
+      "bytes": 782451,
+      "sha256": "f12450027b7491a32b252c23b88d36ff4478dbf42c072ff102ea7bbf819e9b81"
+    },
+    "quality-tests.json": {
+      "bytes": 635,
+      "sha256": "dd53322bf6e803094ca8b3cc95a63bb35a8ed2e672d98ff0972307d920f54f60"
+    },
+    "resume-audit.json": {
+      "bytes": 1172,
+      "sha256": "b2454a636b5a450890237a3fc8d853f9e130ca87ff55f9085b9afd8bd979cedc"
+    },
+    "resume-check/": {
+      "bytes": 1052502,
+      "files": [
+        "asset-BTC-fixture-alerts.csv.gz",
+        "asset-BTC-masks.bin.gz",
+        "asset-ETH-fixture-alerts.csv.gz",
+        "asset-ETH-masks.bin.gz",
+        "asset-SOL-fixture-alerts.csv.gz",
+        "asset-SOL-masks.bin.gz",
+        "checkpoint.json"
+      ]
+    },
+    "resume-contract-r4/": {
+      "bytes": 5021,
+      "files": [
+        "asset-BTC-fixture-alerts.csv.gz",
+        "asset-BTC-masks.bin.gz",
+        "checkpoint.json"
+      ]
+    },
+    "run-manifest.json": {
+      "bytes": 5752,
+      "sha256": "71949e26685c622962378bd6c44c15970b9390124d41687055ab415d4de35ea6"
+    },
+    "runtime.json": {
+      "bytes": 171,
+      "sha256": "b6e98b6259dadb5ce0ed40f1c340b151ee9bed1ca9e9b378db2c5c116768dfe9"
+    },
+    "secret-scan.json": {
+      "bytes": 1401,
+      "sha256": "1a552edf9dfa2225c6e8ead6e4258c1ee0963c174a8922713db8f929586e72c3"
+    },
+    "tamper-audit.json": {
+      "bytes": 1877,
+      "sha256": "7ca783fa096cb4a82b1747aa803b57c4963acc5ebbe7774c123e4f0f3e3f0c98"
+    }
+  },
+  "reason": "run.py _category/CATEGORY_LIMITS changed (R5 section 15 mapping); checkpoint fingerprint covers all package .py files",
+  "status": "R4_OUTPUTS_REGENERATED_AFTER_FINGERPRINT_CHANGE"
+}

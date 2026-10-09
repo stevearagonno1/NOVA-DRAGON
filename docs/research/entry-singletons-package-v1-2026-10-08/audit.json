@@ -1,0 +1,22 @@
+{
+  "barrier_checks": 83,
+  "causal_mask_comparisons": 13560,
+  "causal_prefix_checks": 60,
+  "checkpoint_checks": "checkpoint digest and staged-byte hashes verified",
+  "exceptions": [],
+  "independent_indicator_checks": 21,
+  "market_run": false,
+  "method": "separate gzip stream aggregation and scalar Wilson reconstruction",
+  "raw_alert_rows": 101438,
+  "rows_rebuilt": 4104,
+  "source_hashes": {
+    "code_sha256": "45b5fd9756e02aa66b6f91cff158c748928f32baf82e049ad2b794547266fc18",
+    "registry_sha256": "ce1bf74a63a04890b783be6eaee79743169340226eca1298bc4488bf7458f924",
+    "scope_sha256": "53f1377f67071b97283647f855b9fb2298cad5c278170564f30da85b4f58cd66",
+    "source_main": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+    "source_tools": "86304b62bf9c7d0914572e100892fac66f3f09dd"
+  },
+  "status": "PASS",
+  "synthetic": true,
+  "zero_rows": 1410
+}

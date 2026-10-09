@@ -1,0 +1,24 @@
+{
+  "checks": {
+    "barriers": "PASS",
+    "completed_resume": "PASS",
+    "indicator_boundaries": "PASS",
+    "interrupted_resume": "PASS",
+    "production_grid": "PASS",
+    "publisher_transport": "PASS",
+    "reader_and_buckets": "PASS",
+    "registry": "PASS",
+    "storage": {
+      "available_bytes": 88511976,
+      "r3_output_bytes": 2455232,
+      "status": "PASS",
+      "workspace_bytes": 36488024
+    },
+    "tamper_rejection": "PASS",
+    "time_units": "PASS"
+  },
+  "checks_passed": 11,
+  "market_run": false,
+  "status": "PASS",
+  "synthetic": true
+}

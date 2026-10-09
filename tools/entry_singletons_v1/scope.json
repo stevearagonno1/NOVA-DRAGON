@@ -1,0 +1,18 @@
+{
+  "schema_version": 1,
+  "package": "entry_singletons_v1",
+  "purpose": "Deterministic synthetic-only acceptance fixture for a fixed, single-indicator registry; not a market measurement.",
+  "assets": ["BTC", "ETH", "SOL"],
+  "states": ["BREAKOUT", "PULLBACK", "TURN"],
+  "timeframes": {"entry_minutes": 15, "context_minutes": 60, "context": "latest fully closed UTC hour at or before signal close"},
+  "future_market_window_not_executed": {"warmup_start_utc": "2026-06-01T00:00:00Z", "evaluation_start_utc": "2026-07-01T00:00:00Z", "evaluation_end_exclusive_utc": "2026-08-01T00:00:00Z", "august_validation": false},
+  "synthetic_fixture": {"generator": "singleton-fixture-sines-v2", "seed": 20261008, "start_utc": "2026-06-01T00:00:00Z", "days": 61, "minutes_per_asset": 87840, "assets": ["BTC", "ETH", "SOL"], "input_files_written": false},
+  "registry": {"indicator_families": 17, "unique_settings": 226, "candidate_cells": 2034, "horizons_hours": [24, 168], "candidate_summary_rows": 4068, "baseline_controls": ["STATE_EDGE", "STATE_DAILY"], "control_summary_rows": 36, "total_summary_rows": 4104, "zero_result_rows_preserved": true},
+  "signals": {"trigger": "eligibility false-to-true; eligibility is exclusive-state match AND one registered indicator boolean", "cooldown_seconds": 21600, "per_key": ["asset", "state", "setting_id"], "market_run": false},
+  "barriers": {"entry": "first minute open at the 15m signal close", "atr": "ATR14 of last fully completed hour at signal close", "24h": {"target_atr": 2, "stop_atr": -1}, "168h": {"target_atr": 4, "stop_atr": -2}, "same_minute_both": "adverse barrier first", "missing_horizon": "CENSORED", "fully_observed_no_hit": "FAIL", "labels_are_synthetic": true},
+  "state_definitions": {"priority": ["BREAKOUT", "PULLBACK", "TURN"], "overlap_behavior": "first matching label only", "classifier_correlation_disclosure": "PULLBACK uses hourly EMA context; TURN uses RSI14; neither is independent of those families."},
+  "source_commits": {"constitution_main": "6d0226a03b84656e14b94dd8a37e39332cc2f68f", "tools_results": "86304b62bf9c7d0914572e100892fac66f3f09dd", "r1_paper": "bf2aab5b4960598b4b274fd09cd6abacb058349c", "r3_assignment": "local private assignment; never publish"},
+  "hard_prohibitions": ["no market downloads or transformation", "no market evaluation or performance claims", "no August signal masks or results", "no multi-indicator combinations", "no tuning or unbounded search", "no protected engine or bot modifications"],
+  "synthetic": true,
+  "market_run": false
+}

@@ -1,0 +1,168 @@
+{
+  "algorithm": "SHA-256 for local files; Git blob object IDs for pinned remote references",
+  "market_run": false,
+  "network_counts": {
+    "candidate_cells": 2034,
+    "candidate_rows": 4068,
+    "control_rows": 36,
+    "settings": 226,
+    "total_rows": 4104
+  },
+  "package_files": {
+    "README.md": {
+      "bytes": 1517,
+      "sha256": "a3c24b0625be5e991fd13fb980496fb19b167e020127a7daf6c591feff13d10b"
+    },
+    "__init__.py": {
+      "bytes": 93,
+      "sha256": "d65025991bb0c6cc5313ca6f0f5e014488cdbb0f65780221ec29203201f7f9ba"
+    },
+    "audit.py": {
+      "bytes": 11054,
+      "sha256": "51f730881351236260ec2e930f5c6e6eec5129bb6093249acf59ab2806178c13"
+    },
+    "classify.py": {
+      "bytes": 4471,
+      "sha256": "fad5f77d8a479d1603854db5d691bd1329d88db9929600a8fcddf5f28ec03838"
+    },
+    "evaluate.py": {
+      "bytes": 7667,
+      "sha256": "263cbd8027ef5f4161f2dad97152fda70e1f744e8f79eb4b4e3ed33f2dcb1416"
+    },
+    "fixture_generator.py": {
+      "bytes": 1788,
+      "sha256": "90d3798ab1d5b4e20506094e7e0ae5dcd8af4cf33fd3bb6e639971ae95c9d890"
+    },
+    "gate.py": {
+      "bytes": 9028,
+      "sha256": "89525643a791dc0d906d1deb3ca6c77bdbdcd71357c9120fc3cb6c3dc29a2bbf"
+    },
+    "indicators.py": {
+      "bytes": 8986,
+      "sha256": "61a4f46a02e524a9b3c8614ade36934475cbcbc5542423194a121180b2979b56"
+    },
+    "publish.py": {
+      "bytes": 23297,
+      "sha256": "89bdda953880ba264b413062c882c9d237c516a0ccb868ec5bfa243da90b5627"
+    },
+    "publish_r5.py": {
+      "bytes": 10778,
+      "sha256": "1c6bd462fe3b6334cbf9528c9b1bf5070aab46a42f25757c4c66c5c5e177dff8"
+    },
+    "register.py": {
+      "bytes": 2815,
+      "sha256": "6b4a736eed5526863833182afce2c946565f54531ed8ef206df6cdfcac42e552"
+    },
+    "registry.json": {
+      "bytes": 44703,
+      "sha256": "ce1bf74a63a04890b783be6eaee79743169340226eca1298bc4488bf7458f924"
+    },
+    "report.py": {
+      "bytes": 2219,
+      "sha256": "e593e1bc1ebe5e90d53eeb312e33c1ffb61e56a0877232444ea9afbd300bba13"
+    },
+    "run.py": {
+      "bytes": 17229,
+      "sha256": "f4be0f7c4004eebe9bccb348fde15f050c3b0a2221d570e9280595f064deaf8a"
+    },
+    "scope.json": {
+      "bytes": 2543,
+      "sha256": "53f1377f67071b97283647f855b9fb2298cad5c278170564f30da85b4f58cd66"
+    },
+    "tests.py": {
+      "bytes": 10508,
+      "sha256": "ff5ee12f97d8d7185f3b36012c63ca24c92b890f33979fb07527b0a5ad7f7e41"
+    }
+  },
+  "self_hash_excluded": [
+    "checksums.json"
+  ],
+  "source_commits": {
+    "main": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+    "r1_paper": "bf2aab5b4960598b4b274fd09cd6abacb058349c",
+    "tools_results": "86304b62bf9c7d0914572e100892fac66f3f09dd"
+  },
+  "source_files": {
+    "CONSTITUTION.md": {
+      "commit": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+      "git_blob_sha": "c692b47f33d5b0bffb363011152b7af19af56090"
+    },
+    "LOG.md": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "926999a0b36ae29512b05a446236b9cc1134adc3"
+    },
+    "docs/DECISIONS.md": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "d9da323f9fabc04e8fdd369b7b51371fc53bf19e"
+    },
+    "docs/HANDOFF.md": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "24df8b7a4db6fd9d85d196fd32f643adca9b5f95"
+    },
+    "docs/journal/2026-10-08-saved-sources-alert-review/001-reading.md": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "900dc4dbe9cd1d4fbaf54094d7508a7cf7962a57"
+    },
+    "docs/journal/2026-10-08-saved-sources-alert-review/002-deeper-reading.md": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "5b1e8abf05bdf5ae543271577dcdd7b0ce76e245"
+    },
+    "docs/journal/2026-10-08-saved-sources-alert-review/003-rise-wave-design.md": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "24cc2e1d29e0a10dfc0e2223ace4f96d3f4c27b5"
+    },
+    "docs/journal/2026-10-08-saved-sources-alert-review/004-wave-pilot-prepared.md": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "f044566d458a5d9be64736345a47c35aedec6c5b"
+    },
+    "docs/journal/2026-10-08-saved-sources-alert-review/005-wave-pilot-complete.md": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "4d138b3815ef9adaf28b6adb718aada542c2324c"
+    },
+    "docs/journal/2026-10-08-saved-sources-alert-review/006-percoin-state-discovery.md": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "4277215018aba6076e7743123071db79fa2cb274"
+    },
+    "docs/research/entry-singletons-package-v1-2026-10-08/PAPER-REDACTED.md": {
+      "commit": "bf2aab5b4960598b4b274fd09cd6abacb058349c",
+      "git_blob_sha": "f6ae52e9471bf30e626f81736feb6d6a6b2e7337"
+    },
+    "docs/research/percoin-state-discovery-2026-10-08/REPORT.md": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "f609737491dd7b2dd66f408a769363afa5dedc96"
+    },
+    "docs/research/percoin-state-discovery-2026-10-08/audit.json": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "0a1bd11b43145eb282bc38d78f60df9e0965fd2b"
+    },
+    "docs/research/percoin-state-discovery-2026-10-08/independent-audit.json": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "c2aefa00b39c0922b456d7480ec3bf12db2007aa"
+    },
+    "docs/research/percoin-state-discovery-2026-10-08/scope.json": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "eb6ecacc19285db47f91fe142a56f0d2dbb432d2"
+    },
+    "docs/research/percoin-state-discovery-2026-10-08/selection.json": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "9a84751d38cb97407775bedef49217d437b57175"
+    },
+    "docs/research/percoin-state-discovery-2026-10-08/sources.json": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "e7eed8f6ac1b7c2d3320dd12a39cc4630b431e83"
+    },
+    "docs/research/saved-sources-alert-review-2026-10-08/DEEP-READING-ADDENDUM.md": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "f37a81e0a67ac4f938b888eded7c251973c25ea5"
+    },
+    "tools/percoin_states/math_core.py": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "8bb78985c34f92c073eaca588b55e2f393fc01d9"
+    },
+    "tools/percoin_states/pilot.py": {
+      "commit": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+      "git_blob_sha": "ea96a0727482bf1f3e50f19530568b0e96988573"
+    }
+  },
+  "synthetic_only": true
+}

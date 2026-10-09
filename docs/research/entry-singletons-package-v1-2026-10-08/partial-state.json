@@ -1,0 +1,59 @@
+{
+  "alert_horizon_rows": 101438,
+  "archive_draft": {
+    "bytes": 1240865,
+    "created_in_memory_only": true,
+    "final_evidence_zip": false,
+    "sha256": "2fb83e7588691fa11b14c264406b8a7c505c8d06308d3d26420b33442f510add",
+    "uploaded": false
+  },
+  "candidate_cells": 2034,
+  "market_run": false,
+  "old_r2_runtime_blocker_superseded_by_r3": true,
+  "publisher_error": "ValueError: token-like string found in publication payload tools/entry_singletons_v1/publish.py",
+  "reason": "publisher credential guard false-positive in its own source; archive builder lacks explicit checkpoint/resume/tamper entries",
+  "remote_activity": {
+    "branch_head_checked": false,
+    "immutable_readback": false,
+    "main_pr_merge_changes": false,
+    "read_only_gets": 2,
+    "write_requests": 0
+  },
+  "runtime": {
+    "executable": "/usr/local/bin/python3",
+    "implementation": "CPython",
+    "modules": [
+      "argparse",
+      "array",
+      "base64",
+      "csv",
+      "datetime",
+      "gzip",
+      "hashlib",
+      "io",
+      "json",
+      "math",
+      "os",
+      "pathlib",
+      "statistics",
+      "struct",
+      "tarfile",
+      "time",
+      "urllib.request",
+      "zipfile",
+      "zlib"
+    ],
+    "runtime_allowed_by_r3": true,
+    "stdlib_imports": "PASS",
+    "version": "3.13.16 (main, Oct  6 2026, 04:38:44) [GCC 14.2.0]"
+  },
+  "settings": 226,
+  "status": "BLOCKED_BEFORE_REMOTE_WRITE",
+  "summary_rows": 4104,
+  "synthetic_checks_passed": 11,
+  "synthetic_run_status": "COMPLETE",
+  "synthetic_tests_status": "PASS",
+  "task_output_bytes_at_record": 3309106,
+  "workspace_bytes_at_record": 37341898,
+  "zero_rows_preserved": 1410
+}

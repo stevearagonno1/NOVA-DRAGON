@@ -1,0 +1,62 @@
+{
+  "cases": [
+    {
+      "case": "raw_alerts_digest_altered",
+      "continued": false,
+      "element": "raw",
+      "error": "ValueError: resume rejected: staged raw bytes changed",
+      "expected_fragment": "staged raw bytes changed",
+      "remote_write_calls": 0,
+      "result": "rejected",
+      "status": "PASS"
+    },
+    {
+      "case": "raw_mask_size_altered",
+      "continued": false,
+      "element": "raw",
+      "error": "ValueError: resume rejected: staged raw bytes changed",
+      "expected_fragment": "staged raw bytes changed",
+      "remote_write_calls": 0,
+      "result": "rejected",
+      "status": "PASS"
+    },
+    {
+      "case": "scope_fingerprint_altered",
+      "continued": false,
+      "element": "scope",
+      "error": "ValueError: resume rejected: run-id/code/scope/registry/source fingerprint changed",
+      "expected_fragment": "fingerprint changed",
+      "remote_write_calls": 0,
+      "result": "rejected",
+      "status": "PASS"
+    },
+    {
+      "case": "code_fingerprint_altered",
+      "continued": false,
+      "element": "code",
+      "error": "ValueError: resume rejected: run-id/code/scope/registry/source fingerprint changed",
+      "expected_fragment": "fingerprint changed",
+      "remote_write_calls": 0,
+      "result": "rejected",
+      "status": "PASS"
+    },
+    {
+      "case": "checkpoint_envelope_digest_altered",
+      "continued": false,
+      "element": "checkpoint",
+      "error": "ValueError: checkpoint envelope digest mismatch",
+      "expected_fragment": "checkpoint envelope digest",
+      "remote_write_calls": 0,
+      "result": "rejected",
+      "status": "PASS"
+    }
+  ],
+  "cases_rejected": 5,
+  "cases_total": 5,
+  "market_run": false,
+  "positive_control_unmodified_accepted": true,
+  "remote_write_calls_total": 0,
+  "status": "PASS",
+  "synthetic": true,
+  "working_source_modified": false
+}

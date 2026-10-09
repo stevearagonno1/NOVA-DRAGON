@@ -1,0 +1,2096 @@
+[
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 7,
+      "t": 20
+    },
+    "setting_id": "RSI_LEVEL__n-7__t-20",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 7,
+      "t": 30
+    },
+    "setting_id": "RSI_LEVEL__n-7__t-30",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 7,
+      "t": 40
+    },
+    "setting_id": "RSI_LEVEL__n-7__t-40",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 7,
+      "t": 50
+    },
+    "setting_id": "RSI_LEVEL__n-7__t-50",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 7,
+      "t": 60
+    },
+    "setting_id": "RSI_LEVEL__n-7__t-60",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 14,
+      "t": 20
+    },
+    "setting_id": "RSI_LEVEL__n-14__t-20",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 14,
+      "t": 30
+    },
+    "setting_id": "RSI_LEVEL__n-14__t-30",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 14,
+      "t": 40
+    },
+    "setting_id": "RSI_LEVEL__n-14__t-40",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 14,
+      "t": 50
+    },
+    "setting_id": "RSI_LEVEL__n-14__t-50",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 14,
+      "t": 60
+    },
+    "setting_id": "RSI_LEVEL__n-14__t-60",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 21,
+      "t": 20
+    },
+    "setting_id": "RSI_LEVEL__n-21__t-20",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 21,
+      "t": 30
+    },
+    "setting_id": "RSI_LEVEL__n-21__t-30",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 21,
+      "t": 40
+    },
+    "setting_id": "RSI_LEVEL__n-21__t-40",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 21,
+      "t": 50
+    },
+    "setting_id": "RSI_LEVEL__n-21__t-50",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 21,
+      "t": 60
+    },
+    "setting_id": "RSI_LEVEL__n-21__t-60",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 28,
+      "t": 20
+    },
+    "setting_id": "RSI_LEVEL__n-28__t-20",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 28,
+      "t": 30
+    },
+    "setting_id": "RSI_LEVEL__n-28__t-30",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 28,
+      "t": 40
+    },
+    "setting_id": "RSI_LEVEL__n-28__t-40",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 28,
+      "t": 50
+    },
+    "setting_id": "RSI_LEVEL__n-28__t-50",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "RSI_LEVEL",
+    "params": {
+      "n": 28,
+      "t": 60
+    },
+    "setting_id": "RSI_LEVEL__n-28__t-60",
+    "signal_definition": "CrossingLevel(RSI(n),t)"
+  },
+  {
+    "family": "STOCH_LEVEL",
+    "params": {
+      "n": 7,
+      "t": 20
+    },
+    "setting_id": "STOCH_LEVEL__n-7__t-20",
+    "signal_definition": "CrossingLevel(K(n),t)"
+  },
+  {
+    "family": "STOCH_LEVEL",
+    "params": {
+      "n": 7,
+      "t": 30
+    },
+    "setting_id": "STOCH_LEVEL__n-7__t-30",
+    "signal_definition": "CrossingLevel(K(n),t)"
+  },
+  {
+    "family": "STOCH_LEVEL",
+    "params": {
+      "n": 7,
+      "t": 50
+    },
+    "setting_id": "STOCH_LEVEL__n-7__t-50",
+    "signal_definition": "CrossingLevel(K(n),t)"
+  },
+  {
+    "family": "STOCH_LEVEL",
+    "params": {
+      "n": 14,
+      "t": 20
+    },
+    "setting_id": "STOCH_LEVEL__n-14__t-20",
+    "signal_definition": "CrossingLevel(K(n),t)"
+  },
+  {
+    "family": "STOCH_LEVEL",
+    "params": {
+      "n": 14,
+      "t": 30
+    },
+    "setting_id": "STOCH_LEVEL__n-14__t-30",
+    "signal_definition": "CrossingLevel(K(n),t)"
+  },
+  {
+    "family": "STOCH_LEVEL",
+    "params": {
+      "n": 14,
+      "t": 50
+    },
+    "setting_id": "STOCH_LEVEL__n-14__t-50",
+    "signal_definition": "CrossingLevel(K(n),t)"
+  },
+  {
+    "family": "STOCH_LEVEL",
+    "params": {
+      "n": 21,
+      "t": 20
+    },
+    "setting_id": "STOCH_LEVEL__n-21__t-20",
+    "signal_definition": "CrossingLevel(K(n),t)"
+  },
+  {
+    "family": "STOCH_LEVEL",
+    "params": {
+      "n": 21,
+      "t": 30
+    },
+    "setting_id": "STOCH_LEVEL__n-21__t-30",
+    "signal_definition": "CrossingLevel(K(n),t)"
+  },
+  {
+    "family": "STOCH_LEVEL",
+    "params": {
+      "n": 21,
+      "t": 50
+    },
+    "setting_id": "STOCH_LEVEL__n-21__t-50",
+    "signal_definition": "CrossingLevel(K(n),t)"
+  },
+  {
+    "family": "STOCH_LEVEL",
+    "params": {
+      "n": 28,
+      "t": 20
+    },
+    "setting_id": "STOCH_LEVEL__n-28__t-20",
+    "signal_definition": "CrossingLevel(K(n),t)"
+  },
+  {
+    "family": "STOCH_LEVEL",
+    "params": {
+      "n": 28,
+      "t": 30
+    },
+    "setting_id": "STOCH_LEVEL__n-28__t-30",
+    "signal_definition": "CrossingLevel(K(n),t)"
+  },
+  {
+    "family": "STOCH_LEVEL",
+    "params": {
+      "n": 28,
+      "t": 50
+    },
+    "setting_id": "STOCH_LEVEL__n-28__t-50",
+    "signal_definition": "CrossingLevel(K(n),t)"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 3,
+      "n": 7,
+      "t": 20
+    },
+    "setting_id": "STOCH_KD__n-7__d-3__t-20",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 3,
+      "n": 7,
+      "t": 30
+    },
+    "setting_id": "STOCH_KD__n-7__d-3__t-30",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 3,
+      "n": 7,
+      "t": 50
+    },
+    "setting_id": "STOCH_KD__n-7__d-3__t-50",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 5,
+      "n": 7,
+      "t": 20
+    },
+    "setting_id": "STOCH_KD__n-7__d-5__t-20",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 5,
+      "n": 7,
+      "t": 30
+    },
+    "setting_id": "STOCH_KD__n-7__d-5__t-30",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 5,
+      "n": 7,
+      "t": 50
+    },
+    "setting_id": "STOCH_KD__n-7__d-5__t-50",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 9,
+      "n": 7,
+      "t": 20
+    },
+    "setting_id": "STOCH_KD__n-7__d-9__t-20",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 9,
+      "n": 7,
+      "t": 30
+    },
+    "setting_id": "STOCH_KD__n-7__d-9__t-30",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 9,
+      "n": 7,
+      "t": 50
+    },
+    "setting_id": "STOCH_KD__n-7__d-9__t-50",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 3,
+      "n": 14,
+      "t": 20
+    },
+    "setting_id": "STOCH_KD__n-14__d-3__t-20",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 3,
+      "n": 14,
+      "t": 30
+    },
+    "setting_id": "STOCH_KD__n-14__d-3__t-30",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 3,
+      "n": 14,
+      "t": 50
+    },
+    "setting_id": "STOCH_KD__n-14__d-3__t-50",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 5,
+      "n": 14,
+      "t": 20
+    },
+    "setting_id": "STOCH_KD__n-14__d-5__t-20",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 5,
+      "n": 14,
+      "t": 30
+    },
+    "setting_id": "STOCH_KD__n-14__d-5__t-30",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 5,
+      "n": 14,
+      "t": 50
+    },
+    "setting_id": "STOCH_KD__n-14__d-5__t-50",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 9,
+      "n": 14,
+      "t": 20
+    },
+    "setting_id": "STOCH_KD__n-14__d-9__t-20",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 9,
+      "n": 14,
+      "t": 30
+    },
+    "setting_id": "STOCH_KD__n-14__d-9__t-30",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 9,
+      "n": 14,
+      "t": 50
+    },
+    "setting_id": "STOCH_KD__n-14__d-9__t-50",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 3,
+      "n": 21,
+      "t": 20
+    },
+    "setting_id": "STOCH_KD__n-21__d-3__t-20",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 3,
+      "n": 21,
+      "t": 30
+    },
+    "setting_id": "STOCH_KD__n-21__d-3__t-30",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 3,
+      "n": 21,
+      "t": 50
+    },
+    "setting_id": "STOCH_KD__n-21__d-3__t-50",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 5,
+      "n": 21,
+      "t": 20
+    },
+    "setting_id": "STOCH_KD__n-21__d-5__t-20",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 5,
+      "n": 21,
+      "t": 30
+    },
+    "setting_id": "STOCH_KD__n-21__d-5__t-30",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 5,
+      "n": 21,
+      "t": 50
+    },
+    "setting_id": "STOCH_KD__n-21__d-5__t-50",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 9,
+      "n": 21,
+      "t": 20
+    },
+    "setting_id": "STOCH_KD__n-21__d-9__t-20",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 9,
+      "n": 21,
+      "t": 30
+    },
+    "setting_id": "STOCH_KD__n-21__d-9__t-30",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 9,
+      "n": 21,
+      "t": 50
+    },
+    "setting_id": "STOCH_KD__n-21__d-9__t-50",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 3,
+      "n": 28,
+      "t": 20
+    },
+    "setting_id": "STOCH_KD__n-28__d-3__t-20",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 3,
+      "n": 28,
+      "t": 30
+    },
+    "setting_id": "STOCH_KD__n-28__d-3__t-30",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 3,
+      "n": 28,
+      "t": 50
+    },
+    "setting_id": "STOCH_KD__n-28__d-3__t-50",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 5,
+      "n": 28,
+      "t": 20
+    },
+    "setting_id": "STOCH_KD__n-28__d-5__t-20",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 5,
+      "n": 28,
+      "t": 30
+    },
+    "setting_id": "STOCH_KD__n-28__d-5__t-30",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 5,
+      "n": 28,
+      "t": 50
+    },
+    "setting_id": "STOCH_KD__n-28__d-5__t-50",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 9,
+      "n": 28,
+      "t": 20
+    },
+    "setting_id": "STOCH_KD__n-28__d-9__t-20",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 9,
+      "n": 28,
+      "t": 30
+    },
+    "setting_id": "STOCH_KD__n-28__d-9__t-30",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "STOCH_KD",
+    "params": {
+      "d": 9,
+      "n": 28,
+      "t": 50
+    },
+    "setting_id": "STOCH_KD__n-28__d-9__t-50",
+    "signal_definition": "CrossUp(K(n),SMA(K,d)) and K<=t"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 7,
+      "t": -200
+    },
+    "setting_id": "CCI_LEVEL__n-7__t--200",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 7,
+      "t": -150
+    },
+    "setting_id": "CCI_LEVEL__n-7__t--150",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 7,
+      "t": -100
+    },
+    "setting_id": "CCI_LEVEL__n-7__t--100",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 7,
+      "t": 0
+    },
+    "setting_id": "CCI_LEVEL__n-7__t-0",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 14,
+      "t": -200
+    },
+    "setting_id": "CCI_LEVEL__n-14__t--200",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 14,
+      "t": -150
+    },
+    "setting_id": "CCI_LEVEL__n-14__t--150",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 14,
+      "t": -100
+    },
+    "setting_id": "CCI_LEVEL__n-14__t--100",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 14,
+      "t": 0
+    },
+    "setting_id": "CCI_LEVEL__n-14__t-0",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 21,
+      "t": -200
+    },
+    "setting_id": "CCI_LEVEL__n-21__t--200",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 21,
+      "t": -150
+    },
+    "setting_id": "CCI_LEVEL__n-21__t--150",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 21,
+      "t": -100
+    },
+    "setting_id": "CCI_LEVEL__n-21__t--100",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 21,
+      "t": 0
+    },
+    "setting_id": "CCI_LEVEL__n-21__t-0",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 28,
+      "t": -200
+    },
+    "setting_id": "CCI_LEVEL__n-28__t--200",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 28,
+      "t": -150
+    },
+    "setting_id": "CCI_LEVEL__n-28__t--150",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 28,
+      "t": -100
+    },
+    "setting_id": "CCI_LEVEL__n-28__t--100",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "CCI_LEVEL",
+    "params": {
+      "n": 28,
+      "t": 0
+    },
+    "setting_id": "CCI_LEVEL__n-28__t-0",
+    "signal_definition": "CrossingLevel(CCI(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 7,
+      "t": -90
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-7__t--90",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 7,
+      "t": -80
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-7__t--80",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 7,
+      "t": -60
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-7__t--60",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 7,
+      "t": -50
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-7__t--50",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 14,
+      "t": -90
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-14__t--90",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 14,
+      "t": -80
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-14__t--80",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 14,
+      "t": -60
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-14__t--60",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 14,
+      "t": -50
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-14__t--50",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 21,
+      "t": -90
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-21__t--90",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 21,
+      "t": -80
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-21__t--80",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 21,
+      "t": -60
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-21__t--60",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 21,
+      "t": -50
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-21__t--50",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 28,
+      "t": -90
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-28__t--90",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 28,
+      "t": -80
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-28__t--80",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 28,
+      "t": -60
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-28__t--60",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "WILLIAMS_LEVEL",
+    "params": {
+      "n": 28,
+      "t": -50
+    },
+    "setting_id": "WILLIAMS_LEVEL__n-28__t--50",
+    "signal_definition": "CrossingLevel(WilliamsR(n),t)"
+  },
+  {
+    "family": "MFI_LEVEL",
+    "params": {
+      "n": 7,
+      "t": 20
+    },
+    "setting_id": "MFI_LEVEL__n-7__t-20",
+    "signal_definition": "CrossingLevel(MFI(n),t)"
+  },
+  {
+    "family": "MFI_LEVEL",
+    "params": {
+      "n": 7,
+      "t": 30
+    },
+    "setting_id": "MFI_LEVEL__n-7__t-30",
+    "signal_definition": "CrossingLevel(MFI(n),t)"
+  },
+  {
+    "family": "MFI_LEVEL",
+    "params": {
+      "n": 7,
+      "t": 50
+    },
+    "setting_id": "MFI_LEVEL__n-7__t-50",
+    "signal_definition": "CrossingLevel(MFI(n),t)"
+  },
+  {
+    "family": "MFI_LEVEL",
+    "params": {
+      "n": 14,
+      "t": 20
+    },
+    "setting_id": "MFI_LEVEL__n-14__t-20",
+    "signal_definition": "CrossingLevel(MFI(n),t)"
+  },
+  {
+    "family": "MFI_LEVEL",
+    "params": {
+      "n": 14,
+      "t": 30
+    },
+    "setting_id": "MFI_LEVEL__n-14__t-30",
+    "signal_definition": "CrossingLevel(MFI(n),t)"
+  },
+  {
+    "family": "MFI_LEVEL",
+    "params": {
+      "n": 14,
+      "t": 50
+    },
+    "setting_id": "MFI_LEVEL__n-14__t-50",
+    "signal_definition": "CrossingLevel(MFI(n),t)"
+  },
+  {
+    "family": "MFI_LEVEL",
+    "params": {
+      "n": 21,
+      "t": 20
+    },
+    "setting_id": "MFI_LEVEL__n-21__t-20",
+    "signal_definition": "CrossingLevel(MFI(n),t)"
+  },
+  {
+    "family": "MFI_LEVEL",
+    "params": {
+      "n": 21,
+      "t": 30
+    },
+    "setting_id": "MFI_LEVEL__n-21__t-30",
+    "signal_definition": "CrossingLevel(MFI(n),t)"
+  },
+  {
+    "family": "MFI_LEVEL",
+    "params": {
+      "n": 21,
+      "t": 50
+    },
+    "setting_id": "MFI_LEVEL__n-21__t-50",
+    "signal_definition": "CrossingLevel(MFI(n),t)"
+  },
+  {
+    "family": "MFI_LEVEL",
+    "params": {
+      "n": 28,
+      "t": 20
+    },
+    "setting_id": "MFI_LEVEL__n-28__t-20",
+    "signal_definition": "CrossingLevel(MFI(n),t)"
+  },
+  {
+    "family": "MFI_LEVEL",
+    "params": {
+      "n": 28,
+      "t": 30
+    },
+    "setting_id": "MFI_LEVEL__n-28__t-30",
+    "signal_definition": "CrossingLevel(MFI(n),t)"
+  },
+  {
+    "family": "MFI_LEVEL",
+    "params": {
+      "n": 28,
+      "t": 50
+    },
+    "setting_id": "MFI_LEVEL__n-28__t-50",
+    "signal_definition": "CrossingLevel(MFI(n),t)"
+  },
+  {
+    "family": "CMF_LEVEL",
+    "params": {
+      "n": 10,
+      "t": 0
+    },
+    "setting_id": "CMF_LEVEL__n-10__t-0",
+    "signal_definition": "CrossingLevel(CMF(n),t)"
+  },
+  {
+    "family": "CMF_LEVEL",
+    "params": {
+      "n": 10,
+      "t": 0.05
+    },
+    "setting_id": "CMF_LEVEL__n-10__t-0.05",
+    "signal_definition": "CrossingLevel(CMF(n),t)"
+  },
+  {
+    "family": "CMF_LEVEL",
+    "params": {
+      "n": 10,
+      "t": 0.1
+    },
+    "setting_id": "CMF_LEVEL__n-10__t-0.1",
+    "signal_definition": "CrossingLevel(CMF(n),t)"
+  },
+  {
+    "family": "CMF_LEVEL",
+    "params": {
+      "n": 20,
+      "t": 0
+    },
+    "setting_id": "CMF_LEVEL__n-20__t-0",
+    "signal_definition": "CrossingLevel(CMF(n),t)"
+  },
+  {
+    "family": "CMF_LEVEL",
+    "params": {
+      "n": 20,
+      "t": 0.05
+    },
+    "setting_id": "CMF_LEVEL__n-20__t-0.05",
+    "signal_definition": "CrossingLevel(CMF(n),t)"
+  },
+  {
+    "family": "CMF_LEVEL",
+    "params": {
+      "n": 20,
+      "t": 0.1
+    },
+    "setting_id": "CMF_LEVEL__n-20__t-0.1",
+    "signal_definition": "CrossingLevel(CMF(n),t)"
+  },
+  {
+    "family": "CMF_LEVEL",
+    "params": {
+      "n": 40,
+      "t": 0
+    },
+    "setting_id": "CMF_LEVEL__n-40__t-0",
+    "signal_definition": "CrossingLevel(CMF(n),t)"
+  },
+  {
+    "family": "CMF_LEVEL",
+    "params": {
+      "n": 40,
+      "t": 0.05
+    },
+    "setting_id": "CMF_LEVEL__n-40__t-0.05",
+    "signal_definition": "CrossingLevel(CMF(n),t)"
+  },
+  {
+    "family": "CMF_LEVEL",
+    "params": {
+      "n": 40,
+      "t": 0.1
+    },
+    "setting_id": "CMF_LEVEL__n-40__t-0.1",
+    "signal_definition": "CrossingLevel(CMF(n),t)"
+  },
+  {
+    "family": "PRICE_EMA",
+    "params": {
+      "n": 5
+    },
+    "setting_id": "PRICE_EMA__n-5",
+    "signal_definition": "CrossUp(C,EMA(n))"
+  },
+  {
+    "family": "PRICE_EMA",
+    "params": {
+      "n": 10
+    },
+    "setting_id": "PRICE_EMA__n-10",
+    "signal_definition": "CrossUp(C,EMA(n))"
+  },
+  {
+    "family": "PRICE_EMA",
+    "params": {
+      "n": 20
+    },
+    "setting_id": "PRICE_EMA__n-20",
+    "signal_definition": "CrossUp(C,EMA(n))"
+  },
+  {
+    "family": "PRICE_EMA",
+    "params": {
+      "n": 30
+    },
+    "setting_id": "PRICE_EMA__n-30",
+    "signal_definition": "CrossUp(C,EMA(n))"
+  },
+  {
+    "family": "PRICE_EMA",
+    "params": {
+      "n": 50
+    },
+    "setting_id": "PRICE_EMA__n-50",
+    "signal_definition": "CrossUp(C,EMA(n))"
+  },
+  {
+    "family": "EMA_CROSS",
+    "params": {
+      "fast": 5,
+      "slow": 20
+    },
+    "setting_id": "EMA_CROSS__fast-5__slow-20",
+    "signal_definition": "CrossUp(EMA(fast),EMA(slow))"
+  },
+  {
+    "family": "EMA_CROSS",
+    "params": {
+      "fast": 5,
+      "slow": 30
+    },
+    "setting_id": "EMA_CROSS__fast-5__slow-30",
+    "signal_definition": "CrossUp(EMA(fast),EMA(slow))"
+  },
+  {
+    "family": "EMA_CROSS",
+    "params": {
+      "fast": 5,
+      "slow": 50
+    },
+    "setting_id": "EMA_CROSS__fast-5__slow-50",
+    "signal_definition": "CrossUp(EMA(fast),EMA(slow))"
+  },
+  {
+    "family": "EMA_CROSS",
+    "params": {
+      "fast": 5,
+      "slow": 100
+    },
+    "setting_id": "EMA_CROSS__fast-5__slow-100",
+    "signal_definition": "CrossUp(EMA(fast),EMA(slow))"
+  },
+  {
+    "family": "EMA_CROSS",
+    "params": {
+      "fast": 10,
+      "slow": 20
+    },
+    "setting_id": "EMA_CROSS__fast-10__slow-20",
+    "signal_definition": "CrossUp(EMA(fast),EMA(slow))"
+  },
+  {
+    "family": "EMA_CROSS",
+    "params": {
+      "fast": 10,
+      "slow": 30
+    },
+    "setting_id": "EMA_CROSS__fast-10__slow-30",
+    "signal_definition": "CrossUp(EMA(fast),EMA(slow))"
+  },
+  {
+    "family": "EMA_CROSS",
+    "params": {
+      "fast": 10,
+      "slow": 50
+    },
+    "setting_id": "EMA_CROSS__fast-10__slow-50",
+    "signal_definition": "CrossUp(EMA(fast),EMA(slow))"
+  },
+  {
+    "family": "EMA_CROSS",
+    "params": {
+      "fast": 10,
+      "slow": 100
+    },
+    "setting_id": "EMA_CROSS__fast-10__slow-100",
+    "signal_definition": "CrossUp(EMA(fast),EMA(slow))"
+  },
+  {
+    "family": "EMA_CROSS",
+    "params": {
+      "fast": 20,
+      "slow": 30
+    },
+    "setting_id": "EMA_CROSS__fast-20__slow-30",
+    "signal_definition": "CrossUp(EMA(fast),EMA(slow))"
+  },
+  {
+    "family": "EMA_CROSS",
+    "params": {
+      "fast": 20,
+      "slow": 50
+    },
+    "setting_id": "EMA_CROSS__fast-20__slow-50",
+    "signal_definition": "CrossUp(EMA(fast),EMA(slow))"
+  },
+  {
+    "family": "EMA_CROSS",
+    "params": {
+      "fast": 20,
+      "slow": 100
+    },
+    "setting_id": "EMA_CROSS__fast-20__slow-100",
+    "signal_definition": "CrossUp(EMA(fast),EMA(slow))"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 5,
+      "signal": 5,
+      "slow": 17
+    },
+    "setting_id": "MACD_CROSS__fast-5__slow-17__signal-5",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 5,
+      "signal": 9,
+      "slow": 17
+    },
+    "setting_id": "MACD_CROSS__fast-5__slow-17__signal-9",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 5,
+      "signal": 5,
+      "slow": 26
+    },
+    "setting_id": "MACD_CROSS__fast-5__slow-26__signal-5",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 5,
+      "signal": 9,
+      "slow": 26
+    },
+    "setting_id": "MACD_CROSS__fast-5__slow-26__signal-9",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 5,
+      "signal": 5,
+      "slow": 35
+    },
+    "setting_id": "MACD_CROSS__fast-5__slow-35__signal-5",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 5,
+      "signal": 9,
+      "slow": 35
+    },
+    "setting_id": "MACD_CROSS__fast-5__slow-35__signal-9",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 8,
+      "signal": 5,
+      "slow": 17
+    },
+    "setting_id": "MACD_CROSS__fast-8__slow-17__signal-5",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 8,
+      "signal": 9,
+      "slow": 17
+    },
+    "setting_id": "MACD_CROSS__fast-8__slow-17__signal-9",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 8,
+      "signal": 5,
+      "slow": 26
+    },
+    "setting_id": "MACD_CROSS__fast-8__slow-26__signal-5",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 8,
+      "signal": 9,
+      "slow": 26
+    },
+    "setting_id": "MACD_CROSS__fast-8__slow-26__signal-9",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 8,
+      "signal": 5,
+      "slow": 35
+    },
+    "setting_id": "MACD_CROSS__fast-8__slow-35__signal-5",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 8,
+      "signal": 9,
+      "slow": 35
+    },
+    "setting_id": "MACD_CROSS__fast-8__slow-35__signal-9",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 12,
+      "signal": 5,
+      "slow": 17
+    },
+    "setting_id": "MACD_CROSS__fast-12__slow-17__signal-5",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 12,
+      "signal": 9,
+      "slow": 17
+    },
+    "setting_id": "MACD_CROSS__fast-12__slow-17__signal-9",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 12,
+      "signal": 5,
+      "slow": 26
+    },
+    "setting_id": "MACD_CROSS__fast-12__slow-26__signal-5",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 12,
+      "signal": 9,
+      "slow": 26
+    },
+    "setting_id": "MACD_CROSS__fast-12__slow-26__signal-9",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 12,
+      "signal": 5,
+      "slow": 35
+    },
+    "setting_id": "MACD_CROSS__fast-12__slow-35__signal-5",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "MACD_CROSS",
+    "params": {
+      "fast": 12,
+      "signal": 9,
+      "slow": 35
+    },
+    "setting_id": "MACD_CROSS__fast-12__slow-35__signal-9",
+    "signal_definition": "CrossUp(MACD_line,signal_line)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 1.5,
+      "mode": "LOWER",
+      "n": 10
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-10__k-1.5__mode-LOWER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 1.5,
+      "mode": "UPPER",
+      "n": 10
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-10__k-1.5__mode-UPPER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 2,
+      "mode": "LOWER",
+      "n": 10
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-10__k-2__mode-LOWER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 2,
+      "mode": "UPPER",
+      "n": 10
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-10__k-2__mode-UPPER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 2.5,
+      "mode": "LOWER",
+      "n": 10
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-10__k-2.5__mode-LOWER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 2.5,
+      "mode": "UPPER",
+      "n": 10
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-10__k-2.5__mode-UPPER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 1.5,
+      "mode": "LOWER",
+      "n": 20
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-20__k-1.5__mode-LOWER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 1.5,
+      "mode": "UPPER",
+      "n": 20
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-20__k-1.5__mode-UPPER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 2,
+      "mode": "LOWER",
+      "n": 20
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-20__k-2__mode-LOWER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 2,
+      "mode": "UPPER",
+      "n": 20
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-20__k-2__mode-UPPER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 2.5,
+      "mode": "LOWER",
+      "n": 20
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-20__k-2.5__mode-LOWER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 2.5,
+      "mode": "UPPER",
+      "n": 20
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-20__k-2.5__mode-UPPER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 1.5,
+      "mode": "LOWER",
+      "n": 30
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-30__k-1.5__mode-LOWER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 1.5,
+      "mode": "UPPER",
+      "n": 30
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-30__k-1.5__mode-UPPER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 2,
+      "mode": "LOWER",
+      "n": 30
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-30__k-2__mode-LOWER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 2,
+      "mode": "UPPER",
+      "n": 30
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-30__k-2__mode-UPPER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 2.5,
+      "mode": "LOWER",
+      "n": 30
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-30__k-2.5__mode-LOWER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "BB_RECLAIM_BREAK",
+    "params": {
+      "k": 2.5,
+      "mode": "UPPER",
+      "n": 30
+    },
+    "setting_id": "BB_RECLAIM_BREAK__n-30__k-2.5__mode-UPPER",
+    "signal_definition": "CrossUp(C,lower/upper band by mode)"
+  },
+  {
+    "family": "DONCHIAN",
+    "params": {
+      "mode": "UPPER",
+      "n": 10
+    },
+    "setting_id": "DONCHIAN__n-10__mode-UPPER",
+    "signal_definition": "UPPER: C>prior n-bar max H; MID: CrossUp(C,prior-channel midpoint)"
+  },
+  {
+    "family": "DONCHIAN",
+    "params": {
+      "mode": "MID",
+      "n": 10
+    },
+    "setting_id": "DONCHIAN__n-10__mode-MID",
+    "signal_definition": "UPPER: C>prior n-bar max H; MID: CrossUp(C,prior-channel midpoint)"
+  },
+  {
+    "family": "DONCHIAN",
+    "params": {
+      "mode": "UPPER",
+      "n": 20
+    },
+    "setting_id": "DONCHIAN__n-20__mode-UPPER",
+    "signal_definition": "UPPER: C>prior n-bar max H; MID: CrossUp(C,prior-channel midpoint)"
+  },
+  {
+    "family": "DONCHIAN",
+    "params": {
+      "mode": "MID",
+      "n": 20
+    },
+    "setting_id": "DONCHIAN__n-20__mode-MID",
+    "signal_definition": "UPPER: C>prior n-bar max H; MID: CrossUp(C,prior-channel midpoint)"
+  },
+  {
+    "family": "DONCHIAN",
+    "params": {
+      "mode": "UPPER",
+      "n": 40
+    },
+    "setting_id": "DONCHIAN__n-40__mode-UPPER",
+    "signal_definition": "UPPER: C>prior n-bar max H; MID: CrossUp(C,prior-channel midpoint)"
+  },
+  {
+    "family": "DONCHIAN",
+    "params": {
+      "mode": "MID",
+      "n": 40
+    },
+    "setting_id": "DONCHIAN__n-40__mode-MID",
+    "signal_definition": "UPPER: C>prior n-bar max H; MID: CrossUp(C,prior-channel midpoint)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 3,
+      "t": 0
+    },
+    "setting_id": "ROC_LEVEL__n-3__t-0",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 3,
+      "t": 0.5
+    },
+    "setting_id": "ROC_LEVEL__n-3__t-0.5",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 3,
+      "t": 1
+    },
+    "setting_id": "ROC_LEVEL__n-3__t-1",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 3,
+      "t": 2
+    },
+    "setting_id": "ROC_LEVEL__n-3__t-2",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 6,
+      "t": 0
+    },
+    "setting_id": "ROC_LEVEL__n-6__t-0",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 6,
+      "t": 0.5
+    },
+    "setting_id": "ROC_LEVEL__n-6__t-0.5",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 6,
+      "t": 1
+    },
+    "setting_id": "ROC_LEVEL__n-6__t-1",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 6,
+      "t": 2
+    },
+    "setting_id": "ROC_LEVEL__n-6__t-2",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 12,
+      "t": 0
+    },
+    "setting_id": "ROC_LEVEL__n-12__t-0",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 12,
+      "t": 0.5
+    },
+    "setting_id": "ROC_LEVEL__n-12__t-0.5",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 12,
+      "t": 1
+    },
+    "setting_id": "ROC_LEVEL__n-12__t-1",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 12,
+      "t": 2
+    },
+    "setting_id": "ROC_LEVEL__n-12__t-2",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 24,
+      "t": 0
+    },
+    "setting_id": "ROC_LEVEL__n-24__t-0",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 24,
+      "t": 0.5
+    },
+    "setting_id": "ROC_LEVEL__n-24__t-0.5",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 24,
+      "t": 1
+    },
+    "setting_id": "ROC_LEVEL__n-24__t-1",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "ROC_LEVEL",
+    "params": {
+      "n": 24,
+      "t": 2
+    },
+    "setting_id": "ROC_LEVEL__n-24__t-2",
+    "signal_definition": "CrossingLevel(ROC(n),t)"
+  },
+  {
+    "family": "AROON_CROSS",
+    "params": {
+      "n": 14
+    },
+    "setting_id": "AROON_CROSS__n-14",
+    "signal_definition": "CrossUp(AroonUp,AroonDown)"
+  },
+  {
+    "family": "AROON_CROSS",
+    "params": {
+      "n": 25
+    },
+    "setting_id": "AROON_CROSS__n-25",
+    "signal_definition": "CrossUp(AroonUp,AroonDown)"
+  },
+  {
+    "family": "AROON_CROSS",
+    "params": {
+      "n": 50
+    },
+    "setting_id": "AROON_CROSS__n-50",
+    "signal_definition": "CrossUp(AroonUp,AroonDown)"
+  },
+  {
+    "family": "OBV_EMA",
+    "params": {
+      "n": 5
+    },
+    "setting_id": "OBV_EMA__n-5",
+    "signal_definition": "CrossUp(OBV,EMA(OBV,n))"
+  },
+  {
+    "family": "OBV_EMA",
+    "params": {
+      "n": 10
+    },
+    "setting_id": "OBV_EMA__n-10",
+    "signal_definition": "CrossUp(OBV,EMA(OBV,n))"
+  },
+  {
+    "family": "OBV_EMA",
+    "params": {
+      "n": 20
+    },
+    "setting_id": "OBV_EMA__n-20",
+    "signal_definition": "CrossUp(OBV,EMA(OBV,n))"
+  },
+  {
+    "family": "OBV_EMA",
+    "params": {
+      "n": 40
+    },
+    "setting_id": "OBV_EMA__n-40",
+    "signal_definition": "CrossUp(OBV,EMA(OBV,n))"
+  },
+  {
+    "family": "RVOL_STATE",
+    "params": {
+      "n": 10,
+      "t": 1.2
+    },
+    "setting_id": "RVOL_STATE__n-10__t-1.2",
+    "signal_definition": "V/mean(previous n V)>=t"
+  },
+  {
+    "family": "RVOL_STATE",
+    "params": {
+      "n": 10,
+      "t": 1.5
+    },
+    "setting_id": "RVOL_STATE__n-10__t-1.5",
+    "signal_definition": "V/mean(previous n V)>=t"
+  },
+  {
+    "family": "RVOL_STATE",
+    "params": {
+      "n": 10,
+      "t": 2
+    },
+    "setting_id": "RVOL_STATE__n-10__t-2",
+    "signal_definition": "V/mean(previous n V)>=t"
+  },
+  {
+    "family": "RVOL_STATE",
+    "params": {
+      "n": 10,
+      "t": 3
+    },
+    "setting_id": "RVOL_STATE__n-10__t-3",
+    "signal_definition": "V/mean(previous n V)>=t"
+  },
+  {
+    "family": "RVOL_STATE",
+    "params": {
+      "n": 20,
+      "t": 1.2
+    },
+    "setting_id": "RVOL_STATE__n-20__t-1.2",
+    "signal_definition": "V/mean(previous n V)>=t"
+  },
+  {
+    "family": "RVOL_STATE",
+    "params": {
+      "n": 20,
+      "t": 1.5
+    },
+    "setting_id": "RVOL_STATE__n-20__t-1.5",
+    "signal_definition": "V/mean(previous n V)>=t"
+  },
+  {
+    "family": "RVOL_STATE",
+    "params": {
+      "n": 20,
+      "t": 2
+    },
+    "setting_id": "RVOL_STATE__n-20__t-2",
+    "signal_definition": "V/mean(previous n V)>=t"
+  },
+  {
+    "family": "RVOL_STATE",
+    "params": {
+      "n": 20,
+      "t": 3
+    },
+    "setting_id": "RVOL_STATE__n-20__t-3",
+    "signal_definition": "V/mean(previous n V)>=t"
+  },
+  {
+    "family": "RVOL_STATE",
+    "params": {
+      "n": 40,
+      "t": 1.2
+    },
+    "setting_id": "RVOL_STATE__n-40__t-1.2",
+    "signal_definition": "V/mean(previous n V)>=t"
+  },
+  {
+    "family": "RVOL_STATE",
+    "params": {
+      "n": 40,
+      "t": 1.5
+    },
+    "setting_id": "RVOL_STATE__n-40__t-1.5",
+    "signal_definition": "V/mean(previous n V)>=t"
+  },
+  {
+    "family": "RVOL_STATE",
+    "params": {
+      "n": 40,
+      "t": 2
+    },
+    "setting_id": "RVOL_STATE__n-40__t-2",
+    "signal_definition": "V/mean(previous n V)>=t"
+  },
+  {
+    "family": "RVOL_STATE",
+    "params": {
+      "n": 40,
+      "t": 3
+    },
+    "setting_id": "RVOL_STATE__n-40__t-3",
+    "signal_definition": "V/mean(previous n V)>=t"
+  },
+  {
+    "family": "ADX_DIRECTION",
+    "params": {
+      "n": 7,
+      "t": 15
+    },
+    "setting_id": "ADX_DIRECTION__n-7__t-15",
+    "signal_definition": "ADX>=t and rising and +DI>-DI"
+  },
+  {
+    "family": "ADX_DIRECTION",
+    "params": {
+      "n": 7,
+      "t": 20
+    },
+    "setting_id": "ADX_DIRECTION__n-7__t-20",
+    "signal_definition": "ADX>=t and rising and +DI>-DI"
+  },
+  {
+    "family": "ADX_DIRECTION",
+    "params": {
+      "n": 7,
+      "t": 25
+    },
+    "setting_id": "ADX_DIRECTION__n-7__t-25",
+    "signal_definition": "ADX>=t and rising and +DI>-DI"
+  },
+  {
+    "family": "ADX_DIRECTION",
+    "params": {
+      "n": 7,
+      "t": 30
+    },
+    "setting_id": "ADX_DIRECTION__n-7__t-30",
+    "signal_definition": "ADX>=t and rising and +DI>-DI"
+  },
+  {
+    "family": "ADX_DIRECTION",
+    "params": {
+      "n": 14,
+      "t": 15
+    },
+    "setting_id": "ADX_DIRECTION__n-14__t-15",
+    "signal_definition": "ADX>=t and rising and +DI>-DI"
+  },
+  {
+    "family": "ADX_DIRECTION",
+    "params": {
+      "n": 14,
+      "t": 20
+    },
+    "setting_id": "ADX_DIRECTION__n-14__t-20",
+    "signal_definition": "ADX>=t and rising and +DI>-DI"
+  },
+  {
+    "family": "ADX_DIRECTION",
+    "params": {
+      "n": 14,
+      "t": 25
+    },
+    "setting_id": "ADX_DIRECTION__n-14__t-25",
+    "signal_definition": "ADX>=t and rising and +DI>-DI"
+  },
+  {
+    "family": "ADX_DIRECTION",
+    "params": {
+      "n": 14,
+      "t": 30
+    },
+    "setting_id": "ADX_DIRECTION__n-14__t-30",
+    "signal_definition": "ADX>=t and rising and +DI>-DI"
+  },
+  {
+    "family": "ADX_DIRECTION",
+    "params": {
+      "n": 28,
+      "t": 15
+    },
+    "setting_id": "ADX_DIRECTION__n-28__t-15",
+    "signal_definition": "ADX>=t and rising and +DI>-DI"
+  },
+  {
+    "family": "ADX_DIRECTION",
+    "params": {
+      "n": 28,
+      "t": 20
+    },
+    "setting_id": "ADX_DIRECTION__n-28__t-20",
+    "signal_definition": "ADX>=t and rising and +DI>-DI"
+  },
+  {
+    "family": "ADX_DIRECTION",
+    "params": {
+      "n": 28,
+      "t": 25
+    },
+    "setting_id": "ADX_DIRECTION__n-28__t-25",
+    "signal_definition": "ADX>=t and rising and +DI>-DI"
+  },
+  {
+    "family": "ADX_DIRECTION",
+    "params": {
+      "n": 28,
+      "t": 30
+    },
+    "setting_id": "ADX_DIRECTION__n-28__t-30",
+    "signal_definition": "ADX>=t and rising and +DI>-DI"
+  }
+]

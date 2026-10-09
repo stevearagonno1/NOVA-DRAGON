@@ -1,0 +1,38 @@
+{
+  "authorization": "R5 section A, two named R3 copies only",
+  "market_run": false,
+  "originals": [
+    {
+      "action": "removed_after_verified_gzip",
+      "bytes": 782451,
+      "path": "run/fixtures-results.csv",
+      "sha256": "f12450027b7491a32b252c23b88d36ff4478dbf42c072ff102ea7bbf819e9b81"
+    },
+    {
+      "action": "removed_after_verified_gzip",
+      "bytes": 782451,
+      "path": "docs/research/entry-singletons-package-v1-2026-10-08/fixtures-results.csv",
+      "sha256": "f12450027b7491a32b252c23b88d36ff4478dbf42c072ff102ea7bbf819e9b81"
+    },
+    {
+      "action": "retained_not_in_authorization",
+      "bytes": 417286,
+      "path": "run/resume-contract-r3/fixtures-results.csv",
+      "sha256": "87cd27e45ba0cd135b976f85bbda2671fb7413de341f38dda80086b9d6ae185b"
+    }
+  ],
+  "paths_mapped_to_gzip": [
+    "run/fixtures-results.csv",
+    "docs/research/entry-singletons-package-v1-2026-10-08/fixtures-results.csv"
+  ],
+  "restore": "gzip.decompress(file) yields identical bytes; sha256 equals originals[0].sha256 and originals[1].sha256",
+  "roundtrip_verified_before_removal": true,
+  "shared_gzip": {
+    "bytes": 99587,
+    "level": 9,
+    "mtime": 0,
+    "path": "run/preserved-r3/fixtures-results.r3.csv.gz",
+    "sha256": "aee9a4b1e5d6e9efb59d95c5524619c2be232c8e07e3129f56e760dc39ace456"
+  },
+  "status": "R3_CSV_LOSSLESS_GZIP_PRESERVATION"
+}

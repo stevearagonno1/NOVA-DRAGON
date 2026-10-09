@@ -334,3 +334,7 @@ Read docs/research/rise-waves-design-2026-10-08/pilot/REPORT.md,results.json,raw
 
 ## 2026-10-08 — Current stage: per-coin/state discovery frozen
 Read docs/research/percoin-state-discovery-2026-10-08/REPORT.md,scope.json,selection.json,audits,evidence.zip.144candidate cells/288results;9causal coin-state cells.18personal+6shared picks frozen;10personal choices differ. Defer adoption: noselected N100/Wilsonlow60,ETHweekly11/15not confirmed. Next Lead-only bounded validation of frozen picks on August; do not reselect or expand grid. Inputs sources.json includes UTC units,GitSHA,CSV fingerprints;ETHfullarchive vs smallBTC/SOL files. NoAugustcandidate evaluation yet. Full reproducibility evidence/code insidezip;tools/percoin_states math/measurement/preparation also published. No main/PR/adoption.
+
+
+## Entry singletons R4/R5 — 2026-10-08
+**State:** batch pending receipt. **Limits:** synthetic only; no market run; no performance claim.

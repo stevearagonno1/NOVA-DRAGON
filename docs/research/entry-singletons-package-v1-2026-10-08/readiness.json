@@ -1,0 +1,15 @@
+{
+  "cells": 2034,
+  "checks_passed": 13,
+  "checks_total": 13,
+  "code_commit": null,
+  "limits": [
+    "Synthetic plumbing only; no market-performance conclusion.",
+    "PULLBACK/EMA and TURN/RSI classifier-family dependence disclosed."
+  ],
+  "market_run": false,
+  "settings": 226,
+  "status": "SYNTHETIC_PASS_REMOTE_READBACK_PENDING",
+  "summary_rows": 4104,
+  "synthetic": true
+}

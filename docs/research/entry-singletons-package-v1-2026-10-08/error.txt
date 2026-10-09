@@ -1,0 +1,6 @@
+BLOCKED_BEFORE_REMOTE_WRITE
+Actual publisher preflight error: ValueError: token-like string found in publication payload tools/entry_singletons_v1/publish.py
+The exact credential comparison did not identify a credential. A later generic prefix heuristic falsely matches the publisher source text itself. The publisher stopped before branch HEAD and before any write.
+Two authenticated read-only API GETs fetched the pinned LOG.md and docs/HANDOFF.md in memory for append preparation; remote mutation calls: 0. No branch was created or changed, no PR or merge was made, and no immutable readback exists.
+A draft evidence ZIP was constructed only in memory: 1,240,865 bytes; SHA-256 2fb83e7588691fa11b14c264406b8a7c505c8d06308d3d26420b33442f510add. It was not uploaded or saved locally. Its current builder also omits explicit checkpoint/resume-test/tamper-test entries required for the final archive, so it is not accepted as the final evidence ZIP.
+R2 Python 3.12 blocker is superseded by R3 permission: CPython 3.13.16 was verified and used. The synthetic run and 11 test groups passed, but delivery acceptance failed. Status is not PACKAGE_READY_LEAD_REVIEW_PENDING. market_run=false; no market files or August results.

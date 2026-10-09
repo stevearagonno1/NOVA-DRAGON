@@ -1,0 +1,117 @@
+{
+  "13mb_margin_pass": true,
+  "available_after_outputs_bytes": 87652029,
+  "available_bytes": 90967208,
+  "current_available_bytes_at_artifact_stage": 87664553,
+  "current_r3_output_bytes_at_artifact_stage": 3302655,
+  "current_total_bytes_at_artifact_stage": 37335447,
+  "existing_relevant_files": [
+    {
+      "bytes": 1439,
+      "path": "singleton-package-fixture-v1/R2-BLOCKER.md"
+    },
+    {
+      "bytes": 93,
+      "path": "singleton-package-fixture-v1/tools/entry_singletons_v1/__init__.py"
+    },
+    {
+      "bytes": 11054,
+      "path": "singleton-package-fixture-v1/tools/entry_singletons_v1/audit.py"
+    },
+    {
+      "bytes": 3847,
+      "path": "singleton-package-fixture-v1/tools/entry_singletons_v1/classify.py"
+    },
+    {
+      "bytes": 7667,
+      "path": "singleton-package-fixture-v1/tools/entry_singletons_v1/evaluate.py"
+    },
+    {
+      "bytes": 1693,
+      "path": "singleton-package-fixture-v1/tools/entry_singletons_v1/fixture_generator.py"
+    },
+    {
+      "bytes": 8986,
+      "path": "singleton-package-fixture-v1/tools/entry_singletons_v1/indicators.py"
+    },
+    {
+      "bytes": 2815,
+      "path": "singleton-package-fixture-v1/tools/entry_singletons_v1/register.py"
+    },
+    {
+      "bytes": 16580,
+      "path": "singleton-package-fixture-v1/tools/entry_singletons_v1/run.py"
+    },
+    {
+      "bytes": 0,
+      "existed": false,
+      "path": "singleton-package-fixture-v1/run/"
+    },
+    {
+      "bytes": 0,
+      "existed": false,
+      "path": "singleton-package-fixture-v1/tools/entry_singletons_v1/registry.json"
+    },
+    {
+      "bytes": 0,
+      "existed": false,
+      "path": "singleton-package-fixture-v1/tools/entry_singletons_v1/scope.json"
+    }
+  ],
+  "final_status": "WITHIN_BUDGET",
+  "final_total_bytes": 37347971,
+  "initial_total_bytes": 34032792,
+  "largest_existing_workspace_files": [
+    {
+      "bytes": 3059541,
+      "path": "nova-l0085/L0085-evidence.zip"
+    },
+    {
+      "bytes": 1879691,
+      "path": "nova-l0093-workspace-r1/run/market/results.json"
+    },
+    {
+      "bytes": 1542434,
+      "path": "nova-l0086/market/validation.json"
+    },
+    {
+      "bytes": 1511692,
+      "path": "nova-l0093-workspace/run/synthetic/results.json"
+    },
+    {
+      "bytes": 1511692,
+      "path": "nova-l0093-workspace-r1/run/synthetic/results.json"
+    },
+    {
+      "bytes": 1383259,
+      "path": "nova-audit/tmp/github_tree.json"
+    },
+    {
+      "bytes": 798044,
+      "path": "nova-l0089/L0089-evidence.zip"
+    },
+    {
+      "bytes": 782451,
+      "path": "singleton-package-fixture-v1/run/fixtures-results.csv"
+    },
+    {
+      "bytes": 782451,
+      "path": "singleton-package-fixture-v1/docs/research/entry-singletons-package-v1-2026-10-08/fixtures-results.csv"
+    },
+    {
+      "bytes": 526618,
+      "path": "nova-l0089/market/results.json"
+    }
+  ],
+  "minimum_free_before_new_outputs_bytes": 13000000,
+  "minimum_free_required_bytes": 13000000,
+  "new_output_cap_bytes": 8000000,
+  "note": "No deletion, cache, venv, or market input was used. Existing R2 partial package was reused in place.",
+  "r2_runtime_blocker_superseded_by_r3": true,
+  "r3_task_output_bytes": 3315179,
+  "storage_acceptance_at_artifact_stage": true,
+  "storage_ceiling_bytes": 125000000,
+  "task_output_cap_pass": true,
+  "total_ceiling_pass": true,
+  "workspace_root": "/home/user"
+}

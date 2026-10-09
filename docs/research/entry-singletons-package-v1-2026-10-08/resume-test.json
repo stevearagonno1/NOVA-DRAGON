@@ -1,0 +1,26 @@
+{
+  "checkpoint_sha256": "a1ca7b2dd61f7fdd0f239a2c86871e498612be82df9ec110e1024c9f550862de",
+  "final_alerts_sha256": {
+    "BTC": "0619da1d98bd2e94d9587dac93b9039b98edc68fa1e35b627be7bef01aa84bd1",
+    "ETH": "0619da1d98bd2e94d9587dac93b9039b98edc68fa1e35b627be7bef01aa84bd1",
+    "SOL": "0619da1d98bd2e94d9587dac93b9039b98edc68fa1e35b627be7bef01aa84bd1"
+  },
+  "final_completed_assets": [
+    "BTC",
+    "ETH",
+    "SOL"
+  ],
+  "final_masks_sha256": {
+    "BTC": "c480e341d88fb805bc4ff43f41aea0f5c73eded9b7fbfd5e680cad192223ed4e",
+    "ETH": "067c3ffe029dce19faed7590e84208c6265436fd3221ad9008825ce08cfc7079",
+    "SOL": "90ec3149d679741bcc3c8ef1b20032bf2ae6465d654edb90d978661eb53a08fd"
+  },
+  "fixture_days": 2,
+  "market_run": false,
+  "pause_status": "PAUSED",
+  "paused_after_asset": "BTC",
+  "resumed_status": "COMPLETE",
+  "run_id": "singleton-package-resume-test-r3",
+  "status": "PASS",
+  "summary_rows": 4104
+}

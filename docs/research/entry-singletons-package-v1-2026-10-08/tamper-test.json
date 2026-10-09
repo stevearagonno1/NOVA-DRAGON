@@ -1,0 +1,11 @@
+{
+  "market_run": false,
+  "no_mutation_of_production_outputs": true,
+  "status": "PASS",
+  "tests": {
+    "checkpoint_envelope_digest": "rejects altered in-memory digest",
+    "code_fingerprint": "rejects mismatched code sha",
+    "raw_stage_digest": "rejects mismatched staged raw sha",
+    "scope_fingerprint": "rejects mismatched scope sha"
+  }
+}

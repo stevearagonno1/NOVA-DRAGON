@@ -1,0 +1,6 @@
+{
+  "executable": "/usr/local/bin/python3",
+  "implementation": "CPython",
+  "stdlib_imports": "PASS",
+  "version": "3.13.16 (main, Oct  6 2026, 04:38:44) [GCC 14.2.0]"
+}

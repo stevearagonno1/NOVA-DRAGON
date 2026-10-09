@@ -1,0 +1,30 @@
+# Runtime preflight (same interpreter for every task command)
+python3 --version -> Python 3.13.16
+executable=/usr/local/bin/python3; implementation=CPython; standard-library imports=PASS
+
+# CLI inspection
+PYTHONDONTWRITEBYTECODE=1 python3 -m tools.entry_singletons_v1.run --help
+exit=0; synthetic and no-source-download are mandatory; no market mode exists
+
+# First prescribed-run attempt (failed before creating a checkpoint)
+PYTHONDONTWRITEBYTECODE=1 python3 -m tools.entry_singletons_v1.run --synthetic --run-id singleton-package-fixture-r3 --out run --no-source-download
+exit=1; FileExistsError: output was not empty because the already-created runtime.json was present. No candle/stage output was created by this attempt.
+Correction: run.py now permits only the preflight runtime.json in a new output directory; any prior run artifacts still require --resume.
+
+# Required synthetic run (successful)
+PYTHONDONTWRITEBYTECODE=1 python3 -m tools.entry_singletons_v1.run --synthetic --run-id singleton-package-fixture-r3 --out run --no-source-download
+exit=0; stdout={"alerts": 101438, "run_id": "singleton-package-fixture-r3", "status": "COMPLETE", "summary_rows": 4104}
+wall_time_seconds=19.405 (tool-reported)
+
+# Required acceptance tests (successful)
+PYTHONDONTWRITEBYTECODE=1 python3 -m tools.entry_singletons_v1.tests
+exit=0; checks_passed=11; status=PASS; synthetic=true; market_run=false; wall_time_seconds=2.496 (tool-reported).
+Grid 226 settings / 2,034 candidates / 4,068 candidate rows + 36 controls / 4,104 total. 101,438 horizon rows. Audit PASS; 1,410 zero summary rows retained; 21 independent indicator comparisons; 83 direct minute barrier checks; 60 causal prefix positions and 13,560 candidate-mask comparisons.
+
+# Publication preflight (actual attempted below)
+No remote write may proceed unless the exact private-paper credential scan passes. The current publisher module contains a false-positive token-prefix guard; failure is to be recorded and publication stopped.
+
+# Actual publisher attempt (network writes explicitly intercepted)
+publish(token, workspace=WORKSPACE, ...) -> BLOCKED; ValueError: token-like string found in publication payload tools/entry_singletons_v1/publish.py
+Observed after in-memory ZIP construction: bytes=1240865; sha256=2fb83e7588691fa11b14c264406b8a7c505c8d06308d3d26420b33442f510add; 2 read-only GETs (pinned LOG.md and HANDOFF.md); 0 write requests; no branch-head request or ref change; immutable readback not reached.
+Review also found the draft ZIP builder omitted explicit checkpoint.json, resume-test.json, and tamper-test.json entries; draft was not uploaded or saved as a local ZIP.

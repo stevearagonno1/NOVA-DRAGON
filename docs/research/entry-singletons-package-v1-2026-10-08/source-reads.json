@@ -1,0 +1,40 @@
+{
+  "files_read": [
+    "CONSTITUTION.md",
+    "LOG.md",
+    "docs/DECISIONS.md",
+    "docs/HANDOFF.md",
+    "docs/journal/2026-10-08-saved-sources-alert-review/001-reading.md",
+    "docs/journal/2026-10-08-saved-sources-alert-review/002-deeper-reading.md",
+    "docs/journal/2026-10-08-saved-sources-alert-review/003-rise-wave-design.md",
+    "docs/journal/2026-10-08-saved-sources-alert-review/004-wave-pilot-prepared.md",
+    "docs/journal/2026-10-08-saved-sources-alert-review/005-wave-pilot-complete.md",
+    "docs/journal/2026-10-08-saved-sources-alert-review/006-percoin-state-discovery.md",
+    "docs/research/entry-singletons-package-v1-2026-10-08/PAPER-REDACTED.md",
+    "docs/research/percoin-state-discovery-2026-10-08/REPORT.md",
+    "docs/research/percoin-state-discovery-2026-10-08/audit.json",
+    "docs/research/percoin-state-discovery-2026-10-08/independent-audit.json",
+    "docs/research/percoin-state-discovery-2026-10-08/scope.json",
+    "docs/research/percoin-state-discovery-2026-10-08/selection.json",
+    "docs/research/percoin-state-discovery-2026-10-08/sources.json",
+    "docs/research/saved-sources-alert-review-2026-10-08/DEEP-READING-ADDENDUM.md",
+    "tools/percoin_states/math_core.py",
+    "tools/percoin_states/pilot.py"
+  ],
+  "main_commit": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+  "market_files_read_or_downloaded": false,
+  "market_run": false,
+  "r1_paper_commit": "bf2aab5b4960598b4b274fd09cd6abacb058349c",
+  "r1_redacted_paper_path": "docs/research/entry-singletons-package-v1-2026-10-08/PAPER-REDACTED.md",
+  "r3_private_paper_uploaded_locally_and_redacted_for_archive": true,
+  "source_text_saved_locally": false,
+  "ticks_read": [
+    "001-reading.md",
+    "002-deeper-reading.md",
+    "003-rise-wave-design.md",
+    "004-wave-pilot-prepared.md",
+    "005-wave-pilot-complete.md",
+    "006-percoin-state-discovery.md"
+  ],
+  "tools_commit": "86304b62bf9c7d0914572e100892fac66f3f09dd"
+}

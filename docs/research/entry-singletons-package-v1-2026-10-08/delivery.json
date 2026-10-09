@@ -1,0 +1,11 @@
+{
+  "market_run": false,
+  "run_id": "singleton-package-fixture-r4",
+  "runtime_executable": "/usr/local/bin/python3",
+  "runtime_version": "3.13.16 (main, Oct  6 2026, 04:38:44) [GCC 14.2.0]",
+  "scope_sha256": "53f1377f67071b97283647f855b9fb2298cad5c278170564f30da85b4f58cd66",
+  "source_main": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+  "source_tools": "86304b62bf9c7d0914572e100892fac66f3f09dd",
+  "status": "SYNTHETIC_PASS_REMOTE_READBACK_PENDING",
+  "verified_remote": false
+}

@@ -1,0 +1,45 @@
+{
+  "code_sha256": "45b5fd9756e02aa66b6f91cff158c748928f32baf82e049ad2b794547266fc18",
+  "compared": {
+    "alert_keys_per_asset": "alerts_sha256 equal",
+    "masks_per_asset": 3,
+    "summary_bytes": 782451,
+    "summary_keys_unique": true,
+    "summary_rows": 4104
+  },
+  "difference_fields": [],
+  "differences": 0,
+  "fixture_days": 61,
+  "interrupt_after": "BTC",
+  "market_run": false,
+  "registry_sha256": "ce1bf74a63a04890b783be6eaee79743169340226eca1298bc4488bf7458f924",
+  "results_written_to_disk": false,
+  "run_id": "singleton-package-fixture-r4",
+  "scope_sha256": "53f1377f67071b97283647f855b9fb2298cad5c278170564f30da85b4f58cd66",
+  "status": "PASS",
+  "steps": [
+    {
+      "after_asset": "BTC",
+      "command": "process_asset/checkpoint after first asset",
+      "completed": [
+        "BTC"
+      ],
+      "exit_code": 0,
+      "stage": "interrupt"
+    },
+    {
+      "command": "load_checkpoint + remaining process_asset",
+      "exit_code": 0,
+      "resumed_assets": [
+        "ETH",
+        "SOL"
+      ],
+      "stage": "resume"
+    }
+  ],
+  "synthetic": true,
+  "time_fields_excluded": [
+    "runtime.json timestamps"
+  ],
+  "zero_rows": 1410
+}
