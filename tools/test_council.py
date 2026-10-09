@@ -157,7 +157,7 @@ class CouncilTests(unittest.TestCase):
     def test_review_uses_stream_transport_and_fixed_slot(self):
         with patch.object(council, 'stream_model_call', return_value='result') as stream:
             self.assertEqual(council.model_call('rules','task',slot=2), 'result')
-        self.assertEqual(stream.call_args.kwargs['slot'], 2)
+        self.assertEqual(stream.call_args.kwargs['slot'], 6)
 
     def test_phase_progress_covers_first_round_consensus(self):
         updates = []
@@ -248,7 +248,7 @@ class CouncilTests(unittest.TestCase):
         self.assertEqual(run.call_args.args[1],'')
         self.assertNotIn('change settings',run.call_args.args[0])
         self.assertTrue(run.call_args.kwargs['diagnostic'])
-        self.assertEqual(answer['expected_requests'],3)
+        self.assertEqual(answer['expected_requests'],2)
         self.assertEqual(answer['mode'],'simple_advice')
         self.assertEqual(q['next_action'],'finish_turn')
         self.assertEqual(answer['state'],'completed')
@@ -268,9 +268,9 @@ class CouncilTests(unittest.TestCase):
             q=jobs.submit({'consultation_requested':True,'proposal':'Lead proposal','task':'audit question'})
             jobs.pool.shutdown(wait=True)
             answer=jobs.status({'id':q['id']})[0]
-        self.assertEqual(sorted(calls),[0,1,2])
+        self.assertEqual(sorted(calls),[0,1])
         self.assertEqual(answer['counts']['discussion_rounds'],1)
-        self.assertEqual(answer['completed_requests'],3)
+        self.assertEqual(answer['completed_requests'],2)
         self.assertEqual(len(sent),1)
         self.assertEqual(answer['state'],'completed')
 
@@ -325,8 +325,8 @@ class CouncilTests(unittest.TestCase):
             jobs.pool.shutdown(wait=True)
             answer=jobs.status({'id':q['id']})[0]
         self.assertEqual(answer['state'],'blocked')
-        self.assertEqual(answer['completed_requests'],2)
-        self.assertEqual(len(answer['worker_reports']),2)
+        self.assertEqual(answer['completed_requests'],1)
+        self.assertEqual(len(answer['worker_reports']),1)
         self.assertEqual(answer['last_activity']['phase'],'lead_synthesis')
         self.assertEqual(answer['sources'][0]['commit'],'a'*40)
         self.assertEqual(answer.get('request_timings'),None)
@@ -351,7 +351,7 @@ class CouncilTests(unittest.TestCase):
             answer=jobs.status({'id':q['id']})[0]
         sources.assert_not_called()
         self.assertEqual(answer['state'],'completed')
-        self.assertEqual(answer['counts']['model_requests'],3)
+        self.assertEqual(answer['counts']['model_requests'],2)
         self.assertEqual(answer['counts']['tool_steps'],0)
         self.assertEqual(answer['counts']['mode'],'simple_advice')
-        self.assertEqual(answer['counts']['silent_advisors'],2)
+        self.assertEqual(answer['counts']['silent_advisors'],1)

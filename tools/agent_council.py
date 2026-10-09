@@ -110,7 +110,7 @@ def post_json(url, body, token, timeout=120):
 
 def model_call(system, user, slot=0, deadline=None, observer=None):
     # Fixed preferred credential per role, with bounded fallback to reserve slots.
-    return bounded_text(stream_model_call(system, user, slot=slot, deadline=deadline, observer=observer), 30000, 'Model response')
+    return bounded_text(stream_model_call(system, user, slot=3 if slot==0 else 6, candidate_indices=(3,6) if slot==0 else (6,3), deadline=deadline, observer=observer), 30000, 'Model response')
 
 
 def run_review(task, context, sources, call=model_call, progress=None, observer=None, deadline_seconds=900, diagnostic=False):
@@ -228,7 +228,7 @@ class Jobs:
             if len(jobs) >= MAX_JOBS or sum(j['state'] in ('queued', 'running') for j in jobs) >= 2:
                 raise ValueError('Review queue is full; do not launch more jobs')
             job = {'id': secrets.token_hex(8), 'fingerprint': fingerprint, 'state': 'queued',
-                   'kind':kind, 'mode':'simple_advice' if kind in ('review','trial') else kind, 'atlas_scope':atlas_scope, 'expected_requests':(3 if atlas_scope=='mini' else 1 if atlas_scope=='pilot' else 10) if kind=='atlas' else 1 if kind=='probe' else 3 if kind=='probe_reviewers' else 3, 'proposal':proposal, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
+                   'kind':kind, 'mode':'simple_advice' if kind in ('review','trial') else kind, 'atlas_scope':atlas_scope, 'expected_requests':(3 if atlas_scope=='mini' else 1 if atlas_scope=='pilot' else 10) if kind=='atlas' else 1 if kind=='probe' else 3 if kind=='probe_reviewers' else 2, 'proposal':proposal, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
             self.save(job)
             self.pool.submit(self.work, job)
             return {'id': job['id'], 'state': 'queued', 'next_action':'finish_turn', 'message': 'سُجل الطلب في الخلفية؛ أرسل المعرف وأنهِ ردك الآن. لا تقرأ الإعدادات ولا تستعلم الحالة تلقائيًا. ستصل النتيجة للمالك عند الانتهاء.'}
@@ -337,7 +337,7 @@ class Jobs:
             job.update(state='blocked',error_type=error,result=message)
         job['runtime_seconds']=round(time.monotonic()-started,2)
         if job.get('counts',{}).get('mode')=='simple_advice':
-            job['result']+='\n\nالمستشارون المكتملون: '+str(job['counts']['completed_subagents'])+'/2؛ مشورة واحدة؛ مدة التشغيل: '+str(job['runtime_seconds'])+' ثانية.'
+            job['result']+='\n\nالمستشارون المكتملون: '+str(job['counts']['completed_subagents'])+'/'+str(job['counts'].get('subagents',1))+'؛ مشورة واحدة؛ مدة التشغيل: '+str(job['runtime_seconds'])+' ثانية.'
         elif job.get('counts',{}).get('mode') in ('lead_and_subagents','independent_leaders'):
             job['result']+='\n\nالقادة المكتملون: '+str(job['counts']['completed_subagents'])+'/2؛ جولات التشاور: '+str(job['counts']['discussion_rounds'])+'؛ خطوات الأدوات: '+str(job['counts'].get('tool_steps',0))+'؛ الطلبات المكتملة: '+str(job['completed_requests'])+'؛ مدة التشغيل: '+str(job['runtime_seconds'])+' ثانية.'
         with self.lock:

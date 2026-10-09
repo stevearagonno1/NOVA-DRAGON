@@ -247,10 +247,13 @@ def stream(route, system, user, opener=None, max_tokens=REVIEW_OUTPUT_TOKENS, de
                                   bool(message.get('refusal')))
         return collect_sse(response,deadline=deadline,activity=activity,max_stream_bytes=max_stream_bytes)
 
-def model_call(system, user, slot=0, pool=None, requester=stream, clock=time.monotonic, deadline=None, observer=None):
+def model_call(system, user, slot=0, pool=None, requester=stream, clock=time.monotonic, deadline=None, observer=None, candidate_indices=None):
     pool=routes() if pool is None else pool
     errors=[]
-    for index in candidates(slot,len(pool)):
+    order=candidates(slot,len(pool)) if candidate_indices is None else list(candidate_indices)
+    if any(type(i) is not int or i<0 or i>=len(pool) for i in order):
+        raise ValueError("Invalid configured role slot")
+    for index in order:
         check_deadline(deadline,clock)
         with lock:
             if cooldowns.get(index,0)>clock():

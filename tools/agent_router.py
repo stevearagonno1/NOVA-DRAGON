@@ -16,7 +16,7 @@ def _resolved_key(value, env):
     return value
 
 
-def build_router_config(source, env):
+def build_router_config(source, env, lead_slot=None):
     """Return a new config with bounded same-model key failover.
 
     Existing model names, provider endpoints, credentials, limits and general
@@ -68,6 +68,13 @@ The result contains secrets and must be saved with mode 0600, never logged.
         ids.add(str(deployment_id))
         retained.append(entry)
     result['model_list'] = retained
+    if lead_slot is not None:
+        if type(lead_slot) is not int or not 1 <= lead_slot <= len(target):
+            raise ValueError('Lead slot must identify an existing credential')
+        selected_key=_resolved_key(target[lead_slot-1]['litellm_params']['api_key'],env)
+        for index,entry in enumerate(retained,1):
+            if entry.get('model_name')==alias and _resolved_key(entry['litellm_params']['api_key'],env)!=selected_key:
+                entry['model_name']='nova-reserve-slot-'+str(index)
     router = result.setdefault('router_settings', {})
     if not isinstance(router, dict):
         raise ValueError('Invalid router_settings')
@@ -93,4 +100,7 @@ The result contains secrets and must be saved with mode 0600, never logged.
             'RateLimitErrorAllowedFails': 0,
         },
     })
+    if lead_slot is not None:
+        router.update(timeout=600,num_retries=0,max_fallbacks=0)
+        router['retry_policy']={k:0 for k in router['retry_policy']}
     return result

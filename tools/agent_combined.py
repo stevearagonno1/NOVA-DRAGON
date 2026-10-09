@@ -72,8 +72,8 @@ def main():
     workspace = prepare(state, env)
     env.update(GIT_ASKPASS=str(state / 'git-askpass.py'), GIT_TERMINAL_PROMPT='0', GH_TOKEN=env['GITHUB_TOKEN'])
     runtime_path = state / 'litellm_runtime.yaml'
-    private_write(runtime_path, yaml.safe_dump(build_router_config(config, env), sort_keys=False))
-    env['NOVA_COUNCIL_ROUTE_FILE'] = str(runtime_path)
+    private_write(runtime_path, yaml.safe_dump(build_router_config(config, env, lead_slot=4), sort_keys=False))
+    env['NOVA_COUNCIL_ROUTE_FILE'] = str(config_path)  # original slot order for advice/benchmarks
     children = []
     processes = {'supervisor': os.getpid()}
     next_memory = 0
