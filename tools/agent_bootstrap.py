@@ -37,12 +37,16 @@ enabled = true
 base_url = {q(base + '/chat/completions')}
 default_model = {q(model)}
 models = [{q(model)}]
+context_window = 240000
+stream_idle_timeout_secs = 300
+thinking_loop_timeout_secs = 3600
 
 [agent]
 default_provider = "custom:nova"
 default_model = {q(model)}
 approval_policy = "ask"
-max_concurrent = 4
+max_concurrent = 2
+context_limit = 240000
 max_tokens = 8192
 lazy_tools = true
 auto_update = false
@@ -73,6 +77,7 @@ def readonly_tools_text(council=False):
     definitions = []
     for operation, description, parameter in [
         ('status', 'Read fresh NOVA-DRAGON repository name and latest main commit from GitHub. Prefer this over bash.', None),
+        ('runtime', 'Read installed local context/routing metadata and last observed usage without provider calls,credentials or conversation text. Unknown counters remain unavailable.', None),
         ('commits', 'Read the latest ten main commits from GitHub without shell approval.', None),
         ('list', 'List supported text files on main by prefix. No secret or hidden files.', ('prefix', 'Repository-relative prefix, e.g. docs/journal/; default docs/journal/', False)),
         ('calculate','Calculate bounded decimal arithmetic locally (+,-,*,/,parentheses). No network,shell evaluation or trading. Result verifies arithmetic only,not source inputs. Use for material fees,percentages and dollar conversions; supply input provenance separately.',('expression','Arithmetic expression, e.g. 20 * (0.13 + 0.13) / 100; percentages must explicitly divide by 100.',True)),
@@ -82,6 +87,12 @@ def readonly_tools_text(council=False):
         if parameter:
             name, desc, required = parameter
             entry += f'[[tools.params]]\nname = {q(name)}\ntype = "string"\ndescription = {q(desc)}\nrequired = {str(required).lower()}\n'
+        if operation == 'read':
+            for name, desc in [('commit','Exact 40-character commit from nova_repo_status; use for consistent source reads.'),
+                               ('start_line','Optional positive 1-based first line, as a decimal string.'),
+                               ('end_line','Optional inclusive last line, as a decimal string.'),
+                               ('tail_lines','Optional final N lines; cannot combine with start_line/end_line.')]:
+                entry += f'[[tools.params]]\nname = {q(name)}\ntype = "string"\ndescription = {q(desc)}\nrequired = false\n'
         definitions.append(entry)
     for operation, description, params in ([
         ('submit', 'Ask the tested slot7 advisor for ONE round on your existing lead proposal, ONLY when the owner explicitly requests consultation. Advisors add useful improvements/objections or silently return NO_ADDITION. Plain concise text, no JSON plan,peer loops,votes or agreement requirement. Lead synthesizes once. Two logical requests; existing activity/deadline and reserve failover limits remain. Read-only selected evidence; this is not a complete file audit. Submit once and finish the turn.', [('task','Owner question and requested scope.',True,'string'),('proposal','Your existing lead proposal,including verified citations where relevant. A draft hypothesis must be labelled as such.',True,'string'),('consultation_requested','True ONLY when the owner explicitly asked for consultation; never set for ordinary work.',True,'boolean'),('context','Relevant verified evidence and limitations; no secrets.',False,'string'),('paths','At most five selected main text paths for checking cited excerpts.',False,'array')]),
@@ -191,13 +202,34 @@ objections,or return NO_ADDITION when they have nothing useful to add. The main
 lead decides and gives one final answer. No automatic second round,forced
 agreement,peer debate or repeated full reviews. Silence is not approval or proof
 of independent verification. Material disagreements and limitations stay visible.
-The normal lead uses credential slot4. Only the owner-requested advisor uses slot7. Slots5 and untested credentials are not assigned leadership. Any later consultation requires a new explicit owner request. Legacy nova_council_*
+The normal lead uses credential slot4. Slot7 provides owner-requested advice and bounded technical failover. Slots5 and untested credentials are not assigned leadership. Any later consultation requires a new explicit owner request. Legacy nova_council_*
 names now invoke this simple advice path. If unavailable,say so without changing
 provider settings. Never promise a complete document audit from selected excerpts.
-Your working directory is /state/repo. At the start of a new conversation use the
-filesystem tools to read CONSTITUTION.md in full, then docs/HANDOFF.md,
-docs/DECISIONS.md, the latest docs/journal entries, LOG.md and INDEX.md.
+Your working directory is /state/repo. At the start of a new conversation for ordinary work, first obtain the
+fresh main commit with nova_repo_status, then read CONSTITUTION.md in full with
+nova_repo_read at that exact commit. Follow its actual resume protocol in its
+specified order, not an alternate list from memory. Read each required source
+once at that commit; never duplicate the same text via filesystem plus GitHub.
+Use line ranges/tail_lines for the required latest LOG blocks and selected
+journal entries, not entire historical archives or result bundles. Expand only
+when the task or current constitution requires it. Read decisions required by
+the constitution before proposing changes; never infer them from filenames.
+Do not omit mandatory constitutional reading to save tokens. Keep citations
+at the same commit and explicitly identify any missing range or source.
+Keep a short verified working summary of objective, decisions, source commits,
+artifacts and remaining work as the task progresses so automatic compaction
+preserves it. Do not print the internal state card unless the owner asks.
 Follow the current constitution; report stale or conflicting handoffs explicitly.
+The configured conversation budget is 240000, with automatic OpenCrabs
+compaction and 8192 generation tokens. This is not a guarantee of infinite
+memory. For runtime/fallback questions use nova_repo_runtime: metadata only,
+no settings or credentials inspection. A 90K context figure is accumulated
+input, including tools and sources, not evidence of 90K generated tokens.
+Ordinary requests use slot4; on a technical failure before a response starts,
+the local relay can use tested slot7 once. No extra slots, replay after streaming
+starts, or fallback for an invalid request/context overflow. This is a backup
+credential at the same provider, not an independent backup provider.
+Never claim the latest request used a slot without observed runtime metadata.
 Use tool_search to discover tools. Never claim repository access without a real tool read.
 The repo is the source of truth. Discover nova_repo_status, nova_repo_read,
 nova_repo_list and nova_repo_commits through tool_search. ALWAYS prefer these

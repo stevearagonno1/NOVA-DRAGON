@@ -16,7 +16,7 @@ def _resolved_key(value, env):
     return value
 
 
-def build_router_config(source, env, lead_slot=None):
+def build_router_config(source, env, lead_slot=None, reserve_slot=None):
     """Return a new config with bounded same-model key failover.
 
     Existing model names, provider endpoints, credentials, limits and general
@@ -71,10 +71,26 @@ The result contains secrets and must be saved with mode 0600, never logged.
     if lead_slot is not None:
         if type(lead_slot) is not int or not 1 <= lead_slot <= len(target):
             raise ValueError('Lead slot must identify an existing credential')
-        selected_key=_resolved_key(target[lead_slot-1]['litellm_params']['api_key'],env)
+        def deployment_identity(entry):
+            params = entry['litellm_params']
+            return (params.get('model'),params.get('api_base'),params.get('api_version'),
+                    _resolved_key(params['api_key'],env))
+        selected_identity = deployment_identity(target[lead_slot-1])
+        selected_key = selected_identity[-1]
+        reserve_key = None
+        reserve_identity = None
+        if reserve_slot is not None:
+            if type(reserve_slot) is not int or not 1 <= reserve_slot <= len(target):
+                raise ValueError('Reserve slot must identify an existing credential')
+            reserve_identity = deployment_identity(target[reserve_slot-1])
+            reserve_key = reserve_identity[-1]
+            if reserve_key == selected_key:
+                raise ValueError('Lead and reserve must use distinct credentials')
+            if any(x.get('model_name') == 'nova-tested-reserve' for x in models):
+                raise ValueError('Reserved alias already exists')
         for index,entry in enumerate(retained,1):
-            if entry.get('model_name')==alias and _resolved_key(entry['litellm_params']['api_key'],env)!=selected_key:
-                entry['model_name']='nova-reserve-slot-'+str(index)
+            if entry.get('model_name')==alias and deployment_identity(entry)!=selected_identity:
+                entry['model_name']=('nova-tested-reserve' if reserve_identity is not None and deployment_identity(entry)==reserve_identity else 'nova-reserve-slot-'+str(index))
     router = result.setdefault('router_settings', {})
     if not isinstance(router, dict):
         raise ValueError('Invalid router_settings')
@@ -101,6 +117,12 @@ The result contains secrets and must be saved with mode 0600, never logged.
         },
     })
     if lead_slot is not None:
-        router.update(timeout=600,num_retries=0,max_fallbacks=0)
+        router.update(timeout=600,num_retries=0,max_fallbacks=0,
+                      enable_weighted_failover=False,disable_cooldowns=True,
+                      fallbacks=[],context_window_fallbacks=[],content_policy_fallbacks=[])
         router['retry_policy']={k:0 for k in router['retry_policy']}
+        router['retry_policy']['DefaultRetries']=0
+        settings = result.setdefault('litellm_settings', {})
+        for name in ('fallbacks', 'context_window_fallbacks', 'content_policy_fallbacks'):
+            settings.pop(name, None)
     return result

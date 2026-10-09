@@ -8,7 +8,7 @@ import agent_bootstrap as boot
 class ReadToolsTests(unittest.TestCase):
     def test_fixed_read_tools(self):
         config = tomllib.loads(boot.readonly_tools_text())
-        self.assertEqual(len(config['tools']), 5)
+        self.assertEqual(len(config['tools']), 6)
         for tool in config['tools']:
             self.assertFalse(tool['requires_approval'])
             self.assertNotIn('{{', tool['command'])
@@ -34,6 +34,46 @@ class ReadToolsTests(unittest.TestCase):
             with patch.object(reader, 'get', side_effect=[{'sha': 'a' * 40}, {'type': 'file', 'encoding': 'base64', 'size': size, 'sha': 'b', 'content': base64.b64encode(data).decode()}]):
                 with self.assertRaises(ValueError):
                     reader.execute('read', {'path': 'README.md'})
+
+    def test_large_file_bounded_range_exact_commit_and_line_provenance(self):
+        sha='a'*40
+        raw=('line\n'*20000).encode()
+        item={'type':'file','encoding':'base64','size':len(raw),'sha':'b'*40,
+              'content':base64.b64encode(raw).decode()}
+        with patch.object(reader,'get',return_value=item) as fetch:
+            result=reader.execute('read',{'path':'docs/DECISIONS.md','commit':sha,
+                                         'start_line':'80','end_line':'83'})
+        fetch.assert_called_once_with('/contents/docs/DECISIONS.md?ref='+sha)
+        self.assertEqual(result['content'],'line\n'*4)
+        self.assertEqual((result['first_line'],result['last_line']),(80,83))
+        self.assertEqual(result['total_lines'],20000)
+        self.assertFalse(result['full_file'])
+        with patch.object(reader,'get',return_value=item):
+            tail=reader.execute('read',{'path':'LOG.md','commit':sha,'tail_lines':'2'})
+        self.assertEqual(tail['first_line'],19999)
+        self.assertEqual(tail['content'],'line\n'*2)
+
+    def test_bad_commit_and_range_rejected_before_source_fetch(self):
+        bad=[{'commit':'main'}, {'commit':'a'*40+'?evil'},
+             {'commit':'a'*40,'tail_lines':'2','start_line':'1'},
+             {'commit':'a'*40,'start_line':True},
+             {'commit':'a'*40,'start_line':'5','end_line':'3'},
+             {'commit':'a'*40,'tail_lines':'-1'}]
+        for params in bad:
+            with patch.object(reader,'get') as fetch,self.assertRaises(ValueError):
+                reader.execute('read',{'path':'README.md',**params})
+            fetch.assert_not_called()
+
+    def test_runtime_is_numeric_metadata_only_and_never_calls_provider(self):
+        import json
+        raw=json.dumps({'context_limit':240000,'technical_failover':True,
+                        'phase':'complete','api_key':'SECRET','prompt_tokens':90})
+        with patch.object(reader.Path,'read_bytes',return_value=raw.encode()),patch.object(reader,'get') as fetch:
+            result=reader.execute('runtime',{})
+        self.assertEqual(result['prompt_tokens'],90)
+        self.assertEqual(result['context_limit'],240000)
+        self.assertNotIn('SECRET',str(result));self.assertNotIn('api_key',result)
+        fetch.assert_not_called()
 
     def test_redaction_and_no_redirects(self):
         with patch.dict(reader.os.environ, {'GITHUB_TOKEN': 'synthetic-sensitive'}):

@@ -27,7 +27,7 @@ def memory_snapshot(processes, proc=Path('/proc'), cgroup=Path('/sys/fs/cgroup')
         limit = counter(cgroup / 'memory/memory.limit_in_bytes')
     size = page_size if page_size is not None else os.sysconf('SC_PAGE_SIZE')
     rss = {}
-    for role in ('supervisor', 'gateway', 'council', 'agent'):
+    for role in ('supervisor', 'gateway', 'relay', 'council', 'agent'):
         pid = processes.get(role)
         if pid is None:
             continue
@@ -62,7 +62,10 @@ def main():
     if not isinstance(config, dict):
         raise ValueError('Invalid LiteLLM config')
     env['LITELLM_API_KEY'] = gateway_key(config, env)
-    env['LITELLM_BASE_URL'] = f'http://127.0.0.1:{port}/v1'
+    relay_port = next(p for p in (8093, 8094, 8095) if p != port)
+    env['NOVA_RELAY_PORT'] = str(relay_port)
+    env['NOVA_GATEWAY_URL'] = f'http://127.0.0.1:{port}/v1'
+    env['LITELLM_BASE_URL'] = f'http://127.0.0.1:{relay_port}/v1'
     # The gateway owns the public port and keeps /v1 URLs unchanged.
     env['PORT'] = str(8080 if port != 8080 else 8081)
     state = Path('/state')
@@ -72,7 +75,13 @@ def main():
     workspace = prepare(state, env)
     env.update(GIT_ASKPASS=str(state / 'git-askpass.py'), GIT_TERMINAL_PROMPT='0', GH_TOKEN=env['GITHUB_TOKEN'])
     runtime_path = state / 'litellm_runtime.yaml'
-    private_write(runtime_path, yaml.safe_dump(build_router_config(config, env, lead_slot=4), sort_keys=False))
+    private_write(runtime_path, yaml.safe_dump(build_router_config(config, env, lead_slot=4, reserve_slot=7), sort_keys=False))
+    private_write(state / 'nova_runtime_status.json', json.dumps({
+        'context_limit': 240000, 'max_tokens': 8192, 'lead_slot': 4,
+        'reserve_slot': 7, 'max_credential_attempts': 2,
+        'technical_failover': True, 'same_provider': True,
+        'replay_after_stream_start': False, 'automatic_compaction': True,
+        'stream_idle_timeout_secs': 300, 'phase': 'starting'}))
     env['NOVA_COUNCIL_ROUTE_FILE'] = str(config_path)  # original slot order for advice/benchmarks
     children = []
     processes = {'supervisor': os.getpid()}
@@ -106,6 +115,20 @@ def main():
                 if time.monotonic() > deadline:
                     raise ValueError('LiteLLM startup timed out')
                 time.sleep(1)
+        relay = subprocess.Popen(['python3', '/opt/nova-agent/agent_failover.py'], cwd=workspace, env=env)
+        children.append(relay)
+        processes['relay'] = relay.pid
+        relay_deadline = time.monotonic() + 15
+        while True:
+            if relay.poll() is not None:
+                raise ValueError('Technical failover relay stopped during startup')
+            try:
+                with socket.create_connection(('127.0.0.1', relay_port), timeout=1):
+                    break
+            except OSError:
+                if time.monotonic() > relay_deadline:
+                    raise ValueError('Technical failover relay startup timed out')
+                time.sleep(0.2)
         # The bootstrap already wrote private config/keys; the agent uses them.
         council = subprocess.Popen(['python3', '/opt/nova-agent/agent_council.py', 'serve'], cwd=workspace, env=env)
         children.append(council)

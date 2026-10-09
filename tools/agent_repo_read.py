@@ -7,7 +7,7 @@ import json
 import os
 import re
 import sys
-from pathlib import PurePosixPath
+from pathlib import PurePosixPath, Path
 from urllib.parse import quote
 from urllib.request import Request, build_opener, HTTPRedirectHandler
 
@@ -89,6 +89,27 @@ def calculate(expression):
 def execute(operation, params):
     if not isinstance(params, dict):
         raise ValueError('Parameters must be an object')
+    if operation == 'runtime':
+        try:
+            raw = Path('/state/nova_runtime_status.json').read_bytes()
+            if len(raw) > 8192:
+                raise ValueError('Invalid runtime metadata')
+            data = json.loads(raw)
+            if not isinstance(data, dict):
+                raise ValueError('Invalid runtime metadata')
+        except FileNotFoundError:
+            return {'installed_metadata_available': False}
+        fields = ('context_limit','max_tokens','lead_slot','reserve_slot',
+                  'max_credential_attempts','technical_failover','same_provider',
+                  'replay_after_stream_start','automatic_compaction',
+                  'stream_idle_timeout_secs','slot','fallback','status',
+                  'prompt_tokens','completion_tokens','total_tokens',
+                  'request_bytes','last_activity_unix')
+        result = {k: data[k] for k in fields if type(data.get(k)) in (int,float,bool)}
+        if data.get('phase') in {'starting','request','response','http_error',
+                                'connection_error','complete','stream_interrupted'}:
+            result['phase'] = data['phase']
+        return {'installed_metadata_available': True, **result}
     if operation == 'calculate':
         return calculate(params.get('expression'))
     if operation == 'status':
@@ -115,17 +136,54 @@ def execute(operation, params):
                 'files': entries[:300]}
     if operation == 'read':
         path = safe_path(params.get('path'))
-        # Pin both the source and returned provenance to the same commit.
-        commit = get('/commits/main')['sha']
+        # Pin both the source and returned provenance to one exact commit.
+        commit = params.get('commit')
+        if commit is None:
+            commit = get('/commits/main')['sha']
+        if not isinstance(commit, str) or not re.fullmatch(r'[0-9a-f]{40}', commit):
+            raise ValueError('An exact lowercase 40-character commit is required')
+        bounds = {}
+        for name in ('start_line','end_line','tail_lines'):
+            value = params.get(name)
+            if value is not None:
+                if type(value) is int:
+                    number = value
+                elif isinstance(value,str) and re.fullmatch(r'[0-9]{1,7}',value):
+                    number = int(value)
+                else:
+                    raise ValueError('Line bounds must be positive integers')
+                if not 1 <= number <= 1000000:
+                    raise ValueError('Line bounds are out of range')
+                bounds[name] = number
+        if 'tail_lines' in bounds and len(bounds) != 1:
+            raise ValueError('Tail and line range cannot be combined')
+        if bounds.get('end_line',1000000) < bounds.get('start_line',1):
+            raise ValueError('End line precedes start line')
         item = get('/contents/' + quote(path, safe='/') + '?ref=' + commit)
         if not isinstance(item, dict) or item.get('type') != 'file' or item.get('encoding') != 'base64':
             raise ValueError('Not a supported regular text file')
-        if item.get('size', LIMIT + 1) > LIMIT:
-            raise ValueError('File exceeds 64 KiB; request a smaller source file')
-        raw = base64.b64decode(item['content'])
-        if len(raw) > LIMIT or b'\0' in raw:
+        source_limit = 1024 * 1024 if bounds else LIMIT
+        if type(item.get('size')) is not int or item['size'] > source_limit:
+            raise ValueError('Source exceeds limit; use a bounded line range for large files')
+        raw = base64.b64decode(item['content'],validate=False)
+        if len(raw) > source_limit or b'\0' in raw:
             raise ValueError('File is too large or binary')
-        return {'path': path, 'commit': commit, 'blob_sha': item['sha'], 'content': raw.decode('utf-8')}
+        text = raw.decode('utf-8')
+        lines = text.splitlines(keepends=True)
+        if 'tail_lines' in bounds:
+            first = max(1,len(lines)-bounds['tail_lines']+1)
+            last = len(lines)
+        else:
+            first = bounds.get('start_line',1)
+            last = min(bounds.get('end_line',len(lines)),len(lines))
+        if bounds and (first > len(lines) or last-first+1 > 3000):
+            raise ValueError('Line range is unavailable or exceeds 3000 lines')
+        content = ''.join(lines[first-1:last]) if bounds else text
+        if len(content.encode('utf-8')) > LIMIT:
+            raise ValueError('Returned content exceeds 64 KiB; narrow the line range')
+        return {'path':path, 'commit':commit, 'blob_sha':item['sha'],
+                'content':content, 'first_line':first, 'last_line':last,
+                'total_lines':len(lines), 'full_file':not bounds or (first==1 and last==len(lines))}
     raise ValueError('Unsupported read operation')
 
 def redact(text):
