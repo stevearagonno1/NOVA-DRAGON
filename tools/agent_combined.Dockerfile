@@ -9,7 +9,7 @@ RUN curl -fL --retry 3 https://github.com/adolfousier/opencrabs/releases/downloa
 RUN opencrabs --version
 WORKDIR /opt/nova-agent
 COPY litellm_config.yaml ./litellm_config.yaml
-COPY tools/agent_bootstrap.py tools/agent_repo_read.py tools/agent_git_guard.py tools/agent_preflight.py tools/agent_combined.py tools/agent_council.py tools/agent_background.py tools/agent_leaders.py tools/agent_advice.py tools/agent_atlas.py tools/agent_deliberation.py tools/agent_council_transport.py tools/agent_router.py ./
+COPY tools/agent_bootstrap.py tools/agent_repo_read.py tools/agent_git_guard.py tools/agent_preflight.py tools/agent_combined.py tools/agent_council.py tools/agent_background.py tools/agent_leaders.py tools/agent_advice.py tools/agent_atlas.py tools/agent_mini_benchmark.py tools/agent_deliberation.py tools/agent_council_transport.py tools/agent_router.py ./
 COPY tools/benchmarks/atlas4_exam.md ./benchmarks/atlas4_exam.md
 RUN mkdir -p /root && ln -s /state/opencrabs /root/.opencrabs
 EXPOSE 10000

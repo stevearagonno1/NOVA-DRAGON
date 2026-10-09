@@ -165,7 +165,7 @@ def notify_atlas(record):
     owner=str(int(os.environ['TELEGRAM_OWNER_ID']))
     payload=redact(json.dumps(record,ensure_ascii=False,indent=2)).encode('utf-8')
     body=(('--'+boundary+'\r\nContent-Disposition: form-data; name="chat_id"\r\n\r\n'+owner+'\r\n').encode()+
-          ('--'+boundary+'\r\nContent-Disposition: form-data; name="document"; filename="ATLAS-4-results.json"\r\nContent-Type: application/json\r\n\r\n').encode()+payload+
+          ('--'+boundary+'\r\nContent-Disposition: form-data; name="document"; filename="benchmark-results.json"\r\nContent-Type: application/json\r\n\r\n').encode()+payload+
           ('\r\n--'+boundary+'--\r\n').encode())
     request=Request('https://api.telegram.org/bot'+os.environ['TELEGRAM_BOT_TOKEN']+'/sendDocument',
                     data=body,method='POST',headers={'Content-Type':'multipart/form-data; boundary='+boundary})
@@ -197,7 +197,7 @@ class Jobs:
     def submit(self, params, kind="review"):
         atlas_scope=params.get("scope","pilot") if kind=="atlas" else None
         if kind == "atlas":
-            if atlas_scope not in ("pilot","all"):raise ValueError("ATLAS scope must be pilot or all")
+            if atlas_scope not in ("pilot","all","mini"):raise ValueError("Benchmark scope must be pilot, all or mini")
             params={"task":"Run fixed ATLAS-4 scope "+atlas_scope+" without tools,grading key,fallback or retries."}
         elif kind == "probe":
             params = {"task": "Check the first configured credential with one small request; no repository sources."}
@@ -228,7 +228,7 @@ class Jobs:
             if len(jobs) >= MAX_JOBS or sum(j['state'] in ('queued', 'running') for j in jobs) >= 2:
                 raise ValueError('Review queue is full; do not launch more jobs')
             job = {'id': secrets.token_hex(8), 'fingerprint': fingerprint, 'state': 'queued',
-                   'kind':kind, 'mode':'simple_advice' if kind in ('review','trial') else kind, 'atlas_scope':atlas_scope, 'expected_requests':(1 if atlas_scope=='pilot' else 10) if kind=='atlas' else 1 if kind=='probe' else 3 if kind=='probe_reviewers' else 3, 'proposal':proposal, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
+                   'kind':kind, 'mode':'simple_advice' if kind in ('review','trial') else kind, 'atlas_scope':atlas_scope, 'expected_requests':(3 if atlas_scope=='mini' else 1 if atlas_scope=='pilot' else 10) if kind=='atlas' else 1 if kind=='probe' else 3 if kind=='probe_reviewers' else 3, 'proposal':proposal, 'task': task, 'context': context, 'paths': paths, 'result': '', 'notification': 'pending', 'phase': 'queued', 'completed_requests': 0}
             self.save(job)
             self.pool.submit(self.work, job)
             return {'id': job['id'], 'state': 'queued', 'next_action':'finish_turn', 'message': 'سُجل الطلب في الخلفية؛ أرسل المعرف وأنهِ ردك الآن. لا تقرأ الإعدادات ولا تستعلم الحالة تلقائيًا. ستصل النتيجة للمالك عند الانتهاء.'}
@@ -273,7 +273,13 @@ class Jobs:
                 job['atlas_record']=record
                 successes=sum(x['outcome']=='completed' for x in record['results'])
                 counts={'model_requests':sum(x['attempted'] for x in record['results']),'partial':successes<job['expected_requests']}
-                result='اكتمل اختبار ATLAS-4؛ وصلت إجابات مكتملة من '+str(successes)+'/'+str(job['expected_requests'])+' مفاتيح. جلسة فارغة لكل مفتاح، دون أدوات أو مصحح أو تبديل احتياطي. ملف الإجابات الخام والأزمنة جاهز للتصحيح؛ لم تُمنح درجات بعد.'
+                result='اكتمل اختبار '+record.get('test','ATLAS-4')+'؛ وصلت إجابات مكتملة من '+str(successes)+'/'+str(job['expected_requests'])+' مفاتيح. جلسة فارغة لكل مفتاح، دون أدوات أو مصحح أو تبديل احتياطي. ملف الإجابات الخام والأزمنة جاهز للتصحيح؛ لم تُمنح درجات بعد.'
+                if record.get('scope')=='mini':
+                    lines=['اختبار قصير واحد لكل مفتاح، دون إعادة أو تغيير القائد تلقائيًا.']
+                    for item in record['results']:
+                        score=item.get('grading',{}).get('score')
+                        lines.append('المفتاح '+str(item['credential_slot'])+': '+(str(score)+'/100' if score is not None else 'غير قابل للتقييم')+'؛ '+str(item['elapsed_seconds'])+' ثانية.')
+                    result='\n'.join(lines)
             elif job.get('kind')=='probe':
                 progress('connection_probe',0)
                 connection = probe_connection()

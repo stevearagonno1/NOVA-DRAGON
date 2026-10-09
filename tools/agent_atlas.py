@@ -62,6 +62,9 @@ class CaptureOpener:
         return self.response
 
 def benchmark(pool=None,requester=stream,progress=None,checkpoint=None,total_seconds=5400,scope="pilot",observer=None):
+    if scope=="mini":
+        from agent_mini_benchmark import benchmark as mini
+        return mini(pool=pool,requester=requester,progress=progress,checkpoint=checkpoint,observer=observer)
     if scope not in ("pilot","all"):raise ValueError("ATLAS scope must be pilot or all")
     pool=routes() if pool is None else pool
     if len(pool)!=10 or len({r['key'] for r in pool})!=10:raise ValueError('ATLAS requires exactly ten distinct configured credentials')
