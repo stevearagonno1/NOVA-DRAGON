@@ -1,0 +1,12 @@
+{
+  "archive_bytes": 1243846,
+  "archive_sha256": "b0d880d3bfb2d12165a8ba9d751f86078cacdf96f34d104ae7df577f785e6764",
+  "final_receipt_publication_excluded": true,
+  "immutable_code_commit": "6c23e86b09f9227e235983cc5aca40691e37d3ed",
+  "immutable_evidence_commit": "6c23e86b09f9227e235983cc5aca40691e37d3ed",
+  "market_run": false,
+  "readback_paths": 58,
+  "status": "PACKAGE_READY_LEAD_REVIEW_PENDING",
+  "synthetic": true,
+  "verified_remote": true
+}
