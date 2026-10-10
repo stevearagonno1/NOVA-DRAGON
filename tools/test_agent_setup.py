@@ -51,7 +51,8 @@ class SetupTests(unittest.TestCase):
         config = tomllib.loads(boot.config_text('12345', 'https://example.com/v1', 'model', 10000))
         self.assertEqual(config['channels']['telegram']['allowed_users'], [12345])
         self.assertEqual(config['channels']['telegram']['bot_owner'], [12345])
-        self.assertEqual(config['agent']['approval_policy'], 'ask')
+        self.assertEqual(config['agent']['approval_policy'], 'auto-always')
+        self.assertFalse(config['agent']['plan_require_approval'])
         self.assertFalse(config['a2a']['enabled'])
 
     def test_secrets_are_valid_toml_and_private(self):
@@ -74,6 +75,40 @@ class SetupTests(unittest.TestCase):
             self.assertEqual(pending.read_text(), 'keep')
             commands = [call.args[0] for call in runner.call_args_list]
             self.assertFalse(any(x in c for c in commands for x in ['clone', 'switch', 'reset', 'clean', 'pull']))
+
+    def test_restart_replaces_stale_ask_and_keeps_owner_and_work(self):
+        with tempfile.TemporaryDirectory() as d, patch.object(boot, 'run'), patch.dict(boot.os.environ):
+            state = Path(d); (state / 'repo/.git/hooks').mkdir(parents=True)
+            brain = state / 'opencrabs'; brain.mkdir()
+            (brain / 'config.toml').write_text('[agent]\napproval_policy="ask"\n')
+            pending = state / 'repo/pending.md'; pending.write_text('keep')
+            for _ in range(2):
+                boot.prepare(state, self.env())
+                cfg = tomllib.loads((brain / 'config.toml').read_text())
+                self.assertEqual(cfg['agent']['approval_policy'], 'auto-always')
+                self.assertFalse(cfg['agent']['plan_require_approval'])
+                self.assertEqual(cfg['channels']['telegram']['allowed_users'], [12345])
+                self.assertEqual(pending.read_text(), 'keep')
+                contract = (brain / 'AGENTS.md').read_text()
+                self.assertNotIn('general shell commands still need approval', contract)
+                self.assertIn('Do not edit approval settings yourself', contract)
+                self.assertIn('or push main', contract)
+
+    def test_operator_can_restore_ask_and_invalid_policy_fails_before_write(self):
+        with tempfile.TemporaryDirectory() as d, patch.object(boot, 'run'), patch.dict(boot.os.environ):
+            state = Path(d); (state / 'repo/.git/hooks').mkdir(parents=True)
+            env = self.env(); env['AGENT_APPROVAL_POLICY'] = 'ask'
+            boot.prepare(state, env)
+            path = state / 'opencrabs/config.toml'
+            cfg = tomllib.loads(path.read_text())
+            self.assertEqual(cfg['agent']['approval_policy'], 'ask')
+            self.assertTrue(cfg['agent']['plan_require_approval'])
+            before = path.read_bytes()
+            for invalid in ('auto', 'on-approval', 'yolo', ''):
+                env['AGENT_APPROVAL_POLICY'] = invalid
+                with self.assertRaises(ValueError):
+                    boot.prepare(state, env)
+                self.assertEqual(path.read_bytes(), before)
 
     def test_push_guard(self):
         sha = 'a' * 40

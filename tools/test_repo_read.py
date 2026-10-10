@@ -13,7 +13,7 @@ class ReadToolsTests(unittest.TestCase):
             self.assertFalse(tool['requires_approval'])
             self.assertNotIn('{{', tool['command'])
             self.assertTrue(tool['command'].startswith('python3 /opt/nova-agent/agent_repo_read.py '))
-        self.assertIn('approval_policy = "ask"', boot.config_text('1', 'https://example.com', 'm', 8080))
+        self.assertIn('approval_policy = "auto-always"', boot.config_text('1', 'https://example.com', 'm', 8080))
 
     def test_sensitive_and_traversal_paths_rejected(self):
         for path in ['/etc/passwd', '../keys.toml', 'docs/../README.md', '.env', 'litellm_config.yaml', 'docs/keys.toml', 'docs/secrets.txt', 'a\\b.md']:

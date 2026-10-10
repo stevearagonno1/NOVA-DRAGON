@@ -9,7 +9,7 @@ import subprocess
 import sys
 import time
 from pathlib import Path
-from agent_bootstrap import prepare, storage_mode, private_write
+from agent_bootstrap import prepare, storage_mode, private_write, approval_policy
 from agent_router import build_router_config
 
 def memory_snapshot(processes, proc=Path('/proc'), cgroup=Path('/sys/fs/cgroup'), page_size=None):
@@ -150,7 +150,7 @@ def main():
         children.append(agent)
         processes['agent'] = agent.pid
         monitor(True)
-        print('NOVA combined: gateway + Telegram agent; storage=' + mode + '; /v1 retained.', flush=True)
+        print('NOVA combined: gateway + Telegram agent; storage=' + mode + '; /v1 retained; tool_policy=' + approval_policy(env), flush=True)
         while all(child.poll() is None for child in children):
             monitor()
             time.sleep(1)
