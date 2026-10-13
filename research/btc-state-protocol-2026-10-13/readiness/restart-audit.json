@@ -1,0 +1,9 @@
+{
+  "restart_registration_payload_equal": true,
+  "restart_calendar_uncompressed_sha256": "0ad88735f587dc09f30f162e167c7d1793827c16c80e7402f99deb03cfe75b13",
+  "restart_calendar_equal": true,
+  "full_analysis_rows": 525600,
+  "full_window_eligible_rows": 524880,
+  "shared_workspace_budget": "NOT_ADMITTED: previous evidence exceeds125MB; no deletion or relocation to force PASS",
+  "scope_new_files_bytes": 5381051
+}

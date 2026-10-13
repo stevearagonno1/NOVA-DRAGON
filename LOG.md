@@ -882,3 +882,7 @@ D-L0094-ALL-QUALITY-20261007:Defer adoption. Scanned all347763pair variants per 
 
 ## L0094 missed-onset diagnosis — 2026-10-07
 D-L0094-MISSED-ONSET-20261007:Descriptive diagnosis accepted,Defer adoption. Three diagnostic eligible leaders captured41/106events;65missed. Ofmissed:61no mixture pulsewithin+-12bars,4nearearlier,0nearlater. BTC24missed:9neither/15StochRSIonly;ETH19neither;SOL22:3neither/14CCIonly/1Stochonly/4bothbutnonsimultaneous. No newmarket measurement or causal-state outcome. Next:prepare L0095 pulse-vs-persistent momentum confirmation and unfiltered control,starting SOL CCI/Stoch;futureeventlabels evaluation-only;executor runs/uploads.
+
+
+## BTC-STATE-REGISTER-01 — 2026-10-13
+Owner requested first-stage paper. Fixed56 measures/168 trajectory positions registered, no values or future outcomes computed. Real archive registration10/10,525600 anchors partitioned,524880 eligible for all9 windows; deterministic rerun matches. Historical splits not genuinely blind. Next: prepare causal-feature generation only. Shared old workspace not admitted under125MB; no evidence removed. Work branch only, no merge/trading.
