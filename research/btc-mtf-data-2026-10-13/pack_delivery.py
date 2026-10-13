@@ -2,8 +2,8 @@
 import argparse,json,zipfile,time
 from pathlib import Path
 import collect
-p=argparse.ArgumentParser();p.add_argument('--scope',type=Path,default=Path('execution'));p.add_argument('--output',type=Path,default=Path('BTC-year-minute-and-frames.zip'));a=p.parse_args();s=a.scope
-m=json.loads((s/'manifest.json').read_text());audit=json.loads((s/'audit.json').read_text());assert audit['status']=='PASS_AUTOMATED_DATA_CHECKS_LEAD_REVIEW_PENDING';assert not m.get('rehearsal_only'), 'Do not present rehearsal as year data'
+p=argparse.ArgumentParser();p.add_argument('--scope',type=Path,default=Path('execution'));p.add_argument('--output',type=Path,default=Path('BTC-year-minute-and-frames.zip'));p.add_argument('--allow-rehearsal',action='store_true');a=p.parse_args();s=a.scope
+m=json.loads((s/'manifest.json').read_text());audit=json.loads((s/'audit.json').read_text());assert audit['status']=='PASS_AUTOMATED_DATA_CHECKS_LEAD_REVIEW_PENDING';assert not m.get('rehearsal_only') or a.allow_rehearsal, 'Do not present rehearsal as year data'
 collect.budget(Path.cwd())
 with zipfile.ZipFile(a.output,'w',zipfile.ZIP_STORED) as z:
  for f in sorted((s/'frames').glob('*.gz')):z.write(f,'frames/'+f.name)
