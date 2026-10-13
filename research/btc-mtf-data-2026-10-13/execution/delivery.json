@@ -14,9 +14,13 @@
   ],
   "indicators_and_states_measured": false,
   "elapsed_seconds_through_persistent_data_save": 381.39711260795593,
-  "elapsed_seconds_full_task_pending_repository_readback": true,
+  "elapsed_seconds_full_task_pending_repository_readback": false,
   "prepared_source_commit": "dc2c90a173521f4f58f5cf7468a96dddfa260d0c",
   "library_save_status": "succeeded",
   "unexpected_zero_byte_part_retained": "execution/raw/BTCUSDT-1m-2025-10.zip.part",
-  "whole_task_directory_bytes": 98581684
+  "whole_task_directory_bytes": 98583475,
+  "elapsed_seconds_through_verified_delivery": 467.65877962112427,
+  "verified_delivery_commit": "ea236b1c1cb9475bb0bb47a7146839df9086d5a9",
+  "repository_metadata_exact_readback": "PASS_5_FILES",
+  "measurement_endpoint": "after persistent artifact save and exact-commit metadata readback; subsequent completion receipt publication separately accounted"
 }
