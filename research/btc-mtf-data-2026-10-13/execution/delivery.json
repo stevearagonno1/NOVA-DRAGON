@@ -1,0 +1,22 @@
+{
+  "status": "DATA_COLLECTED_LEAD_REVIEW_PENDING",
+  "artifact": "/workspace/scratch/9c15613e1fe0/btc_year_executor/BTC-year-minute-and-frames.zip",
+  "artifact_sha256": "60a074bcf6f3f7e75cf87ef84cc86fc0293d5f419e2d95869ec2816725bf3728",
+  "artifact_bytes": 35526692,
+  "cwd_bytes": 98581207,
+  "source_raw_archives_retained": true,
+  "raw_source_urls_in_manifest": true,
+  "frames_in_artifact": [
+    1,
+    5,
+    15,
+    60
+  ],
+  "indicators_and_states_measured": false,
+  "elapsed_seconds_through_persistent_data_save": 381.39711260795593,
+  "elapsed_seconds_full_task_pending_repository_readback": true,
+  "prepared_source_commit": "dc2c90a173521f4f58f5cf7468a96dddfa260d0c",
+  "library_save_status": "succeeded",
+  "unexpected_zero_byte_part_retained": "execution/raw/BTCUSDT-1m-2025-10.zip.part",
+  "whole_task_directory_bytes": 98581684
+}
