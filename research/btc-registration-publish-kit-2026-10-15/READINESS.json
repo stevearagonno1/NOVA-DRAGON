@@ -1,0 +1,10 @@
+{
+  "status": "PASS_OFFLINE_PUBLICATION_FIXTURE_ONLY",
+  "immutable_blobs_verified": 40,
+  "split_rows_reconciled": 525600,
+  "tampered_source_rejected": true,
+  "missing_credential_rejected": true,
+  "no_main_or_merge_or_PR_requests": true,
+  "live_authenticated_GitHub_upload": "NOT_TESTED_TOKEN_PENDING",
+  "real_existing_executor_evidence": "REPORTED_ONLY_NOT_AVAILABLE_IN_LEAD_WORKSPACE"
+}
