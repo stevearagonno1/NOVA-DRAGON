@@ -1,0 +1,13 @@
+{
+  "register.py": "0574708f1695c926aee65462b2fdfe6f77b53d6f3539865d2572156c1a2a52ef",
+  "protocol.json": "5f0b382cb8bc58c33f9375d4e98ad4e4e5d81b4b8966fa693056b84c0ae93c91",
+  "BTC-STATE-REGISTER-01-R2.md": "f49244ad7450478484be613557de8aa3ef3bff96bb3516d9cdcb5fb7cc0aaca4",
+  "collect.py": "9ecd930e99a5c416a4681ba3be1c89eab8f502c9a50e040d79e1100517fd352d",
+  "frames/BTCUSDT-15m.csv.gz": "9d5162cf8977462edae7da6d94ce12b1c061b61590c8edb56bfaf3090443ab43",
+  "frames/BTCUSDT-1m.csv.gz": "61c19d2cae9cf01cb341ffb0e3ee72b292fca59e2bebbabf1c9e7f5d3904b8ba",
+  "frames/BTCUSDT-5m.csv.gz": "5e6368e72873564df65e459284cbfca4cc3ac2b0860824b88a1eb8a25d47e8c0",
+  "frames/BTCUSDT-60m.csv.gz": "75efaba7134d3852a4c815ab608205a91cd949b701c75e15bfbb876491ab5182",
+  "manifest.json": "475ee7030c261f19893d4bc6df8d864cf62be5e69895ff59f316ba48593a8395",
+  "audit.json": "f5e3047f794a65a4047b4fa308827b6964b5ea9ffeab64e2711e73c37f4f7427",
+  "execution-timing.json": "3c4cd8348c936d04462fd7c17f3c8b3421eeb12ff482b7add128f80d8043e95e"
+}

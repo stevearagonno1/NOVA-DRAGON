@@ -1,0 +1,16 @@
+{
+  "status": "R2_INPUTS_ATTACHED_AND_REGISTRATION_RETESTED",
+  "artifact": "BTC-year-minute-and-frames.zip",
+  "artifact_bytes": 35735061,
+  "artifact_sha256": "86b7523fa55c9b5613418fa293e1aabe92a5db081d87d972e84eac10c16299bc",
+  "manifest_sha256": "475ee7030c261f19893d4bc6df8d864cf62be5e69895ff59f316ba48593a8395",
+  "original_source_pins_equal_13_months": true,
+  "registration_checks": "10/10",
+  "deterministic_repeat": true,
+  "scope_bytes": 102632651,
+  "raw_monthly_sources_retained": true,
+  "indicator_values_computed": false,
+  "states_or_predictive_precision_computed": false,
+  "old_issue": "Paper-only delivery omitted input bundle and source files",
+  "fix": "One archive includes data,register.py,protocol.json and MD paper; input identity pins immutable manifest/source/frame hashes instead of unavailable old compressed archive hash"
+}

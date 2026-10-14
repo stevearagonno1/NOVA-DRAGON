@@ -1,0 +1,134 @@
+{
+  "task_id": "BTC-STATE-REGISTER-01",
+  "stage": "PROTOCOL_AND_SPLIT_REGISTRATION_ONLY",
+  "symbol": "BTCUSDT",
+  "market": "Spot",
+  "timezone": "UTC",
+  "collection_start": "2025-09-01",
+  "analysis_start": "2025-10-01",
+  "analysis_end_exclusive": "2026-10-01",
+  "frames_minutes": [
+    1,
+    5,
+    15,
+    60
+  ],
+  "expected_counts": {
+    "1": 568800,
+    "5": 113760,
+    "15": 37920,
+    "60": 9480
+  },
+  "folds": [
+    {
+      "name": "discovery",
+      "start": "2025-10-01",
+      "end": "2026-04-01"
+    },
+    {
+      "name": "historical_validation",
+      "start": "2026-04-01",
+      "end": "2026-07-01"
+    },
+    {
+      "name": "historical_reserve",
+      "start": "2026-07-01",
+      "end": "2026-10-01"
+    }
+  ],
+  "maximum_future_window_minutes": 240,
+  "future_windows_minutes": [
+    1,
+    3,
+    5,
+    10,
+    15,
+    30,
+    60,
+    120,
+    240
+  ],
+  "past_snapshot_offsets_minutes": [
+    0,
+    5,
+    15
+  ],
+  "indicator_parameters": {
+    "ATR": {
+      "period": 14,
+      "smoothing": "Wilder",
+      "first_true_range": "high-low",
+      "seed": "mean first 14 true ranges"
+    },
+    "EMA": {
+      "period": 20,
+      "seed": "SMA20",
+      "source": "close"
+    },
+    "MACD": {
+      "fast": 12,
+      "slow": 26,
+      "signal": 9,
+      "seed": "each EMA seeds from its first n available values"
+    },
+    "RSI": {
+      "period": 14,
+      "smoothing": "Wilder",
+      "seed": "first14 close differences",
+      "zero_loss": "100 if gain>0;50 if gain=loss=0"
+    },
+    "volume": {
+      "source": "base_asset_volume",
+      "normalizer": "mean of previous60 complete bars, excluding current"
+    }
+  },
+  "features_per_frame": [
+    "atr14",
+    "atr_pct",
+    "atr_relative_change5",
+    "ema20",
+    "close_minus_ema_over_atr",
+    "ema_change5_over_atr",
+    "macd",
+    "macd_signal",
+    "hist_over_atr",
+    "hist_change5_over_atr",
+    "rsi14",
+    "rsi_change5",
+    "volume_base",
+    "volume_over_previous60_mean"
+  ],
+  "future_labels": "NOT_COMPUTED_IN_THIS_STAGE",
+  "feature_values": "NOT_COMPUTED_IN_THIS_STAGE",
+  "candidate_search_attempts": 0,
+  "features_count": 56,
+  "trajectory_positions_count": 168,
+  "required_feature_warmup_bars": 200,
+  "historical_exposure": "Historical records previously processed or inspected in earlier research; neither validation nor reserve is genuinely blind. Only new forward collection can be blind.",
+  "resource_limit_bytes": 125000000,
+  "financial_fields": "not measured \u2014 outside this phase",
+  "revision": "R2_ATTACHMENT_REPAIR_2026_10_14",
+  "historical_original_bundle_sha256": "60a074bcf6f3f7e75cf87ef84cc86fc0293d5f419e2d95869ec2816725bf3728",
+  "input_manifest_sha256": "475ee7030c261f19893d4bc6df8d864cf62be5e69895ff59f316ba48593a8395",
+  "frame_sha256": {
+    "1": "61c19d2cae9cf01cb341ffb0e3ee72b292fca59e2bebbabf1c9e7f5d3904b8ba",
+    "5": "5e6368e72873564df65e459284cbfca4cc3ac2b0860824b88a1eb8a25d47e8c0",
+    "15": "9d5162cf8977462edae7da6d94ce12b1c061b61590c8edb56bfaf3090443ab43",
+    "60": "75efaba7134d3852a4c815ab608205a91cd949b701c75e15bfbb876491ab5182"
+  },
+  "source_sha256_by_month": {
+    "2025-09": "52bb4a4a52afbcc0af77e3eb92c114bf810982ca63bf02f8fe15062e59c5f44b",
+    "2025-10": "985d878cacbfdde85c9e0da2e8830ab913fe01bfdcde6e488563d8194df11f6b",
+    "2025-11": "c54159d1216ab07f040a96d6678748e8746ac4200cba373fb6b758f2cdd1e5e5",
+    "2025-12": "7b47647352b01356dcd678a1438efb8baac03ed798785ed2179d428aab0cca9b",
+    "2026-01": "d28b369da32a6ea84ba0af517b1847ab67b2fcc1e0e111c1b24d56ae07240cb9",
+    "2026-02": "cee2e913ed07e02834e2387c65ca430fe3576f620588bad8a02229238f385407",
+    "2026-03": "a2c1e689d39aa7877e218f436f15162e9a4436778a377d32e9d9b81b081381cd",
+    "2026-04": "318afd4f5acfbcfbb40fbe727a77eee8e9e7b54d8941589c78a32283d90b4a01",
+    "2026-05": "62983d93c35e26ec6c29116c629e443b7ddfe3d301aca83331ff58112199d8d0",
+    "2026-06": "c8e1d5e70b766dd2312fc9cd7085785bb25708e27e75c21a5a5aaba61a6d07f5",
+    "2026-07": "3ef15c84353da48e1c7c5fd99b9751cb036bf8986ed47f7cd1be63359c0d4f6b",
+    "2026-08": "acab442e02745177063031d402929703ae983715010064b40cf811c4beb843d4",
+    "2026-09": "7a021fb5981cfdb1a56457d68fa81360ab27350c981ddfe63112b2322df44b56"
+  }
+}
