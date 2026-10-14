@@ -886,3 +886,7 @@ D-L0094-MISSED-ONSET-20261007:Descriptive diagnosis accepted,Defer adoption. Thr
 
 ## BTC-STATE-REGISTER-01 — 2026-10-13
 Owner requested first-stage paper. Fixed56 measures/168 trajectory positions registered, no values or future outcomes computed. Real archive registration10/10,525600 anchors partitioned,524880 eligible for all9 windows; deterministic rerun matches. Historical splits not genuinely blind. Next: prepare causal-feature generation only. Shared old workspace not admitted under125MB; no evidence removed. Work branch only, no merge/trading.
+
+
+## BTC registration from repository — 2026-10-15
+Owner reports executor25MB attachment cap and requests repository-first execution. R3 prepared standard-library source recovery+registration runner, fixed13monthly Binance source hashes, original research definitions preserved. Real one-month end-to-end and completed-rerun checks10/10;43200/8640/2880/720bars. No new R3year or signal measurement. Source code/paper/receipts small; large raw data remains at original sources and is recreated by executor. Next: executor runs ready R3stage on fresh <=125MB workspace, publishes small reports; Lead audits. No main writes/merge/trading.

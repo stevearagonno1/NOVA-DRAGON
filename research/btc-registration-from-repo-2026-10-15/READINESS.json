@@ -1,0 +1,33 @@
+{
+  "status": "PASS_REHEARSAL_ONLY_NOT_YEAR",
+  "mode": "rehearsal",
+  "source_months": 1,
+  "frame_counts": {
+    "1": 43200,
+    "5": 8640,
+    "15": 2880,
+    "60": 720
+  },
+  "registration_checks": "10/10",
+  "repeat_registration_equal": true,
+  "input_archive_sha256": "cd6beab85f82c12c100ade7ef5c6e7c4abc33ef69e9098602d56d50de4c0a743",
+  "archive_bytes": 2646400,
+  "whole_task_directory_bytes": 7630675,
+  "elapsed_seconds_local_execution": 5.159104347229004,
+  "publication_included_in_timer": false,
+  "indicators_or_states_computed": false,
+  "original_source_archives_retained": true,
+  "financial_fields": "not measured \u2014 outside this phase",
+  "code_sha256": {
+    "run_repo.py": "9b70e6b6885e8f6e95c9ca0aca8a7ed71a574967c2476216887cdf7049137aa7",
+    "collect.py": "ce07492a625348e2137c0796018a8334594f2fc7346a6850feac3da87b9b79b4",
+    "register.py": "3a26edc12e7d9c248997496811d1f6ac7f581b22e54e5d2761eb5c4423b40f86",
+    "protocol.json": "883134ec7002e8d2187a02b40d1128a4b6c8789bd0878da8e4f72ca808ccc322"
+  },
+  "limits": [
+    "Real source one-month rehearsal, not a new year execution",
+    "Scientific definitions fixed; transport identity rebound only after original source verification",
+    "Historical validation not genuinely blind",
+    "Heavy executor task only data recreation and registration"
+  ]
+}
