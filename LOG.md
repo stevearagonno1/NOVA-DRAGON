@@ -921,3 +921,7 @@ Verified executor commit 87d68c79e5e0263ce7c5ecf558761996a0e988d3: 52 binary fil
 
 ## Entry-only research definition proposal — 2026-10-15
 Recorded current owner scope: entry signals only; duration and movement size are measured outputs, not forced success thresholds. Prepared a 20-section definition proposal, explicitly NOT an executable paper. The material unresolved decision is whether a rise is each uninterrupted closing-price up-leg or a broader wave containing pullbacks; a concrete four-price example shows the difference. No signal experiments, grid changes or exit research executed. Definition decision is required under constitution 11.1–11.2 before implementing and handing off the next experiment. See research/entry-signal-01-2026-10-15/DEFINITION-REVIEW.md.
+
+
+## Entry-start scope clarified by owner — 2026-10-15
+Owner clarified: detect the beginning of a rise; later prices are used only to check whether the market rose after the signal. Removed the pending owner choice between uninterrupted legs and broader waves; the earlier proposal was not adopted. Lead owns the exact executable signal and outcome definitions. No exits, wave-end research or financial measurement. Updated scope document remains a preparation draft, not a runnable execution paper. No experiment executed.
