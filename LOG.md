@@ -894,3 +894,7 @@ Owner reports executor25MB attachment cap and requests repository-first executio
 
 ## Existing BTC registration publication resumed - 2026-10-15
 Existing year evidence only; original13source hashes,4frame hashes and525600 split rows reconciled before publication. No collection or signal research rerun. Work branch only; Lead review pending.
+
+
+## BTC registration independently admitted — 2026-10-15
+Lead verified40published files at e68689a0aa560d27677ec703f85cea3877910b56 and receipt head2fa8072fa59d32d048da7ba4f412899a2de16000. Read13pinned monthly sources, independently rebuilt568800/113760/37920/9480bars and reconciled every higher bar, audited525600calendar anchors/524880all-window eligible. Scientific definitions unchanged. Accept data+split stage technically only; no indicators/states/predictive accuracy/money measured. Original executor frame gzip/35MBzip not published; original compressed hashes not directly read, independent canonical CSV hashes recorded. Next: separate causal-measurement computation paper. No main merge.

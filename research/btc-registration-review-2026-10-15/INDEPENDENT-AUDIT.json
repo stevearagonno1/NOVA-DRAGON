@@ -1,0 +1,192 @@
+{
+  "status": "PASS_INDEPENDENT_SOURCE_AND_CALENDAR_ADMISSION",
+  "data_commit": "e68689a0aa560d27677ec703f85cea3877910b56",
+  "receipt_state": "PUBLISHED_AND_IMMUTABLE_READBACK_VERIFIED_LEAD_REVIEW_PENDING",
+  "raw_months": 13,
+  "monthly": [
+    {
+      "month": "2025-09",
+      "rows": 43200,
+      "first_open_ms": 1756684800000,
+      "last_open_ms": 1759276740000,
+      "source_sha256": "52bb4a4a52afbcc0af77e3eb92c114bf810982ca63bf02f8fe15062e59c5f44b"
+    },
+    {
+      "month": "2025-10",
+      "rows": 44640,
+      "first_open_ms": 1759276800000,
+      "last_open_ms": 1761955140000,
+      "source_sha256": "985d878cacbfdde85c9e0da2e8830ab913fe01bfdcde6e488563d8194df11f6b"
+    },
+    {
+      "month": "2025-11",
+      "rows": 43200,
+      "first_open_ms": 1761955200000,
+      "last_open_ms": 1764547140000,
+      "source_sha256": "c54159d1216ab07f040a96d6678748e8746ac4200cba373fb6b758f2cdd1e5e5"
+    },
+    {
+      "month": "2025-12",
+      "rows": 44640,
+      "first_open_ms": 1764547200000,
+      "last_open_ms": 1767225540000,
+      "source_sha256": "7b47647352b01356dcd678a1438efb8baac03ed798785ed2179d428aab0cca9b"
+    },
+    {
+      "month": "2026-01",
+      "rows": 44640,
+      "first_open_ms": 1767225600000,
+      "last_open_ms": 1769903940000,
+      "source_sha256": "d28b369da32a6ea84ba0af517b1847ab67b2fcc1e0e111c1b24d56ae07240cb9"
+    },
+    {
+      "month": "2026-02",
+      "rows": 40320,
+      "first_open_ms": 1769904000000,
+      "last_open_ms": 1772323140000,
+      "source_sha256": "cee2e913ed07e02834e2387c65ca430fe3576f620588bad8a02229238f385407"
+    },
+    {
+      "month": "2026-03",
+      "rows": 44640,
+      "first_open_ms": 1772323200000,
+      "last_open_ms": 1775001540000,
+      "source_sha256": "a2c1e689d39aa7877e218f436f15162e9a4436778a377d32e9d9b81b081381cd"
+    },
+    {
+      "month": "2026-04",
+      "rows": 43200,
+      "first_open_ms": 1775001600000,
+      "last_open_ms": 1777593540000,
+      "source_sha256": "318afd4f5acfbcfbb40fbe727a77eee8e9e7b54d8941589c78a32283d90b4a01"
+    },
+    {
+      "month": "2026-05",
+      "rows": 44640,
+      "first_open_ms": 1777593600000,
+      "last_open_ms": 1780271940000,
+      "source_sha256": "62983d93c35e26ec6c29116c629e443b7ddfe3d301aca83331ff58112199d8d0"
+    },
+    {
+      "month": "2026-06",
+      "rows": 43200,
+      "first_open_ms": 1780272000000,
+      "last_open_ms": 1782863940000,
+      "source_sha256": "c8e1d5e70b766dd2312fc9cd7085785bb25708e27e75c21a5a5aaba61a6d07f5"
+    },
+    {
+      "month": "2026-07",
+      "rows": 44640,
+      "first_open_ms": 1782864000000,
+      "last_open_ms": 1785542340000,
+      "source_sha256": "3ef15c84353da48e1c7c5fd99b9751cb036bf8986ed47f7cd1be63359c0d4f6b"
+    },
+    {
+      "month": "2026-08",
+      "rows": 44640,
+      "first_open_ms": 1785542400000,
+      "last_open_ms": 1788220740000,
+      "source_sha256": "acab442e02745177063031d402929703ae983715010064b40cf811c4beb843d4"
+    },
+    {
+      "month": "2026-09",
+      "rows": 43200,
+      "first_open_ms": 1788220800000,
+      "last_open_ms": 1790812740000,
+      "source_sha256": "7a021fb5981cfdb1a56457d68fa81360ab27350c981ddfe63112b2322df44b56"
+    }
+  ],
+  "reconstructed_counts": {
+    "1": 568800,
+    "5": 113760,
+    "15": 37920,
+    "60": 9480
+  },
+  "canonical_fingerprints": {
+    "1": {
+      "rows": 568800,
+      "canonical_gzip_sha256": "c225a6ad7f1347fa20f32847dd802a7aecaeec9df55a15797060e36121692e5c",
+      "uncompressed_csv_sha256": "fc80ba62b6eeadd3e304d14b387fd77f946f81cacc96bd90e301643a64868516"
+    },
+    "5": {
+      "rows": 113760,
+      "canonical_gzip_sha256": "d65dcc541d69dd5fec6b7ec279a1f86deb573950829cb4a31011c09aa04b6b4a",
+      "uncompressed_csv_sha256": "6db7f4848cdcc4740ad34206ae97411d08f1a3a2d9af1d201ee42bcefdc891ee"
+    },
+    "15": {
+      "rows": 37920,
+      "canonical_gzip_sha256": "9aaf152f31ac98730c2f3d82fdbe94516b9e3684c8bd27694c19f3c1d190affa",
+      "uncompressed_csv_sha256": "2b681ce5661252ae736773c73d72d15f5d03fcaa47071b445450282cc99aee59"
+    },
+    "60": {
+      "rows": 9480,
+      "canonical_gzip_sha256": "c13effca4f9cb5ac92534611cfab3f3022a8f03f56b7478b4dfe3fe0f9324817",
+      "uncompressed_csv_sha256": "b2eae3753045edb37f2cb06f34c91dfd2be9d966e47948d1d8c6f5a3926e5b04"
+    }
+  },
+  "all_higher_bars_full_field_reconciliation": "PASS",
+  "all_frame_additive_totals_equal": "PASS",
+  "calendar_rows": 525600,
+  "splits": {
+    "discovery": {
+      "feature_anchor_rows": 262080,
+      "eligible_all_9_windows": 261840,
+      "excluded_240min_boundary_rows": 240,
+      "eligible_by_window": {
+        "1": 262079,
+        "3": 262077,
+        "5": 262075,
+        "10": 262070,
+        "15": 262065,
+        "30": 262050,
+        "60": 262020,
+        "120": 261960,
+        "240": 261840
+      }
+    },
+    "historical_validation": {
+      "feature_anchor_rows": 131040,
+      "eligible_all_9_windows": 130800,
+      "excluded_240min_boundary_rows": 240,
+      "eligible_by_window": {
+        "1": 131039,
+        "3": 131037,
+        "5": 131035,
+        "10": 131030,
+        "15": 131025,
+        "30": 131010,
+        "60": 130980,
+        "120": 130920,
+        "240": 130800
+      }
+    },
+    "historical_reserve": {
+      "feature_anchor_rows": 132480,
+      "eligible_all_9_windows": 132240,
+      "excluded_240min_boundary_rows": 240,
+      "eligible_by_window": {
+        "1": 132479,
+        "3": 132477,
+        "5": 132475,
+        "10": 132470,
+        "15": 132465,
+        "30": 132450,
+        "60": 132420,
+        "120": 132360,
+        "240": 132240
+      }
+    }
+  },
+  "eligible_all_windows": 524880,
+  "scientific_definitions_unchanged": true,
+  "publication_files_verified": 40,
+  "old_derived_transport_bytes_independently_read": false,
+  "scope_bytes": 65960288,
+  "independent_compute_seconds": 71.26596927642822,
+  "limits": [
+    "Original derived frame gzip files and35MBtransport were not published; their compressed-byte hashes are executor reports, not independently read original bytes. Lead rebuilt canonical frames from published immutable raw sources and fully reconciled their fields.",
+    "Entire original executor preparation-to-final-publication duration not measured;80.547s local pipeline and74.671s publication are separate components, not a continuous total.",
+    "Snapshot orderbook sample2023 is separate; year orderbook not provided.",
+    "No indicator values, recurrent states, forecast accuracy, fees, exits, trading or adoption measured. Historical splits not genuinely blind."
+  ]
+}
