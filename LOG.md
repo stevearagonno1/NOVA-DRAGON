@@ -890,3 +890,7 @@ Owner requested first-stage paper. Fixed56 measures/168 trajectory positions reg
 
 ## BTC registration from repository — 2026-10-15
 Owner reports executor25MB attachment cap and requests repository-first execution. R3 prepared standard-library source recovery+registration runner, fixed13monthly Binance source hashes, original research definitions preserved. Real one-month end-to-end and completed-rerun checks10/10;43200/8640/2880/720bars. No new R3year or signal measurement. Source code/paper/receipts small; large raw data remains at original sources and is recreated by executor. Next: executor runs ready R3stage on fresh <=125MB workspace, publishes small reports; Lead audits. No main writes/merge/trading.
+
+
+## Existing BTC registration publication resumed - 2026-10-15
+Existing year evidence only; original13source hashes,4frame hashes and525600 split rows reconciled before publication. No collection or signal research rerun. Work branch only; Lead review pending.

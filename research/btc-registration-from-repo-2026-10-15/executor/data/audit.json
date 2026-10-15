@@ -1,0 +1,47 @@
+{
+  "status": "PASS_AUTOMATED_DATA_CHECKS_LEAD_REVIEW_PENDING",
+  "frames": {
+    "1": {
+      "rows": 568800,
+      "hash_calendar_ohlc": "PASS"
+    },
+    "5": {
+      "rows": 113760,
+      "hash_calendar_ohlc": "PASS"
+    },
+    "15": {
+      "rows": 37920,
+      "hash_calendar_ohlc": "PASS"
+    },
+    "60": {
+      "rows": 9480,
+      "hash_calendar_ohlc": "PASS"
+    }
+  },
+  "independently_reconciled_higher_bars": {
+    "5": 113760,
+    "15": 37920,
+    "60": 9480
+  },
+  "first_last_open_ms": {
+    "1": [
+      1756684800000,
+      1790812740000
+    ],
+    "5": [
+      1756684800000,
+      1790812500000
+    ],
+    "15": [
+      1756684800000,
+      1790811900000
+    ],
+    "60": [
+      1756684800000,
+      1790809200000
+    ]
+  },
+  "source_checksums_verified_during_build": true,
+  "scope_bytes": 63003018,
+  "indicator_measurement": false
+}

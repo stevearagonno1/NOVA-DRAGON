@@ -1,0 +1,13 @@
+{
+  "fixed_protocol_sha256": "883134ec7002e8d2187a02b40d1128a4b6c8789bd0878da8e4f72ca808ccc322",
+  "mode": "execution",
+  "allowed_production_metadata_fields": [
+    "frame_sha256",
+    "input_manifest_sha256"
+  ],
+  "source_pins_unchanged": true,
+  "research_definitions_unchanged": true,
+  "old_transport_manifest_sha256": "475ee7030c261f19893d4bc6df8d864cf62be5e69895ff59f316ba48593a8395",
+  "new_transport_manifest_sha256": "19bf7edf9f1a01b60117652b8cf6399319f38f399fce1aa9f0b40b361db82c57",
+  "not_predictive_research": true
+}
