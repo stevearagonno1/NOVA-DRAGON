@@ -917,3 +917,7 @@ Owner reiterated the final-response contract: تم, or فشل: actual cause. Rea
 
 ## Independent review of full-year causal measurements — 2026-10-15
 Verified executor commit 87d68c79e5e0263ce7c5ecf558761996a0e988d3: 52 binary files, 676368 records, 81164160 bytes; all hashes, record timestamps and NaN counts checked. Independent Decimal50 reference passed 2184 sampled field comparisons across every month/frame. Numerical data accepted for entry-signal research only; no predictive result or trading adoption. Executor elapsed-time labels have documented limitations in research/btc-causal-measures-2026-10-15/lead_review/LEAD-REVIEW.md. No source or execution-branch modification.
+
+
+## Entry-only research definition proposal — 2026-10-15
+Recorded current owner scope: entry signals only; duration and movement size are measured outputs, not forced success thresholds. Prepared a 20-section definition proposal, explicitly NOT an executable paper. The material unresolved decision is whether a rise is each uninterrupted closing-price up-leg or a broader wave containing pullbacks; a concrete four-price example shows the difference. No signal experiments, grid changes or exit research executed. Definition decision is required under constitution 11.1–11.2 before implementing and handing off the next experiment. See research/entry-signal-01-2026-10-15/DEFINITION-REVIEW.md.
