@@ -1,0 +1,41 @@
+{
+  "status": "BLOCKED_NOT_ALL_INDICATORS_EXECUTION_READY",
+  "coverage_accounting": "PASS",
+  "source_blob_byte_checks": 129,
+  "source_frame_attempts": 492,
+  "runtime_counts": {
+    "RUNTIME_FAILED": 199,
+    "READINESS_TIMEOUT_10S": 9,
+    "DEFAULT_SYNTHETIC_RUN_ONLY": 284
+  },
+  "parameter_declarations": 5940,
+  "domain_counts": {
+    "OPEN_OTHER_DOMAIN": 342,
+    "OPEN_NUMERIC_DOMAIN": 1337,
+    "COLOR_DOMAIN": 937,
+    "BOOLEAN": 1969,
+    "FINITE_DECLARED_RANGE": 653,
+    "UNRESOLVED_DEFAULT_OR_DOMAIN": 53,
+    "DECLARED_OPTIONS": 648,
+    "UNRESOLVED_OPTIONS": 1
+  },
+  "historical_parameter_drafts": 114,
+  "binary_documents_text_extracted": 18,
+  "market_experiment_run": false,
+  "entry_signal_validation_passed": false,
+  "all_entry_variants_ready": false,
+  "prep_first_recorded_clock": "2026-10-15T17:07:51+00:00",
+  "check_clock": "2026-10-15T17:26:44.834387+00:00",
+  "prep_elapsed_lower_bound_seconds": 1133.834387,
+  "full_prep_elapsed_seconds": "not measured: exact initial tool start not captured",
+  "synthetic_all_frame_compute_seconds": 132.7306582430001,
+  "routing_limit_600s_exceeded": true,
+  "blocked_reasons": [
+    "original-script/runtime incompatibilities and external imports; some smoke failures are insufficient synthetic higher-frame history, not proof original is defective",
+    "all entry-affecting parameter domains and cross-products are not semantically locked; open numeric inputs do not define a finite universal sweep",
+    "entry triggers, causal timing and every parameter variant have not been independently validated",
+    "some source requests require auxiliary symbols or historical order-flow/depth not supplied by BTC OHLCV",
+    "PDF/DOCX text extraction is not full semantic/formula or image review",
+    "historical paper76 and paper38 are retained as drafts; overlap with canonical52 requires formula-level reconciliation"
+  ]
+}
