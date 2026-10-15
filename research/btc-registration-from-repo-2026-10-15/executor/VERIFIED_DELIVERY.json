@@ -1,0 +1,10 @@
+{
+  "status": "PUBLISHED_AND_IMMUTABLE_READBACK_VERIFIED_LEAD_REVIEW_PENDING",
+  "source_commit": "b0b8064c64f75d9a028d30e03b6bb9a898423b65",
+  "verified_data_commit": "e68689a0aa560d27677ec703f85cea3877910b56",
+  "branch": "agent/btc-registration-from-repo-execution-2026-10-15",
+  "files_verified": 40,
+  "publication_seconds": 74.6714141368866,
+  "no_year_or_research_rerun": true,
+  "next": "Lead independent audit"
+}
