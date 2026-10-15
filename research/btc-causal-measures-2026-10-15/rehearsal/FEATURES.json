@@ -1,0 +1,131 @@
+{
+  "format": "little-endian int64 open_ms +14float64;120bytes/record",
+  "fields": [
+    "atr14",
+    "atr_pct",
+    "atr_relative_change5",
+    "ema20",
+    "close_minus_ema_over_atr",
+    "ema_change5_over_atr",
+    "macd",
+    "macd_signal",
+    "hist_over_atr",
+    "hist_change5_over_atr",
+    "rsi14",
+    "rsi_change5",
+    "volume_base",
+    "volume_over_previous60_mean"
+  ],
+  "history_start_ms": 1759104000000,
+  "analysis_start_ms": 1759190400000,
+  "analysis_end_exclusive_ms": 1759276800000,
+  "counts": {
+    "1": 2880,
+    "5": 576,
+    "15": 192,
+    "60": 48
+  },
+  "files": [
+    {
+      "file": "features-1m-2025-09.bin",
+      "frame_minutes": 1,
+      "first_open_ms": 1759104000000,
+      "records": 2880,
+      "nan_by_field": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sha256": "36969bdabd4949a7b79ddf6ca49e3344b327c9f32c4f9e68ccc42efb00e0a1c0"
+    },
+    {
+      "file": "features-5m-2025-09.bin",
+      "frame_minutes": 5,
+      "first_open_ms": 1759104000000,
+      "records": 576,
+      "nan_by_field": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sha256": "af8060bbaba8a72669efdefa0dbae41e8aac88e4ec3a04645050fd9e99a96a9f"
+    },
+    {
+      "file": "features-15m-2025-09.bin",
+      "frame_minutes": 15,
+      "first_open_ms": 1759104000000,
+      "records": 192,
+      "nan_by_field": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sha256": "df40edad0d675712430177be9b6f5be891dd9bb77ce5bf0ba167163bf28a8087"
+    },
+    {
+      "file": "features-60m-2025-09.bin",
+      "frame_minutes": 60,
+      "first_open_ms": 1759104000000,
+      "records": 48,
+      "nan_by_field": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      "sha256": "02462ed9bad6d981a699e7a4f38bc17eedbc08062320d22199a0e38574a52582"
+    }
+  ],
+  "input_uncompressed_sha256": {
+    "1": "516ad67b4a978106684101c16a4df67782b40e20e56c308659cf8d81ffae5277",
+    "5": "031a7355a78c63b0f81f5d7ac29c0bb3089471248ee1c3fb618e9e43dc21d316",
+    "15": "2484e53c5197b0e89afb783e5b4d0e821f3e67f517cf97730787830b49ed95cc",
+    "60": "ad093599adb7615764b0401ff7886bf9e6d13eb8bb754e2f6b47023849782a01"
+  },
+  "future_labels_computed": false,
+  "parameter_variants": 0,
+  "calculation_only": true
+}
