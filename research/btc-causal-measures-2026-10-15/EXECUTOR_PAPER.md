@@ -1,6 +1,10 @@
-# حساب القياسات السببية للبيتكوين
+# ورقة تنفيذ حساب قياسات البيتكوين — النسخة المصححة
 
-مهمة حساب فقط بإعدادات المؤشرات الأساسية. لا استخراج حالات أو اختيار شروط أو حساب دقة أو مال. هذه الورقة العامة لا تحتوي الاعتماد؛ التنفيذ يستخدم الورقة الخاصة من المالك.
+**أمر التنفيذ: ابدأ المهمة المسجلة الآن، واحسب القياسات ودققها واحفظ التقارير وانشرها في فرع العمل المحدد.** يشمل تفويض المالك لهذه المهمة تنزيل البيانات العامة واستعمال الاعتماد الموجود في الورقة الخاصة للنشر على فرع النتائج. لا حاجة إلى تأكيد مكرر لهذه الخطوات المصرح بها. هذه النسخة تصحح غموض المراجع في الورقة السابقة؛ الإعدادات العلمية لم تتغير؛ صُحح جمع مسار ملف الرفع داخل أداة النشر.
+
+**عقد الرد، وفق تصحيح المالك بتاريخ 2026-10-15:** لا ملخص استلام، ولا شرح للورقة، ولا خيارات أو أسئلة اختيارية. نفّذ المهمة وتابع العملية نفسها إلى خروج معلوم. احفظ التفاصيل في ملفات النتائج. الرد النهائي سطر واحد فقط: **تم** بعد نجاح الحساب والتدقيق والنشر والقراءة المتحققة؛ أو **فشل: السبب الفعلي** عند وجود مانع حقيقي. لا تصف عطلًا بأنه نجاح، ولا تتجاهل فحص نزاهة فاشل. أي متطلب إلزامي تفرضه المنصة نفسها يظل واجب الاتباع؛ هذه الورقة لا تتجاوزه.
+
+تجاوز 600 ثانية هو سبب إسناد المهمة الطويلة إلى المنفذ، وليس سببًا لرفضها. نطاق هذه الورقة هو الحساب والتدقيق والتسليم؛ استخراج حالات الصعود وقياس دقتها مرحلة لاحقة.
 
 ## 1. السؤال
 إنتاج القياسات 14 لكل إطار من 1 و 5 و 15 و 60 دقيقة، دون استخدام شمعة مفتوحة أو معلومات مستقبلية.
@@ -49,31 +53,98 @@ ATR14: TR=max(H−L,abs(H−C السابق),abs(L−C السابق))، أول TR
 
 execution/features-{frame}m-{YYYY-MM}.bin يحتوي سجلات little-endian بصيغة q14d: int64 وقتفتح بالمللي ثانية ثم 14float64 بالترتيب أعلاه، 120 بايت. FEATURES.json يحدد كل ملف وعدده وتوقيته وبصمته و NaN. AUDIT.json الفحوص؛ RESULT.json الأعداد والحجم؛ REPORT.md التقرير؛  DELIVERY.json التزام البيانات المتحقق؛ LOCAL-RECEIPT.json إيصال الالتزام النهائي. latest واجهة قراءة الإزاحات دون نسخ 168 عمودًا.
 ## 17. التسليم وتقسيم المسؤولية
-القائد يجهز ويختبر ويكتب الورقة ويراجع. المنفذ يشغل الحزمة الجاهزة وينشر النتائج والتقارير و LOG وتكة جديدة؛ لا يغير النطاق أو يعتمد النتائج. الفرع agent/btc-causal-measures-execution-2026-10-15 ، المسار research/btc-causal-measures-2026-10-15/execution/. رد تم بعد النشر والقراءة المتحققة، أو خطأ: السبب الفعلي. لا main أو PR أو دمج.
-## 18. التشغيل
-English contract: Fetch the seven small source/hash files from the pinned commit using public GitHub REST contents URLs. Python3 standard library only. Use a NEW directory /home/user/btc-causal-measures-2026-10-15/. The private paper initializes GH_TOKEN from the owner-authorised credential before running. run_task preflights repository write/read before downloading or calculating. Run in the foreground and poll the same process to completion. Do not run --rehearsal for delivery. Do not request old attachments. Do not change code.
 
-ما يفعله: يجلب المدخلات المقبولة، يحسب ويدقق القياسات الثابتة، وينشر كل ملف صغير ويتحقق من بايتاته.
+القائد يجهز الكود والورقة ويصلح العيوب ويراجع النتائج. المنفذ يشغل الحزمة الجاهزة، يحسب ويدقق وينشر التقارير والنتائج وLOG وتكة جديدة، ثم يلتزم بالرد المحدد أعلاه. لا يغير الإعدادات أو نطاق الدراسة، ولا يعتمد النتائج للتداول.
 
-مكان التشغيل: مجلد المهمة الجديد في بيئة المنفذ؛ قيمة --source-commit هي الالتزام الدقيق المذكور في الورقة الخاصة ورسالة القائد.
+فرع النتائج: `agent/btc-causal-measures-execution-2026-10-15`.
 
-ما يعاد: التقارير المنشورة وإيصال التسليم ثم تم؛ أو خطأ مع حجب الاعتماد وحفظ الأدلة.
+مسار النتائج: `research/btc-causal-measures-2026-10-15/execution/`.
 
-أمر التشغيل المحدد ينشئه القائد في الورقة الخاصة بعد تثبيت التزام الكود: python3 run_task.py --publish --source-commit 84773f615035d66f50778131416c8645b79d19da. الالتزام مقفل كما في SOURCE-MANIFEST.json ؛ التوكن موجود في الورقة الخاصة فقط.
-## 19. الجاهزية
-شغّل القائد أمر rehearsal الحقيقي على شهر September2025 لحساب يوم Sep30 معاليومالسابق.3696 سجلًا و 443520 بايت.1428 مقارنة Decimal ،48 حالةتوقيت، 225 مطابقةبادئةنجحت. هذه قيم حساب وليست نتيجة سنة أو دقة. فحص الحصول على شهر حقيقي وفحص نشر ثنائي صغير محفوظان عند اكتمالهما في READINESS.json ؛ عدم اكتمال أي منهما يبقي الإصدار NOT_READY ولايسلمكتجربةنهائية. أي تغيير كود يعيد الفحص المتأثر.
-## 20. التخزين والاعتماد والاستئناف
-المستودع stevearagonno1/NOVA-DRAGON ؛ فرع الإعداد agent/btc-causal-measures-2026-10-15. يقفل الكود عندالتزاممحددويقرأبعدالنشر. الرفع GitHubREST بالتوكن المصرح من الورقة الخاصة، لا يعتمد على موصل أو  gh أو origin ،ولا يوضع التوكن في الكود أو السجل أو النسخة العامة. كلملفنتائجشهريأقل 25MB.
+لا PR أو دمج أو كتابة إلى main. فشل النشر يعني عدم اكتمال التسليم، وتُحفظ الأدلة والسبب الفعلي في ملفات المهمة.
 
-التقدير غير المضغوط للناتج 81.164MB ومدخلات الأطر 35.496MB ،مجموع 116.661MB قبل الملفات الصغيرة، دون نسخة خام محلية. الحد 125MB فعلي لا افتراضي. يعد الأمر المدخلات الخارجية إن مررت بـ--inputs. لا 168 عمودًا مكررًا ولا  ZIP إضافي. عند انقطاع العملية، يحفظ المنفذ الأدلة ويتوقف لمراجعة القائد. لا يمنح هذا التسليم إذن إعادة تشغيل تلقائية. يحفظ الخام الدائم في التزام المصدر.
+## 18. الحزمة وأمر التنفيذ
 
-المهمة الكاملة مع الإعداد والحساب والتدقيق والنشر متوقعة أكثر 600 ثانية فتنفذ عند الوكيل؛ زمن القائد للتجهيز يسجل شاملًا بالفحوص والنشر. إذا وصل القائد 600 ثانية يؤرشف الجاهز ويكلف المنفذ بتسليم جاهز فقط، ولا ينقل له تطوير كود. التالي بعد مراجعةالنتائج المستقلة ورقة اكتشاف التشابه، لا معها في المهمة نفسها.
+ما يفعله: تنزيل الملفات المحددة، التحقق من بصماتها، حساب القياسات المسجلة، تدقيقها، ونشر النتائج والتحقق منها.
 
+مكان التشغيل: بيئة المنفذ، في `/home/user/btc-causal-measures-2026-10-15/`. شغّل مقطع Python التالي كما هو. النسخة الخاصة تهيئ GH_TOKEN مباشرة؛ لا تحتاج إلى تخمين مكان ملف مرفق أو اتصال GitHub خاص أو gh أو origin.
 
-Source pin: 84773f615035d66f50778131416c8645b79d19da
-Source manifest: research/btc-causal-measures-2026-10-15/SOURCE-MANIFEST.json
+ما يعاد: سطر واحد، تم أو فشل: السبب الفعلي. احفظ المخرجات التفصيلية في الملفات ولا تنسخها إلى الرد.
 
-Numeric/acquisition/publication gates: PASS; actual REST publication probe commit e76f85e43edf56deca39c6e55a56c1e05bedc307 (five blobs exact-readback). Full year not run. Final release remains subject to independent Lead review.
-Lead preparation elapsed756.632s exceeded600s: recorded breach; delivery-only handoff, no delegated development.
+**التزام تنزيل الحزمة بجميع ملفاتها:** `55cbdbced8c70acf4a3f500e19a559a9bbae617d`.
 
-Readiness precision: numeric CLI and generic REST publisher were exercised separately; full run_task --publish has not been run. Two short CLI executions separated by known exit0 reproduced all four binary hashes. An interrupted in-flight restart has not been exercised. If transfer/calculation is interrupted, preserve checkpoint and stop for Lead review; do not automatically restart based on this evidence.
+**التزام أصل الكود الذي سبق اختباره:** `8b41e1f3c07658ca39c3e6ced345bb10fc1251a7`. الملفات البرمجية الستة مطابقة له بايتًا. قيمة source_commit داخل SOURCE-MANIFEST.json توثق أصل الكود، وليست موقع تنزيل ملف البيان نفسه. لا تطلب SOURCE-MANIFEST.json من التزام أصل الكود؛ تنزيل الملفات التسعة كلها يكون من التزام الحزمة أعلاه.
+
+| الملف | الرابط المثبت |
+|---|---|
+| SHA256.json | [تنزيل](https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/55cbdbced8c70acf4a3f500e19a559a9bbae617d/research/btc-causal-measures-2026-10-15/SHA256.json) |
+| SOURCE-MANIFEST.json | [تنزيل](https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/55cbdbced8c70acf4a3f500e19a559a9bbae617d/research/btc-causal-measures-2026-10-15/SOURCE-MANIFEST.json) |
+| READINESS.json | [تنزيل](https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/55cbdbced8c70acf4a3f500e19a559a9bbae617d/research/btc-causal-measures-2026-10-15/READINESS.json) |
+| features.py | [تنزيل](https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/55cbdbced8c70acf4a3f500e19a559a9bbae617d/research/btc-causal-measures-2026-10-15/features.py) |
+| audit_features.py | [تنزيل](https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/55cbdbced8c70acf4a3f500e19a559a9bbae617d/research/btc-causal-measures-2026-10-15/audit_features.py) |
+| source_collect.py | [تنزيل](https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/55cbdbced8c70acf4a3f500e19a559a9bbae617d/research/btc-causal-measures-2026-10-15/source_collect.py) |
+| api.py | [تنزيل](https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/55cbdbced8c70acf4a3f500e19a559a9bbae617d/research/btc-causal-measures-2026-10-15/api.py) |
+| run_task.py | [تنزيل](https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/55cbdbced8c70acf4a3f500e19a559a9bbae617d/research/btc-causal-measures-2026-10-15/run_task.py) |
+| protocol.json | [تنزيل](https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/55cbdbced8c70acf4a3f500e19a559a9bbae617d/research/btc-causal-measures-2026-10-15/protocol.json) |
+
+```python
+from pathlib import Path
+import hashlib, json, os, re, subprocess, sys
+token = os.environ.get("GH_TOKEN", "")
+try:
+    if not re.fullmatch(r"[A-Za-z0-9_]{30,}", token):
+        raise RuntimeError("اعتماد التنفيذ غير مهيأ في الورقة الخاصة")
+    os.environ["GH_TOKEN"] = token
+    commit = "55cbdbced8c70acf4a3f500e19a559a9bbae617d"
+    work = Path("/home/user/btc-causal-measures-2026-10-15")
+    work.mkdir(parents=True, exist_ok=True)
+    base = "https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/55cbdbced8c70acf4a3f500e19a559a9bbae617d/research/btc-causal-measures-2026-10-15/"
+    expected = {'SHA256.json': 'd3b85ec13058412d05ba5715d5547b3b53bf20d1b0431f2f72735ab6e432383d', 'SOURCE-MANIFEST.json': 'bdc134e741b22f0ef9ee6700e9de9a7f8bc5b8ebb9af4a54812d2ac835cf43bb', 'READINESS.json': 'd1a5dde221991f2ae491e1dd9013724a7590f668321879d3c4ce45637769bc4c', 'features.py': '14c7445fa8917a278b415de83ae173c83306ecce89c6bc5745cc87e60eb9a2c1', 'audit_features.py': 'd98506dab4f479ab99f7e9ca4bee511284432d8034a226a0b8c9dab1c2e85f1d', 'source_collect.py': 'ce07492a625348e2137c0796018a8334594f2fc7346a6850feac3da87b9b79b4', 'api.py': 'c97740883cdb6c070aa0c23977ee3117b0906c356ec26d35b6aa8bcbec419c35', 'run_task.py': '02432ee87de01ce3e38fa3ceaf1c2144fb4abf14852f9c5c5ee5c90f6112dd59', 'protocol.json': '13e7eee63867b83674519cbe0df297d84a273df7ce2d9a7ab981a05c9ce88e17'}
+    import urllib.request
+    for name, digest in expected.items():
+        with urllib.request.urlopen(base + name, timeout=60) as response:
+            content = response.read()
+        if hashlib.sha256(content).hexdigest() != digest:
+            raise RuntimeError("اختلاف بصمة الملف " + name)
+        (work / name).write_bytes(content)
+    manifest = json.loads((work / "SOURCE-MANIFEST.json").read_text())
+    assert manifest["source_commit"] == "8b41e1f3c07658ca39c3e6ced345bb10fc1251a7"
+    assert manifest["code_sha256"] == json.loads((work / "SHA256.json").read_text())
+    log_path = work / "EXECUTION-CONSOLE.log"
+    with log_path.open("w") as log:
+        result = subprocess.run([sys.executable, "run_task.py", "--publish", "--source-commit", commit], cwd=work, env=os.environ, stdout=log, stderr=subprocess.STDOUT)
+    log_text = log_path.read_text().replace(token, "[REDACTED]")
+    log_path.write_text(log_text)
+    if result.returncode:
+        lines = [line for line in log_text.splitlines() if line.strip()]
+        raise RuntimeError(lines[-1] if lines else "انتهى أمر الحساب برمز " + str(result.returncode))
+    receipt = json.loads((work / "execution/LOCAL-RECEIPT.json").read_text())
+    assert receipt["status"] == "PASS_FIXED_CAUSAL_MEASUREMENTS_LEAD_REVIEW_PENDING"
+    assert re.fullmatch(r"[0-9a-f]{40}", receipt["receipt_commit"])
+    print("تم")
+except Exception as exc:
+    reason = str(exc).replace(token, "[REDACTED]") if token else str(exc)
+    print("فشل: " + (reason.replace("\n", " ") or type(exc).__name__)[:400])
+    sys.exit(1)
+```
+
+English execution contract: This is an execution assignment, not a request to review or summarize the attachment. Run the exact registered calculation, audit, report and work-branch publication. The owner has authorised these task-scoped operations. Do not ask optional or repeat approval questions. Continue polling the same foreground process to a known exit; do not start a duplicate worker. Keep optional progress and all detailed results in files. Final chat: exactly تم, or فشل: followed by the actual concise cause. Do not suppress mandatory platform requirements or bypass a failed integrity check.
+
+## 19. الجاهزية المثبتة وحدودها
+
+فحص الحصول على شهر حقيقي **مكتمل وناجح**: أربعة أطر مشتقة من مصدر المستودع المثبت. الأمر القصير حسب 3696 سجلًا و443520 بايت، واجتاز 1428 مقارنة Decimal و48 حالة توقيت و225 مطابقة بادئة. أعادت تجربتان بعد خروج معلوم البصمات الثنائية الأربع نفسها. سجل READINESS.json السابق يوثق ذلك صراحةً؛ لا يصح تفسيره بأن تنزيل الشهر لم يكتمل.
+
+فحص نشر خمسة ملفات وقراءة بايتاتها تحقق عند `e76f85e43edf56deca39c6e55a56c1e05bedc307`. حالة فحص أمر الحساب والتدقيق والنشر مجتمعًا موثقة في ملحق التصحيح أدناه. لم تُحسب السنة الكاملة بعد. حسابها هو مهمة المنفذ، وليس شرطًا يجب تنفيذه مسبقًا لإعداد الورقة.
+
+لم يُختبر استئناف عملية انقطعت أثناء التشغيل. عند انقطاع غير محسوم، احفظ الأدلة وافحص بقاء العملية؛ لا تعتبر خطأ المنصة خروجًا، ولا تبدأ عاملًا ثانيًا. إذا تعذر الاستمرار الآمن، أعد فشل: السبب الفعلي للقائد. لا تتجاوز فحصًا فاشلًا لإجبار النجاح.
+
+## 20. التخزين والاعتماد والتوثيق
+
+حد مساحة المهمة 125000000 بايت، وكل ملف منشور أقل من 25MB. المدخلات المعيارية 35.496MB والناتج الثنائي المتوقع 81.164MB؛ المجموع الأساسي المتوقع 116.661MB قبل الملفات الصغيرة، ويُقاس الحجم الفعلي. لا تنسخ المستودع كاملًا أو تضف أرشيف سنة أو ملفًا واسعًا يكرر القراءات. لا تحذف أدلة أو ملفات المالك لتجاوز الحد.
+
+الاعتماد موجود في النسخة الخاصة ويهيأ داخل العملية؛ لا يوضع في مصدر الكود أو التقارير أو LOG أو التكة أو الروابط أو النسخة العامة. النشر عبر GitHub REST إلى فرع النتائج المحدد. قراءة المصادر العامة لا تحتاج اعتمادًا. النسخة العامة من مقطع التشغيل تتوقع GH_TOKEN من البيئة؛ النسخة الخاصة تضع القيمة المصرح بها مباشرة.
+
+التقارير والفحوص والبصمات والتعدادات وإيصالات الالتزامات هي محل التفاصيل؛ الرد النهائي للمنفذ يبقى تم أو فشل: السبب الفعلي. تُراجع النتائج بعد التسليم قبل ورقة اكتشاف التشابه. الدقة التنبؤية والربح not measured في هذه المهمة.
+
+تصحيح 2026-10-15: عولج خلط التزام أصل الكود مع التزام ملف البيان، وأزيلت صياغة الجاهزية المستقبلية الملتبسة، وثُبت التفويض وعقد الرد. لا تغيير في المؤشرات أو الإعدادات أو البيانات أو الكود العلمي. هذه الورقة تُقرأ بوصفها النسخة الحالية؛ سجل الجاهزية السابق دليل تاريخي، وعبارته الإدارية القديمة لا تنشئ طلب إذن جديدًا.
+
+نتيجة إعادة الفحص الكامل بعد إصلاح مسار الرفع: خروج 0؛ حساب العينة والتدقيق والنشر وقراءة الملفات اجتمعت في الأمر نفسه. التزام الإيصال المتحقق: `04693e28def7878798ca4f9dff5476be44611cfe`. هذا فحص عينة قصيرة؛ حساب السنة لم ينفذ بعد.

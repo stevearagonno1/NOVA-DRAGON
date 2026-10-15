@@ -1,0 +1,20 @@
+{
+  "package_commit": "55cbdbced8c70acf4a3f500e19a559a9bbae617d",
+  "original_code_commit": "8b41e1f3c07658ca39c3e6ced345bb10fc1251a7",
+  "files": {
+    "SHA256.json": "d3b85ec13058412d05ba5715d5547b3b53bf20d1b0431f2f72735ab6e432383d",
+    "SOURCE-MANIFEST.json": "bdc134e741b22f0ef9ee6700e9de9a7f8bc5b8ebb9af4a54812d2ac835cf43bb",
+    "READINESS.json": "d1a5dde221991f2ae491e1dd9013724a7590f668321879d3c4ce45637769bc4c",
+    "features.py": "14c7445fa8917a278b415de83ae173c83306ecce89c6bc5745cc87e60eb9a2c1",
+    "audit_features.py": "d98506dab4f479ab99f7e9ca4bee511284432d8034a226a0b8c9dab1c2e85f1d",
+    "source_collect.py": "ce07492a625348e2137c0796018a8334594f2fc7346a6850feac3da87b9b79b4",
+    "api.py": "c97740883cdb6c070aa0c23977ee3117b0906c356ec26d35b6aa8bcbec419c35",
+    "run_task.py": "02432ee87de01ce3e38fa3ceaf1c2144fb4abf14852f9c5c5ee5c90f6112dd59",
+    "protocol.json": "13e7eee63867b83674519cbe0df297d84a273df7ce2d9a7ab981a05c9ce88e17"
+  },
+  "definition_changes": false,
+  "owner_final_responses": [
+    "تم",
+    "فشل: السبب الفعلي"
+  ]
+}
