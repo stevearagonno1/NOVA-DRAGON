@@ -898,3 +898,10 @@ Existing year evidence only; original13source hashes,4frame hashes and525600 spl
 
 ## BTC registration independently admitted — 2026-10-15
 Lead verified40published files at e68689a0aa560d27677ec703f85cea3877910b56 and receipt head2fa8072fa59d32d048da7ba4f412899a2de16000. Read13pinned monthly sources, independently rebuilt568800/113760/37920/9480bars and reconciled every higher bar, audited525600calendar anchors/524880all-window eligible. Scientific definitions unchanged. Accept data+split stage technically only; no indicators/states/predictive accuracy/money measured. Original executor frame gzip/35MBzip not published; original compressed hashes not directly read, independent canonical CSV hashes recorded. Next: separate causal-measurement computation paper. No main merge.
+
+
+## BTC causal measurements — readiness delivery 2026-10-15
+
+Prepared six immutable code/protocol files at 84773f615035d66f50778131416c8645b79d19da. Numeric rehearsal:3696 native records,1428 Decimal comparisons,48 closed timing cases,225 prefix matches. Actual one-month source acquisition passed. Unchanged generic REST publisher wrote/read five binary/audit blobs at e76f85e43edf56deca39c6e55a56c1e05bedc307. Short CLI repeated after known exit0, four binary hashes identical; interrupted restart and full --publish runner were not exercised. Full-year features, state search, predictive accuracy and finance NOT measured.
+
+Lead preparation756.632 seconds exceeded600-second handoff rule; breach recorded, not relabelled light. Executor delivery-only elapsed through final public11-file readback459.314 seconds, with this journal delivery subsequently accounted. Source+paper: research/btc-causal-measures-2026-10-15/. Private credential paper excluded from repository. Independent Lead source/private-paper checks passed; next is authorised executor calculation then independent Lead result review, not state discovery in this task.
