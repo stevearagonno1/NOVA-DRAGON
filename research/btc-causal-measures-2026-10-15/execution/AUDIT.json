@@ -1,0 +1,14 @@
+{
+  "status": "PASS_NUMERIC_AND_CAUSAL_CHECKS",
+  "binary_records_checked": 676368,
+  "decimal_field_comparisons": 1456,
+  "max_absolute_decimal_difference": 5.226041821515537e-11,
+  "closed_only_timing_cases": 48,
+  "prefix_records_equal": 225,
+  "future_outcomes_read": false,
+  "predictive_accuracy": "not measured",
+  "decimal_tolerance": {
+    "relative": 1e-10,
+    "absolute": 1e-08
+  }
+}

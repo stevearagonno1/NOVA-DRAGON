@@ -905,3 +905,7 @@ Lead verified40published files at e68689a0aa560d27677ec703f85cea3877910b56 and r
 Prepared six immutable code/protocol files at 84773f615035d66f50778131416c8645b79d19da. Numeric rehearsal:3696 native records,1428 Decimal comparisons,48 closed timing cases,225 prefix matches. Actual one-month source acquisition passed. Unchanged generic REST publisher wrote/read five binary/audit blobs at e76f85e43edf56deca39c6e55a56c1e05bedc307. Short CLI repeated after known exit0, four binary hashes identical; interrupted restart and full --publish runner were not exercised. Full-year features, state search, predictive accuracy and finance NOT measured.
 
 Lead preparation756.632 seconds exceeded600-second handoff rule; breach recorded, not relabelled light. Executor delivery-only elapsed through final public11-file readback459.314 seconds, with this journal delivery subsequently accounted. Source+paper: research/btc-causal-measures-2026-10-15/. Private credential paper excluded from repository. Independent Lead source/private-paper checks passed; next is authorised executor calculation then independent Lead result review, not state discovery in this task.
+
+
+## Fixed causal measurements -2026-10-15
+Calculated14fixed fields at4native frames; no state search or predictive/financial adoption. See result and audit in work branch.
