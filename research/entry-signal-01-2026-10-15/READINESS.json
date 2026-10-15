@@ -1,0 +1,51 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 262.62329053878784,
+  "code_commit": "e3e816a3d80e6cb19a9d336cebf1383600d92e0f",
+  "command": "python3 run_entry.py --rehearsal --publish --source-commit e3e816a3d80e6cb19a9d336cebf1383600d92e0f",
+  "console": "\u062a\u0645\n",
+  "delivery": {
+    "status": "PASS_REHEARSAL_ONLY",
+    "source_commit": "e3e816a3d80e6cb19a9d336cebf1383600d92e0f",
+    "data_delivery": {
+      "commit": "123b44fdc416a4263c903fb80afcae29a0c94efe",
+      "files_verified": 5,
+      "branch": "agent/btc-entry-single-readiness-2026-10-15"
+    },
+    "elapsed_before_receipt_upload_seconds": 174.7505292892456,
+    "result": {
+      "status": "PASS_REHEARSAL_ONLY",
+      "mode": "rehearsal",
+      "data_identity": {
+        "fixture": true,
+        "description": "three-day deterministic price and feature sequence; no market result"
+      },
+      "registered_series": 40,
+      "rule_families": 10,
+      "directional_rule_series": 32,
+      "activity_only_series": 8,
+      "event_rows": 11088,
+      "summary_groups": 88,
+      "eligible_bars": {
+        "1": 2880,
+        "5": 576,
+        "15": 192,
+        "60": 48
+      },
+      "start_ms": 1759276800000,
+      "end_exclusive_ms": 1759449600000,
+      "selection_or_validation": false,
+      "future_horizon": "no fixed time barrier; follow-up ends at the registered discovery-data boundary",
+      "outcome_warning": "An eventual higher close alone does not establish a good entry; next-change direction, prior direction, waiting time and censoring must be read together. No high-rate acceptance gate.",
+      "financial": "not measured \u2014 outside this phase",
+      "confidence_or_significance": "not measured; overlapping descriptive alerts are not independent binomial trials",
+      "workspace_bytes": 255961
+    },
+    "receipt_delivery": {
+      "commit": "d531d091e7cef7c8568a62d785b560767b6b7cb3",
+      "files_verified": 1,
+      "branch": "agent/btc-entry-single-readiness-2026-10-15"
+    },
+    "local_elapsed_through_verified_receipt_seconds": 262.5597574710846
+  }
+}

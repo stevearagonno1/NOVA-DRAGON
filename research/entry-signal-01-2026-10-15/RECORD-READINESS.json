@@ -1,0 +1,25 @@
+{
+  "exit_code": 0,
+  "elapsed_seconds": 141.12980556488037,
+  "console": "\u062a\u0645\n",
+  "delivery": {
+    "status": "PASS_REHEARSAL_ONLY",
+    "source_commit": "e3e816a3d80e6cb19a9d336cebf1383600d92e0f",
+    "data_delivery": {
+      "commit": "123b44fdc416a4263c903fb80afcae29a0c94efe",
+      "files_verified": 5,
+      "branch": "agent/btc-entry-single-readiness-2026-10-15"
+    },
+    "receipt_delivery": {
+      "commit": "d531d091e7cef7c8568a62d785b560767b6b7cb3",
+      "files_verified": 1,
+      "branch": "agent/btc-entry-single-readiness-2026-10-15"
+    },
+    "record_delivery": {
+      "commit": "a43c58a14162f679269204ec8b693e20bd32effe",
+      "files_verified": 2,
+      "branch": "agent/btc-entry-single-readiness-2026-10-15"
+    },
+    "scope": "entry alerts and subsequent price description only"
+  }
+}
