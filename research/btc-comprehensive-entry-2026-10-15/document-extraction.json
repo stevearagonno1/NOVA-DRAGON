@@ -1,0 +1,185 @@
+{
+  "source_commit": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+  "files": [
+    {
+      "path": "history/clean/NOVA_bin_pending/workspace/uploads/استراتيجيات تداول السبوت الناجحة.pdf",
+      "bytes": 278325,
+      "git_sha": "ffd783ae72f7a9d7e632d382c5be11ba434ef0f0",
+      "index": 1,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 31271,
+      "text_sha256": "30f84305fce93ff5f7d41b2d25005b929fd50d407f4fc51a269d366b2658c691",
+      "text_path": "document_evidence/01.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/workspace/uploads/الاستعداد للتحليل المعماري للاستراتيجيات.pdf",
+      "bytes": 381133,
+      "git_sha": "8380a9398b3efbfc805fee8addecce756ea91ba7",
+      "index": 2,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 32617,
+      "text_sha256": "1f00bdc0269704d2b4bfd09bf9faf56fcf81893f121a1fde258d41f792c2776e",
+      "text_path": "document_evidence/02.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/workspace/uploads/بحث_التداول_الفوري_المؤشرات_والاستراتيجيات.pdf",
+      "bytes": 136021,
+      "git_sha": "5dabe8f83381245e38b823d457a45daf1969482c",
+      "index": 3,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 46403,
+      "text_sha256": "65c028aa9fe074d4bddde7241f257430f106f845e5a1eca4022d25e0426f7bf0",
+      "text_path": "document_evidence/03.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/workspace/uploads/تاريخ العملات وارتباطها بالبيتكوين.pdf",
+      "bytes": 268561,
+      "git_sha": "6d08d7262fe9c36956a005d8fafe711a79f1d155",
+      "index": 4,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 33456,
+      "text_sha256": "64ad0846cdd374f36411388991a427252b2422ab6794cb94228ac9e8d59e8096",
+      "text_path": "document_evidence/04.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/workspace/uploads/تطوير بوت تداول ذكي بتيرمكس.pdf",
+      "bytes": 460886,
+      "git_sha": "7a053b310b40a6a46eecdb63319bfd751aaedf82",
+      "index": 5,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 39404,
+      "text_sha256": "b3c4bb790b9a9b567b37cb29ad90e14bb5ee63f7b500ccb4dd6aeb95de910b8e",
+      "text_path": "document_evidence/05.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/workspace/uploads/دليل التداول الفوري الشامل.pdf",
+      "bytes": 263719,
+      "git_sha": "44b7815820d66f0c868c9f428f3eb7685558b431",
+      "index": 6,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 30138,
+      "text_sha256": "f3747a1a7e8e4a1ea974929614b15f65da3ba19716d4895dec37261db86a9b9a",
+      "text_path": "document_evidence/06.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/workspace/uploads/شرح شامل لبوتات التداول في بينانس.pdf",
+      "bytes": 198439,
+      "git_sha": "861b340468d76c7ec78b034a9f8ea873d902fd2c",
+      "index": 7,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 15302,
+      "text_sha256": "233df354a5d8209333a93e0fcb0c89b550570e55b5d5c48631f6ee9e68b19027",
+      "text_path": "document_evidence/07.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/workspace/uploads/مخطط البوت الجديد.pdf",
+      "bytes": 250405,
+      "git_sha": "e13432d28e3498b9c8f53df1e44af3c132828218",
+      "index": 8,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 19855,
+      "text_sha256": "1e73c149b9713e0db814ecf71c8c18d5334b4dac385218903aa92677013907e3",
+      "text_path": "document_evidence/08.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/مؤشرات/Master Blueprint.pdf",
+      "bytes": 204649,
+      "git_sha": "ea24139a16af7284c2264eb3113bf182fd99b832",
+      "index": 9,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 7411,
+      "text_sha256": "8ca30f2fa65b6bf2dacf207d4858afbaa4f9bca2f6b336907efb8fdb96027c8f",
+      "text_path": "document_evidence/09.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/ملفات/استراتيجيات سكالبينج سريعة وناجحة.pdf",
+      "bytes": 285461,
+      "git_sha": "6b1181fa6ae0ae2b70c8df534f3c3d041d2d4535",
+      "index": 10,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 31526,
+      "text_sha256": "5bee3815f7d7f68d7c9461d2a1889bb2e88fdb5039d9d21218d07071ebe45ba2",
+      "text_path": "document_evidence/10.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/ملفات/استراتيجيات ومؤشرات التداول الاحترافية.pdf",
+      "bytes": 260187,
+      "git_sha": "c3cb8adb07cc8aeae10f6fa453b83f771ba87c45",
+      "index": 11,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 28013,
+      "text_sha256": "feb6fe2c8c485d9c32a31a5fada811b164908381f4dae9dcbe1e429a1b546aef",
+      "text_path": "document_evidence/11.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/ملفات/بحث خوارزميات مؤشر هانتر للتداول.pdf",
+      "bytes": 241407,
+      "git_sha": "be7fa80380db85a36624a3aee25de954c20d493a",
+      "index": 12,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 22947,
+      "text_sha256": "75068dfe5f44044ea321bd1a89b7e2ff7624e9d0f134842f1ef0f840138e5dad",
+      "text_path": "document_evidence/12.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/ملفات/تحسين أداء بوت التداول الآلي.docx",
+      "bytes": 359784,
+      "git_sha": "219e471762208957910f7fd1d1760db6140d3f22",
+      "index": 13,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 235979,
+      "text_sha256": "0c1d52849436a7e30e9e610071c7279350af40bcec8bbbc2f517ff01e15cf06d",
+      "text_path": "document_evidence/13.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/ملفات/تحليل أكواد MQL5 لبوت بايثون.pdf",
+      "bytes": 327894,
+      "git_sha": "f8e935392f218fdf5e31316de45f5565aec66fa3",
+      "index": 14,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 39476,
+      "text_sha256": "3151b9f81d93d51d27e9c0eb9a7ced26c0266c8d0a9abaa1050cd52dcfcf1e20",
+      "text_path": "document_evidence/14.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/ملفات/تحليل شامل لاستراتيجية الزيرو انعكاس (2).docx",
+      "bytes": 3147341,
+      "git_sha": "bc88bc1736a74a97ca9cd9d599e9f2e2c049ddc2",
+      "index": 15,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 112146,
+      "text_sha256": "b49513f7b4652e50e4cc241760adafe05490ac8c2289eb7de535918b560b808a",
+      "text_path": "document_evidence/15.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/ملفات/تحليل شامل لمحتوى كورس يوتيوب.pdf",
+      "bytes": 2539390,
+      "git_sha": "7e9941583c1c0102b2b7d8f85c2b20b804e2d3a2",
+      "index": 16,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 330207,
+      "text_sha256": "21c0462fec49d1fba1cb0617adbbbe0115ed2dc997d7068f49cb345658caed9d",
+      "text_path": "document_evidence/16.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/ملفات/دليل شامل عن مؤشر هنتر - Google Gemini.pdf",
+      "bytes": 2697833,
+      "git_sha": "2f5106d5995f60ceb1bbecd046d32c97ad545720",
+      "index": 17,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 204840,
+      "text_sha256": "4b912cc650610b116ebdc331d50f8482e7b9ccc7d24a846759dcaf90a38054a6",
+      "text_path": "document_evidence/17.txt"
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/ملفات/دليل شامل عن مؤشر هنتر.docx",
+      "bytes": 3331271,
+      "git_sha": "240d07aecc1406029516fccc60a3a6945ee750f7",
+      "index": 18,
+      "status": "TEXT_EXTRACTED_NOT_SEMANTICALLY_REVIEWED",
+      "characters": 212276,
+      "text_sha256": "1f928ebce13b58a6070d584bbf7988519bae03068d60651b31e215c2333e9593",
+      "text_path": "document_evidence/18.txt"
+    }
+  ]
+}
