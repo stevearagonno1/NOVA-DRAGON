@@ -1,0 +1,58 @@
+{
+  "status": "READY_FOR_LEAD_REVIEW_NOT_EXECUTED",
+  "numeric_audit": {
+    "status": "PASS_NUMERIC_AND_CAUSAL_CHECKS",
+    "binary_records_checked": 3696,
+    "decimal_field_comparisons": 1428,
+    "max_absolute_decimal_difference": 4.689049148964841e-11,
+    "closed_only_timing_cases": 48,
+    "prefix_records_equal": 225,
+    "future_outcomes_read": false,
+    "predictive_accuracy": "not measured",
+    "decimal_tolerance": {
+      "relative": 1e-10,
+      "absolute": 1e-08
+    }
+  },
+  "actual_one_month_acquisition": "PASS source memory ZIP to four canonical frames",
+  "publication_probe_observed_error": "write_stdin failed: Unified exec process failed: network approval was cancelled before a decision was returned",
+  "publication_probe_exit": "unknown; platform exception is not an exit status; executor must inspect process and remote branch before retry",
+  "full_year_features_computed": false,
+  "next": "ready delivery execution only; no code development or full year feature run yet",
+  "publication_gate": {
+    "commit": "e76f85e43edf56deca39c6e55a56c1e05bedc307",
+    "files_verified": 5,
+    "branch": "agent/btc-causal-measures-readiness-2026-10-15"
+  },
+  "publication_gate_route": "unchanged run_task.publish via owner-authorised GH_TOKEN and direct GitHub REST; exit0; five binary/audit blobs read back",
+  "code_commit": "84773f615035d66f50778131416c8645b79d19da",
+  "code_readback": "PASS_7_FILES",
+  "lead_preparation_seconds_before_handoff": 756.632,
+  "lead_600_second_handoff_breach": true,
+  "late_handoff_note": "Preparation exceeded600seconds before safe checkpoint; not relabelled light task",
+  "credential_handling_incident": "Malformed-header exception exposed owner credential to tool transcript during first executor retry; no public repository exposure observed; Lead informed; no token value retained in public evidence",
+  "future_outcomes_computed": false,
+  "repeat_after_known_exit_check": {
+    "status": "PASS_FOUR_BINARY_HASHES_IDENTICAL",
+    "first_run_exit": 0,
+    "second_run_exit": 0,
+    "full_runner_publish_exercised": false,
+    "interrupted_in_flight_restart_exercised": false,
+    "command": "python3 run_task.py --rehearsal --inputs acquisition-check/inputs --source-commit 84773f615035d66f50778131416c8645b79d19da",
+    "binary_sha256": {
+      "features-15m-2025-09.bin": "df40edad0d675712430177be9b6f5be891dd9bb77ce5bf0ba167163bf28a8087",
+      "features-5m-2025-09.bin": "af8060bbaba8a72669efdefa0dbae41e8aac88e4ec3a04645050fd9e99a96a9f",
+      "features-60m-2025-09.bin": "02462ed9bad6d981a699e7a4f38bc17eedbc08062320d22199a0e38574a52582",
+      "features-1m-2025-09.bin": "36969bdabd4949a7b79ddf6ca49e3344b327c9f32c4f9e68ccc42efb00e0a1c0"
+    }
+  },
+  "numeric_acquisition_binding": "short CLI ran twice against freshly acquired one-month canonical inputs; both exit0",
+  "independent_lead_source_review": {
+    "source_commit": "84773f615035d66f50778131416c8645b79d19da",
+    "seven_local_files_match_git_blobs": true,
+    "derived_analysis_records": 674520,
+    "derived_with_history_records": 676368,
+    "derived_binary_bytes": 81164160,
+    "full_year_result": false
+  }
+}
