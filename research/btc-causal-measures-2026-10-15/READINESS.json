@@ -1,5 +1,5 @@
 {
-  "status": "READY_FOR_LEAD_REVIEW_NOT_EXECUTED",
+  "status": "READY_FULL_PATH_VERIFIED_YEAR_NOT_RUN",
   "numeric_audit": {
     "status": "PASS_NUMERIC_AND_CAUSAL_CHECKS",
     "binary_records_checked": 3696,
@@ -18,14 +18,14 @@
   "publication_probe_observed_error": "write_stdin failed: Unified exec process failed: network approval was cancelled before a decision was returned",
   "publication_probe_exit": "unknown; platform exception is not an exit status; executor must inspect process and remote branch before retry",
   "full_year_features_computed": false,
-  "next": "ready delivery execution only; no code development or full year feature run yet",
+  "next": "Executor runs the registered year calculation; final reply only done or actual failure",
   "publication_gate": {
     "commit": "e76f85e43edf56deca39c6e55a56c1e05bedc307",
     "files_verified": 5,
     "branch": "agent/btc-causal-measures-readiness-2026-10-15"
   },
   "publication_gate_route": "unchanged run_task.publish via owner-authorised GH_TOKEN and direct GitHub REST; exit0; five binary/audit blobs read back",
-  "code_commit": "84773f615035d66f50778131416c8645b79d19da",
+  "code_commit": "8b41e1f3c07658ca39c3e6ced345bb10fc1251a7",
   "code_readback": "PASS_7_FILES",
   "lead_preparation_seconds_before_handoff": 756.632,
   "lead_600_second_handoff_breach": true,
@@ -54,5 +54,35 @@
     "derived_with_history_records": 676368,
     "derived_binary_bytes": 81164160,
     "full_year_result": false
+  },
+  "full_runner_publish_rehearsal": {
+    "exit_code": 0,
+    "elapsed_seconds": 680.1025307178497,
+    "code_commit": "8b41e1f3c07658ca39c3e6ced345bb10fc1251a7",
+    "command": "python3 run_task.py --rehearsal --inputs acquisition-check/inputs --publish --source-commit 8b41e1f3c07658ca39c3e6ced345bb10fc1251a7",
+    "scope": "short full-path readiness; no full-year features",
+    "delivery": {
+      "status": "PASS_REHEARSAL_ONLY_NOT_YEAR",
+      "native_records_with_one_day_history": 3696,
+      "analysis_native_records": 1848,
+      "fields_per_record": 14,
+      "timeframe_count": 4,
+      "trajectory_positions_read_lazily": 168,
+      "files": 4,
+      "binary_bytes": 443520,
+      "task_and_external_input_bytes": 3265383,
+      "local_compute_seconds": 51.69394087791443,
+      "whole_task_duration_including_publication": 565.6231625080109,
+      "audit": "PASS_NUMERIC_AND_CAUSAL_CHECKS",
+      "future_labels_or_state_search": false,
+      "prediction_and_profit": "not measured",
+      "source_commit": "8b41e1f3c07658ca39c3e6ced345bb10fc1251a7",
+      "publication": {
+        "commit": "9d707c863d5c83782c85a77bc56b2c4adbf55e9f",
+        "files_verified": 16,
+        "branch": "agent/btc-causal-measures-readiness-2026-10-15"
+      },
+      "receipt_commit": "04693e28def7878798ca4f9dff5476be44611cfe"
+    }
   }
 }

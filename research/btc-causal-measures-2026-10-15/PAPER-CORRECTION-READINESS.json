@@ -1,0 +1,7 @@
+{
+  "exit_code": 1,
+  "elapsed_seconds": 64.33925223350525,
+  "command": "python3 run_task.py --rehearsal --inputs acquisition-check/inputs --publish --source-commit 888452dbea9b6cc852fe4ed03bc8ad69880cc1bc",
+  "scope": "short readiness only, no full year",
+  "actual_error": "Traceback (most recent call last):\n  File \"/workspace/scratch/9c15613e1fe0/causal_features_prep/run_task.py\", line 52, in <module>\n    p=argparse.ArgumentParser();p.add_argument('--rehearsal',action='store_true');p.add_argument('--inputs',type=Path);p.add_argument('--publish',action='store_true');p.add_argument('--source-commit',required=True);args=p.parse_args();assert len(args.source_commit)==40 and all(c in '0123456789abcdef' for c in args.source_commit);run(args)\n                                                                                                                                                                                                                                                                                                                                           ^^^^^^^^^\n  File \"/workspace/scratch/9c15613e1fe0/causal_features_prep/run_task.py\", line 42, in run\n    files={base/f.name:f for f in out.iterdir() if f.is_file() and f.name not in ['DELIVERY.json','LOCAL-RECEIPT.json','LOG_APPEND.txt','TICK.md']}\n           ~~~~^~~~~~~\nTypeError: unsupported operand type(s) for /: 'str' and 'str'\n"
+}
