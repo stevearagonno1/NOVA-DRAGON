@@ -925,3 +925,7 @@ Recorded current owner scope: entry signals only; duration and movement size are
 
 ## Entry-start scope clarified by owner — 2026-10-15
 Owner clarified: detect the beginning of a rise; later prices are used only to check whether the market rose after the signal. Removed the pending owner choice between uninterrupted legs and broader waves; the earlier proposal was not adopted. Lead owns the exact executable signal and outcome definitions. No exits, wave-end research or financial measurement. Updated scope document remains a preparation draft, not a runnable execution paper. No experiment executed.
+
+
+## Entry single-signal rehearsal — 2026-10-15
+Fixed independent alert conditions calculated and integrity checked; verified data at 123b44fdc416a4263c903fb80afcae29a0c94efe. No combination, financial result, selection or validation. Full evidence: research/entry-signal-01-2026-10-15/rehearsal/ .
