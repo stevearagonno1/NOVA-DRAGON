@@ -1,0 +1,17 @@
+{
+  "revision": "BTC-CAUSAL-R3-55cbdbce-20261015",
+  "package_commit": "55cbdbced8c70acf4a3f500e19a559a9bbae617d",
+  "private_filename": "PRIVATE-BTC-CAUSAL-R3-55cbdbce.md",
+  "private_bytes": 22774,
+  "private_sha256": "b32f7d565670fc676707e2d484cf64c7e852edf7e2e6b6730a4e1d881ccf311b",
+  "previous_bytes": 20748,
+  "previous_sha256": "ee56deb48cc4da04b4b26cecb67da6f691ee7ce09fbbdefc716feff5719c3b9e",
+  "executable_payload_identical": true,
+  "mandatory_sections": 20,
+  "public_payload_credential_free": true,
+  "manifest_read_from_pinned_package": true,
+  "year_computation_executed_in_this_redelivery": false,
+  "other_agent_attachment_bytes": "not available; exact content and cause cannot be verified",
+  "diagnosis": "Quoted executor response still cites the superseded commit; current local corrected paper does not contain it.",
+  "task_total_elapsed_seconds": "not measured: start was not captured before initial inspection"
+}

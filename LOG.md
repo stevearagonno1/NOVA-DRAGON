@@ -909,3 +909,7 @@ Lead preparation756.632 seconds exceeded600-second handoff rule; breach recorded
 
 ## Corrected causal-measurement execution paper — 2026-10-15
 Owner requires final reply only تم or فشل: actual cause. Fixed ambiguous manifest pin and explicit task-scoped authorisation. Full runner rehearsal revealed str/str path-join TypeError; Lead fixed publication concatenation without changing calculations. Complete --rehearsal --publish now exits0 and verifies remote evidence at 04693e28def7878798ca4f9dff5476be44611cfe. New package 55cbdbced8c70acf4a3f500e19a559a9bbae617d; no full-year features, state search or trading. Details: research/btc-causal-measures-2026-10-15/PAPER-CORRECTION.md.
+
+
+## Executor paper redelivery R3 — 2026-10-15
+Owner reiterated the final-response contract: تم, or فشل: actual cause. Read current constitution; fetched SOURCE-MANIFEST.json at pinned package 55cbdbced8c70acf4a3f500e19a559a9bbae617d successfully. The quoted executor response still cites the superseded package; its attachment bytes were not available for independent comparison. Versioned the delivery filename and header as R3; preserved the exact executable payload and all 20 sections. Existing full short-run evidence remains applicable; no full-year measurement or changes to the active execution branch. Details: research/btc-causal-measures-2026-10-15/REDELIVERY-R3-CHECKS.json.
