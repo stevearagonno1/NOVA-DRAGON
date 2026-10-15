@@ -913,3 +913,7 @@ Owner requires final reply only تم or فشل: actual cause. Fixed ambiguous ma
 
 ## Executor paper redelivery R3 — 2026-10-15
 Owner reiterated the final-response contract: تم, or فشل: actual cause. Read current constitution; fetched SOURCE-MANIFEST.json at pinned package 55cbdbced8c70acf4a3f500e19a559a9bbae617d successfully. The quoted executor response still cites the superseded package; its attachment bytes were not available for independent comparison. Versioned the delivery filename and header as R3; preserved the exact executable payload and all 20 sections. Existing full short-run evidence remains applicable; no full-year measurement or changes to the active execution branch. Details: research/btc-causal-measures-2026-10-15/REDELIVERY-R3-CHECKS.json.
+
+
+## Independent review of full-year causal measurements — 2026-10-15
+Verified executor commit 87d68c79e5e0263ce7c5ecf558761996a0e988d3: 52 binary files, 676368 records, 81164160 bytes; all hashes, record timestamps and NaN counts checked. Independent Decimal50 reference passed 2184 sampled field comparisons across every month/frame. Numerical data accepted for entry-signal research only; no predictive result or trading adoption. Executor elapsed-time labels have documented limitations in research/btc-causal-measures-2026-10-15/lead_review/LEAD-REVIEW.md. No source or execution-branch modification.

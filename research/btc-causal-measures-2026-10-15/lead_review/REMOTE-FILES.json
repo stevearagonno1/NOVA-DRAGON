@@ -1,0 +1,287 @@
+[
+  {
+    "name": "AUDIT.json",
+    "size": 396,
+    "sha": "3064b8b4dfedef804b201ce6f7d9b3d9f1890d84"
+  },
+  {
+    "name": "DELIVERY.json",
+    "size": 815,
+    "sha": "301bdb62a6e59f573ebbf04abb28a00d1f2dab5b"
+  },
+  {
+    "name": "FEATURES.json",
+    "size": 22414,
+    "sha": "d56f14e2882286a7d265a3531efe022817b0096f"
+  },
+  {
+    "name": "REPORT.md",
+    "size": 751,
+    "sha": "ac6ffa018c3c25fcc9010f91a94132412c62a0e5"
+  },
+  {
+    "name": "RESULT.json",
+    "size": 644,
+    "sha": "fea1381b0b0959f96751b8b596719df5ea60c817"
+  },
+  {
+    "name": "features-15m-2025-09.bin",
+    "size": 11520,
+    "sha": "e529837e178759b6baa5a37116062079f15bcdae"
+  },
+  {
+    "name": "features-15m-2025-10.bin",
+    "size": 357120,
+    "sha": "9ebf14da6b9d616ec52c480f4a832acfc9a1b661"
+  },
+  {
+    "name": "features-15m-2025-11.bin",
+    "size": 345600,
+    "sha": "ac6291f012b8f587ea3cad163158746353731b9b"
+  },
+  {
+    "name": "features-15m-2025-12.bin",
+    "size": 357120,
+    "sha": "933dc9d1146b33abb0e7389caea567a730013995"
+  },
+  {
+    "name": "features-15m-2026-01.bin",
+    "size": 357120,
+    "sha": "ac018408971bb64250738d79b93f7ce9e9697843"
+  },
+  {
+    "name": "features-15m-2026-02.bin",
+    "size": 322560,
+    "sha": "cca163aa8134781c3388d62741e214dfea4583d6"
+  },
+  {
+    "name": "features-15m-2026-03.bin",
+    "size": 357120,
+    "sha": "4a5cdf07c7c98faa4e31ad5a37a1a254ee29ff9e"
+  },
+  {
+    "name": "features-15m-2026-04.bin",
+    "size": 345600,
+    "sha": "ce22ee7dd3dfa9cec6c3b611125265b64235a3ef"
+  },
+  {
+    "name": "features-15m-2026-05.bin",
+    "size": 357120,
+    "sha": "a1b62c45c2795506d7be849c629c7529d469a222"
+  },
+  {
+    "name": "features-15m-2026-06.bin",
+    "size": 345600,
+    "sha": "43f5626fdd3dbf30d2dddc8ffd0b94ce3004066f"
+  },
+  {
+    "name": "features-15m-2026-07.bin",
+    "size": 357120,
+    "sha": "03e01e0787fb05e2eeda3fa92de88e838f62b41b"
+  },
+  {
+    "name": "features-15m-2026-08.bin",
+    "size": 357120,
+    "sha": "7611298466bf02a6294967f574deb15ba741a29f"
+  },
+  {
+    "name": "features-15m-2026-09.bin",
+    "size": 345600,
+    "sha": "fc2cf06f892c9411a77447b05eb523e871445794"
+  },
+  {
+    "name": "features-1m-2025-09.bin",
+    "size": 172800,
+    "sha": "226498ca314be3540f839783c5ba118a1f3d42ab"
+  },
+  {
+    "name": "features-1m-2025-10.bin",
+    "size": 5356800,
+    "sha": "7c1f2d41a2654f3c5baf0645d98ae06d214d3b6b"
+  },
+  {
+    "name": "features-1m-2025-11.bin",
+    "size": 5184000,
+    "sha": "84997620253787152d995101843f18a1b01f3d65"
+  },
+  {
+    "name": "features-1m-2025-12.bin",
+    "size": 5356800,
+    "sha": "75d2b9098b15379c58bbc826b319a4ffec14f7fb"
+  },
+  {
+    "name": "features-1m-2026-01.bin",
+    "size": 5356800,
+    "sha": "8b569d6923c4cb8b8c23327d6c1d264b073ad5b5"
+  },
+  {
+    "name": "features-1m-2026-02.bin",
+    "size": 4838400,
+    "sha": "b1b39fba7bd6a4fa0f71bc727a73e9161fff4db7"
+  },
+  {
+    "name": "features-1m-2026-03.bin",
+    "size": 5356800,
+    "sha": "2f82fd74b237c46ff9841225e3486fd4f5ed076c"
+  },
+  {
+    "name": "features-1m-2026-04.bin",
+    "size": 5184000,
+    "sha": "084f954a1785e9507f9129106f557e1b598c399a"
+  },
+  {
+    "name": "features-1m-2026-05.bin",
+    "size": 5356800,
+    "sha": "0437151a6e4585c44116897a9d4fa4d72c9c6bc6"
+  },
+  {
+    "name": "features-1m-2026-06.bin",
+    "size": 5184000,
+    "sha": "6f61c0ecbed52811c2cca415c9f6ca2b24330f80"
+  },
+  {
+    "name": "features-1m-2026-07.bin",
+    "size": 5356800,
+    "sha": "09cef9be508b7ad45f3855d1bbd2f3b135ff5d5d"
+  },
+  {
+    "name": "features-1m-2026-08.bin",
+    "size": 5356800,
+    "sha": "d6ad3621dc805e4bbe412783a4dbf6ce1a14e8d6"
+  },
+  {
+    "name": "features-1m-2026-09.bin",
+    "size": 5184000,
+    "sha": "66640d39384e4213cddd59fd422e1cd0f2336294"
+  },
+  {
+    "name": "features-5m-2025-09.bin",
+    "size": 34560,
+    "sha": "5c147bd965978aa3e22d587fd0305e39fb594444"
+  },
+  {
+    "name": "features-5m-2025-10.bin",
+    "size": 1071360,
+    "sha": "38f817903f9264817b37985c00039722cfb9d4fa"
+  },
+  {
+    "name": "features-5m-2025-11.bin",
+    "size": 1036800,
+    "sha": "443eb2837274ca91e764e8a5d3866f891635e590"
+  },
+  {
+    "name": "features-5m-2025-12.bin",
+    "size": 1071360,
+    "sha": "32dd3948d4fcca43389b38e77b761a2e9f1a83f2"
+  },
+  {
+    "name": "features-5m-2026-01.bin",
+    "size": 1071360,
+    "sha": "1a806cbba2689e6fff2c0d4a252f1cd9a28c02c1"
+  },
+  {
+    "name": "features-5m-2026-02.bin",
+    "size": 967680,
+    "sha": "de21d79cac86a9cf0d0a74fb9f7e36a868b74505"
+  },
+  {
+    "name": "features-5m-2026-03.bin",
+    "size": 1071360,
+    "sha": "47aec4cc80d16a6e1b91ef1f39cce6cc8aeceb41"
+  },
+  {
+    "name": "features-5m-2026-04.bin",
+    "size": 1036800,
+    "sha": "65338b2dd6c78e483f1f58535415ecdfadea5dc3"
+  },
+  {
+    "name": "features-5m-2026-05.bin",
+    "size": 1071360,
+    "sha": "bb9d0b83889399159fefcc3aba3309dd04bacf19"
+  },
+  {
+    "name": "features-5m-2026-06.bin",
+    "size": 1036800,
+    "sha": "2c9582995bcfb0663f29e5d0de01684de2e2f0ab"
+  },
+  {
+    "name": "features-5m-2026-07.bin",
+    "size": 1071360,
+    "sha": "9d445e78ac89fca94fa14afed7365c677d87a75d"
+  },
+  {
+    "name": "features-5m-2026-08.bin",
+    "size": 1071360,
+    "sha": "5e7c45ca871603def153d0cf4172faa7b61ca964"
+  },
+  {
+    "name": "features-5m-2026-09.bin",
+    "size": 1036800,
+    "sha": "1de90b26a90226225b7f6fce4557d2f08cee3aff"
+  },
+  {
+    "name": "features-60m-2025-09.bin",
+    "size": 2880,
+    "sha": "bf03a7a45831d3af3b3a9f68ded8f442da887c5f"
+  },
+  {
+    "name": "features-60m-2025-10.bin",
+    "size": 89280,
+    "sha": "5e4b1b95094c8a227bb8108d1c3cc3fd2fbdee29"
+  },
+  {
+    "name": "features-60m-2025-11.bin",
+    "size": 86400,
+    "sha": "e81f8fc4aa6085f6e7abf096be8915967111270a"
+  },
+  {
+    "name": "features-60m-2025-12.bin",
+    "size": 89280,
+    "sha": "a4ebd8f6c924e1f7714f174280e3b03c83b3f40a"
+  },
+  {
+    "name": "features-60m-2026-01.bin",
+    "size": 89280,
+    "sha": "201ce4a95bcb14c9d4baccfc7c865bff4669a96b"
+  },
+  {
+    "name": "features-60m-2026-02.bin",
+    "size": 80640,
+    "sha": "9ad74c83ea83db4f0052a5c4a7a5f8b70d5028bf"
+  },
+  {
+    "name": "features-60m-2026-03.bin",
+    "size": 89280,
+    "sha": "f7e44884a4f6e68e41f856e7570b7fa7994c432f"
+  },
+  {
+    "name": "features-60m-2026-04.bin",
+    "size": 86400,
+    "sha": "eb311b8ce5303f80236a7b7d6a2303599f541948"
+  },
+  {
+    "name": "features-60m-2026-05.bin",
+    "size": 89280,
+    "sha": "590368df09640db856e6df236f0ec4f4e3e195c0"
+  },
+  {
+    "name": "features-60m-2026-06.bin",
+    "size": 86400,
+    "sha": "2eca2626e3134132f7d3597ac34c205b6e571519"
+  },
+  {
+    "name": "features-60m-2026-07.bin",
+    "size": 89280,
+    "sha": "64630452094312d72c4fd78b49d2ab7cf8037926"
+  },
+  {
+    "name": "features-60m-2026-08.bin",
+    "size": 89280,
+    "sha": "6b00c2fe0e7b1a4a3bb9f32719ae120d437303ab"
+  },
+  {
+    "name": "features-60m-2026-09.bin",
+    "size": 86400,
+    "sha": "3981d4efaca81ce8cee1271397094ec9a13b1d51"
+  }
+]

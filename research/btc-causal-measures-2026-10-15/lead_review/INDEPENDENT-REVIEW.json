@@ -1,0 +1,47 @@
+{
+  "status": "PASS_INDEPENDENT_DELIVERY_AND_STRATIFIED_NUMERIC_REVIEW",
+  "reviewed_commit": "87d68c79e5e0263ce7c5ecf558761996a0e988d3",
+  "source_commit": "55cbdbced8c70acf4a3f500e19a559a9bbae617d",
+  "binary_files_verified": 52,
+  "binary_records_checked": 676368,
+  "binary_bytes": 81164160,
+  "independent_decimal_field_comparisons": 2184,
+  "max_absolute_decimal_difference": 6.191047674519723e-11,
+  "frame_summary": {
+    "1": {
+      "records": 527040,
+      "sample_records": 39,
+      "input_rows": 568800
+    },
+    "5": {
+      "records": 105408,
+      "sample_records": 39,
+      "input_rows": 113760
+    },
+    "15": {
+      "records": 35136,
+      "sample_records": 39,
+      "input_rows": 37920
+    },
+    "60": {
+      "records": 8784,
+      "sample_records": 39,
+      "input_rows": 9480
+    }
+  },
+  "input_uncompressed_sha256": {
+    "1": "fc80ba62b6eeadd3e304d14b387fd77f946f81cacc96bd90e301643a64868516",
+    "5": "6db7f4848cdcc4740ad34206ae97411d08f1a3a2d9af1d201ee42bcefdc891ee",
+    "15": "2b681ce5661252ae736773c73d72d15f5d03fcaa47071b445450282cc99aee59",
+    "60": "b2eae3753045edb37f2cb06f34c91dfd2be9d966e47948d1d8c6f5a3926e5b04"
+  },
+  "review_script_elapsed_seconds": 121.03309845924377,
+  "whole_turn_elapsed_seconds": "not measured; initial inspection start not captured",
+  "limits": [
+    "Numeric recalculation sampled first, middle and last record of every frame-month; it is not an independent recalculation of every published field.",
+    "Executor timing and prefix-check counts were read from its audit; no claim that those specific checks were independently repeated.",
+    "Executor resource and elapsed-time reports cannot be independently measured after its run.",
+    "No predictive accuracy, market-state discovery, entry-signal comparison or financial performance measured."
+  ],
+  "reproduce": "python3 causal_year_review/independent_review.py"
+}

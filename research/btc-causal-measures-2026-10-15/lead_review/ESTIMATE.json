@@ -1,0 +1,11 @@
+{
+  "scope": "read-only independent review plus work-branch evidence publication",
+  "estimated_seconds": {
+    "read_and_prepare": 90,
+    "remote_bytes_and_checks": 180,
+    "decimal_reference": 120,
+    "publish_and_readback": 60
+  },
+  "estimated_total_seconds": 450,
+  "uncertainty": "Network latency may increase time; no binary files are copied to disk. Prior inspection start not captured; whole-turn measured time unavailable."
+}
