@@ -1,0 +1,17 @@
+{
+  "status": "PASS_INVENTORY_ACCOUNTING_ONLY",
+  "counts": {
+    "files": 129,
+    "source_scripts": 123,
+    "research_notes": 6,
+    "input_declarations": 5940,
+    "EXPLICIT_FINITE_OPTIONS": 1927,
+    "DEFAULT_ONLY_RANGE_NOT_ENUMERATED": 2853,
+    "SYMBOLIC_DEFAULT_OR_DOMAIN_REQUIRES_REVIEW": 1160,
+    "proposed_states_per_frame": 729,
+    "proposed_state_frame_cells": 2916
+  },
+  "raw_sources_refetched_in_this_command": false,
+  "market_run": false,
+  "universal_engine_ready": false
+}

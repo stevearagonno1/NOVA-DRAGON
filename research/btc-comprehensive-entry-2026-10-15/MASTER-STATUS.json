@@ -1,0 +1,21 @@
+{
+  "status": "COMPREHENSIVE_SPECIFICATION_AND_SOURCE_INVENTORY_NOT_EXECUTION_READY",
+  "source_commit": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+  "coverage_counts": {
+    "files": 129,
+    "source_scripts": 123,
+    "research_notes": 6,
+    "input_declarations": 5940,
+    "EXPLICIT_FINITE_OPTIONS": 1927,
+    "DEFAULT_ONLY_RANGE_NOT_ENUMERATED": 2853,
+    "SYMBOLIC_DEFAULT_OR_DOMAIN_REQUIRES_REVIEW": 1160,
+    "proposed_states_per_frame": 729,
+    "proposed_state_frame_cells": 2916
+  },
+  "paper_sha256": "00bcaa371ef36e03180e4850f5296b04ea2a710b65d19a671a99558003064ca3",
+  "paper_bytes": 69237,
+  "market_test_run": false,
+  "universal_engine_ready": false,
+  "elapsed_since_first_recorded_clock_seconds": 662.74304,
+  "full_turn_elapsed": "not measured: first clock read followed initial commentary"
+}
