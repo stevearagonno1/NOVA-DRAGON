@@ -1,0 +1,28 @@
+{
+  "status": "PASS_REHEARSAL_ONLY",
+  "mode": "rehearsal",
+  "data_identity": {
+    "fixture": true,
+    "description": "three-day deterministic price and feature sequence; no market result"
+  },
+  "registered_series": 40,
+  "rule_families": 10,
+  "directional_rule_series": 32,
+  "activity_only_series": 8,
+  "event_rows": 11088,
+  "summary_groups": 88,
+  "eligible_bars": {
+    "1": 2880,
+    "5": 576,
+    "15": 192,
+    "60": 48
+  },
+  "start_ms": 1759276800000,
+  "end_exclusive_ms": 1759449600000,
+  "selection_or_validation": false,
+  "future_horizon": "no fixed time barrier; follow-up ends at the registered discovery-data boundary",
+  "outcome_warning": "An eventual higher close alone does not establish a good entry; next-change direction, prior direction, waiting time and censoring must be read together. No high-rate acceptance gate.",
+  "financial": "not measured \u2014 outside this phase",
+  "confidence_or_significance": "not measured; overlapping descriptive alerts are not independent binomial trials",
+  "workspace_bytes": 255961
+}

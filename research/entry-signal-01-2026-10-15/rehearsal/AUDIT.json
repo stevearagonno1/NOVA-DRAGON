@@ -1,0 +1,26 @@
+{
+  "status": "PASS_INTEGRITY",
+  "self_test": {
+    "status": "PASS",
+    "brute_force_label_checks": 4868,
+    "label_cases": 45,
+    "rule_count": 10
+  },
+  "eligible_bars": {
+    "1": 2880,
+    "5": 576,
+    "15": 192,
+    "60": 48
+  },
+  "expected_eligible_bars": {
+    "1": 2880,
+    "5": 576,
+    "15": 192,
+    "60": 48
+  },
+  "event_rows": 11088,
+  "summary_reconciled": true,
+  "unique_event_identity": "rule+frame+feature_open; one evaluation per bar; overlapping alerts are NOT independent trials",
+  "future_outcomes_not_signal_inputs": true,
+  "feature_stream_sha256": "23043f9ac53947f7a9025f713edf178a0c90ddc63e532e4136ce750617fc8015"
+}
