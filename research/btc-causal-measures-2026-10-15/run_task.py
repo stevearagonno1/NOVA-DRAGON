@@ -39,7 +39,7 @@ def run(args):
  (out/'RESULT.json').write_text(json.dumps(receipt,indent=2)+'\n');(out/'REPORT.md').write_text('# Fixed causal measurements\n\nIntegrity '+checked['status']+'; no predictive or financial result.\n\n'+json.dumps(receipt,indent=2)+'\n')
  if args.publish:
   branch='agent/btc-causal-measures-readiness-2026-10-15' if args.rehearsal else 'agent/btc-causal-measures-execution-2026-10-15';base='research/btc-causal-measures-2026-10-15/'+mode+'/'
-  files={base/f.name:f for f in out.iterdir() if f.is_file() and f.name not in ['DELIVERY.json','LOCAL-RECEIPT.json','LOG_APPEND.txt','TICK.md']}
+  files={base+f.name:f for f in out.iterdir() if f.is_file() and f.name not in ['DELIVERY.json','LOCAL-RECEIPT.json','LOG_APPEND.txt','TICK.md']}
   for n in ['features.py','audit_features.py','source_collect.py','api.py','run_task.py','protocol.json']:files['research/btc-causal-measures-2026-10-15/code/'+n]=P/n
   source_tree=api.call('GET',f'/repos/{REPO}/git/commits/{args.source_commit}')['tree']['sha'];root=api.call('GET',f'/repos/{REPO}/git/trees/{source_tree}');entry=next(x for x in root['tree'] if x['path']=='LOG.md');old=base64.b64decode(api.call('GET',f'/repos/{REPO}/git/blobs/{entry["sha"]}')['content'])
   (out/'LOG_APPEND.txt').write_bytes(old+b'\n\n## Fixed causal measurements -2026-10-15\nCalculated14fixed fields at4native frames; no state search or predictive/financial adoption. See result and audit in work branch.\n');files['LOG.md']=out/'LOG_APPEND.txt'
