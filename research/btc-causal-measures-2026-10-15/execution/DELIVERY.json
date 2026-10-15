@@ -1,0 +1,22 @@
+{
+  "status": "PASS_FIXED_CAUSAL_MEASUREMENTS_LEAD_REVIEW_PENDING",
+  "native_records_with_one_day_history": 676368,
+  "analysis_native_records": 674520,
+  "fields_per_record": 14,
+  "timeframe_count": 4,
+  "trajectory_positions_read_lazily": 168,
+  "files": 52,
+  "binary_bytes": 81164160,
+  "task_and_external_input_bytes": 116776009,
+  "local_compute_seconds": 96.15189599990845,
+  "whole_task_duration_including_publication": 231.83463144302368,
+  "audit": "PASS_NUMERIC_AND_CAUSAL_CHECKS",
+  "future_labels_or_state_search": false,
+  "prediction_and_profit": "not measured",
+  "source_commit": "55cbdbced8c70acf4a3f500e19a559a9bbae617d",
+  "publication": {
+    "commit": "bee63c9cf30eff39c1cdcd8f97ebeff94f1d7ea7",
+    "files_verified": 64,
+    "branch": "agent/btc-causal-measures-execution-2026-10-15"
+  }
+}
