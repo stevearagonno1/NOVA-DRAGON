@@ -1,0 +1,74 @@
+{
+  "pine_runtime/patch-runtime.py": {
+    "sha256": "e71475d19eec4d072d0f994e020be69f9bfbfc0aa07181a90a71600b666126cd",
+    "bytes": 1483
+  },
+  "pine_runtime/patched/PATCH.json": {
+    "sha256": "ca9472164cda26555fff1c7bf88da7e21a29eb9c74f419a2dc2a7144eb85cda7",
+    "bytes": 1139
+  },
+  "pine_runtime/patched/PATCH-v1.json": {
+    "sha256": "fae91f98dc4dab6e6aa541964a34aacd3a3df0e52fd156785109bd1659950025",
+    "bytes": 565
+  },
+  "pine_runtime/patched/PATCH-v2.json": {
+    "sha256": "32599a013c87a3643bdda7a0ca97d2c21c07a017d58637394a40b6cdee42737b",
+    "bytes": 715
+  },
+  "pine_runtime/historical-provider.cjs": {
+    "sha256": "107877dc25fe7928aa6a5d889c717c560ed726356f52f0f16f0c0053be87937a",
+    "bytes": 2971
+  },
+  "pine_runtime/probe-v6.cjs": {
+    "sha256": "f3278abf4a02e18cc91deafe35aea8a693dc46762680bd4a8e62f6a5ef7194d2",
+    "bytes": 1113
+  },
+  "pine_runtime/mtf-regression.pine": {
+    "sha256": "dbcaa30e932ae98a290900261edd0a287b65750ba307fd3c71970802054699ef",
+    "bytes": 687
+  },
+  "pine_runtime/validate-mtf-v3.cjs": {
+    "sha256": "783db7198b1fccafa3414ede3fca5fab5e59a6a30739ca17e6e36ce033bdcf5d",
+    "bytes": 1218
+  },
+  "pine_runtime/MTF-REGRESSION-VALUES-V3.json": {
+    "sha256": "531de8c4ca32bd9116e954ff80ebee771a15d1381507e8285645e906b7e1dd4b",
+    "bytes": 11611515
+  },
+  "pine_runtime/MTF-INDEPENDENT-REFERENCE.json": {
+    "sha256": "5249bc6e47bb8c25e8817ea7475960a1154df3d31990af81fbb27f0aab1a1a6c",
+    "bytes": 5565
+  },
+  "pine_runtime/MTF-INDEPENDENT-REFERENCE-V3.json": {
+    "sha256": "983d278a8078fa133e25e299138c0f2b3fdeead2d97402ca16e24d66161aaeeb",
+    "bytes": 4311
+  },
+  "pine_runtime/package.json": {
+    "sha256": "4d0c5ee6dc9a4b4ec98a0d804b78793153dcfc0de73aeecd22cf974909b86721",
+    "bytes": 51
+  },
+  "pine_runtime/package-lock.json": {
+    "sha256": "a83e6733288e1a3ad07766796196d9a93dd63b640693f48efd9f4332af8b3125",
+    "bytes": 1702
+  },
+  "validate_mtf_reference_v3.py": {
+    "sha256": "f86b1875d03f717d387014ccd8cd5fffe1570e43403a837327acca53fdfda36b",
+    "bytes": 2407
+  },
+  "recheck_mtf_repairs.py": {
+    "sha256": "9569421a66fd18154e41a118fb995d14b1cb80662324f028f0227891a15616c3",
+    "bytes": 1482
+  },
+  "repair_iteration/MTF-REPAIR.md": {
+    "sha256": "15552e83a2a7ab3fa601611e2c6ff07f4cd627015e44880f465b838436e2f994",
+    "bytes": 5246
+  },
+  "repair_iteration/REPAIR-SUMMARY.json": {
+    "sha256": "32c2a0215869de101198fa84517800b63645dcd3d490968515db5d05267c4761",
+    "bytes": 701
+  },
+  "repair_iteration/REAL-SOURCE-RECHECK.json": {
+    "sha256": "8166dfdd0f41ee1665f20fa6ea222439c2bf86fbe242d10d7fc1ef5bb95bcc44",
+    "bytes": 10787
+  }
+}

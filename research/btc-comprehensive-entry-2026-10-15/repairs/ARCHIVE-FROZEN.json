@@ -1,0 +1,8 @@
+{
+  "bytes": 3332710,
+  "sha256": "cdf94975234ae1f9a3234e813b992232676cb96dde47ae48c2423d752654f3ac",
+  "git_sha": "5fd4f8a624ecc9e294003ab17b69c90996ae6526",
+  "files": 19,
+  "remote_blob_bytes_verified": true,
+  "earlier_local_archive": "Unpublished earlier archive failed its expected hash and later zip validation; rebuilt from individually verified source bytes in memory. No failed artifact was linked to a branch."
+}
