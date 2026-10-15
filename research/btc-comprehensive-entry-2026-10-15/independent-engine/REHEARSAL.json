@@ -1,0 +1,24 @@
+{
+  "status": "PASS_SYNTHETIC_INTEGRATION_ONLY",
+  "variants": 134,
+  "variant_frame_series": 536,
+  "state_rows_including_unavailable": 391280,
+  "zero_signal_cells": 382406,
+  "alert_rows": 113907,
+  "raw_summary_reconciled": true,
+  "signal_availability_checked": true,
+  "outcome_reference_checks": 10,
+  "market_data_used": false,
+  "all_source_ready": false,
+  "all_formulas_independently_verified": false,
+  "future_return_or_horizon_cutoff": null,
+  "elapsed_seconds": 6.5194823410001845,
+  "files_sha256": {
+    "masks-5m.npz": "27670ac45c028caa0b45448312a6dd6e6a90f1b2290629144b1e75e69d5b8f9e",
+    "masks-1m.npz": "431a746fa1476bcac4828168d5b24e3a1deacf4fd0fc729585051eb04dc3f10e",
+    "summary.csv.gz": "57014090afc2a394b0a8d1b8fd50f83b5820a73da0c97549a02cd9fec56b8eef",
+    "alerts.csv.gz": "cb4d146f9c9ef014299a8641bf72b6a6ee44d642fdfc71711133244037948c4e",
+    "masks-15m.npz": "d98675f85c115fa0dcbd89686b082606e0b84c08f61e1e2d8ae444a4d2a8771c",
+    "masks-60m.npz": "47dfc30a45f8a89903638f144eacd1ab4ba3d2c02d4f44fed343567719088d06"
+  }
+}
