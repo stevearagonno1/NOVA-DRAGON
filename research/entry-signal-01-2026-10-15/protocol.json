@@ -1,0 +1,43 @@
+{
+  "task": "ENTRY-01",
+  "stage": "DESCRIPTIVE_SINGLE_SIGNAL_DISCOVERY",
+  "symbol": "BTCUSDT",
+  "start": "2025-10-01",
+  "end_exclusive": "2026-04-01",
+  "frames": [
+    1,
+    5,
+    15,
+    60
+  ],
+  "source_feature_settings": "ATR14,EMA20,MACD12/26/9,RSI14,base volume/previous60",
+  "repository_path": "research/entry-signal-01-2026-10-15/",
+  "execution_branch": "agent/btc-entry-single-execution-2026-10-15",
+  "readiness_branch": "agent/btc-entry-single-readiness-2026-10-15",
+  "data": {
+    "feature_commit": "87d68c79e5e0263ce7c5ecf558761996a0e988d3",
+    "feature_path": "research/btc-causal-measures-2026-10-15/execution/",
+    "manifest_git_sha": "d56f14e2882286a7d265a3531efe022817b0096f",
+    "raw_commit": "e68689a0aa560d27677ec703f85cea3877910b56",
+    "raw_path": "research/btc-registration-from-repo-2026-10-15/executor/data/raw/",
+    "collection_start": "2025-09-01",
+    "raw_sha256": {
+      "2025-09": "52bb4a4a52afbcc0af77e3eb92c114bf810982ca63bf02f8fe15062e59c5f44b",
+      "2025-10": "985d878cacbfdde85c9e0da2e8830ab913fe01bfdcde6e488563d8194df11f6b",
+      "2025-11": "c54159d1216ab07f040a96d6678748e8746ac4200cba373fb6b758f2cdd1e5e5",
+      "2025-12": "7b47647352b01356dcd678a1438efb8baac03ed798785ed2179d428aab0cca9b",
+      "2026-01": "d28b369da32a6ea84ba0af517b1847ab67b2fcc1e0e111c1b24d56ae07240cb9",
+      "2026-02": "cee2e913ed07e02834e2387c65ca430fe3576f620588bad8a02229238f385407",
+      "2026-03": "a2c1e689d39aa7877e218f436f15162e9a4436778a377d32e9d9b81b081381cd",
+      "2026-04": "318afd4f5acfbcfbb40fbe727a77eee8e9e7b54d8941589c78a32283d90b4a01",
+      "2026-05": "62983d93c35e26ec6c29116c629e443b7ddfe3d301aca83331ff58112199d8d0",
+      "2026-06": "c8e1d5e70b766dd2312fc9cd7085785bb25708e27e75c21a5a5aaba61a6d07f5",
+      "2026-07": "3ef15c84353da48e1c7c5fd99b9751cb036bf8986ed47f7cd1be63359c0d4f6b",
+      "2026-08": "acab442e02745177063031d402929703ae983715010064b40cf811c4beb843d4",
+      "2026-09": "7a021fb5981cfdb1a56457d68fa81360ab27350c981ddfe63112b2322df44b56"
+    }
+  },
+  "max_task_bytes": 125000000,
+  "max_file_bytes": 25000000,
+  "owner_scope": "entry beginning and subsequent rise only; no fixed per-alert success horizon, return target or high-rate rejection gate; no exits or combinations"
+}
