@@ -1,0 +1,34 @@
+{
+  "unit_id": "797f3cf4d1cf0544c0aef26c30a2d5b830e4886811e7916b428ab07a2118411c",
+  "text_sha256": "797f3cf4d1cf0544c0aef26c30a2d5b830e4886811e7916b428ab07a2118411c",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Independent strategy columns were adopted as a research organization; completed measurements and repeat canary precede a pending full strategy inventory.",
+  "nodes": [
+    {
+      "id": "n_815a390e6266c78ff0dd1b32",
+      "label": "Recorded research decision or provenance",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-23-s1/002-l0025-columns.md"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_5b01c679f93b5b1fb7611238",
+      "target": "n_815a390e6266c78ff0dd1b32",
+      "relation": "documents",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/journal/2026-09-23-s1/002-l0025-columns.md",
+      "evidence_quote": "كل استراتيجية عمود مستقل"
+    }
+  ],
+  "limitations": [
+    "Historical source claim; underlying market calculation not independently rerun in this semantic review."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

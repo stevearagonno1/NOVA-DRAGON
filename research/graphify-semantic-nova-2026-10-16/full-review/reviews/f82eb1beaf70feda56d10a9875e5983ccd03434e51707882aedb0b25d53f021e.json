@@ -1,0 +1,49 @@
+{
+  "unit_id": "f82eb1beaf70feda56d10a9875e5983ccd03434e51707882aedb0b25d53f021e",
+  "text_sha256": "f82eb1beaf70feda56d10a9875e5983ccd03434e51707882aedb0b25d53f021e",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "NOVA_V8 — market_open sleeve report: records: 240; wins: 4 (1.67%); losses: 236 (98.33%); net_usd: -16.0673. Explicitly independent and included in Baseline only when selected; historical report does not establish general entry accuracy.",
+  "nodes": [
+    {
+      "id": "n_abfbc5ee17fcc9a33a7b0707",
+      "label": "NOVA_V8 — market_open sleeve report",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/LINKUSDT_C/market_open_report.txt"
+    },
+    {
+      "id": "n_680c265da5a161a61bc1ad0f",
+      "label": "Baseline inclusion requires explicit selection",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/LINKUSDT_C/market_open_report.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_7e19a1e2f526a5f41e356711",
+      "target": "n_abfbc5ee17fcc9a33a7b0707",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/LINKUSDT_C/market_open_report.txt",
+      "evidence_quote": "selected: True\nrecords: 240\nwins: 4 (1.67%)\nlosses: 236 (98.33%)\nnet_usd: -16.0673"
+    },
+    {
+      "source": "n_7e19a1e2f526a5f41e356711",
+      "target": "n_680c265da5a161a61bc1ad0f",
+      "relation": "restricts",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/LINKUSDT_C/market_open_report.txt",
+      "evidence_quote": "هذه وحدة مستقلة؛ لا تدخل Baseline إلا عند اختيارها صراحة."
+    }
+  ],
+  "limitations": [
+    "Source-local historical statement; not independently reproduced or established as current market efficacy."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

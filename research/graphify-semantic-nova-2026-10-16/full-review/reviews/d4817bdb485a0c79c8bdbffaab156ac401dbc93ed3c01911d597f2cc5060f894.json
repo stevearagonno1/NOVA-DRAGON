@@ -1,0 +1,64 @@
+{
+  "unit_id": "d4817bdb485a0c79c8bdbffaab156ac401dbc93ed3c01911d597f2cc5060f894",
+  "text_sha256": "d4817bdb485a0c79c8bdbffaab156ac401dbc93ed3c01911d597f2cc5060f894",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Portfolio report is audit-only: current Baseline retains all rows whereas strict simulation would reject flagged rows. Kill/Halt inactive; defensive defaults explicitly uncalibrated and do not establish suitability for external funds.",
+  "nodes": [
+    {
+      "id": "n_c7d9aa86120560fcd471634c",
+      "label": "Portfolio audit versus strict simulation",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_A/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_a86d381357504baa0cc84774",
+      "label": "Uncalibrated defensive defaults",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_A/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_1c490be56d43ee363ada93a4",
+      "label": "Recorded portfolio audit metrics",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_A/portfolio_risk_audit.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_c6f15c1b987d5729ef109e49",
+      "target": "n_c7d9aa86120560fcd471634c",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_A/portfolio_risk_audit.txt",
+      "evidence_quote": "الوضع: audit (audit لا يغيّر Baseline؛ strict يرفض السجلات المحظورة)"
+    },
+    {
+      "source": "n_c6f15c1b987d5729ef109e49",
+      "target": "n_a86d381357504baa0cc84774",
+      "relation": "limits",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_A/portfolio_risk_audit.txt",
+      "evidence_quote": "القيم الافتراضية دفاعية وليست معايرة تاريخية؛ لا تعني أن النظام صالح للأموال الخارجية."
+    },
+    {
+      "source": "n_c6f15c1b987d5729ef109e49",
+      "target": "n_1c490be56d43ee363ada93a4",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_A/portfolio_risk_audit.txt",
+      "evidence_quote": "إجمالي السجلات: 404\nالمقبولة في المحاكاة الصارمة: 293\nالتي كان سيحظرها الحارس: 111\nالمقبولة في التقرير الحالي: 404\nالتعرض المفتوح النهائي التقريبي: 1000.00$\nالصافي المحقق التقريبي: -1481.97$\nحالة Kill/Halt: غير مفعلة"
+    }
+  ],
+  "limitations": [
+    "Source-local historical statement; not independently reproduced or established as current market efficacy."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

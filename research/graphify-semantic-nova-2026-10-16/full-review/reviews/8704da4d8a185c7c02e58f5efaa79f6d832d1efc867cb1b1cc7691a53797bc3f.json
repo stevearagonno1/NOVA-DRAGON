@@ -1,0 +1,49 @@
+{
+  "unit_id": "8704da4d8a185c7c02e58f5efaa79f6d832d1efc867cb1b1cc7691a53797bc3f",
+  "text_sha256": "8704da4d8a185c7c02e58f5efaa79f6d832d1efc867cb1b1cc7691a53797bc3f",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Data quality diagnostic records row count, OHLCV validity, negative volume and time gaps. Warn mode records issues while strict mode stops on data problems. [ATOMUSDT] rows=702720 bad_ohlcv=0 negative_volume=0 large_gaps=0 max_gap_min=1.00 issues=[]",
+  "nodes": [
+    {
+      "id": "n_5408aeaf3f0707a42d0c4ffc",
+      "label": "Data quality observations",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/d5y/ATOMUSDT_B/data_quality_report.txt"
+    },
+    {
+      "id": "n_971cc9485a5e6fdb0983aea4",
+      "label": "Strict data quality stop policy",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/d5y/ATOMUSDT_B/data_quality_report.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_b614a1db076630261244b951",
+      "target": "n_5408aeaf3f0707a42d0c4ffc",
+      "relation": "reports_data_quality",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/d5y/ATOMUSDT_B/data_quality_report.txt",
+      "evidence_quote": "[ATOMUSDT] rows=702720 bad_ohlcv=0 negative_volume=0 large_gaps=0 max_gap_min=1.00 issues=[]"
+    },
+    {
+      "source": "n_b614a1db076630261244b951",
+      "target": "n_971cc9485a5e6fdb0983aea4",
+      "relation": "defines_policy",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/d5y/ATOMUSDT_B/data_quality_report.txt",
+      "evidence_quote": "الوضع: warn; strict يوقف التشغيل عند مشاكل البيانات."
+    }
+  ],
+  "limitations": [
+    "Report only; source candles not independently checked here."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

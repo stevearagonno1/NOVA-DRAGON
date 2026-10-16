@@ -1,0 +1,49 @@
+{
+  "unit_id": "979a36e4d47dd2f57a05910f65e2aad1071f831bd0c10b1bd9983b2c34cd8c5e",
+  "text_sha256": "979a36e4d47dd2f57a05910f65e2aad1071f831bd0c10b1bd9983b2c34cd8c5e",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical data-quality check: [VETUSDT] rows=305281 bad_ohlcv=0 negative_volume=0 large_gaps=0 max_gap_min=1.00 issues=[]. Warn mode allows continuation; strict mode stops on detected issues.",
+  "nodes": [
+    {
+      "id": "n_a4012d5126485ab7d81ee426",
+      "label": "OHLCV quality and gaps",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/VETUSDT_B2/data_quality_report.txt"
+    },
+    {
+      "id": "n_54c32147ca39d2b053f7bac1",
+      "label": "Strict versus warn policy",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/VETUSDT_B2/data_quality_report.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_6f7e5dd80b0a52f2a6b12048",
+      "target": "n_a4012d5126485ab7d81ee426",
+      "relation": "reports_quality",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/VETUSDT_B2/data_quality_report.txt",
+      "evidence_quote": "[VETUSDT] rows=305281 bad_ohlcv=0 negative_volume=0 large_gaps=0 max_gap_min=1.00 issues=[]"
+    },
+    {
+      "source": "n_6f7e5dd80b0a52f2a6b12048",
+      "target": "n_54c32147ca39d2b053f7bac1",
+      "relation": "defines_quality_policy",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/VETUSDT_B2/data_quality_report.txt",
+      "evidence_quote": "الوضع: warn; strict يوقف التشغيل عند مشاكل البيانات."
+    }
+  ],
+  "limitations": [
+    "A zero issue count only covers these recorded diagnostics; not proof of perfect market data."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

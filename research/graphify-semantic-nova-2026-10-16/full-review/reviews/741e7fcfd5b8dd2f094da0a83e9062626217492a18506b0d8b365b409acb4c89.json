@@ -1,0 +1,49 @@
+{
+  "unit_id": "741e7fcfd5b8dd2f094da0a83e9062626217492a18506b0d8b365b409acb4c89",
+  "text_sha256": "741e7fcfd5b8dd2f094da0a83e9062626217492a18506b0d8b365b409acb4c89",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "NOVA_V8 — adaptive_trend sleeve report: records: 34; wins: 3 (8.82%); losses: 31 (91.18%); net_usd: -134.1338. Explicitly independent and included in Baseline only when selected; historical report does not establish general entry accuracy.",
+  "nodes": [
+    {
+      "id": "n_18222787da99578afac4129e",
+      "label": "NOVA_V8 — adaptive_trend sleeve report",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_C/adaptive_trend_report.txt"
+    },
+    {
+      "id": "n_0da61fad4681dc853b7d044c",
+      "label": "Baseline inclusion requires explicit selection",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_C/adaptive_trend_report.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_a971a62a494d46fe68708be6",
+      "target": "n_18222787da99578afac4129e",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_C/adaptive_trend_report.txt",
+      "evidence_quote": "selected: True\nrecords: 34\nwins: 3 (8.82%)\nlosses: 31 (91.18%)\nnet_usd: -134.1338"
+    },
+    {
+      "source": "n_a971a62a494d46fe68708be6",
+      "target": "n_0da61fad4681dc853b7d044c",
+      "relation": "restricts",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_C/adaptive_trend_report.txt",
+      "evidence_quote": "هذه وحدة مستقلة؛ لا تدخل Baseline إلا عند اختيارها صراحة."
+    }
+  ],
+  "limitations": [
+    "Source-local historical statement; not independently reproduced or established as current market efficacy."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

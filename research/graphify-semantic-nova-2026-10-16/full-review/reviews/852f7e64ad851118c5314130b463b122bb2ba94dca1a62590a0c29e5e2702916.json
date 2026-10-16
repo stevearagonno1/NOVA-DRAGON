@@ -1,0 +1,64 @@
+{
+  "unit_id": "852f7e64ad851118c5314130b463b122bb2ba94dca1a62590a0c29e5e2702916",
+  "text_sha256": "852f7e64ad851118c5314130b463b122bb2ba94dca1a62590a0c29e5e2702916",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Ignore policy preserves reproducible archive-derived sources while excluding generated extraction content, Python caches and secret environment files; selected census/map documents remain tracked.",
+  "nodes": [
+    {
+      "id": "n_f7d694cfe126c9aab19ab7ad",
+      "label": "Generated new content excluded except census/map documents",
+      "file_type": "concept",
+      "source_file": ".gitignore"
+    },
+    {
+      "id": "n_5a76e2b15fc571dd689e61f6",
+      "label": "Environment secrets excluded; example retained",
+      "file_type": "concept",
+      "source_file": ".gitignore"
+    },
+    {
+      "id": "n_fffc9f506981c235181fcd48",
+      "label": "Permanent extraction source",
+      "file_type": "concept",
+      "source_file": ".gitignore"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_bc37d034bad564583790a46f",
+      "target": "n_f7d694cfe126c9aab19ab7ad",
+      "relation": "defines_tracking_policy",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": ".gitignore",
+      "evidence_quote": "new/*\n!new/census.py\n!new/extract.sh\n!new/CENSUS.md"
+    },
+    {
+      "source": "n_bc37d034bad564583790a46f",
+      "target": "n_5a76e2b15fc571dd689e61f6",
+      "relation": "defines_tracking_policy",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": ".gitignore",
+      "evidence_quote": ".env\n.env.*\n!.env.example"
+    },
+    {
+      "source": "n_bc37d034bad564583790a46f",
+      "target": "n_fffc9f506981c235181fcd48",
+      "relation": "references",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": ".gitignore",
+      "evidence_quote": "history/nova_upload_bundle.tar.gz"
+    }
+  ],
+  "limitations": [
+    "Historical source assertions retained as assertions; no independent rerun or market validation performed."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

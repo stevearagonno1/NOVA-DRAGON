@@ -1,0 +1,34 @@
+{
+  "unit_id": "e2c33463aa974467162a6fca347802524b49d5c0f4d58d7b68b2aca7e67fc68c",
+  "text_sha256": "e2c33463aa974467162a6fca347802524b49d5c0f4d58d7b68b2aca7e67fc68c",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Console contains only an Arabic completion acknowledgement, without auditable execution details.",
+  "nodes": [
+    {
+      "id": "n_9659e2eedb3ba88f125be460",
+      "label": "Completion acknowledgement",
+      "file_type": "concept",
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/entry_signal_prep/READINESS-CONSOLE.log"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_ca3a925771eb957917e3a1c7",
+      "target": "n_9659e2eedb3ba88f125be460",
+      "relation": "records",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/entry_signal_prep/READINESS-CONSOLE.log",
+      "evidence_quote": "تم"
+    }
+  ],
+  "limitations": [
+    "Source-local historical statement; not independently reproduced or established as current market efficacy."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

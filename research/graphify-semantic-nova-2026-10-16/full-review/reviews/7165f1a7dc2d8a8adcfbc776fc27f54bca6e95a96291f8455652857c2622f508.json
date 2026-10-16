@@ -1,0 +1,49 @@
+{
+  "unit_id": "7165f1a7dc2d8a8adcfbc776fc27f54bca6e95a96291f8455652857c2622f508",
+  "text_sha256": "7165f1a7dc2d8a8adcfbc776fc27f54bca6e95a96291f8455652857c2622f508",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Graphify dependency lock declares graphifyy0.9.91, networkx3.7,numpy2.5.4,RapidFuzz3.14.6,tree-sitter0.25.2 and language-specific parsers. A pinned requirements list establishes declared dependencies, not their present installation or correctness.",
+  "nodes": [
+    {
+      "id": "n_aba7aa1a9e716d3a31d9a2d5",
+      "label": "Graphify version0.9.91",
+      "file_type": "concept",
+      "source_file": "research/graphify-nova-2026-10-16/requirements-graphify.lock.txt"
+    },
+    {
+      "id": "n_664ca1209a1b98beec87dc39",
+      "label": "Tree-sitter version0.25.2",
+      "file_type": "concept",
+      "source_file": "research/graphify-nova-2026-10-16/requirements-graphify.lock.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_6556d759a98a7c56df6920cc",
+      "target": "n_aba7aa1a9e716d3a31d9a2d5",
+      "relation": "declares_dependency",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/graphify-nova-2026-10-16/requirements-graphify.lock.txt",
+      "evidence_quote": "graphifyy==0.9.91"
+    },
+    {
+      "source": "n_6556d759a98a7c56df6920cc",
+      "target": "n_664ca1209a1b98beec87dc39",
+      "relation": "declares_dependency",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/graphify-nova-2026-10-16/requirements-graphify.lock.txt",
+      "evidence_quote": "tree-sitter==0.25.2"
+    }
+  ],
+  "limitations": [
+    "Source claims and code semantics read completely; no original code execution or market result rerun in this review."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "unit_id": "25fcbb9ea923fad5d277618d5f8a9c50cdab37524064459b011662e95a389e20",
+  "text_sha256": "25fcbb9ea923fad5d277618d5f8a9c50cdab37524064459b011662e95a389e20",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical data-quality output: [TONUSDT] rows=435060 bad_ohlcv=0 negative_volume=0 large_gaps=0 max_gap_min=1.00 issues=[]. Warn mode is recorded; strict mode stops on data issues.",
+  "nodes": [
+    {
+      "id": "n_8e9cbc0a07c2726dc2048388",
+      "label": "Data-quality measurements",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/TONUSDT_C/data_quality_report.txt"
+    },
+    {
+      "id": "n_80b431f6be2e2ee4d966f33a",
+      "label": "Strict quality stop policy",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/TONUSDT_C/data_quality_report.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_434214baf77051b12278621a",
+      "target": "n_8e9cbc0a07c2726dc2048388",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/TONUSDT_C/data_quality_report.txt",
+      "evidence_quote": "[TONUSDT] rows=435060 bad_ohlcv=0 negative_volume=0 large_gaps=0 max_gap_min=1.00 issues=[]"
+    },
+    {
+      "source": "n_434214baf77051b12278621a",
+      "target": "n_80b431f6be2e2ee4d966f33a",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/TONUSDT_C/data_quality_report.txt",
+      "evidence_quote": "الوضع: warn; strict يوقف التشغيل عند مشاكل البيانات."
+    }
+  ],
+  "limitations": [
+    "Reported counts are not independently recalculated here; absence of listed defects is limited to these checks."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

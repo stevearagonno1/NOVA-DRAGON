@@ -1,0 +1,283 @@
+{
+  "unit_id": "95a52621191783a2ec6deebdf98ac0fc8788bbcdf6821d375f4c8a53b61feb50",
+  "text_sha256": "95a52621191783a2ec6deebdf98ac0fc8788bbcdf6821d375f4c8a53b61feb50",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical owner merge verified from protected branch268bc47to74e0918;30files1489additions/no deletion and100%similarity relocation documented; next research alternatives unresolved.",
+  "nodes": [
+    {
+      "id": "n_8f8778861f03127cbf071c6e",
+      "label": "Historical record: - لا شيء جديد — توثيق اكتمال الدورة.",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_3b84957dfba084e6e004d7a1",
+      "label": "Historical record: - دمج القائد بيده من تيرمكس: المحمي تقدم من",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_efd926c199badea3877a818a",
+      "label": "Historical record: 268bc47",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_5c7bc888f6e693abc3bf6482",
+      "label": "Historical record: إلى",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_5d14f76e94c5e7bb8be360d8",
+      "label": "Historical record: 74e0918",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_9ad9092feaf412ff66c172f6",
+      "label": "Historical record: بعنوان «دمج",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_02bd1d08bcf7592317d61eb9",
+      "label": "Historical record: arena/parts-home-2026-09-20",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_3946dbc26d863b81782444dd",
+      "label": "Historical record: main",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_d30a8cbbc99e75ec30b465dc",
+      "label": "Historical record: — من تيرمكس بأمر المستخدم».",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_181dad0b1c9c8370a4cbd528",
+      "label": "Historical record: - قرأ العقل البيت من الفرع المحمي نفسه بعد الدمج: الفهرس السيد والمجلدات الثمانية كلها في مواضعها (تحقق قراءة من المنبع، لا من فرع الجلسة).",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_c2ed42d2a940d9404ee8588f",
+      "label": "Historical record: - 30 ملفًا · 1,489 سطرًا مضافة · صفر سطر محذوف · ملف القواطع القديم انتقل بنسبة تشابه 100% (بلا تغيير حرف).",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_f06ad1740be5ef8e763ecb30",
+      "label": "Historical record: - البيت الشامل صار جزءًا من المحمي — هذه التكة تركب أول حزمة دمج قادمة بيد القائد.",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_70c9fe07dc60b0cbf2e30e69",
+      "label": "Historical record: - قرار القائد للجبهة التالية: غرفة عمل آلة الحالات، أو دفعات جرد الـ212، أو تدقيقا",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_2217e93c064e63ffcaca4dc1",
+      "label": "Historical record: L0007",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_7689291886abf1d5e9539f76",
+      "label": "Historical record: و",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_e847665bd86c77fbe72555c2",
+      "label": "Historical record: L0012",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    },
+    {
+      "id": "n_661ee57abb2e137772e31642",
+      "label": "Historical record: المعلقان على العقل.",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_8f8778861f03127cbf071c6e",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "- لا شيء جديد — توثيق اكتمال الدورة."
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_3b84957dfba084e6e004d7a1",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "- دمج القائد بيده من تيرمكس: المحمي تقدم من"
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_efd926c199badea3877a818a",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "268bc47"
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_5c7bc888f6e693abc3bf6482",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "إلى"
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_5d14f76e94c5e7bb8be360d8",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "74e0918"
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_9ad9092feaf412ff66c172f6",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "بعنوان «دمج"
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_02bd1d08bcf7592317d61eb9",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "arena/parts-home-2026-09-20"
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_5c7bc888f6e693abc3bf6482",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "إلى"
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_3946dbc26d863b81782444dd",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "main"
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_d30a8cbbc99e75ec30b465dc",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "— من تيرمكس بأمر المستخدم»."
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_181dad0b1c9c8370a4cbd528",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "- قرأ العقل البيت من الفرع المحمي نفسه بعد الدمج: الفهرس السيد والمجلدات الثمانية كلها في مواضعها (تحقق قراءة من المنبع، لا من فرع الجلسة)."
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_c2ed42d2a940d9404ee8588f",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "- 30 ملفًا · 1,489 سطرًا مضافة · صفر سطر محذوف · ملف القواطع القديم انتقل بنسبة تشابه 100% (بلا تغيير حرف)."
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_f06ad1740be5ef8e763ecb30",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "- البيت الشامل صار جزءًا من المحمي — هذه التكة تركب أول حزمة دمج قادمة بيد القائد."
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_70c9fe07dc60b0cbf2e30e69",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "- قرار القائد للجبهة التالية: غرفة عمل آلة الحالات، أو دفعات جرد الـ212، أو تدقيقا"
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_2217e93c064e63ffcaca4dc1",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "L0007"
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_7689291886abf1d5e9539f76",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "و"
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_e847665bd86c77fbe72555c2",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "L0012"
+    },
+    {
+      "source": "n_ee014d1e110cfaf0bb5743a7",
+      "target": "n_661ee57abb2e137772e31642",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-09-20-parts-home/003-merge-verified.md",
+      "evidence_quote": "المعلقان على العقل."
+    }
+  ],
+  "limitations": [
+    "Historical source assertions retained as assertions; no independent rerun or market validation performed."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "unit_id": "94cf591cf7e285ad45801ecf69c29ef16706079f241d389b5454f877408a9a86",
+  "text_sha256": "94cf591cf7e285ad45801ecf69c29ef16706079f241d389b5454f877408a9a86",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical Oracle ranks descriptive stability and regime coverage, expressly reference-only and prohibited for candidate selection. Stability is not entry predictive accuracy. [تغطية الحالات];    FILUSDT [عرضي]: 429961 شريط;    FILUSDT [هابط]: 12195 شريط;    FILUSDT [متفجّر]: 30210 شريط;    FILUSDT [صاعد]: 8595 شريط",
+  "nodes": [
+    {
+      "id": "n_34beac3841c0a3dfce73abd3",
+      "label": "متفجّر | RSI7 stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_adf8e60ab7e7c6a108e3fb3e",
+      "label": "عرضي | Bollinger stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_08dacbdbd0086ab93db19da1",
+      "label": "هابط | KAMA stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_166730003f9047ff0624184b",
+      "label": "صاعد | Stochastic stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_a86568caa07d105025fc3de6",
+      "label": "صاعد | KAMA stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_49d67ddab93bcbc00fcbcb1b",
+      "label": "عرضي | RSI7 stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_53db0344947e668de47b2a21",
+      "label": "عرضي | FVG stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_4a636e0cf104b23aeacc31e5",
+      "label": "صاعد | EMA stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_9be29a67341398ab22eee756",
+      "label": "Oracle selection prohibition",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_022d6fa6827249918fcc3227",
+      "label": "Regime coverage",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_d618ebfd648950b79d35c051",
+      "target": "n_34beac3841c0a3dfce73abd3",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt",
+      "evidence_quote": "متفجّر | RSI7: ثبات 39.0% (41 عينات)"
+    },
+    {
+      "source": "n_d618ebfd648950b79d35c051",
+      "target": "n_adf8e60ab7e7c6a108e3fb3e",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt",
+      "evidence_quote": "عرضي | Bollinger: ثبات 34.4% (5000 عينات)"
+    },
+    {
+      "source": "n_d618ebfd648950b79d35c051",
+      "target": "n_08dacbdbd0086ab93db19da1",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt",
+      "evidence_quote": "هابط | KAMA: ثبات 33.3% (108 عينات)"
+    },
+    {
+      "source": "n_d618ebfd648950b79d35c051",
+      "target": "n_166730003f9047ff0624184b",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt",
+      "evidence_quote": "صاعد | Stochastic: ثبات 33.1% (287 عينات)"
+    },
+    {
+      "source": "n_d618ebfd648950b79d35c051",
+      "target": "n_a86568caa07d105025fc3de6",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt",
+      "evidence_quote": "صاعد | KAMA: ثبات 32.7% (101 عينات)"
+    },
+    {
+      "source": "n_d618ebfd648950b79d35c051",
+      "target": "n_49d67ddab93bcbc00fcbcb1b",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt",
+      "evidence_quote": "عرضي | RSI7: ثبات 32.4% (857 عينات)"
+    },
+    {
+      "source": "n_d618ebfd648950b79d35c051",
+      "target": "n_53db0344947e668de47b2a21",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt",
+      "evidence_quote": "عرضي | FVG: ثبات 32.3% (5000 عينات)"
+    },
+    {
+      "source": "n_d618ebfd648950b79d35c051",
+      "target": "n_4a636e0cf104b23aeacc31e5",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt",
+      "evidence_quote": "صاعد | EMA: ثبات 31.8% (110 عينات)"
+    },
+    {
+      "source": "n_d618ebfd648950b79d35c051",
+      "target": "n_9be29a67341398ab22eee756",
+      "relation": "forbids_selection_use",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt",
+      "evidence_quote": "مرجع فقط، لا يُستخدم للترشيح"
+    },
+    {
+      "source": "n_d618ebfd648950b79d35c051",
+      "target": "n_022d6fa6827249918fcc3227",
+      "relation": "reports_coverage",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/FILUSDT_C/oracle_stability.txt",
+      "evidence_quote": "[تغطية الحالات]\n   FILUSDT [عرضي]: 429961 شريط\n   FILUSDT [هابط]: 12195 شريط\n   FILUSDT [متفجّر]: 30210 شريط\n   FILUSDT [صاعد]: 8595 شريط"
+    }
+  ],
+  "limitations": [
+    "Meaning of stability and sample method require producer; no causal predictive validation follows from ranking."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

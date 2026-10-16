@@ -1,0 +1,214 @@
+{
+  "unit_id": "52b19114057c1637ae127f8ea4b00b6f81c0df7b548225204a5433235ee224a9",
+  "text_sha256": "52b19114057c1637ae127f8ea4b00b6f81c0df7b548225204a5433235ee224a9",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical Oracle descriptive stability/market-state coverage report, explicitly reference-only and not used for filtering. Stability figures are not entry precision; state bar counts are descriptive.",
+  "nodes": [
+    {
+      "id": "n_7d8396231f91de6614e000b1",
+      "label": "NOVA_V8 — التقرير التحليلي للاستقرار (Oracle) — مرجع فقط، لا يُستخدم للترشيح",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_0dd99a9f320729ee6bd70684",
+      "label": "   صاعد | OBV: ثبات 44.4% (117 عينات)",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_c2ea8af7d7745f522893e7c5",
+      "label": "   صاعد | EMA: ثبات 42.7% (82 عينات)",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_e7e4579d7e06d42a21656e19",
+      "label": "   صاعد | RSI: ثبات 42.4% (184 عينات)",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_c2b953dd6b27d21840f9caf5",
+      "label": "   صاعد | Stochastic: ثبات 41.6% (214 عينات)",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_b91ab324d94fc577b3de7b6b",
+      "label": "   صاعد | KAMA: ثبات 41.2% (85 عينات)",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_4452c0ab1e2f078274bd2c94",
+      "label": "   هابط | SFP: ثبات 40.9% (44 عينات)",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_f731ef7efef43204cc54cd7d",
+      "label": "   هابط | RSI: ثبات 40.7% (177 عينات)",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_027370b343a3b243acdaf6a8",
+      "label": "   هابط | ADX: ثبات 40.3% (77 عينات)",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_cb44c4d37bb7259fa7365c51",
+      "label": "   ATOMUSDT [عرضي]: 438646 شريط",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_b0c855085124a9fe3f5ac36b",
+      "label": "   ATOMUSDT [هابط]: 10095 شريط",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_77cd9da82169297bda10186f",
+      "label": "   ATOMUSDT [متفجّر]: 24360 شريط",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_b028e67a89e0e8d5732957cf",
+      "label": "   ATOMUSDT [صاعد]: 7860 شريط",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_ad06f75cb2624cf096a89d83",
+      "target": "n_7d8396231f91de6614e000b1",
+      "relation": "restricts_use_to_reference",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt",
+      "evidence_quote": "NOVA_V8 — التقرير التحليلي للاستقرار (Oracle) — مرجع فقط، لا يُستخدم للترشيح"
+    },
+    {
+      "source": "n_ad06f75cb2624cf096a89d83",
+      "target": "n_0dd99a9f320729ee6bd70684",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   صاعد | OBV: ثبات 44.4% (117 عينات)"
+    },
+    {
+      "source": "n_ad06f75cb2624cf096a89d83",
+      "target": "n_c2ea8af7d7745f522893e7c5",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   صاعد | EMA: ثبات 42.7% (82 عينات)"
+    },
+    {
+      "source": "n_ad06f75cb2624cf096a89d83",
+      "target": "n_e7e4579d7e06d42a21656e19",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   صاعد | RSI: ثبات 42.4% (184 عينات)"
+    },
+    {
+      "source": "n_ad06f75cb2624cf096a89d83",
+      "target": "n_c2b953dd6b27d21840f9caf5",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   صاعد | Stochastic: ثبات 41.6% (214 عينات)"
+    },
+    {
+      "source": "n_ad06f75cb2624cf096a89d83",
+      "target": "n_b91ab324d94fc577b3de7b6b",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   صاعد | KAMA: ثبات 41.2% (85 عينات)"
+    },
+    {
+      "source": "n_ad06f75cb2624cf096a89d83",
+      "target": "n_4452c0ab1e2f078274bd2c94",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   هابط | SFP: ثبات 40.9% (44 عينات)"
+    },
+    {
+      "source": "n_ad06f75cb2624cf096a89d83",
+      "target": "n_f731ef7efef43204cc54cd7d",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   هابط | RSI: ثبات 40.7% (177 عينات)"
+    },
+    {
+      "source": "n_ad06f75cb2624cf096a89d83",
+      "target": "n_027370b343a3b243acdaf6a8",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   هابط | ADX: ثبات 40.3% (77 عينات)"
+    },
+    {
+      "source": "n_ad06f75cb2624cf096a89d83",
+      "target": "n_cb44c4d37bb7259fa7365c51",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   ATOMUSDT [عرضي]: 438646 شريط"
+    },
+    {
+      "source": "n_ad06f75cb2624cf096a89d83",
+      "target": "n_b0c855085124a9fe3f5ac36b",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   ATOMUSDT [هابط]: 10095 شريط"
+    },
+    {
+      "source": "n_ad06f75cb2624cf096a89d83",
+      "target": "n_77cd9da82169297bda10186f",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   ATOMUSDT [متفجّر]: 24360 شريط"
+    },
+    {
+      "source": "n_ad06f75cb2624cf096a89d83",
+      "target": "n_b028e67a89e0e8d5732957cf",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   ATOMUSDT [صاعد]: 7860 شريط"
+    }
+  ],
+  "limitations": [
+    "Historical source assertions retained as assertions; no independent rerun or market validation performed."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

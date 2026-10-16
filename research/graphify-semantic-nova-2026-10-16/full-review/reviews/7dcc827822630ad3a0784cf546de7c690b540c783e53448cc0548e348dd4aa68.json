@@ -1,0 +1,49 @@
+{
+  "unit_id": "7dcc827822630ad3a0784cf546de7c690b540c783e53448cc0548e348dd4aa68",
+  "text_sha256": "7dcc827822630ad3a0784cf546de7c690b540c783e53448cc0548e348dd4aa68",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "L0025 records24cells,20dollar notional,.13%per-side cost,2025-01 through2026-08. Base stop2/trig.0025/lock.0045; reported winner2.5/.0015/.006.",
+  "nodes": [
+    {
+      "id": "n_5a69b892da5cadb61c2df83b",
+      "label": "Base exit",
+      "file_type": "concept",
+      "source_file": "history/research/hyp_lab_out/L0025/env_dump.txt"
+    },
+    {
+      "id": "n_235253723d1714c88719788f",
+      "label": "Reported winning exit",
+      "file_type": "concept",
+      "source_file": "history/research/hyp_lab_out/L0025/env_dump.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_ee170b40b67c5463973c8fc8",
+      "target": "n_5a69b892da5cadb61c2df83b",
+      "relation": "records_base",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/hyp_lab_out/L0025/env_dump.txt",
+      "evidence_quote": "base={'stop': 2.0, 'trig': 0.0025, 'lock': 0.0045}"
+    },
+    {
+      "source": "n_ee170b40b67c5463973c8fc8",
+      "target": "n_235253723d1714c88719788f",
+      "relation": "records_historical_winner",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/hyp_lab_out/L0025/env_dump.txt",
+      "evidence_quote": "winner={'stop': 2.5, 'trig': 0.0015, 'lock': 0.006}"
+    }
+  ],
+  "limitations": [
+    "Environment only; no performance evidence in this unit."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

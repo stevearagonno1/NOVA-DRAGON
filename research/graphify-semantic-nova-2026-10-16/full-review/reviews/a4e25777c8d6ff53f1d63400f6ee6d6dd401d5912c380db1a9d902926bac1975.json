@@ -1,0 +1,154 @@
+{
+  "unit_id": "a4e25777c8d6ff53f1d63400f6ee6d6dd401d5912c380db1a9d902926bac1975",
+  "text_sha256": "a4e25777c8d6ff53f1d63400f6ee6d6dd401d5912c380db1a9d902926bac1975",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Portfolioauditmode leavesBaseline unchanged; hypotheticalstrictmode rejects forbiddenrecords. Report preserves current vs strictaccepted counts,exposure,approximate realizednetandKill/Halt separately. Defensive defaults are not historicalcalibration or real-moneyfitness.",
+  "nodes": [
+    {
+      "id": "n_39d271116a79edbc78a7a379",
+      "label": "الوضع",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_40014786d5890df70d3d4c47",
+      "label": "إجمالي السجلات",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_5e668af74b53118e71ae8f96",
+      "label": "المقبولة في المحاكاة الصارمة",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_f918dcb3ac570be6cc72b349",
+      "label": "التي كان سيحظرها الحارس",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_bb37de1fe25d63b6a5bb1313",
+      "label": "المقبولة في التقرير الحالي",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_02da85438433577bc22758c9",
+      "label": "التعرض المفتوح النهائي التقريبي",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_cd06f56f9bd8194b5480b8b7",
+      "label": "الصافي المحقق التقريبي",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_bfe55766f7fb34a6bd6c4c9d",
+      "label": "حالة Kill/Halt",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_d037d21379907fde4f247ea3",
+      "label": "قواعد الحماية",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_ae369cc559270c8946525f3c",
+      "target": "n_39d271116a79edbc78a7a379",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "الوضع: audit (audit لا يغيّر Baseline؛ strict يرفض السجلات المحظورة)"
+    },
+    {
+      "source": "n_ae369cc559270c8946525f3c",
+      "target": "n_40014786d5890df70d3d4c47",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "إجمالي السجلات: 252"
+    },
+    {
+      "source": "n_ae369cc559270c8946525f3c",
+      "target": "n_5e668af74b53118e71ae8f96",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "المقبولة في المحاكاة الصارمة: 185"
+    },
+    {
+      "source": "n_ae369cc559270c8946525f3c",
+      "target": "n_f918dcb3ac570be6cc72b349",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "التي كان سيحظرها الحارس: 67"
+    },
+    {
+      "source": "n_ae369cc559270c8946525f3c",
+      "target": "n_bb37de1fe25d63b6a5bb1313",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "المقبولة في التقرير الحالي: 252"
+    },
+    {
+      "source": "n_ae369cc559270c8946525f3c",
+      "target": "n_02da85438433577bc22758c9",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "التعرض المفتوح النهائي التقريبي: 1000.00$"
+    },
+    {
+      "source": "n_ae369cc559270c8946525f3c",
+      "target": "n_cd06f56f9bd8194b5480b8b7",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "الصافي المحقق التقريبي: 10.70$"
+    },
+    {
+      "source": "n_ae369cc559270c8946525f3c",
+      "target": "n_bfe55766f7fb34a6bd6c4c9d",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "حالة Kill/Halt: غير مفعلة"
+    },
+    {
+      "source": "n_ae369cc559270c8946525f3c",
+      "target": "n_d037d21379907fde4f247ea3",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/sf/FILUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "قواعد الحماية: حد إجمالي، حد للعملة، حد للاستراتيجية، منع تصادم العملة، حد عدد الصفقات، وسحب رأسمالي."
+    }
+  ],
+  "limitations": [
+    "This is an auditreport,not an appliedstrictportfolio replay."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

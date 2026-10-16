@@ -1,0 +1,49 @@
+{
+  "unit_id": "5df02100df1486801ef098d451a9b27351097a0dad0e7ea4da71e333a62c7510",
+  "text_sha256": "5df02100df1486801ef098d451a9b27351097a0dad0e7ea4da71e333a62c7510",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Owner narrowed study to beginning-of-rise capture and subsequent-rise verification. Wave segmentation question is cancelled; execution definitions remain Lead responsibility and draft not ready, no new experiment.",
+  "nodes": [
+    {
+      "id": "n_be54df26d228af1c2a6680b2",
+      "label": "Beginning-rise entry scope",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/011-entry-start-scope-corrected.md"
+    },
+    {
+      "id": "n_fe90af6a60364cd1640c8184",
+      "label": "Draft not executable",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/011-entry-start-scope-corrected.md"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_f648c344c556a0c61431d9b8",
+      "target": "n_be54df26d228af1c2a6680b2",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/011-entry-start-scope-corrected.md",
+      "evidence_quote": "القرار: توضيح المالك يقصر الدراسة على التقاط بداية الصعود والتحقق من الصعود بعد الإشارة."
+    },
+    {
+      "source": "n_f648c344c556a0c61431d9b8",
+      "target": "n_fe90af6a60364cd1640c8184",
+      "relation": "states",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/011-entry-start-scope-corrected.md",
+      "evidence_quote": "المسودة لا تزال غير جاهزة للتشغيل؛ لا تجربة جديدة."
+    }
+  ],
+  "limitations": [
+    "Source reviewed statically; historical claims and readiness are not independently reproduced or current execution authorization."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

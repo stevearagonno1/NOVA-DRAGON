@@ -1,0 +1,64 @@
+{
+  "unit_id": "a9756ab65aef62d588e4f0b64ffc04d1f580a643dca9928477562bbfdcc0bcf5",
+  "text_sha256": "a9756ab65aef62d588e4f0b64ffc04d1f580a643dca9928477562bbfdcc0bcf5",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "L0091 rejects high-precision adoption of six recovery rules, broader research deferred.21rows63evals with audits pass butP3.31–10.34%; compute1.113s differs from623.846swhole-stage, exceeding600 checkpoint rule.",
+  "nodes": [
+    {
+      "id": "n_fb5f37d6c71ba4a6aacd2161",
+      "label": "Recovery adoption rejected",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-10-07-l0091-price-recovery/002-result-and-time-correction.md"
+    },
+    {
+      "id": "n_798deb792d26bc57af452954",
+      "label": "Measured precision",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-10-07-l0091-price-recovery/002-result-and-time-correction.md"
+    },
+    {
+      "id": "n_69d546df1167a7bae1adf86b",
+      "label": "Whole-stage timing breach",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-10-07-l0091-price-recovery/002-result-and-time-correction.md"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_8284001f4ba303a7b174e153",
+      "target": "n_fb5f37d6c71ba4a6aacd2161",
+      "relation": "rejects",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/journal/2026-10-07-l0091-price-recovery/002-result-and-time-correction.md",
+      "evidence_quote": "Decision: reject high-precision adoption of six registered recovery rules;Defer broader research."
+    },
+    {
+      "source": "n_8284001f4ba303a7b174e153",
+      "target": "n_798deb792d26bc57af452954",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/journal/2026-10-07-l0091-price-recovery/002-result-and-time-correction.md",
+      "evidence_quote": "P3.31%–10.34%."
+    },
+    {
+      "source": "n_8284001f4ba303a7b174e153",
+      "target": "n_69d546df1167a7bae1adf86b",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/journal/2026-10-07-l0091-price-recovery/002-result-and-time-correction.md",
+      "evidence_quote": "Whole-stage instrumented time before upload623.846s exceeded600s;Lead failed to checkpoint on time;do not infer task duration from compute."
+    }
+  ],
+  "limitations": [
+    "Static full-text review; historical claims not reproduced. Embedded credentials, where present, are excluded from derived semantic evidence."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

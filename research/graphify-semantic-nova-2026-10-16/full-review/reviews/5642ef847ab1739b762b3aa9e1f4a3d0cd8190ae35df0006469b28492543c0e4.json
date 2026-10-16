@@ -1,0 +1,94 @@
+{
+  "unit_id": "5642ef847ab1739b762b3aa9e1f4a3d0cd8190ae35df0006469b28492543c0e4",
+  "text_sha256": "5642ef847ab1739b762b3aa9e1f4a3d0cd8190ae35df0006469b28492543c0e4",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical Strategy Sleeve Summary. long_cycle: selected=True records=0 net=0.0000 win_pct=0.00; market_open: selected=True records=102 net=-5.8502 win_pct=8.82; dynamic_grid: selected=True records=1 net=-23.1113 win_pct=0.00; donchian: selected=True records=66 net=454.6039 win_pct=45.45; adaptive_trend: selected=True records=48 net=-160.7608 win_pct=18.75. Each line retains selection separately from record counts and outcomes.",
+  "nodes": [
+    {
+      "id": "n_e4096d71ec830a0037522926",
+      "label": "long_cycle historical sleeve",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/FILUSDT/strategy_sleeve_summary.txt"
+    },
+    {
+      "id": "n_8a39976644eab4e2da7d5c4c",
+      "label": "market_open historical sleeve",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/FILUSDT/strategy_sleeve_summary.txt"
+    },
+    {
+      "id": "n_bc5ea2dfb36443368903d12f",
+      "label": "dynamic_grid historical sleeve",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/FILUSDT/strategy_sleeve_summary.txt"
+    },
+    {
+      "id": "n_6156f44bbe9ff39014e87dba",
+      "label": "donchian historical sleeve",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/FILUSDT/strategy_sleeve_summary.txt"
+    },
+    {
+      "id": "n_2d08ef2ef5ba741a5b07156a",
+      "label": "adaptive_trend historical sleeve",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/FILUSDT/strategy_sleeve_summary.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_565b9dd5c0c684b4a67791fd",
+      "target": "n_e4096d71ec830a0037522926",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/FILUSDT/strategy_sleeve_summary.txt",
+      "evidence_quote": "long_cycle: selected=True records=0 net=0.0000 win_pct=0.00"
+    },
+    {
+      "source": "n_565b9dd5c0c684b4a67791fd",
+      "target": "n_8a39976644eab4e2da7d5c4c",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/FILUSDT/strategy_sleeve_summary.txt",
+      "evidence_quote": "market_open: selected=True records=102 net=-5.8502 win_pct=8.82"
+    },
+    {
+      "source": "n_565b9dd5c0c684b4a67791fd",
+      "target": "n_bc5ea2dfb36443368903d12f",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/FILUSDT/strategy_sleeve_summary.txt",
+      "evidence_quote": "dynamic_grid: selected=True records=1 net=-23.1113 win_pct=0.00"
+    },
+    {
+      "source": "n_565b9dd5c0c684b4a67791fd",
+      "target": "n_6156f44bbe9ff39014e87dba",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/FILUSDT/strategy_sleeve_summary.txt",
+      "evidence_quote": "donchian: selected=True records=66 net=454.6039 win_pct=45.45"
+    },
+    {
+      "source": "n_565b9dd5c0c684b4a67791fd",
+      "target": "n_2d08ef2ef5ba741a5b07156a",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/FILUSDT/strategy_sleeve_summary.txt",
+      "evidence_quote": "adaptive_trend: selected=True records=48 net=-160.7608 win_pct=18.75"
+    }
+  ],
+  "limitations": [
+    "Historical outcomes are not independently reproduced, current adoption or evidence of rising-entry precision; selected=False zero rows are not a failed strategy test."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

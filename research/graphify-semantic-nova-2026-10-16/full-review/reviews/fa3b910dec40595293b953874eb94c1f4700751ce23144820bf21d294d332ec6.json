@@ -1,0 +1,49 @@
+{
+  "unit_id": "fa3b910dec40595293b953874eb94c1f4700751ce23144820bf21d294d332ec6",
+  "text_sha256": "fa3b910dec40595293b953874eb94c1f4700751ce23144820bf21d294d332ec6",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "L0026 corrects an earlier three-strategy inventory using documents only, without new measurement; it leaves execution-cost, new sleeve or range-breaker choice to Lead.",
+  "nodes": [
+    {
+      "id": "n_6e92801f46ce88ebed186ab7",
+      "label": "L0026 documentary inventory",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-23-s1/003-l0026-inventory.md"
+    },
+    {
+      "id": "n_38fb95ed96ec05ee5bfc5f1b",
+      "label": "Inventory document",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-23-s1/003-l0026-inventory.md"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_2021771c12f4611b7f5ba848",
+      "target": "n_6e92801f46ce88ebed186ab7",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/journal/2026-09-23-s1/003-l0026-inventory.md",
+      "evidence_quote": "جرد وثائقي من ملفات المستودع (L0017/L0018/MASTER-PLAN) بلا قياس جديد."
+    },
+    {
+      "source": "n_2021771c12f4611b7f5ba848",
+      "target": "n_38fb95ed96ec05ee5bfc5f1b",
+      "relation": "produces",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/journal/2026-09-23-s1/003-l0026-inventory.md",
+      "evidence_quote": "docs/lanes/L0026-INVENTORY-columns-and-wings.md"
+    }
+  ],
+  "limitations": [
+    "Historical source claims are preserved without treating them as current instructions or independent market validation."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

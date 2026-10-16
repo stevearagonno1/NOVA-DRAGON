@@ -1,0 +1,79 @@
+{
+  "unit_id": "b9f1b524b09b91cddd82d251510aa0a3a899021a8c28163507e02bd0ddc7df4a",
+  "text_sha256": "b9f1b524b09b91cddd82d251510aa0a3a899021a8c28163507e02bd0ddc7df4a",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical portfolio risk audit in audit mode: إجمالي السجلات: 1338; المقبولة في المحاكاة الصارمة: 914; التي كان سيحظرها الحارس: 424; المقبولة في التقرير الحالي: 1338; التعرض المفتوح النهائي التقريبي: 20.00$; الصافي المحقق التقريبي: -182.20$; حالة Kill/Halt: غير مفعلة. Audit does not alter baseline, unlike strict rejection. Defensive defaults are not historically calibrated or approved for outside capital.",
+  "nodes": [
+    {
+      "id": "n_51783be2497b949e3acd1862",
+      "label": "Audit versus strict semantics",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_B2/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_c554d4c28df49b7d7c63e336",
+      "label": "Portfolio historical measurements",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_B2/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_8a46451f224ac80f9cfbb9a7",
+      "label": "Risk guard scope",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_B2/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_552d6fbfb5c008e8bf91f562",
+      "label": "Uncalibrated risk defaults",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_B2/portfolio_risk_audit.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_51683f7d615a0cdbf43e37cf",
+      "target": "n_51783be2497b949e3acd1862",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_B2/portfolio_risk_audit.txt",
+      "evidence_quote": "الوضع: audit (audit لا يغيّر Baseline؛ strict يرفض السجلات المحظورة)"
+    },
+    {
+      "source": "n_51683f7d615a0cdbf43e37cf",
+      "target": "n_c554d4c28df49b7d7c63e336",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_B2/portfolio_risk_audit.txt",
+      "evidence_quote": "إجمالي السجلات: 1338\nالمقبولة في المحاكاة الصارمة: 914\nالتي كان سيحظرها الحارس: 424\nالمقبولة في التقرير الحالي: 1338\nالتعرض المفتوح النهائي التقريبي: 20.00$\nالصافي المحقق التقريبي: -182.20$\nحالة Kill/Halt: غير مفعلة"
+    },
+    {
+      "source": "n_51683f7d615a0cdbf43e37cf",
+      "target": "n_8a46451f224ac80f9cfbb9a7",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_B2/portfolio_risk_audit.txt",
+      "evidence_quote": "قواعد الحماية: حد إجمالي، حد للعملة، حد للاستراتيجية، منع تصادم العملة، حد عدد الصفقات، وسحب رأسمالي."
+    },
+    {
+      "source": "n_51683f7d615a0cdbf43e37cf",
+      "target": "n_552d6fbfb5c008e8bf91f562",
+      "relation": "limits",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/ATOMUSDT_B2/portfolio_risk_audit.txt",
+      "evidence_quote": "القيم الافتراضية دفاعية وليست معايرة تاريخية؛ لا تعني أن النظام صالح للأموال الخارجية."
+    }
+  ],
+  "limitations": [
+    "Approximate historical risk outputs are not independently reproduced and do not validate signal precision."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

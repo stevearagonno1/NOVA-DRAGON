@@ -1,0 +1,154 @@
+{
+  "unit_id": "1d7503c09fd799c25335060041980fd2e295878663ac194bb55de3dfc450981f",
+  "text_sha256": "1d7503c09fd799c25335060041980fd2e295878663ac194bb55de3dfc450981f",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Portfolioauditmode leavesBaseline unchanged; hypotheticalstrictmode rejects forbiddenrecords. Report preserves current vs strictaccepted counts,exposure,approximate realizednetandKill/Halt separately. Defensive defaults are not historicalcalibration or real-moneyfitness.",
+  "nodes": [
+    {
+      "id": "n_c9bb90198fea1e9041a27b5d",
+      "label": "الوضع",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_8e26a4370db17bf00510d73a",
+      "label": "إجمالي السجلات",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_592dda66fd0a7e165e48fc78",
+      "label": "المقبولة في المحاكاة الصارمة",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_bddd941c493c701a98928a26",
+      "label": "التي كان سيحظرها الحارس",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_57a4e32fc7350d3ebb8f132d",
+      "label": "المقبولة في التقرير الحالي",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_9a0fab32960aba890c768793",
+      "label": "التعرض المفتوح النهائي التقريبي",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_d959804a509aac1ec39c8d52",
+      "label": "الصافي المحقق التقريبي",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_4d60c3bba9b5c226c1f3f895",
+      "label": "حالة Kill/Halt",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_d2c1c41f8b326c051271cbdc",
+      "label": "قواعد الحماية",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_8899a97ae90297e8f95b5b9d",
+      "target": "n_c9bb90198fea1e9041a27b5d",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt",
+      "evidence_quote": "الوضع: audit (audit لا يغيّر Baseline؛ strict يرفض السجلات المحظورة)"
+    },
+    {
+      "source": "n_8899a97ae90297e8f95b5b9d",
+      "target": "n_8e26a4370db17bf00510d73a",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt",
+      "evidence_quote": "إجمالي السجلات: 1225"
+    },
+    {
+      "source": "n_8899a97ae90297e8f95b5b9d",
+      "target": "n_592dda66fd0a7e165e48fc78",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt",
+      "evidence_quote": "المقبولة في المحاكاة الصارمة: 883"
+    },
+    {
+      "source": "n_8899a97ae90297e8f95b5b9d",
+      "target": "n_bddd941c493c701a98928a26",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt",
+      "evidence_quote": "التي كان سيحظرها الحارس: 342"
+    },
+    {
+      "source": "n_8899a97ae90297e8f95b5b9d",
+      "target": "n_57a4e32fc7350d3ebb8f132d",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt",
+      "evidence_quote": "المقبولة في التقرير الحالي: 1225"
+    },
+    {
+      "source": "n_8899a97ae90297e8f95b5b9d",
+      "target": "n_9a0fab32960aba890c768793",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt",
+      "evidence_quote": "التعرض المفتوح النهائي التقريبي: 1000.00$"
+    },
+    {
+      "source": "n_8899a97ae90297e8f95b5b9d",
+      "target": "n_d959804a509aac1ec39c8d52",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt",
+      "evidence_quote": "الصافي المحقق التقريبي: -597.84$"
+    },
+    {
+      "source": "n_8899a97ae90297e8f95b5b9d",
+      "target": "n_4d60c3bba9b5c226c1f3f895",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt",
+      "evidence_quote": "حالة Kill/Halt: غير مفعلة"
+    },
+    {
+      "source": "n_8899a97ae90297e8f95b5b9d",
+      "target": "n_d2c1c41f8b326c051271cbdc",
+      "relation": "reports_risk_audit",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_B2/portfolio_risk_audit.txt",
+      "evidence_quote": "قواعد الحماية: حد إجمالي، حد للعملة، حد للاستراتيجية، منع تصادم العملة، حد عدد الصفقات، وسحب رأسمالي."
+    }
+  ],
+  "limitations": [
+    "This is an auditreport,not an appliedstrictportfolio replay."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

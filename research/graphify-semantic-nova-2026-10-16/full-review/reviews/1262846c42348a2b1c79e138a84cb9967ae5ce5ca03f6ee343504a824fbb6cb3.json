@@ -1,0 +1,94 @@
+{
+  "unit_id": "1262846c42348a2b1c79e138a84cb9967ae5ce5ca03f6ee343504a824fbb6cb3",
+  "text_sha256": "1262846c42348a2b1c79e138a84cb9967ae5ce5ca03f6ee343504a824fbb6cb3",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical sleeve summary reports five independently selected or unselected modules and their individual record/net/win figures. Zero unselected sleeves are not failed trading tests; positive net and win percentage are distinct metrics.",
+  "nodes": [
+    {
+      "id": "n_938aba9c4b83ffd387c0ed2c",
+      "label": "long_cycle: selected=False records=0 net=0.0000 win_pct=0.00",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_B/strategy_sleeve_summary.txt"
+    },
+    {
+      "id": "n_1841b404eb1c61f05f809591",
+      "label": "market_open: selected=False records=0 net=0.0000 win_pct=0.00",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_B/strategy_sleeve_summary.txt"
+    },
+    {
+      "id": "n_2c79a430ae461d0a1baf04a2",
+      "label": "dynamic_grid: selected=False records=0 net=0.0000 win_pct=0.00",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_B/strategy_sleeve_summary.txt"
+    },
+    {
+      "id": "n_8b0969df760189a5e06b88c1",
+      "label": "donchian: selected=True records=297 net=376.0196 win_pct=35.02",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_B/strategy_sleeve_summary.txt"
+    },
+    {
+      "id": "n_c4d33dbd7bb172da141661a9",
+      "label": "adaptive_trend: selected=False records=0 net=0.0000 win_pct=0.00",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_B/strategy_sleeve_summary.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_276ae928c56513e04677f42d",
+      "target": "n_938aba9c4b83ffd387c0ed2c",
+      "relation": "reports_sleeve_result",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_B/strategy_sleeve_summary.txt",
+      "evidence_quote": "long_cycle: selected=False records=0 net=0.0000 win_pct=0.00"
+    },
+    {
+      "source": "n_276ae928c56513e04677f42d",
+      "target": "n_1841b404eb1c61f05f809591",
+      "relation": "reports_sleeve_result",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_B/strategy_sleeve_summary.txt",
+      "evidence_quote": "market_open: selected=False records=0 net=0.0000 win_pct=0.00"
+    },
+    {
+      "source": "n_276ae928c56513e04677f42d",
+      "target": "n_2c79a430ae461d0a1baf04a2",
+      "relation": "reports_sleeve_result",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_B/strategy_sleeve_summary.txt",
+      "evidence_quote": "dynamic_grid: selected=False records=0 net=0.0000 win_pct=0.00"
+    },
+    {
+      "source": "n_276ae928c56513e04677f42d",
+      "target": "n_8b0969df760189a5e06b88c1",
+      "relation": "reports_sleeve_result",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_B/strategy_sleeve_summary.txt",
+      "evidence_quote": "donchian: selected=True records=297 net=376.0196 win_pct=35.02"
+    },
+    {
+      "source": "n_276ae928c56513e04677f42d",
+      "target": "n_c4d33dbd7bb172da141661a9",
+      "relation": "reports_sleeve_result",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/d5y/BTCUSDT_B/strategy_sleeve_summary.txt",
+      "evidence_quote": "adaptive_trend: selected=False records=0 net=0.0000 win_pct=0.00"
+    }
+  ],
+  "limitations": [
+    "Historical source assertions retained as assertions; no independent rerun or market validation performed."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

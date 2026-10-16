@@ -1,0 +1,34 @@
+{
+  "unit_id": "6b73f1d91eeb383549e81c9bc85869dbbac368068eb258a7bfa54c2af5b6d4ac",
+  "text_sha256": "6b73f1d91eeb383549e81c9bc85869dbbac368068eb258a7bfa54c2af5b6d4ac",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "README state card honors nine-source order; amendment register additional only, no constitution change; owner alone merges main and no agent PR.",
+  "nodes": [
+    {
+      "id": "n_9c2cd26a98ddec3c656240ba",
+      "label": "Owner-only merge policy",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-10-03-readme-state-card/001-resume-card.md"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_9a380d5786127ec15eb7f318",
+      "target": "n_9c2cd26a98ddec3c656240ba",
+      "relation": "records",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/journal/2026-10-03-readme-state-card/001-resume-card.md",
+      "evidence_quote": "لا وكيل يدمج أو يدفع main ولا ينشئ طلب دمج."
+    }
+  ],
+  "limitations": [
+    "Source-local historical statement; not independently reproduced or established as current market efficacy."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

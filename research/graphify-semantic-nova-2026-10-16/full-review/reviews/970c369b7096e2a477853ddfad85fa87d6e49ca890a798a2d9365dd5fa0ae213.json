@@ -1,0 +1,94 @@
+{
+  "unit_id": "970c369b7096e2a477853ddfad85fa87d6e49ca890a798a2d9365dd5fa0ae213",
+  "text_sha256": "970c369b7096e2a477853ddfad85fa87d6e49ca890a798a2d9365dd5fa0ae213",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical sleeve summary reports five independently selected or unselected modules and their individual record/net/win figures. Zero unselected sleeves are not failed trading tests; positive net and win percentage are distinct metrics.",
+  "nodes": [
+    {
+      "id": "n_42486c4ed764d5d01dc86396",
+      "label": "long_cycle: selected=True records=0 net=0.0000 win_pct=0.00",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/SOLUSDT/strategy_sleeve_summary.txt"
+    },
+    {
+      "id": "n_3ef4e36a1b1ddf532adf6191",
+      "label": "market_open: selected=True records=101 net=-6.7038 win_pct=3.96",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/SOLUSDT/strategy_sleeve_summary.txt"
+    },
+    {
+      "id": "n_88f570d20299577a04f3cfc6",
+      "label": "dynamic_grid: selected=True records=1 net=11.4050 win_pct=100.00",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/SOLUSDT/strategy_sleeve_summary.txt"
+    },
+    {
+      "id": "n_24d3e0a4a72b03275dfa6c6a",
+      "label": "donchian: selected=True records=84 net=-181.6164 win_pct=35.71",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/SOLUSDT/strategy_sleeve_summary.txt"
+    },
+    {
+      "id": "n_07ed9d9df1d9c4d53ef8b539",
+      "label": "adaptive_trend: selected=True records=75 net=-232.1089 win_pct=16.00",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/SOLUSDT/strategy_sleeve_summary.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_5461f924171932a185b64ca6",
+      "target": "n_42486c4ed764d5d01dc86396",
+      "relation": "reports_sleeve_result",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/SOLUSDT/strategy_sleeve_summary.txt",
+      "evidence_quote": "long_cycle: selected=True records=0 net=0.0000 win_pct=0.00"
+    },
+    {
+      "source": "n_5461f924171932a185b64ca6",
+      "target": "n_3ef4e36a1b1ddf532adf6191",
+      "relation": "reports_sleeve_result",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/SOLUSDT/strategy_sleeve_summary.txt",
+      "evidence_quote": "market_open: selected=True records=101 net=-6.7038 win_pct=3.96"
+    },
+    {
+      "source": "n_5461f924171932a185b64ca6",
+      "target": "n_88f570d20299577a04f3cfc6",
+      "relation": "reports_sleeve_result",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/SOLUSDT/strategy_sleeve_summary.txt",
+      "evidence_quote": "dynamic_grid: selected=True records=1 net=11.4050 win_pct=100.00"
+    },
+    {
+      "source": "n_5461f924171932a185b64ca6",
+      "target": "n_24d3e0a4a72b03275dfa6c6a",
+      "relation": "reports_sleeve_result",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/SOLUSDT/strategy_sleeve_summary.txt",
+      "evidence_quote": "donchian: selected=True records=84 net=-181.6164 win_pct=35.71"
+    },
+    {
+      "source": "n_5461f924171932a185b64ca6",
+      "target": "n_07ed9d9df1d9c4d53ef8b539",
+      "relation": "reports_sleeve_result",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/SOLUSDT/strategy_sleeve_summary.txt",
+      "evidence_quote": "adaptive_trend: selected=True records=75 net=-232.1089 win_pct=16.00"
+    }
+  ],
+  "limitations": [
+    "Historical source assertions retained as assertions; no independent rerun or market validation performed."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

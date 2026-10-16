@@ -1,0 +1,49 @@
+{
+  "unit_id": "dd6bfc57b8e4b1e8101e52a1f24ac8d018a8b9fe9f792c0d46467fb276d6db47",
+  "text_sha256": "dd6bfc57b8e4b1e8101e52a1f24ac8d018a8b9fe9f792c0d46467fb276d6db47",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical data-quality observation: [TONUSDT] rows=175680 bad_ohlcv=0 negative_volume=0 large_gaps=0 max_gap_min=1.00 issues=[]. Warn mode reports issues; strict mode stops when problems occur.",
+  "nodes": [
+    {
+      "id": "n_6cefe4d961bc131a5097771e",
+      "label": "Recorded OHLCV quality",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/TONUSDT/data_quality_report.txt"
+    },
+    {
+      "id": "n_276943ea4c98c469915570fa",
+      "label": "Strict quality gate",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/TONUSDT/data_quality_report.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_cd0b296333678d9040b30802",
+      "target": "n_6cefe4d961bc131a5097771e",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/TONUSDT/data_quality_report.txt",
+      "evidence_quote": "[TONUSDT] rows=175680 bad_ohlcv=0 negative_volume=0 large_gaps=0 max_gap_min=1.00 issues=[]"
+    },
+    {
+      "source": "n_cd0b296333678d9040b30802",
+      "target": "n_276943ea4c98c469915570fa",
+      "relation": "defines",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/TONUSDT/data_quality_report.txt",
+      "evidence_quote": "الوضع: warn; strict يوقف التشغيل عند مشاكل البيانات."
+    }
+  ],
+  "limitations": [
+    "Source-local historical statement; not independently reproduced or established as current market efficacy."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "unit_id": "8373bbfed4af5d28c0e363cc659307187ade6ebf0a655fb3f95702a8c49efba8",
+  "text_sha256": "8373bbfed4af5d28c0e363cc659307187ade6ebf0a655fb3f95702a8c49efba8",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical Oracle ranks descriptive stability and regime coverage, expressly reference-only and prohibited for candidate selection. Stability is not entry predictive accuracy. [تغطية الحالات];    RENDERUSDT [عرضي]: 164670 شريط;    RENDERUSDT [متفجّر]: 7560 شريط;    RENDERUSDT [صاعد]: 1740 شريط;    RENDERUSDT [هابط]: 1710 شريط",
+  "nodes": [
+    {
+      "id": "n_61c0a0b3d4d733c260e27557",
+      "label": "صاعد | Stochastic stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_1cb49d1e4e072ad8ef5b9286",
+      "label": "متفجّر | ADX stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_78d196dda091693c088e9bcb",
+      "label": "هابط | OBV stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_ccf9a53425b964990a9d3180",
+      "label": "عرضي | MSS stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_3fcf2df8fb1d3989a1e1d8e6",
+      "label": "هابط | MACD stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_7bf779742bea0078af688809",
+      "label": "عرضي | RSI7 stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_32e8b343cc346ae3818b2b9b",
+      "label": "عرضي | Bollinger stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_226a4fb5aac0e1807050c27a",
+      "label": "هابط | Stochastic stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_f90c532467e963758a14ba2b",
+      "label": "Oracle selection prohibition",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_adf026644c938631e43e11e4",
+      "label": "Regime coverage",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_8119d2ada140f30d87d39c50",
+      "target": "n_61c0a0b3d4d733c260e27557",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt",
+      "evidence_quote": "صاعد | Stochastic: ثبات 40.0% (45 عينات)"
+    },
+    {
+      "source": "n_8119d2ada140f30d87d39c50",
+      "target": "n_1cb49d1e4e072ad8ef5b9286",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt",
+      "evidence_quote": "متفجّر | ADX: ثبات 38.9% (54 عينات)"
+    },
+    {
+      "source": "n_8119d2ada140f30d87d39c50",
+      "target": "n_78d196dda091693c088e9bcb",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt",
+      "evidence_quote": "هابط | OBV: ثبات 37.5% (40 عينات)"
+    },
+    {
+      "source": "n_8119d2ada140f30d87d39c50",
+      "target": "n_ccf9a53425b964990a9d3180",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt",
+      "evidence_quote": "عرضي | MSS: ثبات 36.4% (143 عينات)"
+    },
+    {
+      "source": "n_8119d2ada140f30d87d39c50",
+      "target": "n_3fcf2df8fb1d3989a1e1d8e6",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt",
+      "evidence_quote": "هابط | MACD: ثبات 36.0% (75 عينات)"
+    },
+    {
+      "source": "n_8119d2ada140f30d87d39c50",
+      "target": "n_7bf779742bea0078af688809",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt",
+      "evidence_quote": "عرضي | RSI7: ثبات 35.8% (173 عينات)"
+    },
+    {
+      "source": "n_8119d2ada140f30d87d39c50",
+      "target": "n_32e8b343cc346ae3818b2b9b",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt",
+      "evidence_quote": "عرضي | Bollinger: ثبات 34.9% (5000 عينات)"
+    },
+    {
+      "source": "n_8119d2ada140f30d87d39c50",
+      "target": "n_226a4fb5aac0e1807050c27a",
+      "relation": "reports_descriptive_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt",
+      "evidence_quote": "هابط | Stochastic: ثبات 34.9% (43 عينات)"
+    },
+    {
+      "source": "n_8119d2ada140f30d87d39c50",
+      "target": "n_f90c532467e963758a14ba2b",
+      "relation": "forbids_selection_use",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt",
+      "evidence_quote": "مرجع فقط، لا يُستخدم للترشيح"
+    },
+    {
+      "source": "n_8119d2ada140f30d87d39c50",
+      "target": "n_adf026644c938631e43e11e4",
+      "relation": "reports_coverage",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/RENDERUSDT/oracle_stability.txt",
+      "evidence_quote": "[تغطية الحالات]\n   RENDERUSDT [عرضي]: 164670 شريط\n   RENDERUSDT [متفجّر]: 7560 شريط\n   RENDERUSDT [صاعد]: 1740 شريط\n   RENDERUSDT [هابط]: 1710 شريط"
+    }
+  ],
+  "limitations": [
+    "Meaning of stability and sample method require producer; no causal predictive validation follows from ranking."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

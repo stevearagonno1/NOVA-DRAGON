@@ -1,0 +1,34 @@
+{
+  "unit_id": "79e9ff73ba47685eecd113b6b562ae8bf9ab3bf35a64dbfd7f2c2fca87c3a5ba",
+  "text_sha256": "79e9ff73ba47685eecd113b6b562ae8bf9ab3bf35a64dbfd7f2c2fca87c3a5ba",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Single historical audit marker claims independent audit passed; no details or evidence are included in the marker.",
+  "nodes": [
+    {
+      "id": "n_5aad61f24657fa1e6332db5c",
+      "label": "Independent audit marker",
+      "file_type": "concept",
+      "source_file": "history/research/hyp_lab_out/L0086-frozen-validation/readiness/audit.log"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_a5c1a496b970d025caa3b667",
+      "target": "n_5aad61f24657fa1e6332db5c",
+      "relation": "claims",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/hyp_lab_out/L0086-frozen-validation/readiness/audit.log",
+      "evidence_quote": "INDEPENDENT_AUDIT_PASS"
+    }
+  ],
+  "limitations": [
+    "A bare marker does not substantiate what was audited."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

@@ -1,0 +1,49 @@
+{
+  "unit_id": "6b15732ec5588932c26b0bfd5c27b4caa949ffc40bea80dac89c297e9c517606",
+  "text_sha256": "6b15732ec5588932c26b0bfd5c27b4caa949ffc40bea80dac89c297e9c517606",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Pine v5 readiness indicator plots EMA20 and RSI14 on close; no strategy entry condition or market efficacy is defined.",
+  "nodes": [
+    {
+      "id": "n_11a00298d048b6bc6fca38a2",
+      "label": "EMA20(close)",
+      "file_type": "concept",
+      "source_file": "research/btc-comprehensive-entry-2026-10-15/PREPARATION-EVIDENCE.zip!/pine_runtime/basic.pine"
+    },
+    {
+      "id": "n_131744dda91775df27510ca5",
+      "label": "RSI14(close)",
+      "file_type": "concept",
+      "source_file": "research/btc-comprehensive-entry-2026-10-15/PREPARATION-EVIDENCE.zip!/pine_runtime/basic.pine"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_58c7562a608876af7454363f",
+      "target": "n_11a00298d048b6bc6fca38a2",
+      "relation": "plots",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "research/btc-comprehensive-entry-2026-10-15/PREPARATION-EVIDENCE.zip!/pine_runtime/basic.pine",
+      "evidence_quote": "plot(ta.ema(close,20), \"EMA20\")"
+    },
+    {
+      "source": "n_58c7562a608876af7454363f",
+      "target": "n_131744dda91775df27510ca5",
+      "relation": "plots",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "research/btc-comprehensive-entry-2026-10-15/PREPARATION-EVIDENCE.zip!/pine_runtime/basic.pine",
+      "evidence_quote": "plot(ta.rsi(close,14), \"RSI14\")"
+    }
+  ],
+  "limitations": [
+    "Historical source assertions retained as assertions; no independent rerun or market validation performed."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

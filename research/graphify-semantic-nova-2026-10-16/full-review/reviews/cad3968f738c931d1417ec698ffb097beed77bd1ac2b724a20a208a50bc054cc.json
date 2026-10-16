@@ -1,0 +1,34 @@
+{
+  "unit_id": "cad3968f738c931d1417ec698ffb097beed77bd1ac2b724a20a208a50bc054cc",
+  "text_sha256": "cad3968f738c931d1417ec698ffb097beed77bd1ac2b724a20a208a50bc054cc",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Eight parts folders built with identities/numbers/history; explicitly no changed measurements/deletions, owner-only merge next.",
+  "nodes": [
+    {
+      "id": "n_02d52a613cee15d2334dfc38",
+      "label": "Research memory organization",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-20-parts-home/002-build-complete.md"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_980d554d5fb61e142c2fd98f",
+      "target": "n_02d52a613cee15d2334dfc38",
+      "relation": "records",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/journal/2026-09-20-parts-home/002-build-complete.md",
+      "evidence_quote": "صفر تغيير في أي رقم مقاس · صفر حذف"
+    }
+  ],
+  "limitations": [
+    "Source-local historical statement; not independently reproduced or established as current market efficacy."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

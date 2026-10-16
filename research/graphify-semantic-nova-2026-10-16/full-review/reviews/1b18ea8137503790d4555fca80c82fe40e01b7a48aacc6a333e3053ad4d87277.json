@@ -1,0 +1,49 @@
+{
+  "unit_id": "1b18ea8137503790d4555fca80c82fe40e01b7a48aacc6a333e3053ad4d87277",
+  "text_sha256": "1b18ea8137503790d4555fca80c82fe40e01b7a48aacc6a333e3053ad4d87277",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Data quality diagnostic records row count, OHLCV validity, negative volume and time gaps. Warn mode records issues while strict mode stops on data problems. [VETUSDT] rows=2584601 bad_ohlcv=0 negative_volume=0 large_gaps=2 max_gap_min=121.00 issues=[\"large_gaps\"]",
+  "nodes": [
+    {
+      "id": "n_f058423fc2d1e090cf6f59b0",
+      "label": "Data quality observations",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/VETUSDT/data_quality_report.txt"
+    },
+    {
+      "id": "n_2a78efa24e6879bf64e4907d",
+      "label": "Strict data quality stop policy",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/VETUSDT/data_quality_report.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_83020a6cb541b6f087b1027d",
+      "target": "n_f058423fc2d1e090cf6f59b0",
+      "relation": "reports_data_quality",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/sf/VETUSDT/data_quality_report.txt",
+      "evidence_quote": "[VETUSDT] rows=2584601 bad_ohlcv=0 negative_volume=0 large_gaps=2 max_gap_min=121.00 issues=[\"large_gaps\"]"
+    },
+    {
+      "source": "n_83020a6cb541b6f087b1027d",
+      "target": "n_2a78efa24e6879bf64e4907d",
+      "relation": "defines_policy",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/sf/VETUSDT/data_quality_report.txt",
+      "evidence_quote": "الوضع: warn; strict يوقف التشغيل عند مشاكل البيانات."
+    }
+  ],
+  "limitations": [
+    "Report only; source candles not independently checked here."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

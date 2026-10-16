@@ -1,0 +1,79 @@
+{
+  "unit_id": "03570bff110baf8a4154512f543d33160b1620130a98ac856cd34cc3e6c9abbc",
+  "text_sha256": "03570bff110baf8a4154512f543d33160b1620130a98ac856cd34cc3e6c9abbc",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "PineTS v5 readiness probe uses deterministic synthetic OHLCV and offline provider, disables network fetch, limits loops50000 and captures first5logs. Both success and failure are admitted=false; plots and run completion are synthetic smoke output only.",
+  "nodes": [
+    {
+      "id": "n_646d0207ab534f4b30fc57ee",
+      "label": "Network-disabled readiness",
+      "file_type": "concept",
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/btc_comprehensive_prep/pine_runtime/probe-v5.cjs"
+    },
+    {
+      "id": "n_d188510b7516dacfb6bf8218",
+      "label": "Synthetic-only result",
+      "file_type": "concept",
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/btc_comprehensive_prep/pine_runtime/probe-v5.cjs"
+    },
+    {
+      "id": "n_cd7a85832162280698b4da44",
+      "label": "Readiness admission false",
+      "file_type": "concept",
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/btc_comprehensive_prep/pine_runtime/probe-v5.cjs"
+    },
+    {
+      "id": "n_8fe04080137b8c5421684344",
+      "label": "Loop budget50000",
+      "file_type": "concept",
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/btc_comprehensive_prep/pine_runtime/probe-v5.cjs"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_be31abc50c11e3ce26644a30",
+      "target": "n_646d0207ab534f4b30fc57ee",
+      "relation": "enforces",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/btc_comprehensive_prep/pine_runtime/probe-v5.cjs",
+      "evidence_quote": "global.fetch=async()=>{throw Error('NETWORK_DISABLED_FOR_READINESS');};"
+    },
+    {
+      "source": "n_be31abc50c11e3ce26644a30",
+      "target": "n_d188510b7516dacfb6bf8218",
+      "relation": "reports_scope",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/btc_comprehensive_prep/pine_runtime/probe-v5.cjs",
+      "evidence_quote": "status:'DEFAULT_SYNTHETIC_RUN_ONLY'"
+    },
+    {
+      "source": "n_be31abc50c11e3ce26644a30",
+      "target": "n_cd7a85832162280698b4da44",
+      "relation": "withholds_admission",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/btc_comprehensive_prep/pine_runtime/probe-v5.cjs",
+      "evidence_quote": "admitted:false"
+    },
+    {
+      "source": "n_be31abc50c11e3ce26644a30",
+      "target": "n_8fe04080137b8c5421684344",
+      "relation": "limits",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/btc_comprehensive_prep/pine_runtime/probe-v5.cjs",
+      "evidence_quote": "engine.setMaxLoops(50000)"
+    }
+  ],
+  "limitations": [
+    "Historical source assertions retained as assertions; no independent rerun or market validation performed."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

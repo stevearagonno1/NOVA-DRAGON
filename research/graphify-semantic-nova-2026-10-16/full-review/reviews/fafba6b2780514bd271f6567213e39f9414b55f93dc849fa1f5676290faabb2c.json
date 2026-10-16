@@ -1,0 +1,62 @@
+{
+  "unit_id": "fafba6b2780514bd271f6567213e39f9414b55f93dc849fa1f5676290faabb2c",
+  "text_sha256": "fafba6b2780514bd271f6567213e39f9414b55f93dc849fa1f5676290faabb2c",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Precommitted L0049 grid totals40: cost0/.05 portfolio+5seeds over2periods24, .10/.02 portfolio-only4, daily1440/bar_secs86400/cost.13 portfolio+5seeds12. Excludes8h/12h/2d/.075/random .10/.02; forbids post-judgment seeds.",
+  "nodes": [
+    {
+      "id": "n_c414d01fa22e1cd90e7d701c",
+      "label": "Forty-cell precommitted grid",
+      "file_type": "concept",
+      "source_file": "history/research/hyp_lab_out/L0049/grid_precommitted.txt"
+    },
+    {
+      "id": "n_eaec2cba80806a86e4d5074e",
+      "label": "Unmeasured grid exclusions",
+      "file_type": "concept",
+      "source_file": "history/research/hyp_lab_out/L0049/grid_precommitted.txt"
+    },
+    {
+      "id": "n_b3e3874f475961a5b0405bec",
+      "label": "No adaptive extra seeds",
+      "file_type": "concept",
+      "source_file": "history/research/hyp_lab_out/L0049/grid_precommitted.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_6a6eeb39d023b5094f71e9a1",
+      "target": "n_c414d01fa22e1cd90e7d701c",
+      "relation": "declares_grid",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/hyp_lab_out/L0049/grid_precommitted.txt",
+      "evidence_quote": "المجموع 40."
+    },
+    {
+      "source": "n_6a6eeb39d023b5094f71e9a1",
+      "target": "n_eaec2cba80806a86e4d5074e",
+      "relation": "excludes",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/hyp_lab_out/L0049/grid_precommitted.txt",
+      "evidence_quote": "لم يُقَس: 8h, 12h, 2d, 0.075%, عشوائي عند 0.10% و 0.02%."
+    },
+    {
+      "source": "n_6a6eeb39d023b5094f71e9a1",
+      "target": "n_b3e3874f475961a5b0405bec",
+      "relation": "forbids",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/hyp_lab_out/L0049/grid_precommitted.txt",
+      "evidence_quote": "لا تُضاف بذور بعد رؤية الحكم حتى لو كان 0.10 أو 0.02 موجبًا."
+    }
+  ],
+  "limitations": [],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

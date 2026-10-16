@@ -1,0 +1,154 @@
+{
+  "unit_id": "712f93c64f4a5a1f82ffbf3226f4bdaedd3e9a169d88d19f53409a503a12dca2",
+  "text_sha256": "712f93c64f4a5a1f82ffbf3226f4bdaedd3e9a169d88d19f53409a503a12dca2",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Oracle diagnostic lists regime-specificindicatorstability percentages/samplecounts andregimebarcoverage. Explicitly reference-only,notforscreening. Stability is not necessarily entryaccuracyorcausallyavailable state.",
+  "nodes": [
+    {
+      "id": "n_4f4bb903fc530fb921694184",
+      "label": "Oracle reference-only diagnostic",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_e1fe5679d50a833669b7124a",
+      "label": "متفجّر | RSI",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_fdff0d173ddedef346dd6565",
+      "label": "هابط | RSI",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_50ac47c985021cf23d27548e",
+      "label": "هابط | FVG",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_6605354c359c287621bbeec2",
+      "label": "صاعد | RSI",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_225ba56c1b85f985b79d4232",
+      "label": "صاعد | OBV",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_c998fa528666e066302150ba",
+      "label": "هابط | MicroBurst",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_01e8c7984e4a46ddd17d6a14",
+      "label": "هابط | Bollinger",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt"
+    },
+    {
+      "id": "n_2dcbd2a33d3b682de7fcee4d",
+      "label": "عرضي | RSI",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_e30156cb504e8a3224f083c5",
+      "target": "n_4f4bb903fc530fb921694184",
+      "relation": "defines_scope",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt",
+      "evidence_quote": "NOVA_V8 — التقرير التحليلي للاستقرار (Oracle) — مرجع فقط، لا يُستخدم للترشيح"
+    },
+    {
+      "source": "n_e30156cb504e8a3224f083c5",
+      "target": "n_e1fe5679d50a833669b7124a",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt",
+      "evidence_quote": "   متفجّر | RSI: ثبات 40.8% (201 عينات)"
+    },
+    {
+      "source": "n_e30156cb504e8a3224f083c5",
+      "target": "n_fdff0d173ddedef346dd6565",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt",
+      "evidence_quote": "   هابط | RSI: ثبات 38.1% (42 عينات)"
+    },
+    {
+      "source": "n_e30156cb504e8a3224f083c5",
+      "target": "n_50ac47c985021cf23d27548e",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt",
+      "evidence_quote": "   هابط | FVG: ثبات 37.2% (379 عينات)"
+    },
+    {
+      "source": "n_e30156cb504e8a3224f083c5",
+      "target": "n_6605354c359c287621bbeec2",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt",
+      "evidence_quote": "   صاعد | RSI: ثبات 36.0% (75 عينات)"
+    },
+    {
+      "source": "n_e30156cb504e8a3224f083c5",
+      "target": "n_225ba56c1b85f985b79d4232",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt",
+      "evidence_quote": "   صاعد | OBV: ثبات 35.4% (79 عينات)"
+    },
+    {
+      "source": "n_e30156cb504e8a3224f083c5",
+      "target": "n_c998fa528666e066302150ba",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt",
+      "evidence_quote": "   هابط | MicroBurst: ثبات 33.9% (177 عينات)"
+    },
+    {
+      "source": "n_e30156cb504e8a3224f083c5",
+      "target": "n_01e8c7984e4a46ddd17d6a14",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt",
+      "evidence_quote": "   هابط | Bollinger: ثبات 32.9% (504 عينات)"
+    },
+    {
+      "source": "n_e30156cb504e8a3224f083c5",
+      "target": "n_2dcbd2a33d3b682de7fcee4d",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/SOLUSDT/oracle_stability.txt",
+      "evidence_quote": "   عرضي | RSI: ثبات 32.6% (3800 عينات)"
+    }
+  ],
+  "limitations": [
+    "Underlying stability definition and market source not rerun."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

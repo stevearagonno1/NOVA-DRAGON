@@ -1,0 +1,154 @@
+{
+  "unit_id": "894b28f2524a76973ef2abbe0ad7ac4d36147974806005e177f63caf1eb13cf2",
+  "text_sha256": "894b28f2524a76973ef2abbe0ad7ac4d36147974806005e177f63caf1eb13cf2",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Oracle diagnostic lists regime-specificindicatorstability percentages/samplecounts andregimebarcoverage. Explicitly reference-only,notforscreening. Stability is not necessarily entryaccuracyorcausallyavailable state.",
+  "nodes": [
+    {
+      "id": "n_2dec2fbfdbb343ebef323484",
+      "label": "Oracle reference-only diagnostic",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_6711c402f05154b4c0e49707",
+      "label": "صاعد | ADX",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_cd52221b379e0f3a7d0060c5",
+      "label": "هابط | ADX",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_70369421765693b783b21d37",
+      "label": "هابط | RSI",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_86f9c60b2016ca715f5ecdc4",
+      "label": "صاعد | MACD",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_507d96676fa6539203b18bc2",
+      "label": "صاعد | Stochastic",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_589c0f6262ae44feea622705",
+      "label": "صاعد | RSI",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_8bf97c2821ffeb0b49401362",
+      "label": "عرضي | RSI",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt"
+    },
+    {
+      "id": "n_fed391f3c87a377276e933f5",
+      "label": "عرضي | RSI7",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_b69b8bd042ce502a4b2989a1",
+      "target": "n_2dec2fbfdbb343ebef323484",
+      "relation": "defines_scope",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt",
+      "evidence_quote": "NOVA_V8 — التقرير التحليلي للاستقرار (Oracle) — مرجع فقط، لا يُستخدم للترشيح"
+    },
+    {
+      "source": "n_b69b8bd042ce502a4b2989a1",
+      "target": "n_6711c402f05154b4c0e49707",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   صاعد | ADX: ثبات 54.2% (48 عينات)"
+    },
+    {
+      "source": "n_b69b8bd042ce502a4b2989a1",
+      "target": "n_cd52221b379e0f3a7d0060c5",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   هابط | ADX: ثبات 45.8% (48 عينات)"
+    },
+    {
+      "source": "n_b69b8bd042ce502a4b2989a1",
+      "target": "n_70369421765693b783b21d37",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   هابط | RSI: ثبات 44.4% (207 عينات)"
+    },
+    {
+      "source": "n_b69b8bd042ce502a4b2989a1",
+      "target": "n_86f9c60b2016ca715f5ecdc4",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   صاعد | MACD: ثبات 43.0% (381 عينات)"
+    },
+    {
+      "source": "n_b69b8bd042ce502a4b2989a1",
+      "target": "n_507d96676fa6539203b18bc2",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   صاعد | Stochastic: ثبات 41.6% (173 عينات)"
+    },
+    {
+      "source": "n_b69b8bd042ce502a4b2989a1",
+      "target": "n_589c0f6262ae44feea622705",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   صاعد | RSI: ثبات 41.4% (227 عينات)"
+    },
+    {
+      "source": "n_b69b8bd042ce502a4b2989a1",
+      "target": "n_8bf97c2821ffeb0b49401362",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   عرضي | RSI: ثبات 40.7% (5000 عينات)"
+    },
+    {
+      "source": "n_b69b8bd042ce502a4b2989a1",
+      "target": "n_fed391f3c87a377276e933f5",
+      "relation": "reports_oracle_stability",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/BTCUSDT_C/oracle_stability.txt",
+      "evidence_quote": "   عرضي | RSI7: ثبات 40.1% (217 عينات)"
+    }
+  ],
+  "limitations": [
+    "Underlying stability definition and market source not rerun."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

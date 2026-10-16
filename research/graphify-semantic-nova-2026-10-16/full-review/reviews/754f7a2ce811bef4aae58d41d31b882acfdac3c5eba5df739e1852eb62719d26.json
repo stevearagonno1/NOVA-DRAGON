@@ -1,0 +1,34 @@
+{
+  "unit_id": "754f7a2ce811bef4aae58d41d31b882acfdac3c5eba5df739e1852eb62719d26",
+  "text_sha256": "754f7a2ce811bef4aae58d41d31b882acfdac3c5eba5df739e1852eb62719d26",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Master plan counted13built units versus212hypotheses,199remaining and one of five wings ready; eight-task plan led by live execution costs, not proof all212implemented.",
+  "nodes": [
+    {
+      "id": "n_75ce854e1ca076a10d684c8f",
+      "label": "Master-plan inventory distinction",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-09-22-master-plan/001-master-plan-written.md"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_c0aa4d4c52adbb5aeab2caea",
+      "target": "n_75ce854e1ca076a10d684c8f",
+      "relation": "records",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "docs/journal/2026-09-22-master-plan/001-master-plan-written.md",
+      "evidence_quote": "أُحصيت الوحدات المبنية فعليًا من شجرة المستودع (13 وحدة) مقابل الجرد (212 فرضية)."
+    }
+  ],
+  "limitations": [
+    "Source-local historical statement; not independently reproduced or established as current market efficacy."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

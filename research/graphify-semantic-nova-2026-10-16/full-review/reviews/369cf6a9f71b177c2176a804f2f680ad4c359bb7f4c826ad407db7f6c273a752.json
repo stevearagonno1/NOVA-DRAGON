@@ -1,0 +1,94 @@
+{
+  "unit_id": "369cf6a9f71b177c2176a804f2f680ad4c359bb7f4c826ad407db7f6c273a752",
+  "text_sha256": "369cf6a9f71b177c2176a804f2f680ad4c359bb7f4c826ad407db7f6c273a752",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical Oracle descriptive stability/market-state coverage report, explicitly reference-only and not used for filtering. Stability figures are not entry precision; state bar counts are descriptive.",
+  "nodes": [
+    {
+      "id": "n_d604a33a09d28a07704826d5",
+      "label": "NOVA_V8 — التقرير التحليلي للاستقرار (Oracle) — مرجع فقط، لا يُستخدم للترشيح",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/test_at_atr/oracle_stability.txt"
+    },
+    {
+      "id": "n_e30bf27ee8daf253724da780",
+      "label": "   BTCUSDT [عرضي]: 416221 شريط",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/test_at_atr/oracle_stability.txt"
+    },
+    {
+      "id": "n_ac983a2351de1f0edf41501a",
+      "label": "   BTCUSDT [متفجّر]: 46620 شريط",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/test_at_atr/oracle_stability.txt"
+    },
+    {
+      "id": "n_0f43c54a25ffd83f464fab40",
+      "label": "   BTCUSDT [صاعد]: 7920 شريط",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/test_at_atr/oracle_stability.txt"
+    },
+    {
+      "id": "n_f4c393ff3292408fa73a0384",
+      "label": "   BTCUSDT [هابط]: 10200 شريط",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/test_at_atr/oracle_stability.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_46d7253ece4863c53d802147",
+      "target": "n_d604a33a09d28a07704826d5",
+      "relation": "restricts_use_to_reference",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/test_at_atr/oracle_stability.txt",
+      "evidence_quote": "NOVA_V8 — التقرير التحليلي للاستقرار (Oracle) — مرجع فقط، لا يُستخدم للترشيح"
+    },
+    {
+      "source": "n_46d7253ece4863c53d802147",
+      "target": "n_e30bf27ee8daf253724da780",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/test_at_atr/oracle_stability.txt",
+      "evidence_quote": "   BTCUSDT [عرضي]: 416221 شريط"
+    },
+    {
+      "source": "n_46d7253ece4863c53d802147",
+      "target": "n_ac983a2351de1f0edf41501a",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/test_at_atr/oracle_stability.txt",
+      "evidence_quote": "   BTCUSDT [متفجّر]: 46620 شريط"
+    },
+    {
+      "source": "n_46d7253ece4863c53d802147",
+      "target": "n_0f43c54a25ffd83f464fab40",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/test_at_atr/oracle_stability.txt",
+      "evidence_quote": "   BTCUSDT [صاعد]: 7920 شريط"
+    },
+    {
+      "source": "n_46d7253ece4863c53d802147",
+      "target": "n_f4c393ff3292408fa73a0384",
+      "relation": "reports_descriptive_statistic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/test_at_atr/oracle_stability.txt",
+      "evidence_quote": "   BTCUSDT [هابط]: 10200 شريط"
+    }
+  ],
+  "limitations": [
+    "Historical source assertions retained as assertions; no independent rerun or market validation performed."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

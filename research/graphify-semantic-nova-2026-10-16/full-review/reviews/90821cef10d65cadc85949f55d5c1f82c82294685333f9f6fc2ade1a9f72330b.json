@@ -1,0 +1,34 @@
+{
+  "unit_id": "90821cef10d65cadc85949f55d5c1f82c82294685333f9f6fc2ade1a9f72330b",
+  "text_sha256": "90821cef10d65cadc85949f55d5c1f82c82294685333f9f6fc2ade1a9f72330b",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Oracle stability report counts bars in sideways, explosive, rising and falling regimes. Explicitly reference-only and forbidden for screening; no causal entry performance is established.",
+  "nodes": [
+    {
+      "id": "n_cefc7ca6e430ba5eaef9f314",
+      "label": "Oracle reference-only regime coverage",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/d5y/FILUSDT_A/oracle_stability.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_3e97f5a4149696590bc0f928",
+      "target": "n_cefc7ca6e430ba5eaef9f314",
+      "relation": "reports_reference_only",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/d5y/FILUSDT_A/oracle_stability.txt",
+      "evidence_quote": "NOVA_V8 — التقرير التحليلي للاستقرار (Oracle) — مرجع فقط، لا يُستخدم للترشيح"
+    }
+  ],
+  "limitations": [
+    "Historical oracle labels cannot be assumed available causally at entry."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

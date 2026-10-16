@@ -1,0 +1,50 @@
+{
+  "unit_id": "b7fcd541d04feb3ae60949e6d548e4cf72d78469060f003dced770677385addd",
+  "text_sha256": "b7fcd541d04feb3ae60949e6d548e4cf72d78469060f003dced770677385addd",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical sleeve output: NOVA_V8 — adaptive_trend sleeve report. selected: True; records: 20; wins: 9 (45.00%); losses: 11 (55.00%); net_usd: -43.9873. Selection is an output flag; baseline adoption requires explicit selection.",
+  "nodes": [
+    {
+      "id": "n_22ad00cac32c92a2225bd69c",
+      "label": "NOVA_V8 — adaptive_trend sleeve report",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/adaptive_trend_report.txt"
+    },
+    {
+      "id": "n_e6c38d880950f9979189fb38",
+      "label": "Explicit baseline selection requirement",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/adaptive_trend_report.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_41fe14fea9b1c6a3526fc363",
+      "target": "n_22ad00cac32c92a2225bd69c",
+      "relation": "reports_historical_sleeve_result",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/adaptive_trend_report.txt",
+      "evidence_quote": "selected: True\nrecords: 20\nwins: 9 (45.00%)\nlosses: 11 (55.00%)\nnet_usd: -43.9873"
+    },
+    {
+      "source": "n_41fe14fea9b1c6a3526fc363",
+      "target": "n_e6c38d880950f9979189fb38",
+      "relation": "conditions_baseline_inclusion_on",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/adaptive_trend_report.txt",
+      "evidence_quote": "هذه وحدة مستقلة؛ لا تدخل Baseline إلا عند اختيارها صراحة."
+    }
+  ],
+  "limitations": [
+    "Historical reported numbers are not independently recomputed or evidence of current trading efficacy.",
+    "Output context and period require companion run manifest."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

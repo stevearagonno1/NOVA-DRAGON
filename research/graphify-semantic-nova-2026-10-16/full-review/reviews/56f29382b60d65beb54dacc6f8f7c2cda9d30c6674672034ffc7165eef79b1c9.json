@@ -1,0 +1,169 @@
+{
+  "unit_id": "56f29382b60d65beb54dacc6f8f7c2cda9d30c6674672034ffc7165eef79b1c9",
+  "text_sha256": "56f29382b60d65beb54dacc6f8f7c2cda9d30c6674672034ffc7165eef79b1c9",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical Oracle reference-only stability ranking: هابط | RSI: ثبات 34.2% (149 عينات); صاعد | Stochastic: ثبات 33.8% (260 عينات); صاعد | ADX: ثبات 33.8% (74 عينات); هابط | ADX: ثبات 33.0% (97 عينات); هابط | Stochastic: ثبات 32.1% (308 عينات); متفجّر | OBV: ثبات 32.1% (405 عينات); صاعد | Bollinger: ثبات 31.1% (1161 عينات); هابط | Bollinger: ثبات 30.5% (1332 عينات). Includes regime coverage; cannot be used for filtering by its own header.",
+  "nodes": [
+    {
+      "id": "n_6302855bf8f362f8b3174132",
+      "label": "هابط | RSI stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt"
+    },
+    {
+      "id": "n_b202a5584799812931c028ae",
+      "label": "صاعد | Stochastic stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt"
+    },
+    {
+      "id": "n_9632616057b4f01235472091",
+      "label": "صاعد | ADX stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt"
+    },
+    {
+      "id": "n_8e934bc0b8719a0e49e3408b",
+      "label": "هابط | ADX stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt"
+    },
+    {
+      "id": "n_86b0d2543bc3b02f8ea6bf8c",
+      "label": "هابط | Stochastic stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt"
+    },
+    {
+      "id": "n_8b94c31a6f2663deb1165ca5",
+      "label": "متفجّر | OBV stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt"
+    },
+    {
+      "id": "n_f12338b78150d96cd46170b5",
+      "label": "صاعد | Bollinger stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt"
+    },
+    {
+      "id": "n_806488245e75cf0de9f51507",
+      "label": "هابط | Bollinger stability",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt"
+    },
+    {
+      "id": "n_dbd4706489ab4385168b3372",
+      "label": "Oracle reference-only restriction",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt"
+    },
+    {
+      "id": "n_c74efa6c8e2d900a4f7e9571",
+      "label": "Oracle regime coverage",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_16a5068cd9571b9d03ffdb19",
+      "target": "n_6302855bf8f362f8b3174132",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt",
+      "evidence_quote": "هابط | RSI: ثبات 34.2% (149 عينات)"
+    },
+    {
+      "source": "n_16a5068cd9571b9d03ffdb19",
+      "target": "n_b202a5584799812931c028ae",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt",
+      "evidence_quote": "صاعد | Stochastic: ثبات 33.8% (260 عينات)"
+    },
+    {
+      "source": "n_16a5068cd9571b9d03ffdb19",
+      "target": "n_9632616057b4f01235472091",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt",
+      "evidence_quote": "صاعد | ADX: ثبات 33.8% (74 عينات)"
+    },
+    {
+      "source": "n_16a5068cd9571b9d03ffdb19",
+      "target": "n_8e934bc0b8719a0e49e3408b",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt",
+      "evidence_quote": "هابط | ADX: ثبات 33.0% (97 عينات)"
+    },
+    {
+      "source": "n_16a5068cd9571b9d03ffdb19",
+      "target": "n_86b0d2543bc3b02f8ea6bf8c",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt",
+      "evidence_quote": "هابط | Stochastic: ثبات 32.1% (308 عينات)"
+    },
+    {
+      "source": "n_16a5068cd9571b9d03ffdb19",
+      "target": "n_8b94c31a6f2663deb1165ca5",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt",
+      "evidence_quote": "متفجّر | OBV: ثبات 32.1% (405 عينات)"
+    },
+    {
+      "source": "n_16a5068cd9571b9d03ffdb19",
+      "target": "n_f12338b78150d96cd46170b5",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt",
+      "evidence_quote": "صاعد | Bollinger: ثبات 31.1% (1161 عينات)"
+    },
+    {
+      "source": "n_16a5068cd9571b9d03ffdb19",
+      "target": "n_806488245e75cf0de9f51507",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt",
+      "evidence_quote": "هابط | Bollinger: ثبات 30.5% (1332 عينات)"
+    },
+    {
+      "source": "n_16a5068cd9571b9d03ffdb19",
+      "target": "n_dbd4706489ab4385168b3372",
+      "relation": "limits",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt",
+      "evidence_quote": "مرجع فقط، لا يُستخدم للترشيح"
+    },
+    {
+      "source": "n_16a5068cd9571b9d03ffdb19",
+      "target": "n_c74efa6c8e2d900a4f7e9571",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "history/research/nova_v8_out/f5y/IMXUSDT_B2/oracle_stability.txt",
+      "evidence_quote": "[تغطية الحالات]\n   IMXUSDT [عرضي]: 273360 شريط\n   IMXUSDT [صاعد]: 7845 شريط\n   IMXUSDT [متفجّر]: 14175 شريط\n   IMXUSDT [هابط]: 9901 شريط"
+    }
+  ],
+  "limitations": [
+    "Retrospective stability metric is not real-time entry precision; neither calculations nor classifier causality are reproduced here."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

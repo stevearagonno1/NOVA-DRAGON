@@ -1000,3 +1000,7 @@ Owner requests Graphify-Labs/graphify on NOVA. Installed official PyPI graphifyy
 
 ## 2026-10-16 — Graphify جولة1: حصر دون إعادة تحليل
 طلب المالك استكمال المستودع كله على جولات. ثبت الرأس السابق f2e01c76a7ae9675a1d14b585bfd4a3bc80e49d2؛ التوسعة اللاحقة غير منشورة. سجلت49مراجعة في شجرة غير مرتبطة لاستعادتها لاحقًا. التقرير: research/graphify-semantic-nova-2026-10-16/rounds/01-inventory/REPORT_AR.md. لا اختبارات سوقية ولا ادعاء اكتمال دلالي.
+
+
+## 2026-10-16 — Graphify جولة2: استعادة49مراجعة
+حفظت المراجعات بهوياتها الأصلية؛204شواهد مباشرة مطابقة و7أرشيفية معلقة. لا اعتماد شامل للاستنتاجات أو دمج للخريطة. صحح التقرير خطأ القراءة الشفهي: Hurst موجود في فحص القيم. التقرير: research/graphify-semantic-nova-2026-10-16/rounds/02-recovery/REPORT_AR.md.

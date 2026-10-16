@@ -1,0 +1,169 @@
+{
+  "unit_id": "8dee7d0e684c2ad47457f41212c602a11b9ce7aa4ff6440143105473c047f2bf",
+  "text_sha256": "8dee7d0e684c2ad47457f41212c602a11b9ce7aa4ff6440143105473c047f2bf",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical portfolio audit compares baseline admission against hypothetical strict-guard rejection, preserves reported records and realized-net figures, and explicitly says defensive defaults are not historically calibrated or approval for external money.",
+  "nodes": [
+    {
+      "id": "n_d79066236749f9e1e04d160d",
+      "label": "الوضع: audit (audit لا يغيّر Baseline؛ strict يرفض السجلات المحظورة)",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_61be1eabbd202579bb7c1f1f",
+      "label": "إجمالي السجلات: 396",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_e15c2fe67048892d2926f2a4",
+      "label": "المقبولة في المحاكاة الصارمة: 281",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_bb1f3753d9750347cd557d86",
+      "label": "التي كان سيحظرها الحارس: 115",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_6212a62074ca888e82f4bb65",
+      "label": "المقبولة في التقرير الحالي: 396",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_36a4f77dcfaac5a9d11a1cfc",
+      "label": "التعرض المفتوح النهائي التقريبي: 1000.00$",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_82471e3c0480f2fef76daf64",
+      "label": "الصافي المحقق التقريبي: 1596.95$",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_62b67c05f038c1d9062622e0",
+      "label": "حالة Kill/Halt: غير مفعلة",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_a28c8f5bad98f0d8abaf1138",
+      "label": "قواعد الحماية: حد إجمالي، حد للعملة، حد للاستراتيجية، منع تصادم العملة، حد عدد الصفقات، وسحب رأسمالي.",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt"
+    },
+    {
+      "id": "n_759aa8c3d15fa1dbe5a2d8b4",
+      "label": "القيم الافتراضية دفاعية وليست معايرة تاريخية؛ لا تعني أن النظام صالح للأموال الخارجية.",
+      "file_type": "concept",
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_e99bbc681fe1c3e0bbfd7b43",
+      "target": "n_d79066236749f9e1e04d160d",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "الوضع: audit (audit لا يغيّر Baseline؛ strict يرفض السجلات المحظورة)"
+    },
+    {
+      "source": "n_e99bbc681fe1c3e0bbfd7b43",
+      "target": "n_61be1eabbd202579bb7c1f1f",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "إجمالي السجلات: 396"
+    },
+    {
+      "source": "n_e99bbc681fe1c3e0bbfd7b43",
+      "target": "n_e15c2fe67048892d2926f2a4",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "المقبولة في المحاكاة الصارمة: 281"
+    },
+    {
+      "source": "n_e99bbc681fe1c3e0bbfd7b43",
+      "target": "n_bb1f3753d9750347cd557d86",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "التي كان سيحظرها الحارس: 115"
+    },
+    {
+      "source": "n_e99bbc681fe1c3e0bbfd7b43",
+      "target": "n_6212a62074ca888e82f4bb65",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "المقبولة في التقرير الحالي: 396"
+    },
+    {
+      "source": "n_e99bbc681fe1c3e0bbfd7b43",
+      "target": "n_36a4f77dcfaac5a9d11a1cfc",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "التعرض المفتوح النهائي التقريبي: 1000.00$"
+    },
+    {
+      "source": "n_e99bbc681fe1c3e0bbfd7b43",
+      "target": "n_82471e3c0480f2fef76daf64",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "الصافي المحقق التقريبي: 1596.95$"
+    },
+    {
+      "source": "n_e99bbc681fe1c3e0bbfd7b43",
+      "target": "n_62b67c05f038c1d9062622e0",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "حالة Kill/Halt: غير مفعلة"
+    },
+    {
+      "source": "n_e99bbc681fe1c3e0bbfd7b43",
+      "target": "n_a28c8f5bad98f0d8abaf1138",
+      "relation": "defines_guard_scope",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "قواعد الحماية: حد إجمالي، حد للعملة، حد للاستراتيجية، منع تصادم العملة، حد عدد الصفقات، وسحب رأسمالي."
+    },
+    {
+      "source": "n_e99bbc681fe1c3e0bbfd7b43",
+      "target": "n_759aa8c3d15fa1dbe5a2d8b4",
+      "relation": "reports",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/research/nova_v8_out/sf/XLMUSDT/portfolio_risk_audit.txt",
+      "evidence_quote": "القيم الافتراضية دفاعية وليست معايرة تاريخية؛ لا تعني أن النظام صالح للأموال الخارجية."
+    }
+  ],
+  "limitations": [
+    "Historical source assertions retained as assertions; no independent rerun or market validation performed."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

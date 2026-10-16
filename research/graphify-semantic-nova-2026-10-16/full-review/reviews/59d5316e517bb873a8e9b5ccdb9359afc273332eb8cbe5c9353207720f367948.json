@@ -1,0 +1,79 @@
+{
+  "unit_id": "59d5316e517bb873a8e9b5ccdb9359afc273332eb8cbe5c9353207720f367948",
+  "text_sha256": "59d5316e517bb873a8e9b5ccdb9359afc273332eb8cbe5c9353207720f367948",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Historical research/journal/log record. Decisions, execution assertions, output references and next steps are preserved separately; future work and synthetic checks do not establish market completion.",
+  "nodes": [
+    {
+      "id": "n_5d1698e1271ce9b99ea2a2e8",
+      "label": "القرار: المالك يطلب أوراقًا شاملة ودمج الأعمال الصغيرة المترابطة لتقليل الوقت والتكرار.",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/013-comprehensive-work-source-reuse.md"
+    },
+    {
+      "id": "n_9517d75edb20a122167319e7",
+      "label": "التنفيذ: التحقق من أن المصدر الحالي محفوظ أصلًا بالمستودع، وحساب حجم القياسات المستخدمة؛ لم يثبت تطابق ملف الأرشيف ولم يتغير تشغيل الوكيل.",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/013-comprehensive-work-source-reuse.md"
+    },
+    {
+      "id": "n_fb339ab07aa0eb4cc6f415df",
+      "label": "الناتج: سياسة تجميع العمل وإعادة استخدام الحسابات، وفحص تطابق المصدر جزء من الحزمة الجامعة لا مهمة منفصلة.",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/013-comprehensive-work-source-reuse.md"
+    },
+    {
+      "id": "n_4c50deaca96d4be8afdba83b",
+      "label": "التالي: الورقة الجامعة تجمع الحصر وفحص المصدر والاختبارات والمقارنة والتدقيق والتسليم، ضمن النطاق المسجل.",
+      "file_type": "concept",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/013-comprehensive-work-source-reuse.md"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_37d46264013b4cca4355be2a",
+      "target": "n_5d1698e1271ce9b99ea2a2e8",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/013-comprehensive-work-source-reuse.md",
+      "evidence_quote": "القرار: المالك يطلب أوراقًا شاملة ودمج الأعمال الصغيرة المترابطة لتقليل الوقت والتكرار."
+    },
+    {
+      "source": "n_37d46264013b4cca4355be2a",
+      "target": "n_9517d75edb20a122167319e7",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/013-comprehensive-work-source-reuse.md",
+      "evidence_quote": "التنفيذ: التحقق من أن المصدر الحالي محفوظ أصلًا بالمستودع، وحساب حجم القياسات المستخدمة؛ لم يثبت تطابق ملف الأرشيف ولم يتغير تشغيل الوكيل."
+    },
+    {
+      "source": "n_37d46264013b4cca4355be2a",
+      "target": "n_fb339ab07aa0eb4cc6f415df",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/013-comprehensive-work-source-reuse.md",
+      "evidence_quote": "الناتج: سياسة تجميع العمل وإعادة استخدام الحسابات، وفحص تطابق المصدر جزء من الحزمة الجامعة لا مهمة منفصلة."
+    },
+    {
+      "source": "n_37d46264013b4cca4355be2a",
+      "target": "n_4c50deaca96d4be8afdba83b",
+      "relation": "records_historical_assertion",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/013-comprehensive-work-source-reuse.md",
+      "evidence_quote": "التالي: الورقة الجامعة تجمع الحصر وفحص المصدر والاختبارات والمقارنة والتدقيق والتسليم، ضمن النطاق المسجل."
+    }
+  ],
+  "limitations": [
+    "Historical source assertions retained as assertions; no independent rerun or market validation performed."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}

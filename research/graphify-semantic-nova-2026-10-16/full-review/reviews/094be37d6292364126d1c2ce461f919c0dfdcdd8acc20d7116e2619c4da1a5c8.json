@@ -1,0 +1,94 @@
+{
+  "unit_id": "094be37d6292364126d1c2ce461f919c0dfdcdd8acc20d7116e2619c4da1a5c8",
+  "text_sha256": "094be37d6292364126d1c2ce461f919c0dfdcdd8acc20d7116e2619c4da1a5c8",
+  "full_read": true,
+  "review_method": "host_model_full_text",
+  "summary": "Archived NOVA v5 trigger file is docstring-only plus future import. Forward-profiling design says KAMA alone triggers, Naive Bayes only observes with zero floor, reverting zero-threshold restores Bull>=.55 and Diverged veto. Sweep/MSS/FVG and secondary gates are explicitly removed here; actual checks are attributed to engine._run_pipeline, not implemented in this file.",
+  "nodes": [
+    {
+      "id": "n_e28fe9303241f5724575a416",
+      "label": "KAMA-only forward-profiling trigger",
+      "file_type": "concept",
+      "source_file": "history/bot_versions/V3/trigger.py"
+    },
+    {
+      "id": "n_6bd385015c6548fbdb381b5a",
+      "label": "Naive Bayes observer",
+      "file_type": "concept",
+      "source_file": "history/bot_versions/V3/trigger.py"
+    },
+    {
+      "id": "n_39cefb6a4d6d84a3455a7d69",
+      "label": "NB zero floor",
+      "file_type": "concept",
+      "source_file": "history/bot_versions/V3/trigger.py"
+    },
+    {
+      "id": "n_231a503208f45be3db30ca1f",
+      "label": "Legacy Bull55 filter restoration",
+      "file_type": "concept",
+      "source_file": "history/bot_versions/V3/trigger.py"
+    },
+    {
+      "id": "n_1201e2d3e9a49038ebf0491a",
+      "label": "Removed Sweep/MSS/FVG pipeline",
+      "file_type": "concept",
+      "source_file": "history/bot_versions/V3/trigger.py"
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_55e21d69406356054d6f3a01",
+      "target": "n_e28fe9303241f5724575a416",
+      "relation": "documents_design",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/bot_versions/V3/trigger.py",
+      "evidence_quote": "KAMA trend filter (indicators.AnchoredKAMA) — المحفّز_CORE الوحيد."
+    },
+    {
+      "source": "n_55e21d69406356054d6f3a01",
+      "target": "n_6bd385015c6548fbdb381b5a",
+      "relation": "documents_design",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/bot_versions/V3/trigger.py",
+      "evidence_quote": "لم يعد فلترًا: أصبح مُسجِّلًا (observer)."
+    },
+    {
+      "source": "n_55e21d69406356054d6f3a01",
+      "target": "n_39cefb6a4d6d84a3455a7d69",
+      "relation": "documents_parameter",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/bot_versions/V3/trigger.py",
+      "evidence_quote": "NB_MIN_ENTRY_PROB = 0.0"
+    },
+    {
+      "source": "n_55e21d69406356054d6f3a01",
+      "target": "n_231a503208f45be3db30ca1f",
+      "relation": "documents_conditional_behavior",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/bot_versions/V3/trigger.py",
+      "evidence_quote": "سيعيد engine تطبيق شرط Bull ≥ 0.55"
+    },
+    {
+      "source": "n_55e21d69406356054d6f3a01",
+      "target": "n_1201e2d3e9a49038ebf0491a",
+      "relation": "documents_removed_logic",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1,
+      "source_file": "history/bot_versions/V3/trigger.py",
+      "evidence_quote": "أُزيل بالكامل مسار Sweep → MSS → FVG"
+    }
+  ],
+  "limitations": [
+    "Historical source assertions retained as assertions; no independent rerun or market validation performed."
+  ],
+  "semantic_accuracy_review": {
+    "negation_checked": true,
+    "historical_vs_current_checked": true,
+    "relation_direction_checked": true
+  }
+}
