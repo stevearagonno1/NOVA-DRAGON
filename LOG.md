@@ -1008,3 +1008,7 @@ Owner requests Graphify-Labs/graphify on NOVA. Installed official PyPI graphifyy
 
 ## 2026-10-16 — Graphify جولة3: مجموعة القواعد والأوراق الأولى
 قراءة8ملفات؛13علاقة مصدرية منفصلة موثقة. فصل التسجيل عن القياسات وعن دقة الدخول، وتوثيق حدود التاريخ غير الأعمى ووصف الخام القديم. التقرير: research/graphify-semantic-nova-2026-10-16/rounds/03-rules-papers/REPORT_AR.md. لا اكتمال شامل أو إعادة تشغيل سوقي.
+
+
+## 2026-10-16 — Graphify جولة4: روابط التسليم
+قراءة8ملفات وإضافة7علاقات وثائقية. تحقق تسليم التسجيل في التزامه ومقارنة حقول إيصال العينة؛ لا إعادة تدقيق بيانات أو اعتماد دقة. التقرير: research/graphify-semantic-nova-2026-10-16/rounds/04-delivery-links/REPORT_AR.md.

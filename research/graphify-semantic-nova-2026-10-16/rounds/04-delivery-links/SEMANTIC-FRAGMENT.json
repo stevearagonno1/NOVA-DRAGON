@@ -1,0 +1,126 @@
+{
+  "source_commit": "5196d205d9c9742215f484ff7ba352dec4432c51",
+  "nodes": [
+    {
+      "id": "r4_0",
+      "label": "research/btc-registration-from-repo-2026-10-15/executor/DELIVERY.json",
+      "source_file": "research/btc-registration-from-repo-2026-10-15/executor/DELIVERY.json",
+      "git_blob": "5d6cd1704964480386da093190ef1737d4ed38b9",
+      "ref": "5196d205d9c9742215f484ff7ba352dec4432c51"
+    },
+    {
+      "id": "r4_1",
+      "label": "research/btc-registration-from-repo-2026-10-15/executor/VERIFIED_DELIVERY.json",
+      "source_file": "research/btc-registration-from-repo-2026-10-15/executor/VERIFIED_DELIVERY.json",
+      "git_blob": "8d573b5395c1a9317f2b03e0a679d6b0ce955493",
+      "ref": "5196d205d9c9742215f484ff7ba352dec4432c51"
+    },
+    {
+      "id": "r4_2",
+      "label": "research/btc-registration-from-repo-2026-10-15/executor/REPORT.md",
+      "source_file": "research/btc-registration-from-repo-2026-10-15/executor/REPORT.md",
+      "git_blob": "b647b34169e78c6cfeab3603ea2f344f0c53542b",
+      "ref": "5196d205d9c9742215f484ff7ba352dec4432c51"
+    },
+    {
+      "id": "r4_3",
+      "label": "research/btc-registration-from-repo-2026-10-15/executor/result/REPORT.md",
+      "source_file": "research/btc-registration-from-repo-2026-10-15/executor/result/REPORT.md",
+      "git_blob": "b876acc1a3af818a50c813aad6abb0e5ca8d7651",
+      "ref": "5196d205d9c9742215f484ff7ba352dec4432c51"
+    },
+    {
+      "id": "r4_4",
+      "label": "research/btc-causal-measures-2026-10-15/PAPER-CORRECTION-LOCK.json",
+      "source_file": "research/btc-causal-measures-2026-10-15/PAPER-CORRECTION-LOCK.json",
+      "git_blob": "06aa5c3bca7265b95788f4e72bb0cb9c9fe24017",
+      "ref": "5196d205d9c9742215f484ff7ba352dec4432c51"
+    },
+    {
+      "id": "r4_5",
+      "label": "research/btc-causal-measures-2026-10-15/PAPER-CORRECTION-READINESS.json",
+      "source_file": "research/btc-causal-measures-2026-10-15/PAPER-CORRECTION-READINESS.json",
+      "git_blob": "c4bfb6794de2ad11a695a282e6156cf8f8949966",
+      "ref": "5196d205d9c9742215f484ff7ba352dec4432c51"
+    },
+    {
+      "id": "r4_6",
+      "label": "research/btc-causal-measures-2026-10-15/PAPER-CORRECTION-FIXED-READINESS.json",
+      "source_file": "research/btc-causal-measures-2026-10-15/PAPER-CORRECTION-FIXED-READINESS.json",
+      "git_blob": "08eb8b96cd14d2510e14126a16c74840ae1fd095",
+      "ref": "5196d205d9c9742215f484ff7ba352dec4432c51"
+    },
+    {
+      "id": "r4_7",
+      "label": "research/btc-causal-measures-2026-10-15/rehearsal/DELIVERY.json",
+      "source_file": "research/btc-causal-measures-2026-10-15/rehearsal/DELIVERY.json",
+      "git_blob": "4cebe512879ebba9e816172df58527eab41237af",
+      "ref": "04693e28def7878798ca4f9dff5476be44611cfe"
+    }
+  ],
+  "edges": [
+    {
+      "source": "r4_0",
+      "target": "r4_1",
+      "relation": "followed_by_publication_receipt",
+      "evidence_quote": "\"publication_included_in_timer\": false",
+      "source_file": "research/btc-registration-from-repo-2026-10-15/executor/DELIVERY.json",
+      "confidence": "EXTRACTED",
+      "scope": "documentary_relationship_not_market_validation"
+    },
+    {
+      "source": "r4_1",
+      "target": "r4_0",
+      "relation": "identifies_published_registration_delivery",
+      "evidence_quote": "\"verified_data_commit\": \"e68689a0aa560d27677ec703f85cea3877910b56\"",
+      "source_file": "research/btc-registration-from-repo-2026-10-15/executor/VERIFIED_DELIVERY.json",
+      "confidence": "EXTRACTED",
+      "scope": "documentary_relationship_not_market_validation"
+    },
+    {
+      "source": "r4_2",
+      "target": "r4_0",
+      "relation": "repeats_delivery_report",
+      "evidence_quote": "\"indicators_or_states_computed\": false",
+      "source_file": "research/btc-registration-from-repo-2026-10-15/executor/REPORT.md",
+      "confidence": "EXTRACTED",
+      "scope": "documentary_relationship_not_market_validation"
+    },
+    {
+      "source": "r4_3",
+      "target": "r4_0",
+      "relation": "reports_registration_only",
+      "evidence_quote": "no indicators, state search, future labels or financial performance computed.",
+      "source_file": "research/btc-registration-from-repo-2026-10-15/executor/result/REPORT.md",
+      "confidence": "EXTRACTED",
+      "scope": "documentary_relationship_not_market_validation"
+    },
+    {
+      "source": "r4_5",
+      "target": "r4_6",
+      "relation": "failed_readiness_precedes_fixed_readiness",
+      "evidence_quote": "TypeError: unsupported operand type(s) for /:",
+      "source_file": "research/btc-causal-measures-2026-10-15/PAPER-CORRECTION-READINESS.json",
+      "confidence": "EXTRACTED",
+      "scope": "documentary_relationship_not_market_validation"
+    },
+    {
+      "source": "r4_6",
+      "target": "r4_7",
+      "relation": "references_rehearsal_receipt",
+      "evidence_quote": "\"receipt_commit\": \"04693e28def7878798ca4f9dff5476be44611cfe\"",
+      "source_file": "research/btc-causal-measures-2026-10-15/PAPER-CORRECTION-FIXED-READINESS.json",
+      "confidence": "EXTRACTED",
+      "scope": "documentary_relationship_not_market_validation"
+    },
+    {
+      "source": "r4_4",
+      "target": "r4_6",
+      "relation": "pins_corrected_code",
+      "evidence_quote": "\"original_code_commit\": \"8b41e1f3c07658ca39c3e6ced345bb10fc1251a7\"",
+      "source_file": "research/btc-causal-measures-2026-10-15/PAPER-CORRECTION-LOCK.json",
+      "confidence": "EXTRACTED",
+      "scope": "documentary_relationship_not_market_validation"
+    }
+  ]
+}

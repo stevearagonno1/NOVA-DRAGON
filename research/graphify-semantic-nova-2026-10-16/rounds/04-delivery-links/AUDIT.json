@@ -1,0 +1,21 @@
+{
+  "source_documents": 8,
+  "complete_read": true,
+  "edges": 7,
+  "quote_mismatches": 0,
+  "dangling": 0,
+  "rehearsal_fields_compared": [
+    "status",
+    "native_records_with_one_day_history",
+    "analysis_native_records",
+    "timeframe_count",
+    "binary_bytes",
+    "source_commit"
+  ],
+  "rehearsal_fields_match": true,
+  "registration_delivery_blob_matches": true,
+  "published_raw_archives_in_tree": 13,
+  "source_bytes_reaudited": false,
+  "market_experiment_run": false,
+  "whole_repository_complete": false
+}
