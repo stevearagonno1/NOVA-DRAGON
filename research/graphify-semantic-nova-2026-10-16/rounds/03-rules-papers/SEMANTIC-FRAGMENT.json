@@ -1,0 +1,246 @@
+{
+  "source_commit": "7b2821af7f030c8ba4a0dc770d480af09191229e",
+  "scope": "8 fully read documents; no global graph merge",
+  "nodes": [
+    {
+      "id": "r3_source_0",
+      "label": "docs/journal/2026-10-13-btc-state-protocol/001-protocol-registered.md",
+      "source_file": "docs/journal/2026-10-13-btc-state-protocol/001-protocol-registered.md",
+      "file_type": "document",
+      "git_blob": "38a7ab915c61e272a3c40fe7e52cb27141c2bec0"
+    },
+    {
+      "id": "r3_source_1",
+      "label": "docs/journal/2026-10-15-btc-registration-from-repo/007-execution-paper-corrected.md",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/007-execution-paper-corrected.md",
+      "file_type": "document",
+      "git_blob": "5517f594b978e0d401f21bc37f5adb6a1da61b94"
+    },
+    {
+      "id": "r3_source_2",
+      "label": "docs/journal/2026-10-15-btc-registration-from-repo/008-executor-paper-r3-delivery.md",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/008-executor-paper-r3-delivery.md",
+      "file_type": "document",
+      "git_blob": "a8363a393d37c6e6c52be8d116363778bb26eb52"
+    },
+    {
+      "id": "r3_source_3",
+      "label": "docs/journal/2026-10-15-btc-registration-from-repo/011-entry-start-scope-corrected.md",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/011-entry-start-scope-corrected.md",
+      "file_type": "document",
+      "git_blob": "e86508badf1b49d6bf8efb8f9f60a2b38d88e198"
+    },
+    {
+      "id": "r3_source_4",
+      "label": "docs/journal/2026-10-15-btc-registration-from-repo/012-entry-single-paper-ready.md",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/012-entry-single-paper-ready.md",
+      "file_type": "document",
+      "git_blob": "c6fb30cf9619c10f72fd8650b81932d4aa100ade"
+    },
+    {
+      "id": "r3_source_5",
+      "label": "research/btc-registration-from-repo-2026-10-15/START_HERE.md",
+      "source_file": "research/btc-registration-from-repo-2026-10-15/START_HERE.md",
+      "file_type": "document",
+      "git_blob": "86350f821701fdd04b9618f29de3f99a47095553"
+    },
+    {
+      "id": "r3_source_6",
+      "label": "research/btc-causal-measures-2026-10-15/PAPER-CORRECTION.md",
+      "source_file": "research/btc-causal-measures-2026-10-15/PAPER-CORRECTION.md",
+      "file_type": "document",
+      "git_blob": "152dfadc135a77fab20c68e0ff2eac30e5a78eae"
+    },
+    {
+      "id": "r3_source_7",
+      "label": "research/btc-causal-measures-2026-10-15/protocol.json",
+      "source_file": "research/btc-causal-measures-2026-10-15/protocol.json",
+      "file_type": "document",
+      "git_blob": "86cdd48cd45cd9c6188e406fb1cfa3a79235ffd2"
+    },
+    {
+      "id": "registration_only",
+      "label": "registration_only",
+      "file_type": "concept"
+    },
+    {
+      "id": "causal_feature_stage",
+      "label": "causal_feature_stage",
+      "file_type": "concept"
+    },
+    {
+      "id": "terse_executor_delivery",
+      "label": "terse_executor_delivery",
+      "file_type": "concept"
+    },
+    {
+      "id": "year_market_accuracy",
+      "label": "year_market_accuracy",
+      "file_type": "concept"
+    },
+    {
+      "id": "r3_identity_correction",
+      "label": "r3_identity_correction",
+      "file_type": "concept"
+    },
+    {
+      "id": "entry_start_only",
+      "label": "entry_start_only",
+      "file_type": "concept"
+    },
+    {
+      "id": "independent_entry_discovery",
+      "label": "independent_entry_discovery",
+      "file_type": "concept"
+    },
+    {
+      "id": "synthetic_not_market",
+      "label": "synthetic_not_market",
+      "file_type": "concept"
+    },
+    {
+      "id": "repo_based_collection",
+      "label": "repo_based_collection",
+      "file_type": "concept"
+    },
+    {
+      "id": "manifest_pin_correction",
+      "label": "manifest_pin_correction",
+      "file_type": "concept"
+    },
+    {
+      "id": "end_to_end_rehearsal",
+      "label": "end_to_end_rehearsal",
+      "file_type": "concept"
+    },
+    {
+      "id": "historical_not_blind",
+      "label": "historical_not_blind",
+      "file_type": "concept"
+    },
+    {
+      "id": "protocol_stage_not_computed",
+      "label": "protocol_stage_not_computed",
+      "file_type": "concept"
+    }
+  ],
+  "edges": [
+    {
+      "source": "r3_source_0",
+      "target": "registration_only",
+      "relation": "limits_scope",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/journal/2026-10-13-btc-state-protocol/001-protocol-registered.md",
+      "evidence_quote": "no state discovery.",
+      "meaning_status": "SOURCE_ASSERTION_NOT_INDEPENDENT_EXECUTION"
+    },
+    {
+      "source": "r3_source_0",
+      "target": "causal_feature_stage",
+      "relation": "precedes",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/journal/2026-10-13-btc-state-protocol/001-protocol-registered.md",
+      "evidence_quote": "Next: separate causal-feature computation paper",
+      "meaning_status": "SOURCE_ASSERTION_NOT_INDEPENDENT_EXECUTION"
+    },
+    {
+      "source": "r3_source_1",
+      "target": "terse_executor_delivery",
+      "relation": "requires",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/007-execution-paper-corrected.md",
+      "evidence_quote": "الرد تم أو فشل: السبب الفعلي فقط",
+      "meaning_status": "SOURCE_ASSERTION_NOT_INDEPENDENT_EXECUTION"
+    },
+    {
+      "source": "r3_source_1",
+      "target": "year_market_accuracy",
+      "relation": "does_not_establish",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/007-execution-paper-corrected.md",
+      "evidence_quote": "حساب السنة ودقة الصعود لم ينفذا.",
+      "meaning_status": "SOURCE_ASSERTION_NOT_INDEPENDENT_EXECUTION"
+    },
+    {
+      "source": "r3_source_2",
+      "target": "r3_identity_correction",
+      "relation": "records",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/008-executor-paper-r3-delivery.md",
+      "evidence_quote": "أمر التشغيل والبيانات والإعدادات والأقسام العشرون مطابقة للورقة المصححة، ولا إعادة لحساب السنة.",
+      "meaning_status": "SOURCE_ASSERTION_NOT_INDEPENDENT_EXECUTION"
+    },
+    {
+      "source": "r3_source_3",
+      "target": "entry_start_only",
+      "relation": "limits_scope",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/011-entry-start-scope-corrected.md",
+      "evidence_quote": "التقاط بداية الصعود والتحقق من الصعود بعد الإشارة",
+      "meaning_status": "SOURCE_ASSERTION_NOT_INDEPENDENT_EXECUTION"
+    },
+    {
+      "source": "r3_source_4",
+      "target": "independent_entry_discovery",
+      "relation": "defines_scope",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/012-entry-single-paper-ready.md",
+      "evidence_quote": "دون دمج أو مخارج أو عتبة نجاح مفروضة",
+      "meaning_status": "SOURCE_ASSERTION_NOT_INDEPENDENT_EXECUTION"
+    },
+    {
+      "source": "r3_source_4",
+      "target": "synthetic_not_market",
+      "relation": "distinguishes",
+      "confidence": "EXTRACTED",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/012-entry-single-paper-ready.md",
+      "evidence_quote": "ولا نتيجة سوق أو دقة دخول بعد.",
+      "meaning_status": "SOURCE_ASSERTION_NOT_INDEPENDENT_EXECUTION"
+    },
+    {
+      "source": "r3_source_5",
+      "target": "repo_based_collection",
+      "relation": "replaces_attachment_dependency",
+      "confidence": "EXTRACTED",
+      "source_file": "research/btc-registration-from-repo-2026-10-15/START_HERE.md",
+      "evidence_quote": "لا تحتاج مرفق BTC-year-minute-and-frames.zip؛ البرنامج ينتجه من مصادر Binance المثبتة.",
+      "meaning_status": "SOURCE_ASSERTION_NOT_INDEPENDENT_EXECUTION"
+    },
+    {
+      "source": "r3_source_6",
+      "target": "manifest_pin_correction",
+      "relation": "explains_failure",
+      "confidence": "EXTRACTED",
+      "source_file": "research/btc-causal-measures-2026-10-15/PAPER-CORRECTION.md",
+      "evidence_quote": "الورقة السابقة ذكرت SOURCE-MANIFEST.json دون تمييز التزامه عن التزام أصل الكود",
+      "meaning_status": "SOURCE_ASSERTION_NOT_INDEPENDENT_EXECUTION"
+    },
+    {
+      "source": "r3_source_6",
+      "target": "end_to_end_rehearsal",
+      "relation": "records_claim",
+      "confidence": "EXTRACTED",
+      "source_file": "research/btc-causal-measures-2026-10-15/PAPER-CORRECTION.md",
+      "evidence_quote": "واجتاز الحساب والتدقيق والنشر والقراءة المتحققة.",
+      "meaning_status": "SOURCE_ASSERTION_NOT_INDEPENDENT_EXECUTION"
+    },
+    {
+      "source": "r3_source_7",
+      "target": "historical_not_blind",
+      "relation": "declares",
+      "confidence": "EXTRACTED",
+      "source_file": "research/btc-causal-measures-2026-10-15/protocol.json",
+      "evidence_quote": "neither validation nor reserve is genuinely blind. Only new forward collection can be blind.",
+      "meaning_status": "SOURCE_ASSERTION_NOT_INDEPENDENT_EXECUTION"
+    },
+    {
+      "source": "r3_source_7",
+      "target": "protocol_stage_not_computed",
+      "relation": "declares",
+      "confidence": "EXTRACTED",
+      "source_file": "research/btc-causal-measures-2026-10-15/protocol.json",
+      "evidence_quote": "\"feature_values\": \"NOT_COMPUTED_IN_THIS_STAGE\"",
+      "meaning_status": "SOURCE_ASSERTION_NOT_INDEPENDENT_EXECUTION"
+    }
+  ]
+}

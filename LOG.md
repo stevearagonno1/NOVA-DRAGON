@@ -1004,3 +1004,7 @@ Owner requests Graphify-Labs/graphify on NOVA. Installed official PyPI graphifyy
 
 ## 2026-10-16 — Graphify جولة2: استعادة49مراجعة
 حفظت المراجعات بهوياتها الأصلية؛204شواهد مباشرة مطابقة و7أرشيفية معلقة. لا اعتماد شامل للاستنتاجات أو دمج للخريطة. صحح التقرير خطأ القراءة الشفهي: Hurst موجود في فحص القيم. التقرير: research/graphify-semantic-nova-2026-10-16/rounds/02-recovery/REPORT_AR.md.
+
+
+## 2026-10-16 — Graphify جولة3: مجموعة القواعد والأوراق الأولى
+قراءة8ملفات؛13علاقة مصدرية منفصلة موثقة. فصل التسجيل عن القياسات وعن دقة الدخول، وتوثيق حدود التاريخ غير الأعمى ووصف الخام القديم. التقرير: research/graphify-semantic-nova-2026-10-16/rounds/03-rules-papers/REPORT_AR.md. لا اكتمال شامل أو إعادة تشغيل سوقي.

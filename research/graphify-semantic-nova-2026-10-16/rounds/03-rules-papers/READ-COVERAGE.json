@@ -1,0 +1,52 @@
+{
+  "source_commit": "7b2821af7f030c8ba4a0dc770d480af09191229e",
+  "sources": [
+    {
+      "path": "docs/journal/2026-10-13-btc-state-protocol/001-protocol-registered.md",
+      "git_blob": "38a7ab915c61e272a3c40fe7e52cb27141c2bec0",
+      "full_read": true
+    },
+    {
+      "path": "docs/journal/2026-10-15-btc-registration-from-repo/007-execution-paper-corrected.md",
+      "git_blob": "5517f594b978e0d401f21bc37f5adb6a1da61b94",
+      "full_read": true
+    },
+    {
+      "path": "docs/journal/2026-10-15-btc-registration-from-repo/008-executor-paper-r3-delivery.md",
+      "git_blob": "a8363a393d37c6e6c52be8d116363778bb26eb52",
+      "full_read": true
+    },
+    {
+      "path": "docs/journal/2026-10-15-btc-registration-from-repo/011-entry-start-scope-corrected.md",
+      "git_blob": "e86508badf1b49d6bf8efb8f9f60a2b38d88e198",
+      "full_read": true
+    },
+    {
+      "path": "docs/journal/2026-10-15-btc-registration-from-repo/012-entry-single-paper-ready.md",
+      "git_blob": "c6fb30cf9619c10f72fd8650b81932d4aa100ade",
+      "full_read": true
+    },
+    {
+      "path": "research/btc-registration-from-repo-2026-10-15/START_HERE.md",
+      "git_blob": "86350f821701fdd04b9618f29de3f99a47095553",
+      "full_read": true
+    },
+    {
+      "path": "research/btc-causal-measures-2026-10-15/PAPER-CORRECTION.md",
+      "git_blob": "152dfadc135a77fab20c68e0ff2eac30e5a78eae",
+      "full_read": true
+    },
+    {
+      "path": "research/btc-causal-measures-2026-10-15/protocol.json",
+      "git_blob": "86cdd48cd45cd9c6188e406fb1cfa3a79235ffd2",
+      "full_read": true
+    }
+  ],
+  "audit": {
+    "nodes": 21,
+    "edges": 13,
+    "dangling": 0,
+    "quote_mismatch": 0
+  },
+  "scope_complete": false
+}
