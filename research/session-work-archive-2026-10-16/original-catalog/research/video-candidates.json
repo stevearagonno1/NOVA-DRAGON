@@ -1,0 +1,27 @@
+[
+  {
+    "url": "https://www.youtube.com/watch?v=peCdKOcD8iM",
+    "topic": "Supertrend",
+    "status": "numeric_settings_not_verified"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=p4IpRmu3Rg8",
+    "topic": "Supertrend",
+    "reported_raw_tuples": [
+      "3/12",
+      "1/10",
+      "2/11"
+    ],
+    "status": "parameter_order_unverified_excluded_from_presets"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=mH_kGj0rLgA",
+    "topic": "TradingView Fixed Range Volume Profile",
+    "status": "tutorial_found_numeric_values_not_verified"
+  },
+  {
+    "url": "https://www.youtube.com/watch?v=YB1dqbTl-AM",
+    "topic": "WaveTrend",
+    "status": "tutorial_found_numeric_values_not_verified"
+  }
+]

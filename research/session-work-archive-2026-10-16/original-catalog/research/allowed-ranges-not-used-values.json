@@ -1,0 +1,2478 @@
+[
+  {
+    "family": "AC",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Fast Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Slow Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Signal Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ACCBANDS",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ADOSC",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Fast Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Slow Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ADR",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ADX",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ADXR",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ALMA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Sigma": {
+        "Minimum": "1.000000e-2",
+        "Maximum": "3.000000e+37",
+        "Precision": "2",
+        "SuggestedStart": "1.000000e+0",
+        "SuggestedEnd": "2.000000e+1",
+        "SuggestedIncrement": "5.000000e-1"
+      },
+      "Offset": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "1.000000e+0",
+        "Precision": "2",
+        "SuggestedStart": "0.000000e+0",
+        "SuggestedEnd": "1.000000e+0",
+        "SuggestedIncrement": "5.000000e-2"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "AO",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Fast Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Slow Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "APO",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Fast Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Slow Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "AROON",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "AROONOSC",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ASI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Limit Move": {
+        "Minimum": "1.000000e-8",
+        "Maximum": "3.000000e+37",
+        "Precision": "4",
+        "SuggestedStart": "5.000000e-1",
+        "SuggestedEnd": "3.000000e+1",
+        "SuggestedIncrement": "5.000000e-1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ATR",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "BBANDS",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Deviations up": {
+        "Minimum": "-3.000000e+37",
+        "Maximum": "3.000000e+37",
+        "Precision": "2",
+        "SuggestedStart": "-2.000000e+0",
+        "SuggestedEnd": "2.000000e+0",
+        "SuggestedIncrement": "2.000000e-1"
+      },
+      "Deviations down": {
+        "Minimum": "-3.000000e+37",
+        "Maximum": "3.000000e+37",
+        "Precision": "2",
+        "SuggestedStart": "-2.000000e+0",
+        "SuggestedEnd": "2.000000e+0",
+        "SuggestedIncrement": "2.000000e-1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "BBW",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Deviations up": {
+        "Minimum": "-3.000000e+37",
+        "Maximum": "3.000000e+37",
+        "Precision": "2",
+        "SuggestedStart": "-2.000000e+0",
+        "SuggestedEnd": "2.000000e+0",
+        "SuggestedIncrement": "2.000000e-1"
+      },
+      "Deviations down": {
+        "Minimum": "-3.000000e+37",
+        "Maximum": "3.000000e+37",
+        "Precision": "2",
+        "SuggestedStart": "-2.000000e+0",
+        "SuggestedEnd": "2.000000e+0",
+        "SuggestedIncrement": "2.000000e-1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "BETA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CCI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CDLABANDONEDBABY",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Penetration": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "0",
+        "SuggestedStart": "0.000000e+0",
+        "SuggestedEnd": "0.000000e+0",
+        "SuggestedIncrement": "0.000000e+0"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CDLDARKCLOUDCOVER",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Penetration": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "0",
+        "SuggestedStart": "0.000000e+0",
+        "SuggestedEnd": "0.000000e+0",
+        "SuggestedIncrement": "0.000000e+0"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CDLEVENINGDOJISTAR",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Penetration": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "0",
+        "SuggestedStart": "0.000000e+0",
+        "SuggestedEnd": "0.000000e+0",
+        "SuggestedIncrement": "0.000000e+0"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CDLEVENINGSTAR",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Penetration": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "0",
+        "SuggestedStart": "0.000000e+0",
+        "SuggestedEnd": "0.000000e+0",
+        "SuggestedIncrement": "0.000000e+0"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CDLMATHOLD",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Penetration": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "0",
+        "SuggestedStart": "0.000000e+0",
+        "SuggestedEnd": "0.000000e+0",
+        "SuggestedIncrement": "0.000000e+0"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CDLMORNINGDOJISTAR",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Penetration": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "0",
+        "SuggestedStart": "0.000000e+0",
+        "SuggestedEnd": "0.000000e+0",
+        "SuggestedIncrement": "0.000000e+0"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CDLMORNINGSTAR",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Penetration": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "0",
+        "SuggestedStart": "0.000000e+0",
+        "SuggestedEnd": "0.000000e+0",
+        "SuggestedIncrement": "0.000000e+0"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CG",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CHOP",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CHOPTR",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CKSP",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Multiplier": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "2",
+        "SuggestedStart": "5.000000e-1",
+        "SuggestedEnd": "5.000000e+0",
+        "SuggestedIncrement": "5.000000e-1"
+      },
+      "Stop Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CMF",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CMO",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CMOU",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "COPPOCK",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "WMA Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "ROC-1 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "ROC-2 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CORREL",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CRSI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "20",
+        "SuggestedIncrement": "1"
+      },
+      "Streak Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "20",
+        "SuggestedIncrement": "1"
+      },
+      "Rank Period": {
+        "Minimum": "2",
+        "Maximum": "10000",
+        "SuggestedStart": "20",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "20"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CTI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "5",
+        "SuggestedEnd": "50",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "CVI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "ROC Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "DEMA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "DONCHIAN",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "DOSC",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "First Smoothing Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "50",
+        "SuggestedIncrement": "1"
+      },
+      "Second Smoothing Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "50",
+        "SuggestedIncrement": "1"
+      },
+      "Signal Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "50",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "DPO",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "10",
+        "SuggestedEnd": "60",
+        "SuggestedIncrement": "5"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "DX",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "EFI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "EMA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "EMV",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Volume Divisor": {
+        "Minimum": "1.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "0",
+        "SuggestedStart": "0.000000e+0",
+        "SuggestedEnd": "0.000000e+0",
+        "SuggestedIncrement": "0.000000e+0"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ER",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "100",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ERI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "FISHER",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "5",
+        "SuggestedEnd": "50",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "FOSC",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "FRACTAL",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Left Bars": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "10",
+        "SuggestedIncrement": "1"
+      },
+      "Right Bars": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "10",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "FRAMA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "2"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "HMA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "IMI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "KAMA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "KC",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "ATR Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Deviations": {
+        "Minimum": "-3.000000e+37",
+        "Maximum": "3.000000e+37",
+        "Precision": "2",
+        "SuggestedStart": "1.000000e+0",
+        "SuggestedEnd": "3.000000e+0",
+        "SuggestedIncrement": "5.000000e-1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "KDJ",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Fast-K Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Slow-K Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Slow-D Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "KST",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "ROC-1 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "ROC-2 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "ROC-3 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "ROC-4 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "SMA-1 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "SMA-2 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "SMA-3 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "SMA-4 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Signal Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "KSTEXT",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "ROC-1 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "ROC-2 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "ROC-3 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "ROC-4 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "MA-1 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "MA-2 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "MA-3 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "MA-4 Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Signal Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "KURTOSIS",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "4",
+        "Maximum": "10000",
+        "SuggestedStart": "10",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "5"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "LINEARREG",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "LINEARREG_ANGLE",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "LINEARREG_INTERCEPT",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "LINEARREG_SLOPE",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "MA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "MACD",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Fast Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Slow Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Signal Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "MACDEXT",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Fast Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Slow Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Signal Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "MACDFIX",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Signal Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "MAMA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Fast Limit": {
+        "Minimum": "1.000000e-2",
+        "Maximum": "9.900000e-1",
+        "Precision": "2",
+        "SuggestedStart": "2.100000e-1",
+        "SuggestedEnd": "8.000000e-1",
+        "SuggestedIncrement": "1.000000e-2"
+      },
+      "Slow Limit": {
+        "Minimum": "1.000000e-2",
+        "Maximum": "9.900000e-1",
+        "Precision": "2",
+        "SuggestedStart": "1.000000e-2",
+        "SuggestedEnd": "6.000000e-1",
+        "SuggestedIncrement": "1.000000e-2"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "MASSI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Fast Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "50",
+        "SuggestedIncrement": "1"
+      },
+      "Slow Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "10",
+        "SuggestedEnd": "50",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "MAVP",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Minimum Period": {
+        "Minimum": "1",
+        "Maximum": "10000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Maximum Period": {
+        "Minimum": "1",
+        "Maximum": "10000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "MCGD",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "MEDIAN",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "10000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "MFI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "MIDPOINT",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "MIDPRICE",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "MINUS_DI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "MINUS_DM",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "MOM",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "NATR",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "PERCENTB",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Deviations up": {
+        "Minimum": "-3.000000e+37",
+        "Maximum": "3.000000e+37",
+        "Precision": "2",
+        "SuggestedStart": "-2.000000e+0",
+        "SuggestedEnd": "2.000000e+0",
+        "SuggestedIncrement": "2.000000e-1"
+      },
+      "Deviations down": {
+        "Minimum": "-3.000000e+37",
+        "Maximum": "3.000000e+37",
+        "Precision": "2",
+        "SuggestedStart": "-2.000000e+0",
+        "SuggestedEnd": "2.000000e+0",
+        "SuggestedIncrement": "2.000000e-1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "PERCENTILE",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "10000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Percentile": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "1.000000e+2",
+        "Precision": "2",
+        "SuggestedStart": "1.000000e+1",
+        "SuggestedEnd": "9.000000e+1",
+        "SuggestedIncrement": "5.000000e+0"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "PERCENTRANK",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "10000",
+        "SuggestedStart": "20",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "20"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "PLUS_DI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "PLUS_DM",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "PPO",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Fast Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Slow Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "PSO",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Fast-K Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "EMA Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "PVO",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Fast Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Slow Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "QSTICK",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "RMA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ROC",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ROCP",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ROCR",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ROCR100",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ROGERSSATCHELL",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Annualization": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "2",
+        "SuggestedStart": "1.000000e+0",
+        "SuggestedEnd": "3.650000e+2",
+        "SuggestedIncrement": "1.000000e+0"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "RSI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "RVI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "StdDev Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "RVIR",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "StdDev Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "RVOL",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "SAR",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Acceleration Factor": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "4",
+        "SuggestedStart": "1.000000e-2",
+        "SuggestedEnd": "2.000000e-1",
+        "SuggestedIncrement": "1.000000e-2"
+      },
+      "AF Maximum": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "4",
+        "SuggestedStart": "2.000000e-1",
+        "SuggestedEnd": "4.000000e-1",
+        "SuggestedIncrement": "1.000000e-2"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "SAREXT",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Start Value": {
+        "Minimum": "-3.000000e+37",
+        "Maximum": "3.000000e+37",
+        "Precision": "4",
+        "SuggestedStart": "0.000000e+0",
+        "SuggestedEnd": "0.000000e+0",
+        "SuggestedIncrement": "0.000000e+0"
+      },
+      "Offset on Reverse": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "4",
+        "SuggestedStart": "1.000000e-2",
+        "SuggestedEnd": "1.500000e-1",
+        "SuggestedIncrement": "1.000000e-2"
+      },
+      "AF Init Long": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "4",
+        "SuggestedStart": "1.000000e-2",
+        "SuggestedEnd": "1.900000e-1",
+        "SuggestedIncrement": "1.000000e-2"
+      },
+      "AF Long": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "4",
+        "SuggestedStart": "1.000000e-2",
+        "SuggestedEnd": "2.000000e-1",
+        "SuggestedIncrement": "1.000000e-2"
+      },
+      "AF Max Long": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "4",
+        "SuggestedStart": "2.000000e-1",
+        "SuggestedEnd": "4.000000e-1",
+        "SuggestedIncrement": "1.000000e-2"
+      },
+      "AF Init Short": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "4",
+        "SuggestedStart": "1.000000e-2",
+        "SuggestedEnd": "1.900000e-1",
+        "SuggestedIncrement": "1.000000e-2"
+      },
+      "AF Short": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "4",
+        "SuggestedStart": "1.000000e-2",
+        "SuggestedEnd": "2.000000e-1",
+        "SuggestedIncrement": "1.000000e-2"
+      },
+      "AF Max Short": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "4",
+        "SuggestedStart": "2.000000e-1",
+        "SuggestedEnd": "4.000000e-1",
+        "SuggestedIncrement": "1.000000e-2"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "SI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Limit Move": {
+        "Minimum": "1.000000e-8",
+        "Maximum": "3.000000e+37",
+        "Precision": "4",
+        "SuggestedStart": "5.000000e-1",
+        "SuggestedEnd": "3.000000e+1",
+        "SuggestedIncrement": "5.000000e-1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "SMA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "SMI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Fast Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Slow Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Signal Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "STC",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Fast Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Slow Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Cycle Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "STDDEV",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Deviations": {
+        "Minimum": "-3.000000e+37",
+        "Maximum": "3.000000e+37",
+        "Precision": "2",
+        "SuggestedStart": "-2.000000e+0",
+        "SuggestedEnd": "2.000000e+0",
+        "SuggestedIncrement": "2.000000e-1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "STOCH",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Fast-K Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Slow-K Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Slow-D Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "STOCHF",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Fast-K Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Fast-D Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "STOCHRSI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Fast-K Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Fast-D Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "SUPERTREND",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Multiplier": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "3.000000e+37",
+        "Precision": "1",
+        "SuggestedStart": "1.000000e+0",
+        "SuggestedEnd": "4.000000e+0",
+        "SuggestedIncrement": "5.000000e-1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "SWAK_2PHP",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "10000",
+        "SuggestedStart": "5",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "SWAK_BP",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "5",
+        "Maximum": "2000",
+        "SuggestedStart": "5",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Delta": {
+        "Minimum": "5.000000e-2",
+        "Maximum": "5.000000e-1",
+        "Precision": "2",
+        "SuggestedStart": "5.000000e-2",
+        "SuggestedEnd": "5.000000e-1",
+        "SuggestedIncrement": "5.000000e-2"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "SWAK_BUTTER",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "10000",
+        "SuggestedStart": "5",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "SWAK_GAUSS",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "10000",
+        "SuggestedStart": "5",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "SWAK_HP",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "5",
+        "Maximum": "100000",
+        "SuggestedStart": "5",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "T3",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Volume Factor": {
+        "Minimum": "0.000000e+0",
+        "Maximum": "1.000000e+0",
+        "Precision": "2",
+        "SuggestedStart": "1.000000e-2",
+        "SuggestedEnd": "1.000000e+0",
+        "SuggestedIncrement": "5.000000e-2"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "TEMA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "TRIMA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "TRIX",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "TSF",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "TSI",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "First Smoothing Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "100",
+        "SuggestedIncrement": "1"
+      },
+      "Second Smoothing Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "50",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ULTOSC",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "First Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Second Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Third Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "VAR",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Deviations": {
+        "Minimum": "-3.000000e+37",
+        "Maximum": "3.000000e+37",
+        "Precision": "2",
+        "SuggestedStart": "-2.000000e+0",
+        "SuggestedEnd": "2.000000e+0",
+        "SuggestedIncrement": "2.000000e-1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "VHF",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "14",
+        "SuggestedEnd": "56",
+        "SuggestedIncrement": "7"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "VIDYA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "CMO Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "VORTEX",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "VWMA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "WAVETREND",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Channel Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "2",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Average Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      },
+      "Signal Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "50",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "WILLR",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "2",
+        "Maximum": "100000",
+        "SuggestedStart": "4",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "WMA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "ZLEMA",
+    "implementation": "TA-Lib",
+    "ranges": {
+      "Time Period": {
+        "Minimum": "1",
+        "Maximum": "100000",
+        "SuggestedStart": "1",
+        "SuggestedEnd": "200",
+        "SuggestedIncrement": "1"
+      }
+    },
+    "meaning": "مسموح برمجيًا؛ لا يثبت أن جميع القيم مستخدمة أو موصى بها."
+  },
+  {
+    "family": "HurstExponent",
+    "implementation": "PhenLabs Hurst Exponent Oscillator",
+    "ranges": {
+      "lookback": [
+        10,
+        300
+      ],
+      "smoothing_length": [
+        1,
+        50
+      ]
+    },
+    "meaning": "حدود مدعومة؛ ليست حصرًا للقيم المستخدمة."
+  }
+]

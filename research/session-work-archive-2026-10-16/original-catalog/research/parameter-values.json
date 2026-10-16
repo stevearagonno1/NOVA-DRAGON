@@ -1,0 +1,2533 @@
+[
+  {
+    "family": "SMA",
+    "implementation": "tv_ratings",
+    "parameters": {
+      "length": [
+        10,
+        100,
+        20,
+        200,
+        30,
+        50
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "EMA",
+    "implementation": "tv_ratings",
+    "parameters": {
+      "length": [
+        10,
+        100,
+        20,
+        200,
+        30,
+        50
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "HullMA",
+    "implementation": "tv_ratings",
+    "parameters": {
+      "length": [
+        9
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "VWMA",
+    "implementation": "tv_ratings",
+    "parameters": {
+      "length": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "Ichimoku",
+    "implementation": "tv_ratings",
+    "parameters": {
+      "conversion": [
+        9
+      ],
+      "base": [
+        26
+      ],
+      "span_b": [
+        52
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "RSI",
+    "implementation": "tv_ratings",
+    "parameters": {
+      "length": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "Stochastic",
+    "implementation": "tv_ratings",
+    "parameters": {
+      "length": [
+        14
+      ],
+      "k_smoothing": [
+        3
+      ],
+      "d_smoothing": [
+        3
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CCI",
+    "implementation": "tv_ratings",
+    "parameters": {
+      "length": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ADX",
+    "implementation": "tv_ratings",
+    "parameters": {
+      "di_length": [
+        14
+      ],
+      "adx_smoothing": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "Momentum",
+    "implementation": "tv_ratings",
+    "parameters": {
+      "length": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MACD",
+    "implementation": "tv_ratings",
+    "parameters": {
+      "fast": [
+        12
+      ],
+      "slow": [
+        26
+      ],
+      "signal": [
+        9
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "StochRSI",
+    "implementation": "tv_ratings",
+    "parameters": {
+      "rsi_length": [
+        14
+      ],
+      "stoch_length": [
+        14
+      ],
+      "k": [
+        3
+      ],
+      "d": [
+        3
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "WilliamsR",
+    "implementation": "tv_ratings",
+    "parameters": {
+      "length": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "BullBearPower",
+    "implementation": "tv_ratings",
+    "parameters": {
+      "length": [
+        13
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "UltimateOscillator",
+    "implementation": "tv_ratings",
+    "parameters": {
+      "short": [
+        7
+      ],
+      "medium": [
+        14
+      ],
+      "long": [
+        28
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "BollingerBands",
+    "implementation": "bollinger_author",
+    "parameters": {
+      "length": [
+        10,
+        20,
+        50
+      ],
+      "deviations": [
+        1.9,
+        2,
+        2.1
+      ],
+      "basis": [
+        "SMA"
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MACD",
+    "implementation": "macd_video",
+    "parameters": {
+      "fast": [
+        5
+      ],
+      "slow": [
+        35
+      ],
+      "signal": [
+        5
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi_video",
+    "parameters": {
+      "length": [
+        2,
+        7
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MACD_SMA_3_10",
+    "implementation": "linda",
+    "parameters": {
+      "fast": [
+        3
+      ],
+      "slow": [
+        10
+      ],
+      "signal": [
+        16
+      ],
+      "oscillator_ma": [
+        "SMA"
+      ],
+      "signal_ma": [
+        "SMA"
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "KeltnerChannels",
+    "implementation": "linda",
+    "parameters": {
+      "basis_length": [
+        20
+      ],
+      "basis": [
+        "EMA"
+      ],
+      "atr_multiplier": [
+        2.5
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ROC",
+    "implementation": "linda",
+    "parameters": {
+      "length": [
+        2
+      ],
+      "timeframe": [
+        "daily"
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ADX",
+    "implementation": "linda",
+    "parameters": {
+      "length": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi_stockcharts",
+    "parameters": {
+      "length": [
+        10,
+        14,
+        2,
+        20
+      ],
+      "lower_level": [
+        20
+      ],
+      "upper_level": [
+        80
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi2",
+    "parameters": {
+      "length": [
+        2
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "KAMA",
+    "implementation": "kama",
+    "parameters": {
+      "er_length": [
+        10
+      ],
+      "fast": [
+        2,
+        5
+      ],
+      "slow": [
+        30
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "KeltnerChannels",
+    "implementation": "keltnerchannels",
+    "parameters": {
+      "basis": [
+        "EMA"
+      ],
+      "basis_length": [
+        20
+      ],
+      "atr_multiplier": [
+        2
+      ],
+      "atr_length": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "DonchianChannels",
+    "implementation": "donchianchannels",
+    "parameters": {
+      "length": [
+        10,
+        20
+      ],
+      "exclude_current_bar": [
+        true
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CMF",
+    "implementation": "cmf",
+    "parameters": {
+      "length": [
+        20,
+        21
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ChaikinOscillator",
+    "implementation": "chaikinoscillator",
+    "parameters": {
+      "fast": [
+        3
+      ],
+      "slow": [
+        10
+      ],
+      "ma": [
+        "EMA"
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ForceIndex",
+    "implementation": "forceindex",
+    "parameters": {
+      "length": [
+        1,
+        13
+      ],
+      "smoothing": [
+        "EMA",
+        "none"
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MFI",
+    "implementation": "mfi",
+    "parameters": {
+      "length": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "Aroon",
+    "implementation": "aroon",
+    "parameters": {
+      "length": [
+        25
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "AroonOscillator",
+    "implementation": "aroonoscillator",
+    "parameters": {
+      "length": [
+        25,
+        75
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "Vortex",
+    "implementation": "vortex",
+    "parameters": {
+      "length": [
+        14,
+        23
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ALMA",
+    "implementation": "tv_alma",
+    "parameters": {
+      "length": [
+        9
+      ],
+      "offset": [
+        0.85
+      ],
+      "sigma": [
+        6
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ATR",
+    "implementation": "tv_atr",
+    "parameters": {
+      "length": [
+        14
+      ],
+      "smoothing": [
+        "EMA",
+        "RMA",
+        "SMA",
+        "WMA"
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ParabolicSAR",
+    "implementation": "tv_sar",
+    "parameters": {
+      "start": [
+        0.02
+      ],
+      "increment": [
+        0.02
+      ],
+      "maximum": [
+        0.2
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "Klinger",
+    "implementation": "tv_klinger",
+    "parameters": {
+      "fast": [
+        34
+      ],
+      "slow": [
+        55
+      ],
+      "signal": [
+        13
+      ],
+      "oscillator_ma": [
+        "EMA"
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ChandelierExit",
+    "implementation": "sc_parameter_reference",
+    "parameters": {
+      "length": [
+        22
+      ],
+      "atr_multiplier": [
+        3
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "DEMA",
+    "implementation": "sc_parameter_reference",
+    "parameters": {
+      "length": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "TEMA",
+    "implementation": "sc_parameter_reference",
+    "parameters": {
+      "length": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "HighestHigh",
+    "implementation": "sc_parameter_reference",
+    "parameters": {
+      "length": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "LowestLow",
+    "implementation": "sc_parameter_reference",
+    "parameters": {
+      "length": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "SMA",
+    "implementation": "sc_parameter_reference",
+    "parameters": {
+      "length": [
+        50
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "SMAEnvelopes",
+    "implementation": "sc_parameter_reference",
+    "parameters": {
+      "length": [
+        20
+      ],
+      "percentage": [
+        2.5
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "EMAEnvelopes",
+    "implementation": "sc_parameter_reference",
+    "parameters": {
+      "length": [
+        20
+      ],
+      "percentage": [
+        2.5
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "Slope",
+    "implementation": "sc_parameter_reference",
+    "parameters": {
+      "length": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "StandardDeviation",
+    "implementation": "sc_parameter_reference",
+    "parameters": {
+      "length": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "StochRSI",
+    "implementation": "sc_parameter_reference",
+    "parameters": {
+      "length": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "TRIX",
+    "implementation": "sc_parameter_reference",
+    "parameters": {
+      "length": [
+        15
+      ],
+      "signal": [
+        9
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "TSI",
+    "implementation": "sc_parameter_reference",
+    "parameters": {
+      "long": [
+        25
+      ],
+      "short": [
+        13
+      ],
+      "signal": [
+        7
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "UlcerIndex",
+    "implementation": "sc_parameter_reference",
+    "parameters": {
+      "length": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "VolumeByPrice",
+    "implementation": "sc_parameter_reference",
+    "parameters": {
+      "zones": [
+        12,
+        4
+      ],
+      "position": [
+        "left",
+        "right"
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "FixedRangeVolumeProfile",
+    "implementation": "dale",
+    "parameters": {
+      "row_layout": [
+        "number_of_rows"
+      ],
+      "rows": [
+        10,
+        100,
+        1000
+      ],
+      "volume": [
+        "total"
+      ],
+      "value_area_percent": [
+        68,
+        70
+      ],
+      "extend_right": [
+        false,
+        true
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "PeriodicVolumeProfile",
+    "implementation": "dale",
+    "parameters": {
+      "period": [
+        "daily",
+        "weekly"
+      ],
+      "volume": [
+        "total"
+      ],
+      "row_layout": [
+        "number_of_rows"
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "VolumeProfile",
+    "implementation": "volume_user",
+    "parameters": {
+      "row_layout": [
+        "number_of_rows"
+      ],
+      "rows": [
+        100,
+        150,
+        200,
+        25,
+        300,
+        400,
+        50,
+        500,
+        75
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "VolumeProfile",
+    "implementation": "cTrader tarantella product3230 v1.0",
+    "parameters": {
+      "ticks_per_row": [
+        5
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "FixedRangeVolumeProfile",
+    "implementation": "tv_fr",
+    "parameters": {
+      "row_layout": [
+        "number_of_rows",
+        "ticks_per_row"
+      ],
+      "rows": [
+        25
+      ],
+      "ticks_per_row": [
+        25
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "FibonacciRetracement",
+    "implementation": "fib_script",
+    "parameters": {
+      "level": [
+        0.236,
+        0.382,
+        0.5,
+        0.618,
+        0.786
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "FibonacciExtension",
+    "implementation": "fib_extension",
+    "parameters": {
+      "level": [
+        0.618,
+        1,
+        1.618
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "AnchoredVWAP",
+    "implementation": "avwap",
+    "parameters": {
+      "anchor_rule": [
+        "earnings",
+        "gap",
+        "session_open",
+        "significant_high",
+        "significant_low"
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "PivotHigh",
+    "implementation": "pivot_example",
+    "parameters": {
+      "left_bars": [
+        10
+      ],
+      "right_bars": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "PivotLow",
+    "implementation": "pivot_example",
+    "parameters": {
+      "left_bars": [
+        10
+      ],
+      "right_bars": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "HurstExponent",
+    "implementation": "hurst",
+    "parameters": {
+      "lookback": [
+        100
+      ],
+      "smoothing": [
+        "EMA"
+      ],
+      "smoothing_length": [
+        5
+      ],
+      "price_source": [
+        "close"
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "FVG",
+    "implementation": "LuxAlgo Price Action Concepts FVG component",
+    "parameters": {
+      "extend_bars": [
+        10
+      ],
+      "volatility_threshold": [
+        0
+      ],
+      "timeframe": [
+        "chart"
+      ],
+      "mitigation": [
+        "average",
+        "close",
+        "wick"
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "WaveTrend",
+    "implementation": "Wickra WaveTrend classic",
+    "parameters": {
+      "channel": [
+        10
+      ],
+      "average": [
+        21
+      ],
+      "signal": [
+        4
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "AC",
+    "implementation": "TA-Lib API AC",
+    "parameters": {
+      "Fast Period": [
+        5
+      ],
+      "Slow Period": [
+        34
+      ],
+      "Signal Period": [
+        5
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ACCBANDS",
+    "implementation": "TA-Lib API ACCBANDS",
+    "parameters": {
+      "Time Period": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ADOSC",
+    "implementation": "TA-Lib API ADOSC",
+    "parameters": {
+      "Fast Period": [
+        3
+      ],
+      "Slow Period": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ADR",
+    "implementation": "TA-Lib API ADR",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ADX",
+    "implementation": "TA-Lib API ADX",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ADXR",
+    "implementation": "TA-Lib API ADXR",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ALMA",
+    "implementation": "TA-Lib API ALMA",
+    "parameters": {
+      "Time Period": [
+        9
+      ],
+      "Sigma": [
+        6
+      ],
+      "Offset": [
+        0.85
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "AO",
+    "implementation": "TA-Lib API AO",
+    "parameters": {
+      "Fast Period": [
+        5
+      ],
+      "Slow Period": [
+        34
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "APO",
+    "implementation": "TA-Lib API APO",
+    "parameters": {
+      "Fast Period": [
+        12
+      ],
+      "Slow Period": [
+        26
+      ],
+      "MA Type": [
+        1
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "AROON",
+    "implementation": "TA-Lib API AROON",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "AROONOSC",
+    "implementation": "TA-Lib API AROONOSC",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ASI",
+    "implementation": "TA-Lib API ASI",
+    "parameters": {
+      "Limit Move": [
+        3
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ATR",
+    "implementation": "TA-Lib API ATR",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "BBANDS",
+    "implementation": "TA-Lib API BBANDS",
+    "parameters": {
+      "Time Period": [
+        20
+      ],
+      "Deviations up": [
+        2
+      ],
+      "Deviations down": [
+        2
+      ],
+      "MA Type": [
+        0
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "BBW",
+    "implementation": "TA-Lib API BBW",
+    "parameters": {
+      "Time Period": [
+        20
+      ],
+      "Deviations up": [
+        2
+      ],
+      "Deviations down": [
+        2
+      ],
+      "MA Type": [
+        0
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "BETA",
+    "implementation": "TA-Lib API BETA",
+    "parameters": {
+      "Time Period": [
+        5
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CCI",
+    "implementation": "TA-Lib API CCI",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CDLABANDONEDBABY",
+    "implementation": "TA-Lib API CDLABANDONEDBABY",
+    "parameters": {
+      "Penetration": [
+        0.3
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CDLDARKCLOUDCOVER",
+    "implementation": "TA-Lib API CDLDARKCLOUDCOVER",
+    "parameters": {
+      "Penetration": [
+        0.5
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CDLEVENINGDOJISTAR",
+    "implementation": "TA-Lib API CDLEVENINGDOJISTAR",
+    "parameters": {
+      "Penetration": [
+        0.3
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CDLEVENINGSTAR",
+    "implementation": "TA-Lib API CDLEVENINGSTAR",
+    "parameters": {
+      "Penetration": [
+        0.3
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CDLMATHOLD",
+    "implementation": "TA-Lib API CDLMATHOLD",
+    "parameters": {
+      "Penetration": [
+        0.5
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CDLMORNINGDOJISTAR",
+    "implementation": "TA-Lib API CDLMORNINGDOJISTAR",
+    "parameters": {
+      "Penetration": [
+        0.3
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CDLMORNINGSTAR",
+    "implementation": "TA-Lib API CDLMORNINGSTAR",
+    "parameters": {
+      "Penetration": [
+        0.3
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CG",
+    "implementation": "TA-Lib API CG",
+    "parameters": {
+      "Time Period": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CHOP",
+    "implementation": "TA-Lib API CHOP",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CHOPTR",
+    "implementation": "TA-Lib API CHOPTR",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CKSP",
+    "implementation": "TA-Lib API CKSP",
+    "parameters": {
+      "Time Period": [
+        10
+      ],
+      "Multiplier": [
+        1
+      ],
+      "Stop Period": [
+        9
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CMF",
+    "implementation": "TA-Lib API CMF",
+    "parameters": {
+      "Time Period": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CMO",
+    "implementation": "TA-Lib API CMO",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CMOU",
+    "implementation": "TA-Lib API CMOU",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "COPPOCK",
+    "implementation": "TA-Lib API COPPOCK",
+    "parameters": {
+      "WMA Period": [
+        10
+      ],
+      "ROC-1 Period": [
+        11
+      ],
+      "ROC-2 Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CORREL",
+    "implementation": "TA-Lib API CORREL",
+    "parameters": {
+      "Time Period": [
+        30
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CRSI",
+    "implementation": "TA-Lib API CRSI",
+    "parameters": {
+      "Time Period": [
+        3
+      ],
+      "Streak Period": [
+        2
+      ],
+      "Rank Period": [
+        100
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CTI",
+    "implementation": "TA-Lib API CTI",
+    "parameters": {
+      "Time Period": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "CVI",
+    "implementation": "TA-Lib API CVI",
+    "parameters": {
+      "Time Period": [
+        10
+      ],
+      "ROC Period": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "DEMA",
+    "implementation": "TA-Lib API DEMA",
+    "parameters": {
+      "Time Period": [
+        30
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "DONCHIAN",
+    "implementation": "TA-Lib API DONCHIAN",
+    "parameters": {
+      "Time Period": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "DOSC",
+    "implementation": "TA-Lib API DOSC",
+    "parameters": {
+      "Time Period": [
+        14
+      ],
+      "First Smoothing Period": [
+        5
+      ],
+      "Second Smoothing Period": [
+        3
+      ],
+      "Signal Period": [
+        9
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "DPO",
+    "implementation": "TA-Lib API DPO",
+    "parameters": {
+      "Time Period": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "DX",
+    "implementation": "TA-Lib API DX",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "EFI",
+    "implementation": "TA-Lib API EFI",
+    "parameters": {
+      "Time Period": [
+        13
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "EMA",
+    "implementation": "TA-Lib API EMA",
+    "parameters": {
+      "Time Period": [
+        30
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "EMV",
+    "implementation": "TA-Lib API EMV",
+    "parameters": {
+      "Time Period": [
+        14
+      ],
+      "Volume Divisor": [
+        10000
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ER",
+    "implementation": "TA-Lib API ER",
+    "parameters": {
+      "Time Period": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ERI",
+    "implementation": "TA-Lib API ERI",
+    "parameters": {
+      "Time Period": [
+        13
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "FISHER",
+    "implementation": "TA-Lib API FISHER",
+    "parameters": {
+      "Time Period": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "FOSC",
+    "implementation": "TA-Lib API FOSC",
+    "parameters": {
+      "Time Period": [
+        5
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "FRACTAL",
+    "implementation": "TA-Lib API FRACTAL",
+    "parameters": {
+      "Left Bars": [
+        2
+      ],
+      "Right Bars": [
+        2
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "FRAMA",
+    "implementation": "TA-Lib API FRAMA",
+    "parameters": {
+      "Time Period": [
+        16
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "HMA",
+    "implementation": "TA-Lib API HMA",
+    "parameters": {
+      "Time Period": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "IMI",
+    "implementation": "TA-Lib API IMI",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "KAMA",
+    "implementation": "TA-Lib API KAMA",
+    "parameters": {
+      "Time Period": [
+        30
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "KC",
+    "implementation": "TA-Lib API KC",
+    "parameters": {
+      "Time Period": [
+        20
+      ],
+      "ATR Period": [
+        10
+      ],
+      "Deviations": [
+        2
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "KDJ",
+    "implementation": "TA-Lib API KDJ",
+    "parameters": {
+      "Fast-K Period": [
+        9
+      ],
+      "Slow-K Period": [
+        3
+      ],
+      "Slow-K MA": [
+        13
+      ],
+      "Slow-D Period": [
+        3
+      ],
+      "Slow-D MA": [
+        13
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "KST",
+    "implementation": "TA-Lib API KST",
+    "parameters": {
+      "ROC-1 Period": [
+        10
+      ],
+      "ROC-2 Period": [
+        15
+      ],
+      "ROC-3 Period": [
+        20
+      ],
+      "ROC-4 Period": [
+        30
+      ],
+      "SMA-1 Period": [
+        10
+      ],
+      "SMA-2 Period": [
+        10
+      ],
+      "SMA-3 Period": [
+        10
+      ],
+      "SMA-4 Period": [
+        15
+      ],
+      "Signal Period": [
+        9
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "KSTEXT",
+    "implementation": "TA-Lib API KSTEXT",
+    "parameters": {
+      "ROC-1 Period": [
+        10
+      ],
+      "ROC-2 Period": [
+        15
+      ],
+      "ROC-3 Period": [
+        20
+      ],
+      "ROC-4 Period": [
+        30
+      ],
+      "MA-1 Period": [
+        10
+      ],
+      "MA-2 Period": [
+        10
+      ],
+      "MA-3 Period": [
+        10
+      ],
+      "MA-4 Period": [
+        15
+      ],
+      "Signal Period": [
+        9
+      ],
+      "ROC MA": [
+        0
+      ],
+      "Signal MA": [
+        0
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "KURTOSIS",
+    "implementation": "TA-Lib API KURTOSIS",
+    "parameters": {
+      "Time Period": [
+        30
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "LINEARREG",
+    "implementation": "TA-Lib API LINEARREG",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "LINEARREG_ANGLE",
+    "implementation": "TA-Lib API LINEARREG_ANGLE",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "LINEARREG_INTERCEPT",
+    "implementation": "TA-Lib API LINEARREG_INTERCEPT",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "LINEARREG_SLOPE",
+    "implementation": "TA-Lib API LINEARREG_SLOPE",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MA",
+    "implementation": "TA-Lib API MA",
+    "parameters": {
+      "Time Period": [
+        30
+      ],
+      "MA Type": [
+        0
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MACD",
+    "implementation": "TA-Lib API MACD",
+    "parameters": {
+      "Fast Period": [
+        12
+      ],
+      "Slow Period": [
+        26
+      ],
+      "Signal Period": [
+        9
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MACDEXT",
+    "implementation": "TA-Lib API MACDEXT",
+    "parameters": {
+      "Fast Period": [
+        12
+      ],
+      "Fast MA": [
+        0
+      ],
+      "Slow Period": [
+        26
+      ],
+      "Slow MA": [
+        0
+      ],
+      "Signal Period": [
+        9
+      ],
+      "Signal MA": [
+        0
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MACDFIX",
+    "implementation": "TA-Lib API MACDFIX",
+    "parameters": {
+      "Signal Period": [
+        9
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MAMA",
+    "implementation": "TA-Lib API MAMA",
+    "parameters": {
+      "Fast Limit": [
+        0.5
+      ],
+      "Slow Limit": [
+        0.05
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MASSI",
+    "implementation": "TA-Lib API MASSI",
+    "parameters": {
+      "Fast Period": [
+        9
+      ],
+      "Slow Period": [
+        25
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MAVP",
+    "implementation": "TA-Lib API MAVP",
+    "parameters": {
+      "Minimum Period": [
+        2
+      ],
+      "Maximum Period": [
+        30
+      ],
+      "MA Type": [
+        0
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MCGD",
+    "implementation": "TA-Lib API MCGD",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MEDIAN",
+    "implementation": "TA-Lib API MEDIAN",
+    "parameters": {
+      "Time Period": [
+        30
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MFI",
+    "implementation": "TA-Lib API MFI",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MIDPOINT",
+    "implementation": "TA-Lib API MIDPOINT",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MIDPRICE",
+    "implementation": "TA-Lib API MIDPRICE",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MINUS_DI",
+    "implementation": "TA-Lib API MINUS_DI",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MINUS_DM",
+    "implementation": "TA-Lib API MINUS_DM",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "MOM",
+    "implementation": "TA-Lib API MOM",
+    "parameters": {
+      "Time Period": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "NATR",
+    "implementation": "TA-Lib API NATR",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "PERCENTB",
+    "implementation": "TA-Lib API PERCENTB",
+    "parameters": {
+      "Time Period": [
+        20
+      ],
+      "Deviations up": [
+        2
+      ],
+      "Deviations down": [
+        2
+      ],
+      "MA Type": [
+        0
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "PERCENTILE",
+    "implementation": "TA-Lib API PERCENTILE",
+    "parameters": {
+      "Time Period": [
+        100
+      ],
+      "Percentile": [
+        50
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "PERCENTRANK",
+    "implementation": "TA-Lib API PERCENTRANK",
+    "parameters": {
+      "Time Period": [
+        100
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "PLUS_DI",
+    "implementation": "TA-Lib API PLUS_DI",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "PLUS_DM",
+    "implementation": "TA-Lib API PLUS_DM",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "PPO",
+    "implementation": "TA-Lib API PPO",
+    "parameters": {
+      "Fast Period": [
+        12
+      ],
+      "Slow Period": [
+        26
+      ],
+      "MA Type": [
+        1
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "PSO",
+    "implementation": "TA-Lib API PSO",
+    "parameters": {
+      "Fast-K Period": [
+        8
+      ],
+      "EMA Period": [
+        5
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "PVO",
+    "implementation": "TA-Lib API PVO",
+    "parameters": {
+      "Fast Period": [
+        12
+      ],
+      "Slow Period": [
+        26
+      ],
+      "MA Type": [
+        1
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "QSTICK",
+    "implementation": "TA-Lib API QSTICK",
+    "parameters": {
+      "Time Period": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "RMA",
+    "implementation": "TA-Lib API RMA",
+    "parameters": {
+      "Time Period": [
+        30
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ROC",
+    "implementation": "TA-Lib API ROC",
+    "parameters": {
+      "Time Period": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ROCP",
+    "implementation": "TA-Lib API ROCP",
+    "parameters": {
+      "Time Period": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ROCR",
+    "implementation": "TA-Lib API ROCR",
+    "parameters": {
+      "Time Period": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ROCR100",
+    "implementation": "TA-Lib API ROCR100",
+    "parameters": {
+      "Time Period": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ROGERSSATCHELL",
+    "implementation": "TA-Lib API ROGERSSATCHELL",
+    "parameters": {
+      "Time Period": [
+        10
+      ],
+      "Annualization": [
+        252
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "RSI",
+    "implementation": "TA-Lib API RSI",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "RVI",
+    "implementation": "TA-Lib API RVI",
+    "parameters": {
+      "Time Period": [
+        14
+      ],
+      "StdDev Period": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "RVIR",
+    "implementation": "TA-Lib API RVIR",
+    "parameters": {
+      "Time Period": [
+        14
+      ],
+      "StdDev Period": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "RVOL",
+    "implementation": "TA-Lib API RVOL",
+    "parameters": {
+      "Time Period": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "SAR",
+    "implementation": "TA-Lib API SAR",
+    "parameters": {
+      "Acceleration Factor": [
+        0.02
+      ],
+      "AF Maximum": [
+        0.2
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "SAREXT",
+    "implementation": "TA-Lib API SAREXT",
+    "parameters": {
+      "Start Value": [
+        0
+      ],
+      "Offset on Reverse": [
+        0
+      ],
+      "AF Init Long": [
+        0.02
+      ],
+      "AF Long": [
+        0.02
+      ],
+      "AF Max Long": [
+        0.2
+      ],
+      "AF Init Short": [
+        0.02
+      ],
+      "AF Short": [
+        0.02
+      ],
+      "AF Max Short": [
+        0.2
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "SI",
+    "implementation": "TA-Lib API SI",
+    "parameters": {
+      "Limit Move": [
+        3
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "SMA",
+    "implementation": "TA-Lib API SMA",
+    "parameters": {
+      "Time Period": [
+        30
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "SMI",
+    "implementation": "TA-Lib API SMI",
+    "parameters": {
+      "Time Period": [
+        13
+      ],
+      "Fast Period": [
+        2
+      ],
+      "Slow Period": [
+        25
+      ],
+      "Signal Period": [
+        9
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "STC",
+    "implementation": "TA-Lib API STC",
+    "parameters": {
+      "Fast Period": [
+        23
+      ],
+      "Slow Period": [
+        50
+      ],
+      "Cycle Period": [
+        10
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "STDDEV",
+    "implementation": "TA-Lib API STDDEV",
+    "parameters": {
+      "Time Period": [
+        5
+      ],
+      "Deviations": [
+        1
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "STOCH",
+    "implementation": "TA-Lib API STOCH",
+    "parameters": {
+      "Fast-K Period": [
+        5
+      ],
+      "Slow-K Period": [
+        3
+      ],
+      "Slow-K MA": [
+        0
+      ],
+      "Slow-D Period": [
+        3
+      ],
+      "Slow-D MA": [
+        0
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "STOCHF",
+    "implementation": "TA-Lib API STOCHF",
+    "parameters": {
+      "Fast-K Period": [
+        5
+      ],
+      "Fast-D Period": [
+        3
+      ],
+      "Fast-D MA": [
+        0
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "STOCHRSI",
+    "implementation": "TA-Lib API STOCHRSI",
+    "parameters": {
+      "Time Period": [
+        14
+      ],
+      "Fast-K Period": [
+        5
+      ],
+      "Fast-D Period": [
+        3
+      ],
+      "Fast-D MA": [
+        0
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "SUPERTREND",
+    "implementation": "TA-Lib API SUPERTREND",
+    "parameters": {
+      "Time Period": [
+        10
+      ],
+      "Multiplier": [
+        3
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "SWAK_2PHP",
+    "implementation": "TA-Lib API SWAK_2PHP",
+    "parameters": {
+      "Time Period": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "SWAK_BP",
+    "implementation": "TA-Lib API SWAK_BP",
+    "parameters": {
+      "Time Period": [
+        20
+      ],
+      "Delta": [
+        0.1
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "SWAK_BUTTER",
+    "implementation": "TA-Lib API SWAK_BUTTER",
+    "parameters": {
+      "Time Period": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "SWAK_GAUSS",
+    "implementation": "TA-Lib API SWAK_GAUSS",
+    "parameters": {
+      "Time Period": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "SWAK_HP",
+    "implementation": "TA-Lib API SWAK_HP",
+    "parameters": {
+      "Time Period": [
+        20
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "T3",
+    "implementation": "TA-Lib API T3",
+    "parameters": {
+      "Time Period": [
+        5
+      ],
+      "Volume Factor": [
+        0.7
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "TEMA",
+    "implementation": "TA-Lib API TEMA",
+    "parameters": {
+      "Time Period": [
+        30
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "TRIMA",
+    "implementation": "TA-Lib API TRIMA",
+    "parameters": {
+      "Time Period": [
+        30
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "TRIX",
+    "implementation": "TA-Lib API TRIX",
+    "parameters": {
+      "Time Period": [
+        30
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "TSF",
+    "implementation": "TA-Lib API TSF",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "TSI",
+    "implementation": "TA-Lib API TSI",
+    "parameters": {
+      "First Smoothing Period": [
+        25
+      ],
+      "Second Smoothing Period": [
+        13
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ULTOSC",
+    "implementation": "TA-Lib API ULTOSC",
+    "parameters": {
+      "First Period": [
+        7
+      ],
+      "Second Period": [
+        14
+      ],
+      "Third Period": [
+        28
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "VAR",
+    "implementation": "TA-Lib API VAR",
+    "parameters": {
+      "Time Period": [
+        5
+      ],
+      "Deviations": [
+        1
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "VHF",
+    "implementation": "TA-Lib API VHF",
+    "parameters": {
+      "Time Period": [
+        28
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "VIDYA",
+    "implementation": "TA-Lib API VIDYA",
+    "parameters": {
+      "Time Period": [
+        12
+      ],
+      "CMO Period": [
+        9
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "VORTEX",
+    "implementation": "TA-Lib API VORTEX",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "VWMA",
+    "implementation": "TA-Lib API VWMA",
+    "parameters": {
+      "Time Period": [
+        30
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "WAVETREND",
+    "implementation": "TA-Lib API WAVETREND",
+    "parameters": {
+      "Channel Period": [
+        10
+      ],
+      "Average Period": [
+        21
+      ],
+      "Signal Period": [
+        4
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "WILLR",
+    "implementation": "TA-Lib API WILLR",
+    "parameters": {
+      "Time Period": [
+        14
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "WMA",
+    "implementation": "TA-Lib API WMA",
+    "parameters": {
+      "Time Period": [
+        30
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  },
+  {
+    "family": "ZLEMA",
+    "implementation": "TA-Lib API ZLEMA",
+    "parameters": {
+      "Time Period": [
+        30
+      ]
+    },
+    "warning": "اتحاد قيم موثقة؛ لا تُضرب في بعضها لإنشاء وصفات منسوبة للمصادر."
+  }
+]

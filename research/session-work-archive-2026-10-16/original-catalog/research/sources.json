@@ -1,0 +1,212 @@
+[
+  {
+    "id": "tv_ratings",
+    "url": "https://www.tradingview.com/support/solutions/43000614331-technical-ratings/",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "bollinger_author",
+    "url": "https://www.bollingerbands.com/bollinger-band-rules",
+    "kind": "indicator_author",
+    "evidence": "read_document"
+  },
+  {
+    "id": "macd_video",
+    "url": "https://www.youtube.com/watch?v=FIjH7aObQ20",
+    "kind": "youtube_creator",
+    "evidence": "indexed_title_and_description"
+  },
+  {
+    "id": "rsi_video",
+    "url": "https://www.youtube.com/watch?v=kEPnHPzRZHE",
+    "kind": "youtube_creator",
+    "evidence": "indexed_title_and_description"
+  },
+  {
+    "id": "linda",
+    "url": "https://lindaraschke.net/wp-content/uploads/2026/03/raschke_pt2_0304.pdf",
+    "kind": "indicator_author",
+    "evidence": "read_pdf_text"
+  },
+  {
+    "id": "rsi_stockcharts",
+    "url": "https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/relative-strength-index-rsi",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "rsi2",
+    "url": "https://chartschool.stockcharts.com/table-of-contents/trading-strategies-and-models/trading-strategies/rsi-2",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "kama",
+    "url": "https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-overlays/kaufmans-adaptive-moving-average-kama",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "keltnerchannels",
+    "url": "https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-overlays/keltner-channels",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "donchianchannels",
+    "url": "https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-overlays/price-channels",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "cmf",
+    "url": "https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/chaikin-money-flow-cmf",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "chaikinoscillator",
+    "url": "https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/chaikin-oscillator",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "forceindex",
+    "url": "https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/force-index",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "mfi",
+    "url": "https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/money-flow-index-mfi",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "aroon",
+    "url": "https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/aroon",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "aroonoscillator",
+    "url": "https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/aroon-oscillator",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "vortex",
+    "url": "https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-indicators/vortex-indicator",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "tv_alma",
+    "url": "https://www.tradingview.com/support/solutions/43000594683-arnaud-legoux-moving-average/",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "tv_atr",
+    "url": "https://www.tradingview.com/support/solutions/43000501823-average-true-range-atr/",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "tv_sar",
+    "url": "https://www.tradingview.com/support/solutions/43000502597-parabolic-sar-sar/",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "tv_klinger",
+    "url": "https://www.tradingview.com/support/solutions/43000589157-klinger-oscillator/",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "sc_parameter_reference",
+    "url": "https://help.stockcharts.com/charts-and-tools/sharpcharts/sharpcharts-workbench/editing-sharpcharts/sharpcharts-parameter-reference",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "dale",
+    "url": "https://www.trader-dale.com/how-to-set-up-volume-profile-in-tradingview-5th-feb-26/",
+    "kind": "indicator_author",
+    "evidence": "read_creator_published_transcript"
+  },
+  {
+    "id": "volume_user",
+    "url": "https://www.reddit.com/r/Daytrading/comments/11efsdd",
+    "kind": "firsthand_user_report",
+    "evidence": "indexed_post"
+  },
+  {
+    "id": "ctrader_vp",
+    "url": "https://ctrader.com/products/3230",
+    "kind": "implementation_author",
+    "evidence": "read_document"
+  },
+  {
+    "id": "tv_fr",
+    "url": "https://in.tradingview.com/support/solutions/43000707985-fixed-range-volume-profile-drawing-tool/",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "fib_script",
+    "url": "https://www.tradingview.com/script/LC4O0CKX-Fibonacci-Retracement-Channel-FEELS/",
+    "kind": "implementation_author",
+    "evidence": "read_document"
+  },
+  {
+    "id": "fib_extension",
+    "url": "https://www.tradingview.com/support/solutions/43000518137-trend-based-fib-extension-drawing-tool/",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "avwap",
+    "url": "https://chartschool.stockcharts.com/table-of-contents/technical-indicators-and-overlays/technical-overlays/anchored-vwap",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "pivot_example",
+    "url": "https://www.tradingview.com/pine-script-docs/v4/essential/drawings/",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "candles",
+    "url": "https://chartschool.stockcharts.com/table-of-contents/chart-analysis/candlestick-charts/candlestick-bullish-reversal-patterns",
+    "kind": "official_document",
+    "evidence": "read_document"
+  },
+  {
+    "id": "hurst",
+    "url": "https://www.tradingview.com/script/Cgl8VpCf-Hurst-Exponent-Oscillator-PhenLabs/",
+    "kind": "implementation_author",
+    "evidence": "read_document"
+  },
+  {
+    "id": "lux_settings",
+    "url": "https://docs.luxalgo.com/platform/algos/price-action-concepts/settings",
+    "kind": "implementation_author",
+    "evidence": "read_document"
+  },
+  {
+    "id": "wavetrend",
+    "url": "https://docs.wickra.org/Indicators/Indicator-WaveTrend",
+    "kind": "implementation_author",
+    "evidence": "read_document"
+  },
+  {
+    "id": "talib_api",
+    "url": "https://github.com/TA-Lib/ta-lib/blob/main/ta_func_api.xml",
+    "kind": "official_api_metadata",
+    "evidence": "workspace_copy_retrieved_2026-10-11"
+  }
+]

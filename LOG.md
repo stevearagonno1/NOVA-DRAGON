@@ -969,3 +969,9 @@ Evidence: `research/btc-comprehensive-entry-2026-10-15/repairs-round2/REPAIR-STA
 الناتج: اجتازت الفحوص المحدودة402مقارنة بادئة و4320موضع حساب عشري و2880مقارنة شموع؛ اكتمل ربط536سلسلة بأربع فريمات و391280صف حالة، وتطابقت113907إشارات اصطناعية مع ملخصها؛ لا نتائج سوق أو مراجعة مستقلة لكل صيغة.
 التالي: استكمال بقية مصادر المكتبة والتعريفات ومراجعتها ضمن المحرك نفسه؛ الورقة النهائية لجميع المصادر غير جاهزة بعد.
 Package and limits: `research/btc-comprehensive-entry-2026-10-15/independent-engine/README.md`.
+
+
+## 2026-10-16 — Owner catalog recovered and session work archived
+
+Owner identified NOVA-all-originals-and-independent-versions.zip as the missing millions catalog and explicitly authorised uploading all conversation work. Preserve original owner ZIP byte-for-byte. Its 12 manifest hashes and SQLite quick_check pass; actual individual_parameter_variants view count17,800,618 vs original summary17,781,680, difference18,938. Base versions1,425; volume_versions96,950; these are catalog records, not unique validated indicators or market test counts. Preserve original summary; correction is separate. The134-identity engine is a partial synthetic preparation, not replacement coverage. Publish proposed729-state dictionary on1/5/15/60m, full work plan, auditable workspace snapshot/duplicate map, public code/evidence and source references. Credential papers and dependencies are excluded; public credential redactions and damaged archives are disclosed. No new market experiment, all-variant readiness, adoption, main write, merge or PR. Start at research/session-work-archive-2026-10-16/README_AR.md. Next: reconcile full catalog definitions with existing executable calculations before a comprehensive ready paper.
+

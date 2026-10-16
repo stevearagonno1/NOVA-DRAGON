@@ -1,0 +1,5051 @@
+[
+  {
+    "family": "SMA",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 10
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-2ba070b0f21b2f"
+  },
+  {
+    "family": "SMA",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 20
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-a4a360d74bf931"
+  },
+  {
+    "family": "SMA",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 30
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-699fb504b0b317"
+  },
+  {
+    "family": "SMA",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 50
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-dec487e69ccb00"
+  },
+  {
+    "family": "SMA",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 100
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-e855c56c9f865a"
+  },
+  {
+    "family": "SMA",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 200
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-4339299b398fe5"
+  },
+  {
+    "family": "EMA",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 10
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-58f0ae0e770266"
+  },
+  {
+    "family": "EMA",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 20
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-ae2eb0bcd849df"
+  },
+  {
+    "family": "EMA",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 30
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-e3a59031ba39fd"
+  },
+  {
+    "family": "EMA",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 50
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-702c2da5388730"
+  },
+  {
+    "family": "EMA",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 100
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-1d43f50f8fe380"
+  },
+  {
+    "family": "EMA",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 200
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-0bccb112e9ebfa"
+  },
+  {
+    "family": "HullMA",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 9
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-60ed9fa0eeaa59"
+  },
+  {
+    "family": "VWMA",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 20
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-916174302e3313"
+  },
+  {
+    "family": "Ichimoku",
+    "implementation": "tv_ratings",
+    "settings": {
+      "conversion": 9,
+      "base": 26,
+      "span_b": 52
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-4cb1903a14f808"
+  },
+  {
+    "family": "RSI",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 14
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-9d12b5411efa8e"
+  },
+  {
+    "family": "Stochastic",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 14,
+      "k_smoothing": 3,
+      "d_smoothing": 3
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-87638c599ef06b"
+  },
+  {
+    "family": "CCI",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 20
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-e54093628aa2d6"
+  },
+  {
+    "family": "ADX",
+    "implementation": "tv_ratings",
+    "settings": {
+      "di_length": 14,
+      "adx_smoothing": 14
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-54019f12390426"
+  },
+  {
+    "family": "Momentum",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 10
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-80d0acd6359c03"
+  },
+  {
+    "family": "MACD",
+    "implementation": "tv_ratings",
+    "settings": {
+      "fast": 12,
+      "slow": 26,
+      "signal": 9
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-2c1ba549b57d98"
+  },
+  {
+    "family": "StochRSI",
+    "implementation": "tv_ratings",
+    "settings": {
+      "rsi_length": 14,
+      "stoch_length": 14,
+      "k": 3,
+      "d": 3
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-1e35db442d4d25"
+  },
+  {
+    "family": "WilliamsR",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 14
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-053faf01726a21"
+  },
+  {
+    "family": "BullBearPower",
+    "implementation": "tv_ratings",
+    "settings": {
+      "length": 13
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-0364021b514126"
+  },
+  {
+    "family": "UltimateOscillator",
+    "implementation": "tv_ratings",
+    "settings": {
+      "short": 7,
+      "medium": 14,
+      "long": 28
+    },
+    "condition": null,
+    "classification": "individual_component_from_documentation",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "مكوّن منفرد مستخرج؛ ليس مؤشر التقييم المركب.",
+    "standalone_performance_tested": false,
+    "id": "P-1489c3056d8558"
+  },
+  {
+    "family": "RSI",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "field": "RSI",
+      "operator": "<",
+      "value": 30
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "شرط مستقل؛ اتجاهه كما ورد بالمصدر ولا يضمن بداية الصعود.",
+    "standalone_performance_tested": false,
+    "id": "P-e42435b9d12da6"
+  },
+  {
+    "family": "RSI",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "field": "RSI",
+      "operator": ">",
+      "value": 70
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "شرط مستقل؛ اتجاهه كما ورد بالمصدر ولا يضمن بداية الصعود.",
+    "standalone_performance_tested": false,
+    "id": "P-36d931a18f2330"
+  },
+  {
+    "family": "Stochastic",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "field": "K",
+      "operator": "<",
+      "value": 20
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "شرط مستقل؛ اتجاهه كما ورد بالمصدر ولا يضمن بداية الصعود.",
+    "standalone_performance_tested": false,
+    "id": "P-5b4c8da1c9f8cc"
+  },
+  {
+    "family": "Stochastic",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "field": "D",
+      "operator": "<",
+      "value": 20
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "شرط مستقل؛ اتجاهه كما ورد بالمصدر ولا يضمن بداية الصعود.",
+    "standalone_performance_tested": false,
+    "id": "P-213832faf5a69b"
+  },
+  {
+    "family": "Stochastic",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "field": "K",
+      "operator": ">",
+      "value": 80
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "شرط مستقل؛ اتجاهه كما ورد بالمصدر ولا يضمن بداية الصعود.",
+    "standalone_performance_tested": false,
+    "id": "P-86799510fc33d0"
+  },
+  {
+    "family": "CCI",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "field": "CCI",
+      "operator": "<",
+      "value": -100
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "شرط مستقل؛ اتجاهه كما ورد بالمصدر ولا يضمن بداية الصعود.",
+    "standalone_performance_tested": false,
+    "id": "P-75003bbf24b9e7"
+  },
+  {
+    "family": "CCI",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "field": "CCI",
+      "operator": ">",
+      "value": 100
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "شرط مستقل؛ اتجاهه كما ورد بالمصدر ولا يضمن بداية الصعود.",
+    "standalone_performance_tested": false,
+    "id": "P-1853dccf20b00f"
+  },
+  {
+    "family": "ADX",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "field": "ADX",
+      "operator": ">",
+      "value": 20
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "شرط مستقل؛ اتجاهه كما ورد بالمصدر ولا يضمن بداية الصعود.",
+    "standalone_performance_tested": false,
+    "id": "P-228483be0eae22"
+  },
+  {
+    "family": "WilliamsR",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "field": "WilliamsR",
+      "operator": "<",
+      "value": -80
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "شرط مستقل؛ اتجاهه كما ورد بالمصدر ولا يضمن بداية الصعود.",
+    "standalone_performance_tested": false,
+    "id": "P-3df89fb4021677"
+  },
+  {
+    "family": "WilliamsR",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "field": "WilliamsR",
+      "operator": ">",
+      "value": -20
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "شرط مستقل؛ اتجاهه كما ورد بالمصدر ولا يضمن بداية الصعود.",
+    "standalone_performance_tested": false,
+    "id": "P-8eec0f3d352efa"
+  },
+  {
+    "family": "UltimateOscillator",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "field": "UO",
+      "operator": ">",
+      "value": 70
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "شرط مستقل؛ اتجاهه كما ورد بالمصدر ولا يضمن بداية الصعود.",
+    "standalone_performance_tested": false,
+    "id": "P-36855b66f0c77d"
+  },
+  {
+    "family": "UltimateOscillator",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "field": "UO",
+      "operator": "<",
+      "value": 30
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "شرط مستقل؛ اتجاهه كما ورد بالمصدر ولا يضمن بداية الصعود.",
+    "standalone_performance_tested": false,
+    "id": "P-abc19a9af8f1b2"
+  },
+  {
+    "family": "RSI",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "event": "rising"
+    },
+    "classification": "individual_condition",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-bd916e49756bf1"
+  },
+  {
+    "family": "CCI",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "event": "rising"
+    },
+    "classification": "individual_condition",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-3c11f3a747a584"
+  },
+  {
+    "family": "ADX",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "event": "rising"
+    },
+    "classification": "individual_condition",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-9f5af9e4878b3a"
+  },
+  {
+    "family": "MACD",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "event": "main_above_signal"
+    },
+    "classification": "individual_condition",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-54eaca004a3279"
+  },
+  {
+    "family": "Stochastic",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "event": "K_above_D"
+    },
+    "classification": "individual_condition",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-c7c474b8b1f90d"
+  },
+  {
+    "family": "DMI",
+    "implementation": "tv_ratings",
+    "settings": {},
+    "condition": {
+      "event": "plus_DI_above_minus_DI"
+    },
+    "classification": "individual_condition",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_ratings"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-bc8039a03657d5"
+  },
+  {
+    "family": "BollingerBands",
+    "implementation": "bollinger_author",
+    "settings": {
+      "length": 10,
+      "deviations": 1.9,
+      "basis": "SMA"
+    },
+    "condition": null,
+    "classification": "author_documented_recipe",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "bollinger_author"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-c3db601c5536ea"
+  },
+  {
+    "family": "BollingerBands",
+    "implementation": "bollinger_author",
+    "settings": {
+      "length": 20,
+      "deviations": 2,
+      "basis": "SMA"
+    },
+    "condition": null,
+    "classification": "author_documented_recipe",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "bollinger_author"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-fa5c3d2d75088d"
+  },
+  {
+    "family": "BollingerBands",
+    "implementation": "bollinger_author",
+    "settings": {
+      "length": 50,
+      "deviations": 2.1,
+      "basis": "SMA"
+    },
+    "condition": null,
+    "classification": "author_documented_recipe",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "bollinger_author"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-a7912b798d20e8"
+  },
+  {
+    "family": "MACD",
+    "implementation": "macd_video",
+    "settings": {
+      "fast": 5,
+      "slow": 35,
+      "signal": 5
+    },
+    "condition": null,
+    "classification": "youtube_reported_recipe",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "macd_video"
+    ],
+    "note": "نوع المتوسط غير مثبت؛ لم تتم مشاهدة الفيديو كاملًا.",
+    "standalone_performance_tested": false,
+    "id": "P-d4c294893eeccd"
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi_video",
+    "settings": {
+      "length": 2
+    },
+    "condition": null,
+    "classification": "youtube_reported_recipe",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "rsi_video"
+    ],
+    "note": "كل فترة منفصلة. المصدر يذكر 1 و5 دقائق؛ المستويات الأخرى غير مثبتة.",
+    "standalone_performance_tested": false,
+    "id": "P-6a06aa3b968297"
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi_video",
+    "settings": {
+      "length": 7
+    },
+    "condition": null,
+    "classification": "youtube_reported_recipe",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "rsi_video"
+    ],
+    "note": "كل فترة منفصلة. المصدر يذكر 1 و5 دقائق؛ المستويات الأخرى غير مثبتة.",
+    "standalone_performance_tested": false,
+    "id": "P-57218a6941efa0"
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi_video",
+    "settings": {},
+    "condition": {
+      "field": "RSI",
+      "operator": "level",
+      "value": 50
+    },
+    "classification": "youtube_reported_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "rsi_video"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-6bfc0824ca749f"
+  },
+  {
+    "family": "MACD_SMA_3_10",
+    "implementation": "linda",
+    "settings": {
+      "fast": 3,
+      "slow": 10,
+      "signal": 16,
+      "oscillator_ma": "SMA",
+      "signal_ma": "SMA"
+    },
+    "condition": null,
+    "classification": "author_used_recipe",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "linda"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-26c35ae02b22d5"
+  },
+  {
+    "family": "KeltnerChannels",
+    "implementation": "linda",
+    "settings": {
+      "basis_length": 20,
+      "basis": "EMA",
+      "atr_multiplier": 2.5
+    },
+    "condition": null,
+    "classification": "author_used_recipe",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "linda"
+    ],
+    "note": "فترة ATR غير محددة بالمقتطف.",
+    "standalone_performance_tested": false,
+    "id": "P-dea449674a875b"
+  },
+  {
+    "family": "ROC",
+    "implementation": "linda",
+    "settings": {
+      "length": 2,
+      "timeframe": "daily"
+    },
+    "condition": null,
+    "classification": "author_used_recipe",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "linda"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-accbae8a3c0998"
+  },
+  {
+    "family": "ADX",
+    "implementation": "linda",
+    "settings": {
+      "length": 14
+    },
+    "condition": null,
+    "classification": "author_used_recipe",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "linda"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-e85c5c8183d05b"
+  },
+  {
+    "family": "ADX",
+    "implementation": "linda",
+    "settings": {},
+    "condition": {
+      "field": "ADX",
+      "operator": ">",
+      "value": 30
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "linda"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-5661d8bdc10d3b"
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi_stockcharts",
+    "settings": {
+      "length": 10
+    },
+    "condition": null,
+    "classification": "documented_example",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "rsi_stockcharts"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-9930b77f40d26d"
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi_stockcharts",
+    "settings": {
+      "length": 14
+    },
+    "condition": null,
+    "classification": "documented_example",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "rsi_stockcharts"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-48d7f9ac4c1c94"
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi_stockcharts",
+    "settings": {
+      "length": 20
+    },
+    "condition": null,
+    "classification": "documented_example",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "rsi_stockcharts"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-fed93811738cb3"
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi_stockcharts",
+    "settings": {},
+    "condition": {
+      "field": "RSI",
+      "operator": "level",
+      "value": 30
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "rsi_stockcharts"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-f940655cec2030"
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi_stockcharts",
+    "settings": {},
+    "condition": {
+      "field": "RSI",
+      "operator": "level",
+      "value": 70
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "rsi_stockcharts"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-e5e377dc91255e"
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi_stockcharts",
+    "settings": {
+      "length": 2,
+      "lower_level": 20,
+      "upper_level": 80
+    },
+    "condition": null,
+    "classification": "documented_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "rsi_stockcharts"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-2da24eb3c34dbb"
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi2",
+    "settings": {
+      "length": 2
+    },
+    "condition": {
+      "field": "RSI",
+      "operator": "<",
+      "value": 5
+    },
+    "classification": "individual_component_from_strategy",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "rsi2"
+    ],
+    "note": "مكوّن RSI فقط؛ لا يتضمن المتوسطات الموجودة في الاستراتيجية الأصلية.",
+    "standalone_performance_tested": false,
+    "id": "P-63e58cd9166404"
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi2",
+    "settings": {
+      "length": 2
+    },
+    "condition": {
+      "field": "RSI",
+      "operator": "<",
+      "value": 10
+    },
+    "classification": "individual_component_from_strategy",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "rsi2"
+    ],
+    "note": "مكوّن RSI فقط؛ لا يتضمن المتوسطات الموجودة في الاستراتيجية الأصلية.",
+    "standalone_performance_tested": false,
+    "id": "P-848112c5d04b58"
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi2",
+    "settings": {
+      "length": 2
+    },
+    "condition": {
+      "field": "RSI",
+      "operator": ">",
+      "value": 90
+    },
+    "classification": "individual_component_from_strategy",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "rsi2"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-156f4312226bd6"
+  },
+  {
+    "family": "RSI",
+    "implementation": "rsi2",
+    "settings": {
+      "length": 2
+    },
+    "condition": {
+      "field": "RSI",
+      "operator": ">",
+      "value": 95
+    },
+    "classification": "individual_component_from_strategy",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "rsi2"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-d87fca5f708c8f"
+  },
+  {
+    "family": "KAMA",
+    "implementation": "kama",
+    "settings": {
+      "er_length": 10,
+      "fast": 2,
+      "slow": 30
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "kama"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-66972ab566e313"
+  },
+  {
+    "family": "KAMA",
+    "implementation": "kama",
+    "settings": {
+      "er_length": 10,
+      "fast": 5,
+      "slow": 30
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "kama"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-154c54ea17c332"
+  },
+  {
+    "family": "KeltnerChannels",
+    "implementation": "keltnerchannels",
+    "settings": {
+      "basis": "EMA",
+      "basis_length": 20,
+      "atr_multiplier": 2,
+      "atr_length": 10
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "keltnerchannels"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-75e52d89880b7e"
+  },
+  {
+    "family": "DonchianChannels",
+    "implementation": "donchianchannels",
+    "settings": {
+      "length": 20,
+      "exclude_current_bar": true
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "donchianchannels"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-c20e6240e4e7b7"
+  },
+  {
+    "family": "DonchianChannels",
+    "implementation": "donchianchannels",
+    "settings": {
+      "length": 10,
+      "exclude_current_bar": true
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "donchianchannels"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-9e641fa6b03e7b"
+  },
+  {
+    "family": "CMF",
+    "implementation": "cmf",
+    "settings": {
+      "length": 20
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "cmf"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-6a95f910ba035e"
+  },
+  {
+    "family": "CMF",
+    "implementation": "cmf",
+    "settings": {
+      "length": 21
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "cmf"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-e9ca6479aec2a0"
+  },
+  {
+    "family": "ChaikinOscillator",
+    "implementation": "chaikinoscillator",
+    "settings": {
+      "fast": 3,
+      "slow": 10,
+      "ma": "EMA"
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "chaikinoscillator"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-c5bdf3c3113a8b"
+  },
+  {
+    "family": "ForceIndex",
+    "implementation": "forceindex",
+    "settings": {
+      "length": 1,
+      "smoothing": "none"
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "forceindex"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-aadfcb44a4b1d9"
+  },
+  {
+    "family": "ForceIndex",
+    "implementation": "forceindex",
+    "settings": {
+      "length": 13,
+      "smoothing": "EMA"
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "forceindex"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-791e932a4674dc"
+  },
+  {
+    "family": "MFI",
+    "implementation": "mfi",
+    "settings": {
+      "length": 14
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "mfi"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-fa3d50803dc5e9"
+  },
+  {
+    "family": "Aroon",
+    "implementation": "aroon",
+    "settings": {
+      "length": 25
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "aroon"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-aa03890c544673"
+  },
+  {
+    "family": "AroonOscillator",
+    "implementation": "aroonoscillator",
+    "settings": {
+      "length": 25
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "aroonoscillator"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-7eb1b04849a396"
+  },
+  {
+    "family": "AroonOscillator",
+    "implementation": "aroonoscillator",
+    "settings": {
+      "length": 75
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "aroonoscillator"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-2191c241024618"
+  },
+  {
+    "family": "Vortex",
+    "implementation": "vortex",
+    "settings": {
+      "length": 14
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "vortex"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-61e25443ce4c22"
+  },
+  {
+    "family": "Vortex",
+    "implementation": "vortex",
+    "settings": {
+      "length": 23
+    },
+    "condition": null,
+    "classification": "documented_recipe_or_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "vortex"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-93a5bf0c9cbe15"
+  },
+  {
+    "family": "ALMA",
+    "implementation": "tv_alma",
+    "settings": {
+      "length": 9,
+      "offset": 0.85,
+      "sigma": 6
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_alma"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-10f1d683872c08"
+  },
+  {
+    "family": "ATR",
+    "implementation": "tv_atr",
+    "settings": {
+      "length": 14,
+      "smoothing": "RMA"
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_atr"
+    ],
+    "note": "الخيارات البديلة ليست وصفات ثبت تفوقها.",
+    "standalone_performance_tested": false,
+    "id": "P-5421b62a1aa643"
+  },
+  {
+    "family": "ATR",
+    "implementation": "tv_atr",
+    "settings": {
+      "length": 14,
+      "smoothing": "SMA"
+    },
+    "condition": null,
+    "classification": "documented_option_with_default_length",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_atr"
+    ],
+    "note": "الخيارات البديلة ليست وصفات ثبت تفوقها.",
+    "standalone_performance_tested": false,
+    "id": "P-dc891111a6aa44"
+  },
+  {
+    "family": "ATR",
+    "implementation": "tv_atr",
+    "settings": {
+      "length": 14,
+      "smoothing": "EMA"
+    },
+    "condition": null,
+    "classification": "documented_option_with_default_length",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_atr"
+    ],
+    "note": "الخيارات البديلة ليست وصفات ثبت تفوقها.",
+    "standalone_performance_tested": false,
+    "id": "P-5370a71f6d7fa1"
+  },
+  {
+    "family": "ATR",
+    "implementation": "tv_atr",
+    "settings": {
+      "length": 14,
+      "smoothing": "WMA"
+    },
+    "condition": null,
+    "classification": "documented_option_with_default_length",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_atr"
+    ],
+    "note": "الخيارات البديلة ليست وصفات ثبت تفوقها.",
+    "standalone_performance_tested": false,
+    "id": "P-49b865fe43e070"
+  },
+  {
+    "family": "ParabolicSAR",
+    "implementation": "tv_sar",
+    "settings": {
+      "start": 0.02,
+      "increment": 0.02,
+      "maximum": 0.2
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_sar"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-8350576be6a682"
+  },
+  {
+    "family": "Klinger",
+    "implementation": "tv_klinger",
+    "settings": {
+      "fast": 34,
+      "slow": 55,
+      "signal": 13,
+      "oscillator_ma": "EMA"
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_klinger"
+    ],
+    "note": "نوع متوسط الإشارة غير مثبت هنا.",
+    "standalone_performance_tested": false,
+    "id": "P-0c008c5f5af82b"
+  },
+  {
+    "family": "ChandelierExit",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "length": 22,
+      "atr_multiplier": 3
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-8d9a4b07abf176"
+  },
+  {
+    "family": "DEMA",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "length": 20
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-83721568162614"
+  },
+  {
+    "family": "TEMA",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "length": 20
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-cd26800050ebc6"
+  },
+  {
+    "family": "HighestHigh",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "length": 14
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-601968f2ee9982"
+  },
+  {
+    "family": "LowestLow",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "length": 14
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-1721f5073473bf"
+  },
+  {
+    "family": "SMA",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "length": 50
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-76a9e622a6bd96"
+  },
+  {
+    "family": "SMAEnvelopes",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "length": 20,
+      "percentage": 2.5
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-8a39af5338cbcb"
+  },
+  {
+    "family": "EMAEnvelopes",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "length": 20,
+      "percentage": 2.5
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-1cc50bd39089ea"
+  },
+  {
+    "family": "Slope",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "length": 20
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-e112201a6c2342"
+  },
+  {
+    "family": "StandardDeviation",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "length": 10
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-e98979076db623"
+  },
+  {
+    "family": "StochRSI",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "length": 14
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-3c33239bff8dc6"
+  },
+  {
+    "family": "TRIX",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "length": 15,
+      "signal": 9
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-4f08be4e8700d3"
+  },
+  {
+    "family": "TSI",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "long": 25,
+      "short": 13,
+      "signal": 7
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-e441153251a2da"
+  },
+  {
+    "family": "UlcerIndex",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "length": 14
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-c0322f3ffa7ac4"
+  },
+  {
+    "family": "VolumeByPrice",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "zones": 12,
+      "position": "right"
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-2b8bfd1a18a80e"
+  },
+  {
+    "family": "VolumeByPrice",
+    "implementation": "sc_parameter_reference",
+    "settings": {
+      "zones": 4,
+      "position": "left"
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "sc_parameter_reference"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-d619b602d9d46d"
+  },
+  {
+    "family": "FixedRangeVolumeProfile",
+    "implementation": "dale",
+    "settings": {
+      "row_layout": "number_of_rows",
+      "rows": 1000,
+      "volume": "total",
+      "value_area_percent": 70
+    },
+    "condition": null,
+    "classification": "author_used_recipe",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "dale"
+    ],
+    "note": "نقطتا بداية ونهاية النطاق تحتاجان بيانات الشارت.",
+    "standalone_performance_tested": false,
+    "id": "P-cd57e0ac68b0f8"
+  },
+  {
+    "family": "FixedRangeVolumeProfile",
+    "implementation": "dale",
+    "settings": {
+      "value_area_percent": 68
+    },
+    "condition": null,
+    "classification": "author_documented_option",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "dale"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-250b1c89ada935"
+  },
+  {
+    "family": "FixedRangeVolumeProfile",
+    "implementation": "dale",
+    "settings": {
+      "value_area_percent": 70
+    },
+    "condition": null,
+    "classification": "author_documented_option",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "dale"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-18a6444025ed85"
+  },
+  {
+    "family": "FixedRangeVolumeProfile",
+    "implementation": "dale",
+    "settings": {
+      "extend_right": false
+    },
+    "condition": null,
+    "classification": "author_documented_option",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "dale"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-501fdc05c6f8de"
+  },
+  {
+    "family": "FixedRangeVolumeProfile",
+    "implementation": "dale",
+    "settings": {
+      "extend_right": true
+    },
+    "condition": null,
+    "classification": "author_documented_option",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "dale"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-822e16eea045f7"
+  },
+  {
+    "family": "FixedRangeVolumeProfile",
+    "implementation": "dale",
+    "settings": {
+      "rows": 10
+    },
+    "condition": null,
+    "classification": "author_comparison_value",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "dale"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-9d9397499dbcac"
+  },
+  {
+    "family": "FixedRangeVolumeProfile",
+    "implementation": "dale",
+    "settings": {
+      "rows": 100
+    },
+    "condition": null,
+    "classification": "author_comparison_value",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "dale"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-048e1c8e472b3c"
+  },
+  {
+    "family": "FixedRangeVolumeProfile",
+    "implementation": "dale",
+    "settings": {
+      "rows": 1000
+    },
+    "condition": null,
+    "classification": "author_used_value",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "dale"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-281de6bbfe6476"
+  },
+  {
+    "family": "PeriodicVolumeProfile",
+    "implementation": "dale",
+    "settings": {
+      "period": "daily",
+      "volume": "total",
+      "row_layout": "number_of_rows"
+    },
+    "condition": null,
+    "classification": "author_documented_option",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "dale"
+    ],
+    "note": "العدد الدقيق للصفوف غير مثبت لهذا المؤشر.",
+    "standalone_performance_tested": false,
+    "id": "P-7a50df750d8457"
+  },
+  {
+    "family": "PeriodicVolumeProfile",
+    "implementation": "dale",
+    "settings": {
+      "period": "weekly",
+      "volume": "total",
+      "row_layout": "number_of_rows"
+    },
+    "condition": null,
+    "classification": "author_documented_option",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "dale"
+    ],
+    "note": "العدد الدقيق للصفوف غير مثبت لهذا المؤشر.",
+    "standalone_performance_tested": false,
+    "id": "P-5af420e81e21cf"
+  },
+  {
+    "family": "VolumeProfile",
+    "implementation": "volume_user",
+    "settings": {
+      "row_layout": "number_of_rows",
+      "rows": 25
+    },
+    "condition": null,
+    "classification": "self_reported_value",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "volume_user"
+    ],
+    "note": "إفادة مستخدم؛ بلا تحقق من الأداء.",
+    "standalone_performance_tested": false,
+    "id": "P-a66ade2f848ba2"
+  },
+  {
+    "family": "VolumeProfile",
+    "implementation": "volume_user",
+    "settings": {
+      "row_layout": "number_of_rows",
+      "rows": 50
+    },
+    "condition": null,
+    "classification": "self_reported_value",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "volume_user"
+    ],
+    "note": "إفادة مستخدم؛ بلا تحقق من الأداء.",
+    "standalone_performance_tested": false,
+    "id": "P-371e0e08b5bed8"
+  },
+  {
+    "family": "VolumeProfile",
+    "implementation": "volume_user",
+    "settings": {
+      "row_layout": "number_of_rows",
+      "rows": 75
+    },
+    "condition": null,
+    "classification": "self_reported_value",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "volume_user"
+    ],
+    "note": "إفادة مستخدم؛ بلا تحقق من الأداء.",
+    "standalone_performance_tested": false,
+    "id": "P-e309e0b2db3f4f"
+  },
+  {
+    "family": "VolumeProfile",
+    "implementation": "volume_user",
+    "settings": {
+      "row_layout": "number_of_rows",
+      "rows": 100
+    },
+    "condition": null,
+    "classification": "self_reported_value",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "volume_user"
+    ],
+    "note": "إفادة مستخدم؛ بلا تحقق من الأداء.",
+    "standalone_performance_tested": false,
+    "id": "P-edd2347171b8b8"
+  },
+  {
+    "family": "VolumeProfile",
+    "implementation": "volume_user",
+    "settings": {
+      "row_layout": "number_of_rows",
+      "rows": 150
+    },
+    "condition": null,
+    "classification": "self_reported_value",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "volume_user"
+    ],
+    "note": "إفادة مستخدم؛ بلا تحقق من الأداء.",
+    "standalone_performance_tested": false,
+    "id": "P-1042883ce870f9"
+  },
+  {
+    "family": "VolumeProfile",
+    "implementation": "volume_user",
+    "settings": {
+      "row_layout": "number_of_rows",
+      "rows": 200
+    },
+    "condition": null,
+    "classification": "self_reported_value",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "volume_user"
+    ],
+    "note": "إفادة مستخدم؛ بلا تحقق من الأداء.",
+    "standalone_performance_tested": false,
+    "id": "P-85ee429500054b"
+  },
+  {
+    "family": "VolumeProfile",
+    "implementation": "volume_user",
+    "settings": {
+      "row_layout": "number_of_rows",
+      "rows": 300
+    },
+    "condition": null,
+    "classification": "self_reported_value",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "volume_user"
+    ],
+    "note": "إفادة مستخدم؛ بلا تحقق من الأداء.",
+    "standalone_performance_tested": false,
+    "id": "P-48aa9a5c46998c"
+  },
+  {
+    "family": "VolumeProfile",
+    "implementation": "volume_user",
+    "settings": {
+      "row_layout": "number_of_rows",
+      "rows": 400
+    },
+    "condition": null,
+    "classification": "self_reported_value",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "volume_user"
+    ],
+    "note": "إفادة مستخدم؛ بلا تحقق من الأداء.",
+    "standalone_performance_tested": false,
+    "id": "P-619e679d5ed440"
+  },
+  {
+    "family": "VolumeProfile",
+    "implementation": "volume_user",
+    "settings": {
+      "row_layout": "number_of_rows",
+      "rows": 500
+    },
+    "condition": null,
+    "classification": "self_reported_value",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "volume_user"
+    ],
+    "note": "إفادة مستخدم؛ بلا تحقق من الأداء.",
+    "standalone_performance_tested": false,
+    "id": "P-a6bff370a37436"
+  },
+  {
+    "family": "VolumeProfile",
+    "implementation": "cTrader tarantella product3230 v1.0",
+    "settings": {
+      "ticks_per_row": 5
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "ctrader_vp"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-0707db73a67dfd"
+  },
+  {
+    "family": "FixedRangeVolumeProfile",
+    "implementation": "tv_fr",
+    "settings": {
+      "row_layout": "number_of_rows",
+      "rows": 25
+    },
+    "condition": null,
+    "classification": "documentation_example",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_fr"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-c1ddebb467af17"
+  },
+  {
+    "family": "FixedRangeVolumeProfile",
+    "implementation": "tv_fr",
+    "settings": {
+      "row_layout": "ticks_per_row",
+      "ticks_per_row": 25
+    },
+    "condition": null,
+    "classification": "documentation_example",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "tv_fr"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-c3844a825c06ce"
+  },
+  {
+    "family": "FibonacciRetracement",
+    "implementation": "fib_script",
+    "settings": {
+      "level": 0.236
+    },
+    "condition": null,
+    "classification": "documented_level",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "fib_script"
+    ],
+    "note": "كل مستوى مستقل؛ تثبيت القمة والقاع يتطلب بيانات.",
+    "standalone_performance_tested": false,
+    "id": "P-56da3857dccbbd"
+  },
+  {
+    "family": "FibonacciRetracement",
+    "implementation": "fib_script",
+    "settings": {
+      "level": 0.382
+    },
+    "condition": null,
+    "classification": "documented_level",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "fib_script"
+    ],
+    "note": "كل مستوى مستقل؛ تثبيت القمة والقاع يتطلب بيانات.",
+    "standalone_performance_tested": false,
+    "id": "P-7613731a46e4ba"
+  },
+  {
+    "family": "FibonacciRetracement",
+    "implementation": "fib_script",
+    "settings": {
+      "level": 0.5
+    },
+    "condition": null,
+    "classification": "documented_level",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "fib_script"
+    ],
+    "note": "كل مستوى مستقل؛ تثبيت القمة والقاع يتطلب بيانات.",
+    "standalone_performance_tested": false,
+    "id": "P-9a24532782184d"
+  },
+  {
+    "family": "FibonacciRetracement",
+    "implementation": "fib_script",
+    "settings": {
+      "level": 0.618
+    },
+    "condition": null,
+    "classification": "documented_level",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "fib_script"
+    ],
+    "note": "كل مستوى مستقل؛ تثبيت القمة والقاع يتطلب بيانات.",
+    "standalone_performance_tested": false,
+    "id": "P-1558690c8616a1"
+  },
+  {
+    "family": "FibonacciRetracement",
+    "implementation": "fib_script",
+    "settings": {
+      "level": 0.786
+    },
+    "condition": null,
+    "classification": "documented_level",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "fib_script"
+    ],
+    "note": "كل مستوى مستقل؛ تثبيت القمة والقاع يتطلب بيانات.",
+    "standalone_performance_tested": false,
+    "id": "P-298f834dd35bd1"
+  },
+  {
+    "family": "FibonacciExtension",
+    "implementation": "fib_extension",
+    "settings": {
+      "level": 0.618
+    },
+    "condition": null,
+    "classification": "documented_level",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "fib_extension"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-f3981724bd8c27"
+  },
+  {
+    "family": "FibonacciExtension",
+    "implementation": "fib_extension",
+    "settings": {
+      "level": 1
+    },
+    "condition": null,
+    "classification": "documented_level",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "fib_extension"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-c2d198b352a350"
+  },
+  {
+    "family": "FibonacciExtension",
+    "implementation": "fib_extension",
+    "settings": {
+      "level": 1.618
+    },
+    "condition": null,
+    "classification": "documented_level",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "fib_extension"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-593430d8e0fd0d"
+  },
+  {
+    "family": "AnchoredVWAP",
+    "implementation": "avwap",
+    "settings": {
+      "anchor_rule": "significant_low"
+    },
+    "condition": null,
+    "classification": "documented_anchor_method",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "avwap"
+    ],
+    "note": "قاعدة تثبيت وليست تاريخًا مختلقًا؛ تتطلب بيانات الحدث.",
+    "standalone_performance_tested": false,
+    "id": "P-199e803ecc4a3c"
+  },
+  {
+    "family": "AnchoredVWAP",
+    "implementation": "avwap",
+    "settings": {
+      "anchor_rule": "significant_high"
+    },
+    "condition": null,
+    "classification": "documented_anchor_method",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "avwap"
+    ],
+    "note": "قاعدة تثبيت وليست تاريخًا مختلقًا؛ تتطلب بيانات الحدث.",
+    "standalone_performance_tested": false,
+    "id": "P-66e01ea477ef09"
+  },
+  {
+    "family": "AnchoredVWAP",
+    "implementation": "avwap",
+    "settings": {
+      "anchor_rule": "earnings"
+    },
+    "condition": null,
+    "classification": "documented_anchor_method",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "avwap"
+    ],
+    "note": "قاعدة تثبيت وليست تاريخًا مختلقًا؛ تتطلب بيانات الحدث.",
+    "standalone_performance_tested": false,
+    "id": "P-642f3278966606"
+  },
+  {
+    "family": "AnchoredVWAP",
+    "implementation": "avwap",
+    "settings": {
+      "anchor_rule": "gap"
+    },
+    "condition": null,
+    "classification": "documented_anchor_method",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "avwap"
+    ],
+    "note": "قاعدة تثبيت وليست تاريخًا مختلقًا؛ تتطلب بيانات الحدث.",
+    "standalone_performance_tested": false,
+    "id": "P-28a8854683bb74"
+  },
+  {
+    "family": "AnchoredVWAP",
+    "implementation": "avwap",
+    "settings": {
+      "anchor_rule": "session_open"
+    },
+    "condition": null,
+    "classification": "documented_anchor_method",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "avwap"
+    ],
+    "note": "قاعدة تثبيت وليست تاريخًا مختلقًا؛ تتطلب بيانات الحدث.",
+    "standalone_performance_tested": false,
+    "id": "P-89b9f2db56b0fb"
+  },
+  {
+    "family": "PivotHigh",
+    "implementation": "pivot_example",
+    "settings": {
+      "left_bars": 10,
+      "right_bars": 10
+    },
+    "condition": null,
+    "classification": "official_code_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "pivot_example"
+    ],
+    "note": "التأكيد متاح بعد 10 شموع يمينًا؛ ليس افتراضي كل المنصات.",
+    "standalone_performance_tested": false,
+    "id": "P-1609ace135a6a4"
+  },
+  {
+    "family": "PivotLow",
+    "implementation": "pivot_example",
+    "settings": {
+      "left_bars": 10,
+      "right_bars": 10
+    },
+    "condition": null,
+    "classification": "official_code_example",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "pivot_example"
+    ],
+    "note": "التأكيد متاح بعد 10 شموع يمينًا؛ ليس افتراضي كل المنصات.",
+    "standalone_performance_tested": false,
+    "id": "P-277d58117de41a"
+  },
+  {
+    "family": "Hammer",
+    "implementation": "candles",
+    "settings": {},
+    "condition": {
+      "field": "lower_shadow_to_body",
+      "operator": ">=",
+      "value": 2
+    },
+    "classification": "individual_shape_condition",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "candles"
+    ],
+    "note": "هذه نسبة الظل وحدها؛ بقية تعريف المطرقة لا تختزل بهذه القيمة.",
+    "standalone_performance_tested": false,
+    "id": "P-bc92199c47ea73"
+  },
+  {
+    "family": "HurstExponent",
+    "implementation": "hurst",
+    "settings": {
+      "lookback": 100,
+      "smoothing": "EMA",
+      "smoothing_length": 5,
+      "price_source": "close"
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "hurst"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-a13279d178032e"
+  },
+  {
+    "family": "HurstExponent",
+    "implementation": "hurst",
+    "settings": {},
+    "condition": {
+      "field": "Hurst",
+      "operator": "level",
+      "value": 0.4
+    },
+    "classification": "individual_regime_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "hurst"
+    ],
+    "note": "وصف نظام السوق؛ لا يحدد اتجاه الصعود وحده.",
+    "standalone_performance_tested": false,
+    "id": "P-831fc89f4073aa"
+  },
+  {
+    "family": "HurstExponent",
+    "implementation": "hurst",
+    "settings": {},
+    "condition": {
+      "field": "Hurst",
+      "operator": "level",
+      "value": 0.5
+    },
+    "classification": "individual_regime_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "hurst"
+    ],
+    "note": "وصف نظام السوق؛ لا يحدد اتجاه الصعود وحده.",
+    "standalone_performance_tested": false,
+    "id": "P-2fb4b825de49f2"
+  },
+  {
+    "family": "HurstExponent",
+    "implementation": "hurst",
+    "settings": {},
+    "condition": {
+      "field": "Hurst",
+      "operator": "level",
+      "value": 0.6
+    },
+    "classification": "individual_regime_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "hurst"
+    ],
+    "note": "وصف نظام السوق؛ لا يحدد اتجاه الصعود وحده.",
+    "standalone_performance_tested": false,
+    "id": "P-07f36d5be6b81c"
+  },
+  {
+    "family": "FVG",
+    "implementation": "LuxAlgo Price Action Concepts FVG component",
+    "settings": {
+      "extend_bars": 10,
+      "volatility_threshold": 0,
+      "timeframe": "chart"
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "lux_settings"
+    ],
+    "note": "مكوّن الفجوات وحده؛ ليست إعدادات أداة LuxAlgo المجمعة.",
+    "standalone_performance_tested": false,
+    "id": "P-d717d3237777bd"
+  },
+  {
+    "family": "FVG",
+    "implementation": "LuxAlgo Price Action Concepts FVG component",
+    "settings": {
+      "mitigation": "close"
+    },
+    "condition": null,
+    "classification": "documented_option",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "lux_settings"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-7b4452b0fc80d9"
+  },
+  {
+    "family": "FVG",
+    "implementation": "LuxAlgo Price Action Concepts FVG component",
+    "settings": {
+      "mitigation": "wick"
+    },
+    "condition": null,
+    "classification": "documented_option",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "lux_settings"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-653b83dced2835"
+  },
+  {
+    "family": "FVG",
+    "implementation": "LuxAlgo Price Action Concepts FVG component",
+    "settings": {
+      "mitigation": "average"
+    },
+    "condition": null,
+    "classification": "documented_option",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "lux_settings"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-9f4d60d79a2d2d"
+  },
+  {
+    "family": "WaveTrend",
+    "implementation": "Wickra WaveTrend classic",
+    "settings": {
+      "channel": 10,
+      "average": 21,
+      "signal": 4
+    },
+    "condition": null,
+    "classification": "documented_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "wavetrend"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-5ca95355b09e3a"
+  },
+  {
+    "family": "WaveTrend",
+    "implementation": "Wickra WaveTrend classic",
+    "settings": {},
+    "condition": {
+      "field": "WaveTrend",
+      "operator": "level",
+      "value": -60
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "wavetrend"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-4c7ce01504b0e4"
+  },
+  {
+    "family": "WaveTrend",
+    "implementation": "Wickra WaveTrend classic",
+    "settings": {},
+    "condition": {
+      "field": "WaveTrend",
+      "operator": "level",
+      "value": 60
+    },
+    "classification": "individual_threshold",
+    "complete_within_reported_fields": false,
+    "requires_implementation_check": true,
+    "sources": [
+      "wavetrend"
+    ],
+    "note": "",
+    "standalone_performance_tested": false,
+    "id": "P-23c5b7d438965d"
+  },
+  {
+    "family": "AC",
+    "implementation": "TA-Lib API AC",
+    "settings": {
+      "Fast Period": 5,
+      "Slow Period": 34,
+      "Signal Period": 5
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Accelerator/Decelerator Oscillator",
+    "standalone_performance_tested": false,
+    "id": "P-d4d47932a2a6f8"
+  },
+  {
+    "family": "ACCBANDS",
+    "implementation": "TA-Lib API ACCBANDS",
+    "settings": {
+      "Time Period": 20
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Acceleration Bands",
+    "standalone_performance_tested": false,
+    "id": "P-57aa8211be8a99"
+  },
+  {
+    "family": "ADOSC",
+    "implementation": "TA-Lib API ADOSC",
+    "settings": {
+      "Fast Period": 3,
+      "Slow Period": 10
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Chaikin A/D Oscillator",
+    "standalone_performance_tested": false,
+    "id": "P-ce61cd7b540495"
+  },
+  {
+    "family": "ADR",
+    "implementation": "TA-Lib API ADR",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Average Day Range",
+    "standalone_performance_tested": false,
+    "id": "P-49344bc0ee6537"
+  },
+  {
+    "family": "ADX",
+    "implementation": "TA-Lib API ADX",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Average Directional Movement Index",
+    "standalone_performance_tested": false,
+    "id": "P-9182a881db7c3a"
+  },
+  {
+    "family": "ADXR",
+    "implementation": "TA-Lib API ADXR",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Average Directional Movement Index Rating",
+    "standalone_performance_tested": false,
+    "id": "P-6574608d480174"
+  },
+  {
+    "family": "ALMA",
+    "implementation": "TA-Lib API ALMA",
+    "settings": {
+      "Time Period": 9,
+      "Sigma": 6,
+      "Offset": 0.85
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Arnaud Legoux Moving Average",
+    "standalone_performance_tested": false,
+    "id": "P-ef2352d3af39e5"
+  },
+  {
+    "family": "AO",
+    "implementation": "TA-Lib API AO",
+    "settings": {
+      "Fast Period": 5,
+      "Slow Period": 34
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Awesome Oscillator",
+    "standalone_performance_tested": false,
+    "id": "P-ba70e1ce2dc943"
+  },
+  {
+    "family": "APO",
+    "implementation": "TA-Lib API APO",
+    "settings": {
+      "Fast Period": 12,
+      "Slow Period": 26,
+      "MA Type": 1
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Absolute Price Oscillator",
+    "standalone_performance_tested": false,
+    "id": "P-2411ded906ea74"
+  },
+  {
+    "family": "AROON",
+    "implementation": "TA-Lib API AROON",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Aroon",
+    "standalone_performance_tested": false,
+    "id": "P-9f5d11d8ce254e"
+  },
+  {
+    "family": "AROONOSC",
+    "implementation": "TA-Lib API AROONOSC",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Aroon Oscillator",
+    "standalone_performance_tested": false,
+    "id": "P-e6e82cdcac3642"
+  },
+  {
+    "family": "ASI",
+    "implementation": "TA-Lib API ASI",
+    "settings": {
+      "Limit Move": 3
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Wilder Accumulative Swing Index",
+    "standalone_performance_tested": false,
+    "id": "P-279e69bdfa62a2"
+  },
+  {
+    "family": "ATR",
+    "implementation": "TA-Lib API ATR",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Average True Range",
+    "standalone_performance_tested": false,
+    "id": "P-7e32af92e30e0a"
+  },
+  {
+    "family": "BBANDS",
+    "implementation": "TA-Lib API BBANDS",
+    "settings": {
+      "Time Period": 20,
+      "Deviations up": 2,
+      "Deviations down": 2,
+      "MA Type": 0
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Bollinger Bands",
+    "standalone_performance_tested": false,
+    "id": "P-30fc3b4e0c4c33"
+  },
+  {
+    "family": "BBW",
+    "implementation": "TA-Lib API BBW",
+    "settings": {
+      "Time Period": 20,
+      "Deviations up": 2,
+      "Deviations down": 2,
+      "MA Type": 0
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Bollinger BandWidth",
+    "standalone_performance_tested": false,
+    "id": "P-8c44c08856890a"
+  },
+  {
+    "family": "BETA",
+    "implementation": "TA-Lib API BETA",
+    "settings": {
+      "Time Period": 5
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Beta",
+    "standalone_performance_tested": false,
+    "id": "P-817046e623bbfd"
+  },
+  {
+    "family": "CCI",
+    "implementation": "TA-Lib API CCI",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Commodity Channel Index",
+    "standalone_performance_tested": false,
+    "id": "P-2084e78154036f"
+  },
+  {
+    "family": "CDLABANDONEDBABY",
+    "implementation": "TA-Lib API CDLABANDONEDBABY",
+    "settings": {
+      "Penetration": 0.3
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Abandoned Baby",
+    "standalone_performance_tested": false,
+    "id": "P-077a43bdd6b52d"
+  },
+  {
+    "family": "CDLDARKCLOUDCOVER",
+    "implementation": "TA-Lib API CDLDARKCLOUDCOVER",
+    "settings": {
+      "Penetration": 0.5
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Dark Cloud Cover",
+    "standalone_performance_tested": false,
+    "id": "P-69335a26003301"
+  },
+  {
+    "family": "CDLEVENINGDOJISTAR",
+    "implementation": "TA-Lib API CDLEVENINGDOJISTAR",
+    "settings": {
+      "Penetration": 0.3
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Evening Doji Star",
+    "standalone_performance_tested": false,
+    "id": "P-94190e00c57bcc"
+  },
+  {
+    "family": "CDLEVENINGSTAR",
+    "implementation": "TA-Lib API CDLEVENINGSTAR",
+    "settings": {
+      "Penetration": 0.3
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Evening Star",
+    "standalone_performance_tested": false,
+    "id": "P-b77a7c638024e5"
+  },
+  {
+    "family": "CDLMATHOLD",
+    "implementation": "TA-Lib API CDLMATHOLD",
+    "settings": {
+      "Penetration": 0.5
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Mat Hold",
+    "standalone_performance_tested": false,
+    "id": "P-cbfd377befc588"
+  },
+  {
+    "family": "CDLMORNINGDOJISTAR",
+    "implementation": "TA-Lib API CDLMORNINGDOJISTAR",
+    "settings": {
+      "Penetration": 0.3
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Morning Doji Star",
+    "standalone_performance_tested": false,
+    "id": "P-2a6aec8f63c6d4"
+  },
+  {
+    "family": "CDLMORNINGSTAR",
+    "implementation": "TA-Lib API CDLMORNINGSTAR",
+    "settings": {
+      "Penetration": 0.3
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Morning Star",
+    "standalone_performance_tested": false,
+    "id": "P-bbf945e10a826c"
+  },
+  {
+    "family": "CG",
+    "implementation": "TA-Lib API CG",
+    "settings": {
+      "Time Period": 10
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Center of Gravity Oscillator",
+    "standalone_performance_tested": false,
+    "id": "P-ef05d9ceac685a"
+  },
+  {
+    "family": "CHOP",
+    "implementation": "TA-Lib API CHOP",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Choppiness Index",
+    "standalone_performance_tested": false,
+    "id": "P-889e6dee6542ac"
+  },
+  {
+    "family": "CHOPTR",
+    "implementation": "TA-Lib API CHOPTR",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Choppiness Index (True Range Box)",
+    "standalone_performance_tested": false,
+    "id": "P-3c879054caeb11"
+  },
+  {
+    "family": "CKSP",
+    "implementation": "TA-Lib API CKSP",
+    "settings": {
+      "Time Period": 10,
+      "Multiplier": 1,
+      "Stop Period": 9
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Chande Kroll Stop",
+    "standalone_performance_tested": false,
+    "id": "P-d77c1466d390bc"
+  },
+  {
+    "family": "CMF",
+    "implementation": "TA-Lib API CMF",
+    "settings": {
+      "Time Period": 20
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Chaikin Money Flow",
+    "standalone_performance_tested": false,
+    "id": "P-1434c44b227cef"
+  },
+  {
+    "family": "CMO",
+    "implementation": "TA-Lib API CMO",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Chande Momentum Oscillator",
+    "standalone_performance_tested": false,
+    "id": "P-0ce7f83bfc0240"
+  },
+  {
+    "family": "CMOU",
+    "implementation": "TA-Lib API CMOU",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Chande Momentum Oscillator (Unsmoothed)",
+    "standalone_performance_tested": false,
+    "id": "P-d4571841e6ef33"
+  },
+  {
+    "family": "COPPOCK",
+    "implementation": "TA-Lib API COPPOCK",
+    "settings": {
+      "WMA Period": 10,
+      "ROC-1 Period": 11,
+      "ROC-2 Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Coppock Curve",
+    "standalone_performance_tested": false,
+    "id": "P-aa4ee7ac6f890c"
+  },
+  {
+    "family": "CORREL",
+    "implementation": "TA-Lib API CORREL",
+    "settings": {
+      "Time Period": 30
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Pearson's Correlation Coefficient (r)",
+    "standalone_performance_tested": false,
+    "id": "P-30c3720e0894a4"
+  },
+  {
+    "family": "CRSI",
+    "implementation": "TA-Lib API CRSI",
+    "settings": {
+      "Time Period": 3,
+      "Streak Period": 2,
+      "Rank Period": 100
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Connors Relative Strength Index",
+    "standalone_performance_tested": false,
+    "id": "P-c62e5a4a59a5a6"
+  },
+  {
+    "family": "CTI",
+    "implementation": "TA-Lib API CTI",
+    "settings": {
+      "Time Period": 20
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Correlation Trend Indicator",
+    "standalone_performance_tested": false,
+    "id": "P-b587538fde48d8"
+  },
+  {
+    "family": "CVI",
+    "implementation": "TA-Lib API CVI",
+    "settings": {
+      "Time Period": 10,
+      "ROC Period": 10
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Chaikin's Volatility",
+    "standalone_performance_tested": false,
+    "id": "P-9862bdcbb9b0a9"
+  },
+  {
+    "family": "DEMA",
+    "implementation": "TA-Lib API DEMA",
+    "settings": {
+      "Time Period": 30
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Double Exponential Moving Average",
+    "standalone_performance_tested": false,
+    "id": "P-030eb6b2c22354"
+  },
+  {
+    "family": "DONCHIAN",
+    "implementation": "TA-Lib API DONCHIAN",
+    "settings": {
+      "Time Period": 20
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Donchian Channels",
+    "standalone_performance_tested": false,
+    "id": "P-19bebe8e9f7101"
+  },
+  {
+    "family": "DOSC",
+    "implementation": "TA-Lib API DOSC",
+    "settings": {
+      "Time Period": 14,
+      "First Smoothing Period": 5,
+      "Second Smoothing Period": 3,
+      "Signal Period": 9
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Derivative Oscillator",
+    "standalone_performance_tested": false,
+    "id": "P-d7301143ba1307"
+  },
+  {
+    "family": "DPO",
+    "implementation": "TA-Lib API DPO",
+    "settings": {
+      "Time Period": 20
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Detrended Price Oscillator",
+    "standalone_performance_tested": false,
+    "id": "P-bbca6993c275fa"
+  },
+  {
+    "family": "DX",
+    "implementation": "TA-Lib API DX",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Directional Movement Index",
+    "standalone_performance_tested": false,
+    "id": "P-639f6ab3072b0b"
+  },
+  {
+    "family": "EFI",
+    "implementation": "TA-Lib API EFI",
+    "settings": {
+      "Time Period": 13
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Elder's Force Index",
+    "standalone_performance_tested": false,
+    "id": "P-47d96ac0a71fe3"
+  },
+  {
+    "family": "EMA",
+    "implementation": "TA-Lib API EMA",
+    "settings": {
+      "Time Period": 30
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Exponential Moving Average",
+    "standalone_performance_tested": false,
+    "id": "P-2b78786744276a"
+  },
+  {
+    "family": "EMV",
+    "implementation": "TA-Lib API EMV",
+    "settings": {
+      "Time Period": 14,
+      "Volume Divisor": 10000
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Arms Ease of Movement",
+    "standalone_performance_tested": false,
+    "id": "P-41972e18c1460c"
+  },
+  {
+    "family": "ER",
+    "implementation": "TA-Lib API ER",
+    "settings": {
+      "Time Period": 10
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Kaufman Efficiency Ratio",
+    "standalone_performance_tested": false,
+    "id": "P-7ec70050df8ba3"
+  },
+  {
+    "family": "ERI",
+    "implementation": "TA-Lib API ERI",
+    "settings": {
+      "Time Period": 13
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Elder Ray Index (Bull Power / Bear Power)",
+    "standalone_performance_tested": false,
+    "id": "P-53436b0503d2f8"
+  },
+  {
+    "family": "FISHER",
+    "implementation": "TA-Lib API FISHER",
+    "settings": {
+      "Time Period": 10
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Fisher Transform",
+    "standalone_performance_tested": false,
+    "id": "P-b64a206538083a"
+  },
+  {
+    "family": "FOSC",
+    "implementation": "TA-Lib API FOSC",
+    "settings": {
+      "Time Period": 5
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Forecast Oscillator",
+    "standalone_performance_tested": false,
+    "id": "P-faaad65efa6148"
+  },
+  {
+    "family": "FRACTAL",
+    "implementation": "TA-Lib API FRACTAL",
+    "settings": {
+      "Left Bars": 2,
+      "Right Bars": 2
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Williams Fractal",
+    "standalone_performance_tested": false,
+    "id": "P-24f0df84ffe129"
+  },
+  {
+    "family": "FRAMA",
+    "implementation": "TA-Lib API FRAMA",
+    "settings": {
+      "Time Period": 16
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Fractal Adaptive Moving Average",
+    "standalone_performance_tested": false,
+    "id": "P-49f9edd71438d1"
+  },
+  {
+    "family": "HMA",
+    "implementation": "TA-Lib API HMA",
+    "settings": {
+      "Time Period": 20
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Hull Moving Average",
+    "standalone_performance_tested": false,
+    "id": "P-a45831a33e6ccd"
+  },
+  {
+    "family": "IMI",
+    "implementation": "TA-Lib API IMI",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Intraday Momentum Index",
+    "standalone_performance_tested": false,
+    "id": "P-65737b36f538c5"
+  },
+  {
+    "family": "KAMA",
+    "implementation": "TA-Lib API KAMA",
+    "settings": {
+      "Time Period": 30
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Kaufman Adaptive Moving Average",
+    "standalone_performance_tested": false,
+    "id": "P-c39d1b97b86b99"
+  },
+  {
+    "family": "KC",
+    "implementation": "TA-Lib API KC",
+    "settings": {
+      "Time Period": 20,
+      "ATR Period": 10,
+      "Deviations": 2
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Keltner Channels",
+    "standalone_performance_tested": false,
+    "id": "P-af29350651860e"
+  },
+  {
+    "family": "KDJ",
+    "implementation": "TA-Lib API KDJ",
+    "settings": {
+      "Fast-K Period": 9,
+      "Slow-K Period": 3,
+      "Slow-K MA": 13,
+      "Slow-D Period": 3,
+      "Slow-D MA": 13
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "KDJ Stochastic",
+    "standalone_performance_tested": false,
+    "id": "P-49f7e2b1f4a0e9"
+  },
+  {
+    "family": "KST",
+    "implementation": "TA-Lib API KST",
+    "settings": {
+      "ROC-1 Period": 10,
+      "ROC-2 Period": 15,
+      "ROC-3 Period": 20,
+      "ROC-4 Period": 30,
+      "SMA-1 Period": 10,
+      "SMA-2 Period": 10,
+      "SMA-3 Period": 10,
+      "SMA-4 Period": 15,
+      "Signal Period": 9
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Know Sure Thing (Pring)",
+    "standalone_performance_tested": false,
+    "id": "P-a523a51eb58590"
+  },
+  {
+    "family": "KSTEXT",
+    "implementation": "TA-Lib API KSTEXT",
+    "settings": {
+      "ROC-1 Period": 10,
+      "ROC-2 Period": 15,
+      "ROC-3 Period": 20,
+      "ROC-4 Period": 30,
+      "MA-1 Period": 10,
+      "MA-2 Period": 10,
+      "MA-3 Period": 10,
+      "MA-4 Period": 15,
+      "Signal Period": 9,
+      "ROC MA": 0,
+      "Signal MA": 0
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Know Sure Thing with controllable MA type",
+    "standalone_performance_tested": false,
+    "id": "P-cc117f54c3455d"
+  },
+  {
+    "family": "KURTOSIS",
+    "implementation": "TA-Lib API KURTOSIS",
+    "settings": {
+      "Time Period": 30
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Rolling Excess Kurtosis",
+    "standalone_performance_tested": false,
+    "id": "P-5ae672a1457e45"
+  },
+  {
+    "family": "LINEARREG",
+    "implementation": "TA-Lib API LINEARREG",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Linear Regression",
+    "standalone_performance_tested": false,
+    "id": "P-e4fbaa939f3fe8"
+  },
+  {
+    "family": "LINEARREG_ANGLE",
+    "implementation": "TA-Lib API LINEARREG_ANGLE",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Linear Regression Angle",
+    "standalone_performance_tested": false,
+    "id": "P-7d4a40b62378bf"
+  },
+  {
+    "family": "LINEARREG_INTERCEPT",
+    "implementation": "TA-Lib API LINEARREG_INTERCEPT",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Linear Regression Intercept",
+    "standalone_performance_tested": false,
+    "id": "P-06fd9486b7d958"
+  },
+  {
+    "family": "LINEARREG_SLOPE",
+    "implementation": "TA-Lib API LINEARREG_SLOPE",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Linear Regression Slope",
+    "standalone_performance_tested": false,
+    "id": "P-cc7b8541207234"
+  },
+  {
+    "family": "MA",
+    "implementation": "TA-Lib API MA",
+    "settings": {
+      "Time Period": 30,
+      "MA Type": 0
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Moving average",
+    "standalone_performance_tested": false,
+    "id": "P-ac8e56532a94b0"
+  },
+  {
+    "family": "MACD",
+    "implementation": "TA-Lib API MACD",
+    "settings": {
+      "Fast Period": 12,
+      "Slow Period": 26,
+      "Signal Period": 9
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Moving Average Convergence/Divergence",
+    "standalone_performance_tested": false,
+    "id": "P-0bf0123ced4c53"
+  },
+  {
+    "family": "MACDEXT",
+    "implementation": "TA-Lib API MACDEXT",
+    "settings": {
+      "Fast Period": 12,
+      "Fast MA": 0,
+      "Slow Period": 26,
+      "Slow MA": 0,
+      "Signal Period": 9,
+      "Signal MA": 0
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "MACD with controllable MA type",
+    "standalone_performance_tested": false,
+    "id": "P-25f0d2530096c9"
+  },
+  {
+    "family": "MACDFIX",
+    "implementation": "TA-Lib API MACDFIX",
+    "settings": {
+      "Signal Period": 9
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Moving Average Convergence/Divergence Fix 12/26",
+    "standalone_performance_tested": false,
+    "id": "P-e88482c64e27ed"
+  },
+  {
+    "family": "MAMA",
+    "implementation": "TA-Lib API MAMA",
+    "settings": {
+      "Fast Limit": 0.5,
+      "Slow Limit": 0.05
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "MESA Adaptive Moving Average",
+    "standalone_performance_tested": false,
+    "id": "P-1ac24fb3648613"
+  },
+  {
+    "family": "MASSI",
+    "implementation": "TA-Lib API MASSI",
+    "settings": {
+      "Fast Period": 9,
+      "Slow Period": 25
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Mass Index",
+    "standalone_performance_tested": false,
+    "id": "P-bb2ed8cce72026"
+  },
+  {
+    "family": "MAVP",
+    "implementation": "TA-Lib API MAVP",
+    "settings": {
+      "Minimum Period": 2,
+      "Maximum Period": 30,
+      "MA Type": 0
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Moving average with variable period",
+    "standalone_performance_tested": false,
+    "id": "P-5e7dc4aa71872b"
+  },
+  {
+    "family": "MCGD",
+    "implementation": "TA-Lib API MCGD",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "McGinley Dynamic",
+    "standalone_performance_tested": false,
+    "id": "P-e1c7c49c2cdf16"
+  },
+  {
+    "family": "MEDIAN",
+    "implementation": "TA-Lib API MEDIAN",
+    "settings": {
+      "Time Period": 30
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Rolling Median",
+    "standalone_performance_tested": false,
+    "id": "P-533e3a1982596d"
+  },
+  {
+    "family": "MFI",
+    "implementation": "TA-Lib API MFI",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Money Flow Index",
+    "standalone_performance_tested": false,
+    "id": "P-8dd4924cd1c0b9"
+  },
+  {
+    "family": "MIDPOINT",
+    "implementation": "TA-Lib API MIDPOINT",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "MidPoint over period",
+    "standalone_performance_tested": false,
+    "id": "P-f47f50946999cf"
+  },
+  {
+    "family": "MIDPRICE",
+    "implementation": "TA-Lib API MIDPRICE",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Midpoint Price over period",
+    "standalone_performance_tested": false,
+    "id": "P-0ca8070a849e30"
+  },
+  {
+    "family": "MINUS_DI",
+    "implementation": "TA-Lib API MINUS_DI",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Minus Directional Indicator",
+    "standalone_performance_tested": false,
+    "id": "P-6c2cf3f34960a2"
+  },
+  {
+    "family": "MINUS_DM",
+    "implementation": "TA-Lib API MINUS_DM",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Minus Directional Movement",
+    "standalone_performance_tested": false,
+    "id": "P-b403b85f4bc79f"
+  },
+  {
+    "family": "MOM",
+    "implementation": "TA-Lib API MOM",
+    "settings": {
+      "Time Period": 10
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Momentum",
+    "standalone_performance_tested": false,
+    "id": "P-0e09eba28d9d2a"
+  },
+  {
+    "family": "NATR",
+    "implementation": "TA-Lib API NATR",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Normalized Average True Range",
+    "standalone_performance_tested": false,
+    "id": "P-e5a49653e59658"
+  },
+  {
+    "family": "PERCENTB",
+    "implementation": "TA-Lib API PERCENTB",
+    "settings": {
+      "Time Period": 20,
+      "Deviations up": 2,
+      "Deviations down": 2,
+      "MA Type": 0
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Bollinger Bands %B",
+    "standalone_performance_tested": false,
+    "id": "P-fb7c1def10ac2c"
+  },
+  {
+    "family": "PERCENTILE",
+    "implementation": "TA-Lib API PERCENTILE",
+    "settings": {
+      "Time Period": 100,
+      "Percentile": 50
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Percentile (nearest rank)",
+    "standalone_performance_tested": false,
+    "id": "P-a73b10880ced76"
+  },
+  {
+    "family": "PERCENTRANK",
+    "implementation": "TA-Lib API PERCENTRANK",
+    "settings": {
+      "Time Period": 100
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Percent Rank",
+    "standalone_performance_tested": false,
+    "id": "P-083881f031239c"
+  },
+  {
+    "family": "PLUS_DI",
+    "implementation": "TA-Lib API PLUS_DI",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Plus Directional Indicator",
+    "standalone_performance_tested": false,
+    "id": "P-faa3c81941e811"
+  },
+  {
+    "family": "PLUS_DM",
+    "implementation": "TA-Lib API PLUS_DM",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Plus Directional Movement",
+    "standalone_performance_tested": false,
+    "id": "P-4fe2eb298e6b53"
+  },
+  {
+    "family": "PPO",
+    "implementation": "TA-Lib API PPO",
+    "settings": {
+      "Fast Period": 12,
+      "Slow Period": 26,
+      "MA Type": 1
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Percentage Price Oscillator",
+    "standalone_performance_tested": false,
+    "id": "P-8bb66b722e34ec"
+  },
+  {
+    "family": "PSO",
+    "implementation": "TA-Lib API PSO",
+    "settings": {
+      "Fast-K Period": 8,
+      "EMA Period": 5
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Premier Stochastic Oscillator",
+    "standalone_performance_tested": false,
+    "id": "P-8089a8087bedce"
+  },
+  {
+    "family": "PVO",
+    "implementation": "TA-Lib API PVO",
+    "settings": {
+      "Fast Period": 12,
+      "Slow Period": 26,
+      "MA Type": 1
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Percentage Volume Oscillator",
+    "standalone_performance_tested": false,
+    "id": "P-550bd0f8eba335"
+  },
+  {
+    "family": "QSTICK",
+    "implementation": "TA-Lib API QSTICK",
+    "settings": {
+      "Time Period": 10
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Qstick",
+    "standalone_performance_tested": false,
+    "id": "P-8d6253562d0b83"
+  },
+  {
+    "family": "RMA",
+    "implementation": "TA-Lib API RMA",
+    "settings": {
+      "Time Period": 30
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Wilder's Smoothed Moving Average",
+    "standalone_performance_tested": false,
+    "id": "P-1b7b3cf85ab2ec"
+  },
+  {
+    "family": "ROC",
+    "implementation": "TA-Lib API ROC",
+    "settings": {
+      "Time Period": 10
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Rate of change : ((price/prevPrice)-1)*100",
+    "standalone_performance_tested": false,
+    "id": "P-08046bd9750e04"
+  },
+  {
+    "family": "ROCP",
+    "implementation": "TA-Lib API ROCP",
+    "settings": {
+      "Time Period": 10
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Rate of change Percentage: (price-prevPrice)/prevPrice",
+    "standalone_performance_tested": false,
+    "id": "P-b4b00a1362c5a8"
+  },
+  {
+    "family": "ROCR",
+    "implementation": "TA-Lib API ROCR",
+    "settings": {
+      "Time Period": 10
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Rate of change ratio: (price/prevPrice)",
+    "standalone_performance_tested": false,
+    "id": "P-3a52d805120aca"
+  },
+  {
+    "family": "ROCR100",
+    "implementation": "TA-Lib API ROCR100",
+    "settings": {
+      "Time Period": 10
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Rate of change ratio 100 scale: (price/prevPrice)*100",
+    "standalone_performance_tested": false,
+    "id": "P-7c7e1158dd9c21"
+  },
+  {
+    "family": "ROGERSSATCHELL",
+    "implementation": "TA-Lib API ROGERSSATCHELL",
+    "settings": {
+      "Time Period": 10,
+      "Annualization": 252
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Rogers-Satchell Volatility",
+    "standalone_performance_tested": false,
+    "id": "P-515c3d92be07dd"
+  },
+  {
+    "family": "RSI",
+    "implementation": "TA-Lib API RSI",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Relative Strength Index",
+    "standalone_performance_tested": false,
+    "id": "P-f5e9db5cf5ee23"
+  },
+  {
+    "family": "RVI",
+    "implementation": "TA-Lib API RVI",
+    "settings": {
+      "Time Period": 14,
+      "StdDev Period": 10
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Relative Volatility Index",
+    "standalone_performance_tested": false,
+    "id": "P-f8eeead75398ad"
+  },
+  {
+    "family": "RVIR",
+    "implementation": "TA-Lib API RVIR",
+    "settings": {
+      "Time Period": 14,
+      "StdDev Period": 10
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Relative Volatility Index, refined high/low form",
+    "standalone_performance_tested": false,
+    "id": "P-9493ee1ca292c6"
+  },
+  {
+    "family": "RVOL",
+    "implementation": "TA-Lib API RVOL",
+    "settings": {
+      "Time Period": 20
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Relative Volume",
+    "standalone_performance_tested": false,
+    "id": "P-a30185e13049a9"
+  },
+  {
+    "family": "SAR",
+    "implementation": "TA-Lib API SAR",
+    "settings": {
+      "Acceleration Factor": 0.02,
+      "AF Maximum": 0.2
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Parabolic SAR",
+    "standalone_performance_tested": false,
+    "id": "P-f71fb1f9bcde39"
+  },
+  {
+    "family": "SAREXT",
+    "implementation": "TA-Lib API SAREXT",
+    "settings": {
+      "Start Value": 0,
+      "Offset on Reverse": 0,
+      "AF Init Long": 0.02,
+      "AF Long": 0.02,
+      "AF Max Long": 0.2,
+      "AF Init Short": 0.02,
+      "AF Short": 0.02,
+      "AF Max Short": 0.2
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Parabolic SAR - Extended",
+    "standalone_performance_tested": false,
+    "id": "P-b5779c1c3c5042"
+  },
+  {
+    "family": "SI",
+    "implementation": "TA-Lib API SI",
+    "settings": {
+      "Limit Move": 3
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Wilder Swing Index",
+    "standalone_performance_tested": false,
+    "id": "P-ea5be3f88bd6d9"
+  },
+  {
+    "family": "SMA",
+    "implementation": "TA-Lib API SMA",
+    "settings": {
+      "Time Period": 30
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Simple Moving Average",
+    "standalone_performance_tested": false,
+    "id": "P-86fab47a801ca7"
+  },
+  {
+    "family": "SMI",
+    "implementation": "TA-Lib API SMI",
+    "settings": {
+      "Time Period": 13,
+      "Fast Period": 2,
+      "Slow Period": 25,
+      "Signal Period": 9
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Stochastic Momentum Index",
+    "standalone_performance_tested": false,
+    "id": "P-cae43050d69847"
+  },
+  {
+    "family": "STC",
+    "implementation": "TA-Lib API STC",
+    "settings": {
+      "Fast Period": 23,
+      "Slow Period": 50,
+      "Cycle Period": 10
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Schaff Trend Cycle",
+    "standalone_performance_tested": false,
+    "id": "P-dd92f0a2ab40d7"
+  },
+  {
+    "family": "STDDEV",
+    "implementation": "TA-Lib API STDDEV",
+    "settings": {
+      "Time Period": 5,
+      "Deviations": 1
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Standard Deviation",
+    "standalone_performance_tested": false,
+    "id": "P-f2b6ed4b88edaa"
+  },
+  {
+    "family": "STOCH",
+    "implementation": "TA-Lib API STOCH",
+    "settings": {
+      "Fast-K Period": 5,
+      "Slow-K Period": 3,
+      "Slow-K MA": 0,
+      "Slow-D Period": 3,
+      "Slow-D MA": 0
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Stochastic",
+    "standalone_performance_tested": false,
+    "id": "P-e5f0d6fb28f6a3"
+  },
+  {
+    "family": "STOCHF",
+    "implementation": "TA-Lib API STOCHF",
+    "settings": {
+      "Fast-K Period": 5,
+      "Fast-D Period": 3,
+      "Fast-D MA": 0
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Stochastic Fast",
+    "standalone_performance_tested": false,
+    "id": "P-6897005d3bd027"
+  },
+  {
+    "family": "STOCHRSI",
+    "implementation": "TA-Lib API STOCHRSI",
+    "settings": {
+      "Time Period": 14,
+      "Fast-K Period": 5,
+      "Fast-D Period": 3,
+      "Fast-D MA": 0
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Stochastic Relative Strength Index",
+    "standalone_performance_tested": false,
+    "id": "P-6676cee25c65de"
+  },
+  {
+    "family": "SUPERTREND",
+    "implementation": "TA-Lib API SUPERTREND",
+    "settings": {
+      "Time Period": 10,
+      "Multiplier": 3
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "SuperTrend",
+    "standalone_performance_tested": false,
+    "id": "P-879ff1754810d5"
+  },
+  {
+    "family": "SWAK_2PHP",
+    "implementation": "TA-Lib API SWAK_2PHP",
+    "settings": {
+      "Time Period": 20
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Swiss Army Knife - Two-Pole High-Pass Filter",
+    "standalone_performance_tested": false,
+    "id": "P-e95442acf27bae"
+  },
+  {
+    "family": "SWAK_BP",
+    "implementation": "TA-Lib API SWAK_BP",
+    "settings": {
+      "Time Period": 20,
+      "Delta": 0.1
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Swiss Army Knife - Band-Pass Filter",
+    "standalone_performance_tested": false,
+    "id": "P-8a123b4cb72d8c"
+  },
+  {
+    "family": "SWAK_BUTTER",
+    "implementation": "TA-Lib API SWAK_BUTTER",
+    "settings": {
+      "Time Period": 20
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Swiss Army Knife - Butterworth Filter",
+    "standalone_performance_tested": false,
+    "id": "P-0cc9dd5ef50cb3"
+  },
+  {
+    "family": "SWAK_GAUSS",
+    "implementation": "TA-Lib API SWAK_GAUSS",
+    "settings": {
+      "Time Period": 20
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Swiss Army Knife - Gaussian Filter",
+    "standalone_performance_tested": false,
+    "id": "P-c0435c44940551"
+  },
+  {
+    "family": "SWAK_HP",
+    "implementation": "TA-Lib API SWAK_HP",
+    "settings": {
+      "Time Period": 20
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Swiss Army Knife - High-Pass Filter",
+    "standalone_performance_tested": false,
+    "id": "P-ee6f309f0b6b09"
+  },
+  {
+    "family": "T3",
+    "implementation": "TA-Lib API T3",
+    "settings": {
+      "Time Period": 5,
+      "Volume Factor": 0.7
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Triple Exponential Moving Average (T3)",
+    "standalone_performance_tested": false,
+    "id": "P-bd6c9322e3c4ac"
+  },
+  {
+    "family": "TEMA",
+    "implementation": "TA-Lib API TEMA",
+    "settings": {
+      "Time Period": 30
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Triple Exponential Moving Average",
+    "standalone_performance_tested": false,
+    "id": "P-60fbcdd496d0fb"
+  },
+  {
+    "family": "TRIMA",
+    "implementation": "TA-Lib API TRIMA",
+    "settings": {
+      "Time Period": 30
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Triangular Moving Average",
+    "standalone_performance_tested": false,
+    "id": "P-e05ce5942c43f1"
+  },
+  {
+    "family": "TRIX",
+    "implementation": "TA-Lib API TRIX",
+    "settings": {
+      "Time Period": 30
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "1-day Rate-Of-Change (ROC) of a Triple Smooth EMA",
+    "standalone_performance_tested": false,
+    "id": "P-054db6e3082422"
+  },
+  {
+    "family": "TSF",
+    "implementation": "TA-Lib API TSF",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Time Series Forecast",
+    "standalone_performance_tested": false,
+    "id": "P-3b1fc2ac9625de"
+  },
+  {
+    "family": "TSI",
+    "implementation": "TA-Lib API TSI",
+    "settings": {
+      "First Smoothing Period": 25,
+      "Second Smoothing Period": 13
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "True Strength Index",
+    "standalone_performance_tested": false,
+    "id": "P-cffe70e0130464"
+  },
+  {
+    "family": "ULTOSC",
+    "implementation": "TA-Lib API ULTOSC",
+    "settings": {
+      "First Period": 7,
+      "Second Period": 14,
+      "Third Period": 28
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Ultimate Oscillator",
+    "standalone_performance_tested": false,
+    "id": "P-0f454868a5877f"
+  },
+  {
+    "family": "VAR",
+    "implementation": "TA-Lib API VAR",
+    "settings": {
+      "Time Period": 5,
+      "Deviations": 1
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Variance",
+    "standalone_performance_tested": false,
+    "id": "P-b751d9b54ff639"
+  },
+  {
+    "family": "VHF",
+    "implementation": "TA-Lib API VHF",
+    "settings": {
+      "Time Period": 28
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Vertical Horizontal Filter",
+    "standalone_performance_tested": false,
+    "id": "P-8b30462289b081"
+  },
+  {
+    "family": "VIDYA",
+    "implementation": "TA-Lib API VIDYA",
+    "settings": {
+      "Time Period": 12,
+      "CMO Period": 9
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Variable Index Dynamic Average",
+    "standalone_performance_tested": false,
+    "id": "P-d1af061e01e14b"
+  },
+  {
+    "family": "VORTEX",
+    "implementation": "TA-Lib API VORTEX",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Vortex Indicator",
+    "standalone_performance_tested": false,
+    "id": "P-67acd7dc8cdf91"
+  },
+  {
+    "family": "VWMA",
+    "implementation": "TA-Lib API VWMA",
+    "settings": {
+      "Time Period": 30
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Volume Weighted Moving Average",
+    "standalone_performance_tested": false,
+    "id": "P-b86198154f22b3"
+  },
+  {
+    "family": "WAVETREND",
+    "implementation": "TA-Lib API WAVETREND",
+    "settings": {
+      "Channel Period": 10,
+      "Average Period": 21,
+      "Signal Period": 4
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "WaveTrend Oscillator",
+    "standalone_performance_tested": false,
+    "id": "P-5bdb69b6d73e4e"
+  },
+  {
+    "family": "WILLR",
+    "implementation": "TA-Lib API WILLR",
+    "settings": {
+      "Time Period": 14
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Williams' %R",
+    "standalone_performance_tested": false,
+    "id": "P-b1e42ef2b7f352"
+  },
+  {
+    "family": "WMA",
+    "implementation": "TA-Lib API WMA",
+    "settings": {
+      "Time Period": 30
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Weighted Moving Average",
+    "standalone_performance_tested": false,
+    "id": "P-11c597ece4c26d"
+  },
+  {
+    "family": "ZLEMA",
+    "implementation": "TA-Lib API ZLEMA",
+    "settings": {
+      "Time Period": 30
+    },
+    "condition": null,
+    "classification": "official_api_default",
+    "complete_within_reported_fields": true,
+    "requires_implementation_check": true,
+    "sources": [
+      "talib_api"
+    ],
+    "note": "Zero-Lag Exponential Moving Average",
+    "standalone_performance_tested": false,
+    "id": "P-12b167ca4683e1"
+  }
+]

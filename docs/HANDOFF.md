@@ -318,3 +318,9 @@ Saved57-row counts reconciled;636 event-variant timing partitions checked. Of56 
 
 ## BTC registration from repository — 2026-10-15
 Owner reports executor25MB attachment cap and requests repository-first execution. R3 prepared standard-library source recovery+registration runner, fixed13monthly Binance source hashes, original research definitions preserved. Real one-month end-to-end and completed-rerun checks10/10;43200/8640/2880/720bars. No new R3year or signal measurement. Source code/paper/receipts small; large raw data remains at original sources and is recreated by executor. Next: executor runs ready R3stage on fresh <=125MB workspace, publishes small reports; Lead audits. No main writes/merge/trading.
+
+
+## 2026-10-16 — Session preservation and full catalog restored to scope
+
+Owner requests all work from this conversation in the repository. Start at `research/session-work-archive-2026-10-16/README_AR.md`, `WORK-PLAN_AR.md`, `CATALOG-AUDIT.json`, `WORKSPACE-MANIFEST.json` and final `VERIFIED-DELIVERY.json`. Owner archive contains a generator-backed17,800,618 single-parameter-change view; keep its original ZIP and original metadata without silent edits. The134-setting prototype never replaced this catalog. V1 has729 theoretical sign states per frame, no market validation. Complete universal executable coverage and comprehensive ready paper remain unfinished; no market precision result was produced by this preservation task. Private credentials never belong in public files. Preserve existing branch history and no main/PR/merge. Next: reconcile the source catalog, parameter dependencies and signal definitions using existing engines; do not restart with a small invented inventory.
+

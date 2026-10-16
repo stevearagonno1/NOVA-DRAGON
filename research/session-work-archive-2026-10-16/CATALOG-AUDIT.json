@@ -1,0 +1,34 @@
+{
+  "status": "TECHNICALLY_CONFIRMED_CATALOG_COUNTS_NOT_MARKET_VALIDATION",
+  "archive_sha256": "d536b7d84ea94f93f080d81086b3ffbe3f2803a8d413fabaaf268c0f7cd1298a",
+  "archive_bytes": 4085170,
+  "manifest_hashes_checked": 12,
+  "sqlite_quick_check": "ok",
+  "counts": {
+    "versions": 1425,
+    "volume_versions": 96950,
+    "parameter_axes": 7092,
+    "definitions": 774,
+    "sources": 1969,
+    "source_condition_candidates": 15432,
+    "web_standalone_records": 282,
+    "bullish_candidates_pending_review": 17319,
+    "individual_parameter_variants": 17800618,
+    "independent_indicator_catalog": 17802043
+  },
+  "original_summary": {
+    "versions": 1425,
+    "volume_versions": 96950,
+    "source_condition_candidates": 15432,
+    "parameter_axes": 7092,
+    "volume_spaces": 51,
+    "web_standalone_records": 282,
+    "bullish_candidates_pending_review": 17319,
+    "indexed_single_changes": 17781680,
+    "cross_indicator_pair_tables_included": false,
+    "all_candidates_verified_bullish_and_independent": false
+  },
+  "summary_discrepancy": 18938,
+  "all_variants_market_tested": false,
+  "all_variants_executable_or_bullish": false
+}

@@ -1,0 +1,20 @@
+{
+  "task": "Owner-authorised repository preservation of conversation work",
+  "owner_instruction": "ارفع كل عملنا هنا الى المستودع",
+  "first_request_time_utc": "2026-10-16T12:28:51Z",
+  "start_basis": "user submission timestamp; first tool start not independently captured",
+  "recorded_utc": "2026-10-16T12:31:20.480985+00:00",
+  "estimated_total_seconds": 550,
+  "components_estimate_seconds": {
+    "resume_and_inventory": 110,
+    "archive_audit_and_packaging": 140,
+    "publication": 210,
+    "immutable_readback": 90
+  },
+  "uncertainty": "network throughput, archive size, GitHub availability",
+  "mode": "documentation and preservation; no new market experiment",
+  "branch": "agent/btc-causal-measures-2026-10-15",
+  "base_commit": "b21539cb23455046ef62b58236adb288e0dfc619",
+  "main_writes": false,
+  "full_elapsed_actual": "not measured until verified delivery"
+}
