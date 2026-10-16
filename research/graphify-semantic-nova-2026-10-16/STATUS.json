@@ -1,0 +1,20 @@
+{
+  "status": "PARTIAL_EVIDENCE_GRAPH_COMPLETE_SEMANTIC_REVIEW_PENDING",
+  "source_commit": "d1b4cb1ded30cc22049d33b5f146081405e81443",
+  "tracked_files": 4105,
+  "canonical_source_records": 8537,
+  "nodes": 34952,
+  "edges": 75198,
+  "structural_audit": "PASS_STRUCTURAL_AND_EVIDENCE_CHECKS_ONLY",
+  "all_content_semantically_read": false,
+  "all_inferred_relations_reviewed": false,
+  "opaque_binary_count": 1,
+  "semantic_segments_pending": 49927,
+  "source_fetch_errors": 0,
+  "unresolved_conversion_errors": 0,
+  "delivery_utc": "2026-10-16T13:46:08.485307+00:00",
+  "total_elapsed_seconds": "not measured: exact first tool time not captured; work exceeded 600 seconds",
+  "market_experiments_run": false,
+  "main_modified": false,
+  "remaining": "Full semantic reading and independent relation review; do not claim task complete."
+}

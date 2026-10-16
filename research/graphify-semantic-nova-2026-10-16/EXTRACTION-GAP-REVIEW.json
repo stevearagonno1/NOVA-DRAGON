@@ -1,0 +1,198 @@
+[
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/BTC-year-minute-and-frames.zip",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "30ee01106a5a83e486789ecb0c0d609bedf50bd3265434fd04a725894fe2fdc5",
+    "original_decode_error": "BadZipFile: File is not a zip file",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/frames/BTCUSDT-15m.csv.gz",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "083bc8089ae2d7c506faef53b53fe99665890f65bba67cc6990c16df3d51a6b8",
+    "original_decode_error": "BadGzipFile: Not a gzipped file (b'fi')",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/frames/BTCUSDT-1m.csv.gz",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "042896dc1966b8a6214e5383aba5b8b931cfa049d17aafa37eb8a77c859b95da",
+    "original_decode_error": "BadGzipFile: Not a gzipped file (b'fi')",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/frames/BTCUSDT-5m.csv.gz",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "c1db13ab836db24060490c83b83c089adb1ce9e6e1899d81e02d398cec22e6b1",
+    "original_decode_error": "BadGzipFile: Not a gzipped file (b'fi')",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/frames/BTCUSDT-60m.csv.gz",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "696acdd664191d0e390f9503a2528bead6c7e137b55b526a9cfb45bf4b51ba65",
+    "original_decode_error": "BadGzipFile: Not a gzipped file (b'fi')",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/raw/BTCUSDT-1m-2025-09.zip",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "5de259f453ac6e91181a5a84c734f34f8f0bf03844874f5f20c52409ff609f63",
+    "original_decode_error": "BadZipFile: File is not a zip file",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/raw/BTCUSDT-1m-2025-10.zip",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "aa2f010208f35fa81c2bb559f67a1c80893c16f4adfdabb96f223cacc21966f2",
+    "original_decode_error": "BadZipFile: File is not a zip file",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/raw/BTCUSDT-1m-2025-11.zip",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "03b8f88fe08a32ed8a0889503c66cccb29dfcfa9f27f21603a200f3418d69918",
+    "original_decode_error": "BadZipFile: File is not a zip file",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/raw/BTCUSDT-1m-2025-12.zip",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "548cd074ed0e640bb637bacc32e6b701ee41dbc809f70df75f266d70c07ed3fd",
+    "original_decode_error": "BadZipFile: File is not a zip file",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/raw/BTCUSDT-1m-2026-01.zip",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "8ac49515a04bb3dcc3ead7ad31fd2e035e4e44569ab35e23535e4eb03ecd9300",
+    "original_decode_error": "BadZipFile: File is not a zip file",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/raw/BTCUSDT-1m-2026-02.zip",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "52a5ba167254b1ba0e4bca70447295a345e48640fa4d143e1f9a4c56156f8092",
+    "original_decode_error": "BadZipFile: File is not a zip file",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/raw/BTCUSDT-1m-2026-03.zip",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "9cb507578147523601c1ced1ade601b653c93c25fc601a0bda26f1322d5a0c28",
+    "original_decode_error": "BadZipFile: File is not a zip file",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/raw/BTCUSDT-1m-2026-04.zip",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "df87ff0a7b74c6db41705c8fbcbbdde277b7718604635b3e6120d1fa0a959310",
+    "original_decode_error": "BadZipFile: File is not a zip file",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/raw/BTCUSDT-1m-2026-05.zip",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "7d6341e087eeef09eedb6f0ab6f757df6501f3f8547ef80926010c7f4e1e46b1",
+    "original_decode_error": "BadZipFile: File is not a zip file",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/raw/BTCUSDT-1m-2026-06.zip",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "ac352440e57f3fd283c373eeb3f67be2899e3f79e70b8a95f265ada33e613f08",
+    "original_decode_error": "BadZipFile: File is not a zip file",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/raw/BTCUSDT-1m-2026-07.zip",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "030b6a4fa0b84226cdfd1836b9bc32f14680b7f46511108092765ac08d14a86d",
+    "original_decode_error": "BadZipFile: File is not a zip file",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/raw/BTCUSDT-1m-2026-08.zip",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "9c76ac04c9d99b1a432b4b0457a11373ea4d5e61b5e30312ea5bfdc9c2c9535e",
+    "original_decode_error": "BadZipFile: File is not a zip file",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/synthetic-existing-run/execution/data/raw/BTCUSDT-1m-2026-09.zip",
+    "status": "INVALID_CONTAINER_FIXTURE",
+    "sha256": "2b88f93aa2e29ac31719c50de2d99f5a8f739351f5f5060ed67030f1d5caf3e5",
+    "original_decode_error": "BadZipFile: File is not a zip file",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/rehearsal/features-15m-2025-09.bin",
+    "status": "DATA_SCHEMA",
+    "sha256": "df40edad0d675712430177be9b6f5be891dd9bb77ce5bf0ba167163bf28a8087",
+    "original_decode_error": "ValueError: unrecognized text encoding",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/rehearsal/features-1m-2025-09.bin",
+    "status": "DATA_SCHEMA",
+    "sha256": "36969bdabd4949a7b79ddf6ca49e3344b327c9f32c4f9e68ccc42efb00e0a1c0",
+    "original_decode_error": "ValueError: unrecognized text encoding",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/rehearsal/features-5m-2025-09.bin",
+    "status": "DATA_SCHEMA",
+    "sha256": "af8060bbaba8a72669efdefa0dbae41e8aac88e4ec3a04645050fd9e99a96a9f",
+    "original_decode_error": "ValueError: unrecognized text encoding",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/rehearsal/features-60m-2025-09.bin",
+    "status": "DATA_SCHEMA",
+    "sha256": "02462ed9bad6d981a699e7a4f38bc17eedbc08062320d22199a0e38574a52582",
+    "original_decode_error": "ValueError: unrecognized text encoding",
+    "proof_source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py"
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/btc_comprehensive_prep/document_evidence/02.txt",
+    "status": "TEXT_NORMALIZED",
+    "sha256": "1f00bdc0269704d2b4bfd09bf9faf56fcf81893f121a1fde258d41f792c2776e",
+    "original_decode_error": "ValueError: unrecognized text encoding",
+    "proof_source": null
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/btc_comprehensive_prep/document_evidence/05.txt",
+    "status": "TEXT_NORMALIZED",
+    "sha256": "b3c4bb790b9a9b567b37cb29ad90e14bb5ee63f7b500ccb4dd6aeb95de910b8e",
+    "original_decode_error": "ValueError: unrecognized text encoding",
+    "proof_source": null
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/btc_comprehensive_prep/document_evidence/07.txt",
+    "status": "TEXT_NORMALIZED",
+    "sha256": "233df354a5d8209333a93e0fcb0c89b550570e55b5d5c48631f6ee9e68b19027",
+    "original_decode_error": "ValueError: unrecognized text encoding",
+    "proof_source": null
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/btc_comprehensive_prep/document_evidence/08.txt",
+    "status": "TEXT_NORMALIZED",
+    "sha256": "1e73c149b9713e0db814ecf71c8c18d5334b4dac385218903aa92677013907e3",
+    "original_decode_error": "ValueError: unrecognized text encoding",
+    "proof_source": null
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/btc_comprehensive_prep/document_evidence/10.txt",
+    "status": "TEXT_NORMALIZED",
+    "sha256": "5bee3815f7d7f68d7c9461d2a1889bb2e88fdb5039d9d21218d07071ebe45ba2",
+    "original_decode_error": "ValueError: unrecognized text encoding",
+    "proof_source": null
+  },
+  {
+    "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/btc_comprehensive_prep/document_evidence/16.txt",
+    "status": "TEXT_NORMALIZED",
+    "sha256": "21c0462fec49d1fba1cb0617adbbbe0115ed2dc997d7068f49cb345658caed9d",
+    "original_decode_error": "ValueError: unrecognized text encoding",
+    "proof_source": null
+  }
+]

@@ -1,0 +1,8 @@
+{
+  "status": "PASS_PINNED_FILE_COVERAGE",
+  "expected": 4105,
+  "represented": 4105,
+  "missing": [],
+  "wrong_git_identity": [],
+  "semantic_reading_complete": false
+}

@@ -1,0 +1,314 @@
+[
+  {
+    "source": "n_d3e22f31bf75a052dc229315",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "(e/'BTC-year-minute-and-frames.zip').write_bytes(b'synthetic transport')",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_0f731791839efbc295c16d7e",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(b'fixture-'+n.encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_6f0cd8e99e5dd3dc2419139b",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(b'fixture-'+n.encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_9c888f22e879e7aa6191a998",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(b'fixture-'+n.encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_3560e8f39de1da41e641256c",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(b'fixture-'+n.encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_bde62e4cf793fe432f3b9809",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(('synthetic source '+month).encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_310baf2d154ea928e37aae11",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(('synthetic source '+month).encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_15c66a688cffd568a09bd67c",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(('synthetic source '+month).encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_ac7db43871f3bce05813d6eb",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(('synthetic source '+month).encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_5365016c40fe0f3e30100472",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(('synthetic source '+month).encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_683aadc1f6ca98cd470f4c10",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(('synthetic source '+month).encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_987c040ecb6f345fd194aa96",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(('synthetic source '+month).encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_fb33f7bede7a7f7889729433",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(('synthetic source '+month).encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_dd436a0facbfeb091915c7a1",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(('synthetic source '+month).encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_87da586181c93853333c9716",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(('synthetic source '+month).encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_a8789a0505befc1543073fe5",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(('synthetic source '+month).encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_8f91196711eeb4cd7d931248",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(('synthetic source '+month).encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_506e3637040c2b56ed1aef02",
+    "target": "n_e0249df76039e0f6e23b2e88",
+    "relation": "created_by_fixture_generator",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/publish_resume/test_publisher.py",
+    "evidence_quote": "f.write_bytes(('synthetic source '+month).encode())",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_3955a9f3c600172dd6282b83",
+    "target": "n_79dd453e3cd69d286967411c",
+    "relation": "encoded_by",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+    "evidence_quote": "RECORD=struct.Struct('<q14d')",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_cc43c205e9216eb0dd65b30e",
+    "target": "n_79dd453e3cd69d286967411c",
+    "relation": "encoded_by",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+    "evidence_quote": "RECORD=struct.Struct('<q14d')",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_14409d3ae29f4daacd228078",
+    "target": "n_79dd453e3cd69d286967411c",
+    "relation": "encoded_by",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+    "evidence_quote": "RECORD=struct.Struct('<q14d')",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_560054b3af0ecf5bb40fdbb3",
+    "target": "n_79dd453e3cd69d286967411c",
+    "relation": "encoded_by",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+    "evidence_quote": "RECORD=struct.Struct('<q14d')",
+    "review_method": "lead read producer and verified original member SHA256",
+    "not_market_evidence": true
+  },
+  {
+    "source": "n_79dd453e3cd69d286967411c",
+    "target": "concept_n_a3d9193317ceb082a7703608",
+    "relation": "defines_measurement",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+    "evidence_quote": "self.atr=Average(14,True)",
+    "parameters": {
+      "period": 14,
+      "smoothing": "Wilder"
+    },
+    "review_method": "lead read full State calculation; no efficacy claim"
+  },
+  {
+    "source": "n_79dd453e3cd69d286967411c",
+    "target": "concept_n_af9daf6b7e0bcf8f2fbc66de",
+    "relation": "defines_measurement",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+    "evidence_quote": "self.ema=Average(20)",
+    "parameters": {
+      "period": 20
+    },
+    "review_method": "lead read full State calculation; no efficacy claim"
+  },
+  {
+    "source": "n_79dd453e3cd69d286967411c",
+    "target": "concept_n_5210ff85f7fa7ee24ec5c038",
+    "relation": "defines_measurement",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+    "evidence_quote": "self.fast=Average(12);self.slow=Average(26);self.signal=Average(9)",
+    "parameters": {
+      "fast": 12,
+      "slow": 26,
+      "signal": 9
+    },
+    "review_method": "lead read full State calculation; no efficacy claim"
+  },
+  {
+    "source": "n_79dd453e3cd69d286967411c",
+    "target": "concept_n_6a079fd187d238d9ba2798d1",
+    "relation": "defines_measurement",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+    "evidence_quote": "self.gain=Average(14,True);self.loss=Average(14,True)",
+    "parameters": {
+      "period": 14,
+      "smoothing": "Wilder"
+    },
+    "review_method": "lead read full State calculation; no efficacy claim"
+  },
+  {
+    "source": "n_79dd453e3cd69d286967411c",
+    "target": "concept_n_b10fb966d72063f534774c7c",
+    "relation": "defines_measurement",
+    "confidence": "EXTRACTED",
+    "confidence_score": 1.0,
+    "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+    "evidence_quote": "div(v,sum(self.vol)/60) if len(self.vol)==60 else math.nan",
+    "parameters": {
+      "baseline_bars": 60,
+      "current_bar_excluded": true
+    },
+    "review_method": "lead read full State calculation; no efficacy claim"
+  }
+]

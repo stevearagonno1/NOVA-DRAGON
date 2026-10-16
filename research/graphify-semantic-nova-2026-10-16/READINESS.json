@@ -1,0 +1,63 @@
+{
+  "status": "PARTIAL_READINESS_CHECKED",
+  "real_sources": [
+    {
+      "path": "history/clean/NOVA_bin_pending/workspace/uploads/بحث_التداول_الفوري_المؤشرات_والاستراتيجيات.pdf",
+      "git_blob": "5dabe8f83381245e38b823d457a45daf1969482c",
+      "records": 1,
+      "statuses": [
+        "TEXT"
+      ]
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/ملفات/تحسين أداء بوت التداول الآلي.docx",
+      "git_blob": "219e471762208957910f7fd1d1760db6140d3f22",
+      "records": 1,
+      "statuses": [
+        "TEXT"
+      ]
+    },
+    {
+      "path": "history/research/hyp_lab_out/L0085-rise-onset/readiness/upload-proof.zip",
+      "git_blob": "765b3ee2a272f6291de488adf6f61ba1f17cb8c5",
+      "records": 2,
+      "statuses": [
+        "CONTAINER",
+        "TEXT"
+      ]
+    },
+    {
+      "path": "history/clean/NOVA_bin_pending/جميع اصدارات البوت/V3/bot.rar",
+      "git_blob": "bb34d27f792d97687b2e4d2d1d0912c86d2577f0",
+      "records": 6,
+      "statuses": [
+        "CONTAINER",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT",
+        "TEXT"
+      ]
+    },
+    {
+      "path": "data/archive/BTCUSDT_1m.parquet",
+      "git_blob": "662b9e22ad77023d2950b6389669c547745bbf3c",
+      "records": 1,
+      "statuses": [
+        "DATA_SCHEMA"
+      ]
+    }
+  ],
+  "checks": [
+    "SQLite schema extraction",
+    "corrupt archive surfaced",
+    "fabricated quotation rejected",
+    "valid fixture accepted",
+    "unread segment rejected"
+  ],
+  "not_checked": [
+    "full semantic extraction",
+    "independent semantic accuracy review"
+  ],
+  "scope": "conversion and rejection fixtures only; does not certify semantic completion"
+}

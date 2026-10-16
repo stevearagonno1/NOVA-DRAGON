@@ -1,0 +1,4 @@
+PyMuPDF==1.26.6
+numpy==2.3.5
+libarchive-c==5.3
+pyarrow==26.0.0

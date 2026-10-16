@@ -1,0 +1,15 @@
+{
+  "source_commit": "d1b4cb1ded30cc22049d33b5f146081405e81443",
+  "scope": "Every tracked blob, recursively inspect archives; distinguish content semantics from numeric dataset metadata; no main mutation",
+  "estimated_full_seconds": 5400,
+  "components_seconds": {
+    "preparation_and_readiness": 900,
+    "retrieval_and_conversion": 900,
+    "host_semantic_review": 2700,
+    "audit_publication_readback": 900
+  },
+  "estimate_basis": "4195+ blobs, Arabic PDFs and nested archives; no semantic provider configured, host extraction required",
+  "status": "PREPARING",
+  "first_action_time": "not captured precisely; after user 2026-10-16T13:08:35Z",
+  "semantic_completion_claim_allowed": false
+}

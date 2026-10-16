@@ -1,0 +1,14 @@
+{
+  "source_commit": "d1b4cb1ded30cc22049d33b5f146081405e81443",
+  "tracked_blobs": 4105,
+  "inventory_records": 8537,
+  "segments": 49927,
+  "batch_count": 4239,
+  "failed_fetches": 0,
+  "unresolved": [],
+  "semantic_complete": false,
+  "binary_metadata_only": [
+    "opencrabs.zip!/opencrabs"
+  ],
+  "invalid_fixture_count": 18
+}

@@ -1,0 +1,9 @@
+{
+  "status": "PASS",
+  "source": "history/research/hyp_lab_out/L0085-rise-onset/evidence.zip",
+  "git_blob": "8e0f4d1b1097fc08d10d54cc3618b34147ab741e",
+  "original_corrupt_cache_preserved": "8e0f4d1b1097fc08d10d54cc3618b34147ab741e.json.corrupt-preserved",
+  "rebuilt_sha256": "72b8992923e2f11eafda63a743300b44111131d959bd0c7e6b3d7e427a6b8947",
+  "record_count": 48,
+  "root_cause": "not established; corruption detected during full read, never treated as valid evidence"
+}
