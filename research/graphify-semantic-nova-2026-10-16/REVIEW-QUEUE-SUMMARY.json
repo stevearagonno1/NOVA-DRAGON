@@ -1,0 +1,8 @@
+{
+  "segments": 49927,
+  "unique_exact_text_groups": 32448,
+  "duplicate_occurrences": 17479,
+  "explicit_complete_reviews": 3,
+  "automatic_full_read_claims": 0,
+  "purpose": "Read identical text once while retaining every original path; not a replacement for semantic review."
+}

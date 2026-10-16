@@ -1,0 +1,331 @@
+{
+  "nodes": [
+    {
+      "id": "n_8da95c0bd2a7fdc282b3938c",
+      "label": "Parameter combinations remain unvalidated",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/NOVA-all-originals-and-independent-versions.zip!/generate-independent.py",
+      "meaning": "A generated configuration is not evidence of a working runtime or a profitable signal."
+    },
+    {
+      "id": "n_0484ce0d18e4440183640482",
+      "label": "Independent indicator SQL catalog",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/NOVA-all-originals-and-independent-versions.zip!/generate-independent.py",
+      "meaning": "Changes mode consumes the view, preserving full independent configurations."
+    },
+    {
+      "id": "n_0a7faf6248da447c009e23db",
+      "label": "Unknown axes are frozen",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/NOVA-all-originals-and-independent-versions.zip!/generate-independent.py",
+      "meaning": "No value is invented for an axis without known choices."
+    },
+    {
+      "id": "n_564273aa178cd202ae0f3744",
+      "label": "Configuration-specific identity",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/NOVA-all-originals-and-independent-versions.zip!/generate-independent.py",
+      "meaning": "Settings, timing and signal participate in the identity; display names alone do not merge variants."
+    },
+    {
+      "id": "n_206278d09ebf158440880748",
+      "label": "Registered mode unreachable from CLI",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/NOVA-all-originals-and-independent-versions.zip!/generate-independent.py",
+      "meaning": "The complete source contains elif args.mode==registered, but argparse rejects that value. This is a static control-flow finding; no market experiment was run."
+    },
+    {
+      "id": "n_e0b7fe735402ebba0794be5a",
+      "label": "Parameter combinations remain unvalidated",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/original-catalog/generate-independent.py",
+      "meaning": "A generated configuration is not evidence of a working runtime or a profitable signal."
+    },
+    {
+      "id": "n_f839f9fe198061a910b19dfd",
+      "label": "Independent indicator SQL catalog",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/original-catalog/generate-independent.py",
+      "meaning": "Changes mode consumes the view, preserving full independent configurations."
+    },
+    {
+      "id": "n_c51baf51a2e0b4bee27c3159",
+      "label": "Unknown axes are frozen",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/original-catalog/generate-independent.py",
+      "meaning": "No value is invented for an axis without known choices."
+    },
+    {
+      "id": "n_1f095bb0b405cfb23279112c",
+      "label": "Configuration-specific identity",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/original-catalog/generate-independent.py",
+      "meaning": "Settings, timing and signal participate in the identity; display names alone do not merge variants."
+    },
+    {
+      "id": "n_9d57c1925a1839e289bdb06f",
+      "label": "Registered mode unreachable from CLI",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/original-catalog/generate-independent.py",
+      "meaning": "The complete source contains elif args.mode==registered, but argparse rejects that value. This is a static control-flow finding; no market experiment was run."
+    },
+    {
+      "id": "n_77d7dd29d789f63b924e01ab",
+      "label": "Four candle frames",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "meaning": "Frame durations in minutes, not four parameter variants."
+    },
+    {
+      "id": "n_b7eaf1a18fb320221efd467b",
+      "label": "ATR14 Wilder",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "meaning": "True range uses previous close, smoothed with Wilder14."
+    },
+    {
+      "id": "n_cb1d9ddcde53327155bc32d8",
+      "label": "EMA20",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "meaning": "Seed is the mean of first20 closes; subsequent alpha2/21."
+    },
+    {
+      "id": "n_1fd6fd0a5ccb46bf92057401",
+      "label": "MACD12/26/9",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "meaning": "EMA12 minus EMA26; signal EMA9; normalized histogram and histogram change are also emitted."
+    },
+    {
+      "id": "n_ba0409408eb54db5c613cd34",
+      "label": "RSI14 Wilder",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "meaning": "Wilder gains/losses; flat series50, zero loss100."
+    },
+    {
+      "id": "n_ed468f14f11e4ec3054300be",
+      "label": "Volume preceding60 bars",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "meaning": "Current volume appended after ratio computation; baseline excludes current bar."
+    },
+    {
+      "id": "n_8dca6ae8bfbfe6ff14c2e44f",
+      "label": "120-byte feature record",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "meaning": "Open time int64 and14float64, little endian."
+    },
+    {
+      "id": "n_09ba4a835eba915bb49cf77f",
+      "label": "Only completed frame at decision",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "meaning": "Target open is preceding fully closed frame. This does not prove all downstream consumers avoid lookahead."
+    },
+    {
+      "id": "n_c11031a6e8522ff9ecbd4001",
+      "label": "Calculation only",
+      "file_type": "semantic_definition",
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "meaning": "No future outcome labels, no setting sweep and no market signal accuracy test in this producer."
+    }
+  ],
+  "edges": [
+    {
+      "source": "n_993679553e51ed2e66a92af7",
+      "target": "n_8da95c0bd2a7fdc282b3938c",
+      "relation": "declares_limitation",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/NOVA-all-originals-and-independent-versions.zip!/generate-independent.py",
+      "segment_id": "n_fe14ef8f9c13b3d7fa83c999",
+      "evidence_quote": "'validity':'parameter choices only; dependencies and runtime not validated'"
+    },
+    {
+      "source": "n_993679553e51ed2e66a92af7",
+      "target": "n_0484ce0d18e4440183640482",
+      "relation": "reads_view",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/NOVA-all-originals-and-independent-versions.zip!/generate-independent.py",
+      "segment_id": "n_fe14ef8f9c13b3d7fa83c999",
+      "evidence_quote": "sql='SELECT * FROM independent_indicator_catalog'"
+    },
+    {
+      "source": "n_993679553e51ed2e66a92af7",
+      "target": "n_0a7faf6248da447c009e23db",
+      "relation": "defines_behavior",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/NOVA-all-originals-and-independent-versions.zip!/generate-independent.py",
+      "segment_id": "n_fe14ef8f9c13b3d7fa83c999",
+      "evidence_quote": "if v is None:frozen.append(a['name']);continue"
+    },
+    {
+      "source": "n_993679553e51ed2e66a92af7",
+      "target": "n_564273aa178cd202ae0f3744",
+      "relation": "defines_identity",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/NOVA-all-originals-and-independent-versions.zip!/generate-independent.py",
+      "segment_id": "n_fe14ef8f9c13b3d7fa83c999",
+      "evidence_quote": "identity=[base['family'],base['definition_id'],p,base['signal'],base['timing'],base['asset']]"
+    },
+    {
+      "source": "n_993679553e51ed2e66a92af7",
+      "target": "n_206278d09ebf158440880748",
+      "relation": "has_static_defect",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "research/session-work-archive-2026-10-16/NOVA-all-originals-and-independent-versions.zip!/generate-independent.py",
+      "segment_id": "n_fe14ef8f9c13b3d7fa83c999",
+      "evidence_quote": "p.add_argument('--mode',choices=['list','changes','custom','cartesian'],default='list')",
+      "rationale": "The complete source contains elif args.mode==registered, but argparse rejects that value. This is a static control-flow finding; no market experiment was run."
+    },
+    {
+      "source": "n_1f6dfbf8cf07b0cf3d3489f0",
+      "target": "n_e0b7fe735402ebba0794be5a",
+      "relation": "declares_limitation",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/original-catalog/generate-independent.py",
+      "segment_id": "n_6db3abd9089d15c0dbe3da6e",
+      "evidence_quote": "'validity':'parameter choices only; dependencies and runtime not validated'"
+    },
+    {
+      "source": "n_1f6dfbf8cf07b0cf3d3489f0",
+      "target": "n_f839f9fe198061a910b19dfd",
+      "relation": "reads_view",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/original-catalog/generate-independent.py",
+      "segment_id": "n_6db3abd9089d15c0dbe3da6e",
+      "evidence_quote": "sql='SELECT * FROM independent_indicator_catalog'"
+    },
+    {
+      "source": "n_1f6dfbf8cf07b0cf3d3489f0",
+      "target": "n_c51baf51a2e0b4bee27c3159",
+      "relation": "defines_behavior",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/original-catalog/generate-independent.py",
+      "segment_id": "n_6db3abd9089d15c0dbe3da6e",
+      "evidence_quote": "if v is None:frozen.append(a['name']);continue"
+    },
+    {
+      "source": "n_1f6dfbf8cf07b0cf3d3489f0",
+      "target": "n_1f095bb0b405cfb23279112c",
+      "relation": "defines_identity",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/original-catalog/generate-independent.py",
+      "segment_id": "n_6db3abd9089d15c0dbe3da6e",
+      "evidence_quote": "identity=[base['family'],base['definition_id'],p,base['signal'],base['timing'],base['asset']]"
+    },
+    {
+      "source": "n_1f6dfbf8cf07b0cf3d3489f0",
+      "target": "n_9d57c1925a1839e289bdb06f",
+      "relation": "has_static_defect",
+      "confidence": "INFERRED",
+      "confidence_score": 0.95,
+      "source_file": "research/session-work-archive-2026-10-16/original-catalog/generate-independent.py",
+      "segment_id": "n_6db3abd9089d15c0dbe3da6e",
+      "evidence_quote": "p.add_argument('--mode',choices=['list','changes','custom','cartesian'],default='list')",
+      "rationale": "The complete source contains elif args.mode==registered, but argparse rejects that value. This is a static control-flow finding; no market experiment was run."
+    },
+    {
+      "source": "n_79dd453e3cd69d286967411c",
+      "target": "n_77d7dd29d789f63b924e01ab",
+      "relation": "defines_behavior",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "segment_id": "n_8b5746870daf5012be58fa37",
+      "evidence_quote": "FRAMES=[1,5,15,60]"
+    },
+    {
+      "source": "n_79dd453e3cd69d286967411c",
+      "target": "n_b7eaf1a18fb320221efd467b",
+      "relation": "defines_behavior",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "segment_id": "n_8b5746870daf5012be58fa37",
+      "evidence_quote": "self.atr=Average(14,True)"
+    },
+    {
+      "source": "n_79dd453e3cd69d286967411c",
+      "target": "n_cb1d9ddcde53327155bc32d8",
+      "relation": "defines_behavior",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "segment_id": "n_8b5746870daf5012be58fa37",
+      "evidence_quote": "self.ema=Average(20)"
+    },
+    {
+      "source": "n_79dd453e3cd69d286967411c",
+      "target": "n_1fd6fd0a5ccb46bf92057401",
+      "relation": "defines_behavior",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "segment_id": "n_8b5746870daf5012be58fa37",
+      "evidence_quote": "self.fast=Average(12);self.slow=Average(26);self.signal=Average(9)"
+    },
+    {
+      "source": "n_79dd453e3cd69d286967411c",
+      "target": "n_ba0409408eb54db5c613cd34",
+      "relation": "defines_behavior",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "segment_id": "n_8b5746870daf5012be58fa37",
+      "evidence_quote": "self.gain=Average(14,True);self.loss=Average(14,True)"
+    },
+    {
+      "source": "n_79dd453e3cd69d286967411c",
+      "target": "n_ed468f14f11e4ec3054300be",
+      "relation": "defines_behavior",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "segment_id": "n_8b5746870daf5012be58fa37",
+      "evidence_quote": "div(v,sum(self.vol)/60) if len(self.vol)==60 else math.nan"
+    },
+    {
+      "source": "n_79dd453e3cd69d286967411c",
+      "target": "n_8dca6ae8bfbfe6ff14c2e44f",
+      "relation": "defines_behavior",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "segment_id": "n_8b5746870daf5012be58fa37",
+      "evidence_quote": "RECORD=struct.Struct('<q14d')"
+    },
+    {
+      "source": "n_79dd453e3cd69d286967411c",
+      "target": "n_09ba4a835eba915bb49cf77f",
+      "relation": "defines_behavior",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "segment_id": "n_8b5746870daf5012be58fa37",
+      "evidence_quote": "target=(at//(frame*60000)-1)*frame*60000"
+    },
+    {
+      "source": "n_79dd453e3cd69d286967411c",
+      "target": "n_c11031a6e8522ff9ecbd4001",
+      "relation": "defines_behavior",
+      "confidence": "EXTRACTED",
+      "confidence_score": 1.0,
+      "source_file": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/causal_features_prep/features.py",
+      "segment_id": "n_8b5746870daf5012be58fa37",
+      "evidence_quote": "'future_labels_computed':False,'parameter_variants':0,'calculation_only':True"
+    }
+  ]
+}

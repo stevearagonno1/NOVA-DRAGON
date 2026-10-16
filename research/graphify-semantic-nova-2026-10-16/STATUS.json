@@ -16,5 +16,12 @@
   "total_elapsed_seconds": "not measured: exact first tool time not captured; work exceeded 600 seconds",
   "market_experiments_run": false,
   "main_modified": false,
-  "remaining": "Full semantic reading and independent relation review; do not claim task complete."
+  "remaining": "Full semantic reading and independent relation review; do not claim task complete.",
+  "resume_commit_base": "b302b2f114d130f845610a5f327ab6783e1a982a",
+  "explicit_complete_segment_reviews": 3,
+  "pending_segment_reviews": 49924,
+  "semantic_overlay_relations": 19,
+  "combined_graph_nodes": 34971,
+  "combined_graph_edges": 75217,
+  "full_semantic_reading_complete": false
 }

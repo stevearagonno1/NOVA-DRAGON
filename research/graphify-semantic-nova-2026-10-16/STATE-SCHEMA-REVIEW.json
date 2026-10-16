@@ -1,0 +1,29 @@
+{
+  "results": [
+    {
+      "source": "research/btc-comprehensive-entry-2026-10-15/state-dictionary-v1.json",
+      "checks": "all729 rows and IDs exhaustively matched to lexicographic ternary product; metadata equal across copies",
+      "status": "PASS_NUMERIC_SCHEMA_ONLY",
+      "text_sha256": "a45a524c9030433878b583b9623d4710dbc9b4325f571d9fe79951b33b7928d7"
+    },
+    {
+      "source": "research/session-work-archive-2026-10-16/NOVA-MARKET-STATE-DICTIONARY-V1_AR.md",
+      "status": "PASS_ALL729_TABLE_ROWS",
+      "prose_review": "Lead read prose excluding generated numeric rows; generated rows validated exhaustively, not claimed manually read. Definitions are proposed contexts, no order-book absorption/rebound/breakout classifier or market success proof."
+    },
+    {
+      "source": "research/session-work-archive-2026-10-16/state-dictionary-v1.json",
+      "checks": "all729 rows and IDs exhaustively matched to lexicographic ternary product; metadata equal across copies",
+      "status": "PASS_NUMERIC_SCHEMA_ONLY",
+      "text_sha256": "a45a524c9030433878b583b9623d4710dbc9b4325f571d9fe79951b33b7928d7"
+    },
+    {
+      "source": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip!/btc_comprehensive_prep/state-dictionary-v1.json",
+      "checks": "all729 rows and IDs exhaustively matched to lexicographic ternary product; metadata equal across copies",
+      "status": "PASS_NUMERIC_SCHEMA_ONLY",
+      "text_sha256": "a45a524c9030433878b583b9623d4710dbc9b4325f571d9fe79951b33b7928d7"
+    }
+  ],
+  "semantic_full_read_flags_added": 0,
+  "market_validation": false
+}

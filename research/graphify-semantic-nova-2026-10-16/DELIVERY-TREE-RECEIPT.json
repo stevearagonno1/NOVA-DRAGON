@@ -1,0 +1,8 @@
+{
+  "status": "PASS_IMMUTABLE_TREE_BLOB_IDENTITIES",
+  "commit": "b302b2f114d130f845610a5f327ab6783e1a982a",
+  "files": 34,
+  "full_byte_readback": false,
+  "note": "Direct raw byte readback stalled in network request and was interrupted. Connector immutable tree confirms all 34 expected Git content identities.",
+  "verified_at": "2026-10-16T14:38:43.746Z"
+}

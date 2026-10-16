@@ -1,0 +1,28 @@
+{
+  "source_commit": "d1b4cb1ded30cc22049d33b5f146081405e81443",
+  "complete_segments": 3,
+  "relations": 19,
+  "findings": [
+    {
+      "source_file": "research/session-work-archive-2026-10-16/NOVA-all-originals-and-independent-versions.zip!/generate-independent.py",
+      "type": "CLI_CHOICE_MISMATCH",
+      "evidence": [
+        "p.add_argument('--mode',choices=['list','changes','custom','cartesian'],default='list')",
+        "elif args.mode=='registered':"
+      ],
+      "status": "STATICALLY_CONFIRMED_NOT_REPAIRED",
+      "impact": "Registered export branch cannot be selected through this CLI; other modes are not thereby proven broken."
+    },
+    {
+      "source_file": "research/session-work-archive-2026-10-16/original-catalog/generate-independent.py",
+      "type": "CLI_CHOICE_MISMATCH",
+      "evidence": [
+        "p.add_argument('--mode',choices=['list','changes','custom','cartesian'],default='list')",
+        "elif args.mode=='registered':"
+      ],
+      "status": "STATICALLY_CONFIRMED_NOT_REPAIRED",
+      "impact": "Registered export branch cannot be selected through this CLI; other modes are not thereby proven broken."
+    }
+  ],
+  "all_repository_semantics_complete": false
+}
