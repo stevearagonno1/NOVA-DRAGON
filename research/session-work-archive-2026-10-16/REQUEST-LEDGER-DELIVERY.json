@@ -1,0 +1,82 @@
+{
+  "status": "REQUEST_LEDGER_PUBLISHED_AND_IMMUTABLE_BYTES_VERIFIED",
+  "commit": "efea2ac780100d69830150b3d995a95b408099c4",
+  "parent": "5df0d0ac38db0f83176368c380cb113f03ce70e4",
+  "branch": "agent/btc-causal-measures-2026-10-15",
+  "request_entries": 80,
+  "status_counts": {
+    "جزئي": 49,
+    "منجز": 20,
+    "لم يثبت": 7,
+    "لم ينفذ": 4
+  },
+  "files_verified": [
+    {
+      "path": "research/session-work-archive-2026-10-16/REQUEST-EXECUTION-LEDGER_AR.md",
+      "bytes": 30684,
+      "sha256": "75a0be2008582bc1c991b4fae5609b158b33050a1e0b58a14f58884f423490a7",
+      "blob_sha": "9ed614d4c5a590740b8489f68e79525944aae295"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/REQUEST-EXECUTION-LEDGER.json",
+      "bytes": 36006,
+      "sha256": "ce28907c63bc5a1f61a6a8555dd28f503bf0225c7b27c3fa7c0f39b93304eab8",
+      "blob_sha": "c49248dbfc1329d580d9191d140a8ca84cae04c8"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/build_request_ledger.py",
+      "bytes": 30617,
+      "sha256": "d42b568f68e3d66e6aa424dd49cf25ed99dfe65c4397fef0da9f13c2acb159c4",
+      "blob_sha": "2f0b77333b44670ef2621f17efbec37d4eb0563f"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/REQUEST-LEDGER-PROVENANCE.json",
+      "bytes": 616,
+      "sha256": "2965507f3b914a67dd90cad0bb094daa30176035d71f777bce2ca1f5a3755357",
+      "blob_sha": "bb1633dc0343bd3950ed6a300ca205d4ae3ed9f2"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/publish_request_ledger.py",
+      "bytes": 2875,
+      "sha256": "54447432d5290f6ec866c44728ca9d8eb0bd20453e3cdfef0e53d0bce7c875b5",
+      "blob_sha": "651e87d69bc21be3d47661f76dcfda961bbd0d21"
+    },
+    {
+      "path": "LOG.md",
+      "bytes": 161803,
+      "sha256": "6a975a805a9c36199462368ce874448f3a4f140b8076c5047e78e1a2f64b8403",
+      "blob_sha": "ff6c57214751a68a636c131248c711e324f4956e"
+    },
+    {
+      "path": "INDEX.md",
+      "bytes": 11424,
+      "sha256": "8b5382d53aad9e336cdb8f83b2ba3fa0bad2847d8f495cd5bbf838f03a73fac4",
+      "blob_sha": "515987984e53da825a948a43415236a14f3a97ff"
+    },
+    {
+      "path": "docs/HANDOFF.md",
+      "bytes": 48290,
+      "sha256": "ad2d8610bb87c150d24ae369260e655872b4272edbeaccd16645d0e9067de562",
+      "blob_sha": "728f52c1cbc422b4d4d2fed7447d842e85efcd97"
+    },
+    {
+      "path": "docs/journal/2026-10-16-session-work-archive/003-request-execution-ledger.md",
+      "bytes": 730,
+      "sha256": "8bb4fa75b9897eee2aaa23f69a2f5e06dfc62bd7977fe8993158d3279f15e0bd",
+      "blob_sha": "452f3abe541908c873fe6efa604802065c2c5361"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/README_AR.md",
+      "bytes": 3418,
+      "sha256": "d07cc05ef1e7600fd338160d615fa9672ba3fe63d1e2048008063b9d3d252740",
+      "blob_sha": "39e4ffe70092cbb4ac37663c54423bf3e9711947"
+    }
+  ],
+  "scope": "semantic ledger of requests visible in conversation; repeated messages consolidated, not verbatim",
+  "whole_task_elapsed_until_payload_readback_seconds": 320.08755,
+  "completed_utc": "2026-10-16T12:48:05.087550+00:00",
+  "prework_estimate": "not recorded before first operation",
+  "new_market_test": false,
+  "comprehensive_paper_ready": false,
+  "credentials_published": false
+}
