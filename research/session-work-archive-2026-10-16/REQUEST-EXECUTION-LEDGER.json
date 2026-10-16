@@ -4,7 +4,7 @@
   "historical_message_timestamps": "not measured; no dates invented",
   "credential_values": "redacted and excluded",
   "status_counts": {
-    "جزئي": 49,
+    "جزئي": 50,
     "منجز": 20,
     "لم يثبت": 7,
     "لم ينفذ": 4
@@ -874,6 +874,16 @@
         "K"
       ],
       "remaining_or_rule": "متابعة المخزون الكامل دون إعادة حصر مصغر"
+    },
+    {
+      "id": "R081",
+      "request": "تطبيق Graphify-Labs/graphify على مستودع NOVA",
+      "status": "جزئي",
+      "execution": "تطبيق فعلي لمسار الكود والإعدادات؛10956عنصرًا و29209علاقة؛ الاستعلام والرسم ناجحان مع تحذيرات مصدر",
+      "evidence_codes": [
+        "L"
+      ],
+      "remaining_or_rule": "تفسير الوثائق وPDFوTXT/Pineومحتويات الأرشيف دلاليًا؛ لا ادعاء تغطية كاملة أو اختبار سوق"
     }
   ]
 }

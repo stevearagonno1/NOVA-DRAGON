@@ -1,0 +1,16 @@
+[graphify extract] scanning /workspace/scratch/9c15613e1fe0/graphify_integration_2026_10_16/corpus
+[graphify extract] --code-only: skipping 2 non-code file(s) (2 docs, 0 papers, 0 images) — no LLM extraction
+[graphify extract] found 608 code, 0 docs, 0 papers, 0 images
+[graphify extract] AST extraction on 608 code files...
+  AST extraction: 100/608 uncached files (16%) [9 workers]
+  AST extraction: 200/608 uncached files (32%) [9 workers]
+  AST extraction: 300/608 uncached files (49%) [9 workers]
+  AST extraction: 400/608 uncached files (65%) [9 workers]
+  AST extraction: 500/608 uncached files (82%) [9 workers]
+  AST extraction: 600/608 uncached files (98%) [9 workers]
+  AST extraction: 608/608 uncached files (100%) [9 workers]
+  warning: 4 file(s) had syntax errors and may be partially extracted: history/bot_versions/1/NOVA (2).py (first error at line 179, 385 symbol(s) extracted), history/bot_versions/1/NOVA (3).py (first error at line 193, 423 symbol(s) extracted), history/bot_versions/1/NOVA.py (first error at line 168, 365 symbol(s) extracted), nova_v8/README.py (first error at line 3, no symbols extracted)
+  warning: 13 code file(s) yielded no symbols (0.07 MB) — a data file, or source this extractor models no symbols for: docs/constitution/2026-10-07-owner-rules/records.py, history/research/hyp_lab_out/L0085-rise-onset/lead-review/build_report.py, history/research/hyp_lab_out/L0085-rise-onset/lead-review/extra_checks.py, history/research/hyp_lab_out/L0086-frozen-validation/lead-review/diagnose.py, history/research/hyp_lab_out/L0087-timing-personalization/lead-review/build_report.py (+8 more)
+[graphify extract] wrote /workspace/scratch/9c15613e1fe0/graphify_integration_2026_10_16/graphify-out/graph.json: 10956 nodes, 29209 edges, 346 communities
+[graphify extract] wrote /workspace/scratch/9c15613e1fe0/graphify_integration_2026_10_16/graphify-out/.graphify_analysis.json
+[graphify extract] next: run `graphify cluster-only /workspace/scratch/9c15613e1fe0/graphify_integration_2026_10_16` to generate GRAPH_REPORT.md and name communities

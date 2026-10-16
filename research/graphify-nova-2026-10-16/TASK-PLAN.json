@@ -1,0 +1,14 @@
+{
+  "owner_request": "Apply Graphify-Labs/graphify to NOVA-DRAGON",
+  "start_observed_utc": "2026-10-16T12:50:30Z",
+  "owner_submitted_utc": "2026-10-16T12:50:20Z",
+  "estimate_total_seconds": 550,
+  "components_seconds": {
+    "source_review": 100,
+    "setup_and_scoped_application": 220,
+    "validation_and_documentation": 100,
+    "publication_readback": 130
+  },
+  "uncertainty": "Full repository size and Graphify dependency requirements not yet known; full semantic processing may require a prepared executor task",
+  "rules": "no main/PR/merge; no trading; no credential upload; no pretending partial graph covers whole repository"
+}

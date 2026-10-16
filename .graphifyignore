@@ -1,0 +1,15 @@
+# Code graph: binary datasets and source archives are not AST inputs.
+.git/
+node_modules/
+__pycache__/
+graphify-out/
+*.zip
+*.zip.part*
+*.parquet
+*.csv
+*.csv.gz
+*.sqlite
+*.bin
+*.rar
+*PRIVATE*
+*.env
