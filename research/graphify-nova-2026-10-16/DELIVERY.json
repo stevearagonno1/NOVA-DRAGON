@@ -1,0 +1,210 @@
+{
+  "status": "GRAPHIFY_CODE_GRAPH_IMMUTABLE_BYTES_VERIFIED",
+  "commit": "b8a7e5ae93aa82ff5bfd58cd036ab70a20cf50f6",
+  "branch": "agent/graphify-nova-2026-10-16",
+  "files_verified": [
+    {
+      "path": "research/graphify-nova-2026-10-16/README_AR.md",
+      "blob_sha": "1d354e4affb968ce986ec0faff4674bfd82197c1",
+      "sha256": "10b29f79403334c972761f6beac25d44d05351e91ddacde6479916d67b367530",
+      "bytes": 5578
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/TASK-PLAN.json",
+      "blob_sha": "9b056ce2f61c82609af94c118d1d6f2d0bd6000f",
+      "sha256": "d57ed0eea241f7af814d4af7482b2ee2904f77b2519adba611578a7d37b478d7",
+      "bytes": 643
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/GRAPH-AUDIT.json",
+      "blob_sha": "16a1db91e9fc98cefcb4d5a7b7b7d52ba5eb0808",
+      "sha256": "2713e08b9b7463c7aee0c3b0673cec2c6326a87fb8bc8180d8ad20de5bb78f5b",
+      "bytes": 1518
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/SOURCE-FILES.json",
+      "blob_sha": "7b70e38cda989ba00bc24c8564b52dcb3627177f",
+      "sha256": "4eef059e6eefbbcf37117d017baba07ac8ed55c5da112d0f1f582a69defe26cd",
+      "bytes": 200218
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/SOURCE-AUDIT.json",
+      "blob_sha": "e4312edbf4dad2cf4ec8ff60f467c99d1b187197",
+      "sha256": "00864c895f67465efdda72871243ac00de19872dcdbc4e8c8d2120cea063a475",
+      "bytes": 154238
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/requirements-graphify.lock.txt",
+      "blob_sha": "3d7f747ba3bfd18397299d54467ea2800e9b479d",
+      "sha256": "7165f1a7dc2d8a8adcfbc776fc27f54bca6e95a96291f8455652857c2622f508",
+      "bytes": 728
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/fetch_corpus.py",
+      "blob_sha": "d9050ef57b43a873f2808b0977788f089999160e",
+      "sha256": "4fe1ba865a15e8d984e21caf75e53a1105dc9ca174017c1ea65054da73d13c92",
+      "bytes": 2029
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/run_graphify.py",
+      "blob_sha": "5202762c71e91801e830fc3040413bee55c7cc01",
+      "sha256": "4dfbab6f0e3630f6fc97cce91407d91d1aa90d06503dacdbd21b42bcb45274cf",
+      "bytes": 1333
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/graphify_nova.py",
+      "blob_sha": "086482cffda1df89b5a615be50fb90d0475fc311",
+      "sha256": "bc05e9b8c2f68b1f343c88445252ba5f809fa16954034696af905ec3500db2ad",
+      "bytes": 710
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/finalize_graph.py",
+      "blob_sha": "269c1ff327a0bdae84750d418ee29bf9d5bc9da7",
+      "sha256": "0c8038d078917d99150775ee07b5c4b21bae438187b34ac493bbd4619aa80858",
+      "bytes": 8550
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/publish_graphify.py",
+      "blob_sha": "9ddcd285010a611b6d90826478581089b297ff21",
+      "sha256": "744acc1969479eca890c331cfdb8e13c8ca825b12ea19d00eec15e84d00e574c",
+      "bytes": 3094
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/extract.log",
+      "blob_sha": "b8c595a506029f2a2c512f7d238246177b868371",
+      "sha256": "629e173bfb08c0536e02d85f14516a43963ab1dff15f0e4488ed2e28fd8ffc89",
+      "bytes": 2079
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/cluster.log",
+      "blob_sha": "f8719ea1f31a623f5c501ff7025e76adfa55927d",
+      "sha256": "2b4effb797fdd64017d34ab0eff4c763e6eb772badbc37a23db23b0132e1dc73",
+      "bytes": 365
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/QUERY-EXAMPLE.txt",
+      "blob_sha": "6c8b8d559a43f5a30343b466852fbc243e2e074f",
+      "sha256": "52356d7547cb6b94559a33d6aed62330633059777472a82b4d36bd324859117b",
+      "bytes": 3491
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/RUN.json",
+      "blob_sha": "ffda7eca29208162ac5c00c556372adffe165e3f",
+      "sha256": "07487afd75f8c9a4a1020f25ccaa868666b8f3d7add5713a3967c019c868cc5c",
+      "bytes": 103591
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/GRAPHIFY-OUTPUTS.zip",
+      "blob_sha": "57e055b645667722f846add29735ac30096b60c7",
+      "sha256": "1116f0d7536016c1f4ade189ef3cfe0124efb3154d238e1a74b404f6039a3732",
+      "bytes": 868396
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/graphify-out/GRAPH_REPORT.md",
+      "blob_sha": "77650ba4807bd88c589af4af744220fb090f7db2",
+      "sha256": "1cbbdb183681ab5bb8fa4e58431de9a1a668c158e617a5141ae40aae03d7ae3b",
+      "bytes": 62181
+    },
+    {
+      "path": "research/graphify-nova-2026-10-16/graphify-out/graph.html",
+      "blob_sha": "848405a513f81d5537019e980de77d41b0e36ecd",
+      "sha256": "dcc2898585acd4bb42243844a44a77376963239dfff5556ee88cbceca44e869a",
+      "bytes": 456239
+    },
+    {
+      "path": "tools/graphify_nova.py",
+      "blob_sha": "086482cffda1df89b5a615be50fb90d0475fc311",
+      "sha256": "bc05e9b8c2f68b1f343c88445252ba5f809fa16954034696af905ec3500db2ad",
+      "bytes": 710
+    },
+    {
+      "path": ".graphifyignore",
+      "blob_sha": "abaa00c0a9d962f433a0177de7c7d17f727711eb",
+      "sha256": "e8f549d36b6fea20a58e37d819232530b37b329baf240c86b6d68e45349b04b6",
+      "bytes": 197
+    },
+    {
+      "path": "LOG.md",
+      "blob_sha": "666bcefa8e38d04ee8b5b5f52923ec9117cabd32",
+      "sha256": "d66470439cff68c873f47b9d0bf29121840b1aef707c691584b8263ff6730faf",
+      "bytes": 162911
+    },
+    {
+      "path": "INDEX.md",
+      "blob_sha": "65b24de9ebcc560ba64719dc35cab98b24c9e88c",
+      "sha256": "34415d3328ce1978c333e2e959cef71f5ebadaad8a5af3c3e8979841cbcb03e6",
+      "bytes": 12047
+    },
+    {
+      "path": "docs/HANDOFF.md",
+      "blob_sha": "dbf646ee872920fec8d09fd918d943ca312d83f7",
+      "sha256": "1c5c746f2ebed8396768ded536f37b3961513ee5bbfba60fe2147dfe24f53a93",
+      "bytes": 48913
+    },
+    {
+      "path": "docs/journal/2026-10-16-graphify/001-code-graph-built.md",
+      "blob_sha": "4f5645956e48e41da05130578bd38f0934bb624e",
+      "sha256": "49d34f62c95ee61682eb9a5b202c6f3ad337cbe2e2f2c42aa77cc889acffb8c2",
+      "bytes": 559
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/REQUEST-EXECUTION-LEDGER.json",
+      "blob_sha": "9ad766e8bc0edd4ad7edeb15044aa641f62ffb28",
+      "sha256": "e711c63720d87f24693b39bb56bf88de34ec6b30079950f6b9ecb2d66be2236a",
+      "bytes": 36573
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/REQUEST-EXECUTION-LEDGER_AR.md",
+      "blob_sha": "57085f449a80e95c49be2f9dac886685c06722cc",
+      "sha256": "3709a9d58b6d13b7e2c95158f9e605edffa1e99c5cecd352e37343766a4a3a2e",
+      "bytes": 31525
+    }
+  ],
+  "audit": {
+    "status": "CODE_GRAPH_BUILT_WITH_SOURCE_WARNINGS",
+    "graphify_version": "0.9.91",
+    "graph_schema_version": 1,
+    "upstream_documentation_commit": "10130e79ed9caf8f60d998073e097531eaa1a395",
+    "nova_source_commit": "14be41aafa52f714ec4ad2c11fee472bede69dc7",
+    "verified_input_files": 610,
+    "ast_input_files": 608,
+    "explicitly_skipped_yaml_files": 2,
+    "nodes": 10956,
+    "edges": 29209,
+    "communities": 346,
+    "source_files_represented_in_nodes": 353,
+    "sources_outside_verified_corpus": 0,
+    "duplicate_node_ids": 0,
+    "dangling_edge_endpoints": 0,
+    "confidence_counts": {
+      "EXTRACTED": 28766,
+      "INFERRED": 443
+    },
+    "query_smoke_exit": 0,
+    "cluster_command_exit": 0,
+    "source_syntax_warning_files": 4,
+    "zero_symbol_files_reported": 13,
+    "html_view": "aggregated community view; full node graph in graph.json",
+    "semantic_documents_processed": false,
+    "archives_expanded": false,
+    "indicator_variant_enumeration_or_market_test": false,
+    "source_code_executed": false,
+    "global_assistant_hooks_or_skills_installed": false,
+    "provider_api_called": false,
+    "limits": "JSON settings are structurally modeled only where extractor supports them; no zero-symbol claim means parser success; Pine/scripts stored as TXT and PDFs are not semantically mapped; 608 inputs does not mean every input has graph nodes",
+    "completed_utc": "2026-10-16T12:58:13.518909+00:00",
+    "output_archive_bytes": 868396,
+    "output_archive_sha256": "1116f0d7536016c1f4ade189ef3cfe0124efb3154d238e1a74b404f6039a3732"
+  },
+  "elapsed_until_payload_readback_seconds": 757.293661,
+  "compute_seconds": 34.41252619000011,
+  "completed_utc": "2026-10-16T13:03:07.293661+00:00",
+  "estimate_exceeded": true,
+  "publication_resume": "Single Python publisher interrupted before ref update; existing uploaded ZIP blob reused in prepared tree; GitHub connector committed/ref-updated; independent readbacks resumed here",
+  "semantic_full_repo_graph": false,
+  "main_changed": false,
+  "no_merge_or_pr": true,
+  "source_code_not_executed": true,
+  "publication_transport_note": "Final receipt publisher interrupted: network approval was cancelled before decision. Owner-authorised GitHub connector used for remaining receipt publication; content bytes had already passed verification.",
+  "verification_scope": "All26payloadfiles verified from immutable Git blobs before transport interruption."
+}
