@@ -1,0 +1,252 @@
+{
+  "status": "PUBLIC_SESSION_WORK_ARCHIVED_AND_IMMUTABLE_BYTES_VERIFIED",
+  "commit": "e4da5a6fd8bcc6bc489578deae4032a40843c9dd",
+  "branch": "agent/btc-causal-measures-2026-10-15",
+  "files_verified": [
+    {
+      "path": "research/session-work-archive-2026-10-16/README_AR.md",
+      "bytes": 2887,
+      "sha256": "af691f49a971576017a508240ba799951fc20c235c8c85741ad53b282ada16b5",
+      "blob_sha": "b0956f26834beac1d0f689e31b4a0eeccf6e50ef"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/WORK-PLAN_AR.md",
+      "bytes": 5757,
+      "sha256": "27fb30ecc30cdfb726fcf069d9dca6873b65619432dc2dc9cb9d37edbee2109d",
+      "blob_sha": "0a7b17a45c7d9b6764e243131ad355283e000499"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/CORRECTIONS_AR.md",
+      "bytes": 2761,
+      "sha256": "13e183be0a31db6c4c462d87de5526c761ab0ee4331943c15201e0ca68be29c0",
+      "blob_sha": "a037f794791e88faf1a39c05c58e610ab7a3dbb3"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/RESTORE_AR.md",
+      "bytes": 1684,
+      "sha256": "a7dd798d56d189e93403d05677c512aa4ba4b1e415b3db14218a79eee653836b",
+      "blob_sha": "573fb8b76a63d976f1a703bfb71c605dc220d259"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/CATALOG-AUDIT.json",
+      "bytes": 1147,
+      "sha256": "1b12e20c155fa84d1c23e9cef7c009973ea32389b1077e915c976735319a2326",
+      "blob_sha": "c493d1d08c09ec6ab16ba55342678d19ec3454c6"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/WORKSPACE-MANIFEST.json",
+      "bytes": 810530,
+      "sha256": "90387238c154899ac405b60b063252b221e5f25149c501de1e3c41b3b185dfca",
+      "blob_sha": "18d78932358ebbe9bfd2bb83d17037363302edb8"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/TASK-PLAN.json",
+      "bytes": 903,
+      "sha256": "85b73e80d43e9870d1c8f41a2c55b381dc29ef9e7aa5562ad41a5596414c737d",
+      "blob_sha": "c6c4adb42823f8cc537e825bfcbb333f88d9379f"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/build_archive.py",
+      "bytes": 6628,
+      "sha256": "abf9d59c5772f7839a1c114dfb7265160583d3ae9e7df5ed4e4bcb5f592c2945",
+      "blob_sha": "beb7574190fe36403e4e792b104a691ff28dc102"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/verify_catalog.py",
+      "bytes": 1196,
+      "sha256": "93b84f7268a9d0d3f60063202371999ad0ab8aec226830b56fcc795e95c3fbe1",
+      "blob_sha": "57cdff005d64dcea96c03b09169bb2a258329155"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/restore_workspace.py",
+      "bytes": 2858,
+      "sha256": "b32b70cb298cdcc0a7f1a464dd6c5a6ecbb5269cfc6c81714a839964dc0f2f75",
+      "blob_sha": "476b081237aa366ba305aacfb59639de7d4df75b"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/publish_archive.py",
+      "bytes": 6681,
+      "sha256": "9e43aa3c2d7629df99673f7df187824e51bd4a689e96d7c7d7cc278268b26497",
+      "blob_sha": "75bd133122189beebbadf805eebc2e90237d980f"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/original-catalog/SHA256.json",
+      "bytes": 1175,
+      "sha256": "95f62d8631953204b9662f1401950cd124b42c4bf40ea30ccc950ba257d69fcb",
+      "blob_sha": "dce448f63917771c102896a5fdf32abf3fcd21ed"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/original-catalog/README_AR.md",
+      "bytes": 3582,
+      "sha256": "9a07e3bc7ac7545be54a28f7dea8a34a8e3f57bdd825570c011bb447cfa03e12",
+      "blob_sha": "24a882e8108c764e961a55d1067e61abc3ad1aa7"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/original-catalog/summary.json",
+      "bytes": 365,
+      "sha256": "7fd0e270ca8105ec8a49563f6d4c75041676fa99d43a186b0b83079e1403333d",
+      "blob_sha": "efa6f08cd8e61124e46290707f51b237b9717c93"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/original-catalog/volume-generate.py",
+      "bytes": 4494,
+      "sha256": "c86d5b11091d2c892abda96332ba802401f3614f9aae51a12c0d927264b207fc",
+      "blob_sha": "5ed22854e757145ef00535eef0cdf64513494021"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/original-catalog/generate-independent.py",
+      "bytes": 4494,
+      "sha256": "9978e37486d312ee1174087e33999dc59bf4c2a8c539ad2815c6014f872508d2",
+      "blob_sha": "2e447eeb6dedac452912769ac8fde9740be1eb2a"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/original-catalog/original-index_AR.md",
+      "bytes": 248808,
+      "sha256": "c0a07970c59d3fa0c70a94a587f78e6a458534afa8ca96f8ff8c70cbca8d8393",
+      "blob_sha": "113c815eac7f8b7ac33a873322f4c6e19d86f90f"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/original-catalog/research/catalog_AR.md",
+      "bytes": 51977,
+      "sha256": "1df573545f1609bc4dcf0cbd952e63854f19203c5a5073f54400747ffb95d404",
+      "blob_sha": "40078f2107775d87f1e37c321d137375de59c96e"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/original-catalog/research/standalone-presets.json",
+      "bytes": 132452,
+      "sha256": "fc74f234330edc56dd1c613679c40e1e6e658e7d0ed120b15808c832d9ab86e6",
+      "blob_sha": "1e7bda2c923652cab72c83ef98b21a554268cf32"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/original-catalog/research/sources.json",
+      "bytes": 7283,
+      "sha256": "c894f452e3aed0aa9aa2871ced0b35218b9f66830c5f71aebc48ddcfee08cbea",
+      "blob_sha": "f90d959f1e143805592a2c239f3a963825cab6b6"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/original-catalog/research/video-candidates.json",
+      "bytes": 711,
+      "sha256": "8a08a9d3f849dbf53074e253ec464b3392ab8bbcb2bca845490a317008ae7e2c",
+      "blob_sha": "eda236ba21e57add7bc030b3a48e09129aa90718"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/original-catalog/research/parameter-values.json",
+      "bytes": 62066,
+      "sha256": "6426fd68c4dcf79a33fd4c8c109eaa964fed49357c71ad549fe50fcaef420ee3",
+      "blob_sha": "7ecbe4af4418ab62079580b0582ec6ccaca39d1a"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/original-catalog/research/allowed-ranges-not-used-values.json",
+      "bytes": 69252,
+      "sha256": "3727bd80f95bbcf84eee008ec059947ec4bf21b979d3d52a6d9cbeec58bb3f03",
+      "blob_sha": "1572599b2bd0d08da2fb70f271741c4ac5ec0b27"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip.part001",
+      "bytes": 20000000,
+      "sha256": "37867fe480b55f7ab4370543549cba5d3e9638af68d9c1cef9aa98d30a1f74e6",
+      "blob_sha": "1e5b7afb7f9f6c7ccfad10041757660404794cb9"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip.part002",
+      "bytes": 20000000,
+      "sha256": "97a8eb2c64260979526384200868f9d9349e15658a5a650773527e8ff907cd72",
+      "blob_sha": "a7ca8b74c180dd3f10fd607b00ec291999c803db"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip.part003",
+      "bytes": 20000000,
+      "sha256": "0d6a9ecca5ce544775cff7f829f436305f250bc9ab12e4b852e0a48aab1afc35",
+      "blob_sha": "070b5d3b8f1fa87d43d676712379d761de9d60e4"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip.part004",
+      "bytes": 20000000,
+      "sha256": "3bee91eeb59f4868931e41df9229de4f9847da4c3318f1c4e06b8e69dc148152",
+      "blob_sha": "e97022d8a0b5e6a9e14089c4f93a51d8fa9303f7"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip.part005",
+      "bytes": 20000000,
+      "sha256": "16ed049f6124bc58cf03b5e7198ddfa8fe9086ccb6edd2633a0b3aa4c594d541",
+      "blob_sha": "0cde5fb1340fabe393d76e98c4fb328c3db03520"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/WORKSPACE-v2.zip.part006",
+      "bytes": 13807890,
+      "sha256": "bb55abc05c1c1b23c4ef38d11085329b22ddc1a50bd9ded8caeb7db3fa9a682b",
+      "blob_sha": "a55a19f88601aa66b44af73683d55ccd49192278"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/NOVA-all-originals-and-independent-versions.zip",
+      "bytes": 4085170,
+      "sha256": "d536b7d84ea94f93f080d81086b3ffbe3f2803a8d413fabaaf268c0f7cd1298a",
+      "blob_sha": "074bf00bc020b26e40d39befd73b83a7145daace"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/NOVA-MARKET-STATE-DICTIONARY-V1_AR.md",
+      "bytes": 36322,
+      "sha256": "e30ecdc4293d8969a71c61dc5884f0f615f6fecdf0e195e27c61c94e7636d706",
+      "blob_sha": "cf898307259ec89de50b494a564856b5048df94f"
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/state-dictionary-v1.json",
+      "bytes": 93556,
+      "sha256": "a45a524c9030433878b583b9623d4710dbc9b4325f571d9fe79951b33b7928d7",
+      "blob_sha": "e20e1b9f190855b866d1e14aa988881057944e0a"
+    },
+    {
+      "path": "LOG.md",
+      "bytes": 160831,
+      "sha256": "1e86cf787296c765338743f78d3cfcc5cbd272717f53b3124a7a4bc15838cdf9",
+      "blob_sha": "740d2dc935b6739b3be625a17c139b3e87e88f79"
+    },
+    {
+      "path": "INDEX.md",
+      "bytes": 10820,
+      "sha256": "99499248119e410ef507eb4626eec71c4683d1e8e8c6d2c13d3f5abcf321ee85",
+      "blob_sha": "1b3f1fa95c03313ee66d824845808b499ac6a0d8"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "bytes": 74830,
+      "sha256": "d2dd8d5a7639250d476d2daef1309de6d795a3fe1f65f1df1714e2e4c9e2771d",
+      "blob_sha": "1640d3a239d724854319891be199697b27c71e0d"
+    },
+    {
+      "path": "docs/HANDOFF.md",
+      "bytes": 47686,
+      "sha256": "24f0ff9c353fcd4554db19e65d251bbd469552b3f9c7bf88138db2d563dc5ff6",
+      "blob_sha": "7e664d5e8a1839a32f81ec38ec9d9d03dcf31694"
+    },
+    {
+      "path": "docs/journal/2026-10-16-session-work-archive/001-owner-authorised-preservation.md",
+      "bytes": 863,
+      "sha256": "4f1ce8837741bb25ef796d71a14af0ac8fee8637bf1d7fc3e99afc99a0b5b9b2",
+      "blob_sha": "75b5985327300fad0d6337deeab082e87fffc174"
+    }
+  ],
+  "snapshot_unique_files": 1406,
+  "snapshot_duplicate_paths": 887,
+  "snapshot_parts": 6,
+  "damaged_archives_excluded": [
+    {
+      "workspace_path": "btc_comprehensive_prep/repair_iteration/MTF-REPAIR-EVIDENCE.zip",
+      "status": "excluded_damaged_archive_not_safely_inspectable",
+      "original_sha256": "4c30fc442f9d5a290510110d48417cb43c54dc2a24871041fd2453f8caf72723",
+      "bytes": 2412811,
+      "reason": "BadZipFile; preserved locally; verified frozen replacement retained separately where present"
+    }
+  ],
+  "private_papers_excluded": 5,
+  "credentials_published": false,
+  "full_market_run": false,
+  "universal_execution_paper_ready": false,
+  "completed_utc": "2026-10-16T12:39:23.503845+00:00",
+  "elapsed_since_owner_submission_seconds": 632.503845,
+  "exact_first_tool_start": "not measured",
+  "main_changed": false,
+  "merge_or_pr": false,
+  "readback_resume": "Sequential verifier safely interrupted after content commit; independent GET reads resumed in parallel; one publisher only",
+  "workspace_limit_status": "Existing workspace exceeded125MB before preservation; no deletion; not an executor-budget PASS"
+}
