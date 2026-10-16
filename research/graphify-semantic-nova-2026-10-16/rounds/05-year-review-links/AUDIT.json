@@ -1,0 +1,14 @@
+{
+  "source_documents": 6,
+  "relations": 6,
+  "quote_mismatches": 0,
+  "dangling": 0,
+  "delivery_vs_review": {
+    "records": true,
+    "files": true,
+    "bytes": true
+  },
+  "code_identity_lists_equal": true,
+  "independent_raw_recalculation_this_round": false,
+  "global_semantics_complete": false
+}

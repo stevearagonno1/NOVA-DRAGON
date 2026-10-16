@@ -1,0 +1,103 @@
+{
+  "source_commit": "6572eaab5c81e1cd38ad84ed68f339e1544083c9",
+  "nodes": [
+    {
+      "id": "r5_0",
+      "label": "research/btc-registration-review-2026-10-15/LEAD-REVIEW.md",
+      "source_file": "research/btc-registration-review-2026-10-15/LEAD-REVIEW.md",
+      "git_blob": "03e9fdbfbf3ebd0d39b69f0b123f3528f4ebff63",
+      "ref": "6572eaab5c81e1cd38ad84ed68f339e1544083c9",
+      "full_read": true
+    },
+    {
+      "id": "r5_1",
+      "label": "research/btc-causal-measures-2026-10-15/lead_review/LEAD-REVIEW.md",
+      "source_file": "research/btc-causal-measures-2026-10-15/lead_review/LEAD-REVIEW.md",
+      "git_blob": "ae298d4cfbc4ec45048861d875394702c25331a6",
+      "ref": "6572eaab5c81e1cd38ad84ed68f339e1544083c9",
+      "full_read": true
+    },
+    {
+      "id": "r5_2",
+      "label": "research/btc-causal-measures-2026-10-15/lead_review/INDEPENDENT-REVIEW.json",
+      "source_file": "research/btc-causal-measures-2026-10-15/lead_review/INDEPENDENT-REVIEW.json",
+      "git_blob": "d43e80230d55bca7f44524329c41f07ceed741ad",
+      "ref": "6572eaab5c81e1cd38ad84ed68f339e1544083c9",
+      "full_read": true
+    },
+    {
+      "id": "r5_3",
+      "label": "research/btc-causal-measures-2026-10-15/lead_review/CODE-IDENTITY.json",
+      "source_file": "research/btc-causal-measures-2026-10-15/lead_review/CODE-IDENTITY.json",
+      "git_blob": "a09ff5d75a857516513f2009d096d277525b5d3f",
+      "ref": "6572eaab5c81e1cd38ad84ed68f339e1544083c9",
+      "full_read": true
+    },
+    {
+      "id": "r5_4",
+      "label": "docs/journal/2026-10-15-btc-registration-from-repo/009-year-measurements-reviewed.md",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/009-year-measurements-reviewed.md",
+      "git_blob": "8579e4fdd8a2ecba8f5b21d73860019ba9d15ed4",
+      "ref": "6572eaab5c81e1cd38ad84ed68f339e1544083c9",
+      "full_read": true
+    },
+    {
+      "id": "r5_5",
+      "label": "research/btc-causal-measures-2026-10-15/execution/DELIVERY.json",
+      "source_file": "research/btc-causal-measures-2026-10-15/execution/DELIVERY.json",
+      "git_blob": "301bdb62a6e59f573ebbf04abb28a00d1f2dab5b",
+      "ref": "87d68c79e5e0263ce7c5ecf558761996a0e988d3",
+      "full_read": true
+    }
+  ],
+  "edges": [
+    {
+      "source": "r5_0",
+      "target": "r5_5",
+      "relation": "admits_input_stage_for_later_measurement",
+      "evidence_quote": "المرحلة صالحة لتجهيز حساب القياسات السببية.",
+      "source_file": "research/btc-registration-review-2026-10-15/LEAD-REVIEW.md",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "r5_1",
+      "target": "r5_5",
+      "relation": "reviews_year_delivery",
+      "evidence_quote": "التزام النتائج: 87d68c79e5e0263ce7c5ecf558761996a0e988d3.",
+      "source_file": "research/btc-causal-measures-2026-10-15/lead_review/LEAD-REVIEW.md",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "r5_2",
+      "target": "r5_5",
+      "relation": "identifies_reviewed_commit",
+      "evidence_quote": "\"reviewed_commit\": \"87d68c79e5e0263ce7c5ecf558761996a0e988d3\"",
+      "source_file": "research/btc-causal-measures-2026-10-15/lead_review/INDEPENDENT-REVIEW.json",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "r5_1",
+      "target": "r5_2",
+      "relation": "limits_independent_numeric_review",
+      "evidence_quote": "الفحص العددي المستقل عينة موزعة على جميع الأشهر والأطر، وليس إعادة مستقلة لكل قيمة.",
+      "source_file": "research/btc-causal-measures-2026-10-15/lead_review/LEAD-REVIEW.md",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "r5_1",
+      "target": "r5_3",
+      "relation": "references_code_identity_record",
+      "evidence_quote": "وهويات الكود في CODE-IDENTITY.json.",
+      "source_file": "research/btc-causal-measures-2026-10-15/lead_review/LEAD-REVIEW.md",
+      "confidence": "EXTRACTED"
+    },
+    {
+      "source": "r5_4",
+      "target": "r5_1",
+      "relation": "records_measurement_acceptance",
+      "evidence_quote": "قبول القياسات الحسابية للسنة لدراسة إشارات الدخول فقط.",
+      "source_file": "docs/journal/2026-10-15-btc-registration-from-repo/009-year-measurements-reviewed.md",
+      "confidence": "EXTRACTED"
+    }
+  ]
+}
