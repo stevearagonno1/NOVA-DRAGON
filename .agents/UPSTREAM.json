@@ -1,0 +1,38 @@
+{
+  "repository": "addyosmani/agent-skills",
+  "commit": "aeac41d4d005999432bb7312f7ff06383a91d59d",
+  "license": "MIT",
+  "modifications": "none",
+  "files": [
+    {
+      "path": ".agents/LICENSE",
+      "source_path": "LICENSE",
+      "git_blob_sha": "d67778ada6b9cda6227e9130da182c13e73c8b2e",
+      "sha256": "6f202f8bd568cd730dbb2b0d1f8e243bc74c2fa1f64dbce9b2c7ea08bd5c9fd7"
+    },
+    {
+      "path": ".agents/references/performance-checklist.md",
+      "source_path": "references/performance-checklist.md",
+      "git_blob_sha": "88b6f6a41be7561746c5580137a892583e5f0029",
+      "sha256": "fffc38b8f3b328a973aab8b1a2efdd72b65710d8f4b57f28f8374ddae7f8a88b"
+    },
+    {
+      "path": ".agents/references/security-checklist.md",
+      "source_path": "references/security-checklist.md",
+      "git_blob_sha": "fc5e29b92c183fa69e0952b61a99761dc48b4c0b",
+      "sha256": "37774056502fe8970dcd2fd27dca5fa31f2a55232649fc3056c89c3af7d62755"
+    },
+    {
+      "path": ".agents/skills/code-review-and-quality/SKILL.md",
+      "source_path": "skills/code-review-and-quality/SKILL.md",
+      "git_blob_sha": "08209ff2208d2883d48d945f7754c428b77f8d87",
+      "sha256": "2db1e850379f255fd3091ef278cde24cd6c7d2ba23e360cc52ea522c40d4396e"
+    },
+    {
+      "path": ".agents/skills/test-driven-development/SKILL.md",
+      "source_path": "skills/test-driven-development/SKILL.md",
+      "git_blob_sha": "2f9c4bad747df3c88f3cd443b4990ab12d77b7d0",
+      "sha256": "a3aa6ba95638497025577469eda10ed17918698209615aeafbc26f131bf2469d"
+    }
+  ]
+}
