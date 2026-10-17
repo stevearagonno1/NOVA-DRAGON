@@ -171,7 +171,41 @@ The chat is a temporary session. **The repository is the permanent memory — wh
 
 **8.4 Resume protocol.** A new session reads in order: this constitution → the handoff file → the decisions log → **the Tape** → the numbered constraints file → the latest log → the file index → the deferred list → the latest results branch.
 
+Before substantive work, it then completes the mandatory tool and capability check in §8.5 and continuity check in §8.6. Preserve the order above; AGENTS.md is a discovery pointer, never a substitute for reading this constitution. Read current dated entries before historical summaries, and distinguish work-branch proposals from verified main state.
+
 Then it builds the state card internally and prints it only on request: supreme mission · what is proven · what is not proven · what is closed · what is open · last trusted result · best next step · what needs permission.
+
+
+### 8.5 Permanent session entry and tool-use law — owner ruling 2026-10-17
+
+**Every new conversation working on NOVA-DRAGON must reload the repository's verified state and tool instructions. Do not rely on recollection of a previous chat, assume the owner will re-explain them, or claim to know unread files.** The canonical repository is https://github.com/stevearagonno1/NOVA-DRAGON . This rule makes the repository the durable record; it does not promise automatic host memory, account access, tool installation, or compliance by a host that has not loaded these instructions.
+
+After §8.4, read AGENTS.md and docs/AGENT-TOOLS.md. For indicator research, calculation changes or code review, also read docs/INDICATOR-REVIEW.md and the applicable imported SKILL.md files below. If the host does not auto-discover repository skills, fetch and read them explicitly using the authorized GitHub connection or available file reader. Do not ask the owner to paste accessible files.
+
+| Tool | Binding use rule |
+|---|---|
+| Agent Skills | Read .agents/skills/code-review-and-quality/SKILL.md for code review and .agents/skills/test-driven-development/SKILL.md for behavior changes. Read referenced checklists as needed. These are imported workflow instructions, not runtime executables or authorization to merge, delegate or delete. |
+| Context7 | When library/API documentation is needed, use it if the host exposes it and access works; identify the actual library version first. If unavailable, use accessible official primary documentation and disclose the fallback. tools/agent_support/context7.mcp.example.json is a client-specific example, not activation evidence. Do not send secrets or private project data in documentation queries. |
+| Graphify | Use for bounded relationship/impact analysis when useful and a verified runtime is available. Prefer local code-only analysis, exclude price archives/secrets/media by verified configuration, respect the workspace budget, and check inferred edges against source. Never treat a graph as proof of causality or profitability. |
+| Strix | Use only for a separately scoped application-security task in an authorized isolated test environment with verified runtime and budget. Do not target exchange infrastructure, production trading accounts or live money. It does not validate indicator quality. |
+| 21st | Use when a user-authorized interface/reporting task benefits from UI components and the host capability is available. Do not add frontend infrastructure to indicator research by default. |
+| Ruflo | Use only when orchestration is actually needed, the owner explicitly authorizes multi-agent work, and the runtime is verified. Do not replace repository evidence, bypass §7, launch autonomous research/trading, or treat agent consensus as independent scientific validation. |
+
+**Capability truth:** distinguish (a) tracked instruction/configuration, (b) host registration/discovery, (c) successful tool invocation in this session, and (d) measured task outcomes. One does not establish the others. At this ruling, the two skills are imported on the work branch, Context7 has a configuration example only, and Graphify/Strix/21st/Ruflo are not installed or tested by that integration. Recheck live availability every session; do not copy stale status as a fresh observation. Record materially changed tool availability and actual checks in the handoff/tape with the relevant host and evidence, without credentials.
+
+If a capability is missing, continue authorized work through GitHub and accessible files where equivalent work is possible. Stop only the dependent operation when necessary; report the actual limit. If repository access itself is missing, state that it cannot be read and request the minimal connection or supplied files required. A repository URL alone never proves access. No new subscription, upload of private source or external service is an implicit prerequisite.
+
+Upstream guidance is subordinate to the owner's instructions and this constitution. In particular, no upstream /ship, multi-model pattern, mutation example or cleanup instruction grants permission to touch locked code, delete evidence, trade, spawn agents, create a PR, merge or push to main. Apply tests to relevant behavior changes; documentation-only edits do not require invented behavioral tests. The full skill text remains in its source file with its license and provenance; this constitution governs when and how it is used.
+
+### 8.6 Durable handoff and resumption across conversations — owner ruling 2026-10-17
+
+Before ending a substantive task, persist the decision, exact work scope, relevant changed files, raw-evidence/report paths, immutable code or delivery reference where available, checks actually run, limits, unresolved items, active work branch, merge status and one next step. Update docs/HANDOFF.md, append applicable decisions and major LOG entries, and add new numbered tape entries under §8.1. Checkpoint before context/session loss when possible; a promise to remember is not a saved record.
+
+Keep this constitution as the governing law and file map, not a dump of every raw result or obsolete tool manual. Put detailed evidence and installation/capability status in the named files and link them here. Preserve the complete twenty sections and historical records; a correction is a new dated ruling, not silent rewriting of evidence.
+
+At resumption, verify main and any specifically named pending work branch before describing a proposal as merged or missing. Resume the last authorized unfinished step using its recorded definitions and constraints. Do not repeat completed measurements, reopen a closed scope, select new candidates or invent missing history. Unknown or unread facts remain unknown. Published work-branch files persist but are not the official main text until owner merge.
+
+A new conversation needs access to this repository and must be directed to load its constitution (or receive these instructions from its host). Document this minimal starting route in README.md; do not promise that an unrelated blank chat already knows the project or has these tools.
 
 ---
 
@@ -624,9 +658,15 @@ Before a sensitive or irreversible change outside existing authorisation: tell t
 | `docs/RESEARCH-JUDGMENTS.md` | The research judge's law: a written plan that is not interrupted · documented burial after exhaustion · a new front opened immediately — *we do not stop, we move on* · the section verdicts and the golden patterns |
 | `docs/HYPOTHESIS-FACTORY.md` | The full inventory (212 hypotheses) + prior verdicts + the production-line plan |
 | `docs/CONSTITUTION-AMENDMENTS.md` | The register of constitutional amendments |
+| AGENTS.md | Repository entry point; routes to this constitution and §8.5 without replacing them |
+| docs/AGENT-TOOLS.md | Tool setup/status, host limitations and operating routes for the six named tools |
+| docs/INDICATOR-REVIEW.md | Applicable calculation, timing, causality and research-integrity checklist |
+| .agents/skills/ · .agents/references/ | Imported review/testing workflows and shared references, loaded as needed |
+| .agents/UPSTREAM.json · .agents/LICENSE | Pinned import provenance, file hashes and upstream license |
+| tools/agent_support/ | Offline integrity checker, Context7 configuration example and reviewed source references |
 | `docs/lanes/LAB-YARDSTICK-20.md` | Lab dollars restated at 20$/trade |
 | ~~Guiding-AI architecture~~ | 🗑️ Cancelled permanently by the owner — no AI touches the bot |
-| ~~Separate agents contract~~ | Merged fully into this constitution — no standalone file exists |
+| ~~Separate agents contract~~ | The governing contract is merged fully into this constitution; AGENTS.md is only a discovery/routing pointer under §8.5, not a separate contract |
 | ~~`docs/REPORT-LANGUAGE.md`~~ | Retired — its content lives in §14, its original text preserved in repo history |
 
 ---

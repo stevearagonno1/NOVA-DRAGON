@@ -1,6 +1,6 @@
 # Agent entry point — NOVA-DRAGON
 
-Read the complete root CONSTITUTION.md first, then follow its §8.4 resume order at the current verified main commit. This file is routing guidance, not a separate constitution or an amendment.
+Read the complete root CONSTITUTION.md first, then follow its §8.4 resume order at the current verified main commit, followed by the mandatory §8.5 tool check and §8.6 continuity check. Verify specifically named pending work branches separately; do not treat their proposals as merged. This file is routing guidance, not a separate constitution or an amendment.
 
 For indicator research and code changes, read docs/AGENT-TOOLS.md and docs/INDICATOR-REVIEW.md. Use the two imported skills in .agents/skills/ when their descriptions match the task. If this host does not discover repository skills automatically, fetch and read their SKILL.md files explicitly through GitHub. Repository files do not install tools into a hosted chat.
 
