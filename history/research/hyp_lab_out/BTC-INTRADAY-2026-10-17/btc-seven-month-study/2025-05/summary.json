@@ -1,0 +1,43 @@
+{
+  "month": "2025-05",
+  "days": 31,
+  "events": 90,
+  "events_per_day": 2.903225806451613,
+  "days_with_events": 27,
+  "flags": {
+    "trend": 57,
+    "breakout": 42,
+    "rebound": 16,
+    "other": 11
+  },
+  "exclusive": {
+    "rebound": 16,
+    "breakout": 40,
+    "trend": 23,
+    "other": 11
+  },
+  "sensitivity": [
+    {
+      "threshold_pct": 0.25,
+      "events": 198,
+      "days": 31,
+      "condition_bars": 587,
+      "crossings": 235
+    },
+    {
+      "threshold_pct": 0.5,
+      "events": 90,
+      "days": 27,
+      "condition_bars": 226,
+      "crossings": 100
+    },
+    {
+      "threshold_pct": 1.0,
+      "events": 20,
+      "days": 15,
+      "condition_bars": 42,
+      "crossings": 22
+    }
+  ],
+  "origin": "2025-05"
+}

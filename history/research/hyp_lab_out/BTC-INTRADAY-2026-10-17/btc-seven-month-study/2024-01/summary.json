@@ -1,0 +1,43 @@
+{
+  "month": "2024-01",
+  "days": 31,
+  "events": 124,
+  "events_per_day": 4.0,
+  "days_with_events": 29,
+  "flags": {
+    "trend": 57,
+    "breakout": 47,
+    "rebound": 36,
+    "other": 17
+  },
+  "exclusive": {
+    "rebound": 36,
+    "breakout": 46,
+    "trend": 25,
+    "other": 17
+  },
+  "sensitivity": [
+    {
+      "threshold_pct": 0.25,
+      "events": 226,
+      "days": 31,
+      "condition_bars": 684,
+      "crossings": 267
+    },
+    {
+      "threshold_pct": 0.5,
+      "events": 124,
+      "days": 29,
+      "condition_bars": 305,
+      "crossings": 143
+    },
+    {
+      "threshold_pct": 1.0,
+      "events": 39,
+      "days": 19,
+      "condition_bars": 105,
+      "crossings": 43
+    }
+  ],
+  "origin": "btc-month-study"
+}

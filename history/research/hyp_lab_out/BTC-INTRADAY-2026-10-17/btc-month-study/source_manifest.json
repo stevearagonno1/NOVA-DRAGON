@@ -1,0 +1,10 @@
+{
+  "source_sha256": "e321e4ad7d4ccda63ee7d0011f6965ec48edfcbbbb4026b7157ee6902e0dc7ec",
+  "source_commit": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+  "path": "crypto_archive/BTCUSDT_1m.parquet",
+  "retained_minute_slice_sha256": "56ac47b2f947042adf0becf543fff928b00342acb8b36705f4cc16491ac37471",
+  "external_sample_15m_count": 3,
+  "external_sample_max_diff": 0.0,
+  "external_sample_scope": "first3BTC15mbars on2024-01-01UTC; not entire-month external certification",
+  "source_minute_slice_includes_4days_past_warmup": true
+}

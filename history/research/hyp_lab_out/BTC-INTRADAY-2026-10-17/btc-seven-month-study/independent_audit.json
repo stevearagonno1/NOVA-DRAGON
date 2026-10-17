@@ -1,0 +1,188 @@
+{
+  "status": "PASS",
+  "months_reconciled": 7,
+  "all_event_count": 802,
+  "new_month_event_count": 584,
+  "new_months_scalar_prefix_and_return_checks": [
+    {
+      "month": "2021-12",
+      "source": "new measurement",
+      "minute_rows_in_month": 44640,
+      "events": 173,
+      "independent_pulse_checks_all_thresholds": 492,
+      "independent_event_returns_checked": 173,
+      "prefix_checks": 3,
+      "integrity": "PASS",
+      "condition_bars": 446,
+      "crossings": 196,
+      "suppressed_crossings": 23
+    },
+    {
+      "month": "2023-05",
+      "source": "new measurement",
+      "minute_rows_in_month": 44640,
+      "events": 70,
+      "independent_pulse_checks_all_thresholds": 266,
+      "independent_event_returns_checked": 70,
+      "prefix_checks": 3,
+      "integrity": "PASS",
+      "condition_bars": 163,
+      "crossings": 79,
+      "suppressed_crossings": 9
+    },
+    {
+      "month": "2023-12",
+      "source": "new measurement",
+      "minute_rows_in_month": 44640,
+      "events": 108,
+      "independent_pulse_checks_all_thresholds": 343,
+      "independent_event_returns_checked": 108,
+      "prefix_checks": 3,
+      "integrity": "PASS",
+      "condition_bars": 268,
+      "crossings": 124,
+      "suppressed_crossings": 16
+    },
+    {
+      "month": "2024-01",
+      "source": "prior saved event rows recounted",
+      "events": 124,
+      "summary_counts_reconciled": true
+    },
+    {
+      "month": "2025-05",
+      "source": "new measurement",
+      "minute_rows_in_month": 44640,
+      "events": 90,
+      "independent_pulse_checks_all_thresholds": 308,
+      "independent_event_returns_checked": 90,
+      "prefix_checks": 3,
+      "integrity": "PASS",
+      "condition_bars": 226,
+      "crossings": 100,
+      "suppressed_crossings": 10
+    },
+    {
+      "month": "2025-12",
+      "source": "prior saved event rows recounted",
+      "events": 94,
+      "summary_counts_reconciled": true
+    },
+    {
+      "month": "2026-03",
+      "source": "new measurement",
+      "minute_rows_in_month": 44640,
+      "events": 143,
+      "independent_pulse_checks_all_thresholds": 408,
+      "independent_event_returns_checked": 143,
+      "prefix_checks": 3,
+      "integrity": "PASS",
+      "condition_bars": 376,
+      "crossings": 170,
+      "suppressed_crossings": 27
+    }
+  ],
+  "external_candles_verified": 15,
+  "external_checks": [
+    {
+      "month": "2021-12",
+      "open_time_ms": 1638316800000,
+      "max_abs_difference": 0.0
+    },
+    {
+      "month": "2021-12",
+      "open_time_ms": 1638317700000,
+      "max_abs_difference": 0.0
+    },
+    {
+      "month": "2021-12",
+      "open_time_ms": 1638318600000,
+      "max_abs_difference": 0.0
+    },
+    {
+      "month": "2023-05",
+      "open_time_ms": 1682899200000,
+      "max_abs_difference": 1.1368683772161603e-13
+    },
+    {
+      "month": "2023-05",
+      "open_time_ms": 1682900100000,
+      "max_abs_difference": 0.0
+    },
+    {
+      "month": "2023-05",
+      "open_time_ms": 1682901000000,
+      "max_abs_difference": 0.0
+    },
+    {
+      "month": "2023-12",
+      "open_time_ms": 1701388800000,
+      "max_abs_difference": 0.0
+    },
+    {
+      "month": "2023-12",
+      "open_time_ms": 1701389700000,
+      "max_abs_difference": 0.0
+    },
+    {
+      "month": "2023-12",
+      "open_time_ms": 1701390600000,
+      "max_abs_difference": 0.0
+    },
+    {
+      "month": "2025-05",
+      "open_time_ms": 1746057600000,
+      "max_abs_difference": 0.0
+    },
+    {
+      "month": "2025-05",
+      "open_time_ms": 1746058500000,
+      "max_abs_difference": 0.0
+    },
+    {
+      "month": "2025-05",
+      "open_time_ms": 1746059400000,
+      "max_abs_difference": 0.0
+    },
+    {
+      "month": "2026-03",
+      "open_time_ms": 1772323200000,
+      "max_abs_difference": 0.0
+    },
+    {
+      "month": "2026-03",
+      "open_time_ms": 1772324100000,
+      "max_abs_difference": 0.0
+    },
+    {
+      "month": "2026-03",
+      "open_time_ms": 1772325000000,
+      "max_abs_difference": 0.0
+    }
+  ],
+  "source_full_sha256": "e321e4ad7d4ccda63ee7d0011f6965ec48edfcbbbb4026b7157ee6902e0dc7ec",
+  "independent_stability_formula_check": "PASS4flags2metrics",
+  "retained_data_sha256": {
+    "2023-05/events.csv": "dd15c21b12907104daa36b656d4c3f6cbc5eaa7fd03f27e2e543301d6c722384",
+    "2023-05/daily_counts.csv": "1e83b74465cad7cbeca7d3c5cd637ce09a1e91a33c318d2a35467101f93dfe55",
+    "2023-05/bars15m.csv.gz": "2880b20c59e6567a6d014ca01b04d5460bfac68c30894fd9bebf20dd3f251d6f",
+    "2023-05/source_minutes.csv.gz": "328fc4414ac464e3b69a68f7a423c47e6eedba4397f30e721c3c986c225140dd",
+    "2026-03/events.csv": "5319b9f3c0bd8bc87d1a4e5be10d9e6e2883877aa5957a9ada7ceb1175d17f3b",
+    "2026-03/daily_counts.csv": "1aecc2fa8c768a735852ff00b68bdb860b1a3c545af9269bd9c61b6258f99fd7",
+    "2026-03/bars15m.csv.gz": "e8bb16789b0e2c1b7518113c3a99c5f6856380ad5f24f5196a145cc577ee59df",
+    "2026-03/source_minutes.csv.gz": "fc8152868aaac0ababe4c5fd3e20c94e9060dcb95a55129f045f36cc2fde2b8c",
+    "2023-12/events.csv": "47522d384ae579e846f7bc78ab546ba733dad51b2245ab4b1e21bc84f36eef32",
+    "2023-12/daily_counts.csv": "bf830517797fd073166ae92cb87fc89422580eff8120156cdbcd202843ae03af",
+    "2023-12/bars15m.csv.gz": "0c8ac3dfd2ab2586a36f472993fcd934be1479698fbe029f45414819217c3706",
+    "2023-12/source_minutes.csv.gz": "645548e76e078914b8e64cbfe46e2d8ce7587cbdf6801925248daa1f1b981d29",
+    "2025-05/events.csv": "03ba87163c7c600bb5620a8ce24a1c162d177a222529b2ec22509c8ede342691",
+    "2025-05/daily_counts.csv": "04e13326ef716590567b65860a124cff905c837b7a8caa415d623a836f597354",
+    "2025-05/bars15m.csv.gz": "4c33bd0952350c154c032945dd2dd7632ab8a5384a9139a8cfae27ac30650a52",
+    "2025-05/source_minutes.csv.gz": "aefffbfbee16cc47090d6b7d3b36e373e0b1731470bfcc670a95fcc697e424dc",
+    "2021-12/events.csv": "8b01d9c427f71988c71ed40885f2eec155387cdbd07b15b32cae445a71378a83",
+    "2021-12/daily_counts.csv": "cffb95d4291311acea0dad73420ef13afa762babc75c6ee30a672ebd1fe49444",
+    "2021-12/bars15m.csv.gz": "9a19b0df029919dad5d2fb3c4050f58fb957ecaf5f74a92562d3af2c221f791c",
+    "2021-12/source_minutes.csv.gz": "002f3a066a6f9a50914d341c54b943876f06c64d23eb3f783344fc54b26b24dc"
+  },
+  "scope": "descriptive monthly recurrence; external match is a sample, not entire archive certification"
+}

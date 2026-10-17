@@ -1,0 +1,43 @@
+{
+  "month": "2023-05",
+  "days": 31,
+  "events": 70,
+  "events_per_day": 2.2580645161290325,
+  "days_with_events": 29,
+  "flags": {
+    "trend": 34,
+    "breakout": 36,
+    "rebound": 14,
+    "other": 13
+  },
+  "exclusive": {
+    "rebound": 14,
+    "breakout": 34,
+    "trend": 9,
+    "other": 13
+  },
+  "sensitivity": [
+    {
+      "threshold_pct": 0.25,
+      "events": 179,
+      "days": 31,
+      "condition_bars": 448,
+      "crossings": 201
+    },
+    {
+      "threshold_pct": 0.5,
+      "events": 70,
+      "days": 29,
+      "condition_bars": 163,
+      "crossings": 79
+    },
+    {
+      "threshold_pct": 1.0,
+      "events": 17,
+      "days": 14,
+      "condition_bars": 34,
+      "crossings": 18
+    }
+  ],
+  "origin": "2023-05"
+}

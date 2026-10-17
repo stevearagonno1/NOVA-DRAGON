@@ -1,0 +1,22 @@
+{
+  "status": "PASS",
+  "audits": [
+    {
+      "month": "2024-01",
+      "count_reconciliation": "PASS",
+      "events": 124,
+      "same_analyzer": true,
+      "same_source_hash": true
+    },
+    {
+      "month": "2025-12",
+      "count_reconciliation": "PASS",
+      "events": 94,
+      "same_analyzer": true,
+      "same_source_hash": true
+    }
+  ],
+  "external_december_max_abs_diff": 0.0,
+  "analyzer_sha256": "087140a884a7fa7d370febffa2be23c400f820c0150ebd13d658e8e4e3a7e638",
+  "source_sha256": "e321e4ad7d4ccda63ee7d0011f6965ec48edfcbbbb4026b7157ee6902e0dc7ec"
+}

@@ -1,0 +1,43 @@
+{
+  "month": "2021-12",
+  "days": 31,
+  "events": 173,
+  "events_per_day": 5.580645161290323,
+  "days_with_events": 31,
+  "flags": {
+    "trend": 74,
+    "breakout": 49,
+    "rebound": 60,
+    "other": 33
+  },
+  "exclusive": {
+    "rebound": 60,
+    "breakout": 44,
+    "trend": 36,
+    "other": 33
+  },
+  "sensitivity": [
+    {
+      "threshold_pct": 0.25,
+      "events": 253,
+      "days": 31,
+      "condition_bars": 832,
+      "crossings": 302
+    },
+    {
+      "threshold_pct": 0.5,
+      "events": 173,
+      "days": 31,
+      "condition_bars": 446,
+      "crossings": 196
+    },
+    {
+      "threshold_pct": 1.0,
+      "events": 66,
+      "days": 28,
+      "condition_bars": 152,
+      "crossings": 75
+    }
+  ],
+  "origin": "2021-12"
+}

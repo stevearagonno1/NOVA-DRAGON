@@ -1,0 +1,43 @@
+{
+  "month": "2025-12",
+  "days": 31,
+  "events": 94,
+  "events_per_day": 3.032258064516129,
+  "days_with_events": 27,
+  "flags": {
+    "trend": 48,
+    "breakout": 34,
+    "rebound": 30,
+    "other": 12
+  },
+  "exclusive": {
+    "rebound": 30,
+    "breakout": 33,
+    "trend": 19,
+    "other": 12
+  },
+  "sensitivity": [
+    {
+      "threshold_pct": 0.25,
+      "events": 198,
+      "days": 29,
+      "condition_bars": 539,
+      "crossings": 241
+    },
+    {
+      "threshold_pct": 0.5,
+      "events": 94,
+      "days": 27,
+      "condition_bars": 223,
+      "crossings": 109
+    },
+    {
+      "threshold_pct": 1.0,
+      "events": 26,
+      "days": 18,
+      "condition_bars": 59,
+      "crossings": 27
+    }
+  ],
+  "origin": "btc-month-comparison"
+}

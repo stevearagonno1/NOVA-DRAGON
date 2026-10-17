@@ -1,0 +1,353 @@
+{
+  "months": [
+    {
+      "month": "2021-12",
+      "days": 31,
+      "events": 173,
+      "events_per_day": 5.580645161290323,
+      "days_with_events": 31,
+      "flags": {
+        "trend": 74,
+        "breakout": 49,
+        "rebound": 60,
+        "other": 33
+      },
+      "exclusive": {
+        "rebound": 60,
+        "breakout": 44,
+        "trend": 36,
+        "other": 33
+      },
+      "sensitivity": [
+        {
+          "threshold_pct": 0.25,
+          "events": 253,
+          "days": 31,
+          "condition_bars": 832,
+          "crossings": 302
+        },
+        {
+          "threshold_pct": 0.5,
+          "events": 173,
+          "days": 31,
+          "condition_bars": 446,
+          "crossings": 196
+        },
+        {
+          "threshold_pct": 1.0,
+          "events": 66,
+          "days": 28,
+          "condition_bars": 152,
+          "crossings": 75
+        }
+      ]
+    },
+    {
+      "month": "2023-05",
+      "days": 31,
+      "events": 70,
+      "events_per_day": 2.2580645161290325,
+      "days_with_events": 29,
+      "flags": {
+        "trend": 34,
+        "breakout": 36,
+        "rebound": 14,
+        "other": 13
+      },
+      "exclusive": {
+        "rebound": 14,
+        "breakout": 34,
+        "trend": 9,
+        "other": 13
+      },
+      "sensitivity": [
+        {
+          "threshold_pct": 0.25,
+          "events": 179,
+          "days": 31,
+          "condition_bars": 448,
+          "crossings": 201
+        },
+        {
+          "threshold_pct": 0.5,
+          "events": 70,
+          "days": 29,
+          "condition_bars": 163,
+          "crossings": 79
+        },
+        {
+          "threshold_pct": 1.0,
+          "events": 17,
+          "days": 14,
+          "condition_bars": 34,
+          "crossings": 18
+        }
+      ]
+    },
+    {
+      "month": "2023-12",
+      "days": 31,
+      "events": 108,
+      "events_per_day": 3.4838709677419355,
+      "days_with_events": 28,
+      "flags": {
+        "trend": 71,
+        "breakout": 50,
+        "rebound": 21,
+        "other": 12
+      },
+      "exclusive": {
+        "rebound": 21,
+        "breakout": 50,
+        "trend": 25,
+        "other": 12
+      },
+      "sensitivity": [
+        {
+          "threshold_pct": 0.25,
+          "events": 205,
+          "days": 31,
+          "condition_bars": 607,
+          "crossings": 243
+        },
+        {
+          "threshold_pct": 0.5,
+          "events": 108,
+          "days": 28,
+          "condition_bars": 268,
+          "crossings": 124
+        },
+        {
+          "threshold_pct": 1.0,
+          "events": 30,
+          "days": 17,
+          "condition_bars": 64,
+          "crossings": 35
+        }
+      ]
+    },
+    {
+      "month": "2024-01",
+      "days": 31,
+      "events": 124,
+      "events_per_day": 4.0,
+      "days_with_events": 29,
+      "flags": {
+        "trend": 57,
+        "breakout": 47,
+        "rebound": 36,
+        "other": 17
+      },
+      "exclusive": {
+        "rebound": 36,
+        "breakout": 46,
+        "trend": 25,
+        "other": 17
+      },
+      "sensitivity": [
+        {
+          "threshold_pct": 0.25,
+          "events": 226,
+          "days": 31,
+          "condition_bars": 684,
+          "crossings": 267
+        },
+        {
+          "threshold_pct": 0.5,
+          "events": 124,
+          "days": 29,
+          "condition_bars": 305,
+          "crossings": 143
+        },
+        {
+          "threshold_pct": 1.0,
+          "events": 39,
+          "days": 19,
+          "condition_bars": 105,
+          "crossings": 43
+        }
+      ]
+    },
+    {
+      "month": "2025-05",
+      "days": 31,
+      "events": 90,
+      "events_per_day": 2.903225806451613,
+      "days_with_events": 27,
+      "flags": {
+        "trend": 57,
+        "breakout": 42,
+        "rebound": 16,
+        "other": 11
+      },
+      "exclusive": {
+        "rebound": 16,
+        "breakout": 40,
+        "trend": 23,
+        "other": 11
+      },
+      "sensitivity": [
+        {
+          "threshold_pct": 0.25,
+          "events": 198,
+          "days": 31,
+          "condition_bars": 587,
+          "crossings": 235
+        },
+        {
+          "threshold_pct": 0.5,
+          "events": 90,
+          "days": 27,
+          "condition_bars": 226,
+          "crossings": 100
+        },
+        {
+          "threshold_pct": 1.0,
+          "events": 20,
+          "days": 15,
+          "condition_bars": 42,
+          "crossings": 22
+        }
+      ]
+    },
+    {
+      "month": "2025-12",
+      "days": 31,
+      "events": 94,
+      "events_per_day": 3.032258064516129,
+      "days_with_events": 27,
+      "flags": {
+        "trend": 48,
+        "breakout": 34,
+        "rebound": 30,
+        "other": 12
+      },
+      "exclusive": {
+        "rebound": 30,
+        "breakout": 33,
+        "trend": 19,
+        "other": 12
+      },
+      "sensitivity": [
+        {
+          "threshold_pct": 0.25,
+          "events": 198,
+          "days": 29,
+          "condition_bars": 539,
+          "crossings": 241
+        },
+        {
+          "threshold_pct": 0.5,
+          "events": 94,
+          "days": 27,
+          "condition_bars": 223,
+          "crossings": 109
+        },
+        {
+          "threshold_pct": 1.0,
+          "events": 26,
+          "days": 18,
+          "condition_bars": 59,
+          "crossings": 27
+        }
+      ]
+    },
+    {
+      "month": "2026-03",
+      "days": 31,
+      "events": 143,
+      "events_per_day": 4.612903225806452,
+      "days_with_events": 30,
+      "flags": {
+        "trend": 78,
+        "breakout": 53,
+        "rebound": 47,
+        "other": 18
+      },
+      "exclusive": {
+        "rebound": 47,
+        "breakout": 49,
+        "trend": 29,
+        "other": 18
+      },
+      "sensitivity": [
+        {
+          "threshold_pct": 0.25,
+          "events": 222,
+          "days": 31,
+          "condition_bars": 748,
+          "crossings": 249
+        },
+        {
+          "threshold_pct": 0.5,
+          "events": 143,
+          "days": 30,
+          "condition_bars": 376,
+          "crossings": 170
+        },
+        {
+          "threshold_pct": 1.0,
+          "events": 43,
+          "days": 19,
+          "condition_bars": 100,
+          "crossings": 46
+        }
+      ]
+    }
+  ],
+  "metrics": [
+    {
+      "flag": "trend",
+      "name": "\u0648\u062c\u0648\u062f \u0627\u062a\u062c\u0627\u0647 \u0635\u0627\u0639\u062f",
+      "total_count": 419,
+      "per_day_mean": 1.9308755760368663,
+      "per_day_min": 1.096774193548387,
+      "per_day_max": 2.5161290322580645,
+      "per_day_cv": 0.24282763421435619,
+      "share_mean": 0.5314244219823764,
+      "share_min": 0.4277456647398844,
+      "share_max": 0.6574074074074074,
+      "share_cv": 0.15066036754283516
+    },
+    {
+      "flag": "breakout",
+      "name": "\u0627\u062e\u062a\u0631\u0627\u0642 \u0642\u0645\u0629 \u0622\u062e\u0631 \u062b\u0644\u0627\u062b \u0633\u0627\u0639\u0627\u062a",
+      "total_count": 311,
+      "per_day_mean": 1.433179723502304,
+      "per_day_min": 1.096774193548387,
+      "per_day_max": 1.7096774193548387,
+      "per_day_cv": 0.1516376350167408,
+      "share_mean": 0.40550229921263686,
+      "share_min": 0.2832369942196532,
+      "share_max": 0.5142857142857142,
+      "share_cv": 0.1808846675338734
+    },
+    {
+      "flag": "rebound",
+      "name": "\u0636\u0639\u0641 \u0623\u0648 \u062a\u0634\u0628\u0639 \u0628\u064a\u0639\u064a \u0633\u0627\u0628\u0642",
+      "total_count": 224,
+      "per_day_mean": 1.0322580645161292,
+      "per_day_min": 0.45161290322580644,
+      "per_day_max": 1.935483870967742,
+      "per_day_cv": 0.49127430874061734,
+      "share_mean": 0.2653122681367828,
+      "share_min": 0.17777777777777778,
+      "share_max": 0.3468208092485549,
+      "share_cv": 0.2513611515108492
+    },
+    {
+      "flag": "other",
+      "name": "\u062f\u0648\u0646 \u0627\u0644\u0623\u0648\u0635\u0627\u0641 \u0627\u0644\u062b\u0644\u0627\u062b\u0629",
+      "total_count": 116,
+      "per_day_mean": 0.5345622119815668,
+      "per_day_min": 0.3548387096774194,
+      "per_day_max": 1.064516129032258,
+      "per_day_cv": 0.43137917252402763,
+      "share_mean": 0.14291850552429763,
+      "share_min": 0.1111111111111111,
+      "share_max": 0.1907514450867052,
+      "share_cv": 0.206834515843701
+    }
+  ],
+  "first_compute_seconds": 17.280388361000007
+}

@@ -1,0 +1,469 @@
+{
+  "status": "VERIFIED",
+  "verified_at": "2026-10-17T09:37:24.675Z",
+  "repository": "stevearagonno1/NOVA-DRAGON",
+  "branch": "agent/btc-intraday-recurrence-2026-10-17",
+  "payload_commit": "3b6a50b09c98d6ea81c607cf5a2a19b72fdd9b97",
+  "payload_tree": "5a003d279614982a0148c9a2370ea91147e5070c",
+  "base_main": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+  "main_observed_after_upload": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+  "owner_authorisation": "ارفع العمل و التقارير الى المستودع",
+  "scope": "BTC intraday January2024, two-month comparison and seven-month recurrence; native code/reports/inputs/results/audits",
+  "verified_payload_files": 72,
+  "git_tree_all_file_hashes": "PASS",
+  "raw_readbacks": [
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/README.md",
+      "status": "PASS"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/REPORT.md",
+      "status": "PASS"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/PUBLISH_MANIFEST.json",
+      "status": "PASS"
+    }
+  ],
+  "restore_inputs_rehearsal": "PASS: 4 legacy CSV inputs restored and SHA256 checked",
+  "months": 7,
+  "events": 802,
+  "new_month_events": 584,
+  "predictive_accuracy": "not measured",
+  "profitability": "not measured",
+  "publication_boundary": "work branch only; owner merges; no PR/main push",
+  "files": [
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-study/REPORT.md",
+      "bytes": 13424,
+      "sha256": "33c14f09c78ee692374736ab289d9e6b2c2d93565ef2e7678294a2a6ccc25f98",
+      "git_blob_sha": "29a9324075fa591ba67a33917f18de20681dd65f"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-study/analyze_month.py",
+      "bytes": 6821,
+      "sha256": "087140a884a7fa7d370febffa2be23c400f820c0150ebd13d658e8e4e3a7e638",
+      "git_blob_sha": "ce71536df0805f5d4727191300afb547b0c0305d"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-study/bars15m.csv.gz",
+      "bytes": 257692,
+      "sha256": "61089ea15afbe6cb61a8a11384ae12317bfe7b2c50c802167681f0244d732aa4",
+      "git_blob_sha": "2710632539032540b6c8b9adc34f3340e4465873"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-study/build_report.py",
+      "bytes": 13839,
+      "sha256": "0cb7654d1b33055e00b3ca5500bbbd48c76d80e0bea60db36a40eb0b8e38e4d4",
+      "git_blob_sha": "b99eed4f2d70bc0fba1a9d0f2ccd575ccb3bddf1"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-study/daily_counts.csv",
+      "bytes": 938,
+      "sha256": "96bf0ea62ec9ff2875498911b0990a02398287213500d165f62d7bc7f413cb9b",
+      "git_blob_sha": "01c878f31b2edbdfe4533fb9c39b68e4461d1806"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-study/events.csv",
+      "bytes": 36891,
+      "sha256": "c8b9b02f4f95187fdacf74a7b8b8b7491f8e2134537525a94a8fdf92797b0bc8",
+      "git_blob_sha": "82aa9cd657b03d7aad77828336b7b5b53d1c35e0"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-study/external_check.json",
+      "bytes": 835,
+      "sha256": "fa8bc3c6ffec650838a88f132c690e01f688d1af6ed189d711855adc0f654cc1",
+      "git_blob_sha": "2d5a1a2a6fdcccf08f544ab54b90bd2c43b1af1e"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-study/registration.json",
+      "bytes": 2276,
+      "sha256": "d620cbf715dbc634b80e40d648769450c23b81b5096ceaedeef35d748c0c62a4",
+      "git_blob_sha": "28617080e0cff0b55ac58318cc5e6c3da057af80"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-study/source_manifest.json",
+      "bytes": 532,
+      "sha256": "42f1991ef9cee70188e0820351b7b4b298654bca2f5c3ea05630eb0c407d167d",
+      "git_blob_sha": "fef34133cde3d2c54853a6e802043f6f4456999c"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-study/source_minutes.csv.gz",
+      "bytes": 1211632,
+      "sha256": "6816f25b2d9f273b5a439e7393dd1fcbbdc067713d1f1b31162d057b7bef2834",
+      "git_blob_sha": "7d012181497fb84a202af734b7bbcb3a3fa5eec0"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-study/summary.json",
+      "bytes": 3762,
+      "sha256": "c6714dd7578ba0ff4f66adc0d8ac8a75db5ef11a2fcfc9aa286d473612ec22c6",
+      "git_blob_sha": "e49c8d0d19382a6c36aa08102d4c7844e877ddf1"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-comparison/COMPARISON_REPORT.md",
+      "bytes": 8350,
+      "sha256": "164070a9bc55d11610c1bb95a473621dbd60f6ef2e833fa309b7019a98345cac",
+      "git_blob_sha": "94273f50f94b15a291fb6c7b13414ed5789942eb"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-comparison/analyze_month.py",
+      "bytes": 6821,
+      "sha256": "087140a884a7fa7d370febffa2be23c400f820c0150ebd13d658e8e4e3a7e638",
+      "git_blob_sha": "ce71536df0805f5d4727191300afb547b0c0305d"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-comparison/bars15m.csv.gz",
+      "bytes": 257649,
+      "sha256": "8a2aec6656356ab6c31dd597646ccdfe1a66ca3e7b2c2e06563a0c3db6eadf9b",
+      "git_blob_sha": "52f3252077bc5930a5415af62350178b6d6c4abf"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-comparison/compare.py",
+      "bytes": 12562,
+      "sha256": "38747b8adf55e1ac463f95ae259fe5953c4dfda8474a3201016c6bacacec3766",
+      "git_blob_sha": "0dee93a4045db351f595893126215ff1032b1d0d"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-comparison/comparison.json",
+      "bytes": 799,
+      "sha256": "375c7966f8775888fe100007152b6dd3eb6b8f57ef0b765cd2839fd9e757edcb",
+      "git_blob_sha": "99ffeae0d30cc18ee852ecf6fea4d70007410bf5"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-comparison/comparison_audit.json",
+      "bytes": 572,
+      "sha256": "4ba1cd6f9b0c0c0640b05d51547ef2fcfc3141b87568488b7f3511910388ab8d",
+      "git_blob_sha": "b8b89702dffa150ef7a86df336d0622bd24970b9"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-comparison/daily_counts.csv",
+      "bytes": 938,
+      "sha256": "9c25a55cd28ffe7114ea0b876c4af95b53527d61ccd8a7d3289c56c399a63779",
+      "git_blob_sha": "69742b239e258095f5c00aebad2af78bd84faef6"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-comparison/events.csv",
+      "bytes": 27976,
+      "sha256": "5bdb6810a2755b216d9ddb2c062696e773c39df7465a355ef01afa92be99dcb8",
+      "git_blob_sha": "99038ee5990ac9e59d1e3a49e39b99294f45ad3a"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-comparison/external_check.json",
+      "bytes": 844,
+      "sha256": "f40e7e38413bf1cd3b481505c3ca77a142995c29555370e8ea6d4e7e2c8bc7d8",
+      "git_blob_sha": "5bedf46937f0f0d1e15fe4f8cb9b0bc3d1ee190b"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-comparison/registration.json",
+      "bytes": 2280,
+      "sha256": "f1b28bbfc856381bad9aba82726335267722021178d96e6affcec29251eaeff9",
+      "git_blob_sha": "f4c5a8ed95666c529e02831065cd52351bcaefff"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-comparison/source_manifest.json",
+      "bytes": 383,
+      "sha256": "2b8b60c4de6e89d2ff8392b37b290863bbf05e9460711a9ec096ac8329bb78c2",
+      "git_blob_sha": "39335a1ad5baeab902d0e61b1d47a070347c1152"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-comparison/source_minutes.csv.gz",
+      "bytes": 1212961,
+      "sha256": "88e4045ae0c187cc40535723fb89c78b477c6aedd7b0dc5c0455d3b352da1fa5",
+      "git_blob_sha": "3692856de7487731ac9912ce726c02541a309690"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-month-comparison/summary.json",
+      "bytes": 3759,
+      "sha256": "ff146cec6b0c7a663cfc629d13ee3ae1c91d1d57a2f168d454ed8ec805720bff",
+      "git_blob_sha": "551dd99f519d0447330867227b8089c1dfa2338e"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2021-12/bars15m.csv.gz",
+      "bytes": 328775,
+      "sha256": "9a19b0df029919dad5d2fb3c4050f58fb957ecaf5f74a92562d3af2c221f791c",
+      "git_blob_sha": "8630cc856c2777deabda8345d2eb02916769de4a"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2021-12/daily_counts.csv",
+      "bytes": 691,
+      "sha256": "cffb95d4291311acea0dad73420ef13afa762babc75c6ee30a672ebd1fe49444",
+      "git_blob_sha": "f6374d3c14d8f8205cadac572b46e003b13c9fa8"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2021-12/events.csv",
+      "bytes": 43834,
+      "sha256": "8b01d9c427f71988c71ed40885f2eec155387cdbd07b15b32cae445a71378a83",
+      "git_blob_sha": "132cf9078a8cb59f425928e4760c3a718079e983"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2021-12/source_minutes.csv.gz",
+      "bytes": 1311087,
+      "sha256": "002f3a066a6f9a50914d341c54b943876f06c64d23eb3f783344fc54b26b24dc",
+      "git_blob_sha": "a861c91e129dda85111c51ab8a0c9831ed04ca22"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2021-12/summary.json",
+      "bytes": 745,
+      "sha256": "c1e6d753f183d49034fa9615b35dbfdcc30cf85fd4bf5a10704f5788d80accc9",
+      "git_blob_sha": "ec3d0dd7e188662294eea1b2b0b3bdc4de785824"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2023-05/bars15m.csv.gz",
+      "bytes": 323044,
+      "sha256": "2880b20c59e6567a6d014ca01b04d5460bfac68c30894fd9bebf20dd3f251d6f",
+      "git_blob_sha": "18ba44449b01399bde5b1fbfe6cfe02d40aa7e4a"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2023-05/daily_counts.csv",
+      "bytes": 938,
+      "sha256": "1e83b74465cad7cbeca7d3c5cd637ce09a1e91a33c318d2a35467101f93dfe55",
+      "git_blob_sha": "9c801b3555ef60b5fe615aec5fd726bb56da58c6"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2023-05/events.csv",
+      "bytes": 17826,
+      "sha256": "dd15c21b12907104daa36b656d4c3f6cbc5eaa7fd03f27e2e543301d6c722384",
+      "git_blob_sha": "6df50cfdfd2d7ace01ec8a94afbc8a12250cee01"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2023-05/source_minutes.csv.gz",
+      "bytes": 1173615,
+      "sha256": "328fc4414ac464e3b69a68f7a423c47e6eedba4397f30e721c3c986c225140dd",
+      "git_blob_sha": "64b17a180374d6b2405a2e9e355d56839e694a6e"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2023-05/summary.json",
+      "bytes": 741,
+      "sha256": "8133543e38ead8331d2b2a8a32e5b07174d389e012993d3b10dacb59982e81c4",
+      "git_blob_sha": "9e6b1211c6a49bb9c0d171af252cb325201923df"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2023-12/bars15m.csv.gz",
+      "bytes": 324926,
+      "sha256": "0c8ac3dfd2ab2586a36f472993fcd934be1479698fbe029f45414819217c3706",
+      "git_blob_sha": "0be1f4e69bb03d8a0ba22c14e7675c900ea8518e"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2023-12/daily_counts.csv",
+      "bytes": 939,
+      "sha256": "bf830517797fd073166ae92cb87fc89422580eff8120156cdbcd202843ae03af",
+      "git_blob_sha": "1ac594a032e9f8e2bf1dc5e5d4d83b6d183e0c4a"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2023-12/events.csv",
+      "bytes": 27381,
+      "sha256": "47522d384ae579e846f7bc78ab546ba733dad51b2245ab4b1e21bc84f36eef32",
+      "git_blob_sha": "79768554848285e5789c79084ac09a2e7cd994a1"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2023-12/source_minutes.csv.gz",
+      "bytes": 1191897,
+      "sha256": "645548e76e078914b8e64cbfe46e2d8ce7587cbdf6801925248daa1f1b981d29",
+      "git_blob_sha": "13c20229c462904eacad941672bc951703705052"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2023-12/summary.json",
+      "bytes": 745,
+      "sha256": "1afe960c70f991f7de86fdc36a0f733c8add7138a147049a28e3b4d19bbf73c8",
+      "git_blob_sha": "5a2302d4821237e35f9013cd8e8a325a505cdde7"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2024-01/summary.json",
+      "bytes": 739,
+      "sha256": "c91f2f90741a8a556496e53dc8c7f9a8c2e31f1d398188889cf3398a7dbde970",
+      "git_blob_sha": "ea73fee5b0e661c2b00c6276485a3dae721aad7b"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2025-05/bars15m.csv.gz",
+      "bytes": 322951,
+      "sha256": "4c33bd0952350c154c032945dd2dd7632ab8a5384a9139a8cfae27ac30650a52",
+      "git_blob_sha": "1970eb15252101abfaca1b6789fd7a6328f48a01"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2025-05/daily_counts.csv",
+      "bytes": 938,
+      "sha256": "04e13326ef716590567b65860a124cff905c837b7a8caa415d623a836f597354",
+      "git_blob_sha": "9777d10fdbe79ce01ab56e3891f0fa4a5feaf21f"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2025-05/events.csv",
+      "bytes": 22972,
+      "sha256": "03ba87163c7c600bb5620a8ce24a1c162d177a222529b2ec22509c8ede342691",
+      "git_blob_sha": "64ee7d8055608707ae0274ace565521a81d8b1f5"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2025-05/source_minutes.csv.gz",
+      "bytes": 1192873,
+      "sha256": "aefffbfbee16cc47090d6b7d3b36e373e0b1731470bfcc670a95fcc697e424dc",
+      "git_blob_sha": "2f87c67f211edfe52e27435ef1a36a74303d9ab8"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2025-05/summary.json",
+      "bytes": 742,
+      "sha256": "f5a63496949a0627ab4e55bf1f61c490b0c140172f51878b7487a3532f756688",
+      "git_blob_sha": "dda3b83ac3a8806fb4953b1ec216d4812d7fdc26"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2025-12/summary.json",
+      "bytes": 755,
+      "sha256": "ec563ae3c6d0b071da9cbb27369f1bfb914a4b57a47997378aae26b1aefc75e7",
+      "git_blob_sha": "73291ff57dc1a5070cc70c743c5bcf309d3e0a2f"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2026-03/bars15m.csv.gz",
+      "bytes": 330189,
+      "sha256": "e8bb16789b0e2c1b7518113c3a99c5f6856380ad5f24f5196a145cc577ee59df",
+      "git_blob_sha": "922b4dab5f52a48475670b8f18e3479a83951979"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2026-03/daily_counts.csv",
+      "bytes": 939,
+      "sha256": "1aecc2fa8c768a735852ff00b68bdb860b1a3c545af9269bd9c61b6258f99fd7",
+      "git_blob_sha": "59fe0b5188e8e298abe370af112fa7a6fdceb14d"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2026-03/events.csv",
+      "bytes": 36123,
+      "sha256": "5319b9f3c0bd8bc87d1a4e5be10d9e6e2883877aa5957a9ada7ceb1175d17f3b",
+      "git_blob_sha": "03a42187c7ea4f75de44ed576888ae4b0f4a6757"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2026-03/source_minutes.csv.gz",
+      "bytes": 1275173,
+      "sha256": "fc8152868aaac0ababe4c5fd3e20c94e9060dcb95a55129f045f36cc2fde2b8c",
+      "git_blob_sha": "e37026e5ecbe69c037ae6b22fe1221cfdea1caa5"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/2026-03/summary.json",
+      "bytes": 745,
+      "sha256": "5b3f374143ded1caf9e9966bab7e0a3d8db233a72a93579f6f8d8bcaf61503c5",
+      "git_blob_sha": "fd0e3b841abd1a95e37c882d4e525fc9cf201d4e"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/REPORT.md",
+      "bytes": 12354,
+      "sha256": "56582270290e9489d3ee948d9294c84cb857b0ac9ff7db362fe5004f4bd871ed",
+      "git_blob_sha": "d4491dbceb0290f81dc5caf181c25d3973e41584"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/analyze_month.py",
+      "bytes": 6821,
+      "sha256": "087140a884a7fa7d370febffa2be23c400f820c0150ebd13d658e8e4e3a7e638",
+      "git_blob_sha": "ce71536df0805f5d4727191300afb547b0c0305d"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/audit_saved.py",
+      "bytes": 2237,
+      "sha256": "6a8ea33534785a130d4bfbea2176ec8736fe2220847a26fd38eef7c234659cd1",
+      "git_blob_sha": "6ceb4a87d1b3be065a1e175bbdc9600dead904fa"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/build_report.py",
+      "bytes": 14369,
+      "sha256": "4e5e1a9987dcce5013b668bc346d0e7d48910f82d8c96407e0507dfcc9a61cfc",
+      "git_blob_sha": "43e47df3cda3db6e39a41057295188648cba04a9"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/delivery.json",
+      "bytes": 452,
+      "sha256": "f76f267014bcafd1bb74e351294b212e65e9ae16d31ebce549358aef395e5f98",
+      "git_blob_sha": "619cd3d39de43a244d6d5927241baa4ca365ce1d"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/external_checks.json",
+      "bytes": 6104,
+      "sha256": "a38fda33aaf6cbe38dd2adf0c52758b91d8c12e434ce3b89a20c1955525280b0",
+      "git_blob_sha": "0e7434e430d50bd05529d70a2ece1f9191546b14"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/first_measurement_counts.json",
+      "bytes": 8329,
+      "sha256": "a13267d5aafb7883a9cb0dd1c27faf594cef5b98ffef8f966263c5c15eb6193f",
+      "git_blob_sha": "db0ef0f969e0e1c631b05602e15cf5503a31233b"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/independent_audit.json",
+      "bytes": 6302,
+      "sha256": "8c5dca6ee21bb6b8624eb11bec9281222d5d8f941ddec2b4e5d8254034c666a0",
+      "git_blob_sha": "8b9934e4d2b7256f37305fd6f167fb76113c4ed3"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/measure.py",
+      "bytes": 8728,
+      "sha256": "50720eebbf80cf73192c6bc898235a50bcecb8c817cf8665cf353f5f02d753e3",
+      "git_blob_sha": "b19d3b88b92f7c854d6537ec0ae1751a1872e8e7"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/monthly_comparison.csv",
+      "bytes": 1001,
+      "sha256": "4c8fd3633806de4688e309642bd58e95293b9965b53bcc645311aa137d5da4ae",
+      "git_blob_sha": "e93d9a9c7a51c98fac5d7159639c9d8bb5cc9699"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/registration.json",
+      "bytes": 4719,
+      "sha256": "65a2c2b8bed9250961954ec9024e0afd2809520a5384ea90e0ebeb87727b19f6",
+      "git_blob_sha": "cdbe0bd259bb627984bea0a4debf267354ddc3d6"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/stability_metrics.csv",
+      "bytes": 917,
+      "sha256": "7149858a5116d0d98c14067e12510a8aa096ae776e09d7fe351b40a1000a0d1e",
+      "git_blob_sha": "7a493cc2fbacc0d669ae3c532cbaa25df9aa0174"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/btc-seven-month-study/summary.json",
+      "bytes": 15931,
+      "sha256": "c41c2a72d24b563db2d07cd5db0c05eef40ce87c0a255c83f569fdccfcbe3e0d",
+      "git_blob_sha": "a1cb40931fc6376438f4d6227c806b1f7b601d46"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/README.md",
+      "bytes": 4469,
+      "sha256": "84c2c21a075f3ffd6a03aa09c00204e93ddb91d23026c536fe366512e8e6948f",
+      "git_blob_sha": "e5bdff8a6090107163c744da90e338147268ea53"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/restore_inputs.py",
+      "bytes": 912,
+      "sha256": "e7961dea0c8abf90befb001478fb14c8c97e9505b8120c08d234399ac596f686",
+      "git_blob_sha": "5fd0304a74f4c4def4e8eb56522f63e6404d0156"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/requirements.txt",
+      "bytes": 27,
+      "sha256": "6979eeaed30ec7f45ff725f33240136e49c396fdf8a5ef12964fb2960c8a5d1e",
+      "git_blob_sha": "471c819217a05ff97a0483a81af5d70df9cb3593"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/PUBLISH_MANIFEST.json",
+      "bytes": 13057,
+      "sha256": "5ce482a251bf50bdf5efcd7112f89f57276e482939d21f0cfa0603a24aa982ff",
+      "git_blob_sha": "655d34de623de615a08875f56b36dc0c9997adce"
+    },
+    {
+      "path": "LOG.md",
+      "bytes": 145713,
+      "sha256": "7dad3f6f7e7438654c7e2b6a6fcd03eaa0fd9c0d2d9a438422e1ee02e107974a",
+      "git_blob_sha": "7043265c421f2f7683e5e83c0a5fdfe2bb980097"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "bytes": 76035,
+      "sha256": "8db931165e124f9dfe1535b948e8fe6629c2afeecb577b38d77471a25f3596a0",
+      "git_blob_sha": "66cea5d23c48ce19bdc8010a68e67638a8487278"
+    },
+    {
+      "path": "docs/HANDOFF.md",
+      "bytes": 48307,
+      "sha256": "3a9770a46cd0a8e1a30059b92ce16bc67222e5c67647ec2e634ae76e8d35b4e2",
+      "git_blob_sha": "f3592f33f431a98f3642dba3b44c590137c89064"
+    },
+    {
+      "path": "docs/journal/2026-10-17-btc-intraday/001-owner-authorised-upload.md",
+      "bytes": 886,
+      "sha256": "510d8277464f124bb80b2739647b2a55f6ad8a5ca70f731abab3441c5b76a10e",
+      "git_blob_sha": "0c3b90bce8931572820007b8cdf3257e89a7237c"
+    }
+  ]
+}

@@ -1,0 +1,34 @@
+{
+  "first_month": "2024-01",
+  "second_month": "2025-12",
+  "events": [
+    124,
+    94
+  ],
+  "change_pct": -24.193548387096776,
+  "audit": [
+    {
+      "month": "2024-01",
+      "count_reconciliation": "PASS",
+      "events": 124,
+      "same_analyzer": true,
+      "same_source_hash": true
+    },
+    {
+      "month": "2025-12",
+      "count_reconciliation": "PASS",
+      "events": 94,
+      "same_analyzer": true,
+      "same_source_hash": true
+    }
+  ],
+  "same_primary_threshold_pct": 0.5,
+  "same_monitoring_minutes": 15,
+  "same_minimum_event_spacing_minutes": 60,
+  "same_intraday_lookback_minutes": 60,
+  "same_timezone": "Asia/Aden",
+  "flag_ranking_same": true,
+  "external_december_check": "PASS3candles",
+  "predictive_accuracy": "not measured",
+  "profitability": "not measured"
+}
