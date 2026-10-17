@@ -1,0 +1,12 @@
+{
+  "status": "complete descriptive comparison",
+  "registered_phase_elapsed_seconds_to_packaging": 228.41734766960144,
+  "full_task_elapsed": "not measured; first reading preceded registration",
+  "source_commit": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+  "total_months": 7,
+  "new_months": 5,
+  "total_events": 802,
+  "new_events": 584,
+  "verification": "audit PASS; counts and recurrence metrics reproduced",
+  "profitability": "not measured"
+}

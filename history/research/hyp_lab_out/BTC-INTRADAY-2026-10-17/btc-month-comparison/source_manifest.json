@@ -1,0 +1,8 @@
+{
+  "source_commit": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+  "source_sha256": "e321e4ad7d4ccda63ee7d0011f6965ec48edfcbbbb4026b7157ee6902e0dc7ec",
+  "retained_minute_slice_sha256": "f873ca37929f6a3a1f2484c8f7e5fbb1d08548778ad004f7fe96c693522d13fa",
+  "external_sample_count": 3,
+  "external_max_abs_difference": 0.0,
+  "scope": "BTC Spot December2025; 3 external candles only"
+}

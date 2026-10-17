@@ -1,0 +1,373 @@
+{
+  "scope": "BTC intraday month1,month2,seven-month recurrence; all available native code/reports/results/inputs",
+  "source_commit": "6d0226a03b84656e14b94dd8a37e39332cc2f68f",
+  "source_parquet_sha256": "e321e4ad7d4ccda63ee7d0011f6965ec48edfcbbbb4026b7157ee6902e0dc7ec",
+  "study_files": [
+    {
+      "size": 13424,
+      "sha256": "33c14f09c78ee692374736ab289d9e6b2c2d93565ef2e7678294a2a6ccc25f98",
+      "path": "btc-month-study/REPORT.md"
+    },
+    {
+      "size": 6821,
+      "sha256": "087140a884a7fa7d370febffa2be23c400f820c0150ebd13d658e8e4e3a7e638",
+      "path": "btc-month-study/analyze_month.py"
+    },
+    {
+      "size": 257692,
+      "sha256": "61089ea15afbe6cb61a8a11384ae12317bfe7b2c50c802167681f0244d732aa4",
+      "path": "btc-month-study/bars15m.csv.gz"
+    },
+    {
+      "size": 13839,
+      "sha256": "0cb7654d1b33055e00b3ca5500bbbd48c76d80e0bea60db36a40eb0b8e38e4d4",
+      "path": "btc-month-study/build_report.py"
+    },
+    {
+      "size": 938,
+      "sha256": "96bf0ea62ec9ff2875498911b0990a02398287213500d165f62d7bc7f413cb9b",
+      "path": "btc-month-study/daily_counts.csv"
+    },
+    {
+      "size": 36891,
+      "sha256": "c8b9b02f4f95187fdacf74a7b8b8b7491f8e2134537525a94a8fdf92797b0bc8",
+      "path": "btc-month-study/events.csv"
+    },
+    {
+      "size": 835,
+      "sha256": "fa8bc3c6ffec650838a88f132c690e01f688d1af6ed189d711855adc0f654cc1",
+      "path": "btc-month-study/external_check.json"
+    },
+    {
+      "size": 2276,
+      "sha256": "d620cbf715dbc634b80e40d648769450c23b81b5096ceaedeef35d748c0c62a4",
+      "path": "btc-month-study/registration.json"
+    },
+    {
+      "size": 532,
+      "sha256": "42f1991ef9cee70188e0820351b7b4b298654bca2f5c3ea05630eb0c407d167d",
+      "path": "btc-month-study/source_manifest.json"
+    },
+    {
+      "size": 1211632,
+      "sha256": "6816f25b2d9f273b5a439e7393dd1fcbbdc067713d1f1b31162d057b7bef2834",
+      "path": "btc-month-study/source_minutes.csv.gz"
+    },
+    {
+      "size": 3762,
+      "sha256": "c6714dd7578ba0ff4f66adc0d8ac8a75db5ef11a2fcfc9aa286d473612ec22c6",
+      "path": "btc-month-study/summary.json"
+    },
+    {
+      "size": 8350,
+      "sha256": "164070a9bc55d11610c1bb95a473621dbd60f6ef2e833fa309b7019a98345cac",
+      "path": "btc-month-comparison/COMPARISON_REPORT.md"
+    },
+    {
+      "size": 6821,
+      "sha256": "087140a884a7fa7d370febffa2be23c400f820c0150ebd13d658e8e4e3a7e638",
+      "path": "btc-month-comparison/analyze_month.py"
+    },
+    {
+      "size": 257649,
+      "sha256": "8a2aec6656356ab6c31dd597646ccdfe1a66ca3e7b2c2e06563a0c3db6eadf9b",
+      "path": "btc-month-comparison/bars15m.csv.gz"
+    },
+    {
+      "size": 12562,
+      "sha256": "38747b8adf55e1ac463f95ae259fe5953c4dfda8474a3201016c6bacacec3766",
+      "path": "btc-month-comparison/compare.py"
+    },
+    {
+      "size": 799,
+      "sha256": "375c7966f8775888fe100007152b6dd3eb6b8f57ef0b765cd2839fd9e757edcb",
+      "path": "btc-month-comparison/comparison.json"
+    },
+    {
+      "size": 572,
+      "sha256": "4ba1cd6f9b0c0c0640b05d51547ef2fcfc3141b87568488b7f3511910388ab8d",
+      "path": "btc-month-comparison/comparison_audit.json"
+    },
+    {
+      "size": 938,
+      "sha256": "9c25a55cd28ffe7114ea0b876c4af95b53527d61ccd8a7d3289c56c399a63779",
+      "path": "btc-month-comparison/daily_counts.csv"
+    },
+    {
+      "size": 27976,
+      "sha256": "5bdb6810a2755b216d9ddb2c062696e773c39df7465a355ef01afa92be99dcb8",
+      "path": "btc-month-comparison/events.csv"
+    },
+    {
+      "size": 844,
+      "sha256": "f40e7e38413bf1cd3b481505c3ca77a142995c29555370e8ea6d4e7e2c8bc7d8",
+      "path": "btc-month-comparison/external_check.json"
+    },
+    {
+      "size": 2280,
+      "sha256": "f1b28bbfc856381bad9aba82726335267722021178d96e6affcec29251eaeff9",
+      "path": "btc-month-comparison/registration.json"
+    },
+    {
+      "size": 383,
+      "sha256": "2b8b60c4de6e89d2ff8392b37b290863bbf05e9460711a9ec096ac8329bb78c2",
+      "path": "btc-month-comparison/source_manifest.json"
+    },
+    {
+      "size": 1212961,
+      "sha256": "88e4045ae0c187cc40535723fb89c78b477c6aedd7b0dc5c0455d3b352da1fa5",
+      "path": "btc-month-comparison/source_minutes.csv.gz"
+    },
+    {
+      "size": 3759,
+      "sha256": "ff146cec6b0c7a663cfc629d13ee3ae1c91d1d57a2f168d454ed8ec805720bff",
+      "path": "btc-month-comparison/summary.json"
+    },
+    {
+      "size": 328775,
+      "sha256": "9a19b0df029919dad5d2fb3c4050f58fb957ecaf5f74a92562d3af2c221f791c",
+      "path": "btc-seven-month-study/2021-12/bars15m.csv.gz"
+    },
+    {
+      "size": 691,
+      "sha256": "cffb95d4291311acea0dad73420ef13afa762babc75c6ee30a672ebd1fe49444",
+      "path": "btc-seven-month-study/2021-12/daily_counts.csv"
+    },
+    {
+      "size": 43834,
+      "sha256": "8b01d9c427f71988c71ed40885f2eec155387cdbd07b15b32cae445a71378a83",
+      "path": "btc-seven-month-study/2021-12/events.csv"
+    },
+    {
+      "size": 1311087,
+      "sha256": "002f3a066a6f9a50914d341c54b943876f06c64d23eb3f783344fc54b26b24dc",
+      "path": "btc-seven-month-study/2021-12/source_minutes.csv.gz"
+    },
+    {
+      "size": 745,
+      "sha256": "c1e6d753f183d49034fa9615b35dbfdcc30cf85fd4bf5a10704f5788d80accc9",
+      "path": "btc-seven-month-study/2021-12/summary.json"
+    },
+    {
+      "size": 323044,
+      "sha256": "2880b20c59e6567a6d014ca01b04d5460bfac68c30894fd9bebf20dd3f251d6f",
+      "path": "btc-seven-month-study/2023-05/bars15m.csv.gz"
+    },
+    {
+      "size": 938,
+      "sha256": "1e83b74465cad7cbeca7d3c5cd637ce09a1e91a33c318d2a35467101f93dfe55",
+      "path": "btc-seven-month-study/2023-05/daily_counts.csv"
+    },
+    {
+      "size": 17826,
+      "sha256": "dd15c21b12907104daa36b656d4c3f6cbc5eaa7fd03f27e2e543301d6c722384",
+      "path": "btc-seven-month-study/2023-05/events.csv"
+    },
+    {
+      "size": 1173615,
+      "sha256": "328fc4414ac464e3b69a68f7a423c47e6eedba4397f30e721c3c986c225140dd",
+      "path": "btc-seven-month-study/2023-05/source_minutes.csv.gz"
+    },
+    {
+      "size": 741,
+      "sha256": "8133543e38ead8331d2b2a8a32e5b07174d389e012993d3b10dacb59982e81c4",
+      "path": "btc-seven-month-study/2023-05/summary.json"
+    },
+    {
+      "size": 324926,
+      "sha256": "0c8ac3dfd2ab2586a36f472993fcd934be1479698fbe029f45414819217c3706",
+      "path": "btc-seven-month-study/2023-12/bars15m.csv.gz"
+    },
+    {
+      "size": 939,
+      "sha256": "bf830517797fd073166ae92cb87fc89422580eff8120156cdbcd202843ae03af",
+      "path": "btc-seven-month-study/2023-12/daily_counts.csv"
+    },
+    {
+      "size": 27381,
+      "sha256": "47522d384ae579e846f7bc78ab546ba733dad51b2245ab4b1e21bc84f36eef32",
+      "path": "btc-seven-month-study/2023-12/events.csv"
+    },
+    {
+      "size": 1191897,
+      "sha256": "645548e76e078914b8e64cbfe46e2d8ce7587cbdf6801925248daa1f1b981d29",
+      "path": "btc-seven-month-study/2023-12/source_minutes.csv.gz"
+    },
+    {
+      "size": 745,
+      "sha256": "1afe960c70f991f7de86fdc36a0f733c8add7138a147049a28e3b4d19bbf73c8",
+      "path": "btc-seven-month-study/2023-12/summary.json"
+    },
+    {
+      "size": 739,
+      "sha256": "c91f2f90741a8a556496e53dc8c7f9a8c2e31f1d398188889cf3398a7dbde970",
+      "path": "btc-seven-month-study/2024-01/summary.json"
+    },
+    {
+      "size": 322951,
+      "sha256": "4c33bd0952350c154c032945dd2dd7632ab8a5384a9139a8cfae27ac30650a52",
+      "path": "btc-seven-month-study/2025-05/bars15m.csv.gz"
+    },
+    {
+      "size": 938,
+      "sha256": "04e13326ef716590567b65860a124cff905c837b7a8caa415d623a836f597354",
+      "path": "btc-seven-month-study/2025-05/daily_counts.csv"
+    },
+    {
+      "size": 22972,
+      "sha256": "03ba87163c7c600bb5620a8ce24a1c162d177a222529b2ec22509c8ede342691",
+      "path": "btc-seven-month-study/2025-05/events.csv"
+    },
+    {
+      "size": 1192873,
+      "sha256": "aefffbfbee16cc47090d6b7d3b36e373e0b1731470bfcc670a95fcc697e424dc",
+      "path": "btc-seven-month-study/2025-05/source_minutes.csv.gz"
+    },
+    {
+      "size": 742,
+      "sha256": "f5a63496949a0627ab4e55bf1f61c490b0c140172f51878b7487a3532f756688",
+      "path": "btc-seven-month-study/2025-05/summary.json"
+    },
+    {
+      "size": 755,
+      "sha256": "ec563ae3c6d0b071da9cbb27369f1bfb914a4b57a47997378aae26b1aefc75e7",
+      "path": "btc-seven-month-study/2025-12/summary.json"
+    },
+    {
+      "size": 330189,
+      "sha256": "e8bb16789b0e2c1b7518113c3a99c5f6856380ad5f24f5196a145cc577ee59df",
+      "path": "btc-seven-month-study/2026-03/bars15m.csv.gz"
+    },
+    {
+      "size": 939,
+      "sha256": "1aecc2fa8c768a735852ff00b68bdb860b1a3c545af9269bd9c61b6258f99fd7",
+      "path": "btc-seven-month-study/2026-03/daily_counts.csv"
+    },
+    {
+      "size": 36123,
+      "sha256": "5319b9f3c0bd8bc87d1a4e5be10d9e6e2883877aa5957a9ada7ceb1175d17f3b",
+      "path": "btc-seven-month-study/2026-03/events.csv"
+    },
+    {
+      "size": 1275173,
+      "sha256": "fc8152868aaac0ababe4c5fd3e20c94e9060dcb95a55129f045f36cc2fde2b8c",
+      "path": "btc-seven-month-study/2026-03/source_minutes.csv.gz"
+    },
+    {
+      "size": 745,
+      "sha256": "5b3f374143ded1caf9e9966bab7e0a3d8db233a72a93579f6f8d8bcaf61503c5",
+      "path": "btc-seven-month-study/2026-03/summary.json"
+    },
+    {
+      "size": 12354,
+      "sha256": "56582270290e9489d3ee948d9294c84cb857b0ac9ff7db362fe5004f4bd871ed",
+      "path": "btc-seven-month-study/REPORT.md"
+    },
+    {
+      "size": 6821,
+      "sha256": "087140a884a7fa7d370febffa2be23c400f820c0150ebd13d658e8e4e3a7e638",
+      "path": "btc-seven-month-study/analyze_month.py"
+    },
+    {
+      "size": 2237,
+      "sha256": "6a8ea33534785a130d4bfbea2176ec8736fe2220847a26fd38eef7c234659cd1",
+      "path": "btc-seven-month-study/audit_saved.py"
+    },
+    {
+      "size": 14369,
+      "sha256": "4e5e1a9987dcce5013b668bc346d0e7d48910f82d8c96407e0507dfcc9a61cfc",
+      "path": "btc-seven-month-study/build_report.py"
+    },
+    {
+      "size": 452,
+      "sha256": "f76f267014bcafd1bb74e351294b212e65e9ae16d31ebce549358aef395e5f98",
+      "path": "btc-seven-month-study/delivery.json"
+    },
+    {
+      "size": 6104,
+      "sha256": "a38fda33aaf6cbe38dd2adf0c52758b91d8c12e434ce3b89a20c1955525280b0",
+      "path": "btc-seven-month-study/external_checks.json"
+    },
+    {
+      "size": 8329,
+      "sha256": "a13267d5aafb7883a9cb0dd1c27faf594cef5b98ffef8f966263c5c15eb6193f",
+      "path": "btc-seven-month-study/first_measurement_counts.json"
+    },
+    {
+      "size": 6302,
+      "sha256": "8c5dca6ee21bb6b8624eb11bec9281222d5d8f941ddec2b4e5d8254034c666a0",
+      "path": "btc-seven-month-study/independent_audit.json"
+    },
+    {
+      "size": 8728,
+      "sha256": "50720eebbf80cf73192c6bc898235a50bcecb8c817cf8665cf353f5f02d753e3",
+      "path": "btc-seven-month-study/measure.py"
+    },
+    {
+      "size": 1001,
+      "sha256": "4c8fd3633806de4688e309642bd58e95293b9965b53bcc645311aa137d5da4ae",
+      "path": "btc-seven-month-study/monthly_comparison.csv"
+    },
+    {
+      "size": 4719,
+      "sha256": "65a2c2b8bed9250961954ec9024e0afd2809520a5384ea90e0ebeb87727b19f6",
+      "path": "btc-seven-month-study/registration.json"
+    },
+    {
+      "size": 917,
+      "sha256": "7149858a5116d0d98c14067e12510a8aa096ae776e09d7fe351b40a1000a0d1e",
+      "path": "btc-seven-month-study/stability_metrics.csv"
+    },
+    {
+      "size": 15931,
+      "sha256": "c41c2a72d24b563db2d07cd5db0c05eef40ce87c0a255c83f569fdccfcbe3e0d",
+      "path": "btc-seven-month-study/summary.json"
+    },
+    {
+      "size": 4469,
+      "sha256": "84c2c21a075f3ffd6a03aa09c00204e93ddb91d23026c536fe366512e8e6948f",
+      "path": "README.md"
+    },
+    {
+      "size": 912,
+      "sha256": "e7961dea0c8abf90befb001478fb14c8c97e9505b8120c08d234399ac596f686",
+      "path": "restore_inputs.py"
+    },
+    {
+      "size": 27,
+      "sha256": "6979eeaed30ec7f45ff725f33240136e49c396fdf8a5ef12964fb2960c8a5d1e",
+      "path": "requirements.txt"
+    }
+  ],
+  "compressed_inputs": [
+    {
+      "path": "btc-month-study/bars15m.csv.gz",
+      "original_path": "btc-month-study/bars15m.csv",
+      "original_size": 808213,
+      "original_sha256": "5e2910058a424c25e3ffffb7c94eda0673160010007f451ad58ee23fbc3ddd27"
+    },
+    {
+      "path": "btc-month-study/source_minutes.csv.gz",
+      "original_path": "btc-month-study/source_minutes.csv",
+      "original_size": 6151832,
+      "original_sha256": "56ac47b2f947042adf0becf543fff928b00342acb8b36705f4cc16491ac37471"
+    },
+    {
+      "path": "btc-month-comparison/bars15m.csv.gz",
+      "original_path": "btc-month-comparison/bars15m.csv",
+      "original_size": 807189,
+      "original_sha256": "0c1d0af49024a825d7adbed990a643053fa75a32da248a5c591352e6629dc34d"
+    },
+    {
+      "path": "btc-month-comparison/source_minutes.csv.gz",
+      "original_path": "btc-month-comparison/source_minutes.csv",
+      "original_size": 6390602,
+      "original_sha256": "f873ca37929f6a3a1f2484c8f7e5fbb1d08548778ad004f7fe96c693522d13fa"
+    }
+  ],
+  "total_months": 7,
+  "total_events": 802,
+  "new_month_events": 584,
+  "branch": "agent/btc-intraday-recurrence-2026-10-17",
+  "no_main_merge": true
+}

@@ -314,3 +314,15 @@ docs/lanes/L0061-LONGCYCLE-FULL-LAUNCH-PROMPT.md
 
 ## L0092 timing diagnosis — 2026-10-07
 Saved57-row counts reconciled;636 event-variant timing partitions checked. Of56 CCI-caught events,Morning0.5 sameCCI6,after1/2inside1,otherinside0,nearestearly5,nearestlate3,absent41. Scarcity dominates delay for this definition;no wider-window performance or new selection. AuditPASS,Defer;no adoption/main merge. Next:design a causal persistent price-recovery confirmation before any new measurement. Whole-task timer and pre-work estimate were not recorded this turn;compute0.021386s is not full duration.
+
+
+## 2026-10-17 — BTC intraday recurrence: owner-authorised upload
+
+- أمر المالك: «ارفع العمل و التقارير الى المستودع». النطاق هو أعمال بيتكوين داخل اليوم، والتقرير الأول لشهر يناير2024، ومقارنة الشهرين، ودراسة سبعة أشهر.
+- التعريف ثابت: ارتفاع BTCUSDT Spot بمقدار0.5% خلال60دقيقة داخل يوم عدن نفسه، ورصد كل15دقيقة، وفصل60دقيقة بين الحالات المقبولة؛ لا انتظار نتيجة لاحقة.
+- الأدلة: 802حالة خلال217يومًا في2021-12،2023-05،2023-12،2024-01،2025-05،2025-12،2026-03. منها584حالة في خمسة أشهر أضيفت عشوائيًا بعد الشهرين السابقين.
+- التكرار: اختراق قمة آخر3ساعات34–53حالة شهريًا، وهو الأقل تفاوتًا في المعدل اليومي بين الأوصاف الثلاثة؛ الاتجاه الصاعد34–78والضعف السابق14–60. الأوصاف متداخلة ولا تُجمع. الاتجاه أكثر ثباتًا في حصته من مجموع الحالات، وهو معيار آخر مثبت قبل القياس.
+- التدقيق: تسوية الأعداد، وإعادة عد مستقل، وفحوص قطع التاريخ، وإعادة الحساب من المدخلات المحفوظة؛15شمعة خارجية للأشهر الجديدة تطابق عينة BinanceSpot. لا ادعاء تصديق الأرشيف كله.
+- الحكم: توثيق وصفي فقط؛ دقة التنبؤ والربحية والتكاليف والصفقات غير مقاسة. لا اعتماد دخول ولا تغيير في المحرك أو الكود الحي أو أرشيف الأسعار.
+- الملفات: `history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/README.md`؛ فرع العمل `agent/btc-intraday-recurrence-2026-10-17`. الدمج للمالك وحده؛ لا PR ولا دفع إلىmain.
+- التالي: مراجعة توثيق الحالات ثم تشريح الحجم وشدة الاتجاه وقت الاختراق، مع تثبيت أي تجربة لاحقة قبل القياس.
