@@ -1,0 +1,12 @@
+{
+  "reviewed_at": "2026-10-17",
+  "repository_refs": {
+    "addyosmani/agent-skills": "aeac41d4d005999432bb7312f7ff06383a91d59d",
+    "upstash/context7": "e0041949fdb3b49b304d98715dde35be51b7c3d1",
+    "Graphify-Labs/graphify": "86c57be8204673c2a1b9849a3292a7dd3ab373d8",
+    "usestrix/strix": "972f5097c2bfaf8f1dd8b55744ab8861f0d6b6e5",
+    "ruvnet/ruflo": "3bc6cfa6e532ea0c0f5422e2c3a6a97476f7d010"
+  },
+  "ui_source": "https://21st.dev/mcp",
+  "note": "Source references only, not package-version locks or installed-runtime evidence."
+}

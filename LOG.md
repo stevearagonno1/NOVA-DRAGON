@@ -894,3 +894,11 @@ D-L0094-MISSED-ONSET-20261007:Descriptive diagnosis accepted,Defer adoption. Thr
 - الحكم: توثيق وصفي فقط؛ دقة التنبؤ والربحية والتكاليف والصفقات غير مقاسة. لا اعتماد دخول ولا تغيير في المحرك أو الكود الحي أو أرشيف الأسعار.
 - الملفات: `history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/README.md`؛ فرع العمل `agent/btc-intraday-recurrence-2026-10-17`. الدمج للمالك وحده؛ لا PR ولا دفع إلىmain.
 - التالي: مراجعة توثيق الحالات ثم تشريح الحجم وشدة الاتجاه وقت الاختراق، مع تثبيت أي تجربة لاحقة قبل القياس.
+
+
+## 2026-10-17 — Repository agent support
+Owner authorized tool integration for assistant-led file and indicator work. Added AGENTS routing, two unchanged upstream skills with MIT license and shared references, a trading-research review checklist, an offline integrity checker and a Context7 HTTP configuration example. Intact package check and tamper rejection passed locally. Host skill discovery, external MCP connectivity, optional runtimes and market impact remain untested/not measured. No trading code/data changes, PR or main write. See docs/AGENT-TOOLS.md and docs/AGENT-TOOLS-VERIFICATION.md; branch agent/research-tooling-2026-10-17.
+
+
+## 2026-10-17 — Constitutional continuity and tool-use law
+Owner explicitly requested durable project knowledge and tool use for every new conversation. Added constitution §§8.5–8.6, extended §8.4, updated §19 routing map and clarified the retired standalone-agent-contract reference. All twenty sections retained. New sessions must reload current evidence and applicable imported skills, check actual host capabilities, distinguish prepared config from successful invocation, and persist handoff/decisions/tape before stopping. README/AGENTS entry routes agree. No new market measurement, runtime activation, trading-code/data changes, PR or main push. Amendment is prepared on agent/research-tooling-2026-10-17; owner merge required for official main text.
