@@ -1,0 +1,42 @@
+{
+  "ref": "be1130f73d2049804d93fe2ac549e6510b8eb6e6",
+  "status": "PREVIOUS_FULL_READ_FINDINGS_SAVED_NO_NEW_GRAPH",
+  "files": [
+    {
+      "path": "research/btc-comprehensive-entry-2026-10-15/MASTER-STATUS.json",
+      "git_blob": "8342a27dad7da0d0665eb160ab6639cad9176d62",
+      "previous_read_complete": true
+    },
+    {
+      "path": "research/btc-comprehensive-entry-2026-10-15/independent-engine/README.md",
+      "git_blob": "306d57bcf4ef515f99abc991677933d966b3f140",
+      "previous_read_complete": true
+    },
+    {
+      "path": "research/btc-comprehensive-entry-2026-10-15/coverage-check.json",
+      "git_blob": "fe935bcc298faf219d382ae6464a2efdbb722759",
+      "previous_read_complete": true
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/CATALOG-AUDIT.json",
+      "git_blob": "c493d1d08c09ec6ab16ba55342678d19ec3454c6",
+      "previous_read_complete": true
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/original-catalog/README_AR.md",
+      "git_blob": "24a882e8108c764e961a55d1067e61abc3ad1aa7",
+      "previous_read_complete": true
+    },
+    {
+      "path": "research/session-work-archive-2026-10-16/original-catalog/summary.json",
+      "git_blob": "efa6f08cd8e61124e46290707f51b237b9717c93",
+      "previous_read_complete": true
+    },
+    {
+      "path": "research/btc-comprehensive-entry-2026-10-15/repairs-round2/REPAIR-STATUS.md",
+      "git_blob": "0a745827995b2b7bd3069561ba7f7b029a18f3ba",
+      "previous_read_complete": true
+    }
+  ],
+  "global_complete": false
+}
