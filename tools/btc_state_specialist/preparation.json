@@ -1,0 +1,13 @@
+{
+  "started_recording_utc": "2026-10-18T06:32:25.269074+00:00",
+  "whole_task_start": "not captured; continues prior preparation with overnight user pause",
+  "scope": "Lead prepares runnable first registered source-backed cohort, not the heavy market experiment",
+  "estimated_remaining_seconds": 1800,
+  "components_seconds": {
+    "implementation_and_manifest": 900,
+    "short_readiness_and_repairs": 480,
+    "paper_and_verified_delivery": 420
+  },
+  "heavy_market_execution": "executor only",
+  "uncertainty": "runtime and missing implementations; estimate not measurement"
+}

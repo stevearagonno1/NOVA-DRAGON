@@ -1,0 +1,7 @@
+{
+  "status": "PASS",
+  "scalar_source_comparisons": 51,
+  "independent_numerical_recurrences": "EMA20, ATR14, BB20 in unit suite",
+  "mutation": "changing rise threshold from0.005 to0.5 rejected by state-definition test",
+  "market_measurement": "NOT RUN"
+}

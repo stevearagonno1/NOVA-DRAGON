@@ -1,0 +1,67 @@
+{
+  "files": {
+    "specialist.py": {
+      "sha256": "5b43114b7a729da46e3ddb119536e25e1607e3397c4c1596e343f701cccd1e22",
+      "bytes": 20513
+    },
+    "stage_inputs.py": {
+      "sha256": "5cd8d13845a076ebe3986d5218b5cb896c0cc4d2a9d655dc5a56cc6e816b5eb1",
+      "bytes": 1481
+    },
+    "delivery.py": {
+      "sha256": "057b3e24c01664653f7c6e643be207bcce07314abbb75d257ae061baa034df43",
+      "bytes": 5816
+    },
+    "test_specialist.py": {
+      "sha256": "7aa4469eab8a70e95fdfaec19b77fb156150757cdd0714f9cb9c8110f1ac3522",
+      "bytes": 3176
+    },
+    "signals85.py": {
+      "sha256": "2211c14d7ea1ba0ec45a205df75f4108836acc92b78ce6ffb16e73356a769680",
+      "bytes": 7320
+    },
+    "signals88.py": {
+      "sha256": "4da21e204e8c0c91154f7ae77e5317a88217d224dc76ae03caeca31cefe65bda",
+      "bytes": 4175
+    },
+    "indicators84.py": {
+      "sha256": "d156cb870543481fa71f7a0990769c33bc102e862a7346fa0e113ee3f0ccb860",
+      "bytes": 18125
+    },
+    "volume_states90.py": {
+      "sha256": "31c1e764c3bfe7bf69f2e06caa9c50839cf696412f63e5e98bc90b23829dbcd1",
+      "bytes": 1354
+    },
+    "candles92.py": {
+      "sha256": "141d3040b0763f1f264ce04bfcd615e31e184df8abfdc59600c0860628234a96",
+      "bytes": 2127
+    },
+    "grid.json": {
+      "sha256": "f0521092657cdab2f9faa387a6d858e868936414fc3444b15d450851cf62f157",
+      "bytes": 278919
+    },
+    "definitions.json": {
+      "sha256": "5a6839bf108ff63cf49f5b312452d51039934cff896fa71b0188fe949ab9d8f0",
+      "bytes": 38765
+    },
+    "coverage_scope.json": {
+      "sha256": "a6016a9fc008b462242580750556213f9044f6b92d111bde3ec389c10a29028e",
+      "bytes": 15190
+    },
+    "inputs.json": {
+      "sha256": "e36cf41d37308ac8e9cb2e7ae23760c9947a2760a1c6b4943200660ea7e955d6",
+      "bytes": 2548
+    },
+    "registration.json": {
+      "sha256": "52493b9f6c7a4d30c8ade85c5568a9dadc762243342b0cef684b2cda2fd15cc8",
+      "bytes": 1979
+    },
+    "requirements.txt": {
+      "sha256": "6979eeaed30ec7f45ff725f33240136e49c396fdf8a5ef12964fb2960c8a5d1e",
+      "bytes": 27
+    }
+  },
+  "source_main": "8af2aae214f65a370110921928eaabf07771a6d1",
+  "market_measurement": "NOT RUN",
+  "rehearsal_upload_commit": "75b940e0f685da428a4ff2c2f3054627a49a99f6"
+}
