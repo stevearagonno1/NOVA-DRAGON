@@ -1,0 +1,18 @@
+{
+  "status": "PREPARED_BUNDLE_NOT_MARKET_RESULTS",
+  "code_commit": "cd161f8313cb2e3e135437f1e66109399b703272",
+  "immutable_code_files_verified": 22,
+  "archive_name": "BTC_State_Specialist_Executor.zip",
+  "archive_bytes": 110205,
+  "archive_sha256": "c4e06c3474e47d12e17fed7f4ef6f637e07731e9e52d3c1c2990c61c582e81a2",
+  "archive_git_blob_sha": "9ae33d808d072337deac49c387cc504bcdb244a5",
+  "paper_sha256": "837e27953437977bb1a538800b7d57e5d6d5bcbfd10cf99083cc867a61a11f31",
+  "paper_git_blob_sha": "7b06550e0444ac1abae22c3d8c51294b9d724b22",
+  "paper_bytes": 173449,
+  "bundle_files": 23,
+  "workspace_bytes": 123609938,
+  "market_measurement": "NOT RUN",
+  "scope": "548 registered BTC records, conditional discovery only; full catalogue/axes unfinished",
+  "recorded_utc": "2026-10-18T07:01:46.832498+00:00",
+  "readback": "code22verified; paper/archive readback follows publication"
+}
