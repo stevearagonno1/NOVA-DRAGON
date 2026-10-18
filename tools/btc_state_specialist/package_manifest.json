@@ -1,20 +1,20 @@
 {
   "files": {
     "specialist.py": {
-      "sha256": "5b43114b7a729da46e3ddb119536e25e1607e3397c4c1596e343f701cccd1e22",
-      "bytes": 20513
+      "sha256": "5bd1cb5ccd6e204b41d1fee2c951b019383d6ee4029e9ca45ff702108ef89588",
+      "bytes": 20813
     },
     "stage_inputs.py": {
       "sha256": "5cd8d13845a076ebe3986d5218b5cb896c0cc4d2a9d655dc5a56cc6e816b5eb1",
       "bytes": 1481
     },
     "delivery.py": {
-      "sha256": "057b3e24c01664653f7c6e643be207bcce07314abbb75d257ae061baa034df43",
-      "bytes": 5816
+      "sha256": "8214ebb16cf527722b7696ae4bff9f2676f818de385b5d64bd4a6618c561d18e",
+      "bytes": 5900
     },
     "test_specialist.py": {
-      "sha256": "7aa4469eab8a70e95fdfaec19b77fb156150757cdd0714f9cb9c8110f1ac3522",
-      "bytes": 3176
+      "sha256": "99f224b971c79991213a6d4d9f00e988d5b52581185aae0b1bded62821c91257",
+      "bytes": 3900
     },
     "signals85.py": {
       "sha256": "2211c14d7ea1ba0ec45a205df75f4108836acc92b78ce6ffb16e73356a769680",

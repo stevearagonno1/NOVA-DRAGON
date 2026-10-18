@@ -1,12 +1,12 @@
 {
   "status": "READY_FOR_REGISTERED_548_RECORD_STAGE_ONLY",
   "market_measurement": "NOT RUN",
-  "recorded_utc": "2026-10-18T06:52:05.283373+00:00",
+  "recorded_utc": "2026-10-18T07:00:08.096136+00:00",
   "whole_task_elapsed_seconds": "not measured: initial prior-turn start not captured; overnight user pause",
-  "current_preparation_recorded_elapsed_seconds": 1180.014299,
+  "current_preparation_recorded_elapsed_seconds": 1662.829993,
   "compute_only": "individual fixture outputs; not the full task",
   "unit_tests": {
-    "count": 7,
+    "count": 8,
     "status": "PASS",
     "command": "PYTHONDONTWRITEBYTECODE=1 python test_specialist.py"
   },
@@ -17,10 +17,10 @@
     "audited_rows": 551,
     "status": "PASS",
     "commands": [
-      "python specialist.py fixture --out release-ready --stop-after 1",
-      "python specialist.py fixture --out release-ready",
-      "python specialist.py audit --out release-ready",
-      "python specialist.py fixture --out release-direct-ready"
+      "python specialist.py fixture --out release-package --stop-after 1",
+      "python specialist.py fixture --out release-package",
+      "python specialist.py audit --out release-package",
+      "python delivery.py build --out release-package --context fixture_context.json --code-commit SYNTHETIC_REHEARSAL_ONLY --allow-synthetic"
     ],
     "resume_identical_to_uninterrupted": true
   },
@@ -54,5 +54,7 @@
     "No live code, original-data or main changes",
     "Lead independent review pending after executor delivery"
   ],
-  "workspace_bytes_at_check": 124193499
+  "workspace_bytes_at_check": 123609014,
+  "source_byte_change_test": "PASS: actual staged price bytes revalidated before audit/resume, plus synthetic byte-mutation rejection",
+  "supersedes_preparation_code": "39844616cdbf8f0d9556de5ac8744b01a4d3f987; additional source byte guard"
 }

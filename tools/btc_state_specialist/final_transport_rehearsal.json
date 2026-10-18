@@ -1,6 +1,6 @@
 {
   "fixture": true,
-  "payload_sha256": "8dee3a8bead93a48f454da94e81f7be77500a2a5214fdbda71252417f80ca655",
+  "payload_sha256": "7f37379d9b74dc21c1b9f9b3023ce77173b4e3704ae0488cd181391908b919be",
   "files": [
     {
       "path": "LOG.md",
@@ -21,7 +21,7 @@
       "git_blob_sha": "390c8be14023b8a29963bb4a111f3d418c6c8113"
     },
     {
-      "path": "docs/journal/2026-10-18-btc-state-specialist/002-measured-delivery.md",
+      "path": "docs/journal/2026-10-18-btc-state-specialist-execution/001-measured-delivery.md",
       "bytes": 418,
       "sha256": "75ca38002d195970155d8b74aa6dc18615ccdf7d09d0e9580954313cde19e762",
       "git_blob_sha": "d337d4a8274ea02d13d655f8cfc454c299933437"
@@ -40,15 +40,15 @@
     },
     {
       "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/DELIVERY.json",
-      "bytes": 586,
-      "sha256": "6bfae37615a54d1121729b110c07eb39ec8e31f66d8d986b9ebd0f88b4fa2cbe",
-      "git_blob_sha": "4f9a914edea17fe8c9da6f3be23940830dc086b8"
+      "bytes": 660,
+      "sha256": "192f350c79aea05d831332231b1daf4de4936449b76f636e26e383b8de84fda9",
+      "git_blob_sha": "5a8a8e8163a46f7445d456e628f65c7579423c8a"
     },
     {
       "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/EVIDENCE.zip",
-      "bytes": 99442,
-      "sha256": "6a5efe0fa6f6d0d4b7e309f927d56d96dc6aafdcc509dcd5ab83d75cfa574f30",
-      "git_blob_sha": "a016514d1a26a0fba3afa47759c51873929e93ec"
+      "bytes": 100981,
+      "sha256": "0b4224d9d63dcd8836bac6b241c19bc3a874e32bae34f4f57e84803be628492e",
+      "git_blob_sha": "37f46379ef4d63713f0d5b34060fccb74e78b46c"
     },
     {
       "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/REPORT_AR.md",
@@ -65,8 +65,8 @@
     {
       "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/checkpoint.json",
       "bytes": 384,
-      "sha256": "0d0e280e0ced35d728d9021b6a7125ed7c6011c8b75404c20177573c74ddc6b6",
-      "git_blob_sha": "83de34197637d99af3bda5441da428d898fa77fa"
+      "sha256": "c4c16219fe3099314eb9def5e934d3c1b0b46d57efade1aad9579281b0735740",
+      "git_blob_sha": "9b949d1075edaaddd77f7c4acdfaea737986b488"
     },
     {
       "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/coverage_scope.json",
@@ -95,20 +95,20 @@
     {
       "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/package_manifest.json",
       "bytes": 2221,
-      "sha256": "93bede4a19370d620f1f0912308efa0523e62165a3287f6276c6250df37fc701",
-      "git_blob_sha": "d70149393d555937927ff3614098e5376c3d7f3f"
+      "sha256": "a904d19fc3cf7e5a4480c7b368d7cafeb27491153f05da8669b3772dd5bf3cf1",
+      "git_blob_sha": "4e1f92a98ef63fb8459b756f303623a81b459511"
     },
     {
       "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/paper.md",
-      "bytes": 172297,
-      "sha256": "124c0f094dc4598aecf85cc226774d0dd49c34c296ef270f24772e5ff25a8562",
-      "git_blob_sha": "41594a01a9ae0963e20b879161740166098da514"
+      "bytes": 173449,
+      "sha256": "a141ea8c27dd6a119711f4721357c302f46e6b2de8b326c834a55a70b1794ee1",
+      "git_blob_sha": "3482e59d9a35bee5955532a484b1bbb9f749d24a"
     },
     {
       "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/readiness.json",
-      "bytes": 139,
-      "sha256": "006c45d82f0fe112e050d64486038b49fb10defd1c2949afb11c87e148460690",
-      "git_blob_sha": "b5b570401883f6cf771a91b95e3d2a07426eecbd"
+      "bytes": 2521,
+      "sha256": "b7ea376e60740457008e8d2d487e6ffbe0893a6cf6b3285cd1746d4128d0d9ae",
+      "git_blob_sha": "78221d98560c82ab49b5aead70c66bc007fd5f8d"
     },
     {
       "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/registration.json",
@@ -129,7 +129,10 @@
       "git_blob_sha": "d1e2871ebd72e0c5dccff9fc08b1365ea89beb23"
     }
   ],
-  "archive_bytes": 99442,
-  "archive_sha256": "6a5efe0fa6f6d0d4b7e309f927d56d96dc6aafdcc509dcd5ab83d75cfa574f30",
-  "status": "SYNTHETIC_TRANSPORT_CHECK_ONLY"
+  "archive_bytes": 100981,
+  "archive_sha256": "0b4224d9d63dcd8836bac6b241c19bc3a874e32bae34f4f57e84803be628492e",
+  "status": "SYNTHETIC_TRANSPORT_CHECK_ONLY",
+  "resume_identical_to_uninterrupted": true,
+  "core_algorithm_unchanged_from_uninterrupted": "only delivery journal namespace and partial timer label changed",
+  "changed_config_rejected": true
 }

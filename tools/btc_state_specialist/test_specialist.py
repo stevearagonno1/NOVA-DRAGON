@@ -3,6 +3,17 @@ import numpy as np
 import specialist as S
 
 class StateResearchTests(unittest.TestCase):
+    def test_changed_source_bytes_are_rejected_before_resume_or_audit(self):
+        import tempfile,json,hashlib
+        from pathlib import Path
+        from unittest.mock import patch
+        with tempfile.TemporaryDirectory(dir=S.ROOT) as tmp:
+            root=Path(tmp);source=root/'price';source.write_bytes(b'original')
+            (root/'inputs.json').write_text(json.dumps([{'month':'fixture','local_path':'price','bytes':8,'sha256':hashlib.sha256(b'original').hexdigest()}]))
+            with patch.object(S,'ROOT',root):
+                S.validate_source_inputs();source.write_bytes(b'changed!')
+                with self.assertRaisesRegex(AssertionError,'staged price input changed'):S.validate_source_inputs()
+
     def test_both_verified_archive_time_column_names_are_supported(self):
         import io,pandas as pd
         d=S.fixture();frame=pd.DataFrame({'close_time_utc':pd.to_datetime(d['dt'],unit='s',utc=True),'open':d['o'],'high':d['h'],'low':d['l'],'close':d['c'],'volume':d['v'],'minutes':d['minutes']})

@@ -28,7 +28,12 @@ def jsonout(p,x):atomic(p,encode(x))
 def day(t):return (datetime.fromtimestamp(float(t),timezone.utc)+timedelta(hours=3)).strftime('%Y-%m-%d')
 def month(t):return day(t)[:7]
 def grid():return json.loads((ROOT/'grid.json').read_text())
+def validate_source_inputs():
+    for item in json.loads((ROOT/'inputs.json').read_text()):
+        path=ROOT/item['local_path']
+        assert path.stat().st_size==item['bytes'] and sha(path)==item['sha256'],'staged price input changed: '+item['month']
 def fingerprint(synthetic):
+    if not synthetic:validate_source_inputs()
     code={p.name:sha(p) for p in ROOT.glob('*.py')}
     settings={'code':code,'grid':grid(),'inputs':json.loads((ROOT/'inputs.json').read_text()),'fixture':synthetic,'registration':json.loads((ROOT/'registration.json').read_text()),'definitions_sha256':sha(ROOT/'definitions.json'),'coverage_sha256':sha(ROOT/'coverage_scope.json'),'numpy':np.__version__,'pandas':pd.__version__}
     return hashlib.sha256(encode(settings)).hexdigest()
