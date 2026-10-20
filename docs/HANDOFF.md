@@ -355,3 +355,8 @@ Added actual staged-price byte verification before both restart and audit; a man
 
 ## 2026-10-20 — Private credential handoff and direct REST transport
 The owner supplied the GitHub publishing credential privately and requires it initialized/included in every private executor paper; public repository copies stay redacted. The credential is retained only in the private owner-to-executor bundle, not these files. Do not claim it was not supplied when the private credentials.env is available. A GitHub connector is no longer required: direct REST read, write and immutable readback passed on c0f226d45e4a268e2b7b78582d25a0eb659c5ef9 with two nonfinancial files. Calculation code remains cd161f8313cb2e3e135437f1e66109399b703272,548-record conditional discovery scope unchanged; market not run here. Private paper is an explicit execution instruction and requires final reply exactly تم or فشل. The new private bundle supersedes sending the old public link alone. No private paper/token is uploaded publicly, no PR/main push/merge. Next: executor uses the private bundle to resume, measure/audit/publish and verify; Lead reviews independently.
+
+
+## 2026-10-20 — توقف بطلب المالك بعد فشل المنفذ
+
+أبلغ المالك بفشل ورقة MD الأخيرة وطلب وقف العمل وحفظ الحالة وأخطاء المساعد. لا ناتج خطأ مرفق، ولا نتيجة سوقية مكتملة موثقة. لا تجربة أو إصلاح جديد. التسليم المضغوط السابق خالف طلب MD؛ وفحوص المصدر والتنزيل والنقل لم تثبت نجاح التنفيذ الكامل. التفاصيل والمراجع والإقرار بالأخطاء: docs/journal/2026-10-20-btc-private-transport/003-owner-stop-and-assistant-errors.md. التوكن والورقة الخاصة مستبعدان من النشر العام. الحالة STOPPED_BY_OWNER_AFTER_REPORTED_EXECUTOR_FAILURE.
