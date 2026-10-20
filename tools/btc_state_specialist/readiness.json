@@ -1,0 +1,60 @@
+{
+  "status": "READY_FOR_REGISTERED_548_RECORD_STAGE_ONLY",
+  "market_measurement": "NOT RUN",
+  "recorded_utc": "2026-10-18T07:00:08.096136+00:00",
+  "whole_task_elapsed_seconds": "not measured: initial prior-turn start not captured; overnight user pause",
+  "current_preparation_recorded_elapsed_seconds": 1662.829993,
+  "compute_only": "individual fixture outputs; not the full task",
+  "unit_tests": {
+    "count": 8,
+    "status": "PASS",
+    "command": "PYTHONDONTWRITEBYTECODE=1 python test_specialist.py"
+  },
+  "synthetic_end_to_end": {
+    "bars": 420,
+    "candidate_rows": 548,
+    "baseline_rows": 3,
+    "audited_rows": 551,
+    "status": "PASS",
+    "commands": [
+      "python specialist.py fixture --out release-package --stop-after 1",
+      "python specialist.py fixture --out release-package",
+      "python specialist.py audit --out release-package",
+      "python delivery.py build --out release-package --context fixture_context.json --code-commit SYNTHETIC_REHEARSAL_ONLY --allow-synthetic"
+    ],
+    "resume_identical_to_uninterrupted": true
+  },
+  "source_numerical_comparisons": 51,
+  "independent_numerical_recurrences": [
+    "EMA20",
+    "ATR14",
+    "Bollinger20"
+  ],
+  "future_perturbation": "all548 candidate masks PASS",
+  "threshold_mutation": "rejected",
+  "changed_setting_audit_mutation": "reproduced old defect, fixed; now rejected",
+  "worker_lock": "second writer rejected",
+  "input_schema_and_hash_checks": 7,
+  "remote_input_blob_checks": 7,
+  "input_staging_connector_dispatch": "PASS decoded328775bytes and verified SHA256",
+  "publishing_payload": {
+    "status": "PASS",
+    "files_in_fixture": 21,
+    "synthetic_transport_status": "SYNTHETIC_TRANSPORT_CHECK_ONLY"
+  },
+  "real_work_branch_rehearsal": {
+    "commit": "75b940e0f685da428a4ff2c2f3054627a49a99f6",
+    "immutable_readback": "PASS",
+    "branch": "agent/btc-state-specialist-2026-10-18"
+  },
+  "source_scope": "548 of596 first review cohort;48 foreign-asset records excluded; full131408physical inventory and indexed axes NOT all executable/tested",
+  "constraints": [
+    "No full-stream false-alert/precision inference",
+    "No market measurement by Lead",
+    "No live code, original-data or main changes",
+    "Lead independent review pending after executor delivery"
+  ],
+  "workspace_bytes_at_check": 123609014,
+  "source_byte_change_test": "PASS: actual staged price bytes revalidated before audit/resume, plus synthetic byte-mutation rejection",
+  "supersedes_preparation_code": "39844616cdbf8f0d9556de5ac8744b01a4d3f987; additional source byte guard"
+}

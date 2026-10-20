@@ -1,0 +1,97 @@
+{
+  "format": "repaired-memory-input-package-v2",
+  "files": {
+    "REPAIR_VERIFICATION.json": {
+      "bytes": 1065,
+      "sha256": "e664460ba92ccb7d3d12e6d785f61438645fe3e2105b27af54516c0a753e1afa"
+    },
+    "candles92.py": {
+      "bytes": 2128,
+      "sha256": "8c12776ac745d651a1e449ab47dc25d9020dc00886cad91eeddcbf4445bede32"
+    },
+    "coverage_scope.json": {
+      "bytes": 15191,
+      "sha256": "aff42e19e255fe8b20576c09874a072a91772162bdf10dff2ad9d7a3faa6c3ca"
+    },
+    "definitions.json": {
+      "bytes": 38766,
+      "sha256": "1c24ed1417c2b60b35de425572ab470f80f33d85c2eb845794bc00f0c07a3a39"
+    },
+    "delivery.py": {
+      "bytes": 6159,
+      "sha256": "b778494524f61296e57291a923fe3064bfa4621feff383932158f3e595cb989b"
+    },
+    "grid.json": {
+      "bytes": 278920,
+      "sha256": "4f5d471e8194a391343702c37a9e314740c581c3760f7660cea8b379365e1e81"
+    },
+    "indicators84.py": {
+      "bytes": 18126,
+      "sha256": "aa3cb212dea2e729579ae9d44d961151ea632b6b6ec0eff2d21a981bff2b1805"
+    },
+    "inputs.json": {
+      "bytes": 2549,
+      "sha256": "3706b2510fedb335880834e7c61b29a2fd0e4614e2bdb765781fdf3da60033e5"
+    },
+    "paper.md": {
+      "bytes": 169605,
+      "sha256": "b0e36a9e52a319846befb445f47e5cb270237f0b2a476e33f8b7965ea368f8bd"
+    },
+    "private_transport/bootstrap_from_md.py": {
+      "bytes": 3215,
+      "sha256": "0cf76cef33d5124c4b39037a2b74eb7ec9fad860ee20295fbb5f6595c95253f0"
+    },
+    "private_transport/rest_publish.py": {
+      "bytes": 12209,
+      "sha256": "f563d6ee0e92d65a483c4f8c70bf851f33f5f5127ef57676c42ccb249b4c4065"
+    },
+    "readiness.json": {
+      "bytes": 2577,
+      "sha256": "4617279e912530a8cdd7efb5f69e76803447b0ff4435300fab892a484492a8ba"
+    },
+    "reference_checks.json": {
+      "bytes": 259,
+      "sha256": "e5d45ba8f0f489c680c6ec0694f1f7e5c0acfcbe276433da4bb4a8c16e46f80a"
+    },
+    "registration.json": {
+      "bytes": 1980,
+      "sha256": "30f821dc90784081e43b182d34ae02c4f20b10a87e378653c2b667132feb6c47"
+    },
+    "requirements.txt": {
+      "bytes": 28,
+      "sha256": "abd7ef11b0318a2c4cfa0e291cc33a03d16ec411d0ae8e26c4d1c3195ceb5aac"
+    },
+    "signals85.py": {
+      "bytes": 7321,
+      "sha256": "0a2fe8c38fab9313366ecf9a39c053f3476455a4f5423d763ecadb5ed67b86e2"
+    },
+    "signals88.py": {
+      "bytes": 4176,
+      "sha256": "b9870ca6658e7442eb98dbb6eb33337996747fc9b5144c9a145c8db4284ff907"
+    },
+    "specialist.py": {
+      "bytes": 20650,
+      "sha256": "2ca21539cd10092e59811b06cec6ab0703b0d526790765cf0405035dbb6479cb"
+    },
+    "stage_inputs.py": {
+      "bytes": 1838,
+      "sha256": "8a1850b5117084d457b59b5fa4007f6f34ea9352b1794de9ac89678b50048167"
+    },
+    "test_specialist.py": {
+      "bytes": 4126,
+      "sha256": "a7b12f03a6ebc8d7e4ac0de403c8199088ce44c1f37fa1013eec1d8536d23f7c"
+    },
+    "test_storage_repair.py": {
+      "bytes": 5833,
+      "sha256": "b9e1c0a4d9327464f7f69e3383d539cabb9bad6e9d6ca7aeae57f5dbda25c92a"
+    },
+    "volume_states90.py": {
+      "bytes": 1355,
+      "sha256": "ef0f97492806531cdb730cd82fc6651c69e662430252fd6bf12e519a5ee0a58c"
+    },
+    "workspace_guard.py": {
+      "bytes": 1096,
+      "sha256": "2df39ccd7744c7718aae1cd817e2923922eac862fc36dc6737c12af1f14b254b"
+    }
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "direct_rest_probe_commit": "c0f226d45e4a268e2b7b78582d25a0eb659c5ef9",
+  "actual_direct_rest_written_and_verified_files": 2,
+  "direct_rest_pinned_input_read_bytes": 257692,
+  "token_in_public_payload_rejected": true,
+  "compressed_secret_rejected": true,
+  "main_write_rejected": true,
+  "market_measurement": "NOT RUN",
+  "publication_core": "original548-record calculation code unchanged"
+}

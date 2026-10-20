@@ -1,0 +1,1 @@
+Owner requires a standalone private MD execution paper. All supporting source and inputs are fetched from immutable repository paths; no ZIP handoff. Private paper initializes owner credential; public copy is redacted. Core calculations and scope unchanged. Bootstrap tested by fetching pinned core manifest and files. Final executor reply exactly تم or فشل.

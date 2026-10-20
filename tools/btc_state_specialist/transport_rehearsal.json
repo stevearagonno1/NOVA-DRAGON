@@ -1,0 +1,136 @@
+{
+  "synthetic_only": true,
+  "original_payload_sha256": "38b6b9103916083ce8051a13f4d9a3b4de49fe3da8fa7831ad9e7fa61b725fd7",
+  "payload_bytes": 857526,
+  "files": [
+    {
+      "path": "LOG.md",
+      "bytes": 441,
+      "sha256": "a30c5b6aa56a3a3b7e8f4f9d26e255346117fc3156cb307321ca48da4051b066",
+      "git_blob_sha": "390c8be14023b8a29963bb4a111f3d418c6c8113"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "bytes": 441,
+      "sha256": "a30c5b6aa56a3a3b7e8f4f9d26e255346117fc3156cb307321ca48da4051b066",
+      "git_blob_sha": "390c8be14023b8a29963bb4a111f3d418c6c8113"
+    },
+    {
+      "path": "docs/HANDOFF.md",
+      "bytes": 441,
+      "sha256": "a30c5b6aa56a3a3b7e8f4f9d26e255346117fc3156cb307321ca48da4051b066",
+      "git_blob_sha": "390c8be14023b8a29963bb4a111f3d418c6c8113"
+    },
+    {
+      "path": "docs/journal/2026-10-18-btc-state-specialist/002-measured-delivery.md",
+      "bytes": 418,
+      "sha256": "75ca38002d195970155d8b74aa6dc18615ccdf7d09d0e9580954313cde19e762",
+      "git_blob_sha": "d337d4a8274ea02d13d655f8cfc454c299933437"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/2024-01.raw.json.gz",
+      "bytes": 7745,
+      "sha256": "6af2af9b23d86f3f7ec67e8a7a512c946f1a54db659f9b212afae21cebc1c393",
+      "git_blob_sha": "ded4860f71282db58d390a540eca22a44f6ba995"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/2024-01.rows.json.gz",
+      "bytes": 5637,
+      "sha256": "9f6672d87aab1c1b449936a66437ed24519eb3dcd150e93fbb061cf689f2647f",
+      "git_blob_sha": "f6bf4c27cc301068e37cfa937095a04135faf59a"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/DELIVERY.json",
+      "bytes": 585,
+      "sha256": "6334b035d4abe7f5dca9af5b1e939d19b111a20aa473f298cae7d9a90085519f",
+      "git_blob_sha": "08751b985d5807ed53f266e2e3deebb8841311bb"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/EVIDENCE.zip",
+      "bytes": 99272,
+      "sha256": "2eb311c4299c48e869a6de73b20f37b42c30af73338bdee7a262440f2dd4e635",
+      "git_blob_sha": "887894414d8321c228c07728bdd4fe6b17eca027"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/REPORT_AR.md",
+      "bytes": 8416,
+      "sha256": "1d6e4846319c93a9fa9a882bea596e164eb6b52a6ec13882981866ecf5a63be6",
+      "git_blob_sha": "24829afb4522e440632ff54841967530a20ee360"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/audit.json",
+      "bytes": 181,
+      "sha256": "a4ff8f0b7c6075eb58f86aa16136bf7bfce74208fa6e0685740fc9a8aff5e7bd",
+      "git_blob_sha": "e99c026ecd7be50f19d0bef2a33bef2f352110ab"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/checkpoint.json",
+      "bytes": 384,
+      "sha256": "4689bbf3e45497093b3fbaeb22e8326d4b65f0ed1b86effee536cc3388b6e992",
+      "git_blob_sha": "657e6cfe97490de6a2af0f3d9517c119f7abe73c"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/coverage_scope.json",
+      "bytes": 15190,
+      "sha256": "a6016a9fc008b462242580750556213f9044f6b92d111bde3ec389c10a29028e",
+      "git_blob_sha": "029af09152c6b5c026e2f620a41d22f9e9676b31"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/definitions.json",
+      "bytes": 38765,
+      "sha256": "5a6839bf108ff63cf49f5b312452d51039934cff896fa71b0188fe949ab9d8f0",
+      "git_blob_sha": "6c7448f63f9cba45e17caaae790aee3d5137775c"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/grid.json",
+      "bytes": 278919,
+      "sha256": "f0521092657cdab2f9faa387a6d858e868936414fc3444b15d450851cf62f157",
+      "git_blob_sha": "b196b58a67c632c46d737717300b655d911eee24"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/inputs.json",
+      "bytes": 2548,
+      "sha256": "e36cf41d37308ac8e9cb2e7ae23760c9947a2760a1c6b4943200660ea7e955d6",
+      "git_blob_sha": "58a988fae0ad75e00190df1b55542adfd66fdf78"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/package_manifest.json",
+      "bytes": 2221,
+      "sha256": "cd9da6407e7cb3130f9307317060e4eb1db32bc16a82632ea8d87bd59162032e",
+      "git_blob_sha": "c611b6470ac20e252ba9e7fff25caf8923dbce36"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/paper.md",
+      "bytes": 171950,
+      "sha256": "3496d033d406934c79b0140ada0c55519dfadd198865e7649c037fb18c3b06c6",
+      "git_blob_sha": "a87f271c35546a23c210bae88442292bbcb3262b"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/readiness.json",
+      "bytes": 139,
+      "sha256": "006c45d82f0fe112e050d64486038b49fb10defd1c2949afb11c87e148460690",
+      "git_blob_sha": "b5b570401883f6cf771a91b95e3d2a07426eecbd"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/registration.json",
+      "bytes": 1979,
+      "sha256": "52493b9f6c7a4d30c8ade85c5568a9dadc762243342b0cef684b2cda2fd15cc8",
+      "git_blob_sha": "a2de2a67c48640b5c9fbe5dcdbecca40934ede8b"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/requirements.txt",
+      "bytes": 27,
+      "sha256": "6979eeaed30ec7f45ff725f33240136e49c396fdf8a5ef12964fb2960c8a5d1e",
+      "git_blob_sha": "471c819217a05ff97a0483a81af5d70df9cb3593"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/results.csv.gz",
+      "bytes": 2937,
+      "sha256": "a30f61180d156f560b668c32ad68fbb6e7eb0620debe2495e64e4d1e5a4f3275",
+      "git_blob_sha": "d1e2871ebd72e0c5dccff9fc08b1365ea89beb23"
+    }
+  ],
+  "archive_bytes": 99272,
+  "archive_sha256": "2eb311c4299c48e869a6de73b20f37b42c30af73338bdee7a262440f2dd4e635",
+  "transport_test": "synthetic local tree fixture; separate real upload tested on75b940e0f685da428a4ff2c2f3054627a49a99f6"
+}

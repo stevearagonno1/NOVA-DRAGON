@@ -1,3 +1,19 @@
+
+
+## 2026-10-20 — الإصلاح المنشور وحد فحص النقل
+المصدر التنفيذي المصحح10d70f119f19f08b81c6f324495840290743372d؛ نقل الدستور كاملًا إلىREADME. اختبارات15وقراءات أسعار7نجحت؛ بصمات36ملفًا منشورًا مطابقة. تنزيل الحزمة المصححة توقف بعد20ملفًا بإلغاء موافقة اتصال في مضيف الاختبار، لذلك ليس تنزيلًا كاملًا متحققًا. لا قياس سوق ولا حذف أو دمج. المرجع التفصيلي docs/REPAIR-VERIFIED-2026-10-20.md وتعليمات docs/BTC-REPAIR-EXECUTION-2026-10-20.md. التالي: دمج المالك ثم بيئة تنفيذ نظيفة فعلًا؛ لا إعادة استخدامcd161f8.
+
+---
+## 2026-10-20 — نقل الدستور وإصلاح التخزين والاستئناف
+- الإذن: قال المالك «نعم انقله و نفذ الاصلاحات». نُقل الدستور كاملًا بأقسامه العشرين إلى README.md وأصبح CONSTITUTION.md إحالة، مع تحديث AGENTS ودليل العمل. الملاحة السابقة محفوظة في docs/README-PRE-MIGRATION-2026-10-20.md.
+- السبب الفعلي المبلغ عنه: مساحة195MB قبل الحساب، مقابل حد125MB. الكود القديم كان يحفظ الأسعار محليًا؛ لا دليل أن المدخلات ذات2,145,226بايت سببت حجم195MB.
+- الإصلاح: قراءة السعر في الذاكرة من مرجع ثابت مع فحص الحجم والبصمة؛ رفض البيئة المتجاوزة قبل شبكة/كتابة؛ لا تنظيف أو تضييق جذر الحساب. إصلاح تكرار تحقق إيصال الرفع مع رفض تغيّر الدليل.
+- الفحوص:15اختبارًا ناجحًا؛ سبعة ملفات أسعار قرئت من الشبكة وتحققت بصماتها دون نسخ على القرص؛ سبع دوال تعريف/حساب دون تغيير. لا تجربة سوق أو مال. تقرير أدوات الإصلاح tools/btc_state_specialist/REPAIR_VERIFICATION.json.
+- الفرع: agent/readme-storage-repair-2026-10-20، مبني على آخر فرع توقف192b1ae المتقدم على main بسبعة التزامات. يضم إعداد الدفعة السابق وإصلاحاته؛ لم يدمج الوكيل شيئًا.
+- التالي: دمج المالك للفرع، ثم استخدام تعليمات التنفيذ الجديدة في بيئة نظيفة فعلًا. لا إعادة استخدام ورقةcd161f8 أو نقطة توقف تخص الكود القديم.
+
+---
+
 ## أحدث حكم للاستئناف والأدوات — 2026-10-17
 - طلب المالك جعل معرفة المشروع واستخدام الأدوات قاعدة لكل محادثة جديدة. أضيفت §§8.5–8.6 داخل الدستور مع حفظ الأقسام20، وتوحيد README.md وAGENTS.md.
 - الفرع agent/research-tooling-2026-10-17 يضم حزمة الأدوات والتعديل الدستوري معًا؛ لا يزال main الرسمي a9d324a3b32bf027ad2e978636c9b9b351b4f1a0 عند بدء التعديل. لا يفترض الدمج من وجود هذه الوثيقة على فرع العمل.
@@ -343,3 +359,21 @@ Saved57-row counts reconciled;636 event-variant timing partitions checked. Of56 
 - الحكم: توثيق وصفي فقط؛ دقة التنبؤ والربحية والتكاليف والصفقات غير مقاسة. لا اعتماد دخول ولا تغيير في المحرك أو الكود الحي أو أرشيف الأسعار.
 - الملفات: `history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/README.md`؛ فرع العمل `agent/btc-intraday-recurrence-2026-10-17`. الدمج للمالك وحده؛ لا PR ولا دفع إلىmain.
 - التالي: مراجعة توثيق الحالات ثم تشريح الحجم وشدة الاتجاه وقت الاختراق، مع تثبيت أي تجربة لاحقة قبل القياس.
+
+
+## 2026-10-18 — BTC state specialist: prepared first executable cohort
+Owner permits mid-rise alerts and rejects arbitrary accuracy cutoffs. Lead preparation belongs here; only the sole executor runs the prepared longer measurement and delivery. Prepared548 BTC source-backed version records from596 reviewed IDs;48 foreign-asset records excluded. Full131408-record inventory and17800618 indexed parameter changes are not all implemented or tested. New causal state: >=0.5%/60min and strict previous12-high breakout, contiguous episodes split at Aden day; old802/311 event counts do not apply. Seven source inputs verified; market NOT RUN. Seven unit checks,51 scalar source comparisons, independent EMA/ATR/BB recurrences, prefix/future perturbation, changed-config audit rejection, lock, resume equivalence,551 synthetic-row audit/report and payload path checked. Code/report package: tools/btc_state_specialist/. Outcome: technically prepared for this registered discovery stage only, no full-stream precision or financial verdict. Next: sole executor measures/uploads; Lead independently audits. Work branch agent/btc-state-specialist-2026-10-18; no PR/main push/merge.
+
+
+## 2026-10-18 — Final preparation integrity correction
+Added actual staged-price byte verification before both restart and audit; a manifest alone is insufficient. Eight unit tests pass; prepared548-record scope and numeric signal formulas unchanged. Final synthetic checkpoint/audit/report/publishing path passes; partial payload timing is explicitly not the full task time. Market NOT RUN. Single executor only; independent Lead review pending. See tools/btc_state_specialist/readiness.json and the final paper on the same work branch.
+
+
+## 2026-10-20 — Private credential handoff and direct REST transport
+The owner supplied the GitHub publishing credential privately and requires it initialized/included in every private executor paper; public repository copies stay redacted. The credential is retained only in the private owner-to-executor bundle, not these files. Do not claim it was not supplied when the private credentials.env is available. A GitHub connector is no longer required: direct REST read, write and immutable readback passed on c0f226d45e4a268e2b7b78582d25a0eb659c5ef9 with two nonfinancial files. Calculation code remains cd161f8313cb2e3e135437f1e66109399b703272,548-record conditional discovery scope unchanged; market not run here. Private paper is an explicit execution instruction and requires final reply exactly تم or فشل. The new private bundle supersedes sending the old public link alone. No private paper/token is uploaded publicly, no PR/main push/merge. Next: executor uses the private bundle to resume, measure/audit/publish and verify; Lead reviews independently.
+
+
+## 2026-10-20 — توقف بطلب المالك بعد فشل المنفذ
+
+أبلغ المالك بفشل ورقة MD الأخيرة وطلب وقف العمل وحفظ الحالة وأخطاء المساعد. لا ناتج خطأ مرفق، ولا نتيجة سوقية مكتملة موثقة. لا تجربة أو إصلاح جديد. التسليم المضغوط السابق خالف طلب MD؛ وفحوص المصدر والتنزيل والنقل لم تثبت نجاح التنفيذ الكامل. التفاصيل والمراجع والإقرار بالأخطاء: docs/journal/2026-10-20-btc-private-transport/003-owner-stop-and-assistant-errors.md. التوكن والورقة الخاصة مستبعدان من النشر العام. الحالة STOPPED_BY_OWNER_AFTER_REPORTED_EXECUTOR_FAILURE.
+

@@ -1,0 +1,138 @@
+{
+  "fixture": true,
+  "payload_sha256": "7f37379d9b74dc21c1b9f9b3023ce77173b4e3704ae0488cd181391908b919be",
+  "files": [
+    {
+      "path": "LOG.md",
+      "bytes": 441,
+      "sha256": "a30c5b6aa56a3a3b7e8f4f9d26e255346117fc3156cb307321ca48da4051b066",
+      "git_blob_sha": "390c8be14023b8a29963bb4a111f3d418c6c8113"
+    },
+    {
+      "path": "docs/DECISIONS.md",
+      "bytes": 441,
+      "sha256": "a30c5b6aa56a3a3b7e8f4f9d26e255346117fc3156cb307321ca48da4051b066",
+      "git_blob_sha": "390c8be14023b8a29963bb4a111f3d418c6c8113"
+    },
+    {
+      "path": "docs/HANDOFF.md",
+      "bytes": 441,
+      "sha256": "a30c5b6aa56a3a3b7e8f4f9d26e255346117fc3156cb307321ca48da4051b066",
+      "git_blob_sha": "390c8be14023b8a29963bb4a111f3d418c6c8113"
+    },
+    {
+      "path": "docs/journal/2026-10-18-btc-state-specialist-execution/001-measured-delivery.md",
+      "bytes": 418,
+      "sha256": "75ca38002d195970155d8b74aa6dc18615ccdf7d09d0e9580954313cde19e762",
+      "git_blob_sha": "d337d4a8274ea02d13d655f8cfc454c299933437"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/2024-01.raw.json.gz",
+      "bytes": 7745,
+      "sha256": "6af2af9b23d86f3f7ec67e8a7a512c946f1a54db659f9b212afae21cebc1c393",
+      "git_blob_sha": "ded4860f71282db58d390a540eca22a44f6ba995"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/2024-01.rows.json.gz",
+      "bytes": 5637,
+      "sha256": "9f6672d87aab1c1b449936a66437ed24519eb3dcd150e93fbb061cf689f2647f",
+      "git_blob_sha": "f6bf4c27cc301068e37cfa937095a04135faf59a"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/DELIVERY.json",
+      "bytes": 660,
+      "sha256": "192f350c79aea05d831332231b1daf4de4936449b76f636e26e383b8de84fda9",
+      "git_blob_sha": "5a8a8e8163a46f7445d456e628f65c7579423c8a"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/EVIDENCE.zip",
+      "bytes": 100981,
+      "sha256": "0b4224d9d63dcd8836bac6b241c19bc3a874e32bae34f4f57e84803be628492e",
+      "git_blob_sha": "37f46379ef4d63713f0d5b34060fccb74e78b46c"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/REPORT_AR.md",
+      "bytes": 8416,
+      "sha256": "1d6e4846319c93a9fa9a882bea596e164eb6b52a6ec13882981866ecf5a63be6",
+      "git_blob_sha": "24829afb4522e440632ff54841967530a20ee360"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/audit.json",
+      "bytes": 181,
+      "sha256": "a4ff8f0b7c6075eb58f86aa16136bf7bfce74208fa6e0685740fc9a8aff5e7bd",
+      "git_blob_sha": "e99c026ecd7be50f19d0bef2a33bef2f352110ab"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/checkpoint.json",
+      "bytes": 384,
+      "sha256": "c4c16219fe3099314eb9def5e934d3c1b0b46d57efade1aad9579281b0735740",
+      "git_blob_sha": "9b949d1075edaaddd77f7c4acdfaea737986b488"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/coverage_scope.json",
+      "bytes": 15190,
+      "sha256": "a6016a9fc008b462242580750556213f9044f6b92d111bde3ec389c10a29028e",
+      "git_blob_sha": "029af09152c6b5c026e2f620a41d22f9e9676b31"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/definitions.json",
+      "bytes": 38765,
+      "sha256": "5a6839bf108ff63cf49f5b312452d51039934cff896fa71b0188fe949ab9d8f0",
+      "git_blob_sha": "6c7448f63f9cba45e17caaae790aee3d5137775c"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/grid.json",
+      "bytes": 278919,
+      "sha256": "f0521092657cdab2f9faa387a6d858e868936414fc3444b15d450851cf62f157",
+      "git_blob_sha": "b196b58a67c632c46d737717300b655d911eee24"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/inputs.json",
+      "bytes": 2548,
+      "sha256": "e36cf41d37308ac8e9cb2e7ae23760c9947a2760a1c6b4943200660ea7e955d6",
+      "git_blob_sha": "58a988fae0ad75e00190df1b55542adfd66fdf78"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/package_manifest.json",
+      "bytes": 2221,
+      "sha256": "a904d19fc3cf7e5a4480c7b368d7cafeb27491153f05da8669b3772dd5bf3cf1",
+      "git_blob_sha": "4e1f92a98ef63fb8459b756f303623a81b459511"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/paper.md",
+      "bytes": 173449,
+      "sha256": "a141ea8c27dd6a119711f4721357c302f46e6b2de8b326c834a55a70b1794ee1",
+      "git_blob_sha": "3482e59d9a35bee5955532a484b1bbb9f749d24a"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/readiness.json",
+      "bytes": 2521,
+      "sha256": "b7ea376e60740457008e8d2d487e6ffbe0893a6cf6b3285cd1746d4128d0d9ae",
+      "git_blob_sha": "78221d98560c82ab49b5aead70c66bc007fd5f8d"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/registration.json",
+      "bytes": 1979,
+      "sha256": "52493b9f6c7a4d30c8ade85c5568a9dadc762243342b0cef684b2cda2fd15cc8",
+      "git_blob_sha": "a2de2a67c48640b5c9fbe5dcdbecca40934ede8b"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/requirements.txt",
+      "bytes": 27,
+      "sha256": "6979eeaed30ec7f45ff725f33240136e49c396fdf8a5ef12964fb2960c8a5d1e",
+      "git_blob_sha": "471c819217a05ff97a0483a81af5d70df9cb3593"
+    },
+    {
+      "path": "history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/results.csv.gz",
+      "bytes": 2937,
+      "sha256": "a30f61180d156f560b668c32ad68fbb6e7eb0620debe2495e64e4d1e5a4f3275",
+      "git_blob_sha": "d1e2871ebd72e0c5dccff9fc08b1365ea89beb23"
+    }
+  ],
+  "archive_bytes": 100981,
+  "archive_sha256": "0b4224d9d63dcd8836bac6b241c19bc3a874e32bae34f4f57e84803be628492e",
+  "status": "SYNTHETIC_TRANSPORT_CHECK_ONLY",
+  "resume_identical_to_uninterrupted": true,
+  "core_algorithm_unchanged_from_uninterrupted": "only delivery journal namespace and partial timer label changed",
+  "changed_config_rejected": true
+}

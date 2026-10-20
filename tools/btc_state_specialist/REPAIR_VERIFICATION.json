@@ -1,0 +1,24 @@
+{
+  "status": "REPAIR_CHECKED_NO_MARKET_MEASUREMENT",
+  "base_commit": "192b1aef32bfc2a98fccbe25d5c15d010d828217",
+  "main_verified": "8af2aae214f65a370110921928eaabf07771a6d1",
+  "tests": 15,
+  "tests_status": "PASS",
+  "red_before_fix": "3 reproduced failures: local staging, in-memory compressed loading, annotated receipt retry",
+  "remote_price_reads": 7,
+  "remote_read_result": "all registered SHA256 and size checks passed; no local price copies",
+  "signal_scoring_functions_unchanged": 7,
+  "constitution_sections": 20,
+  "runtime": {
+    "python": "3.12.14",
+    "numpy": "2.3.5",
+    "pandas": "2.2.3"
+  },
+  "limits": [
+    "No market measurement or financial result",
+    "No full real executor publication rehearsal in this repair",
+    "Prior 195MB execution workspace is on another host and was not inspected or cleaned",
+    "Actual pre-task duration estimate was not recorded; no claim of a <=600-second complete task",
+    "Package fingerprint rejects checkpoints created before source/test changes; use fresh output for repaired package"
+  ]
+}
