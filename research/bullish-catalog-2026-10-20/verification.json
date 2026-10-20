@@ -1,0 +1,8 @@
+{
+  "candidate_rows": 17319,
+  "source_rows": 131408,
+  "unique_candidate_ids": true,
+  "gzip_checksums_and_row_counts": "PASS",
+  "unit_tests": 5,
+  "market_tests": 0
+}
