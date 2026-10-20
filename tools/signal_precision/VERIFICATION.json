@@ -1,0 +1,37 @@
+{
+  "status": "TECHNICALLY_CONFIRMED_PREPARATION_ONLY",
+  "base_commit": "54aa2ae5856416e90ff22778caadb530b0fef271",
+  "new_unit_tests_passed": 7,
+  "existing_regression_tests_passed": 15,
+  "red_test": "ModuleNotFoundError before implementation",
+  "mutation_failures": 3,
+  "fixture": {
+    "fingerprint": "0714305869a1b29d33ebc579165ba690aa06c797741ec34d959dfa2cdcd75d82",
+    "independent_validation": "not measured",
+    "market_selection": "none",
+    "months": [
+      "2024-01"
+    ],
+    "parts": {
+      "2024-01": "84289a6c45763b687b58a3081829fe30e2fa6e73dc1c596cd5b8644e59f4fdd6"
+    },
+    "rows": 538,
+    "status": "SYNTHETIC_ONLY"
+  },
+  "fixture_initial_compute_seconds": 0.6974077310005669,
+  "fixture_resume_compute_seconds": 0.040241960000457766,
+  "market_measurement": "NOT RUN",
+  "ready_for_executor": false,
+  "limits": [
+    "new source bootstrap and delivery not rehearsed",
+    "market result not produced",
+    "validation period and acceptance thresholds not registered",
+    "all-assets/states/mixtures not implemented"
+  ],
+  "source_sha256": {
+    "tools/signal_precision/test_precision.py": "3b2edd4b3887fe404adca743cabf9cb428c6fe0bdb3b46f3aceead1cfd2d50ba",
+    "tools/signal_precision/precision_registration.json": "060381ebd7fc1e8b96324d24177489baa9c857ac43b8203a03a9c4bf21885e95",
+    "tools/signal_precision/precision.py": "23126d7e0ce8f5084458d9c4a56b0ae2d352e88199f4d7274d4f829339d4db9e"
+  },
+  "workspace_bytes": 2387431
+}
