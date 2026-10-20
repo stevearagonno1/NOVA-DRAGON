@@ -16,7 +16,7 @@ The owner approved a BTC state specialist, including mid-rise alerts and eventua
 
 ## 3. What is already known
 
-Read the current complete constitution at https://github.com/stevearagonno1/NOVA-DRAGON/blob/main/CONSTITUTION.md and follow its resume/tool protocol. For this paper the verified source main is8af2aae214f65a370110921928eaabf07771a6d1 and constitution file blob8e999304b33755ca9dd7383f0a86586f1d729df6. Read the relevant current tape and distinguish new owner instructions from old historical criteria.
+Read the current complete constitution at https://github.com/stevearagonno1/NOVA-DRAGON/blob/main/README.md and follow its resume/tool protocol. For this paper the verified source main is8af2aae214f65a370110921928eaabf07771a6d1 and constitution file blob8e999304b33755ca9dd7383f0a86586f1d729df6. Read the relevant current tape and distinguish new owner instructions from old historical criteria.
 
 The earlier seven-month recurrence study is under history/research/hyp_lab_out/BTC-INTRADAY-2026-10-17/ at that source main. Its reported802 rises/311 overlapping breakout flags belong to its old pulse-and-spacing definition; they are not expected counts for the new continuous episodes below. This paper does not remeasure or reinterpret old results as predictive accuracy.
 
@@ -101,7 +101,7 @@ Other coins/states; full-stream false alarms or real-time state-gate quality; al
 
 ## 16. Deliverables and paths
 
-Run directory: the extracted btc-specialist folder. Set NOVA_WORKSPACE to the absolute session workspace, not a smaller folder chosen to hide other files. No full repository clone. Destination results branch: agent/btc-state-specialist-results-2026-10-18. Destination root: history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/. Code is stored under tools/btc_state_specialist/ on the prepared work branch agent/btc-state-specialist-2026-10-18. Never create a PR, merge or push to main.
+Run directory: the extracted btc-specialist folder. Set NOVA_WORKSPACE to the absolute session workspace, not a smaller folder chosen to hide other files. No full repository clone. Destination results branch: agent/btc-state-specialist-results-r2-2026-10-20. Destination root: history/research/hyp_lab_out/BTC-STATE-SPECIALIST-R2-2026-10-20/. Code is stored under tools/btc_state_specialist/ on the prepared work branch agent/btc-state-specialist-2026-10-18. Never create a PR, merge or push to main.
 
 Per-month MONTH.raw.json.gz contains timestamps, close prices, inclusive state_runs, state_mask and each candidate's selected-alert bit mask. Bit i means the saved completed bar i. It also records prefix-check count and right-censoring. MONTH.rows.json.gz retains all nested statistics and first-alert evidence. results.csv.gz has candidate_id,month,states,state_bars,alerts,caught,missed,repeated,coverage,median_delay_bars,median_remaining_close_gain_pct,matched_count_random_state_coverage,precision. checkpoint.json pins source/code fingerprint, month list and hashes. audit.json records the independent count audit. REPORT_AR.md retains the constitutional summary and all seven tables; financial fields say not measured — outside this phase.
 
@@ -113,36 +113,38 @@ You are the executor, not another coordinator. Do not design, implement, repair,
 
 The owner currently specifies the final reply as تم or فشل. Record the full actual error, attempted action, pending work and safe restart state in files; do not leak credentials. Reply تم only after real seven-month measurement, audit, report, remote payload readback and verified receipt upload/readback. Synthetic setup success or a draft upload is not completion. On a blocked completion reply فشل, preserving evidence. The Lead reads the named results branch and issues the independent judgment.
 
-## 18. Runnable package — direct REST, no GitHub connector needed
+## 18. Repaired execution route — 2026-10-20
 
-CODE_COMMIT = cd161f8313cb2e3e135437f1e66109399b703272. This private transport update changes no calculation, grid, state, month, matching rule or result criterion. The original core package_manifest.json still verifies the calculation files. The additional helper is outside btc-specialist so it does not change the calculation fingerprint or invalidate a matching prior checkpoint.
+This route supersedes every older bootstrap/staging/private-transport instruction. Follow docs/BTC-REPAIR-EXECUTION-2026-10-20.md at the delivered repair commit for the immutable bootstrap reference. Read root README.md in full. Do not run the old pinned cd161f8 calculation package: its storage path is superseded. The new package retains the same 548 candidates, months, signal formulas and descriptive scope.
 
-Run every command below from the workspace root containing the two extracted folders btc-specialist and private-btc-executor. These are executor commands, not instructions for the owner's phone. They initialize access, stage the pinned data, run the fixed experiment and deliver it; retain process logs and return only the final completion word. No gh installation, local origin or GitHub connector is required. The helper calls only api.github.com for stevearagonno1/NOVA-DRAGON and permits work-branch writes only.
+Use a genuinely clean POSIX Python3.12 execution environment with numpy2.3.5 and pandas2.2.3 already available. Set NOVA_WORKSPACE to the actual complete workspace root. Check its entire size before downloading even source files. If already above125000000 bytes, retain evidence and select a new execution environment; a subdirectory does not qualify. Do not delete unknown files, narrow accounting or install dependencies blindly. Missing dependencies block readiness until the execution environment is correctly provisioned and its full workspace passes the limit.
 
-GH_TOKEN is supplied only in the private owner-to-executor paper/credentials.env. This public copy intentionally contains no token. The private initialization sets GH_TOKEN, PYTHONDONTWRITEBYTECODE=1 and NOVA_WORKSPACE to the full workspace root before these commands. Do not upload the private initialization or private bundle.
+The public bootstrap downloads only manifest-listed lightweight code/configuration/documentation. It records the exact repaired code commit in source_release.json. It requires no publishing token. Price files are fetched one at a time into memory, bounded by registered size and verified by SHA256 before calculation. No inputs/ directory or local price archive is created. Restart verifies code/settings/runtime fingerprints and completed output hashes; new code must not reuse the old package's checkpoint.
 
-Record a task-start epoch before setup and never reset it on restart. Use this tested setup command:
+From the actual complete workspace root, after the pinned bootstrap succeeds:
 
-python -c "import pathlib,json,time; p=pathlib.Path('private-btc-executor/TASK_START.json'); p.exists() or p.write_text(json.dumps({'task_started_epoch':time.time()}))"
+```bash
+set -e
+export PYTHONDONTWRITEBYTECODE=1
+python -c "import numpy,pandas; assert numpy.__version__=='2.3.5' and pandas.__version__=='2.2.3'"
+python btc-specialist/test_specialist.py
+python btc-specialist/test_storage_repair.py
+python btc-specialist/stage_inputs.py check
+python btc-specialist/specialist.py fixture --out btc-specialist/readiness-executor --stop-after 1
+python btc-specialist/specialist.py fixture --out btc-specialist/readiness-executor
+python btc-specialist/specialist.py audit --out btc-specialist/readiness-executor
+python btc-specialist/specialist.py measure --out btc-specialist/market
+python btc-specialist/specialist.py audit --out btc-specialist/market
+python btc-specialist/private_transport/rest_publish.py publish --package btc-specialist --out btc-specialist/market --started btc-specialist/TASK_START.json
+```
 
-For a resumed older attempt whose original start was never captured, this timestamp covers the resumed session only; do not invent the older total. Set PYTHONDONTWRITEBYTECODE=1 and NOVA_WORKSPACE to the actual complete workspace root. Do not print GH_TOKEN, use shell tracing, or serialize the environment into logs.
+GH_TOKEN is needed only for publishing and must be supplied through the executor's private environment. Never place it in repository files or output. No credential value is embedded in this public paper. A supplied private credential must be initialized in the actual execution process; it is not assumed available merely because a GitHub connector is connected.
 
-Execute in this order, keeping the same folders/checkpoints if prior work exists:
-
-1. Verify core hashes in btc-specialist/package_manifest.json. Use Python3.12/POSIX with numpy2.3.5 and pandas2.2.3. Install the pinned requirements only if absent; do not alter versions or code. Run python btc-specialist/test_specialist.py.
-2. Run python private-btc-executor/rest_publish.py probe --package btc-specialist --out private-btc-executor/checks. This checks the actual host/token using two harmless nonfinancial work-branch files and immutable readback. The prepared route already passed at c0f226d45e4a268e2b7b78582d25a0eb659c5ef9, but current host access still must work. If it fails, preserve checks/REST_ERROR.json; do not ask for a connector as a prerequisite.
-3. Run python private-btc-executor/rest_publish.py inputs --package btc-specialist. It fetches exactly the seven pinned source files through REST and verifies byte lengths/SHA256; existing valid files are reused. Run python btc-specialist/stage_inputs.py check.
-4. Run python btc-specialist/specialist.py fixture --out btc-specialist/readiness-executor --stop-after 1, then python btc-specialist/specialist.py fixture --out btc-specialist/readiness-executor, then python btc-specialist/specialist.py audit --out btc-specialist/readiness-executor. This is a setup test, not market completion.
-5. Run python btc-specialist/specialist.py measure --out btc-specialist/market. Keep polling the same process to a known exit; save stdout/stderr. Resume the identical command only after confirming no worker holds the lock. Do not delete or rerun completed parts from scratch. Run python btc-specialist/specialist.py audit --out btc-specialist/market.
-6. Run python private-btc-executor/rest_publish.py publish --package btc-specialist --out btc-specialist/market --started private-btc-executor/TASK_START.json. It creates the authorized results branch from the pinned calculation code if needed, reads the actual branch documents, builds the prepared public payload, uploads it, verifies every blob at the actual immutable commit, publishes the verified receipt and execution tick, reads them back, and records COMPLETION.json. The helper rejects actual token material in plain files and compressed ZIP entries before upload. No private credentials or private paper are included in delivery.py's public payload.
-
-Results branch: agent/btc-state-specialist-results-2026-10-18. Result root: history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/. REST_UPLOAD_STATE.json preserves payload/receipt commit checkpoints. Repeating the publish command resumes that state; no force updates or scope changes. A lost final receipt response can be recovered only after comparing the actual remote receipt/payload identity.
-
-The final word تم is permitted only after the actual seven-month measurement,3857-row audit, report and verified remote receipt. A synthetic fixture, probe or local-only calculation is not completion. If blocked, preserve the actual error, logs and partial files and reply exactly فشل. Do not propose options or ask to authorize an already authorized stage.
+Results branch: agent/btc-state-specialist-results-r2-2026-10-20. Result root: history/research/hyp_lab_out/BTC-STATE-SPECIALIST-R2-2026-10-20/. Preserve process logs and continue polling the same worker. The receipt verifier accepts identical prior evidence, including transport timing annotations, but rejects any changed payload or core evidence field. Final completion still requires full measurement, audit and verified publication. This repair task has not run the market experiment.
 
 ## 19. Readiness evidence
 
-Read readiness.json and reference_checks.json for actual commands and limits. The prepared code path was tested on420 synthetic bars through measurement, all551 conditional result rows, checkpoint stop/resume, independent count audit, full report generation and publishing-payload construction. A separate uninterrupted fixture is compared with the resumed one. Numerical source comparisons and independent recurrences are separately identified; no synthetic result is called market performance. Eight unit tests pass. Actual staged source bytes are rehashed before resume and audit, not merely their manifest. Seven pinned market inputs were checked only for identity/schema, not scored by the Lead. A small real work-branch upload/readback confirms the connector route; a local synthetic transport check does not replace it.
+Read readiness.json and reference_checks.json for actual commands and limits. The prepared code path was tested on420 synthetic bars through measurement, all551 conditional result rows, checkpoint stop/resume, independent count audit, full report generation and publishing-payload construction. A separate uninterrupted fixture is compared with the resumed one. Numerical source comparisons and independent recurrences are separately identified; no synthetic result is called market performance. Eight unit tests pass. Remote price bytes are verified in memory before calculation; resumed outputs are bound to the pinned input identities and source/runtime fingerprint. Seven pinned market inputs were checked only for identity/schema, not scored by the Lead. A small real work-branch upload/readback confirms the connector route; a local synthetic transport check does not replace it.
 
 ## 20. Storage, errors and authority
 
@@ -1661,4 +1663,5 @@ registered_candle_confirmation
 >  elif scalar:truth=np.array([bool(a[i] and any(i-j>=0 and b[i-j] for j in [1,2])) for i in range(len(a))])
 >  else:truth=a&(np.r_[False,b[:-1]]|np.r_[False,False,b[:-2]])
 >  return truth&~np.r_[False,truth[:-1]]
+
 

@@ -1,10 +1,10 @@
 """Direct GitHub REST transport. Token comes only from GH_TOKEN, never output or URL."""
 from pathlib import Path
-import argparse,base64,hashlib,io,json,os,sys,time,traceback,urllib.request,urllib.error,urllib.parse,zipfile
+import argparse,base64,hashlib,io,json,os,re,sys,time,traceback,urllib.request,urllib.error,urllib.parse,zipfile
 REPO='/repos/stevearagonno1/NOVA-DRAGON'
-CODE='cd161f8313cb2e3e135437f1e66109399b703272'
-BRANCH='agent/btc-state-specialist-results-2026-10-18'
-DEST='history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/'
+CODE=None  # Exact repaired source commit is recorded by the bootstrap.
+BRANCH='agent/btc-state-specialist-results-r2-2026-10-20'
+DEST='history/research/hyp_lab_out/BTC-STATE-SPECIALIST-R2-2026-10-20/'
 class NoRedirect(urllib.request.HTTPRedirectHandler):
     def redirect_request(self,*args):raise RuntimeError('GitHub redirect refused; credentials were not forwarded')
 class API:
@@ -59,14 +59,31 @@ class API:
         assert d['encoding']=='base64','GitHub file exceeds contents reader limits'
         return base64.b64decode(d['content'])
 def dump(path,data):
-    path=Path(path);path.parent.mkdir(parents=True,exist_ok=True);path.write_text(json.dumps(data,ensure_ascii=False,indent=2))
+    from workspace_guard import preflight
+    path=Path(path);content=json.dumps(data,ensure_ascii=False,indent=2)
+    preflight(len(content.encode()),path)
+    path.parent.mkdir(parents=True,exist_ok=True);path.write_text(content)
 def verify_files(api,commit,files):
     r=api.tree(commit);entries={x['path']:x for x in r['tree'] if x['type']=='blob'}
     for name,b in files.items():
         expected=hashlib.sha1(('blob '+str(len(b))+'\0').encode()+b).hexdigest();assert entries[name]['sha']==expected and entries[name]['size']==len(b),name
     return r
 def main(a):
-    api=API();package=Path(a.package).resolve();sys.path.insert(0,str(package))
+    global CODE
+    package=Path(a.package).resolve();sys.path.insert(0,str(package))
+    from workspace_guard import preflight
+    preflight(target=a.out)
+    release=json.loads((package/'source_release.json').read_text())
+    CODE=release['code_commit']
+    assert re.fullmatch(r'[0-9a-f]{40}',CODE),'pinned repaired code commit required'
+    manifest=json.loads((package/'package_manifest.json').read_text())
+    for name,entry in manifest['files'].items():
+        data=(package/name).read_bytes()
+        assert len(data)==entry['bytes'] and hashlib.sha256(data).hexdigest()==entry['sha256'],'changed source: '+name
+    if a.mode=='inputs':
+        import stage_inputs
+        stage_inputs.check();return
+    api=API()
     if a.mode=='probe':
         branch='agent/btc-private-transport-2026-10-20';parent=api.branch(branch,CODE)
         content=json.dumps({'purpose':'nonfinancial direct REST write/readback probe','contains_credentials':False},sort_keys=True).encode();buf=io.BytesIO()
@@ -75,12 +92,6 @@ def main(a):
         commit,tree=api.commit(branch,parent,files,'Verify private-token REST transport without secrets or market measurement');verify_files(api,commit,files)
         result={'status':'DIRECT_REST_WRITE_AND_IMMUTABLE_READBACK_PASS','commit':commit,'branch':branch,'verified_files':2,'no_credentials_uploaded':True};dump(Path(a.out)/'REST_PROBE.json',result);print(json.dumps(result));return
     import specialist as S,stage_inputs
-    if a.mode=='inputs':
-        for item in json.loads((package/'inputs.json').read_text()):
-            path=package/item['local_path']
-            data=path.read_bytes() if path.exists() else api.document(item['repository_path'],item['source_commit'])
-            stage_inputs.stage(item,data);print('INPUT_VERIFIED',item['month'],flush=True)
-        S.validate_source_inputs();return
     import delivery as D
     out=Path(a.out).resolve();out.mkdir(parents=True,exist_ok=True);S.audit(out)
     checkpoint=json.loads((out/'checkpoint.json').read_text());assert not checkpoint['fixture'],'synthetic output is not a market delivery'
@@ -121,4 +132,10 @@ if __name__=='__main__':
     try:main(a)
     except Exception as e:
         token=os.environ.get('GH_TOKEN','');reason=(type(e).__name__+': '+str(e)).replace(token,'[REDACTED]') if token else type(e).__name__+': '+str(e)
-        dump(Path(a.out)/'REST_ERROR.json',{'status':'BLOCKED','actual_error':reason,'market_result':'not inferred from operational failure'});print(reason,file=sys.stderr);sys.exit(1)
+        print(reason,file=sys.stderr)
+        try:
+            dump(Path(a.out)/'REST_ERROR.json',{'status':'BLOCKED','actual_error':reason,'market_result':'not inferred from operational failure'})
+        except (RuntimeError, ImportError):
+            pass  # Preserve stdout/stderr externally when the workspace cannot accept writes.
+        sys.exit(1)
+

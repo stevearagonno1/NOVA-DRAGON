@@ -8,16 +8,18 @@ import indicators84 as I
 import signals85 as A
 import signals88 as B
 import candles92 as C
+import stage_inputs
+from workspace_guard import preflight, workspace_bytes
 
 ROOT=Path(__file__).resolve().parent
 MONTHS=['2021-12','2023-05','2023-12','2024-01','2025-05','2025-12','2026-03']
 SEED=18102026
 def sha(p):return hashlib.sha256(Path(p).read_bytes()).hexdigest()
 def encode(x):return (json.dumps(x,ensure_ascii=False,sort_keys=True,allow_nan=False)+'\n').encode()
-def workspace_bytes(p):return sum(x.stat().st_size for x in Path(p).rglob('*') if x.is_file() and not x.is_symlink())
 def atomic(p,b):
-    p=Path(p);p.parent.mkdir(parents=True,exist_ok=True)
-    if workspace_bytes(os.environ.get('NOVA_WORKSPACE',ROOT.parent))+len(b)>125000000:raise RuntimeError('125 MB workspace limit')
+    p=Path(p)
+    preflight(len(b),p)
+    p.parent.mkdir(parents=True,exist_ok=True)
     if p.exists():
         if p.read_bytes()!=b:raise RuntimeError('existing output differs: '+str(p))
         return
@@ -30,10 +32,9 @@ def month(t):return day(t)[:7]
 def grid():return json.loads((ROOT/'grid.json').read_text())
 def validate_source_inputs():
     for item in json.loads((ROOT/'inputs.json').read_text()):
-        path=ROOT/item['local_path']
-        assert path.stat().st_size==item['bytes'] and sha(path)==item['sha256'],'staged price input changed: '+item['month']
+        stage_inputs.read(item)
 def fingerprint(synthetic):
-    if not synthetic:validate_source_inputs()
+    preflight()
     code={p.name:sha(p) for p in ROOT.glob('*.py')}
     settings={'code':code,'grid':grid(),'inputs':json.loads((ROOT/'inputs.json').read_text()),'fixture':synthetic,'registration':json.loads((ROOT/'registration.json').read_text()),'definitions_sha256':sha(ROOT/'definitions.json'),'coverage_sha256':sha(ROOT/'coverage_scope.json'),'numpy':np.__version__,'pandas':pd.__version__}
     return hashlib.sha256(encode(settings)).hexdigest()
@@ -75,8 +76,8 @@ def fixture():
     h=np.maximum(o,c)+.05;l=np.minimum(o,c)-.05;v=100+20*np.sin(x/3)+rng.uniform(0,20,n)
     start=datetime(2023,12,31,21,tzinfo=timezone.utc).timestamp()+899.999
     return {'o':o,'h':h,'l':l,'c':c,'v':v,'tbv':np.full(n,np.nan),'minutes':np.full(n,15),'dt':start+x*900}
-def load_data(path):
-    b=pd.read_csv(path);cols=[x for x in ['close_time_utc','time_utc'] if x in b]
+def load_data(path,compression='infer'):
+    b=pd.read_csv(path,compression=compression);cols=[x for x in ['close_time_utc','time_utc'] if x in b]
     assert len(cols)==1,'expected exactly one verified candle close timestamp column'
     col=cols[0]
     dt=pd.to_datetime(b[col],utc=True).astype('int64').to_numpy()/1e9
@@ -185,6 +186,7 @@ def audit(out):
     buf=io.StringIO();fields=['candidate_id','month','states','state_bars','alerts','caught','missed','repeated','coverage','median_delay_bars','median_remaining_close_gain_pct','matched_count_random_state_coverage','precision'];w=csv.DictWriter(buf,fieldnames=fields,extrasaction='ignore');w.writeheader();w.writerows(allrows);atomic(out/'results.csv.gz',gzip.compress(buf.getvalue().encode(),mtime=0));report(out,manifest,allrows)
     return count
 def run(out,synthetic=False,stop_after=None):
+    preflight(target=out)
     out=Path(out);out.mkdir(parents=True,exist_ok=True);g=grid();inputs=json.loads((ROOT/'inputs.json').read_text());months=['2024-01'] if synthetic else MONTHS
     digest=fingerprint(synthetic)
     checkpoint=out/'checkpoint.json';old=json.loads(checkpoint.read_text()) if checkpoint.exists() else None
@@ -199,7 +201,9 @@ def run(out,synthetic=False,stop_after=None):
         else:
             if synthetic:d=fixture()
             else:
-                item=next(x for x in inputs if x['month']==m);path=ROOT/item['local_path'];assert sha(path)==item['sha256'];d=load_data(path)
+                item=next(x for x in inputs if x['month']==m)
+                with stage_inputs.open_verified(item) as source:
+                    d=load_data(source,compression='gzip')
             raw,rows=measure_one(d,m,g);audit_one(raw,rows)
             atomic(out/rawname,gzip.compress(encode(raw),mtime=0));atomic(out/rowname,gzip.compress(encode(rows),mtime=0));manifest['parts'].append({'month':m,'raw':rawname,'raw_sha256':sha(out/rawname),'rows':rowname,'rows_sha256':sha(out/rowname)})
         # Checkpoint is the only mutable generated state; atomic replace and lease fingerprint.
@@ -211,9 +215,11 @@ def run(out,synthetic=False,stop_after=None):
     audit(out);return 'SYNTHETIC_ONLY' if synthetic else 'DISCOVERY_LEAD_REVIEW_PENDING'
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('mode',choices=['fixture','measure','audit']);p.add_argument('--out',required=True);p.add_argument('--stop-after',type=int);a=p.parse_args()
+    preflight(target=a.out)
     Path(a.out).mkdir(parents=True,exist_ok=True)
     lock=(Path(a.out)/'.worker.lock').open('a+')
     try:fcntl.flock(lock,fcntl.LOCK_EX|fcntl.LOCK_NB)
     except BlockingIOError:raise SystemExit('another worker holds this output; poll it, do not restart')
     started=time.monotonic();status=audit(a.out) if a.mode=='audit' else run(a.out,a.mode=='fixture',a.stop_after)
     print(json.dumps({'status':status,'compute_seconds':time.monotonic()-started}))
+

@@ -11,8 +11,11 @@ class StateResearchTests(unittest.TestCase):
             root=Path(tmp);source=root/'price';source.write_bytes(b'original')
             (root/'inputs.json').write_text(json.dumps([{'month':'fixture','local_path':'price','bytes':8,'sha256':hashlib.sha256(b'original').hexdigest()}]))
             with patch.object(S,'ROOT',root):
-                S.validate_source_inputs();source.write_bytes(b'changed!')
-                with self.assertRaisesRegex(AssertionError,'staged price input changed'):S.validate_source_inputs()
+                import stage_inputs
+                item=json.loads((root/'inputs.json').read_text())[0]
+                with patch.object(stage_inputs,'read',side_effect=lambda q:stage_inputs.stage(q,source.read_bytes())):
+                    S.validate_source_inputs();source.write_bytes(b'changed!')
+                    with self.assertRaisesRegex(RuntimeError,'price input hash/size'):S.validate_source_inputs()
 
     def test_both_verified_archive_time_column_names_are_supported(self):
         import io,pandas as pd
@@ -68,3 +71,4 @@ class StateResearchTests(unittest.TestCase):
             x=c[i-19:i+1];self.assertAlmostEqual(bands[i],float(np.mean(x)-2*np.std(x)),places=9)
 
 if __name__=='__main__':unittest.main()
+

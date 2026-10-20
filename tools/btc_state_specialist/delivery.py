@@ -3,7 +3,7 @@ from pathlib import Path
 import argparse,base64,gzip,hashlib,json,os,sys,time,zipfile,io
 import specialist as S
 ROOT=Path(__file__).resolve().parent
-DEST='history/research/hyp_lab_out/BTC-STATE-SPECIALIST-2026-10-18/'
+DEST='history/research/hyp_lab_out/BTC-STATE-SPECIALIST-R2-2026-10-20/'
 def build(out,context,code_commit,allow_synthetic=False):
     out=Path(out);ctx=json.loads(Path(context).read_text());S.audit(out)
     cp=json.loads((out/'checkpoint.json').read_text())
@@ -27,7 +27,7 @@ def build(out,context,code_commit,allow_synthetic=False):
         for name,b in sorted(files.items()):
             info=zipfile.ZipInfo(name,date_time=(2026,10,18,0,0,0));info.compress_type=zipfile.ZIP_DEFLATED;z.writestr(info,b)
     archive=buf.getvalue();files[DEST+'EVIDENCE.zip']=archive
-    payload={'fixture':cp['fixture'],'expected_head':ctx['head'],'base_tree':ctx['tree'],'destination_branch':'agent/btc-state-specialist-results-2026-10-18','code_commit':code_commit,'files':[{'path':name,'encoding':'base64','content':base64.b64encode(b).decode(),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest(),'git_blob_sha':hashlib.sha1(('blob '+str(len(b))+'\0').encode()+b).hexdigest()} for name,b in sorted(files.items())],'archive_bytes':len(archive),'archive_sha256':hashlib.sha256(archive).hexdigest()}
+    payload={'fixture':cp['fixture'],'expected_head':ctx['head'],'base_tree':ctx['tree'],'destination_branch':'agent/btc-state-specialist-results-r2-2026-10-20','code_commit':code_commit,'files':[{'path':name,'encoding':'base64','content':base64.b64encode(b).decode(),'bytes':len(b),'sha256':hashlib.sha256(b).hexdigest(),'git_blob_sha':hashlib.sha1(('blob '+str(len(b))+'\0').encode()+b).hexdigest()} for name,b in sorted(files.items())],'archive_bytes':len(archive),'archive_sha256':hashlib.sha256(archive).hexdigest()}
     target=out/'publish_payload.json';data=S.encode(payload)
     if S.workspace_bytes(os.environ.get('NOVA_WORKSPACE',ROOT.parent))+len(data)>125000000:raise RuntimeError('125 MB limit before publishing payload')
     target.write_bytes(data);print(json.dumps({'status':'UPLOAD_PAYLOAD_READY','files':len(files),'payload':str(target),'archive_bytes':len(archive)}))
@@ -37,8 +37,16 @@ def verify(out,readback):
         actual=entries[item['path']];assert actual['sha']==item['git_blob_sha'] and actual['size']==item['bytes'],item['path']
     assert r['truncated'] is False
     receipt={'status':'SYNTHETIC_TRANSPORT_CHECK_ONLY' if p['fixture'] else 'REMOTE_PAYLOAD_VERIFIED_LEAD_REVIEW_PENDING','fixture':p['fixture'],'payload_commit':r['commit'],'code_commit':p['code_commit'],'files':[{k:x[k] for k in ['path','bytes','sha256','git_blob_sha']} for x in p['files']],'archive_bytes':p['archive_bytes'],'archive_sha256':p['archive_sha256'],'branch':p['destination_branch'],'report_path':DEST+'REPORT_AR.md','independent_lead_review':'pending','no_adoption':True}
-    S.jsonout(out/'VERIFIED_DELIVERY.json',receipt);print(json.dumps({'status':receipt['status'],'files':len(p['files'])}))
+    target=out/'VERIFIED_DELIVERY.json'
+    if target.exists():
+        existing=json.loads(target.read_text())
+        if any(existing.get(k)!=v for k,v in receipt.items()):
+            raise RuntimeError('existing receipt differs from verified payload')
+    else:
+        S.jsonout(target,receipt)
+    print(json.dumps({'status':receipt['status'],'files':len(p['files'])}))
 if __name__=='__main__':
     p=argparse.ArgumentParser();p.add_argument('mode',choices=['build','verify']);p.add_argument('--out',required=True);p.add_argument('--context');p.add_argument('--code-commit');p.add_argument('--readback');p.add_argument('--allow-synthetic',action='store_true');a=p.parse_args()
     if a.mode=='build':build(a.out,a.context,a.code_commit,a.allow_synthetic)
     else:verify(a.out,a.readback)
+

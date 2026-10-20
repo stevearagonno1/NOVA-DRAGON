@@ -1,23 +1,46 @@
-"""Stage only pinned compressed inputs. Connector fallback accepts one JSON item on stdin."""
+"""Read pinned public price inputs into memory; never stage prices on disk."""
 from pathlib import Path
-import argparse,base64,hashlib,json,os,sys,urllib.request
+import argparse, hashlib, io, json, re, urllib.request
+from workspace_guard import preflight
 ROOT=Path(__file__).resolve().parent
+
+class NoRedirect(urllib.request.HTTPRedirectHandler):
+    def redirect_request(self,*args):
+        raise RuntimeError('price source redirect refused')
+
 def stage(item,data):
-    from specialist import atomic
-    assert len(data)==item['bytes'] and hashlib.sha256(data).hexdigest()==item['sha256'],'input hash/size'
-    atomic(ROOT/item['local_path'],data)
+    # Compatibility entry point: validation only, no disk write.
+    if len(data)!=item['bytes'] or hashlib.sha256(data).hexdigest()!=item['sha256']:
+        raise RuntimeError('price input hash/size mismatch: '+item['month'])
+    return data
+
+def read(item, opener=None):
+    preflight()
+    ref=item['source_commit'];path=item['repository_path']
+    if not re.fullmatch(r'[0-9a-f]{40}',ref) or '..' in Path(path).parts or path.startswith('/'):
+        raise RuntimeError('invalid pinned input reference')
+    if not 0 < item['bytes'] <= 1000000:
+        raise RuntimeError('input exceeds registered bounded-memory reader')
+    url='https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/'+ref+'/'+path
+    request=urllib.request.Request(url,headers={'User-Agent':'NOVA-price-memory-reader'})
+    client=opener or urllib.request.build_opener(NoRedirect())
+    with client.open(request,timeout=60) as response:
+        data=response.read(item['bytes']+1)
+    return stage(item,data)
+
+def open_verified(item):
+    return io.BytesIO(read(item))
+
+def check():
+    items=json.loads((ROOT/'inputs.json').read_text())
+    for item in items:
+        read(item)
+        print('REMOTE_INPUT_VERIFIED_NO_DISK_COPY',item['month'],flush=True)
+    return len(items)
+
 if __name__=='__main__':
-    p=argparse.ArgumentParser();p.add_argument('mode',choices=['download','connector','check']);a=p.parse_args();items=json.loads((ROOT/'inputs.json').read_text())
-    if a.mode=='connector':
-        payload=json.load(sys.stdin);item=next(x for x in items if x['month']==payload['month']);stage(item,base64.b64decode(payload['content'],validate=False))
-    elif a.mode=='download':
-        for item in items:
-            target=ROOT/item['local_path']
-            if target.exists():stage(item,target.read_bytes());continue
-            url='https://raw.githubusercontent.com/stevearagonno1/NOVA-DRAGON/'+item['source_commit']+'/'+item['repository_path']
-            with urllib.request.urlopen(url,timeout=60) as r:data=r.read(item['bytes']+1)
-            stage(item,data);print('STAGED',item['month'],flush=True)
-    else:
-        for item in items:
-            path=ROOT/item['local_path'];assert path.stat().st_size==item['bytes'] and hashlib.sha256(path.read_bytes()).hexdigest()==item['sha256']
-        print('INPUTS_OK',len(items))
+    parser=argparse.ArgumentParser()
+    parser.add_argument('mode',choices=['check'])
+    parser.parse_args()
+    print('INPUTS_OK',check())
+
