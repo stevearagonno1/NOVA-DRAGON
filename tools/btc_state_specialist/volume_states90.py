@@ -27,3 +27,4 @@ def states(d,scalar=False):
   fast,slow=ema(f),ema(s);out[f'OBV_EMA_{f}_{s}']=np.isfinite(fast)&np.isfinite(slow)&(np.round(fast-slow,10)>0)
  return out
 
+

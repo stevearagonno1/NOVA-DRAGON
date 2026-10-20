@@ -87,3 +87,4 @@ def primitives(d,scalar=False,grid=None):
   out[q['id']]=truth & ~np.r_[False,truth[:-1]]
  return out
 
+

@@ -32,3 +32,4 @@ def signals(d,q,scalar=False):
  else:truth=a&(np.r_[False,b[:-1]]|np.r_[False,False,b[:-2]])
  return truth&~np.r_[False,truth[:-1]]
 
+
